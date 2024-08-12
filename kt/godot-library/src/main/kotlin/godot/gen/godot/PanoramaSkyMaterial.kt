@@ -18,18 +18,19 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A material that provides a special texture to a [godot.Sky], usually an HDR panorama.
- *
- * A resource referenced in a [godot.Sky] that is used to draw a background. [godot.PanoramaSkyMaterial] functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of a [godot.Cubemap].
- *
- * Using an HDR panorama is strongly recommended for accurate, high-quality reflections. Godot supports the Radiance HDR (`.hdr`) and OpenEXR (`.exr`) image formats for this purpose.
- *
- * You can use [this tool](https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html) to convert a cubemap to an equirectangular sky map.
+ * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
+ * functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of
+ * a [Cubemap].
+ * Using an HDR panorama is strongly recommended for accurate, high-quality reflections. Godot
+ * supports the Radiance HDR (`.hdr`) and OpenEXR (`.exr`) image formats for this purpose.
+ * You can use
+ * [url=https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html]this
+ * tool[/url] to convert a cubemap to an equirectangular sky map.
  */
 @GodotBaseType
 public open class PanoramaSkyMaterial : Material() {
   /**
-   * [godot.Texture2D] to be applied to the [godot.PanoramaSkyMaterial].
+   * [Texture2D] to be applied to the [PanoramaSkyMaterial].
    */
   public var panorama: Texture2D?
     get() {

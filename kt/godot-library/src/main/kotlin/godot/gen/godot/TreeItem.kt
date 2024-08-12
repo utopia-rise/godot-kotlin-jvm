@@ -38,13 +38,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * An internal control for a single item inside [godot.Tree].
- *
- * A single item of a [godot.Tree] control. It can contain other [godot.TreeItem]s as children, which allows it to create a hierarchy. It can also contain text and buttons. [godot.TreeItem] is not a [godot.Node], it is internal to the [godot.Tree].
- *
- * To create a [godot.TreeItem], use [godot.Tree.createItem] or [godot.TreeItem.createChild]. To remove a [godot.TreeItem], use [godot.Object.free].
- *
- * **Note:** The ID values used for buttons are 32-bit, unlike [int] which is always 64-bit. They go from `-2147483648` to `2147483647`.
+ * A single item of a [Tree] control. It can contain other [TreeItem]s as children, which allows it
+ * to create a hierarchy. It can also contain text and buttons. [TreeItem] is not a [Node], it is
+ * internal to the [Tree].
+ * To create a [TreeItem], use [Tree.createItem] or [TreeItem.createChild]. To remove a [TreeItem],
+ * use [Object.free].
+ * **Note:** The ID values used for buttons are 32-bit, unlike [int] which is always 64-bit. They go
+ * from `-2147483648` to `2147483647`.
  */
 @GodotBaseType
 public open class TreeItem internal constructor() : Object() {
@@ -63,9 +63,9 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   /**
-   * If `true`, the [godot.TreeItem] is visible (default).
-   *
-   * Note that if a [godot.TreeItem] is set to not be visible, none of its children will be visible either.
+   * If `true`, the [TreeItem] is visible (default).
+   * Note that if a [TreeItem] is set to not be visible, none of its children will be visible
+   * either.
    */
   public var visible: Boolean
     get() {
@@ -112,7 +112,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's cell mode to [mode]. See [enum TreeCellMode] constants.
+   * Sets the given column's cell mode to [mode]. See [TreeCellMode] constants.
    */
   public fun setCellMode(column: Int, mode: TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
@@ -130,8 +130,9 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * If [multiline] is `true`, the given [column] is multiline editable.
-   *
-   * **Note:** This option only affects the type of control ([godot.LineEdit] or [godot.TextEdit]) that appears when editing the column. You can set multiline values with [setText] even if the column is not multiline editable.
+   * **Note:** This option only affects the type of control ([LineEdit] or [TextEdit]) that appears
+   * when editing the column. You can set multiline values with [setText] even if the column is not
+   * multiline editable.
    */
   public fun setEditMultiline(column: Int, multiline: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to multiline)
@@ -157,7 +158,6 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * If [indeterminate] is `true`, the given [column] is marked indeterminate.
-   *
    * **Note:** If set `true` from `false`, then column is cleared of checked status.
    */
   public fun setIndeterminate(column: Int, indeterminate: Boolean): Unit {
@@ -184,7 +184,11 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Propagates this item's checked status to its children and parents for the given [column]. It is possible to process the items affected by this method call by connecting to [godot.Tree.checkPropagatedToItem]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [emitSignal] is `false`, then [godot.Tree.checkPropagatedToItem] will not be emitted.
+   * Propagates this item's checked status to its children and parents for the given [column]. It is
+   * possible to process the items affected by this method call by connecting to [signal
+   * Tree.check_propagated_to_item]. The order that the items affected will be processed is as follows:
+   * the item invoking this method, children of that item, and finally parents of that item. If
+   * [emitSignal] is `false`, then [signal Tree.check_propagated_to_item] will not be emitted.
    */
   @JvmOverloads
   public fun propagateCheck(column: Int, emitSignal: Boolean = true): Unit {
@@ -227,7 +231,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the autowrap mode in the given [column]. If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
+   * Sets the autowrap mode in the given [column]. If set to something other than
+   * [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
    */
   public fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.id)
@@ -235,7 +240,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the text autowrap mode in the given [column]. By default it is [godot.TextServer.AUTOWRAP_OFF].
+   * Returns the text autowrap mode in the given [column]. By default it is
+   * [TextServer.AUTOWRAP_OFF].
    */
   public fun getAutowrapMode(column: Int): TextServer.AutowrapMode {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -244,7 +250,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given [column].
+   * Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given
+   * [column].
    */
   public fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior):
       Unit {
@@ -253,7 +260,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given [column]. By default it is [godot.TextServer.OVERRUN_TRIM_ELLIPSIS].
+   * Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given
+   * [column]. By default it is [TextServer.OVERRUN_TRIM_ELLIPSIS].
    */
   public fun getTextOverrunBehavior(column: Int): TextServer.OverrunBehavior {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -261,35 +269,23 @@ public open class TreeItem internal constructor() : Object() {
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun setStructuredTextBidiOverride(column: Int, parser: TextServer.StructuredTextParser):
       Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to parser.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getStructuredTextBidiOverride(column: Int): TextServer.StructuredTextParser {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  /**
-   *
-   */
   public fun setStructuredTextBidiOverrideOptions(column: Int, args: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), ARRAY to args)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getStructuredTextBidiOverrideOptions(column: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
@@ -298,7 +294,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
+   * empty current locale is used instead.
    */
   public fun setLanguage(column: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
@@ -332,7 +329,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's icon [godot.Texture2D].
+   * Sets the given column's icon [Texture2D].
    */
   public fun setIcon(column: Int, texture: Texture2D): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
@@ -340,7 +337,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the given column's icon [godot.Texture2D]. Error if no icon is set.
+   * Returns the given column's icon [Texture2D]. Error if no icon is set.
    */
   public fun getIcon(column: Int): Texture2D? {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -357,7 +354,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the icon [godot.Texture2D] region as [godot.core.Rect2].
+   * Returns the icon [Texture2D] region as [Rect2].
    */
   public fun getIconRegion(column: Int): Rect2 {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -366,7 +363,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the maximum allowed width of the icon in the given [column]. This limit is applied on top of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is adjusted according to the icon's ratio.
+   * Sets the maximum allowed width of the icon in the given [column]. This limit is applied on top
+   * of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is
+   * adjusted according to the icon's ratio.
    */
   public fun setIconMaxWidth(column: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to width.toLong())
@@ -391,7 +390,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the [godot.core.Color] modulating the column's icon.
+   * Returns the [Color] modulating the column's icon.
    */
   public fun getIconModulate(column: Int): Color {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -417,9 +416,10 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE] mode.
-   *
-   * If [expr] is `true`, the edit mode slider will use an exponential scale as with [godot.Range.expEdit].
+   * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE]
+   * mode.
+   * If [expr] is `true`, the edit mode slider will use an exponential scale as with
+   * [Range.expEdit].
    */
   @JvmOverloads
   public fun setRangeConfig(
@@ -434,7 +434,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns a dictionary containing the range parameters for a given column. The keys are "min", "max", "step", and "expr".
+   * Returns a dictionary containing the range parameters for a given column. The keys are "min",
+   * "max", "step", and "expr".
    */
   public fun getRangeConfig(column: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -443,7 +444,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the metadata value for the given column, which can be retrieved later using [getMetadata]. This can be used, for example, to store a reference to the original data.
+   * Sets the metadata value for the given column, which can be retrieved later using [getMetadata].
+   * This can be used, for example, to store a reference to the original data.
    */
   public fun setMetadata(column: Int, meta: Any?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), ANY to meta)
@@ -461,8 +463,8 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Sets the given column's custom draw callback to [callback] method on [object].
-   *
-   * The [callback] should accept two arguments: the [godot.TreeItem] that is drawn and its position and size as a [godot.core.Rect2].
+   * The [callback] should accept two arguments: the [TreeItem] that is drawn and its position and
+   * size as a [Rect2].
    */
   public fun setCustomDraw(
     column: Int,
@@ -474,7 +476,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Collapses or uncollapses this [godot.TreeItem] and all the descendants of this item.
+   * Collapses or uncollapses this [TreeItem] and all the descendants of this item.
    */
   public fun setCollapsedRecursive(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -482,9 +484,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns `true` if this [godot.TreeItem], or any of its descendants, is collapsed.
-   *
-   * If [onlyVisible] is `true` it ignores non-visible [godot.TreeItem]s.
+   * Returns `true` if this [TreeItem], or any of its descendants, is collapsed.
+   * If [onlyVisible] is `true` it ignores non-visible [TreeItem]s.
    */
   @JvmOverloads
   public fun isAnyCollapsed(onlyVisible: Boolean = false): Boolean {
@@ -493,9 +494,6 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun uncollapseTree(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.uncollapseTreePtr, NIL)
@@ -649,17 +647,11 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  /**
-   *
-   */
   public fun setCustomAsButton(column: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomAsButtonPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun isCustomSetAsButton(column: Int): Boolean {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isCustomSetAsButtonPtr, BOOL)
@@ -667,7 +659,11 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Adds a button with [godot.Texture2D] [button] at column [column]. The [id] is used to identify the button in the according [godot.Tree.buttonClicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
+   * Adds a button with [Texture2D] [button] at column [column]. The [id] is used to identify the
+   * button in the according [signal Tree.button_clicked] signal and can be different from the buttons
+   * index. If not specified, the next available index is used, which may be retrieved by calling
+   * [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have
+   * a [tooltipText].
    */
   @JvmOverloads
   public fun addButton(
@@ -709,7 +705,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the button index if there is a button with ID [id] in column [column], otherwise returns -1.
+   * Returns the button index if there is a button with ID [id] in column [column], otherwise
+   * returns -1.
    */
   public fun getButtonById(column: Int, id: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
@@ -718,7 +715,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the [godot.Texture2D] of the button at index [buttonIndex] in column [column].
+   * Returns the [Texture2D] of the button at index [buttonIndex] in column [column].
    */
   public fun getButton(column: Int, buttonIndex: Int): Texture2D? {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
@@ -739,7 +736,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's button [godot.Texture2D] at index [buttonIndex] to [button].
+   * Sets the given column's button [Texture2D] at index [buttonIndex] to [button].
    */
   public fun setButton(
     column: Int,
@@ -809,7 +806,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's text alignment. See [enum HorizontalAlignment] for possible values.
+   * Sets the given column's text alignment. See [HorizontalAlignment] for possible values.
    */
   public fun setTextAlignment(column: Int, textAlignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to textAlignment.id)
@@ -844,8 +841,8 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Creates an item and adds it as a child.
-   *
-   * The new item will be inserted as position [index] (the default value `-1` means the last position), or it will be the last child if [index] is higher than the child count.
+   * The new item will be inserted as position [index] (the default value `-1` means the last
+   * position), or it will be the last child if [index] is higher than the child count.
    */
   @JvmOverloads
   public fun createChild(index: Int = -1): TreeItem? {
@@ -855,7 +852,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Adds a previously unparented [godot.TreeItem] as a direct child of this one. The [child] item must not be a part of any [godot.Tree] or parented to any [godot.TreeItem]. See also [removeChild].
+   * Adds a previously unparented [TreeItem] as a direct child of this one. The [child] item must
+   * not be a part of any [Tree] or parented to any [TreeItem]. See also [removeChild].
    */
   public fun addChild(child: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to child)
@@ -863,9 +861,11 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Removes the given child [godot.TreeItem] and all its children from the [godot.Tree]. Note that it doesn't free the item from memory, so it can be reused later (see [addChild]). To completely remove a [godot.TreeItem] use [godot.Object.free].
-   *
-   * **Note:** If you want to move a child from one [godot.Tree] to another, then instead of removing and adding it manually you can use [moveBefore] or [moveAfter].
+   * Removes the given child [TreeItem] and all its children from the [Tree]. Note that it doesn't
+   * free the item from memory, so it can be reused later (see [addChild]). To completely remove a
+   * [TreeItem] use [Object.free].
+   * **Note:** If you want to move a child from one [Tree] to another, then instead of removing and
+   * adding it manually you can use [moveBefore] or [moveAfter].
    */
   public fun removeChild(child: TreeItem): Unit {
     TransferContext.writeArguments(OBJECT to child)
@@ -873,7 +873,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the [godot.Tree] that owns this TreeItem.
+   * Returns the [Tree] that owns this TreeItem.
    */
   public fun getTree(): Tree? {
     TransferContext.writeArguments()
@@ -918,9 +918,10 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
-   *
-   * If [wrap] is enabled, the method will wrap around to the first element in the tree when called on the last element, otherwise it returns `null`.
+   * Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null`
+   * object if there is none.
+   * If [wrap] is enabled, the method will wrap around to the first element in the tree when called
+   * on the last element, otherwise it returns `null`.
    */
   @JvmOverloads
   public fun getNextInTree(wrap: Boolean = false): TreeItem? {
@@ -930,9 +931,10 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
-   *
-   * If [wrap] is enabled, the method will wrap around to the last element in the tree when called on the first visible element, otherwise it returns `null`.
+   * Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null`
+   * object if there is none.
+   * If [wrap] is enabled, the method will wrap around to the last element in the tree when called
+   * on the first visible element, otherwise it returns `null`.
    */
   @JvmOverloads
   public fun getPrevInTree(wrap: Boolean = false): TreeItem? {
@@ -942,9 +944,10 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
-   *
-   * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
+   * Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a
+   * `null` object if there is none.
+   * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when
+   * called on the last visible element, otherwise it returns `null`.
    */
   @JvmOverloads
   public fun getNextVisible(wrap: Boolean = false): TreeItem? {
@@ -954,9 +957,10 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
-   *
-   * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
+   * Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first
+   * search) or a `null` object if there is none.
+   * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when
+   * called on the first visible element, otherwise it returns `null`.
    */
   @JvmOverloads
   public fun getPrevVisible(wrap: Boolean = false): TreeItem? {
@@ -966,8 +970,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns a child item by its [index] (see [getChildCount]). This method is often used for iterating all children of an item.
-   *
+   * Returns a child item by its [index] (see [getChildCount]). This method is often used for
+   * iterating all children of an item.
    * Negative indices access the children from the last one.
    */
   public fun getChild(index: Int): TreeItem? {
@@ -995,7 +999,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the node's order in the tree. For example, if called on the first child item the position is `0`.
+   * Returns the node's order in the tree. For example, if called on the first child item the
+   * position is `0`.
    */
   public fun getIndex(): Int {
     TransferContext.writeArguments()
@@ -1005,7 +1010,6 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Moves this TreeItem right before the given [item].
-   *
    * **Note:** You can't move to the root or move the root.
    */
   public fun moveBefore(item: TreeItem): Unit {
@@ -1015,7 +1019,6 @@ public open class TreeItem internal constructor() : Object() {
 
   /**
    * Moves this TreeItem right after the given [item].
-   *
    * **Note:** You can't move to the root or move the root.
    */
   public fun moveAfter(item: TreeItem): Unit {
@@ -1024,7 +1027,8 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a comma separated list.
+   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a
+   * comma separated list.
    */
   public fun callRecursive(method: StringName, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
@@ -1050,9 +1054,6 @@ public open class TreeItem internal constructor() : Object() {
      * Cell contains an icon.
      */
     CELL_MODE_ICON(3),
-    /**
-     *
-     */
     CELL_MODE_CUSTOM(4),
     ;
 

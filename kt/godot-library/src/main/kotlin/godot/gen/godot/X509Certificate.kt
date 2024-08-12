@@ -20,14 +20,11 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * An X509 certificate (e.g. for TLS).
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
- *
- * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved like any other [godot.Resource].
- *
- * They can be used as the server certificate in [godot.StreamPeerTLS.acceptStream] (along with the proper [godot.CryptoKey]), and to specify the only certificate that should be accepted when connecting to a TLS server via [godot.StreamPeerTLS.connectToStream].
+ * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
+ * like any other [Resource].
+ * They can be used as the server certificate in [StreamPeerTLS.acceptStream] (along with the proper
+ * [CryptoKey]), and to specify the only certificate that should be accepted when connecting to a TLS
+ * server via [StreamPeerTLS.connectToStream].
  */
 @GodotBaseType
 public open class X509Certificate : Resource() {
@@ -55,7 +52,8 @@ public open class X509Certificate : Resource() {
   }
 
   /**
-   * Returns a string representation of the certificate, or an empty string if the certificate is invalid.
+   * Returns a string representation of the certificate, or an empty string if the certificate is
+   * invalid.
    */
   public fun saveToString(): String {
     TransferContext.writeArguments()

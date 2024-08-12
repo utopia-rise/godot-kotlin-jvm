@@ -21,14 +21,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 4D vector constant to be used within the visual shader graph.
- *
  * A constant 4D vector, which can be used as an input node.
  */
 @GodotBaseType
 public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
   /**
-   * A 4D vector (represented as a [godot.Quaternion]) constant which represents the state of this node.
+   * A 4D vector (represented as a [Quaternion]) constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
   public var constant: Quaternion
@@ -48,7 +46,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
   }
 
   /**
-   * A 4D vector (represented as a [godot.Quaternion]) constant which represents the state of this node.
+   * A 4D vector (represented as a [Quaternion]) constant which represents the state of this node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

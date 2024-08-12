@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Base class for a family of nodes with variable number of input and output ports within the visual shader graph.
- *
  * Currently, has no direct usage, use the derived classes instead.
  */
 @GodotBaseType
@@ -35,7 +33,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Defines all input ports using a [godot.String] formatted as a colon-separated list: `id,type,name;` (see [addInputPort]).
+   * Defines all input ports using a [String] formatted as a colon-separated list: `id,type,name;`
+   * (see [addInputPort]).
    */
   public fun setInputs(inputs: String): Unit {
     TransferContext.writeArguments(STRING to inputs)
@@ -43,7 +42,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Returns a [godot.String] description of the input ports as a colon-separated list using the format `id,type,name;` (see [addInputPort]).
+   * Returns a [String] description of the input ports as a colon-separated list using the format
+   * `id,type,name;` (see [addInputPort]).
    */
   public fun getInputs(): String {
     TransferContext.writeArguments()
@@ -52,7 +52,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Defines all output ports using a [godot.String] formatted as a colon-separated list: `id,type,name;` (see [addOutputPort]).
+   * Defines all output ports using a [String] formatted as a colon-separated list: `id,type,name;`
+   * (see [addOutputPort]).
    */
   public fun setOutputs(outputs: String): Unit {
     TransferContext.writeArguments(STRING to outputs)
@@ -60,7 +61,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Returns a [godot.String] description of the output ports as a colon-separated list using the format `id,type,name;` (see [addOutputPort]).
+   * Returns a [String] description of the output ports as a colon-separated list using the format
+   * `id,type,name;` (see [addOutputPort]).
    */
   public fun getOutputs(): String {
     TransferContext.writeArguments()
@@ -69,7 +71,8 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Returns `true` if the specified port name does not override an existed port name and is valid within the shader.
+   * Returns `true` if the specified port name does not override an existed port name and is valid
+   * within the shader.
    */
   public fun isValidPortName(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -78,7 +81,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Adds an input port with the specified [type] (see [enum VisualShaderNode.PortType]) and [name].
+   * Adds an input port with the specified [type] (see [VisualShaderNode.PortType]) and [name].
    */
   public fun addInputPort(
     id: Int,
@@ -124,7 +127,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Adds an output port with the specified [type] (see [enum VisualShaderNode.PortType]) and [name].
+   * Adds an output port with the specified [type] (see [VisualShaderNode.PortType]) and [name].
    */
   public fun addOutputPort(
     id: Int,
@@ -178,7 +181,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Sets the specified input port's type (see [enum VisualShaderNode.PortType]).
+   * Sets the specified input port's type (see [VisualShaderNode.PortType]).
    */
   public fun setInputPortType(id: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())
@@ -194,7 +197,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Sets the specified output port's type (see [enum VisualShaderNode.PortType]).
+   * Sets the specified output port's type (see [VisualShaderNode.PortType]).
    */
   public fun setOutputPortType(id: Int, type: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())

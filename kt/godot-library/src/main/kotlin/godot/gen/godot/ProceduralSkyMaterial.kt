@@ -26,13 +26,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A material that defines a simple sky for a [godot.Sky] resource.
- *
- * [godot.ProceduralSkyMaterial] provides a way to create an effective background quickly by defining procedural parameters for the sun, the sky and the ground. The sky and ground are defined by a main color, a color at the horizon, and an easing curve to interpolate between them. Suns are described by a position in the sky, a color, and a max angle from the sun at which the easing curve ends. The max angle therefore defines the size of the sun in the sky.
- *
- * [godot.ProceduralSkyMaterial] supports up to 4 suns, using the color, and energy, direction, and angular distance of the first four [godot.DirectionalLight3D] nodes in the scene. This means that the suns are defined individually by the properties of their corresponding [godot.DirectionalLight3D]s and globally by [sunAngleMax] and [sunCurve].
- *
- * [godot.ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for real-time updates. This makes it a great option for a sky that is simple and computationally cheap, but unrealistic. If you need a more realistic procedural option, use [godot.PhysicalSkyMaterial].
+ * [ProceduralSkyMaterial] provides a way to create an effective background quickly by defining
+ * procedural parameters for the sun, the sky and the ground. The sky and ground are defined by a main
+ * color, a color at the horizon, and an easing curve to interpolate between them. Suns are described
+ * by a position in the sky, a color, and a max angle from the sun at which the easing curve ends. The
+ * max angle therefore defines the size of the sun in the sky.
+ * [ProceduralSkyMaterial] supports up to 4 suns, using the color, and energy, direction, and
+ * angular distance of the first four [DirectionalLight3D] nodes in the scene. This means that the suns
+ * are defined individually by the properties of their corresponding [DirectionalLight3D]s and globally
+ * by [sunAngleMax] and [sunCurve].
+ * [ProceduralSkyMaterial] uses a lightweight shader to draw the sky and is therefore suited for
+ * real-time updates. This makes it a great option for a sky that is simple and computationally cheap,
+ * but unrealistic. If you need a more realistic procedural option, use [PhysicalSkyMaterial].
  */
 @GodotBaseType
 public open class ProceduralSkyMaterial : Material() {
@@ -95,7 +100,11 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   /**
-   * The sky cover texture to use. This texture must use an equirectangular projection (similar to [godot.PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will be multiplied by [skyEnergyMultiplier] and [skyCoverModulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look).
+   * The sky cover texture to use. This texture must use an equirectangular projection (similar to
+   * [PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will
+   * be multiplied by [skyEnergyMultiplier] and [skyCoverModulate]. This is mainly suited to displaying
+   * stars at night, but it can also be used to display clouds at day or night (with a
+   * non-physically-accurate look).
    */
   public var skyCover: Texture2D?
     get() {
@@ -109,7 +118,9 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   /**
-   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [skyCover].
+   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors
+   * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
+   * Only effective if a texture is defined in [skyCover].
    */
   @CoreTypeLocalCopy
   public var skyCoverModulate: Color
@@ -210,7 +221,8 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   /**
-   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky.
+   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding
+   * that appears from the smooth changes in color in the sky.
    */
   public var useDebanding: Boolean
     get() {
@@ -277,7 +289,9 @@ public open class ProceduralSkyMaterial : Material() {
 
 
   /**
-   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [skyCover].
+   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors
+   * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
+   * Only effective if a texture is defined in [skyCover].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

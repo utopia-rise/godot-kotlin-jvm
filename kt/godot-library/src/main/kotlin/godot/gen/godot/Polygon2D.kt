@@ -41,14 +41,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 2D polygon.
- *
- * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with color (solid or gradient) or filled with a given texture.
+ * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final
+ * point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with
+ * color (solid or gradient) or filled with a given texture.
  */
 @GodotBaseType
 public open class Polygon2D : Node2D() {
   /**
-   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [vertexColors].
+   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
+   * also be the default color for vertices not set in [vertexColors].
    */
   @CoreTypeLocalCopy
   public var color: Color
@@ -106,7 +107,8 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its top-left corner) will be placed at the polygon's position.
+   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
+   * top-left corner) will be placed at the polygon's position.
    */
   @CoreTypeLocalCopy
   public var textureOffset: Vector2
@@ -121,7 +123,8 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture smaller, and vice versa.
+   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
+   * smaller, and vice versa.
    */
   @CoreTypeLocalCopy
   public var textureScale: Vector2
@@ -150,7 +153,8 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Path to a [godot.Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or invalid, skeletal deformations will not be used.
+   * Path to a [Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or
+   * invalid, skeletal deformations will not be used.
    */
   public var skeleton: NodePath
     get() {
@@ -164,7 +168,8 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * If `true`, the polygon will be inverted, containing the area outside the defined points and extending to the [invertBorder].
+   * If `true`, the polygon will be inverted, containing the area outside the defined points and
+   * extending to the [invertBorder].
    */
   public var invertEnabled: Boolean
     get() {
@@ -178,7 +183,8 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Added padding applied to the bounding box when [invertEnabled] is set to `true`. Setting this value too small may result in a "Bad Polygon" error.
+   * Added padding applied to the bounding box when [invertEnabled] is set to `true`. Setting this
+   * value too small may result in a "Bad Polygon" error.
    */
   public var invertBorder: Float
     get() {
@@ -193,8 +199,7 @@ public open class Polygon2D : Node2D() {
 
   /**
    * The polygon's list of vertices. The final point will be connected to the first.
-   *
-   * **Note:** This returns a copy of the [godot.PackedVector2Array] rather than a reference.
+   * **Note:** This returns a copy of the [PackedVector2Array] rather than a reference.
    */
   public var polygon: PackedVector2Array
     get() {
@@ -208,7 +213,8 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
+   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon
+   * vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
    */
   public var uv: PackedVector2Array
     get() {
@@ -222,7 +228,8 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients. There should be one per polygon vertex. If there are fewer, undefined vertices will use [color].
+   * Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients.
+   * There should be one per polygon vertex. If there are fewer, undefined vertices will use [color].
    */
   public var vertexColors: PackedColorArray
     get() {
@@ -236,7 +243,10 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * The list of polygons, in case more than one is being represented. Every individual polygon is stored as a [godot.PackedInt32Array] where each [int] is an index to a point in [polygon]. If empty, this property will be ignored, and the resulting single polygon will be composed of all points in [polygon], using the order they are stored in.
+   * The list of polygons, in case more than one is being represented. Every individual polygon is
+   * stored as a [PackedInt32Array] where each [int] is an index to a point in [polygon]. If empty,
+   * this property will be ignored, and the resulting single polygon will be composed of all points in
+   * [polygon], using the order they are stored in.
    */
   public var polygons: VariantArray<Any?>
     get() {
@@ -269,7 +279,8 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [vertexColors].
+   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
+   * also be the default color for vertices not set in [vertexColors].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -317,7 +328,8 @@ public open class Polygon2D : Node2D() {
 
 
   /**
-   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its top-left corner) will be placed at the polygon's position.
+   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
+   * top-left corner) will be placed at the polygon's position.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -341,7 +353,8 @@ public open class Polygon2D : Node2D() {
 
 
   /**
-   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture smaller, and vice versa.
+   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
+   * smaller, and vice versa.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -373,7 +386,7 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * Returns the number of bones in this [godot.Polygon2D].
+   * Returns the number of bones in this [Polygon2D].
    */
   public fun getBoneCount(): Int {
     TransferContext.writeArguments()
@@ -400,7 +413,7 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * Removes the specified bone from this [godot.Polygon2D].
+   * Removes the specified bone from this [Polygon2D].
    */
   public fun eraseBone(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -408,7 +421,7 @@ public open class Polygon2D : Node2D() {
   }
 
   /**
-   * Removes all bones from this [godot.Polygon2D].
+   * Removes all bones from this [Polygon2D].
    */
   public fun clearBones(): Unit {
     TransferContext.writeArguments()

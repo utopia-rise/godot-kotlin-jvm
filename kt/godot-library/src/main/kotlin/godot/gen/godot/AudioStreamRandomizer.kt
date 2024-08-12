@@ -24,9 +24,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Wraps a pool of audio streams with pitch and volume shifting.
- *
- * Picks a random AudioStream from the pool, depending on the playback mode, and applies random pitch shifting and volume shifting during playback.
+ * Picks a random AudioStream from the pool, depending on the playback mode, and applies random
+ * pitch shifting and volume shifting during playback.
  */
 @GodotBaseType
 public open class AudioStreamRandomizer : AudioStream() {
@@ -92,7 +91,8 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   /**
-   * Insert a stream at the specified index. If the index is less than zero, the insertion occurs at the end of the underlying pool.
+   * Insert a stream at the specified index. If the index is less than zero, the insertion occurs at
+   * the end of the underlying pool.
    */
   @JvmOverloads
   public fun addStream(
@@ -138,7 +138,8 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   /**
-   * Set the probability weight of the stream at the specified index. The higher this value, the more likely that the randomizer will choose this stream during random playback modes.
+   * Set the probability weight of the stream at the specified index. The higher this value, the
+   * more likely that the randomizer will choose this stream during random playback modes.
    */
   public fun setStreamProbabilityWeight(index: Int, weight: Float): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to weight.toDouble())
@@ -158,15 +159,19 @@ public open class AudioStreamRandomizer : AudioStream() {
     id: Long,
   ) {
     /**
-     * Pick a stream at random according to the probability weights chosen for each stream, but avoid playing the same stream twice in a row whenever possible. If only 1 sound is present in the pool, the same sound will always play, effectively allowing repeats to occur.
+     * Pick a stream at random according to the probability weights chosen for each stream, but
+     * avoid playing the same stream twice in a row whenever possible. If only 1 sound is present in
+     * the pool, the same sound will always play, effectively allowing repeats to occur.
      */
     PLAYBACK_RANDOM_NO_REPEATS(0),
     /**
-     * Pick a stream at random according to the probability weights chosen for each stream. If only 1 sound is present in the pool, the same sound will always play.
+     * Pick a stream at random according to the probability weights chosen for each stream. If only
+     * 1 sound is present in the pool, the same sound will always play.
      */
     PLAYBACK_RANDOM(1),
     /**
-     * Play streams in the order they appear in the stream pool. If only 1 sound is present in the pool, the same sound will always play.
+     * Play streams in the order they appear in the stream pool. If only 1 sound is present in the
+     * pool, the same sound will always play.
      */
     PLAYBACK_SEQUENTIAL(2),
     ;

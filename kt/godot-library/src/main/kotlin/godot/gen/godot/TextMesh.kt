@@ -34,16 +34,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Generate an [godot.PrimitiveMesh] from the text.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/3d_text.html]($DOCS_URL/tutorials/3d/3d_text.html)
- *
- * Generate an [godot.PrimitiveMesh] from the text.
- *
- * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not supported.
- *
- * The UV layout is arranged in 4 horizontal strips, top to bottom: 40% of the height for the front face, 40% for the back face, 10% for the outer edges and 10% for the inner edges.
+ * Generate an [PrimitiveMesh] from the text.
+ * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts
+ * (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not
+ * supported.
+ * The UV layout is arranged in 4 horizontal strips, top to bottom: 40&#37; of the height for the
+ * front face, 40&#37; for the back face, 10&#37; for the outer edges and 10&#37; for the inner edges.
  */
 @GodotBaseType
 public open class TextMesh : PrimitiveMesh() {
@@ -76,7 +72,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Font size of the [godot.TextMesh]'s text.
+   * Font size of the [TextMesh]'s text.
    */
   public var fontSize: Int
     get() {
@@ -90,7 +86,8 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [enum HorizontalAlignment] constants.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
+   * Set it to one of the [HorizontalAlignment] constants.
    */
   public var horizontalAlignment: HorizontalAlignment
     get() {
@@ -104,7 +101,8 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the [enum VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
+   * [VerticalAlignment] constants.
    */
   public var verticalAlignment: VerticalAlignment
     get() {
@@ -132,7 +130,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Vertical space between lines in multiline [godot.TextMesh].
+   * Vertical space between lines in multiline [TextMesh].
    */
   public var lineSpacing: Float
     get() {
@@ -146,7 +144,9 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
+   * node's bounding rectangle. If you resize the node, it will change its height automatically to show
+   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -160,7 +160,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
   public var justificationFlags: TextServer.JustificationFlag
     get() {
@@ -202,7 +202,8 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Depths of the mesh, if set to `0.0` only front surface, is generated, and UV layout is changed to use full texture for the front face only.
+   * Depths of the mesh, if set to `0.0` only front surface, is generated, and UV layout is changed
+   * to use full texture for the front face only.
    */
   public var depth: Float
     get() {

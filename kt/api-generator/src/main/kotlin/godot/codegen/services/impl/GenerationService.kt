@@ -18,13 +18,13 @@ import godot.codegen.models.enriched.isSameSignature
 import godot.codegen.models.enriched.toGetterCallable
 import godot.codegen.models.enriched.toSetterCallable
 import godot.codegen.poet.RegistrationFileSpec
-import godot.codegen.repositories.IDocRepository
 import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
 import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
+import godot.codegen.traits.addKdoc
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.GENERATED_COMMENT
@@ -45,7 +45,6 @@ import java.util.*
 private const val methodBindingsInnerClassName = "MethodBindings"
 
 class GenerationService(
-    private val docRepository: IDocRepository,
     private val classGraphService: IClassGraphService,
     private val enumService: IEnumService,
     private val nativeStructureRepository: INativeStructureRepository
@@ -101,26 +100,9 @@ class GenerationService(
             .objectBuilder(methodBindingsInnerClassName)
             .addModifiers(KModifier.INTERNAL)
 
-        docRepository.findByClassName(name)?.let { classDoc ->
-            classTypeBuilder.addKdoc(
-                "%L",
-                buildString {
-                    appendLine(classDoc.briefDescription)
-                    appendLine()
-                    if (classDoc.tutorialLinks.isNotEmpty()) {
-                        appendLine("Tutorials:")
-                        classDoc.tutorialLinks.forEach {
-                            appendLine("[$it]($it)")
-                        }
-                        appendLine()
-                    }
-                    appendLine(classDoc.description)
-                }.replace(System.lineSeparator(), "\n")
-                    .replace("/*", "&#47;*")
-            )
-        }
-
-        classTypeBuilder.addAnnotation(GODOT_BASE_TYPE)
+        classTypeBuilder
+            .addKdoc(enrichedClass)
+            .addAnnotation(GODOT_BASE_TYPE)
 
         if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
@@ -327,14 +309,7 @@ class GenerationService(
                     TypeSpec.anonymousClassBuilder()
                         .addSuperclassConstructorParameter("%L", value.value)
                         .also {
-                            val kDoc = if (containingClassName != null) {
-                                docRepository.findByClassName(containingClassName)?.constants?.get(valueName)?.description
-                            } else {
-                                docRepository.findByClassName(enum.name)?.constants?.get(valueName)?.description
-                            }
-                            if (kDoc != null) {
-                                it.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
-                            }
+                            it.addKdoc(value)
                         }
                         .build()
                 )
@@ -360,14 +335,7 @@ class GenerationService(
             .addModifiers(KModifier.CONST, KModifier.FINAL)
             .initializer("%L", constant.internal.value)
             .also {
-                val kDoc = if (containingClassName != null) {
-                    docRepository.findByClassName(containingClassName)?.constants?.get(constantName)?.description
-                } else {
-                    docRepository.findByClassName("@GlobalScope")?.constants?.get(constantName)?.description
-                }
-                if (kDoc != null) {
-                    it.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
-                }
+                it.addKdoc(constant)
             }
             .build()
     }
@@ -404,6 +372,7 @@ class GenerationService(
                 signal.name,
                 signalClass.typeName
             )
+            .addKdoc(signal)
 
         if (arguments.isEmpty()) {
             builder.delegate(
@@ -418,10 +387,6 @@ class GenerationService(
             })",
                 MemberName(signalPackage, "signal")
             )
-        }
-        val kDoc = docRepository.findByClassName(containingClassName)?.signals?.get(signal.internal.name)?.description
-        if (kDoc != null) {
-            builder.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
         }
         return builder.build()
     }
@@ -568,11 +533,7 @@ class GenerationService(
             propertySpecBuilder.addAnnotation(CORE_TYPE_LOCAL_COPY)
         }
 
-        val kDoc =
-            docRepository.findByClassName(enrichedClass.name)?.properties?.get(property.internal.name)?.description
-        if (kDoc != null) {
-            propertySpecBuilder.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
-        }
+        propertySpecBuilder.addKdoc(property)
 
         return propertySpecBuilder.build()
     }
@@ -609,7 +570,7 @@ class GenerationService(
             ).apply {
                 val kDoc = buildString {
                     val propertyKdoc =
-                        docRepository.findByClassName(enrichedClass.name)?.properties?.get(property.internal.name)?.description
+                        property.sanitizedDocumentation
                     if (propertyKdoc != null) {
                         appendLine(propertyKdoc.replace("/*", "&#47;*"))
                         appendLine()
@@ -689,10 +650,7 @@ class GenerationService(
 
         generatedFunBuilder.generateCodeBlock(enrichedClass, method, callArgumentsAsString, isStatic)
 
-        val kDoc = docRepository.findByClassName(enrichedClass.name)?.functions?.get(method.internal.name)?.description
-        if (kDoc != null) {
-            generatedFunBuilder.addKdoc("%L", kDoc.replace("/*", "&#47;*"))
-        }
+        generatedFunBuilder.addKdoc(method)
 
         for (jvmReservedMethod in jvmReservedMethods) {
             if (method.isSameSignature(jvmReservedMethod) && !method.internal.isVirtual) {

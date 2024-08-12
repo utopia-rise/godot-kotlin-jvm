@@ -32,19 +32,14 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstract base class for input events.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * Abstract base class of all types of input events. See [godot.Node.Input].
+ * Abstract base class of all types of input events. See [Node.Input].
  */
 @GodotBaseType
 public open class InputEvent internal constructor() : Resource() {
   /**
    * The event's device ID.
-   *
-   * **Note:** This device ID will always be `-1` for emulated mouse input from a touchscreen. This can be used to distinguish emulated mouse input from physical mouse input.
+   * **Note:** This device ID will always be `-1` for emulated mouse input from a touchscreen. This
+   * can be used to distinguish emulated mouse input from physical mouse input.
    */
   public var device: Int
     get() {
@@ -64,8 +59,8 @@ public open class InputEvent internal constructor() : Resource() {
 
   /**
    * Returns `true` if this input event matches a pre-defined action of any type.
-   *
-   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
@@ -75,11 +70,15 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the given action is being pressed (and is not an echo event for [godot.InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
-   *
-   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
-   *
-   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * Returns `true` if the given action is being pressed (and is not an echo event for
+   * [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
+   * [InputEventMouseMotion] or [InputEventScreenDrag].
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
    */
   @JvmOverloads
   public fun isActionPressed(
@@ -93,9 +92,10 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
-   *
-   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of
+   * type [InputEventMouseMotion] or [InputEventScreenDrag].
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
@@ -105,9 +105,10 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting the value of events of type [godot.InputEventJoypadMotion].
-   *
-   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting
+   * the value of events of type [InputEventJoypadMotion].
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
@@ -126,9 +127,11 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if this input event is pressed. Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
-   *
-   * **Note:** Due to keyboard ghosting, [isPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * Returns `true` if this input event is pressed. Not relevant for events of type
+   * [InputEventMouseMotion] or [InputEventScreenDrag].
+   * **Note:** Due to keyboard ghosting, [isPressed] may return `false` even if one of the action's
+   * keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input
+   * examples[/url] in the documentation for more information.
    */
   public fun isPressed(): Boolean {
     TransferContext.writeArguments()
@@ -137,7 +140,8 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if this input event is released. Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
+   * Returns `true` if this input event is released. Not relevant for events of type
+   * [InputEventMouseMotion] or [InputEventScreenDrag].
    */
   public fun isReleased(): Boolean {
     TransferContext.writeArguments()
@@ -146,7 +150,8 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if this input event is an echo event (only for events of type [godot.InputEventKey]). Any other event type returns `false`.
+   * Returns `true` if this input event is an echo event (only for events of type [InputEventKey]).
+   * Any other event type returns `false`.
    */
   public fun isEcho(): Boolean {
     TransferContext.writeArguments()
@@ -155,7 +160,7 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns a [godot.String] representation of the event.
+   * Returns a [String] representation of the event.
    */
   public fun asText(): String {
     TransferContext.writeArguments()
@@ -164,9 +169,11 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the specified [event] matches this event. Only valid for action events i.e key ([godot.InputEventKey]), button ([godot.InputEventMouseButton] or [godot.InputEventJoypadButton]), axis [godot.InputEventJoypadMotion] or action ([godot.InputEventAction]) events.
-   *
-   * If [exactMatch] is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * Returns `true` if the specified [event] matches this event. Only valid for action events i.e
+   * key ([InputEventKey]), button ([InputEventMouseButton] or [InputEventJoypadButton]), axis
+   * [InputEventJoypadMotion] or action ([InputEventAction]) events.
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
   public fun isMatch(event: InputEvent, exactMatch: Boolean = true): Boolean {
@@ -185,9 +192,10 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the given input event and this input event can be added together (only for events of type [godot.InputEventMouseMotion]).
-   *
-   * The given input event's position, global position and speed will be copied. The resulting `relative` is a sum of both events. Both events' modifiers have to be identical.
+   * Returns `true` if the given input event and this input event can be added together (only for
+   * events of type [InputEventMouseMotion]).
+   * The given input event's position, global position and speed will be copied. The resulting
+   * `relative` is a sum of both events. Both events' modifiers have to be identical.
    */
   public fun accumulate(withEvent: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to withEvent)
@@ -196,7 +204,10 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns a copy of the given input event which has been offset by [localOfs] and transformed by [xform]. Relevant for events of type [godot.InputEventMouseButton], [godot.InputEventMouseMotion], [godot.InputEventScreenTouch], [godot.InputEventScreenDrag], [godot.InputEventMagnifyGesture] and [godot.InputEventPanGesture].
+   * Returns a copy of the given input event which has been offset by [localOfs] and transformed by
+   * [xform]. Relevant for events of type [InputEventMouseButton], [InputEventMouseMotion],
+   * [InputEventScreenTouch], [InputEventScreenDrag], [InputEventMagnifyGesture] and
+   * [InputEventPanGesture].
    */
   @JvmOverloads
   public fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {

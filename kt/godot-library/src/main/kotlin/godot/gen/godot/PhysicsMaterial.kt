@@ -20,9 +20,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Holds physics-related properties of a surface, namely its roughness and bounciness.
- *
- * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is used to apply these properties to a physics body.
+ * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is
+ * used to apply these properties to a physics body.
  */
 @GodotBaseType
 public open class PhysicsMaterial : Resource() {
@@ -41,7 +40,10 @@ public open class PhysicsMaterial : Resource() {
     }
 
   /**
-   * If `true`, the physics engine will use the friction of the object marked as "rough" when two objects collide. If `false`, the physics engine will use the lowest friction of all colliding objects instead. If `true` for both colliding objects, the physics engine will use the highest friction.
+   * If `true`, the physics engine will use the friction of the object marked as "rough" when two
+   * objects collide. If `false`, the physics engine will use the lowest friction of all colliding
+   * objects instead. If `true` for both colliding objects, the physics engine will use the highest
+   * friction.
    */
   public var rough: Boolean
     get() {
@@ -56,8 +58,10 @@ public open class PhysicsMaterial : Resource() {
 
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
-   *
-   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [godot.PhysicsBody3D] that preserves all its energy over time, set [bounce] to `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`, its angular damp mode to **Replace** (if applicable), and its angular damp to `0.0`.
+   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and
+   * angular damping. To have a [PhysicsBody3D] that preserves all its energy over time, set [bounce]
+   * to `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`,
+   * its angular damp mode to **Replace** (if applicable), and its angular damp to `0.0`.
    */
   public var bounce: Float
     get() {
@@ -71,7 +75,8 @@ public open class PhysicsMaterial : Resource() {
     }
 
   /**
-   * If `true`, subtracts the bounciness from the colliding object's bounciness instead of adding it.
+   * If `true`, subtracts the bounciness from the colliding object's bounciness instead of adding
+   * it.
    */
   public var absorbent: Boolean
     get() {

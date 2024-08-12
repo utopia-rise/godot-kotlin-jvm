@@ -25,8 +25,19 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * This is the CSG base class that provides CSG operation support to the various CSG nodes in Godot.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
+ * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
+ * node within another CSG node also has a significant CPU cost, so it should be avoided during
+ * gameplay.
+ */
 @GodotBaseType
 public open class CSGShape3D internal constructor() : GeometryInstance3D() {
+  /**
+   * The operation that is performed on this shape. This is ignored for the first CSG child node as
+   * the operation is between this node and the previous child of this nodes parent.
+   */
   public var operation: Operation
     get() {
       TransferContext.writeArguments()
@@ -38,6 +49,10 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOperationPtr, NIL)
     }
 
+  /**
+   * Snap makes the mesh vertices snap to a given distance so that the faces of two meshes can be
+   * perfectly aligned. A lower value results in greater precision but may be harder to adjust.
+   */
   public var snap: Float
     get() {
       TransferContext.writeArguments()
@@ -49,6 +64,10 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
     }
 
+  /**
+   * Calculate tangents for the CSG shape which allows the use of normal maps. This is only applied
+   * on the root shape, this setting is ignored on any child.
+   */
   public var calculateTangents: Boolean
     get() {
       TransferContext.writeArguments()
@@ -60,6 +79,11 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCalculateTangentsPtr, NIL)
     }
 
+  /**
+   * Adds a collision shape to the physics engine for our CSG shape. This will always act like a
+   * static body. Note that the collision shape is still active even if the CSG shape itself is hidden.
+   * See also [collisionMask] and [collisionPriority].
+   */
   public var useCollision: Boolean
     get() {
       TransferContext.writeArguments()
@@ -71,6 +95,16 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseCollisionPtr, NIL)
     }
 
+  /**
+   * The physics layers this area is in.
+   * Collidable objects can exist in any of 32 different layers. These layers work like a tagging
+   * system, and are not visual. A collidable can use these layers to select with which objects it can
+   * collide, using the collision_mask property.
+   * A contact is detected if object A is in any of the layers that object B scans, or object B is
+   * in any layer scanned by object A. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
+   */
   public var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
@@ -82,6 +116,12 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
     }
 
+  /**
+   * The physics layers this CSG shape scans for collisions. Only effective if [useCollision] is
+   * `true`. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
+   */
   public var collisionMask: Long
     get() {
       TransferContext.writeArguments()
@@ -93,6 +133,12 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
     }
 
+  /**
+   * The priority used to solve colliding when occurring penetration. Only effective if
+   * [useCollision] is `true`. The higher the priority is, the lower the penetration into the object
+   * will be. This can for example be used to prevent the player from breaking through the boundaries
+   * of a level.
+   */
   public var collisionPriority: Float
     get() {
       TransferContext.writeArguments()
@@ -109,34 +155,57 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     return true
   }
 
+  /**
+   * Returns `true` if this is a root shape and is thus the object that is rendered.
+   */
   public fun isRootShape(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRootShapePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
+   */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
+  /**
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
+   */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
+   */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerValuePtr, NIL)
   }
 
+  /**
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
+   */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Returns an [Array] with two elements, the first is the [Transform3D] of this node and the
+   * second is the root [Mesh] of this node. Only works when this node is the root shape.
+   */
   public fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
@@ -146,8 +215,17 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   public enum class Operation(
     id: Long,
   ) {
+    /**
+     * Geometry of both primitives is merged, intersecting geometry is removed.
+     */
     OPERATION_UNION(0),
+    /**
+     * Only intersecting geometry remains, the rest is removed.
+     */
     OPERATION_INTERSECTION(1),
+    /**
+     * The second shape is subtracted from the first, leaving a dent with its shape.
+     */
     OPERATION_SUBTRACTION(2),
     ;
 

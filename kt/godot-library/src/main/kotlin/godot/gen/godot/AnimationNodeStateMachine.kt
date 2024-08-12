@@ -26,39 +26,29 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A state machine with multiple [godot.AnimationRootNode]s, used by [godot.AnimationTree].
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
- *
- * Contains multiple [godot.AnimationRootNode]s representing animation states, connected in a graph. State transitions can be configured to happen automatically or via code, using a shortest-path algorithm. Retrieve the [godot.AnimationNodeStateMachinePlayback] object from the [godot.AnimationTree] node to control it programmatically.
- *
+ * Contains multiple [AnimationRootNode]s representing animation states, connected in a graph. State
+ * transitions can be configured to happen automatically or via code, using a shortest-path algorithm.
+ * Retrieve the [AnimationNodeStateMachinePlayback] object from the [AnimationTree] node to control it
+ * programmatically.
  * **Example:**
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var state_machine = $AnimationTree.get("parameters/playback")
- *
  * state_machine.travel("some_state")
- *
- * [/gdscript]
- *
- * [csharp]
- *
- * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as AnimationNodeStateMachinePlayback;
- *
+ * ```
+ * csharp:
+ * ```csharp
+ * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as
+ * AnimationNodeStateMachinePlayback;
  * stateMachine.Travel("some_state");
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
-   * This property can define the process of transitions for different use cases. See also [enum AnimationNodeStateMachine.StateMachineType].
+   * This property can define the process of transitions for different use cases. See also
+   * [AnimationNodeStateMachine.StateMachineType].
    */
   public var stateMachineType: StateMachineType
     get() {
@@ -72,7 +62,9 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
 
   /**
-   * If `true`, allows teleport to the self state with [godot.AnimationNodeStateMachinePlayback.travel]. When the reset option is enabled in [godot.AnimationNodeStateMachinePlayback.travel], the animation is restarted. If `false`, nothing happens on the teleportation to the self state.
+   * If `true`, allows teleport to the self state with [AnimationNodeStateMachinePlayback.travel].
+   * When the reset option is enabled in [AnimationNodeStateMachinePlayback.travel], the animation is
+   * restarted. If `false`, nothing happens on the teleportation to the self state.
    */
   public var allowTransitionToSelf: Boolean
     get() {
@@ -87,8 +79,9 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
 
   /**
    * If `true`, treat the cross-fade to the start and end nodes as a blend with the RESET animation.
-   *
-   * In most cases, when additional cross-fades are performed in the parent [godot.AnimationNode] of the state machine, setting this property to `false` and matching the cross-fade time of the parent [godot.AnimationNode] and the state machine's start node and end node gives good results.
+   * In most cases, when additional cross-fades are performed in the parent [AnimationNode] of the
+   * state machine, setting this property to `false` and matching the cross-fade time of the parent
+   * [AnimationNode] and the state machine's start node and end node gives good results.
    */
   public var resetEnds: Boolean
     get() {
@@ -119,9 +112,6 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.callMethod(rawPtr, MethodBindings.addNodePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun replaceNode(name: StringName, node: AnimationNode): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.replaceNodePtr, NIL)
@@ -281,15 +271,20 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     id: Long,
   ) {
     /**
-     * Seeking to the beginning is treated as playing from the start state. Transition to the end state is treated as exiting the state machine.
+     * Seeking to the beginning is treated as playing from the start state. Transition to the end
+     * state is treated as exiting the state machine.
      */
     STATE_MACHINE_TYPE_ROOT(0),
     /**
-     * Seeking to the beginning is treated as seeking to the beginning of the animation in the current state. Transition to the end state, or the absence of transitions in each state, is treated as exiting the state machine.
+     * Seeking to the beginning is treated as seeking to the beginning of the animation in the
+     * current state. Transition to the end state, or the absence of transitions in each state, is
+     * treated as exiting the state machine.
      */
     STATE_MACHINE_TYPE_NESTED(1),
     /**
-     * This is a grouped state machine that can be controlled from a parent state machine. It does not work independently. There must be a state machine with [stateMachineType] of [STATE_MACHINE_TYPE_ROOT] or [STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
+     * This is a grouped state machine that can be controlled from a parent state machine. It does
+     * not work independently. There must be a state machine with [stateMachineType] of
+     * [STATE_MACHINE_TYPE_ROOT] or [STATE_MACHINE_TYPE_NESTED] in the parent or ancestor.
      */
     STATE_MACHINE_TYPE_GROUPED(2),
     ;

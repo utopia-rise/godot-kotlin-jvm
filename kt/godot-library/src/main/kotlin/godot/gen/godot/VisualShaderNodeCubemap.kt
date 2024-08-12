@@ -19,14 +19,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A [godot.Cubemap] sampling node to be used within the visual shader graph.
- *
- * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha channel as scalar.
+ * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha
+ * channel as scalar.
  */
 @GodotBaseType
 public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
-   * Defines which source should be used for the sampling. See [enum Source] for options.
+   * Defines which source should be used for the sampling. See [Source] for options.
    */
   public var source: Source
     get() {
@@ -40,7 +39,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   /**
-   * The [godot.Cubemap] texture to sample when using [SOURCE_TEXTURE] as [source].
+   * The [Cubemap] texture to sample when using [SOURCE_TEXTURE] as [source].
    */
   public var cubeMap: Cubemap?
     get() {
@@ -54,7 +53,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   /**
-   * Defines the type of data provided by the source texture. See [enum TextureType] for options.
+   * Defines the type of data provided by the source texture. See [TextureType] for options.
    */
   public var textureType: TextureType
     get() {
@@ -76,15 +75,17 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * Use the [godot.Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is ignored.
+     * Use the [Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is
+     * ignored.
      */
     SOURCE_TEXTURE(0),
     /**
-     * Use the [godot.Cubemap] sampler reference passed via the `samplerCube` port. If this is set to [source], the [cubeMap] texture is ignored.
+     * Use the [Cubemap] sampler reference passed via the `samplerCube` port. If this is set to
+     * [source], the [cubeMap] texture is ignored.
      */
     SOURCE_PORT(1),
     /**
-     * Represents the size of the [enum Source] enum.
+     * Represents the size of the [Source] enum.
      */
     SOURCE_MAX(2),
     ;
@@ -111,11 +112,12 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
      */
     TYPE_COLOR(1),
     /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
+     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture
+     * for proper usage as normal map.
      */
     TYPE_NORMAL_MAP(2),
     /**
-     * Represents the size of the [enum TextureType] enum.
+     * Represents the size of the [TextureType] enum.
      */
     TYPE_MAX(3),
     ;

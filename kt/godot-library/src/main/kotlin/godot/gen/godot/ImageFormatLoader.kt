@@ -14,9 +14,9 @@ import kotlin.Suppress
 import kotlin.jvm.JvmInline
 
 /**
- * Base class to add support for specific image formats.
- *
- * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few), but you can choose to implement support for additional image formats by extending [godot.ImageFormatLoaderExtension].
+ * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
+ * but you can choose to implement support for additional image formats by extending
+ * [ImageFormatLoaderExtension].
  */
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {

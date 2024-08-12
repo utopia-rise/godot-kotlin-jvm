@@ -25,9 +25,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Describes the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
- *
- * Describes the motion and collision result from [godot.PhysicsServer2D.bodyTestMotion].
+ * Describes the motion and collision result from [PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
@@ -82,7 +80,8 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the unique instance ID of the colliding body's attached [godot.Object], if a collision occurred. See [godot.Object.getInstanceId].
+   * Returns the unique instance ID of the colliding body's attached [Object], if a collision
+   * occurred. See [Object.getInstanceId].
    */
   public fun getColliderId(): Long {
     TransferContext.writeArguments()
@@ -91,7 +90,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's [RID] used by the [godot.PhysicsServer2D], if a collision occurred.
+   * Returns the colliding body's [RID] used by the [PhysicsServer2D], if a collision occurred.
    */
   public fun getColliderRid(): RID {
     TransferContext.writeArguments()
@@ -100,7 +99,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's attached [godot.Object], if a collision occurred.
+   * Returns the colliding body's attached [Object], if a collision occurred.
    */
   public fun getCollider(): Object? {
     TransferContext.writeArguments()
@@ -109,7 +108,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape index, if a collision occurred. See [godot.CollisionObject2D].
+   * Returns the colliding body's shape index, if a collision occurred. See [CollisionObject2D].
    */
   public fun getColliderShape(): Int {
     TransferContext.writeArguments()
@@ -136,7 +135,8 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`.
+   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and
+   * `1`.
    */
   public fun getCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
@@ -145,7 +145,8 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`.
+   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between
+   * `0` and `1`.
    */
   public fun getCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()

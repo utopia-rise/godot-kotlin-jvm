@@ -26,8 +26,17 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * This class generates noise using the FastNoiseLite library, which is a collection of several
+ * noise algorithms including Cellular, Perlin, Value, and more.
+ * Most generated noise values are in the range of `[-1, 1]`, but not always. Some of the cellular
+ * noise algorithms return results above `1`.
+ */
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
+  /**
+   * The noise algorithm used. See [NoiseType].
+   */
   public var noiseType: NoiseType
     get() {
       TransferContext.writeArguments()
@@ -39,6 +48,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setNoiseTypePtr, NIL)
     }
 
+  /**
+   * The random number seed for all noise types.
+   */
   public var seed: Int
     get() {
       TransferContext.writeArguments()
@@ -50,6 +62,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
     }
 
+  /**
+   * The frequency for all noise types. Low frequency results in smooth noise while high frequency
+   * results in rougher, more granular noise.
+   */
   public var frequency: Float
     get() {
       TransferContext.writeArguments()
@@ -61,6 +77,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrequencyPtr, NIL)
     }
 
+  /**
+   * Translate the noise input coordinates by the given [Vector3].
+   */
   @CoreTypeLocalCopy
   public var offset: Vector3
     get() {
@@ -73,6 +92,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
+  /**
+   * The method for combining octaves into a fractal. See [FractalType].
+   */
   public var fractalType: FractalType
     get() {
       TransferContext.writeArguments()
@@ -84,6 +106,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFractalTypePtr, NIL)
     }
 
+  /**
+   * The number of noise layers that are sampled to get the final value for fractal noise types.
+   */
   public var fractalOctaves: Int
     get() {
       TransferContext.writeArguments()
@@ -95,6 +120,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFractalOctavesPtr, NIL)
     }
 
+  /**
+   * Frequency multiplier between subsequent octaves. Increasing this value results in higher
+   * octaves producing noise with finer details and a rougher appearance.
+   */
   public var fractalLacunarity: Float
     get() {
       TransferContext.writeArguments()
@@ -106,6 +135,11 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFractalLacunarityPtr, NIL)
     }
 
+  /**
+   * Determines the strength of each subsequent layer of noise in fractal noise.
+   * A low value places more emphasis on the lower frequency base layers, while a high value puts
+   * more emphasis on the higher frequency layers.
+   */
   public var fractalGain: Float
     get() {
       TransferContext.writeArguments()
@@ -117,6 +151,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFractalGainPtr, NIL)
     }
 
+  /**
+   * Higher weighting means higher octaves have less impact if lower octaves have a large impact.
+   */
   public var fractalWeightedStrength: Float
     get() {
       TransferContext.writeArguments()
@@ -128,6 +165,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFractalWeightedStrengthPtr, NIL)
     }
 
+  /**
+   * Sets the strength of the fractal ping pong type.
+   */
   public var fractalPingPongStrength: Float
     get() {
       TransferContext.writeArguments()
@@ -139,6 +179,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFractalPingPongStrengthPtr, NIL)
     }
 
+  /**
+   * Determines how the distance to the nearest/second-nearest point is computed. See
+   * [CellularDistanceFunction] for options.
+   */
   public var cellularDistanceFunction: CellularDistanceFunction
     get() {
       TransferContext.writeArguments()
@@ -150,6 +194,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCellularDistanceFunctionPtr, NIL)
     }
 
+  /**
+   * Maximum distance a point can move off of its grid position. Set to `0` for an even grid.
+   */
   public var cellularJitter: Float
     get() {
       TransferContext.writeArguments()
@@ -161,6 +208,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCellularJitterPtr, NIL)
     }
 
+  /**
+   * Return type from cellular noise calculations. See [CellularReturnType].
+   */
   public var cellularReturnType: CellularReturnType
     get() {
       TransferContext.writeArguments()
@@ -172,6 +222,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCellularReturnTypePtr, NIL)
     }
 
+  /**
+   * If enabled, another FastNoiseLite instance is used to warp the space, resulting in a distortion
+   * of the noise.
+   */
   public var domainWarpEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -183,6 +237,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpEnabledPtr, NIL)
     }
 
+  /**
+   * Sets the warp algorithm. See [DomainWarpType].
+   */
   public var domainWarpType: DomainWarpType
     get() {
       TransferContext.writeArguments()
@@ -194,6 +251,9 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpTypePtr, NIL)
     }
 
+  /**
+   * Sets the maximum warp distance from the origin.
+   */
   public var domainWarpAmplitude: Float
     get() {
       TransferContext.writeArguments()
@@ -205,6 +265,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpAmplitudePtr, NIL)
     }
 
+  /**
+   * Frequency of the noise which warps the space. Low frequency results in smooth noise while high
+   * frequency results in rougher, more granular noise.
+   */
   public var domainWarpFrequency: Float
     get() {
       TransferContext.writeArguments()
@@ -216,6 +280,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFrequencyPtr, NIL)
     }
 
+  /**
+   * The method for combining octaves into a fractal which is used to warp the space. See
+   * [DomainWarpFractalType].
+   */
   public var domainWarpFractalType: DomainWarpFractalType
     get() {
       TransferContext.writeArguments()
@@ -227,6 +295,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalTypePtr, NIL)
     }
 
+  /**
+   * The number of noise layers that are sampled to get the final value for the fractal noise which
+   * warps the space.
+   */
   public var domainWarpFractalOctaves: Int
     get() {
       TransferContext.writeArguments()
@@ -238,6 +310,10 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalOctavesPtr, NIL)
     }
 
+  /**
+   * Octave lacunarity of the fractal noise which warps the space. Increasing this value results in
+   * higher octaves producing noise with finer details and a rougher appearance.
+   */
   public var domainWarpFractalLacunarity: Float
     get() {
       TransferContext.writeArguments()
@@ -249,6 +325,11 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalLacunarityPtr, NIL)
     }
 
+  /**
+   * Determines the strength of each subsequent layer of the noise which is used to warp the space.
+   * A low value places more emphasis on the lower frequency base layers, while a high value puts
+   * more emphasis on the higher frequency layers.
+   */
   public var domainWarpFractalGain: Float
     get() {
       TransferContext.writeArguments()
@@ -266,6 +347,8 @@ public open class FastNoiseLite : Noise() {
   }
 
   /**
+   * Translate the noise input coordinates by the given [Vector3].
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -290,11 +373,35 @@ public open class FastNoiseLite : Noise() {
   public enum class NoiseType(
     id: Long,
   ) {
+    /**
+     * A lattice of points are assigned random values then interpolated based on neighboring values.
+     */
     TYPE_VALUE(5),
+    /**
+     * Similar to Value noise, but slower. Has more variance in peaks and valleys.
+     * Cubic noise can be used to avoid certain artifacts when using value noise to create a
+     * bumpmap. In general, you should always use this mode if the value noise is being used for a
+     * heightmap or bumpmap.
+     */
     TYPE_VALUE_CUBIC(4),
+    /**
+     * A lattice of random gradients. Their dot products are interpolated to obtain values in
+     * between the lattices.
+     */
     TYPE_PERLIN(3),
+    /**
+     * Cellular includes both Worley noise and Voronoi diagrams which creates various regions of the
+     * same value.
+     */
     TYPE_CELLULAR(2),
+    /**
+     * As opposed to [TYPE_PERLIN], gradients exist in a simplex lattice rather than a grid lattice,
+     * avoiding directional artifacts.
+     */
     TYPE_SIMPLEX(0),
+    /**
+     * Modified, higher quality version of [TYPE_SIMPLEX], but slower.
+     */
     TYPE_SIMPLEX_SMOOTH(1),
     ;
 
@@ -311,9 +418,21 @@ public open class FastNoiseLite : Noise() {
   public enum class FractalType(
     id: Long,
   ) {
+    /**
+     * No fractal noise.
+     */
     FRACTAL_NONE(0),
+    /**
+     * Method using Fractional Brownian Motion to combine octaves into a fractal.
+     */
     FRACTAL_FBM(1),
+    /**
+     * Method of combining octaves into a fractal resulting in a "ridged" look.
+     */
     FRACTAL_RIDGED(2),
+    /**
+     * Method of combining octaves into a fractal with a ping pong effect.
+     */
     FRACTAL_PING_PONG(3),
     ;
 
@@ -330,9 +449,21 @@ public open class FastNoiseLite : Noise() {
   public enum class CellularDistanceFunction(
     id: Long,
   ) {
+    /**
+     * Euclidean distance to the nearest point.
+     */
     DISTANCE_EUCLIDEAN(0),
+    /**
+     * Squared Euclidean distance to the nearest point.
+     */
     DISTANCE_EUCLIDEAN_SQUARED(1),
+    /**
+     * Manhattan distance (taxicab metric) to the nearest point.
+     */
     DISTANCE_MANHATTAN(2),
+    /**
+     * Blend of [DISTANCE_EUCLIDEAN] and [DISTANCE_MANHATTAN] to give curved cell boundaries
+     */
     DISTANCE_HYBRID(3),
     ;
 
@@ -349,12 +480,36 @@ public open class FastNoiseLite : Noise() {
   public enum class CellularReturnType(
     id: Long,
   ) {
+    /**
+     * The cellular distance function will return the same value for all points within a cell.
+     */
     RETURN_CELL_VALUE(0),
+    /**
+     * The cellular distance function will return a value determined by the distance to the nearest
+     * point.
+     */
     RETURN_DISTANCE(1),
+    /**
+     * The cellular distance function returns the distance to the second-nearest point.
+     */
     RETURN_DISTANCE2(2),
+    /**
+     * The distance to the nearest point is added to the distance to the second-nearest point.
+     */
     RETURN_DISTANCE2_ADD(3),
+    /**
+     * The distance to the nearest point is subtracted from the distance to the second-nearest
+     * point.
+     */
     RETURN_DISTANCE2_SUB(4),
+    /**
+     * The distance to the nearest point is multiplied with the distance to the second-nearest
+     * point.
+     */
     RETURN_DISTANCE2_MUL(5),
+    /**
+     * The distance to the nearest point is divided by the distance to the second-nearest point.
+     */
     RETURN_DISTANCE2_DIV(6),
     ;
 
@@ -371,8 +526,18 @@ public open class FastNoiseLite : Noise() {
   public enum class DomainWarpType(
     id: Long,
   ) {
+    /**
+     * The domain is warped using the simplex noise algorithm.
+     */
     DOMAIN_WARP_SIMPLEX(0),
+    /**
+     * The domain is warped using a simplified version of the simplex noise algorithm.
+     */
     DOMAIN_WARP_SIMPLEX_REDUCED(1),
+    /**
+     * The domain is warped using a simple noise grid (not as smooth as the other methods, but more
+     * performant).
+     */
     DOMAIN_WARP_BASIC_GRID(2),
     ;
 
@@ -389,8 +554,18 @@ public open class FastNoiseLite : Noise() {
   public enum class DomainWarpFractalType(
     id: Long,
   ) {
+    /**
+     * No fractal noise for warping the space.
+     */
     DOMAIN_WARP_FRACTAL_NONE(0),
+    /**
+     * Warping the space progressively, octave for octave, resulting in a more "liquified"
+     * distortion.
+     */
     DOMAIN_WARP_FRACTAL_PROGRESSIVE(1),
+    /**
+     * Warping the space independently for each octave, resulting in a more chaotic distortion.
+     */
     DOMAIN_WARP_FRACTAL_INDEPENDENT(2),
     ;
 

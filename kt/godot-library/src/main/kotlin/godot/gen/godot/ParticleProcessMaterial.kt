@@ -30,14 +30,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Holds a particle configuration for [godot.GPUParticles2D] or [godot.GPUParticles3D] nodes.
- *
- * [godot.ParticleProcessMaterial] defines particle properties and behavior. It is used in the `process_material` of the [godot.GPUParticles2D] and [godot.GPUParticles3D] nodes. Some of this material's properties are applied to each particle when emitted, while others can have a [godot.CurveTexture] or a [godot.GradientTexture1D] applied to vary numerical or color values over the lifetime of the particle.
+ * [ParticleProcessMaterial] defines particle properties and behavior. It is used in the
+ * `process_material` of the [GPUParticles2D] and [GPUParticles3D] nodes. Some of this material's
+ * properties are applied to each particle when emitted, while others can have a [CurveTexture] or a
+ * [GradientTexture1D] applied to vary numerical or color values over the lifetime of the particle.
  */
 @GodotBaseType
 public open class ParticleProcessMaterial : Material() {
   /**
-   * Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime * (1.0 - randf() * lifetime_randomness)`. For example, a [lifetimeRandomness] of `0.4` scales the lifetime between `0.6` to `1.0` of its original value.
+   * Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime *
+   * (1.0 - randf() * lifetime_randomness)`. For example, a [lifetimeRandomness] of `0.4` scales the
+   * lifetime between `0.6` to `1.0` of its original value.
    */
   public var lifetimeRandomness: Double
     get() {
@@ -93,7 +96,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Changes the behavior of the damping properties from a linear deceleration to a deceleration based on speed percentage.
+   * Changes the behavior of the damping properties from a linear deceleration to a deceleration
+   * based on speed percentage.
    */
   public var particleFlagDampingAsFriction: Boolean
     get() {
@@ -137,7 +141,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particles will be emitted inside this region. Use [enum EmissionShape] constants for values.
+   * Particles will be emitted inside this region. Use [EmissionShape] constants for values.
    */
   public var emissionShape: EmissionShape
     get() {
@@ -180,7 +184,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particles will be emitted at positions determined by sampling this texture at a random position. Used with [EMISSION_SHAPE_POINTS] and [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
+   * Particles will be emitted at positions determined by sampling this texture at a random
+   * position. Used with [EMISSION_SHAPE_POINTS] and [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created
+   * automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the
+   * "Particles" tool in the toolbar.
    */
   public var emissionPointTexture: Texture2D?
     get() {
@@ -194,7 +201,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particle velocity and rotation will be set by sampling this texture at the same point as the [emissionPointTexture]. Used only in [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
+   * Particle velocity and rotation will be set by sampling this texture at the same point as the
+   * [emissionPointTexture]. Used only in [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created
+   * automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the
+   * "Particles" tool in the toolbar.
    */
   public var emissionNormalTexture: Texture2D?
     get() {
@@ -208,9 +218,12 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particle color will be modulated by color determined by sampling this texture at the same point as the [emissionPointTexture].
-   *
-   * **Note:** [emissionColorTexture] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [emissionColorTexture] will have no visible effect.
+   * Particle color will be modulated by color determined by sampling this texture at the same point
+   * as the [emissionPointTexture].
+   * **Note:** [emissionColorTexture] multiplies the particle mesh's vertex colors. To have a
+   * visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`.
+   * For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()`
+   * function. Otherwise, [emissionColorTexture] will have no visible effect.
    */
   public var emissionColorTexture: Texture2D?
     get() {
@@ -224,7 +237,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The number of emission points if [emissionShape] is set to [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   * The number of emission points if [emissionShape] is set to [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionPointCount: Int
     get() {
@@ -310,8 +324,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum initial rotation applied to each particle, in degrees.
-   *
-   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the [godot.BaseMaterial3D] being used to draw the particle is using [godot.BaseMaterial3D.BILLBOARD_PARTICLES].
+   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
+   * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
    */
   public var angleMax: Float
     get() {
@@ -325,7 +339,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's rotation will be animated along this [godot.CurveTexture].
+   * Each particle's rotation will be animated along this [CurveTexture].
    */
   public var angleCurve: Texture2D?
     get() {
@@ -339,7 +353,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Percentage of the velocity of the respective [godot.GPUParticles2D] or [godot.GPUParticles3D] inherited by each particle when spawning.
+   * Percentage of the velocity of the respective [GPUParticles2D] or [GPUParticles3D] inherited by
+   * each particle when spawning.
    */
   public var inheritVelocityRatio: Double
     get() {
@@ -425,7 +440,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum initial velocity magnitude for each particle. Direction comes from [direction] and [spread].
+   * Maximum initial velocity magnitude for each particle. Direction comes from [direction] and
+   * [spread].
    */
   public var initialVelocityMax: Float
     get() {
@@ -453,9 +469,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per second.
-   *
-   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the [godot.BaseMaterial3D] being used to draw the particle is using [godot.BaseMaterial3D.BILLBOARD_PARTICLES].
+   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per
+   * second.
+   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
+   * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
    */
   public var angularVelocityMax: Float
     get() {
@@ -469,7 +486,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's angular velocity (rotation speed) will vary along this [godot.CurveTexture] over its lifetime.
+   * Each particle's angular velocity (rotation speed) will vary along this [CurveTexture] over its
+   * lifetime.
    */
   public var angularVelocityCurve: Texture2D?
     get() {
@@ -484,8 +502,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum directional velocity value, which is multiplied by [directionalVelocityCurve].
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var directionalVelocityMin: Float
     get() {
@@ -500,8 +518,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum directional velocity value, which is multiplied by [directionalVelocityCurve].
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var directionalVelocityMax: Float
     get() {
@@ -515,9 +533,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * A curve that specifies the velocity along each of the axes of the particle system along its lifetime.
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * A curve that specifies the velocity along each of the axes of the particle system along its
+   * lifetime.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var directionalVelocityCurve: Texture2D?
     get() {
@@ -532,8 +551,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum equivalent of [orbitVelocityMax].
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var orbitVelocityMin: Float
     get() {
@@ -547,9 +566,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * Maximum orbital velocity applied to each particle. Makes the particles circle around origin.
+   * Specified in number of full rotations around origin per second.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var orbitVelocityMax: Float
     get() {
@@ -563,11 +583,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's orbital velocity will vary along this [godot.CurveTexture].
-   *
-   * **Note:** For 3D orbital velocity, use a [godot.CurveXYZTexture].
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * Each particle's orbital velocity will vary along this [CurveTexture].
+   * **Note:** For 3D orbital velocity, use a [CurveXYZTexture].
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var orbitVelocityCurve: Material?
     get() {
@@ -581,9 +600,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Minimum radial velocity applied to each particle. Makes particles move away from the [velocityPivot], or toward it if negative.
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * Minimum radial velocity applied to each particle. Makes particles move away from the
+   * [velocityPivot], or toward it if negative.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var radialVelocityMin: Float
     get() {
@@ -597,9 +617,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum radial velocity applied to each particle. Makes particles move away from the [velocityPivot], or toward it if negative.
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * Maximum radial velocity applied to each particle. Makes particles move away from the
+   * [velocityPivot], or toward it if negative.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var radialVelocityMax: Float
     get() {
@@ -613,9 +634,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * A [godot.CurveTexture] that defines the velocity over the particle's lifetime away (or toward) the [velocityPivot].
-   *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
+   * A [CurveTexture] that defines the velocity over the particle's lifetime away (or toward) the
+   * [velocityPivot].
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
+   * instead.
    */
   public var radialVelocityCurve: Texture2D?
     get() {
@@ -629,7 +651,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * A [godot.CurveTexture] that defines the maximum velocity of a particle during its lifetime.
+   * A [CurveTexture] that defines the maximum velocity of a particle during its lifetime.
    */
   public var velocityLimitCurve: Texture2D?
     get() {
@@ -686,7 +708,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's linear acceleration will vary along this [godot.CurveTexture].
+   * Each particle's linear acceleration will vary along this [CurveTexture].
    */
   public var linearAccelCurve: Texture2D?
     get() {
@@ -714,7 +736,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum radial acceleration applied to each particle. Makes particle accelerate away from the origin or towards it if negative.
+   * Maximum radial acceleration applied to each particle. Makes particle accelerate away from the
+   * origin or towards it if negative.
    */
   public var radialAccelMax: Float
     get() {
@@ -728,7 +751,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's radial acceleration will vary along this [godot.CurveTexture].
+   * Each particle's radial acceleration will vary along this [CurveTexture].
    */
   public var radialAccelCurve: Texture2D?
     get() {
@@ -756,7 +779,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion.
+   * Maximum tangential acceleration applied to each particle. Tangential acceleration is
+   * perpendicular to the particle's velocity giving the particles a swirling motion.
    */
   public var tangentialAccelMax: Float
     get() {
@@ -770,7 +794,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's tangential acceleration will vary along this [godot.CurveTexture].
+   * Each particle's tangential acceleration will vary along this [CurveTexture].
    */
   public var tangentialAccelCurve: Texture2D?
     get() {
@@ -798,7 +822,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The maximum rate at which particles lose velocity. For example value of `100` means that the particle will go from `100` velocity to `0` in `1` second.
+   * The maximum rate at which particles lose velocity. For example value of `100` means that the
+   * particle will go from `100` velocity to `0` in `1` second.
    */
   public var dampingMax: Float
     get() {
@@ -812,7 +837,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Damping will vary along this [godot.CurveTexture].
+   * Damping will vary along this [CurveTexture].
    */
   public var dampingCurve: Texture2D?
     get() {
@@ -826,7 +851,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * If `true`, interaction with particle attractors is enabled. In 3D, attraction only occurs within the area defined by the [godot.GPUParticles3D] node's [godot.GPUParticles3D.visibilityAabb].
+   * If `true`, interaction with particle attractors is enabled. In 3D, attraction only occurs
+   * within the area defined by the [GPUParticles3D] node's [GPUParticles3D.visibilityAabb].
    */
   public var attractorInteractionEnabled: Boolean
     get() {
@@ -868,7 +894,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's scale will vary along this [godot.CurveTexture]. If a [godot.CurveXYZTexture] is supplied instead, the scale will be separated per-axis.
+   * Each particle's scale will vary along this [CurveTexture]. If a [CurveXYZTexture] is supplied
+   * instead, the scale will be separated per-axis.
    */
   public var scaleCurve: Material?
     get() {
@@ -883,8 +910,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum velocity value reference for [scaleOverVelocityCurve].
-   *
-   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and [scaleOverVelocityMax].
+   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and
+   * [scaleOverVelocityMax].
    */
   public var scaleOverVelocityMin: Float
     get() {
@@ -899,8 +926,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum velocity value reference for [scaleOverVelocityCurve].
-   *
-   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and [scaleOverVelocityMax].
+   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and
+   * [scaleOverVelocityMax].
    */
   public var scaleOverVelocityMax: Float
     get() {
@@ -914,7 +941,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Either a [godot.CurveTexture] or a [godot.CurveXYZTexture] that scales each particle based on its velocity.
+   * Either a [CurveTexture] or a [CurveXYZTexture] that scales each particle based on its velocity.
    */
   public var scaleOverVelocityCurve: Material?
     get() {
@@ -928,9 +955,12 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's initial color. If the [godot.GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.
-   *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
+   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
+   * multiplied by this color.
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
+   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [color] will have no visible effect.
    */
   @CoreTypeLocalCopy
   public var color: Color
@@ -945,9 +975,12 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's color will vary along this [godot.GradientTexture1D] over its lifetime (multiplied with [color]).
-   *
-   * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorRamp] will have no visible effect.
+   * Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied
+   * with [color]).
+   * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on
+   * a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [colorRamp] will have no visible effect.
    */
   public var colorRamp: Texture2D?
     get() {
@@ -961,9 +994,12 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
-   *
-   * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorInitialRamp] will have no visible effect.
+   * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with
+   * [color]).
+   * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible
+   * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [colorInitialRamp] will have no visible effect.
    */
   public var colorInitialRamp: Texture2D?
     get() {
@@ -977,7 +1013,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The alpha value of each particle's color will be multiplied by this [godot.CurveTexture] over its lifetime.
+   * The alpha value of each particle's color will be multiplied by this [CurveTexture] over its
+   * lifetime.
    */
   public var alphaCurve: Texture2D?
     get() {
@@ -991,9 +1028,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's color will be multiplied by this [godot.CurveTexture] over its lifetime.
-   *
-   * **Note:** This property won't have a visible effect unless the render material is marked as unshaded.
+   * Each particle's color will be multiplied by this [CurveTexture] over its lifetime.
+   * **Note:** This property won't have a visible effect unless the render material is marked as
+   * unshaded.
    */
   public var emissionCurve: Texture2D?
     get() {
@@ -1035,7 +1072,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's hue will vary along this [godot.CurveTexture].
+   * Each particle's hue will vary along this [CurveTexture].
    */
   public var hueVariationCurve: Texture2D?
     get() {
@@ -1063,9 +1100,10 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum particle animation speed. Animation speed of `1` means that the particles will make full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
-   *
-   * With animation speed greater than `1`, remember to enable [godot.CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
+   * Maximum particle animation speed. Animation speed of `1` means that the particles will make
+   * full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
+   * With animation speed greater than `1`, remember to enable
+   * [CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
    */
   public var animSpeedMax: Float
     get() {
@@ -1079,7 +1117,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's animation speed will vary along this [godot.CurveTexture].
+   * Each particle's animation speed will vary along this [CurveTexture].
    */
   public var animSpeedCurve: Texture2D?
     get() {
@@ -1107,7 +1145,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum animation offset that corresponds to frame index in the texture. `0` is the first frame, `1` is the last one. See [godot.CanvasItemMaterial.particlesAnimation].
+   * Maximum animation offset that corresponds to frame index in the texture. `0` is the first
+   * frame, `1` is the last one. See [CanvasItemMaterial.particlesAnimation].
    */
   public var animOffsetMax: Float
     get() {
@@ -1121,7 +1160,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's animation offset will vary along this [godot.CurveTexture].
+   * Each particle's animation offset will vary along this [CurveTexture].
    */
   public var animOffsetCurve: Texture2D?
     get() {
@@ -1135,9 +1174,13 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * If `true`, enables turbulence for the particle system. Turbulence can be used to vary particle movement according to its position (based on a 3D noise pattern). In 3D, [godot.GPUParticlesAttractorVectorField3D] with [godot.NoiseTexture3D] can be used as an alternative to turbulence that works in world space and with multiple particle systems reacting in the same way.
-   *
-   * **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on a few particle systems at once at most, and consider disabling it when targeting mobile/web platforms.
+   * If `true`, enables turbulence for the particle system. Turbulence can be used to vary particle
+   * movement according to its position (based on a 3D noise pattern). In 3D,
+   * [GPUParticlesAttractorVectorField3D] with [NoiseTexture3D] can be used as an alternative to
+   * turbulence that works in world space and with multiple particle systems reacting in the same way.
+   * **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on
+   * a few particle systems at once at most, and consider disabling it when targeting mobile/web
+   * platforms.
    */
   public var turbulenceEnabled: Boolean
     get() {
@@ -1151,7 +1194,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The turbulence noise strength. Increasing this will result in a stronger, more contrasting, flow pattern.
+   * The turbulence noise strength. Increasing this will result in a stronger, more contrasting,
+   * flow pattern.
    */
   public var turbulenceNoiseStrength: Float
     get() {
@@ -1166,8 +1210,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * This value controls the overall scale/frequency of the turbulence noise pattern.
-   *
-   * A small scale will result in smaller features with more detail while a high scale will result in smoother noise with larger features.
+   * A small scale will result in smaller features with more detail while a high scale will result
+   * in smoother noise with larger features.
    */
   public var turbulenceNoiseScale: Float
     get() {
@@ -1181,8 +1225,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.
-   *
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
+   * move in over time.
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    */
   @CoreTypeLocalCopy
@@ -1198,8 +1242,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The in-place rate of change of the turbulence field. This defines how quickly the noise pattern varies over time.
-   *
+   * The in-place rate of change of the turbulence field. This defines how quickly the noise pattern
+   * varies over time.
    * A value of 0.0 will result in a fixed pattern.
    */
   public var turbulenceNoiseSpeedRandom: Float
@@ -1215,8 +1259,9 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum turbulence influence on each particle.
-   *
-   * The actual amount of turbulence influence on each particle is calculated as a random value between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of turbulence influence from [turbulenceInfluenceOverLife].
+   * The actual amount of turbulence influence on each particle is calculated as a random value
+   * between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of
+   * turbulence influence from [turbulenceInfluenceOverLife].
    */
   public var turbulenceInfluenceMin: Float
     get() {
@@ -1231,8 +1276,9 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum turbulence influence on each particle.
-   *
-   * The actual amount of turbulence influence on each particle is calculated as a random value between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of turbulence influence from [turbulenceInfluenceOverLife].
+   * The actual amount of turbulence influence on each particle is calculated as a random value
+   * between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of
+   * turbulence influence from [turbulenceInfluenceOverLife].
    */
   public var turbulenceInfluenceMax: Float
     get() {
@@ -1247,8 +1293,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Minimum displacement of each particle's spawn position by the turbulence.
-   *
-   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
+   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a
+   * random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
    */
   public var turbulenceInitialDisplacementMin: Float
     get() {
@@ -1263,8 +1309,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * Maximum displacement of each particle's spawn position by the turbulence.
-   *
-   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
+   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a
+   * random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
    */
   public var turbulenceInitialDisplacementMax: Float
     get() {
@@ -1278,7 +1324,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's amount of turbulence will be influenced along this [godot.CurveTexture] over its life time.
+   * Each particle's amount of turbulence will be influenced along this [CurveTexture] over its life
+   * time.
    */
   public var turbulenceInfluenceOverLife: Texture2D?
     get() {
@@ -1293,10 +1340,12 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The particles' collision mode.
-   *
-   * **Note:** 3D Particles can only collide with [godot.GPUParticlesCollision3D] nodes, not [godot.PhysicsBody3D] nodes. To make particles collide with various objects, you can add [godot.GPUParticlesCollision3D] nodes as children of [godot.PhysicsBody3D] nodes. In 3D, collisions only occur within the area defined by the [godot.GPUParticles3D] node's [godot.GPUParticles3D.visibilityAabb].
-   *
-   * **Note:** 2D Particles can only collide with [godot.LightOccluder2D] nodes, not [godot.PhysicsBody2D] nodes.
+   * **Note:** 3D Particles can only collide with [GPUParticlesCollision3D] nodes, not
+   * [PhysicsBody3D] nodes. To make particles collide with various objects, you can add
+   * [GPUParticlesCollision3D] nodes as children of [PhysicsBody3D] nodes. In 3D, collisions only occur
+   * within the area defined by the [GPUParticles3D] node's [GPUParticles3D.visibilityAabb].
+   * **Note:** 2D Particles can only collide with [LightOccluder2D] nodes, not [PhysicsBody2D]
+   * nodes.
    */
   public var collisionMode: CollisionMode
     get() {
@@ -1310,7 +1359,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only effective if [collisionMode] is [COLLISION_RIGID].
+   * The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only
+   * effective if [collisionMode] is [COLLISION_RIGID].
    */
   public var collisionFriction: Float
     get() {
@@ -1324,7 +1374,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only effective if [collisionMode] is [COLLISION_RIGID].
+   * The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only
+   * effective if [collisionMode] is [COLLISION_RIGID].
    */
   public var collisionBounce: Float
     get() {
@@ -1338,7 +1389,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * If `true`, [godot.GPUParticles3D.collisionBaseSize] is multiplied by the particle's effective scale (see [scaleMin], [scaleMax], [scaleCurve], and [scaleOverVelocityCurve]).
+   * If `true`, [GPUParticles3D.collisionBaseSize] is multiplied by the particle's effective scale
+   * (see [scaleMin], [scaleMax], [scaleCurve], and [scaleOverVelocityCurve]).
    */
   public var collisionUseScale: Boolean
     get() {
@@ -1352,7 +1404,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The particle subemitter mode (see [godot.GPUParticles2D.subEmitter] and [godot.GPUParticles3D.subEmitter]).
+   * The particle subemitter mode (see [GPUParticles2D.subEmitter] and [GPUParticles3D.subEmitter]).
    */
   public var subEmitterMode: SubEmitterMode
     get() {
@@ -1366,9 +1418,12 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The frequency at which particles should be emitted from the subemitter node. One particle will be spawned every [subEmitterFrequency] seconds.
-   *
-   * **Note:** This value shouldn't exceed [godot.GPUParticles2D.amount] or [godot.GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
+   * The frequency at which particles should be emitted from the subemitter node. One particle will
+   * be spawned every [subEmitterFrequency] seconds.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
+   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
+   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
+   * until enough particles have expired.
    */
   public var subEmitterFrequency: Double
     get() {
@@ -1383,8 +1438,10 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The amount of particles to spawn from the subemitter node when the particle expires.
-   *
-   * **Note:** This value shouldn't exceed [godot.GPUParticles2D.amount] or [godot.GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
+   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
+   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
+   * until enough particles have expired.
    */
   public var subEmitterAmountAtEnd: Int
     get() {
@@ -1398,9 +1455,13 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The amount of particles to spawn from the subemitter node when a collision occurs. When combined with [COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to achieve effects such as raindrops hitting the ground.
-   *
-   * **Note:** This value shouldn't exceed [godot.GPUParticles2D.amount] or [godot.GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
+   * The amount of particles to spawn from the subemitter node when a collision occurs. When
+   * combined with [COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to
+   * achieve effects such as raindrops hitting the ground.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
+   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
+   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
+   * until enough particles have expired.
    */
   public var subEmitterAmountAtCollision: Int
     get() {
@@ -1605,9 +1666,12 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * Each particle's initial color. If the [godot.GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.
-   *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
+   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
+   * multiplied by this color.
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
+   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [color] will have no visible effect.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1631,8 +1695,8 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.
-   *
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
+   * move in over time.
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    *
    * This is a helper function to make dealing with local copies easier. 
@@ -1661,27 +1725,33 @@ public open class ParticleProcessMaterial : Material() {
     id: Long,
   ) {
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity
+     * properties.
      */
     PARAM_INITIAL_LINEAR_VELOCITY(0),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angular velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angular velocity
+     * properties.
      */
     PARAM_ANGULAR_VELOCITY(1),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set orbital velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set orbital velocity
+     * properties.
      */
     PARAM_ORBIT_VELOCITY(2),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set linear acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set linear acceleration
+     * properties.
      */
     PARAM_LINEAR_ACCEL(3),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial acceleration
+     * properties.
      */
     PARAM_RADIAL_ACCEL(4),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set tangential acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set tangential acceleration
+     * properties.
      */
     PARAM_TANGENTIAL_ACCEL(5),
     /**
@@ -1701,35 +1771,42 @@ public open class ParticleProcessMaterial : Material() {
      */
     PARAM_HUE_VARIATION(9),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation speed properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation speed
+     * properties.
      */
     PARAM_ANIM_SPEED(10),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation offset properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation offset
+     * properties.
      */
     PARAM_ANIM_OFFSET(11),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial velocity
+     * properties.
      */
     PARAM_RADIAL_VELOCITY(15),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set directional velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set directional velocity
+     * properties.
      */
     PARAM_DIRECTIONAL_VELOCITY(16),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set scale over velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set scale over velocity
+     * properties.
      */
     PARAM_SCALE_OVER_VELOCITY(17),
     /**
-     * Represents the size of the [enum Parameter] enum.
+     * Represents the size of the [Parameter] enum.
      */
     PARAM_MAX(18),
     /**
-     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum und maximum influence on each particles velocity.
+     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum und maximum influence
+     * on each particles velocity.
      */
     PARAM_TURB_VEL_INFLUENCE(13),
     /**
-     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum and maximum displacement of the particles spawn position.
+     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum and maximum
+     * displacement of the particles spawn position.
      */
     PARAM_TURB_INIT_DISPLACEMENT(14),
     /**
@@ -1763,12 +1840,9 @@ public open class ParticleProcessMaterial : Material() {
      * Use with [setParticleFlag] to set [particleFlagDisableZ].
      */
     PARTICLE_FLAG_DISABLE_Z(2),
-    /**
-     *
-     */
     PARTICLE_FLAG_DAMPING_AS_FRICTION(3),
     /**
-     * Represents the size of the [enum ParticleFlags] enum.
+     * Represents the size of the [ParticleFlags] enum.
      */
     PARTICLE_FLAG_MAX(4),
     ;
@@ -1803,11 +1877,14 @@ public open class ParticleProcessMaterial : Material() {
      */
     EMISSION_SHAPE_BOX(3),
     /**
-     * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
+     * Particles will be emitted at a position determined by sampling a random point on the
+     * [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
      */
     EMISSION_SHAPE_POINTS(4),
     /**
-     * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle velocity and rotation will be set based on [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
+     * Particles will be emitted at a position determined by sampling a random point on the
+     * [emissionPointTexture]. Particle velocity and rotation will be set based on
+     * [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
      */
     EMISSION_SHAPE_DIRECTED_POINTS(5),
     /**
@@ -1815,7 +1892,7 @@ public open class ParticleProcessMaterial : Material() {
      */
     EMISSION_SHAPE_RING(6),
     /**
-     * Represents the size of the [enum EmissionShape] enum.
+     * Represents the size of the [EmissionShape] enum.
      */
     EMISSION_SHAPE_MAX(7),
     ;
@@ -1833,24 +1910,12 @@ public open class ParticleProcessMaterial : Material() {
   public enum class SubEmitterMode(
     id: Long,
   ) {
-    /**
-     *
-     */
     SUB_EMITTER_DISABLED(0),
-    /**
-     *
-     */
     SUB_EMITTER_CONSTANT(1),
-    /**
-     *
-     */
     SUB_EMITTER_AT_END(2),
-    /**
-     *
-     */
     SUB_EMITTER_AT_COLLISION(3),
     /**
-     * Represents the size of the [enum SubEmitterMode] enum.
+     * Represents the size of the [SubEmitterMode] enum.
      */
     SUB_EMITTER_MAX(4),
     ;
@@ -1869,19 +1934,21 @@ public open class ParticleProcessMaterial : Material() {
     id: Long,
   ) {
     /**
-     * No collision for particles. Particles will go through [godot.GPUParticlesCollision3D] nodes.
+     * No collision for particles. Particles will go through [GPUParticlesCollision3D] nodes.
      */
     COLLISION_DISABLED(0),
     /**
-     * [godot.RigidBody3D]-style collision for particles using [godot.GPUParticlesCollision3D] nodes.
+     * [RigidBody3D]-style collision for particles using [GPUParticlesCollision3D] nodes.
      */
     COLLISION_RIGID(1),
     /**
-     * Hide particles instantly when colliding with a [godot.GPUParticlesCollision3D] node. This can be combined with a subemitter that uses the [COLLISION_RIGID] collision mode to "replace" the parent particle with the subemitter on impact.
+     * Hide particles instantly when colliding with a [GPUParticlesCollision3D] node. This can be
+     * combined with a subemitter that uses the [COLLISION_RIGID] collision mode to "replace" the
+     * parent particle with the subemitter on impact.
      */
     COLLISION_HIDE_ON_CONTACT(2),
     /**
-     * Represents the size of the [enum CollisionMode] enum.
+     * Represents the size of the [CollisionMode] enum.
      */
     COLLISION_MAX(3),
     ;

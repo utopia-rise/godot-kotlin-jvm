@@ -25,11 +25,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Class representing a planar [godot.PrimitiveMesh].
- *
- * Class representing a planar [godot.PrimitiveMesh]. This flat mesh does not have a thickness. By default, this mesh is aligned on the X and Z axes; this default rotation isn't suited for use with billboarded materials. For billboarded materials, change [orientation] to [FACE_Z].
- *
- * **Note:** When using a large textured [godot.PlaneMesh] (e.g. as a floor), you may stumble upon UV jittering issues depending on the camera angle. To solve this, increase [subdivideDepth] and [subdivideWidth] until you no longer notice UV jittering.
+ * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By
+ * default, this mesh is aligned on the X and Z axes; this default rotation isn't suited for use with
+ * billboarded materials. For billboarded materials, change [orientation] to [FACE_Z].
+ * **Note:** When using a large textured [PlaneMesh] (e.g. as a floor), you may stumble upon UV
+ * jittering issues depending on the camera angle. To solve this, increase [subdivideDepth] and
+ * [subdivideWidth] until you no longer notice UV jittering.
  */
 @GodotBaseType
 public open class PlaneMesh : PrimitiveMesh() {
@@ -92,7 +93,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   /**
-   * Direction that the [godot.PlaneMesh] is facing. See [enum Orientation] for options.
+   * Direction that the [PlaneMesh] is facing. See [Orientation] for options.
    */
   public var orientation: Orientation
     get() {
@@ -162,15 +163,17 @@ public open class PlaneMesh : PrimitiveMesh() {
     id: Long,
   ) {
     /**
-     * [godot.PlaneMesh] will face the positive X-axis.
+     * [PlaneMesh] will face the positive X-axis.
      */
     FACE_X(0),
     /**
-     * [godot.PlaneMesh] will face the positive Y-axis. This matches the behavior of the [godot.PlaneMesh] in Godot 3.x.
+     * [PlaneMesh] will face the positive Y-axis. This matches the behavior of the [PlaneMesh] in
+     * Godot 3.x.
      */
     FACE_Y(1),
     /**
-     * [godot.PlaneMesh] will face the positive Z-axis. This matches the behavior of the QuadMesh in Godot 3.x.
+     * [PlaneMesh] will face the positive Z-axis. This matches the behavior of the QuadMesh in Godot
+     * 3.x.
      */
     FACE_Z(2),
     ;

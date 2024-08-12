@@ -21,11 +21,12 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * SPIR-V intermediate representation as part of a [godot.RDShaderFile] (used by [godot.RenderingDevice]).
- *
- * [godot.RDShaderSPIRV] represents a [godot.RDShaderFile]'s [godot.SPIR-V](https://www.khronos.org/spir/) code for various shader stages, as well as possible compilation error messages. SPIR-V is a low-level intermediate shader representation. This intermediate representation is not used directly by GPUs for rendering, but it can be compiled into binary shaders that GPUs can understand. Unlike compiled shaders, SPIR-V is portable across GPU models and driver versions.
- *
- * This object is used by [godot.RenderingDevice].
+ * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
+ * code for various shader stages, as well as possible compilation error messages. SPIR-V is a
+ * low-level intermediate shader representation. This intermediate representation is not used directly
+ * by GPUs for rendering, but it can be compiled into binary shaders that GPUs can understand. Unlike
+ * compiled shaders, SPIR-V is portable across GPU models and driver versions.
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDShaderSPIRV : Resource() {
@@ -100,7 +101,8 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   /**
-   * The compilation error message for the vertex shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   * The compilation error message for the vertex shader stage (set by the SPIR-V compiler and
+   * Godot). If empty, shader compilation was successful.
    */
   public var compileErrorVertex: String
     get() {
@@ -114,7 +116,8 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   /**
-   * The compilation error message for the fragment shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   * The compilation error message for the fragment shader stage (set by the SPIR-V compiler and
+   * Godot). If empty, shader compilation was successful.
    */
   public var compileErrorFragment: String
     get() {
@@ -128,7 +131,8 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   /**
-   * The compilation error message for the tessellation control shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   * The compilation error message for the tessellation control shader stage (set by the SPIR-V
+   * compiler and Godot). If empty, shader compilation was successful.
    */
   public var compileErrorTesselationControl: String
     get() {
@@ -142,7 +146,8 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   /**
-   * The compilation error message for the tessellation evaluation shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   * The compilation error message for the tessellation evaluation shader stage (set by the SPIR-V
+   * compiler and Godot). If empty, shader compilation was successful.
    */
   public var compileErrorTesselationEvaluation: String
     get() {
@@ -156,7 +161,8 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   /**
-   * The compilation error message for the compute shader stage (set by the SPIR-V compiler and Godot). If empty, shader compilation was successful.
+   * The compilation error message for the compute shader stage (set by the SPIR-V compiler and
+   * Godot). If empty, shader compilation was successful.
    */
   public var compileErrorCompute: String
     get() {

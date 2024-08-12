@@ -20,97 +20,53 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Used to create an HMAC for a message using a key.
+ * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it
+ * supports creating the message over time rather than providing it all at once.
  *
- * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it supports creating the message over time rather than providing it all at once.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * extends Node
- *
  * var ctx = HMACContext.new()
  *
- *
- *
  * func _ready():
- *
  *     var key = "supersecret".to_utf8_buffer()
- *
  *     var err = ctx.start(HashingContext.HASH_SHA256, key)
- *
  *     assert(err == OK)
- *
  *     var msg1 = "this is ".to_utf8_buffer()
- *
  *     var msg2 = "super duper secret".to_utf8_buffer()
- *
  *     err = ctx.update(msg1)
- *
  *     assert(err == OK)
- *
  *     err = ctx.update(msg2)
- *
  *     assert(err == OK)
- *
  *     var hmac = ctx.finish()
- *
  *     print(hmac.hex_encode())
  *
- *
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * using Godot;
- *
  * using System.Diagnostics;
  *
- *
- *
  * public partial class MyNode : Node
- *
  * {
- *
  *     private HmacContext _ctx = new HmacContext();
  *
- *
- *
  *     public override void _Ready()
- *
  *     {
- *
  *         byte[] key = "supersecret".ToUtf8Buffer();
- *
  *         Error err = _ctx.Start(HashingContext.HashType.Sha256, key);
- *
  *         Debug.Assert(err == Error.Ok);
- *
  *         byte[] msg1 = "this is ".ToUtf8Buffer();
- *
  *         byte[] msg2 = "super duper secret".ToUtf8Buffer();
- *
  *         err = _ctx.Update(msg1);
- *
  *         Debug.Assert(err == Error.Ok);
- *
  *         err = _ctx.Update(msg2);
- *
  *         Debug.Assert(err == Error.Ok);
- *
  *         byte[] hmac = _ctx.Finish();
- *
  *         GD.Print(hmac.HexEncode());
- *
  *     }
- *
  * }
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class HMACContext : RefCounted() {
@@ -120,7 +76,8 @@ public open class HMACContext : RefCounted() {
   }
 
   /**
-   * Initializes the HMACContext. This method cannot be called again on the same HMACContext until [finish] has been called.
+   * Initializes the HMACContext. This method cannot be called again on the same HMACContext until
+   * [finish] has been called.
    */
   public fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
@@ -129,7 +86,8 @@ public open class HMACContext : RefCounted() {
   }
 
   /**
-   * Updates the message to be HMACed. This can be called multiple times before [finish] is called to append [data] to the message, but cannot be called until [start] has been called.
+   * Updates the message to be HMACed. This can be called multiple times before [finish] is called
+   * to append [data] to the message, but cannot be called until [start] has been called.
    */
   public fun update(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -138,7 +96,7 @@ public open class HMACContext : RefCounted() {
   }
 
   /**
-   * Returns the resulting HMAC. If the HMAC failed, an empty [godot.PackedByteArray] is returned.
+   * Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned.
    */
   public fun finish(): PackedByteArray {
     TransferContext.writeArguments()

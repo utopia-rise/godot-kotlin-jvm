@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Texture Array for Cubemaps that is bound to a texture created on the [godot.RenderingDevice].
- *
- * This texture class allows you to use a cubemap array texture created directly on the [godot.RenderingDevice] as a texture for materials, meshes, etc.
+ * This texture class allows you to use a cubemap array texture created directly on the
+ * [RenderingDevice] as a texture for materials, meshes, etc.
  */
 @GodotBaseType
 public open class TextureCubemapArrayRD : TextureLayeredRD() {

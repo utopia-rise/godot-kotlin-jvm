@@ -33,8 +33,17 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+/**
+ * Represents a physics shape as defined by the `OMI_collider` GLTF extension. This class is an
+ * intermediary between the GLTF data and Godot's nodes, and it's abstracted in a way that allows
+ * adding support for different GLTF physics extensions in the future.
+ */
 @GodotBaseType
 public open class GLTFPhysicsShape : Resource() {
+  /**
+   * The type of shape this shape represents. Valid values are "box", "capsule", "cylinder",
+   * "sphere", "hull", and "trimesh".
+   */
   public var shapeType: String
     get() {
       TransferContext.writeArguments()
@@ -46,6 +55,10 @@ public open class GLTFPhysicsShape : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setShapeTypePtr, NIL)
     }
 
+  /**
+   * The size of the shape, in meters. This is only used when the shape type is "box", and it
+   * represents the "diameter" of the box. This value should not be negative.
+   */
   @CoreTypeLocalCopy
   public var size: Vector3
     get() {
@@ -58,6 +71,10 @@ public open class GLTFPhysicsShape : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
+  /**
+   * The radius of the shape, in meters. This is only used when the shape type is "capsule",
+   * "cylinder", or "sphere". This value should not be negative.
+   */
   public var radius: Float
     get() {
       TransferContext.writeArguments()
@@ -69,6 +86,11 @@ public open class GLTFPhysicsShape : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
+  /**
+   * The height of the shape, in meters. This is only used when the shape type is "capsule" or
+   * "cylinder". This value should not be negative, and for "capsule" it should be at least twice the
+   * radius.
+   */
   public var height: Float
     get() {
       TransferContext.writeArguments()
@@ -80,6 +102,12 @@ public open class GLTFPhysicsShape : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
     }
 
+  /**
+   * If `true`, indicates that this shape is a trigger. For Godot, this means that the shape should
+   * be a child of an Area3D node.
+   * This is the only variable not used in the [toNode] method, it's intended to be used alongside
+   * when deciding where to add the generated node as a child.
+   */
   public var isTrigger: Boolean
     get() {
       TransferContext.writeArguments()
@@ -91,6 +119,10 @@ public open class GLTFPhysicsShape : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIsTriggerPtr, NIL)
     }
 
+  /**
+   * The index of the shape's mesh in the GLTF file. This is only used when the shape type is "hull"
+   * (convex hull) or "trimesh" (concave trimesh).
+   */
   public var meshIndex: Int
     get() {
       TransferContext.writeArguments()
@@ -102,6 +134,10 @@ public open class GLTFPhysicsShape : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMeshIndexPtr, NIL)
     }
 
+  /**
+   * The [ImporterMesh] resource of the shape. This is only used when the shape type is "hull"
+   * (convex hull) or "trimesh" (concave trimesh).
+   */
   public var importerMesh: ImporterMesh?
     get() {
       TransferContext.writeArguments()
@@ -119,6 +155,9 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   /**
+   * The size of the shape, in meters. This is only used when the shape type is "box", and it
+   * represents the "diameter" of the box. This value should not be negative.
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -140,6 +179,9 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
 
+  /**
+   * Converts this GLTFPhysicsShape instance into a Godot [CollisionShape3D] node.
+   */
   @JvmOverloads
   public fun toNode(cacheShapes: Boolean = false): CollisionShape3D? {
     TransferContext.writeArguments(BOOL to cacheShapes)
@@ -147,6 +189,9 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(OBJECT, true) as CollisionShape3D?)
   }
 
+  /**
+   * Serializes this GLTFPhysicsShape instance into a [Dictionary].
+   */
   public fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
@@ -154,12 +199,18 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   public companion object {
+    /**
+     * Create a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
+     */
     public fun fromNode(shapeNode: CollisionShape3D): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
     }
 
+    /**
+     * Creates a new GLTFPhysicsShape instance by parsing the given [Dictionary].
+     */
     public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)

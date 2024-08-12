@@ -30,25 +30,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Resource for environment nodes (like [godot.WorldEnvironment]) that define multiple rendering options.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * Resource for environment nodes (like [godot.WorldEnvironment]) that define multiple environment operations (such as background [godot.Sky] or [godot.core.Color], ambient light, fog, depth-of-field...). These parameters affect the final render of the scene. The order of these operations is:
- *
+ * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment
+ * operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These
+ * parameters affect the final render of the scene. The order of these operations is:
  * - Depth of Field Blur
- *
  * - Glow
- *
  * - Tonemap (Auto Exposure)
- *
  * - Adjustments
  */
 @GodotBaseType
 public open class Environment : Resource() {
   /**
-   * The background mode. See [enum BGMode] for possible values.
+   * The background mode. See [BGMode] for possible values.
    */
   public var backgroundMode: BGMode
     get() {
@@ -62,7 +55,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [godot.core.Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
+   * background mode.
    */
   @CoreTypeLocalCopy
   public var backgroundColor: Color
@@ -77,7 +71,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Multiplier for background energy. Increase to make background brighter, decrease to make background dimmer.
+   * Multiplier for background energy. Increase to make background brighter, decrease to make
+   * background dimmer.
    */
   public var backgroundEnergyMultiplier: Float
     get() {
@@ -91,7 +86,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Luminance of background measured in nits (candela per square meter). Only used when [godot.ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default value is roughly equivalent to the sky at midday.
+   * Luminance of background measured in nits (candela per square meter). Only used when
+   * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default value
+   * is roughly equivalent to the sky at midday.
    */
   public var backgroundIntensity: Float
     get() {
@@ -133,7 +130,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [godot.Sky] resource used for this [godot.Environment].
+   * The [Sky] resource used for this [Environment].
    */
   public var sky: Sky?
     get() {
@@ -147,7 +144,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If set to a value greater than `0.0`, overrides the field of view to use for sky rendering. If set to `0.0`, the same FOV as the current [godot.Camera3D] is used for sky rendering.
+   * If set to a value greater than `0.0`, overrides the field of view to use for sky rendering. If
+   * set to `0.0`, the same FOV as the current [Camera3D] is used for sky rendering.
    */
   public var skyCustomFov: Float
     get() {
@@ -190,7 +188,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The ambient light's [godot.core.Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
+   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
+   * `1.0` (exclusive).
    */
   @CoreTypeLocalCopy
   public var ambientLightColor: Color
@@ -205,9 +204,13 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.
-   *
-   * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0` (inclusive).
+   * Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the
+   * sky's light emission has no effect on the scene illumination, thus all ambient illumination is
+   * provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that
+   * affects the scene is provided by the sky, thus the ambient light parameter has no effect on the
+   * scene.
+   * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0`
+   * (inclusive).
    */
   public var ambientLightSkyContribution: Float
     get() {
@@ -221,7 +224,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The ambient light's energy. The higher the value, the stronger the light. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
+   * The ambient light's energy. The higher the value, the stronger the light. Only effective if
+   * [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
   public var ambientLightEnergy: Float
     get() {
@@ -249,7 +253,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be suitable for rendering on a LDR display. (Godot doesn't support rendering on HDR displays yet.)
+   * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be
+   * suitable for rendering on a LDR display. (Godot doesn't support rendering on HDR displays yet.)
    */
   public var tonemapMode: ToneMapper
     get() {
@@ -263,7 +268,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The default exposure used for tonemapping. Higher values result in a brighter image. See also [tonemapWhite].
+   * The default exposure used for tonemapping. Higher values result in a brighter image. See also
+   * [tonemapWhite].
    */
   public var tonemapExposure: Float
     get() {
@@ -277,7 +283,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The white reference value for tonemapping (also called "whitepoint"). Higher values can make highlights look less blown out, and will also slightly darken the whole scene as a result. Only effective if the [tonemapMode] isn't set to [TONE_MAPPER_LINEAR]. See also [tonemapExposure].
+   * The white reference value for tonemapping (also called "whitepoint"). Higher values can make
+   * highlights look less blown out, and will also slightly darken the whole scene as a result. Only
+   * effective if the [tonemapMode] isn't set to [TONE_MAPPER_LINEAR]. See also [tonemapExposure].
    */
   public var tonemapWhite: Float
     get() {
@@ -291,8 +299,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate than reflections from [godot.VoxelGI]s or [godot.ReflectionProbe]s, but are slower and can't reflect surfaces occluded by others.
-   *
+   * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate
+   * than reflections from [VoxelGI]s or [ReflectionProbe]s, but are slower and can't reflect surfaces
+   * occluded by others.
    * **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public var ssrEnabled: Boolean
@@ -321,7 +330,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fade-in distance for screen-space reflections. Affects the area from the reflected material to the screen-space reflection. Only positive values are valid (negative values will be clamped to `0.0`).
+   * The fade-in distance for screen-space reflections. Affects the area from the reflected material
+   * to the screen-space reflection. Only positive values are valid (negative values will be clamped to
+   * `0.0`).
    */
   public var ssrFadeIn: Float
     get() {
@@ -335,7 +346,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fade-out distance for screen-space reflections. Affects the area from the screen-space reflection to the "global" reflection. Only positive values are valid (negative values will be clamped to `0.0`).
+   * The fade-out distance for screen-space reflections. Affects the area from the screen-space
+   * reflection to the "global" reflection. Only positive values are valid (negative values will be
+   * clamped to `0.0`).
    */
   public var ssrFadeOut: Float
     get() {
@@ -363,8 +376,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, the screen-space ambient occlusion effect is enabled. This darkens objects' corners and cavities to simulate ambient light not reaching the entire object as in real life. This works well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
-   *
+   * If `true`, the screen-space ambient occlusion effect is enabled. This darkens objects' corners
+   * and cavities to simulate ambient light not reaching the entire object as in real life. This works
+   * well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better
+   * job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called
+   * Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
    * **Note:** SSAO is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public var ssaoEnabled: Boolean
@@ -379,7 +395,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distance at which objects can occlude each other when calculating screen-space ambient occlusion. Higher values will result in occlusion over a greater distance at the cost of performance and quality.
+   * The distance at which objects can occlude each other when calculating screen-space ambient
+   * occlusion. Higher values will result in occlusion over a greater distance at the cost of
+   * performance and quality.
    */
   public var ssaoRadius: Float
     get() {
@@ -393,7 +411,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The primary screen-space ambient occlusion intensity. Acts as a multiplier for the screen-space ambient occlusion effect. A higher value results in darker occlusion.
+   * The primary screen-space ambient occlusion intensity. Acts as a multiplier for the screen-space
+   * ambient occlusion effect. A higher value results in darker occlusion.
    */
   public var ssaoIntensity: Float
     get() {
@@ -407,7 +426,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distribution of occlusion. A higher value results in darker occlusion, similar to [ssaoIntensity], but with a sharper falloff.
+   * The distribution of occlusion. A higher value results in darker occlusion, similar to
+   * [ssaoIntensity], but with a sharper falloff.
    */
   public var ssaoPower: Float
     get() {
@@ -421,7 +441,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Sets the strength of the additional level of detail for the screen-space ambient occlusion effect. A high value makes the detail pass more prominent, but it may contribute to aliasing in your final image.
+   * Sets the strength of the additional level of detail for the screen-space ambient occlusion
+   * effect. A high value makes the detail pass more prominent, but it may contribute to aliasing in
+   * your final image.
    */
   public var ssaoDetail: Float
     get() {
@@ -435,7 +457,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The threshold for considering whether a given point on a surface is occluded or not represented as an angle from the horizon mapped into the `0.0-1.0` range. A value of `1.0` results in no occlusion.
+   * The threshold for considering whether a given point on a surface is occluded or not represented
+   * as an angle from the horizon mapped into the `0.0-1.0` range. A value of `1.0` results in no
+   * occlusion.
    */
   public var ssaoHorizon: Float
     get() {
@@ -449,7 +473,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The amount that the screen-space ambient occlusion effect is allowed to blur over the edges of objects. Setting too high will result in aliasing around the edges of objects. Setting too low will make object edges appear blurry.
+   * The amount that the screen-space ambient occlusion effect is allowed to blur over the edges of
+   * objects. Setting too high will result in aliasing around the edges of objects. Setting too low
+   * will make object edges appear blurry.
    */
   public var ssaoSharpness: Float
     get() {
@@ -463,7 +489,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The screen-space ambient occlusion intensity in direct light. In real life, ambient occlusion only applies to indirect light, which means its effects can't be seen in direct light. Values higher than `0` will make the SSAO effect visible in direct light.
+   * The screen-space ambient occlusion intensity in direct light. In real life, ambient occlusion
+   * only applies to indirect light, which means its effects can't be seen in direct light. Values
+   * higher than `0` will make the SSAO effect visible in direct light.
    */
   public var ssaoLightAffect: Float
     get() {
@@ -477,7 +505,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The screen-space ambient occlusion intensity on materials that have an AO texture defined. Values higher than `0` will make the SSAO effect visible in areas darkened by AO textures.
+   * The screen-space ambient occlusion intensity on materials that have an AO texture defined.
+   * Values higher than `0` will make the SSAO effect visible in areas darkened by AO textures.
    */
   public var ssaoAoChannelAffect: Float
     get() {
@@ -491,8 +520,12 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, the screen-space indirect lighting effect is enabled. Screen space indirect lighting is a form of indirect lighting that allows diffuse light to bounce between nearby objects. Screen-space indirect lighting works very similarly to screen-space ambient occlusion, in that it only affects a limited range. It is intended to be used along with a form of proper global illumination like SDFGI or [godot.VoxelGI]. Screen-space indirect lighting is not affected by individual light's [godot.Light3D.lightIndirectEnergy].
-   *
+   * If `true`, the screen-space indirect lighting effect is enabled. Screen space indirect lighting
+   * is a form of indirect lighting that allows diffuse light to bounce between nearby objects.
+   * Screen-space indirect lighting works very similarly to screen-space ambient occlusion, in that it
+   * only affects a limited range. It is intended to be used along with a form of proper global
+   * illumination like SDFGI or [VoxelGI]. Screen-space indirect lighting is not affected by individual
+   * light's [Light3D.lightIndirectEnergy].
    * **Note:** SSIL is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public var ssilEnabled: Boolean
@@ -507,7 +540,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distance that bounced lighting can travel when using the screen space indirect lighting effect. A larger value will result in light bouncing further in a scene, but may result in under-sampling artifacts which look like long spikes surrounding light sources.
+   * The distance that bounced lighting can travel when using the screen space indirect lighting
+   * effect. A larger value will result in light bouncing further in a scene, but may result in
+   * under-sampling artifacts which look like long spikes surrounding light sources.
    */
   public var ssilRadius: Float
     get() {
@@ -521,7 +556,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The brightness multiplier for the screen-space indirect lighting effect. A higher value will result in brighter light.
+   * The brightness multiplier for the screen-space indirect lighting effect. A higher value will
+   * result in brighter light.
    */
   public var ssilIntensity: Float
     get() {
@@ -535,7 +571,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The amount that the screen-space indirect lighting effect is allowed to blur over the edges of objects. Setting too high will result in aliasing around the edges of objects. Setting too low will make object edges appear blurry.
+   * The amount that the screen-space indirect lighting effect is allowed to blur over the edges of
+   * objects. Setting too high will result in aliasing around the edges of objects. Setting too low
+   * will make object edges appear blurry.
    */
   public var ssilSharpness: Float
     get() {
@@ -549,7 +587,12 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Amount of normal rejection used when calculating screen-space indirect lighting. Normal rejection uses the normal of a given sample point to reject samples that are facing away from the current pixel. Normal rejection is necessary to avoid light leaking when only one side of an object is illuminated. However, normal rejection can be disabled if light leaking is desirable, such as when the scene mostly contains emissive objects that emit light from faces that cannot be seen from the camera.
+   * Amount of normal rejection used when calculating screen-space indirect lighting. Normal
+   * rejection uses the normal of a given sample point to reject samples that are facing away from the
+   * current pixel. Normal rejection is necessary to avoid light leaking when only one side of an
+   * object is illuminated. However, normal rejection can be disabled if light leaking is desirable,
+   * such as when the scene mostly contains emissive objects that emit light from faces that cannot be
+   * seen from the camera.
    */
   public var ssilNormalRejection: Float
     get() {
@@ -563,13 +606,20 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, enables signed distance field global illumination for meshes that have their [godot.GeometryInstance3D.giMode] set to [godot.GeometryInstance3D.GI_MODE_STATIC]. SDFGI is a real-time global illumination technique that works well with procedurally generated and user-built levels, including in situations where geometry is created during gameplay. The signed distance field is automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic occluders and emissive surfaces are not.
-   *
-   * **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or Compatibility.
-   *
-   * **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware such as integrated graphics (consider [godot.LightmapGI] instead). To improve SDFGI performance, enable [godot.ProjectSettings.rendering/globalIllumination/gi/useHalfResolution] in the Project Settings.
-   *
-   * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge the loops to close the mesh.
+   * If `true`, enables signed distance field global illumination for meshes that have their
+   * [GeometryInstance3D.giMode] set to [GeometryInstance3D.GI_MODE_STATIC]. SDFGI is a real-time
+   * global illumination technique that works well with procedurally generated and user-built levels,
+   * including in situations where geometry is created during gameplay. The signed distance field is
+   * automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic
+   * occluders and emissive surfaces are not.
+   * **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or
+   * Compatibility.
+   * **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware
+   * such as integrated graphics (consider [LightmapGI] instead). To improve SDFGI performance, enable
+   * [ProjectSettings.rendering/globalIllumination/gi/useHalfResolution] in the Project Settings.
+   * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided
+   * walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge
+   * the loops to close the mesh.
    */
   public var sdfgiEnabled: Boolean
     get() {
@@ -583,7 +633,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, SDFGI uses an occlusion detection approach to reduce light leaking. Occlusion may however introduce dark blotches in certain spots, which may be undesired in mostly outdoor scenes. [sdfgiUseOcclusion] has a performance impact and should only be enabled when needed.
+   * If `true`, SDFGI uses an occlusion detection approach to reduce light leaking. Occlusion may
+   * however introduce dark blotches in certain spots, which may be undesired in mostly outdoor scenes.
+   * [sdfgiUseOcclusion] has a performance impact and should only be enabled when needed.
    */
   public var sdfgiUseOcclusion: Boolean
     get() {
@@ -597,7 +649,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, SDFGI takes the environment lighting into account. This should be set to `false` for interior scenes.
+   * If `true`, SDFGI takes the environment lighting into account. This should be set to `false` for
+   * interior scenes.
    */
   public var sdfgiReadSkyLight: Boolean
     get() {
@@ -611,11 +664,14 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The energy multiplier applied to light every time it bounces from a surface when using SDFGI. Values greater than `0.0` will simulate multiple bounces, resulting in a more realistic appearance. Increasing [sdfgiBounceFeedback] generally has no performance impact. See also [sdfgiEnergy].
-   *
-   * **Note:** Values greater than `0.5` can cause infinite feedback loops and should be avoided in scenes with bright materials.
-   *
-   * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in reflections as light will only bounce one time.
+   * The energy multiplier applied to light every time it bounces from a surface when using SDFGI.
+   * Values greater than `0.0` will simulate multiple bounces, resulting in a more realistic
+   * appearance. Increasing [sdfgiBounceFeedback] generally has no performance impact. See also
+   * [sdfgiEnergy].
+   * **Note:** Values greater than `0.5` can cause infinite feedback loops and should be avoided in
+   * scenes with bright materials.
+   * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in
+   * reflections as light will only bounce one time.
    */
   public var sdfgiBounceFeedback: Float
     get() {
@@ -629,7 +685,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The number of cascades to use for SDFGI (between 1 and 8). A higher number of cascades allows displaying SDFGI further away while preserving detail up close, at the cost of performance. When using SDFGI on small-scale levels, [sdfgiCascades] can often be decreased between `1` and `4` to improve performance.
+   * The number of cascades to use for SDFGI (between 1 and 8). A higher number of cascades allows
+   * displaying SDFGI further away while preserving detail up close, at the cost of performance. When
+   * using SDFGI on small-scale levels, [sdfgiCascades] can often be decreased between `1` and `4` to
+   * improve performance.
    */
   public var sdfgiCascades: Int
     get() {
@@ -643,9 +702,12 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The cell size to use for the closest SDFGI cascade (in 3D units). Lower values allow SDFGI to be more precise up close, at the cost of making SDFGI updates more demanding. This can cause stuttering when the camera moves fast. Higher values allow SDFGI to cover more ground, while also reducing the performance impact of SDFGI updates.
-   *
-   * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing its value will automatically change those properties as well.
+   * The cell size to use for the closest SDFGI cascade (in 3D units). Lower values allow SDFGI to
+   * be more precise up close, at the cost of making SDFGI updates more demanding. This can cause
+   * stuttering when the camera moves fast. Higher values allow SDFGI to cover more ground, while also
+   * reducing the performance impact of SDFGI updates.
+   * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing
+   * its value will automatically change those properties as well.
    */
   public var sdfgiMinCellSize: Float
     get() {
@@ -659,7 +721,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiMaxDistance]. Changing its value will automatically change those properties as well.
+   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiMaxDistance]. Changing its
+   * value will automatically change those properties as well.
    */
   public var sdfgiCascade0Distance: Float
     get() {
@@ -673,9 +736,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The maximum distance at which SDFGI is visible. Beyond this distance, environment lighting or other sources of GI such as [godot.ReflectionProbe] will be used as a fallback.
-   *
-   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing its value will automatically change those properties as well.
+   * The maximum distance at which SDFGI is visible. Beyond this distance, environment lighting or
+   * other sources of GI such as [ReflectionProbe] will be used as a fallback.
+   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing
+   * its value will automatically change those properties as well.
    */
   public var sdfgiMaxDistance: Float
     get() {
@@ -689,7 +753,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The Y scale to use for SDFGI cells. Lower values will result in SDFGI cells being packed together more closely on the Y axis. This is used to balance between quality and covering a lot of vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast your camera may move on the Y axis).
+   * The Y scale to use for SDFGI cells. Lower values will result in SDFGI cells being packed
+   * together more closely on the Y axis. This is used to balance between quality and covering a lot of
+   * vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast
+   * your camera may move on the Y axis).
    */
   public var sdfgiYScale: SDFGIYScale
     get() {
@@ -703,7 +770,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The energy multiplier to use for SDFGI. Higher values will result in brighter indirect lighting and reflections. See also [sdfgiBounceFeedback].
+   * The energy multiplier to use for SDFGI. Higher values will result in brighter indirect lighting
+   * and reflections. See also [sdfgiBounceFeedback].
    */
   public var sdfgiEnergy: Float
     get() {
@@ -717,7 +785,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The normal bias to use for SDFGI probes. Increasing this value can reduce visible streaking artifacts on sloped surfaces, at the cost of increased light leaking.
+   * The normal bias to use for SDFGI probes. Increasing this value can reduce visible streaking
+   * artifacts on sloped surfaces, at the cost of increased light leaking.
    */
   public var sdfgiNormalBias: Float
     get() {
@@ -731,7 +800,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The constant bias to use for SDFGI probes. Increasing this value can reduce visible streaking artifacts on sloped surfaces, at the cost of increased light leaking.
+   * The constant bias to use for SDFGI probes. Increasing this value can reduce visible streaking
+   * artifacts on sloped surfaces, at the cost of increased light leaking.
    */
   public var sdfgiProbeBias: Float
     get() {
@@ -746,8 +816,9 @@ public open class Environment : Resource() {
 
   /**
    * If `true`, the glow effect is enabled.
-   *
-   * **Note:** Glow is only supported in the Forward+ and Mobile rendering methods, not Compatibility. When using the Mobile rendering method, glow will look different due to the lower dynamic range available in the Mobile rendering method.
+   * **Note:** Glow is only supported in the Forward+ and Mobile rendering methods, not
+   * Compatibility. When using the Mobile rendering method, glow will look different due to the lower
+   * dynamic range available in the Mobile rendering method.
    */
   public var glowEnabled: Boolean
     get() {
@@ -761,7 +832,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, glow levels will be normalized so that summed together their intensities equal `1.0`.
+   * If `true`, glow levels will be normalized so that summed together their intensities equal
+   * `1.0`.
    */
   public var glowNormalized: Boolean
     get() {
@@ -775,7 +847,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The overall brightness multiplier of the glow effect. When using the Mobile rendering method (which only supports a lower dynamic range up to `2.0`), this should be increased to `1.5` to compensate.
+   * The overall brightness multiplier of the glow effect. When using the Mobile rendering method
+   * (which only supports a lower dynamic range up to `2.0`), this should be increased to `1.5` to
+   * compensate.
    */
   public var glowIntensity: Float
     get() {
@@ -789,7 +863,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The strength of the glow effect. This applies as the glow is blurred across the screen and increases the distance and intensity of the blur. When using the Mobile rendering method, this should be increased to compensate for the lower dynamic range.
+   * The strength of the glow effect. This applies as the glow is blurred across the screen and
+   * increases the distance and intensity of the blur. When using the Mobile rendering method, this
+   * should be increased to compensate for the lower dynamic range.
    */
   public var glowStrength: Float
     get() {
@@ -803,7 +879,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
+   * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image
+   * is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value
+   * of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
    */
   public var glowMix: Float
     get() {
@@ -817,7 +895,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The bloom's intensity. If set to a value higher than `0`, this will make glow visible in areas darker than the [glowHdrThreshold].
+   * The bloom's intensity. If set to a value higher than `0`, this will make glow visible in areas
+   * darker than the [glowHdrThreshold].
    */
   public var glowBloom: Float
     get() {
@@ -845,7 +924,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The lower threshold of the HDR glow. When using the Mobile rendering method (which only supports a lower dynamic range up to `2.0`), this may need to be below `1.0` for glow to be visible. A value of `0.9` works well in this case. This value also needs to be decreased below `1.0` when using glow in 2D, as 2D rendering is performed in SDR.
+   * The lower threshold of the HDR glow. When using the Mobile rendering method (which only
+   * supports a lower dynamic range up to `2.0`), this may need to be below `1.0` for glow to be
+   * visible. A value of `0.9` works well in this case. This value also needs to be decreased below
+   * `1.0` when using glow in 2D, as 2D rendering is performed in SDR.
    */
   public var glowHdrThreshold: Float
     get() {
@@ -873,7 +955,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The higher threshold of the HDR glow. Areas brighter than this threshold will be clamped for the purposes of the glow effect.
+   * The higher threshold of the HDR glow. Areas brighter than this threshold will be clamped for
+   * the purposes of the glow effect.
    */
   public var glowHdrLuminanceCap: Float
     get() {
@@ -887,7 +970,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * How strong of an impact the [glowMap] should have on the overall glow effect. A strength of `0.0` means the glow map has no effect on the overall glow effect. A strength of `1.0` means the glow has a full effect on the overall glow effect (and can turn off glow entirely in specific areas of the screen if the glow map has black areas).
+   * How strong of an impact the [glowMap] should have on the overall glow effect. A strength of
+   * `0.0` means the glow map has no effect on the overall glow effect. A strength of `1.0` means the
+   * glow has a full effect on the overall glow effect (and can turn off glow entirely in specific
+   * areas of the screen if the glow map has black areas).
    */
   public var glowMapStrength: Float
     get() {
@@ -901,9 +987,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The texture that should be used as a glow map to *multiply* the resulting glow color according to [glowMapStrength]. This can be used to create a "lens dirt" effect. The texture's RGB color channels are used for modulation, but the alpha channel is ignored.
-   *
-   * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
+   * The texture that should be used as a glow map to *multiply* the resulting glow color according
+   * to [glowMapStrength]. This can be used to create a "lens dirt" effect. The texture's RGB color
+   * channels are used for modulation, but the alpha channel is ignored.
+   * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a
+   * texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
    */
   public var glowMap: Texture?
     get() {
@@ -960,7 +1048,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If set above `0.0`, renders the scene's directional light(s) in the fog color depending on the view angle. This can be used to give the impression that the sun is "piercing" through the fog.
+   * If set above `0.0`, renders the scene's directional light(s) in the fog color depending on the
+   * view angle. This can be used to give the impression that the sun is "piercing" through the fog.
    */
   public var fogSunScatter: Float
     get() {
@@ -974,7 +1063,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The *exponential* fog density to use. Higher values result in a more dense fog. Fog rendering is exponential as in real life.
+   * The *exponential* fog density to use. Higher values result in a more dense fog. Fog rendering
+   * is exponential as in real life.
    */
   public var fogDensity: Float
     get() {
@@ -988,9 +1078,13 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If set above `0.0` (exclusive), blends between the fog's color and the color of the background [godot.Sky]. This has a small performance cost when set above `0.0`. Must have [backgroundMode] set to [BG_SKY].
-   *
-   * This is useful to simulate [aerial perspective](https://en.wikipedia.org/wiki/Aerial_perspective) in large scenes with low density fog. However, it is not very useful for high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely from the [godot.Sky]. If set to `0.0`, aerial perspective is disabled.
+   * If set above `0.0` (exclusive), blends between the fog's color and the color of the background
+   * [Sky]. This has a small performance cost when set above `0.0`. Must have [backgroundMode] set to
+   * [BG_SKY].
+   * This is useful to simulate [url=https://en.wikipedia.org/wiki/Aerial_perspective]aerial
+   * perspective[/url] in large scenes with low density fog. However, it is not very useful for
+   * high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely
+   * from the [Sky]. If set to `0.0`, aerial perspective is disabled.
    */
   public var fogAerialPerspective: Float
     get() {
@@ -1004,8 +1098,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The factor to use when affecting the sky with non-volumetric fog. `1.0` means that fog can fully obscure the sky. Lower values reduce the impact of fog on sky rendering, with `0.0` not affecting sky rendering at all.
-   *
+   * The factor to use when affecting the sky with non-volumetric fog. `1.0` means that fog can
+   * fully obscure the sky. Lower values reduce the impact of fog on sky rendering, with `0.0` not
+   * affecting sky rendering at all.
    * **Note:** [fogSkyAffect] has no visual effect if [fogAerialPerspective] is `1.0`.
    */
   public var fogSkyAffect: Float
@@ -1034,7 +1129,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The density used to increase fog as height decreases. To make fog increase as height increases, use a negative value.
+   * The density used to increase fog as height decreases. To make fog increase as height increases,
+   * use a negative value.
    */
   public var fogHeightDensity: Float
     get() {
@@ -1048,9 +1144,13 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Enables the volumetric fog effect. Volumetric fog uses a screen-aligned froxel buffer to calculate accurate volumetric scattering in the short to medium range. Volumetric fog interacts with [godot.FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR single-scattering model based on extinction, scattering, and emission which it exposes to users as density, albedo, and emission.
-   *
-   * **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+   * Enables the volumetric fog effect. Volumetric fog uses a screen-aligned froxel buffer to
+   * calculate accurate volumetric scattering in the short to medium range. Volumetric fog interacts
+   * with [FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR
+   * single-scattering model based on extinction, scattering, and emission which it exposes to users as
+   * density, albedo, and emission.
+   * **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or
+   * Compatibility.
    */
   public var volumetricFogEnabled: Boolean
     get() {
@@ -1064,11 +1164,14 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The base *exponential* density of the volumetric fog. Set this to the lowest density you want to have globally. [godot.FogVolume]s can be used to add to or subtract from this density in specific areas. Fog rendering is exponential as in real life.
-   *
-   * A value of `0.0` disables global volumetric fog while allowing [godot.FogVolume]s to display volumetric fog in specific areas.
-   *
-   * To make volumetric fog work as a volumetric *lighting* solution, set [volumetricFogDensity] to the lowest non-zero value (`0.0001`) then increase lights' [godot.Light3D.lightVolumetricFogEnergy] to values between `10000` and `100000` to compensate for the very low density.
+   * The base *exponential* density of the volumetric fog. Set this to the lowest density you want
+   * to have globally. [FogVolume]s can be used to add to or subtract from this density in specific
+   * areas. Fog rendering is exponential as in real life.
+   * A value of `0.0` disables global volumetric fog while allowing [FogVolume]s to display
+   * volumetric fog in specific areas.
+   * To make volumetric fog work as a volumetric *lighting* solution, set [volumetricFogDensity] to
+   * the lowest non-zero value (`0.0001`) then increase lights' [Light3D.lightVolumetricFogEnergy] to
+   * values between `10000` and `100000` to compensate for the very low density.
    */
   public var volumetricFogDensity: Float
     get() {
@@ -1082,7 +1185,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [godot.core.Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
+   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
   @CoreTypeLocalCopy
   public var volumetricFogAlbedo: Color
@@ -1097,7 +1201,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
+   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
+   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
+   * shadows.
    */
   @CoreTypeLocalCopy
   public var volumetricFogEmission: Color
@@ -1126,11 +1233,14 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Scales the strength of Global Illumination used in the volumetric fog's albedo color. A value of `0.0` means that Global Illumination will not impact the volumetric fog. [volumetricFogGiInject] has a small performance cost when set above `0.0`.
-   *
-   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if [volumetricFogAlbedo] is a fully black color.
-   *
-   * **Note:** Only [godot.VoxelGI] and SDFGI ([godot.Environment.sdfgiEnabled]) are taken into account when using [volumetricFogGiInject]. Global illumination from [godot.LightmapGI], [godot.ReflectionProbe] and SSIL (see [ssilEnabled]) will be ignored by volumetric fog.
+   * Scales the strength of Global Illumination used in the volumetric fog's albedo color. A value
+   * of `0.0` means that Global Illumination will not impact the volumetric fog.
+   * [volumetricFogGiInject] has a small performance cost when set above `0.0`.
+   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
+   * [volumetricFogAlbedo] is a fully black color.
+   * **Note:** Only [VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) are taken into account when
+   * using [volumetricFogGiInject]. Global illumination from [LightmapGI], [ReflectionProbe] and SSIL
+   * (see [ssilEnabled]) will be ignored by volumetric fog.
    */
   public var volumetricFogGiInject: Float
     get() {
@@ -1144,7 +1254,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The direction of scattered light as it goes through the volumetric fog. A value close to `1.0` means almost all light is scattered forward. A value close to `0.0` means light is scattered equally in all directions. A value close to `-1.0` means light is scattered mostly backward. Fog and mist scatter light slightly forward, while smoke scatters light equally in all directions.
+   * The direction of scattered light as it goes through the volumetric fog. A value close to `1.0`
+   * means almost all light is scattered forward. A value close to `0.0` means light is scattered
+   * equally in all directions. A value close to `-1.0` means light is scattered mostly backward. Fog
+   * and mist scatter light slightly forward, while smoke scatters light equally in all directions.
    */
   public var volumetricFogAnisotropy: Float
     get() {
@@ -1158,7 +1271,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distance over which the volumetric fog is computed. Increase to compute fog over a greater range, decrease to add more detail when a long range is not needed. For best quality fog, keep this as low as possible. See also [godot.ProjectSettings.rendering/environment/volumetricFog/volumeDepth].
+   * The distance over which the volumetric fog is computed. Increase to compute fog over a greater
+   * range, decrease to add more detail when a long range is not needed. For best quality fog, keep
+   * this as low as possible. See also
+   * [ProjectSettings.rendering/environment/volumetricFog/volumeDepth].
    */
   public var volumetricFogLength: Float
     get() {
@@ -1172,7 +1288,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distribution of size down the length of the froxel buffer. A higher value compresses the froxels closer to the camera and places more detail closer to the camera.
+   * The distribution of size down the length of the froxel buffer. A higher value compresses the
+   * froxels closer to the camera and places more detail closer to the camera.
    */
   public var volumetricFogDetailSpread: Float
     get() {
@@ -1186,9 +1303,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Scales the strength of ambient light used in the volumetric fog. A value of `0.0` means that ambient light will not impact the volumetric fog. [volumetricFogAmbientInject] has a small performance cost when set above `0.0`.
-   *
-   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if [volumetricFogAlbedo] is a fully black color.
+   * Scales the strength of ambient light used in the volumetric fog. A value of `0.0` means that
+   * ambient light will not impact the volumetric fog. [volumetricFogAmbientInject] has a small
+   * performance cost when set above `0.0`.
+   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
+   * [volumetricFogAlbedo] is a fully black color.
    */
   public var volumetricFogAmbientInject: Float
     get() {
@@ -1202,9 +1321,12 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The factor to use when affecting the sky with volumetric fog. `1.0` means that volumetric fog can fully obscure the sky. Lower values reduce the impact of volumetric fog on sky rendering, with `0.0` not affecting sky rendering at all.
-   *
-   * **Note:** [volumetricFogSkyAffect] also affects [godot.FogVolume]s, even if [volumetricFogDensity] is `0.0`. If you notice [godot.FogVolume]s are disappearing when looking towards the sky, set [volumetricFogSkyAffect] to `1.0`.
+   * The factor to use when affecting the sky with volumetric fog. `1.0` means that volumetric fog
+   * can fully obscure the sky. Lower values reduce the impact of volumetric fog on sky rendering, with
+   * `0.0` not affecting sky rendering at all.
+   * **Note:** [volumetricFogSkyAffect] also affects [FogVolume]s, even if [volumetricFogDensity] is
+   * `0.0`. If you notice [FogVolume]s are disappearing when looking towards the sky, set
+   * [volumetricFogSkyAffect] to `1.0`.
    */
   public var volumetricFogSkyAffect: Float
     get() {
@@ -1218,7 +1340,12 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The performance cost is minimal; however, it leads to moving [godot.FogVolume]s and [godot.Light3D]s "ghosting" and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving [godot.FogVolume]s or [godot.Light3D]s too fast. Short-lived dynamic lighting effects should have [godot.Light3D.lightVolumetricFogEnergy] set to `0.0` to avoid ghosting.
+   * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current
+   * frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The
+   * performance cost is minimal; however, it leads to moving [FogVolume]s and [Light3D]s "ghosting"
+   * and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving
+   * [FogVolume]s or [Light3D]s too fast. Short-lived dynamic lighting effects should have
+   * [Light3D.lightVolumetricFogEnergy] set to `0.0` to avoid ghosting.
    */
   public var volumetricFogTemporalReprojectionEnabled: Boolean
     get() {
@@ -1234,7 +1361,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The amount by which to blend the last frame with the current frame. A higher number results in smoother volumetric fog, but makes "ghosting" much worse. A lower value reduces ghosting but can result in the per-frame temporal jitter becoming visible.
+   * The amount by which to blend the last frame with the current frame. A higher number results in
+   * smoother volumetric fog, but makes "ghosting" much worse. A lower value reduces ghosting but can
+   * result in the per-frame temporal jitter becoming visible.
    */
   public var volumetricFogTemporalReprojectionAmount: Float
     get() {
@@ -1250,9 +1379,10 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, enables the `adjustment_*` properties provided by this resource. If `false`, modifications to the `adjustment_*` properties will have no effect on the rendered scene.
-   *
-   * **Note:** Adjustments are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
+   * If `true`, enables the `adjustment_*` properties provided by this resource. If `false`,
+   * modifications to the `adjustment_*` properties will have no effect on the rendered scene.
+   * **Note:** Adjustments are only supported in the Forward+ and Mobile rendering methods, not
+   * Compatibility.
    */
   public var adjustmentEnabled: Boolean
     get() {
@@ -1266,7 +1396,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global brightness value of the rendered scene. Effective only if [adjustmentEnabled] is `true`.
+   * The global brightness value of the rendered scene. Effective only if [adjustmentEnabled] is
+   * `true`.
    */
   public var adjustmentBrightness: Float
     get() {
@@ -1280,7 +1411,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global contrast value of the rendered scene (default value is 1). Effective only if [adjustmentEnabled] is `true`.
+   * The global contrast value of the rendered scene (default value is 1). Effective only if
+   * [adjustmentEnabled] is `true`.
    */
   public var adjustmentContrast: Float
     get() {
@@ -1294,7 +1426,8 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global color saturation value of the rendered scene (default value is 1). Effective only if [adjustmentEnabled] is `true`.
+   * The global color saturation value of the rendered scene (default value is 1). Effective only if
+   * [adjustmentEnabled] is `true`.
    */
   public var adjustmentSaturation: Float
     get() {
@@ -1308,7 +1441,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [godot.Texture2D] or [godot.Texture3D] lookup table (LUT) to use for the built-in post-process color grading. Can use a [godot.GradientTexture1D] for a 1-dimensional LUT, or a [godot.Texture3D] for a more complex LUT. Effective only if [adjustmentEnabled] is `true`.
+   * The [Texture2D] or [Texture3D] lookup table (LUT) to use for the built-in post-process color
+   * grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more
+   * complex LUT. Effective only if [adjustmentEnabled] is `true`.
    */
   public var adjustmentColorCorrection: Material?
     get() {
@@ -1327,7 +1462,8 @@ public open class Environment : Resource() {
   }
 
   /**
-   * The [godot.core.Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
+   * background mode.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1375,7 +1511,8 @@ public open class Environment : Resource() {
 
 
   /**
-   * The ambient light's [godot.core.Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
+   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
+   * `1.0` (exclusive).
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1423,7 +1560,8 @@ public open class Environment : Resource() {
 
 
   /**
-   * The [godot.core.Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
+   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1448,7 +1586,10 @@ public open class Environment : Resource() {
 
 
   /**
-   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
+   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
+   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
+   * shadows.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1473,7 +1614,9 @@ public open class Environment : Resource() {
 
 
   /**
-   * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled.
+   * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level
+   * relies on the previous level. This means that enabling higher glow levels will slow down the glow
+   * effect rendering, even if previous levels aren't enabled.
    */
   public fun setGlowLevel(idx: Int, intensity: Float): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to intensity.toDouble())
@@ -1493,7 +1636,8 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Clears the background using the clear color defined in [godot.ProjectSettings.rendering/environment/defaults/defaultClearColor].
+     * Clears the background using the clear color defined in
+     * [ProjectSettings.rendering/environment/defaults/defaultClearColor].
      */
     BG_CLEAR_COLOR(0),
     /**
@@ -1505,11 +1649,14 @@ public open class Environment : Resource() {
      */
     BG_SKY(2),
     /**
-     * Displays a [godot.CanvasLayer] in the background.
+     * Displays a [CanvasLayer] in the background.
      */
     BG_CANVAS(3),
     /**
-     * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when moving the camera.
+     * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but
+     * it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If
+     * enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when
+     * moving the camera.
      */
     BG_KEEP(4),
     /**
@@ -1517,7 +1664,7 @@ public open class Environment : Resource() {
      */
     BG_CAMERA_FEED(5),
     /**
-     * Represents the size of the [enum BGMode] enum.
+     * Represents the size of the [BGMode] enum.
      */
     BG_MAX(6),
     ;
@@ -1544,11 +1691,12 @@ public open class Environment : Resource() {
      */
     AMBIENT_SOURCE_DISABLED(1),
     /**
-     * Specify a specific [godot.core.Color] for ambient light. This provides a slight performance boost over [AMBIENT_SOURCE_SKY].
+     * Specify a specific [Color] for ambient light. This provides a slight performance boost over
+     * [AMBIENT_SOURCE_SKY].
      */
     AMBIENT_SOURCE_COLOR(2),
     /**
-     * Gather ambient light from the [godot.Sky] regardless of what the background is.
+     * Gather ambient light from the [Sky] regardless of what the background is.
      */
     AMBIENT_SOURCE_SKY(3),
     ;
@@ -1575,7 +1723,7 @@ public open class Environment : Resource() {
      */
     REFLECTION_SOURCE_DISABLED(1),
     /**
-     * Use the [godot.Sky] for reflections regardless of what the background is.
+     * Use the [Sky] for reflections regardless of what the background is.
      */
     REFLECTION_SOURCE_SKY(2),
     ;
@@ -1594,20 +1742,26 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Linear tonemapper operator. Reads the linear data and passes it on unmodified. This can cause bright lighting to look blown out, with noticeable clipping in the output colors.
+     * Linear tonemapper operator. Reads the linear data and passes it on unmodified. This can cause
+     * bright lighting to look blown out, with noticeable clipping in the output colors.
      */
     TONE_MAPPER_LINEAR(0),
     /**
-     * Reinhardt tonemapper operator. Performs a variation on rendered pixels' colors by this formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the resulting image can look a bit dull.
+     * Reinhardt tonemapper operator. Performs a variation on rendered pixels' colors by this
+     * formula: `color = color / (1 + color)`. This avoids clipping bright highlights, but the
+     * resulting image can look a bit dull.
      */
     TONE_MAPPER_REINHARDT(1),
     /**
-     * Filmic tonemapper operator. This avoids clipping bright highlights, with a resulting image that usually looks more vivid than [TONE_MAPPER_REINHARDT].
+     * Filmic tonemapper operator. This avoids clipping bright highlights, with a resulting image
+     * that usually looks more vivid than [TONE_MAPPER_REINHARDT].
      */
     TONE_MAPPER_FILMIC(2),
     /**
-     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other options, but it handles bright lighting in a more realistic fashion by desaturating it as it becomes brighter. ACES typically has a more contrasted output compared to [TONE_MAPPER_REINHARDT] and [TONE_MAPPER_FILMIC].
-     *
+     * Use the Academy Color Encoding System tonemapper. ACES is slightly more expensive than other
+     * options, but it handles bright lighting in a more realistic fashion by desaturating it as it
+     * becomes brighter. ACES typically has a more contrasted output compared to
+     * [TONE_MAPPER_REINHARDT] and [TONE_MAPPER_FILMIC].
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     TONE_MAPPER_ACES(3),
@@ -1627,7 +1781,8 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright sources.
+     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
+     * sources.
      */
     GLOW_BLEND_MODE_ADDITIVE(0),
     /**
@@ -1635,15 +1790,19 @@ public open class Environment : Resource() {
      */
     GLOW_BLEND_MODE_SCREEN(1),
     /**
-     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid bloom).
+     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
+     * bloom).
      */
     GLOW_BLEND_MODE_SOFTLIGHT(2),
     /**
-     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to simulate a full-screen blur effect by tweaking the glow parameters to match the original image's brightness.
+     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
+     * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
+     * brightness.
      */
     GLOW_BLEND_MODE_REPLACE(3),
     /**
-     * Mixes the glow with the underlying color to avoid increasing brightness as much while still maintaining a glow effect.
+     * Mixes the glow with the underlying color to avoid increasing brightness as much while still
+     * maintaining a glow effect.
      */
     GLOW_BLEND_MODE_MIX(4),
     ;
@@ -1662,15 +1821,21 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Use 50% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as they are wide. This allows providing increased GI detail and reduced light leaking with thin floors and ceilings. This is usually the best choice for scenes that don't feature much verticality.
+     * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
+     * they are wide. This allows providing increased GI detail and reduced light leaking with thin
+     * floors and ceilings. This is usually the best choice for scenes that don't feature much
+     * verticality.
      */
     SDFGI_Y_SCALE_50_PERCENT(0),
     /**
-     * Use 75% scale for SDFGI on the Y (vertical) axis. This is a balance between the 50% and 100% SDFGI Y scales.
+     * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37;
+     * and 100&#37; SDFGI Y scales.
      */
     SDFGI_Y_SCALE_75_PERCENT(1),
     /**
-     * Use 100% scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they are wide. This is usually the best choice for highly vertical scenes. The downside is that light leaking may become more noticeable with thin floors and ceilings.
+     * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they
+     * are wide. This is usually the best choice for highly vertical scenes. The downside is that light
+     * leaking may become more noticeable with thin floors and ceilings.
      */
     SDFGI_Y_SCALE_100_PERCENT(2),
     ;

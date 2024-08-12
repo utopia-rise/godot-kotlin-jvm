@@ -36,17 +36,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node for displaying plain text in 3D space.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/3d_text.html]($DOCS_URL/tutorials/3d/3d_text.html)
- *
- * A node for displaying plain text in 3D space. By adjusting various properties of this node, you can configure things such as the text's appearance and whether it always faces the camera.
+ * A node for displaying plain text in 3D space. By adjusting various properties of this node, you
+ * can configure things such as the text's appearance and whether it always faces the camera.
  */
 @GodotBaseType
 public open class Label3D : GeometryInstance3D() {
   /**
-   * The size of one pixel's width on the label to scale it in 3D. To make the font look more detailed when up close, increase [fontSize] while decreasing [pixelSize] at the same time.
+   * The size of one pixel's width on the label to scale it in 3D. To make the font look more
+   * detailed when up close, increase [fontSize] while decreasing [pixelSize] at the same time.
    */
   public var pixelSize: Float
     get() {
@@ -75,7 +72,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * The billboard mode to use for the label. See [enum BaseMaterial3D.BillboardMode] for possible values.
+   * The billboard mode to use for the label. See [BaseMaterial3D.BillboardMode] for possible
+   * values.
    */
   public var billboard: BaseMaterial3D.BillboardMode
     get() {
@@ -89,7 +87,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, the [godot.Light3D] in the [godot.Environment] has effects on the label.
+   * If `true`, the [Light3D] in the [Environment] has effects on the label.
    */
   public var shaded: Boolean
     get() {
@@ -103,7 +101,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, text can be seen from the back as well, if `false`, it is invisible when looking at it from behind.
+   * If `true`, text can be seen from the back as well, if `false`, it is invisible when looking at
+   * it from behind.
    */
   public var doubleSided: Boolean
     get() {
@@ -145,7 +144,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
+   * The alpha cutting mode to use for the sprite. See [AlphaCutMode] for possible values.
    */
   public var alphaCut: AlphaCutMode
     get() {
@@ -187,7 +186,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * The type of alpha antialiasing to apply. See [enum BaseMaterial3D.AlphaAntiAliasing].
+   * The type of alpha antialiasing to apply. See [BaseMaterial3D.AlphaAntiAliasing].
    */
   public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
     get() {
@@ -215,7 +214,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Filter flags for the texture. See [enum BaseMaterial3D.TextureFilter] for options.
+   * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
    */
   public var textureFilter: BaseMaterial3D.TextureFilter
     get() {
@@ -229,11 +228,12 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the render priority for the text. Higher priority objects will be sorted in front of lower priority objects.
-   *
+   * Sets the render priority for the text. Higher priority objects will be sorted in front of lower
+   * priority objects.
    * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
-   *
-   * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+   * **Note:** This only applies to sorting of transparent objects. This will not impact how
+   * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
+   * sorted, while transparent objects are sorted from back to front (subject to priority).
    */
   public var renderPriority: Int
     get() {
@@ -247,11 +247,12 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the render priority for the text outline. Higher priority objects will be sorted in front of lower priority objects.
-   *
+   * Sets the render priority for the text outline. Higher priority objects will be sorted in front
+   * of lower priority objects.
    * **Note:** This only applies if [alphaCut] is set to [ALPHA_CUT_DISABLED] (default value).
-   *
-   * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+   * **Note:** This only applies to sorting of transparent objects. This will not impact how
+   * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
+   * sorted, while transparent objects are sorted from back to front (subject to priority).
    */
   public var outlineRenderPriority: Int
     get() {
@@ -265,7 +266,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Text [godot.core.Color] of the [godot.Label3D].
+   * Text [Color] of the [Label3D].
    */
   @CoreTypeLocalCopy
   public var modulate: Color
@@ -323,9 +324,10 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Font size of the [godot.Label3D]'s text. To make the font look more detailed when up close, increase [fontSize] while decreasing [pixelSize] at the same time.
-   *
-   * Higher font sizes require more time to render new characters, which can cause stuttering during gameplay.
+   * Font size of the [Label3D]'s text. To make the font look more detailed when up close, increase
+   * [fontSize] while decreasing [pixelSize] at the same time.
+   * Higher font sizes require more time to render new characters, which can cause stuttering during
+   * gameplay.
    */
   public var fontSize: Int
     get() {
@@ -353,7 +355,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [enum HorizontalAlignment] constants.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
+   * Set it to one of the [HorizontalAlignment] constants.
    */
   public var horizontalAlignment: HorizontalAlignment
     get() {
@@ -367,7 +370,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the [enum VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
+   * [VerticalAlignment] constants.
    */
   public var verticalAlignment: VerticalAlignment
     get() {
@@ -395,7 +399,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Vertical space between lines in multiline [godot.Label3D].
+   * Vertical space between lines in multiline [Label3D].
    */
   public var lineSpacing: Float
     get() {
@@ -409,7 +413,9 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
+   * node's bounding rectangle. If you resize the node, it will change its height automatically to show
+   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -423,7 +429,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
   public var justificationFlags: TextServer.JustificationFlag
     get() {
@@ -465,7 +471,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
+   * is used instead.
    */
   public var language: String
     get() {
@@ -538,7 +545,7 @@ public open class Label3D : GeometryInstance3D() {
 
 
   /**
-   * Text [godot.core.Color] of the [godot.Label3D].
+   * Text [Color] of the [Label3D].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -586,7 +593,8 @@ public open class Label3D : GeometryInstance3D() {
 
 
   /**
-   * Returns a [godot.TriangleMesh] with the label's vertices following its current configuration (such as its [pixelSize]).
+   * Returns a [TriangleMesh] with the label's vertices following its current configuration (such as
+   * its [pixelSize]).
    */
   public fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
@@ -602,11 +610,13 @@ public open class Label3D : GeometryInstance3D() {
      */
     FLAG_SHADED(0),
     /**
-     * If set, text can be seen from the back as well. If not, the text is invisible when looking at it from behind.
+     * If set, text can be seen from the back as well. If not, the text is invisible when looking at
+     * it from behind.
      */
     FLAG_DOUBLE_SIDED(1),
     /**
-     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
+     * Disables the depth test, so this object is drawn on top of all others. However, objects drawn
+     * after it in the draw order may cover it.
      */
     FLAG_DISABLE_DEPTH_TEST(2),
     /**
@@ -614,7 +624,7 @@ public open class Label3D : GeometryInstance3D() {
      */
     FLAG_FIXED_SIZE(3),
     /**
-     * Represents the size of the [enum DrawFlags] enum.
+     * Represents the size of the [DrawFlags] enum.
      */
     FLAG_MAX(4),
     ;
@@ -633,25 +643,34 @@ public open class Label3D : GeometryInstance3D() {
     id: Long,
   ) {
     /**
-     * This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping. [godot.GeometryInstance3D.castShadow] has no effect when this transparency mode is used; the [godot.Label3D] will never cast shadows.
+     * This mode performs standard alpha blending. It can display translucent areas, but
+     * transparency sorting issues may be visible when multiple transparent materials are overlapping.
+     * [GeometryInstance3D.castShadow] has no effect when this transparency mode is used; the [Label3D]
+     * will never cast shadows.
      */
     ALPHA_CUT_DISABLED(0),
     /**
-     * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible unless some form of screen-space antialiasing is enabled (see [godot.ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa]). This mode is also known as *alpha testing* or *1-bit transparency*.
-     *
-     * **Note:** This mode might have issues with anti-aliased fonts and outlines, try adjusting [alphaScissorThreshold] or using MSDF font.
-     *
-     * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might have transparency sorting issues between the main text and the outline.
+     * This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible
+     * unless some form of screen-space antialiasing is enabled (see
+     * [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa]). This mode is also known as
+     * *alpha testing* or *1-bit transparency*.
+     * **Note:** This mode might have issues with anti-aliased fonts and outlines, try adjusting
+     * [alphaScissorThreshold] or using MSDF font.
+     * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might
+     * have transparency sorting issues between the main text and the outline.
      */
     ALPHA_CUT_DISCARD(1),
     /**
-     * This mode draws fully opaque pixels in the depth prepass. This is slower than [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and smooth edges while using proper sorting.
-     *
-     * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might have transparency sorting issues between the main text and the outline.
+     * This mode draws fully opaque pixels in the depth prepass. This is slower than
+     * [ALPHA_CUT_DISABLED] or [ALPHA_CUT_DISCARD], but it allows displaying translucent areas and
+     * smooth edges while using proper sorting.
+     * **Note:** When using text with overlapping glyphs (e.g., cursive scripts), this mode might
+     * have transparency sorting issues between the main text and the outline.
      */
     ALPHA_CUT_OPAQUE_PREPASS(2),
     /**
-     * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will remain opaque.
+     * This mode draws cuts off all values below a spatially-deterministic threshold, the rest will
+     * remain opaque.
      */
     ALPHA_CUT_HASH(3),
     ;

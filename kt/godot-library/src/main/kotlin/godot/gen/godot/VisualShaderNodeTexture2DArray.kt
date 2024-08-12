@@ -17,14 +17,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 2D texture uniform array to be used within the visual shader graph.
- *
  * Translated to `uniform sampler2DArray` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   /**
-   * A source texture array. Used if [godot.VisualShaderNodeSample3D.source] is set to [godot.VisualShaderNodeSample3D.SOURCE_TEXTURE].
+   * A source texture array. Used if [VisualShaderNodeSample3D.source] is set to
+   * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
   public var textureArray: Texture2DArray?
     get() {

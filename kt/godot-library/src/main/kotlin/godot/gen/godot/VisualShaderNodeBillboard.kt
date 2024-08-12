@@ -19,14 +19,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A node that controls how the object faces the camera to be used within the visual shader graph.
- *
- * The output port of this node needs to be connected to `Model View Matrix` port of [godot.VisualShaderNodeOutput].
+ * The output port of this node needs to be connected to `Model View Matrix` port of
+ * [VisualShaderNodeOutput].
  */
 @GodotBaseType
 public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
-   * Controls how the object faces the camera. See [enum BillboardType].
+   * Controls how the object faces the camera. See [BillboardType].
    */
   public var billboardType: BillboardType
     get() {
@@ -40,7 +39,8 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
   /**
-   * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding.
+   * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when
+   * billboarding.
    */
   public var keepScale: Boolean
     get() {
@@ -78,7 +78,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
      */
     BILLBOARD_TYPE_PARTICLES(3),
     /**
-     * Represents the size of the [enum BillboardType] enum.
+     * Represents the size of the [BillboardType] enum.
      */
     BILLBOARD_TYPE_MAX(4),
     ;

@@ -22,6 +22,22 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
+/**
+ * This class implements a writer that allows storing the multiple blobs in a zip archive.
+ * [codeblock]
+ * func write_zip_file():
+ *     var writer := ZIPPacker.new()
+ *     var err := writer.open("user://archive.zip")
+ *     if err != OK:
+ *         return err
+ *     writer.start_file("hello.txt")
+ *     writer.write_file("Hello World".to_utf8_buffer())
+ *     writer.close_file()
+ *
+ *     writer.close()
+ *     return OK
+ * [/codeblock]
+ */
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -29,6 +45,10 @@ public open class ZIPPacker : RefCounted() {
     return true
   }
 
+  /**
+   * Opens a zip file for writing at the given path using the specified write mode.
+   * This must be called before everything else.
+   */
   @JvmOverloads
   public fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       GodotError {
@@ -37,24 +57,39 @@ public open class ZIPPacker : RefCounted() {
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Starts writing to a file within the archive. Only one file can be written at the same time.
+   * Must be called after [open].
+   */
   public fun startFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.startFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Write the given [data] to the file.
+   * Needs to be called after [startFile].
+   */
   public fun writeFile(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.writeFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Stops writing to a file within the archive.
+   * It will fail if there is no open file.
+   */
   public fun closeFile(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closeFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Closes the underlying resources used by this instance.
+   */
   public fun close(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closePtr, LONG)
@@ -64,8 +99,17 @@ public open class ZIPPacker : RefCounted() {
   public enum class ZipAppend(
     id: Long,
   ) {
+    /**
+     * Create a new zip archive at the given path.
+     */
     APPEND_CREATE(0),
+    /**
+     * Append a new zip archive to the end of the already existing file at the given path.
+     */
     APPEND_CREATEAFTER(1),
+    /**
+     * Add new files to the existing zip archive at the given path.
+     */
     APPEND_ADDINZIP(2),
     ;
 

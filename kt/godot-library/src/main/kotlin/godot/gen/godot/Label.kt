@@ -32,12 +32,9 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * A control for displaying plain text.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
- * A control for displaying plain text. It gives you control over the horizontal and vertical alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold, italics, or other rich text formatting. For that, use [godot.RichTextLabel] instead.
+ * A control for displaying plain text. It gives you control over the horizontal and vertical
+ * alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold,
+ * italics, or other rich text formatting. For that, use [RichTextLabel] instead.
  */
 @GodotBaseType
 public open class Label : Control() {
@@ -56,7 +53,8 @@ public open class Label : Control() {
     }
 
   /**
-   * A [godot.LabelSettings] resource that can be shared between multiple [godot.Label] nodes. Takes priority over theme properties.
+   * A [LabelSettings] resource that can be shared between multiple [Label] nodes. Takes priority
+   * over theme properties.
    */
   public var labelSettings: LabelSettings?
     get() {
@@ -70,7 +68,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [enum HorizontalAlignment] constants.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
+   * Set it to one of the [HorizontalAlignment] constants.
    */
   public var horizontalAlignment: HorizontalAlignment
     get() {
@@ -84,7 +83,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one of the [enum VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one
+   * of the [VerticalAlignment] constants.
    */
   public var verticalAlignment: VerticalAlignment
     get() {
@@ -98,7 +98,9 @@ public open class Label : Control() {
     }
 
   /**
-   * If set to something other than [godot.TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
+   * node's bounding rectangle. If you resize the node, it will change its height automatically to show
+   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -112,7 +114,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Line fill alignment rules. For more info see [enum TextServer.JustificationFlag].
+   * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
   public var justificationFlags: TextServer.JustificationFlag
     get() {
@@ -126,7 +128,8 @@ public open class Label : Control() {
     }
 
   /**
-   * If `true`, the Label only shows the text that fits inside its bounding rectangle and will clip text horizontally.
+   * If `true`, the Label only shows the text that fits inside its bounding rectangle and will clip
+   * text horizontally.
    */
   public var clipText: Boolean
     get() {
@@ -140,7 +143,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See [enum TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
+   * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
     get() {
@@ -210,8 +214,8 @@ public open class Label : Control() {
     }
 
   /**
-   * The number of characters to display. If set to `-1`, all characters are displayed. This can be useful when animating the text appearing in a dialog box.
-   *
+   * The number of characters to display. If set to `-1`, all characters are displayed. This can be
+   * useful when animating the text appearing in a dialog box.
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public var visibleCharacters: Int
@@ -226,7 +230,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See [enum TextServer.VisibleCharactersBehavior] for more info.
+   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See
+   * [TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     get() {
@@ -240,8 +245,10 @@ public open class Label : Control() {
     }
 
   /**
-   * The fraction of characters to display, relative to the total number of characters (see [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only half of the characters will be displayed. This can be useful when animating the text appearing in a dialog box.
-   *
+   * The fraction of characters to display, relative to the total number of characters (see
+   * [getTotalCharacterCount]). If set to `1.0`, all characters are displayed. If set to `0.5`, only
+   * half of the characters will be displayed. This can be useful when animating the text appearing in
+   * a dialog box.
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public var visibleRatio: Float
@@ -270,7 +277,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
+   * is used instead.
    */
   public var language: String
     get() {
@@ -320,9 +328,7 @@ public open class Label : Control() {
 
   /**
    * Returns the height of the line [line].
-   *
    * If [line] is set to `-1`, returns the biggest line height.
-   *
    * If there are no lines, returns font size in pixels.
    */
   @JvmOverloads
@@ -342,7 +348,8 @@ public open class Label : Control() {
   }
 
   /**
-   * Returns the number of lines shown. Useful if the [godot.Label]'s height cannot currently display all lines.
+   * Returns the number of lines shown. Useful if the [Label]'s height cannot currently display all
+   * lines.
    */
   public fun getVisibleLineCount(): Int {
     TransferContext.writeArguments()

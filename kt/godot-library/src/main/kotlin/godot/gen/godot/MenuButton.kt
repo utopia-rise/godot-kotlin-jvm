@@ -23,21 +23,21 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A button that brings up a [godot.PopupMenu] when clicked.
- *
- * A button that brings up a [godot.PopupMenu] when clicked. To create new items inside this [godot.PopupMenu], use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's inspector.
- *
- * See also [godot.BaseButton] which contains common properties and methods associated with this node.
+ * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu],
+ * use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's
+ * inspector.
+ * See also [BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
 public open class MenuButton : Button() {
   /**
-   * Emitted when the [godot.PopupMenu] of this MenuButton is about to show.
+   * Emitted when the [PopupMenu] of this MenuButton is about to show.
    */
   public val aboutToPopup: Signal0 by signal()
 
   /**
-   * If `true`, when the cursor hovers above another [godot.MenuButton] within the same parent which also has [switchOnHover] enabled, it will close the current [godot.MenuButton] and open the other one.
+   * If `true`, when the cursor hovers above another [MenuButton] within the same parent which also
+   * has [switchOnHover] enabled, it will close the current [MenuButton] and open the other one.
    */
   public var switchOnHover: Boolean
     get() {
@@ -70,9 +70,9 @@ public open class MenuButton : Button() {
   }
 
   /**
-   * Returns the [godot.PopupMenu] contained in this button.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   * Returns the [PopupMenu] contained in this button.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
@@ -81,7 +81,8 @@ public open class MenuButton : Button() {
   }
 
   /**
-   * Adjusts popup position and sizing for the [godot.MenuButton], then shows the [godot.PopupMenu]. Prefer this over using `get_popup().popup()`.
+   * Adjusts popup position and sizing for the [MenuButton], then shows the [PopupMenu]. Prefer this
+   * over using `get_popup().popup()`.
    */
   public fun showPopup(): Unit {
     TransferContext.writeArguments()

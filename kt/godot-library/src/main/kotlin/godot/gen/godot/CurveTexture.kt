@@ -20,16 +20,17 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * A 1D texture where pixel brightness corresponds to points on a curve.
- *
- * A 1D texture where pixel brightness corresponds to points on a [godot.Curve] resource, either in grayscale or in red. This visual representation simplifies the task of saving curves as image files.
- *
- * If you need to store up to 3 curves within a single texture, use [godot.CurveXYZTexture] instead. See also [godot.GradientTexture1D] and [godot.GradientTexture2D].
+ * A 1D texture where pixel brightness corresponds to points on a [Curve] resource, either in
+ * grayscale or in red. This visual representation simplifies the task of saving curves as image files.
+ * If you need to store up to 3 curves within a single texture, use [CurveXYZTexture] instead. See
+ * also [GradientTexture1D] and [GradientTexture2D].
  */
 @GodotBaseType
 public open class CurveTexture : Texture2D() {
   /**
-   * The width of the texture (in pixels). Higher values make it possible to represent high-frequency data better (such as sudden direction changes), at the cost of increased generation time and memory usage.
+   * The width of the texture (in pixels). Higher values make it possible to represent
+   * high-frequency data better (such as sudden direction changes), at the cost of increased generation
+   * time and memory usage.
    */
   public var width: Int
     @JvmName("getWidth_prop")
@@ -40,7 +41,8 @@ public open class CurveTexture : Texture2D() {
     }
 
   /**
-   * The format the texture should be generated with. When passing a CurveTexture as an input to a [godot.Shader], this may need to be adjusted.
+   * The format the texture should be generated with. When passing a CurveTexture as an input to a
+   * [Shader], this may need to be adjusted.
    */
   public var textureMode: TextureMode
     get() {
@@ -54,7 +56,7 @@ public open class CurveTexture : Texture2D() {
     }
 
   /**
-   * The [godot.Curve] that is rendered onto the texture.
+   * The [Curve] that is rendered onto the texture.
    */
   public var curve: Curve?
     get() {
@@ -76,11 +78,13 @@ public open class CurveTexture : Texture2D() {
     id: Long,
   ) {
     /**
-     * Store the curve equally across the red, green and blue channels. This uses more video memory, but is more compatible with shaders that only read the green and blue values.
+     * Store the curve equally across the red, green and blue channels. This uses more video memory,
+     * but is more compatible with shaders that only read the green and blue values.
      */
     TEXTURE_MODE_RGB(0),
     /**
-     * Store the curve only in the red channel. This saves video memory, but some custom shaders may not be able to work with this.
+     * Store the curve only in the red channel. This saves video memory, but some custom shaders may
+     * not be able to work with this.
      */
     TEXTURE_MODE_RED(1),
     ;

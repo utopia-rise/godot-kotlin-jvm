@@ -26,18 +26,21 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A material that defines a sky for a [godot.Sky] resource by a set of physical properties.
- *
- * The [godot.PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on physical properties. This results in a substantially more realistic sky than the [godot.ProceduralSkyMaterial], but it is slightly slower and less flexible.
- *
- * The [godot.PhysicalSkyMaterial] only supports one sun. The color, energy, and direction of the sun are taken from the first [godot.DirectionalLight3D] in the scene tree.
- *
- * As it is based on a daylight model, the sky fades to black as the sunset ends. If you want a full day/night cycle, you will have to add a night sky by converting this to a [godot.ShaderMaterial] and adding a night sky directly into the resulting shader.
+ * The [PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on
+ * physical properties. This results in a substantially more realistic sky than the
+ * [ProceduralSkyMaterial], but it is slightly slower and less flexible.
+ * The [PhysicalSkyMaterial] only supports one sun. The color, energy, and direction of the sun are
+ * taken from the first [DirectionalLight3D] in the scene tree.
+ * As it is based on a daylight model, the sky fades to black as the sunset ends. If you want a full
+ * day/night cycle, you will have to add a night sky by converting this to a [ShaderMaterial] and
+ * adding a night sky directly into the resulting shader.
  */
 @GodotBaseType
 public open class PhysicalSkyMaterial : Material() {
   /**
-   * Controls the strength of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). Rayleigh scattering results from light colliding with small particles. It is responsible for the blue color of the sky.
+   * Controls the strength of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
+   * scattering[/url]. Rayleigh scattering results from light colliding with small particles. It is
+   * responsible for the blue color of the sky.
    */
   public var rayleighCoefficient: Float
     get() {
@@ -51,7 +54,10 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [godot.core.Color] of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
+   * scattering[/url]. While not physically accurate, this allows for the creation of alien-looking
+   * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
+   * corresponding blue sunset.
    */
   @CoreTypeLocalCopy
   public var rayleighColor: Color
@@ -66,7 +72,9 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the strength of [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) for the sky. Mie scattering results from light colliding with larger particles (like water). On earth, Mie scattering results in a whitish color around the sun and horizon.
+   * Controls the strength of [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie scattering[/url]
+   * for the sky. Mie scattering results from light colliding with larger particles (like water). On
+   * earth, Mie scattering results in a whitish color around the sun and horizon.
    */
   public var mieCoefficient: Float
     get() {
@@ -80,7 +88,9 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the direction of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). A value of `1` means that when light hits a particle it's passing through straight forward. A value of `-1` means that all light is scatter backwards.
+   * Controls the direction of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
+   * scattering[/url]. A value of `1` means that when light hits a particle it's passing through
+   * straight forward. A value of `-1` means that all light is scatter backwards.
    */
   public var mieEccentricity: Float
     get() {
@@ -94,7 +104,9 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [godot.core.Color] of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) effect. While not physically accurate, this allows for the creation of alien-looking planets.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
+   * scattering[/url] effect. While not physically accurate, this allows for the creation of
+   * alien-looking planets.
    */
   @CoreTypeLocalCopy
   public var mieColor: Color
@@ -109,7 +121,8 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while a low turbidity results in a clearer atmosphere.
+   * Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while
+   * a low turbidity results in a clearer atmosphere.
    */
   public var turbidity: Float
     get() {
@@ -137,7 +150,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Modulates the [godot.core.Color] on the bottom half of the sky to represent the ground.
+   * Modulates the [Color] on the bottom half of the sky to represent the ground.
    */
   @CoreTypeLocalCopy
   public var groundColor: Color
@@ -166,7 +179,8 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding that appears from the smooth changes in color in the sky.
+   * If `true`, enables debanding. Debanding adds a small amount of noise which helps reduce banding
+   * that appears from the smooth changes in color in the sky.
    */
   public var useDebanding: Boolean
     get() {
@@ -180,7 +194,8 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * [godot.Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be visible during the day.
+   * [Texture2D] for the night sky. This is added to the sky, so if it is bright enough, it may be
+   * visible during the day.
    */
   public var nightSky: Texture2D?
     get() {
@@ -199,7 +214,10 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   /**
-   * Controls the [godot.core.Color] of the [godot.Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering). While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Rayleigh_scattering]Rayleigh
+   * scattering[/url]. While not physically accurate, this allows for the creation of alien-looking
+   * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
+   * corresponding blue sunset.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -223,7 +241,9 @@ public open class PhysicalSkyMaterial : Material() {
 
 
   /**
-   * Controls the [godot.core.Color] of the [godot.Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering) effect. While not physically accurate, this allows for the creation of alien-looking planets.
+   * Controls the [Color] of the [url=https://en.wikipedia.org/wiki/Mie_scattering]Mie
+   * scattering[/url] effect. While not physically accurate, this allows for the creation of
+   * alien-looking planets.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -247,7 +267,7 @@ public open class PhysicalSkyMaterial : Material() {
 
 
   /**
-   * Modulates the [godot.core.Color] on the bottom half of the sky to represent the ground.
+   * Modulates the [Color] on the bottom half of the sky to represent the ground.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

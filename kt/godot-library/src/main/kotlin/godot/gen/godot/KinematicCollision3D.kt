@@ -26,11 +26,11 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Holds collision data from the movement of a [godot.PhysicsBody3D].
- *
- * Holds collision data from the movement of a [godot.PhysicsBody3D], usually from [godot.PhysicsBody3D.moveAndCollide]. When a [godot.PhysicsBody3D] is moved, it stops if it detects a collision with another body. If a collision is detected, a [godot.KinematicCollision3D] object is returned.
- *
- * The collision data includes the colliding object, the remaining motion, and the collision position. This data can be used to determine a custom response to the collision.
+ * Holds collision data from the movement of a [PhysicsBody3D], usually from
+ * [PhysicsBody3D.moveAndCollide]. When a [PhysicsBody3D] is moved, it stops if it detects a collision
+ * with another body. If a collision is detected, a [KinematicCollision3D] object is returned.
+ * The collision data includes the colliding object, the remaining motion, and the collision
+ * position. This data can be used to determine a custom response to the collision.
  */
 @GodotBaseType
 public open class KinematicCollision3D : RefCounted() {
@@ -76,7 +76,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the point of collision in global coordinates given a collision index (the deepest collision by default).
+   * Returns the point of collision in global coordinates given a collision index (the deepest
+   * collision by default).
    */
   @JvmOverloads
   public fun getPosition(collisionIndex: Int = 0): Vector3 {
@@ -86,7 +87,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape's normal at the point of collision given a collision index (the deepest collision by default).
+   * Returns the colliding body's shape's normal at the point of collision given a collision index
+   * (the deepest collision by default).
    */
   @JvmOverloads
   public fun getNormal(collisionIndex: Int = 0): Vector3 {
@@ -96,7 +98,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the collision angle according to [upDirection], which is [godot.Vector3.UP] by default. This value is always positive.
+   * Returns the collision angle according to [upDirection], which is [Vector3.UP] by default. This
+   * value is always positive.
    */
   @JvmOverloads
   public fun getAngle(collisionIndex: Int = 0, upDirection: Vector3 = Vector3(0, 1, 0)): Float {
@@ -106,7 +109,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the moving object's colliding shape given a collision index (the deepest collision by default).
+   * Returns the moving object's colliding shape given a collision index (the deepest collision by
+   * default).
    */
   @JvmOverloads
   public fun getLocalShape(collisionIndex: Int = 0): Object? {
@@ -116,7 +120,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's attached [godot.Object] given a collision index (the deepest collision by default).
+   * Returns the colliding body's attached [Object] given a collision index (the deepest collision
+   * by default).
    */
   @JvmOverloads
   public fun getCollider(collisionIndex: Int = 0): Object? {
@@ -126,7 +131,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the unique instance ID of the colliding body's attached [godot.Object] given a collision index (the deepest collision by default). See [godot.Object.getInstanceId].
+   * Returns the unique instance ID of the colliding body's attached [Object] given a collision
+   * index (the deepest collision by default). See [Object.getInstanceId].
    */
   @JvmOverloads
   public fun getColliderId(collisionIndex: Int = 0): Long {
@@ -136,7 +142,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's [RID] used by the [godot.PhysicsServer3D] given a collision index (the deepest collision by default).
+   * Returns the colliding body's [RID] used by the [PhysicsServer3D] given a collision index (the
+   * deepest collision by default).
    */
   @JvmOverloads
   public fun getColliderRid(collisionIndex: Int = 0): RID {
@@ -156,7 +163,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape index given a collision index (the deepest collision by default). See [godot.CollisionObject3D].
+   * Returns the colliding body's shape index given a collision index (the deepest collision by
+   * default). See [CollisionObject3D].
    */
   @JvmOverloads
   public fun getColliderShapeIndex(collisionIndex: Int = 0): Int {
@@ -166,7 +174,8 @@ public open class KinematicCollision3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's velocity given a collision index (the deepest collision by default).
+   * Returns the colliding body's velocity given a collision index (the deepest collision by
+   * default).
    */
   @JvmOverloads
   public fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {

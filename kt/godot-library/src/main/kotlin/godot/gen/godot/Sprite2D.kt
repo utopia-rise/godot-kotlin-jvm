@@ -31,12 +31,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * General-purpose sprite node.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/148](https://godotengine.org/asset-library/asset/148)
- *
- * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
+ * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas
+ * texture, or a frame from a sprite sheet animation.
  */
 @GodotBaseType
 public open class Sprite2D : Node2D() {
@@ -51,7 +47,7 @@ public open class Sprite2D : Node2D() {
   public val textureChanged: Signal0 by signal()
 
   /**
-   * [godot.Texture2D] object to draw.
+   * [Texture2D] object to draw.
    */
   public var texture: Texture2D?
     get() {
@@ -122,7 +118,9 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
+   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted
+   * so that the same visual frame is maintained (same row and column). If that's impossible, [frame]
+   * is reset to `0`.
    */
   public var hframes: Int
     get() {
@@ -136,7 +134,9 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
+   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so
+   * that the same visual frame is maintained (same row and column). If that's impossible, [frame] is
+   * reset to `0`.
    */
   public var vframes: Int
     get() {
@@ -150,7 +150,9 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`.
+   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This
+   * property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the
+   * same visual frame (same column and row). If that's impossible, this value is reset to `0`.
    */
   public var frame: Int
     get() {
@@ -164,7 +166,8 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
+   * property. [hframes] or [vframes] must be greater than 1.
    */
   @CoreTypeLocalCopy
   public var frameCoords: Vector2i
@@ -251,7 +254,8 @@ public open class Sprite2D : Node2D() {
 
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
+   * property. [hframes] or [vframes] must be greater than 1.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -300,8 +304,8 @@ public open class Sprite2D : Node2D() {
 
   /**
    * Returns `true`, if the pixel at the given position is opaque and `false` in other case.
-   *
-   * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position is invalid.
+   * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position
+   * is invalid.
    */
   public fun isPixelOpaque(pos: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to pos)
@@ -310,55 +314,34 @@ public open class Sprite2D : Node2D() {
   }
 
   /**
-   * Returns a [godot.core.Rect2] representing the Sprite2D's boundary in local coordinates. Can be used to detect if the Sprite2D was clicked.
-   *
+   * Returns a [Rect2] representing the Sprite2D's boundary in local coordinates. Can be used to
+   * detect if the Sprite2D was clicked.
    * **Example:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _input(event):
-   *
-   *     if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-   *
+   *     if event is InputEventMouseButton and event.pressed and event.button_index ==
+   * MOUSE_BUTTON_LEFT:
    *         if get_rect().has_point(to_local(event.position)):
-   *
    *             print("A click!")
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Input(InputEvent @event)
-   *
    * {
-   *
    *     if (@event is InputEventMouseButton inputEventMouse)
-   *
    *     {
-   *
    *         if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
-   *
    *         {
-   *
    *             if (GetRect().HasPoint(ToLocal(inputEventMouse.Position)))
-   *
    *             {
-   *
    *                 GD.Print("A click!");
-   *
    *             }
-   *
    *         }
-   *
    *     }
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getRect(): Rect2 {
     TransferContext.writeArguments()

@@ -32,16 +32,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Describes a Bézier curve in 3D space.
- *
- * This class describes a Bézier curve in 3D space. It is mainly used to give a shape to a [godot.Path3D], but can be manually sampled for other purposes.
- *
+ * This class describes a Bézier curve in 3D space. It is mainly used to give a shape to a [Path3D],
+ * but can be manually sampled for other purposes.
  * It keeps a cache of precalculated points along the curve, to speed up further calculations.
  */
 @GodotBaseType
 public open class Curve3D : Resource() {
   /**
-   * The distance in meters between two adjacent cached points. Changing it forces the cache to be recomputed the next time the [getBakedPoints] or [getBakedLength] function is called. The smaller the distance, the more points in the cache and the more memory it will consume, so use with care.
+   * The distance in meters between two adjacent cached points. Changing it forces the cache to be
+   * recomputed the next time the [getBakedPoints] or [getBakedLength] function is called. The smaller
+   * the distance, the more points in the cache and the more memory it will consume, so use with care.
    */
   public var bakeInterval: Float
     get() {
@@ -69,7 +69,9 @@ public open class Curve3D : Resource() {
     }
 
   /**
-   * If `true`, the curve will bake up vectors used for orientation. This is used when [godot.PathFollow3D.rotationMode] is set to [godot.PathFollow3D.ROTATION_ORIENTED]. Changing it forces the cache to be recomputed.
+   * If `true`, the curve will bake up vectors used for orientation. This is used when
+   * [PathFollow3D.rotationMode] is set to [PathFollow3D.ROTATION_ORIENTED]. Changing it forces the
+   * cache to be recomputed.
    */
   public var upVectorEnabled: Boolean
     get() {
@@ -88,9 +90,12 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Adds a point with the specified [position] relative to the curve's own position, with control points [in] and [out]. Appends the new point at the end of the point list.
-   *
-   * If [index] is given, the new point is inserted before the existing point identified by index [index]. Every existing point starting from [index] is shifted further down the list of points. The index must be greater than or equal to `0` and must not exceed the number of existing points in the line. See [pointCount].
+   * Adds a point with the specified [position] relative to the curve's own position, with control
+   * points [in] and [out]. Appends the new point at the end of the point list.
+   * If [index] is given, the new point is inserted before the existing point identified by index
+   * [index]. Every existing point starting from [index] is shifted further down the list of points.
+   * The index must be greater than or equal to `0` and must not exceed the number of existing points
+   * in the line. See [pointCount].
    */
   @JvmOverloads
   public fun addPoint(
@@ -104,7 +109,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position for the vertex [idx]. If the index is out of bounds, the function sends an error to the console.
+   * Sets the position for the vertex [idx]. If the index is out of bounds, the function sends an
+   * error to the console.
    */
   public fun setPointPosition(idx: Int, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
@@ -112,7 +118,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the vertex [idx]. If the index is out of bounds, the function sends an
+   * error to the console, and returns `(0, 0, 0)`.
    */
   public fun getPointPosition(idx: Int): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -121,9 +128,11 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the tilt angle in radians for the point [idx]. If the index is out of bounds, the function sends an error to the console.
-   *
-   * The tilt controls the rotation along the look-at axis an object traveling the path would have. In the case of a curve controlling a [godot.PathFollow3D], this tilt is an offset over the natural tilt the [godot.PathFollow3D] calculates.
+   * Sets the tilt angle in radians for the point [idx]. If the index is out of bounds, the function
+   * sends an error to the console.
+   * The tilt controls the rotation along the look-at axis an object traveling the path would have.
+   * In the case of a curve controlling a [PathFollow3D], this tilt is an offset over the natural tilt
+   * the [PathFollow3D] calculates.
    */
   public fun setPointTilt(idx: Int, tilt: Float): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to tilt.toDouble())
@@ -131,7 +140,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the tilt angle in radians for the point [idx]. If the index is out of bounds, the function sends an error to the console, and returns `0`.
+   * Returns the tilt angle in radians for the point [idx]. If the index is out of bounds, the
+   * function sends an error to the console, and returns `0`.
    */
   public fun getPointTilt(idx: Int): Float {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -140,7 +150,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading to the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   * Sets the position of the control point leading to the vertex [idx]. If the index is out of
+   * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public fun setPointIn(idx: Int, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
@@ -148,7 +159,9 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading to the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the control point leading to the vertex [idx]. The returned position is
+   * relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the
+   * console, and returns `(0, 0, 0)`.
    */
   public fun getPointIn(idx: Int): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -157,7 +170,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading out of the vertex [idx]. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   * Sets the position of the control point leading out of the vertex [idx]. If the index is out of
+   * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public fun setPointOut(idx: Int, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to position)
@@ -165,7 +179,9 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading out of the vertex [idx]. The returned position is relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the control point leading out of the vertex [idx]. The returned
+   * position is relative to the vertex [idx]. If the index is out of bounds, the function sends an
+   * error to the console, and returns `(0, 0, 0)`.
    */
   public fun getPointOut(idx: Int): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -174,7 +190,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of bounds.
+   * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of
+   * bounds.
    */
   public fun removePoint(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -190,9 +207,11 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position between the vertex [idx] and the vertex `idx + 1`, where [t] controls if the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of [t] outside the range (`0.0 >= t <=1`) give strange, but predictable results.
-   *
-   * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If the curve has no points, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position between the vertex [idx] and the vertex `idx + 1`, where [t] controls if
+   * the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of
+   * [t] outside the range (`0.0 >= t <=1`) give strange, but predictable results.
+   * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If
+   * the curve has no points, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
   public fun sample(idx: Int, t: Float): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
@@ -201,7 +220,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position at the vertex [fofs]. It calls [sample] using the integer part of [fofs] as `idx`, and its fractional part as `t`.
+   * Returns the position at the vertex [fofs]. It calls [sample] using the integer part of [fofs]
+   * as `idx`, and its fractional part as `t`.
    */
   public fun samplef(fofs: Float): Vector3 {
     TransferContext.writeArguments(DOUBLE to fofs.toDouble())
@@ -210,7 +230,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the total length of the curve, based on the cached points. Given enough density (see [bakeInterval]), it should be approximate enough.
+   * Returns the total length of the curve, based on the cached points. Given enough density (see
+   * [bakeInterval]), it should be approximate enough.
    */
   public fun getBakedLength(): Float {
     TransferContext.writeArguments()
@@ -219,9 +240,12 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns a point within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve. To do that, it finds the two cached points where the [offset] lies between, then interpolates the values. This interpolation is cubic if [cubic] is set to `true`, or linear if set to `false`.
-   *
-   * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
+   * Returns a point within the curve at position [offset], where [offset] is measured as a distance
+   * in 3D units along the curve. To do that, it finds the two cached points where the [offset] lies
+   * between, then interpolates the values. This interpolation is cubic if [cubic] is set to `true`, or
+   * linear if set to `false`.
+   * Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise
+   * enough).
    */
   @JvmOverloads
   public fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector3 {
@@ -231,7 +255,9 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns a [godot.Transform3D] with `origin` as point position, `basis.x` as sideway vector, `basis.y` as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way to calculate the rotation, all vectors aligned with global space axes. See also [sampleBaked].
+   * Returns a [Transform3D] with `origin` as point position, `basis.x` as sideway vector, `basis.y`
+   * as up vector, `basis.z` as forward vector. When the curve length is 0, there is no reasonable way
+   * to calculate the rotation, all vectors aligned with global space axes. See also [sampleBaked].
    */
   @JvmOverloads
   public fun sampleBakedWithRotation(
@@ -245,9 +271,12 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns an up vector within the curve at position [offset], where [offset] is measured as a distance in 3D units along the curve. To do that, it finds the two cached up vectors where the [offset] lies between, then interpolates the values. If [applyTilt] is `true`, an interpolated tilt is applied to the interpolated up vector.
-   *
-   * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1, 0)`.
+   * Returns an up vector within the curve at position [offset], where [offset] is measured as a
+   * distance in 3D units along the curve. To do that, it finds the two cached up vectors where the
+   * [offset] lies between, then interpolates the values. If [applyTilt] is `true`, an interpolated
+   * tilt is applied to the interpolated up vector.
+   * If the curve has no up vectors, the function sends an error to the console, and returns `(0, 1,
+   * 0)`.
    */
   @JvmOverloads
   public fun sampleBakedUpVector(offset: Float, applyTilt: Boolean = false): Vector3 {
@@ -257,7 +286,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the cache of points as a [godot.PackedVector3Array].
+   * Returns the cache of points as a [PackedVector3Array].
    */
   public fun getBakedPoints(): PackedVector3Array {
     TransferContext.writeArguments()
@@ -266,7 +295,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the cache of tilts as a [godot.PackedFloat32Array].
+   * Returns the cache of tilts as a [PackedFloat32Array].
    */
   public fun getBakedTilts(): PackedFloat32Array {
     TransferContext.writeArguments()
@@ -275,8 +304,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the cache of up vectors as a [godot.PackedVector3Array].
-   *
+   * Returns the cache of up vectors as a [PackedVector3Array].
    * If [upVectorEnabled] is `false`, the cache will be empty.
    */
   public fun getBakedUpVectors(): PackedVector3Array {
@@ -287,7 +315,6 @@ public open class Curve3D : Resource() {
 
   /**
    * Returns the closest point on baked segments (in curve's local space) to [toPoint].
-   *
    * [toPoint] must be in this curve's local space.
    */
   public fun getClosestPoint(toPoint: Vector3): Vector3 {
@@ -297,8 +324,8 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the closest offset to [toPoint]. This offset is meant to be used in [sampleBaked] or [sampleBakedUpVector].
-   *
+   * Returns the closest offset to [toPoint]. This offset is meant to be used in [sampleBaked] or
+   * [sampleBakedUpVector].
    * [toPoint] must be in this curve's local space.
    */
   public fun getClosestOffset(toPoint: Vector3): Float {
@@ -308,13 +335,15 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns a list of points along the curve, with a curvature controlled point density. That is, the curvier parts will have more points than the straighter parts.
-   *
-   * This approximation makes straight segments between each point, then subdivides those segments until the resulting shape is similar enough.
-   *
-   * [maxStages] controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care!
-   *
-   * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
+   * Returns a list of points along the curve, with a curvature controlled point density. That is,
+   * the curvier parts will have more points than the straighter parts.
+   * This approximation makes straight segments between each point, then subdivides those segments
+   * until the resulting shape is similar enough.
+   * [maxStages] controls how many subdivisions a curve segment may face before it is considered
+   * approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean
+   * up to 32 subdivisions per curve segment. Increase with care!
+   * [toleranceDegrees] controls how many degrees the midpoint of a segment may deviate from the
+   * real curve, before the segment has to be subdivided.
    */
   @JvmOverloads
   public fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f): PackedVector3Array {
@@ -324,9 +353,12 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Returns a list of points along the curve, with almost uniform density. [maxStages] controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care!
-   *
-   * [toleranceLength] controls the maximal distance between two neighboring points, before the segment has to be subdivided.
+   * Returns a list of points along the curve, with almost uniform density. [maxStages] controls how
+   * many subdivisions a curve segment may face before it is considered approximate enough. Each
+   * subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per
+   * curve segment. Increase with care!
+   * [toleranceLength] controls the maximal distance between two neighboring points, before the
+   * segment has to be subdivided.
    */
   @JvmOverloads
   public fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 0.2f):

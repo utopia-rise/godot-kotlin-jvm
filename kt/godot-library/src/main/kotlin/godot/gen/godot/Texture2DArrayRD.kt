@@ -12,9 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Texture Array for 2D that is bound to a texture created on the [godot.RenderingDevice].
- *
- * This texture array class allows you to use a 2D array texture created directly on the [godot.RenderingDevice] as a texture for materials, meshes, etc.
+ * This texture array class allows you to use a 2D array texture created directly on the
+ * [RenderingDevice] as a texture for materials, meshes, etc.
  */
 @GodotBaseType
 public open class Texture2DArrayRD : TextureLayeredRD() {

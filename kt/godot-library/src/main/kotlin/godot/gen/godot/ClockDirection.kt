@@ -6,7 +6,13 @@ import kotlin.Long
 public enum class ClockDirection(
   id: Long,
 ) {
+  /**
+   * Clockwise rotation. Used by some methods (e.g. [Image.rotate90]).
+   */
   CLOCKWISE(0),
+  /**
+   * Counter-clockwise rotation. Used by some methods (e.g. [Image.rotate90]).
+   */
   COUNTERCLOCKWISE(1),
   ;
 

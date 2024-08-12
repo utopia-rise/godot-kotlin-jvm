@@ -35,12 +35,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A navigation mesh that defines traversable areas and obstacles.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
- *
- * A navigation mesh is a collection of polygons that define which areas of an environment are traversable to aid agents in pathfinding through complicated spaces.
+ * A navigation mesh is a collection of polygons that define which areas of an environment are
+ * traversable to aid agents in pathfinding through complicated spaces.
  */
 @GodotBaseType
 public open class NavigationMesh : Resource() {
@@ -56,7 +52,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Partitioning algorithm for creating the navigation mesh polys. See [enum SamplePartitionType] for possible values.
+   * Partitioning algorithm for creating the navigation mesh polys. See [SamplePartitionType] for
+   * possible values.
    */
   public var samplePartitionType: SamplePartitionType
     get() {
@@ -70,7 +67,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Determines which type of nodes will be parsed as geometry. See [enum ParsedGeometryType] for possible values.
+   * Determines which type of nodes will be parsed as geometry. See [ParsedGeometryType] for
+   * possible values.
    */
   public var geometryParsedGeometryType: ParsedGeometryType
     get() {
@@ -85,8 +83,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The physics layers to scan for static colliders.
-   *
-   * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or [PARSED_GEOMETRY_BOTH].
+   * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
+   * [PARSED_GEOMETRY_BOTH].
    */
   public var geometryCollisionMask: Long
     get() {
@@ -100,7 +98,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The source of the geometry used when baking. See [enum SourceGeometryMode] for possible values.
+   * The source of the geometry used when baking. See [SourceGeometryMode] for possible values.
    */
   public var geometrySourceGeometryMode: SourceGeometryMode
     get() {
@@ -115,8 +113,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The name of the group to scan for geometry.
-   *
-   * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
+   * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
+   * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
   public var geometrySourceGroupName: StringName
     get() {
@@ -130,7 +128,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with the cell size on the navigation map.
+   * The cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with
+   * the cell size on the navigation map.
    */
   public var cellSize: Float
     get() {
@@ -144,7 +143,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with the cell height on the navigation map.
+   * The cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with
+   * the cell height on the navigation map.
    */
   public var cellHeight: Float
     get() {
@@ -158,8 +158,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The minimum floor to ceiling height that will still allow the floor area to be considered walkable.
-   *
+   * The minimum floor to ceiling height that will still allow the floor area to be considered
+   * walkable.
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellHeight].
    */
   public var agentHeight: Float
@@ -175,7 +175,6 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The distance to erode/shrink the walkable area of the heightfield away from obstructions.
-   *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public var agentRadius: Float
@@ -191,8 +190,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The minimum ledge height that is considered to still be traversable.
-   *
-   * **Note:** While baking, this value will be rounded down to the nearest multiple of [cellHeight].
+   * **Note:** While baking, this value will be rounded down to the nearest multiple of
+   * [cellHeight].
    */
   public var agentMaxClimb: Float
     get() {
@@ -221,8 +220,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * The minimum size of a region for it to be created.
-   *
-   * **Note:** This value will be squared to calculate the minimum number of cells allowed to form isolated island areas. For example, a value of 8 will set the number of cells to 64.
+   * **Note:** This value will be squared to calculate the minimum number of cells allowed to form
+   * isolated island areas. For example, a value of 8 will set the number of cells to 64.
    */
   public var regionMinSize: Float
     get() {
@@ -237,8 +236,8 @@ public open class NavigationMesh : Resource() {
 
   /**
    * Any regions with a size smaller than this will be merged with larger regions if possible.
-   *
-   * **Note:** This value will be squared to calculate the number of cells. For example, a value of 20 will set the number of cells to 400.
+   * **Note:** This value will be squared to calculate the number of cells. For example, a value of
+   * 20 will set the number of cells to 400.
    */
   public var regionMergeSize: Float
     get() {
@@ -252,8 +251,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum allowed length for contour edges along the border of the mesh. A value of `0.0` disables this feature.
-   *
+   * The maximum allowed length for contour edges along the border of the mesh. A value of `0.0`
+   * disables this feature.
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public var edgeMaxLength: Float
@@ -268,7 +267,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum distance a simplified contour's border edges should deviate the original raw contour.
+   * The maximum distance a simplified contour's border edges should deviate the original raw
+   * contour.
    */
   public var edgeMaxError: Float
     get() {
@@ -282,7 +282,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum number of vertices allowed for polygons generated during the contour to polygon conversion process.
+   * The maximum number of vertices allowed for polygons generated during the contour to polygon
+   * conversion process.
    */
   public var verticesPerPolygon: Float
     get() {
@@ -324,7 +325,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * If `true`, marks non-walkable spans as walkable if their maximum is within [agentMaxClimb] of a walkable neighbor.
+   * If `true`, marks non-walkable spans as walkable if their maximum is within [agentMaxClimb] of a
+   * walkable neighbor.
    */
   public var filterLowHangingObstacles: Boolean
     get() {
@@ -352,7 +354,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * If `true`, marks walkable spans as not walkable if the clearance above the span is less than [agentHeight].
+   * If `true`, marks walkable spans as not walkable if the clearance above the span is less than
+   * [agentHeight].
    */
   public var filterWalkableLowHeightSpans: Boolean
     get() {
@@ -366,7 +369,8 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
+   * enclosing area.
    */
   @CoreTypeLocalCopy
   public var filterBakingAabb: AABB
@@ -402,7 +406,8 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
+   * enclosing area.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -451,7 +456,8 @@ public open class NavigationMesh : Resource() {
 
 
   /**
-   * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given
+   * a [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -459,7 +465,8 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [geometryCollisionMask] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [geometryCollisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -485,7 +492,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * Returns a [godot.PackedInt32Array] containing the indices of the vertices of a created polygon.
+   * Returns a [PackedInt32Array] containing the indices of the vertices of a created polygon.
    */
   public fun getPolygon(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -502,9 +509,8 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * Initializes the navigation mesh by setting the vertices and indices according to a [godot.Mesh].
-   *
-   * **Note:** The given [mesh] must be of type [godot.Mesh.PRIMITIVE_TRIANGLES] and have an index array.
+   * Initializes the navigation mesh by setting the vertices and indices according to a [Mesh].
+   * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
   public fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
@@ -523,7 +529,8 @@ public open class NavigationMesh : Resource() {
     id: Long,
   ) {
     /**
-     * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use this if you have large open areas.
+     * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use
+     * this if you have large open areas.
      */
     SAMPLE_PARTITION_WATERSHED(0),
     /**
@@ -531,11 +538,12 @@ public open class NavigationMesh : Resource() {
      */
     SAMPLE_PARTITION_MONOTONE(1),
     /**
-     * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized tiles.
+     * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized
+     * tiles.
      */
     SAMPLE_PARTITION_LAYERS(2),
     /**
-     * Represents the size of the [enum SamplePartitionType] enum.
+     * Represents the size of the [SamplePartitionType] enum.
      */
     SAMPLE_PARTITION_MAX(3),
     ;
@@ -554,11 +562,13 @@ public open class NavigationMesh : Resource() {
     id: Long,
   ) {
     /**
-     * Parses mesh instances as geometry. This includes [godot.MeshInstance3D], [godot.CSGShape3D], and [godot.GridMap] nodes.
+     * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and
+     * [GridMap] nodes.
      */
     PARSED_GEOMETRY_MESH_INSTANCES(0),
     /**
-     * Parses [godot.StaticBody3D] colliders as geometry. The collider should be in any of the layers specified by [geometryCollisionMask].
+     * Parses [StaticBody3D] colliders as geometry. The collider should be in any of the layers
+     * specified by [geometryCollisionMask].
      */
     PARSED_GEOMETRY_STATIC_COLLIDERS(1),
     /**
@@ -566,7 +576,7 @@ public open class NavigationMesh : Resource() {
      */
     PARSED_GEOMETRY_BOTH(2),
     /**
-     * Represents the size of the [enum ParsedGeometryType] enum.
+     * Represents the size of the [ParsedGeometryType] enum.
      */
     PARSED_GEOMETRY_MAX(3),
     ;
@@ -589,7 +599,8 @@ public open class NavigationMesh : Resource() {
      */
     SOURCE_GEOMETRY_ROOT_NODE_CHILDREN(0),
     /**
-     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometrySourceGroupName].
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
+     * by [geometrySourceGroupName].
      */
     SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
     /**
@@ -597,7 +608,7 @@ public open class NavigationMesh : Resource() {
      */
     SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
     /**
-     * Represents the size of the [enum SourceGeometryMode] enum.
+     * Represents the size of the [SourceGeometryMode] enum.
      */
     SOURCE_GEOMETRY_MAX(3),
     ;

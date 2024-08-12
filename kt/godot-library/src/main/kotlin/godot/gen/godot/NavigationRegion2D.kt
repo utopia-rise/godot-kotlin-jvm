@@ -29,29 +29,27 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A traversable 2D region that [godot.NavigationAgent2D]s can use for pathfinding.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationregions.html)
- *
- * A traversable 2D region based on a [godot.NavigationPolygon] that [godot.NavigationAgent2D]s can use for pathfinding.
- *
- * Two regions can be connected to each other if they share a similar edge. You can set the minimum distance between two vertices required to connect two edges by using [godot.NavigationServer2D.mapSetEdgeConnectionMargin].
- *
- * **Note:** Overlapping two regions' navigation polygons is not enough for connecting two regions. They must share a similar edge.
- *
- * The pathfinding cost of entering a region from another region can be controlled with the [enterCost] value.
- *
- * **Note:** This value is not added to the path cost when the start position is already inside this region.
- *
- * The pathfinding cost of traveling distances inside this region can be controlled with the [travelCost] multiplier.
- *
- * **Note:** This node caches changes to its properties, so if you make changes to the underlying region [RID] in [godot.NavigationServer2D], they will not be reflected in this node's properties.
+ * A traversable 2D region based on a [NavigationPolygon] that [NavigationAgent2D]s can use for
+ * pathfinding.
+ * Two regions can be connected to each other if they share a similar edge. You can set the minimum
+ * distance between two vertices required to connect two edges by using
+ * [NavigationServer2D.mapSetEdgeConnectionMargin].
+ * **Note:** Overlapping two regions' navigation polygons is not enough for connecting two regions.
+ * They must share a similar edge.
+ * The pathfinding cost of entering a region from another region can be controlled with the
+ * [enterCost] value.
+ * **Note:** This value is not added to the path cost when the start position is already inside this
+ * region.
+ * The pathfinding cost of traveling distances inside this region can be controlled with the
+ * [travelCost] multiplier.
+ * **Note:** This node caches changes to its properties, so if you make changes to the underlying
+ * region [RID] in [NavigationServer2D], they will not be reflected in this node's properties.
  */
 @GodotBaseType
 public open class NavigationRegion2D : Node2D() {
   /**
-   * Emitted when the used navigation polygon is replaced or changes to the internals of the current navigation polygon are committed.
+   * Emitted when the used navigation polygon is replaced or changes to the internals of the current
+   * navigation polygon are committed.
    */
   public val navigationPolygonChanged: Signal0 by signal()
 
@@ -61,7 +59,7 @@ public open class NavigationRegion2D : Node2D() {
   public val bakeFinished: Signal0 by signal()
 
   /**
-   * The [godot.NavigationPolygon] resource to use.
+   * The [NavigationPolygon] resource to use.
    */
   public var navigationPolygon: NavigationPolygon?
     get() {
@@ -75,7 +73,7 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * Determines if the [godot.NavigationRegion2D] is enabled or disabled.
+   * Determines if the [NavigationRegion2D] is enabled or disabled.
    */
   public var enabled: Boolean
     get() {
@@ -89,7 +87,8 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * If enabled the navigation region will use edge connections to connect with other navigation regions within proximity of the navigation map edge connection margin.
+   * If enabled the navigation region will use edge connections to connect with other navigation
+   * regions within proximity of the navigation map edge connection margin.
    */
   public var useEdgeConnections: Boolean
     get() {
@@ -103,7 +102,8 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * A bitfield determining all navigation layers the region belongs to. These navigation layers can be checked upon when requesting a path with [godot.NavigationServer2D.mapGetPath].
+   * A bitfield determining all navigation layers the region belongs to. These navigation layers can
+   * be checked upon when requesting a path with [NavigationServer2D.mapGetPath].
    */
   public var navigationLayers: Long
     get() {
@@ -117,7 +117,8 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * When pathfinding enters this region's navigation mesh from another regions navigation mesh the [enterCost] value is added to the path distance for determining the shortest path.
+   * When pathfinding enters this region's navigation mesh from another regions navigation mesh the
+   * [enterCost] value is added to the path distance for determining the shortest path.
    */
   public var enterCost: Float
     get() {
@@ -131,7 +132,8 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * When pathfinding moves inside this region's navigation mesh the traveled distances are multiplied with [travelCost] for determining the shortest path.
+   * When pathfinding moves inside this region's navigation mesh the traveled distances are
+   * multiplied with [travelCost] for determining the shortest path.
    */
   public var travelCost: Float
     get() {
@@ -145,9 +147,12 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   /**
-   * If `true` constraints avoidance agent's with an avoidance mask bit that matches with a bit of the [avoidanceLayers] to the navigation polygon. Due to each navigation polygon outline creating an obstacle and each polygon edge creating an avoidance line constrain keep the navigation polygon shape as simple as possible for performance.
-   *
-   * **Experimental:** This is an experimental feature and should not be used in production as agent's can get stuck on the navigation polygon corners and edges especially at high frame rate.
+   * If `true` constraints avoidance agent's with an avoidance mask bit that matches with a bit of
+   * the [avoidanceLayers] to the navigation polygon. Due to each navigation polygon outline creating
+   * an obstacle and each polygon edge creating an avoidance line constrain keep the navigation polygon
+   * shape as simple as possible for performance.
+   * **Experimental:** This is an experimental feature and should not be used in production as
+   * agent's can get stuck on the navigation polygon corners and edges especially at high frame rate.
    */
   public var constrainAvoidance: Boolean
     get() {
@@ -180,7 +185,9 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Returns the [RID] of this region on the [godot.NavigationServer2D]. Combined with [godot.NavigationServer2D.mapGetClosestPointOwner] can be used to identify the [godot.NavigationRegion2D] closest to a point on the merged navigation map.
+   * Returns the [RID] of this region on the [NavigationServer2D]. Combined with
+   * [NavigationServer2D.mapGetClosestPointOwner] can be used to identify the [NavigationRegion2D]
+   * closest to a point on the merged navigation map.
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
@@ -189,7 +196,9 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Sets the [RID] of the navigation map this region should use. By default the region will automatically join the [godot.World2D] default navigation map so this function is only required to override the default map.
+   * Sets the [RID] of the navigation map this region should use. By default the region will
+   * automatically join the [World2D] default navigation map so this function is only required to
+   * override the default map.
    */
   public fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
@@ -206,7 +215,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -214,7 +224,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
+   * a [layerNumber] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -223,7 +234,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -231,7 +243,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -240,8 +253,7 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Returns the [RID] of this region on the [godot.NavigationServer2D].
-   *
+   * Returns the [RID] of this region on the [NavigationServer2D].
    * *Deprecated.* Use [getRid] instead.
    */
   public fun getRegionRid(): RID {
@@ -251,7 +263,8 @@ public open class NavigationRegion2D : Node2D() {
   }
 
   /**
-   * Bakes the [godot.NavigationPolygon]. If [onThread] is set to `true` (default), the baking is done on a separate thread.
+   * Bakes the [NavigationPolygon]. If [onThread] is set to `true` (default), the baking is done on
+   * a separate thread.
    */
   @JvmOverloads
   public fun bakeNavigationPolygon(onThread: Boolean = true): Unit {

@@ -34,36 +34,45 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract base class for 3D physics objects.
- *
- * Abstract base class for 3D physics objects. [godot.CollisionObject3D] can hold any number of [godot.Shape3D]s for collision. Each shape must be assigned to a *shape owner*. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the `shape_owner_*` methods.
- *
- * **Warning:** With a non-uniform scale, this node will likely not behave as expected. It is advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
+ * Abstract base class for 3D physics objects. [CollisionObject3D] can hold any number of [Shape3D]s
+ * for collision. Each shape must be assigned to a *shape owner*. Shape owners are not nodes and do not
+ * appear in the editor, but are accessible through code using the `shape_owner_*` methods.
+ * **Warning:** With a non-uniform scale, this node will likely not behave as expected. It is
+ * advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
  */
 @GodotBaseType
 public open class CollisionObject3D internal constructor() : Node3D() {
   /**
-   * Emitted when the object receives an unhandled [godot.InputEvent]. [position] is the location in world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the surface at that point.
+   * Emitted when the object receives an unhandled [InputEvent]. [position] is the location in world
+   * space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the
+   * normal vector of the surface at that point.
    */
   public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
       "event", "position", "normal", "shapeIdx")
 
   /**
-   * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
-   *
-   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject3D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject3D] is overlapping the [godot.CollisionObject3D] in question.
+   * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable]
+   * to be `true` and at least one [collisionLayer] bit to be set.
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in
+   * the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small.
+   * This signal may also not be emitted if another [CollisionObject3D] is overlapping the
+   * [CollisionObject3D] in question.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
-   * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
-   *
-   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in the expected order if the mouse moves fast enough and the [godot.CollisionObject3D]'s area is small. This signal may also not be emitted if another [godot.CollisionObject3D] is overlapping the [godot.CollisionObject3D] in question.
+   * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to
+   * be `true` and at least one [collisionLayer] bit to be set.
+   * **Note:** Due to the lack of continuous collision detection, this signal may not be emitted in
+   * the expected order if the mouse moves fast enough and the [CollisionObject3D]'s area is small.
+   * This signal may also not be emitted if another [CollisionObject3D] is overlapping the
+   * [CollisionObject3D] in question.
    */
   public val mouseExited: Signal0 by signal()
 
   /**
-   * Defines the behavior in physics when [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
+   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
+   * See [DisableMode] for more details about the different modes.
    */
   public var disableMode: DisableMode
     get() {
@@ -77,9 +86,12 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   /**
-   * The physics layers this CollisionObject3D **is in**. Collision objects can exist in one or more of 32 different layers. See also [collisionMask].
-   *
-   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this CollisionObject3D **is in**. Collision objects can exist in one or more
+   * of 32 different layers. See also [collisionMask].
+   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
+   * that object A scans. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionLayer: Long
     get() {
@@ -93,9 +105,12 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   /**
-   * The physics layers this CollisionObject3D **scans**. Collision objects can scan one or more of 32 different layers. See also [collisionLayer].
-   *
-   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this CollisionObject3D **scans**. Collision objects can scan one or more of
+   * 32 different layers. See also [collisionLayer].
+   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
+   * that object A scans. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
     get() {
@@ -109,7 +124,9 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   /**
-   * The priority used to solve colliding when occurring penetration. The higher the priority is, the lower the penetration into the object will be. This can for example be used to prevent the player from breaking through the boundaries of a level.
+   * The priority used to solve colliding when occurring penetration. The higher the priority is,
+   * the lower the penetration into the object will be. This can for example be used to prevent the
+   * player from breaking through the boundaries of a level.
    */
   public var collisionPriority: Float
     get() {
@@ -123,7 +140,9 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   /**
-   * If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [collisionLayer] bit to be set.
+   * If `true`, this object is pickable. A pickable object can detect the mouse pointer
+   * entering/leaving, and if the mouse is inside it, report input events. Requires at least one
+   * [collisionLayer] bit to be set.
    */
   public var inputRayPickable: Boolean
     get() {
@@ -137,7 +156,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   /**
-   * If `true`, the [godot.CollisionObject3D] will continue to receive input events as the mouse is dragged across its shapes.
+   * If `true`, the [CollisionObject3D] will continue to receive input events as the mouse is
+   * dragged across its shapes.
    */
   public var inputCaptureOnDrag: Boolean
     get() {
@@ -156,9 +176,11 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Receives unhandled [godot.InputEvent]s. [position] is the location in world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the surface at that point. Connect to the [inputEvent] signal to easily pick up these events.
-   *
-   * **Note:** [_inputEvent] requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set.
+   * Receives unhandled [InputEvent]s. [position] is the location in world space of the mouse
+   * pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the
+   * surface at that point. Connect to the [signal input_event] signal to easily pick up these events.
+   * **Note:** [_inputEvent] requires [inputRayPickable] to be `true` and at least one
+   * [collisionLayer] bit to be set.
    */
   public open fun _inputEvent(
     camera: Camera3D,
@@ -170,19 +192,24 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Called when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject3D] won't cause this function to be called.
+   * Called when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable]
+   * to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different
+   * shapes within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseEnter(): Unit {
   }
 
   /**
-   * Called when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes within a single [godot.CollisionObject3D] won't cause this function to be called.
+   * Called when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to be
+   * `true` and at least one [collisionLayer] bit to be set. Note that moving between different shapes
+   * within a single [CollisionObject3D] won't cause this function to be called.
    */
   public open fun _mouseExit(): Unit {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -190,7 +217,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -199,7 +227,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -207,7 +236,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -225,7 +255,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference.
+   * Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future
+   * reference.
    */
   public fun createShapeOwner(owner: Object): Long {
     TransferContext.writeArguments(OBJECT to owner)
@@ -242,7 +273,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns an [godot.Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument.
+   * Returns an [Array] of `owner_id` identifiers. You can use these ids in other methods that take
+   * `owner_id` as an argument.
    */
   public fun getShapeOwners(): PackedInt32Array {
     TransferContext.writeArguments()
@@ -251,7 +283,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Sets the [godot.Transform3D] of the given shape owner.
+   * Sets the [Transform3D] of the given shape owner.
    */
   public fun shapeOwnerSetTransform(ownerId: Long, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to ownerId, TRANSFORM3D to transform)
@@ -259,7 +291,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns the shape owner's [godot.Transform3D].
+   * Returns the shape owner's [Transform3D].
    */
   public fun shapeOwnerGetTransform(ownerId: Long): Transform3D {
     TransferContext.writeArguments(LONG to ownerId)
@@ -294,7 +326,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Adds a [godot.Shape3D] to the shape owner.
+   * Adds a [Shape3D] to the shape owner.
    */
   public fun shapeOwnerAddShape(ownerId: Long, shape: Shape3D): Unit {
     TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
@@ -311,7 +343,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns the [godot.Shape3D] with the given ID from the given shape owner.
+   * Returns the [Shape3D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShape(ownerId: Long, shapeId: Int): Shape3D? {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
@@ -320,7 +352,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns the child index of the [godot.Shape3D] with the given ID from the given shape owner.
+   * Returns the child index of the [Shape3D] with the given ID from the given shape owner.
    */
   public fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Int): Int {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
@@ -357,19 +389,21 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     id: Long,
   ) {
     /**
-     * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [godot.CollisionObject3D].
-     *
-     * Automatically re-added to the physics simulation when the [godot.Node] is processed again.
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
+     * simulation to stop all physics interactions with this [CollisionObject3D].
+     * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     DISABLE_MODE_REMOVE(0),
     /**
-     * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], make the body static. Doesn't affect [godot.Area3D]. [godot.PhysicsBody3D] can't be affected by forces or other bodies while static.
-     *
-     * Automatically set [godot.PhysicsBody3D] back to its original mode when the [godot.Node] is processed again.
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], make the body static. Doesn't
+     * affect [Area3D]. [PhysicsBody3D] can't be affected by forces or other bodies while static.
+     * Automatically set [PhysicsBody3D] back to its original mode when the [Node] is processed
+     * again.
      */
     DISABLE_MODE_MAKE_STATIC(1),
     /**
-     * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], do not affect the physics simulation.
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
+     * simulation.
      */
     DISABLE_MODE_KEEP_ACTIVE(2),
     ;

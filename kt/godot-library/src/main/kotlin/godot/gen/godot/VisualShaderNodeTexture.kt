@@ -19,14 +19,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Performs a 2D texture lookup within the visual shader graph.
- *
- * Performs a lookup operation on the provided texture, with support for multiple texture sources to choose from.
+ * Performs a lookup operation on the provided texture, with support for multiple texture sources to
+ * choose from.
  */
 @GodotBaseType
 public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
-   * Determines the source for the lookup. See [enum Source] for options.
+   * Determines the source for the lookup. See [Source] for options.
    */
   public var source: Source
     get() {
@@ -54,7 +53,8 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   /**
-   * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [enum TextureType] for options.
+   * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [TextureType] for
+   * options.
    */
   public var textureType: TextureType
     get() {
@@ -84,7 +84,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     SOURCE_SCREEN(1),
     /**
-     * Use the texture from this shader's texture built-in (e.g. a texture of a [godot.Sprite2D]).
+     * Use the texture from this shader's texture built-in (e.g. a texture of a [Sprite2D]).
      */
     SOURCE_2D_TEXTURE(2),
     /**
@@ -92,7 +92,8 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     SOURCE_2D_NORMAL(3),
     /**
-     * Use the depth texture captured during the depth prepass. Only available when the depth prepass is used (i.e. in spatial shaders and in the forward_plus or gl_compatibility renderers).
+     * Use the depth texture captured during the depth prepass. Only available when the depth
+     * prepass is used (i.e. in spatial shaders and in the forward_plus or gl_compatibility renderers).
      */
     SOURCE_DEPTH(4),
     /**
@@ -100,15 +101,17 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     SOURCE_PORT(5),
     /**
-     * Use the normal buffer captured during the depth prepass. Only available when the normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
+     * Use the normal buffer captured during the depth prepass. Only available when the
+     * normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
      */
     SOURCE_3D_NORMAL(6),
     /**
-     * Use the roughness buffer captured during the depth prepass. Only available when the normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
+     * Use the roughness buffer captured during the depth prepass. Only available when the
+     * normal-roughness buffer is available (i.e. in spatial shaders and in the forward_plus renderer).
      */
     SOURCE_ROUGHNESS(7),
     /**
-     * Represents the size of the [enum Source] enum.
+     * Represents the size of the [Source] enum.
      */
     SOURCE_MAX(8),
     ;
@@ -135,11 +138,12 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
      */
     TYPE_COLOR(1),
     /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
+     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture
+     * for proper usage as normal map.
      */
     TYPE_NORMAL_MAP(2),
     /**
-     * Represents the size of the [enum TextureType] enum.
+     * Represents the size of the [TextureType] enum.
      */
     TYPE_MAX(3),
     ;

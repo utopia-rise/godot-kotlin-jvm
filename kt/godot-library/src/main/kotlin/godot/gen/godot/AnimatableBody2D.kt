@@ -17,16 +17,19 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A 2D physics body that can't be moved by external forces. When moved manually, it affects other bodies in its path.
- *
- * An animatable 2D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [godot.AnimationMixer]s (with [godot.AnimationMixer.callbackModeProcess] set to [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [godot.RemoteTransform2D].
- *
- * When [godot.AnimatableBody2D] is moved, its linear and angular velocity are estimated and used to affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other moving objects.
+ * An animatable 2D physics body. It can't be moved by external forces or contacts, but can be moved
+ * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
+ * set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform2D].
+ * When [AnimatableBody2D] is moved, its linear and angular velocity are estimated and used to
+ * affect other physics bodies in its path. This makes it useful for moving platforms, doors, and other
+ * moving objects.
  */
 @GodotBaseType
 public open class AnimatableBody2D : StaticBody2D() {
   /**
-   * If `true`, the body's movement will be synchronized to the physics frame. This is useful when animating movement via [godot.AnimationPlayer], for example on moving platforms. Do **not** use together with [godot.PhysicsBody2D.moveAndCollide].
+   * If `true`, the body's movement will be synchronized to the physics frame. This is useful when
+   * animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together
+   * with [PhysicsBody2D.moveAndCollide].
    */
   public var syncToPhysics: Boolean
     get() {

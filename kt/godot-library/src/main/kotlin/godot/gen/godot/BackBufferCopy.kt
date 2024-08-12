@@ -23,16 +23,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node that copies a region of the screen to a buffer for access in shader code.
- *
- * Node for back-buffering the currently-displayed screen. The region defined in the [godot.BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen according to the [copyMode]. It can be accessed in shader scripts using the screen texture (i.e. a uniform sampler with `hint_screen_texture`).
- *
- * **Note:** Since this node inherits from [godot.Node2D] (and not [godot.Control]), anchors and margins won't apply to child [godot.Control]-derived nodes. This can be problematic when resizing the window. To avoid this, add [godot.Control]-derived nodes as *siblings* to the [godot.BackBufferCopy] node instead of adding them as children.
+ * Node for back-buffering the currently-displayed screen. The region defined in the
+ * [BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen
+ * according to the [copyMode]. It can be accessed in shader scripts using the screen texture (i.e. a
+ * uniform sampler with `hint_screen_texture`).
+ * **Note:** Since this node inherits from [Node2D] (and not [Control]), anchors and margins won't
+ * apply to child [Control]-derived nodes. This can be problematic when resizing the window. To avoid
+ * this, add [Control]-derived nodes as *siblings* to the [BackBufferCopy] node instead of adding them
+ * as children.
  */
 @GodotBaseType
 public open class BackBufferCopy : Node2D() {
   /**
-   * Buffer mode. See [enum CopyMode] constants.
+   * Buffer mode. See [CopyMode] constants.
    */
   public var copyMode: CopyMode
     get() {
@@ -46,7 +49,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
   /**
-   * The area covered by the [godot.BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
   @CoreTypeLocalCopy
   public var rect: Rect2
@@ -66,7 +69,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   /**
-   * The area covered by the [godot.BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
+   * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -93,15 +96,16 @@ public open class BackBufferCopy : Node2D() {
     id: Long,
   ) {
     /**
-     * Disables the buffering mode. This means the [godot.BackBufferCopy] node will directly use the portion of screen it covers.
+     * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the
+     * portion of screen it covers.
      */
     COPY_MODE_DISABLED(0),
     /**
-     * [godot.BackBufferCopy] buffers a rectangular region.
+     * [BackBufferCopy] buffers a rectangular region.
      */
     COPY_MODE_RECT(1),
     /**
-     * [godot.BackBufferCopy] buffers the entire screen.
+     * [BackBufferCopy] buffers the entire screen.
      */
     COPY_MODE_VIEWPORT(2),
     ;

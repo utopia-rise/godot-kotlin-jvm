@@ -22,8 +22,6 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A [godot.core.Vector3] parameter to be used within the visual shader graph.
- *
  * Translated to `uniform vec3` in the shader language.
  */
 @GodotBaseType

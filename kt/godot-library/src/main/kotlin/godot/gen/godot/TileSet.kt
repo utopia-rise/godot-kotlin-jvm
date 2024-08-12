@@ -34,21 +34,18 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Tile library for tilemaps.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
- *
- * A TileSet is a library of tiles for a [godot.TileMap]. A TileSet handles a list of [godot.TileSetSource], each of them storing a set of tiles.
- *
- * Tiles can either be from a [godot.TileSetAtlasSource], which renders tiles out of a texture with support for physics, navigation, etc., or from a [godot.TileSetScenesCollectionSource], which exposes scene-based tiles.
- *
- * Tiles are referenced by using three IDs: their source ID, their atlas coordinates ID, and their alternative tile ID.
- *
- * A TileSet can be configured so that its tiles expose more or fewer properties. To do so, the TileSet resources use property layers, which you can add or remove depending on your needs.
- *
- * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer has dedicated properties (physics layer and mask), so you may add several TileSet physics layers for each type of collision you need.
- *
+ * A TileSet is a library of tiles for a [TileMap]. A TileSet handles a list of [TileSetSource],
+ * each of them storing a set of tiles.
+ * Tiles can either be from a [TileSetAtlasSource], which renders tiles out of a texture with
+ * support for physics, navigation, etc., or from a [TileSetScenesCollectionSource], which exposes
+ * scene-based tiles.
+ * Tiles are referenced by using three IDs: their source ID, their atlas coordinates ID, and their
+ * alternative tile ID.
+ * A TileSet can be configured so that its tiles expose more or fewer properties. To do so, the
+ * TileSet resources use property layers, which you can add or remove depending on your needs.
+ * For example, adding a physics layer allows giving collision shapes to your tiles. Each layer has
+ * dedicated properties (physics layer and mask), so you may add several TileSet physics layers for
+ * each type of collision you need.
  * See the functions to add new layers for more information.
  */
 @GodotBaseType
@@ -68,7 +65,8 @@ public open class TileSet : Resource() {
     }
 
   /**
-   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the TileMap grid.
+   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles
+   * are indexed in the TileMap grid.
    */
   public var tileLayout: TileLayout
     get() {
@@ -82,7 +80,8 @@ public open class TileSet : Resource() {
     }
 
   /**
-   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis.
+   * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset
+   * axis.
    */
   public var tileOffsetAxis: TileOffsetAxis
     get() {
@@ -96,7 +95,8 @@ public open class TileSet : Resource() {
     }
 
   /**
-   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
+   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
+   * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    */
   @CoreTypeLocalCopy
   public var tileSize: Vector2i
@@ -130,7 +130,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
+   * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
+   * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -154,7 +155,8 @@ public open class TileSet : Resource() {
 
 
   /**
-   * Returns a new unused source ID. This generated ID is the same that a call to [addSource] would return.
+   * Returns a new unused source ID. This generated ID is the same that a call to [addSource] would
+   * return.
    */
   public fun getNextSourceId(): Int {
     TransferContext.writeArguments()
@@ -163,11 +165,11 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a [godot.TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
-   *
+   * Adds a [TileSetSource] to the TileSet. If [atlasSourceIdOverride] is not -1, also set its
+   * source ID. Otherwise, a unique identifier is automatically generated.
    * The function returns the added source ID or -1 if the source could not be added.
-   *
-   * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [godot.TileSet], it will be removed from that one.
+   * **Warning:** A source cannot belong to two TileSets at the same time. If the added source was
+   * attached to another [TileSet], it will be removed from that one.
    */
   @JvmOverloads
   public fun addSource(source: TileSetSource, atlasSourceIdOverride: Int = -1): Int {
@@ -193,7 +195,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the number of [godot.TileSetSource] in this TileSet.
+   * Returns the number of [TileSetSource] in this TileSet.
    */
   public fun getSourceCount(): Int {
     TransferContext.writeArguments()
@@ -220,7 +222,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the [godot.TileSetSource] with ID [sourceId].
+   * Returns the [TileSetSource] with ID [sourceId].
    */
   public fun getSource(sourceId: Int): TileSetSource? {
     TransferContext.writeArguments(LONG to sourceId.toLong())
@@ -238,8 +240,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds an occlusion layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
-   *
+   * Adds an occlusion layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Occlusion layers allow assigning occlusion polygons to atlas tiles.
    */
   @JvmOverloads
@@ -249,7 +251,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the occlusion layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
+   * Moves the occlusion layer at index [layerIndex] to the given position [toPosition] in the
+   * array. Also updates the atlas tiles accordingly.
    */
   public fun moveOcclusionLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -265,7 +268,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet occlusion layer.
+   * Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet
+   * occlusion layer.
    */
   public fun setOcclusionLayerLightMask(layerIndex: Int, lightMask: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to lightMask.toLong())
@@ -308,8 +312,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a physics layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
-   *
+   * Adds a physics layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Physics layers allow assigning collision polygons to atlas tiles.
    */
   @JvmOverloads
@@ -319,7 +323,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the physics layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
+   * Moves the physics layer at index [layerIndex] to the given position [toPosition] in the array.
+   * Also updates the atlas tiles accordingly.
    */
   public fun movePhysicsLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -335,7 +340,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer.
+   * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics
+   * layer.
    */
   public fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layer)
@@ -343,7 +349,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in.
+   * Returns the collision layer (as in the physics server) bodies on the given TileSet's physics
+   * layer are in.
    */
   public fun getPhysicsLayerCollisionLayer(layerIndex: Int): Long {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -352,7 +359,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics layer.
+   * Sets the physics layer (as in the physics server) for bodies in the given TileSet physics
+   * layer.
    */
   public fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to mask)
@@ -396,7 +404,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
+   * Adds a new terrain set at the given position [toPosition] in the array. If [toPosition] is -1,
+   * adds it at the end of the array.
    */
   @JvmOverloads
   public fun addTerrainSet(toPosition: Int = -1): Unit {
@@ -405,7 +414,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the terrain set at index [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
+   * Moves the terrain set at index [terrainSet] to the given position [toPosition] in the array.
+   * Also updates the atlas tiles accordingly.
    */
   public fun moveTerrainSet(terrainSet: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
@@ -421,7 +431,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains.
+   * Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the
+   * neighboring tiles' terrains.
    */
   public fun setTerrainSetMode(terrainSet: Int, mode: TerrainMode): Unit {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to mode.id)
@@ -447,7 +458,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
+   * Adds a new terrain to the given terrain set [terrainSet] at the given position [toPosition] in
+   * the array. If [toPosition] is -1, adds it at the end of the array.
    */
   @JvmOverloads
   public fun addTerrain(terrainSet: Int, toPosition: Int = -1): Unit {
@@ -456,7 +468,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the terrain at index [terrainIndex] for terrain set [terrainSet] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
+   * Moves the terrain at index [terrainIndex] for terrain set [terrainSet] to the given position
+   * [toPosition] in the array. Also updates the atlas tiles accordingly.
    */
   public fun moveTerrain(
     terrainSet: Int,
@@ -468,7 +481,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Removes the terrain at index [terrainIndex] in the given terrain set [terrainSet]. Also updates the atlas tiles accordingly.
+   * Removes the terrain at index [terrainIndex] in the given terrain set [terrainSet]. Also updates
+   * the atlas tiles accordingly.
    */
   public fun removeTerrain(terrainSet: Int, terrainIndex: Int): Unit {
     TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
@@ -497,7 +511,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets a terrain's color. This color is used for identifying the different terrains in the TileSet editor.
+   * Sets a terrain's color. This color is used for identifying the different terrains in the
+   * TileSet editor.
    */
   public fun setTerrainColor(
     terrainSet: Int,
@@ -527,8 +542,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a navigation layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
-   *
+   * Adds a navigation layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Navigation layers allow assigning a navigable area to atlas tiles.
    */
   @JvmOverloads
@@ -538,7 +553,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the navigation layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
+   * Moves the navigation layer at index [layerIndex] to the given position [toPosition] in the
+   * array. Also updates the atlas tiles accordingly.
    */
   public fun moveNavigationLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -554,7 +570,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer.
+   * Sets the navigation layers (as in the navigation server) for navigation regions in the given
+   * TileSet navigation layer.
    */
   public fun setNavigationLayerLayers(layerIndex: Int, layers: Long): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layers)
@@ -562,7 +579,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer.
+   * Returns the navigation layers (as in the Navigation server) of the given TileSet navigation
+   * layer.
    */
   public fun getNavigationLayerLayers(layerIndex: Int): Long {
     TransferContext.writeArguments(LONG to layerIndex.toLong())
@@ -571,7 +589,9 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Based on [value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex], given a navigation_layers [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified navigation layer of the TileSet navigation
+   * data layer identified by the given [layerIndex], given a navigation_layers [layerNumber] between 1
+   * and 32.
    */
   public fun setNavigationLayerLayerValue(
     layerIndex: Int,
@@ -583,7 +603,9 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [layerIndex] is enabled, given a navigation_layers [layerNumber] between 1 and 32.
+   * Returns whether or not the specified navigation layer of the TileSet navigation data layer
+   * identified by the given [layerIndex] is enabled, given a navigation_layers [layerNumber] between 1
+   * and 32.
    */
   public fun getNavigationLayerLayerValue(layerIndex: Int, layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong())
@@ -601,8 +623,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a custom data layer to the TileSet at the given position [toPosition] in the array. If [toPosition] is -1, adds it at the end of the array.
-   *
+   * Adds a custom data layer to the TileSet at the given position [toPosition] in the array. If
+   * [toPosition] is -1, adds it at the end of the array.
    * Custom data layers allow assigning custom properties to atlas tiles.
    */
   @JvmOverloads
@@ -612,7 +634,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Moves the custom data layer at index [layerIndex] to the given position [toPosition] in the array. Also updates the atlas tiles accordingly.
+   * Moves the custom data layer at index [layerIndex] to the given position [toPosition] in the
+   * array. Also updates the atlas tiles accordingly.
    */
   public fun moveCustomDataLayer(layerIndex: Int, toPosition: Int): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
@@ -637,7 +660,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error.
+   * Sets the name of the custom data layer identified by the given index. Names are identifiers of
+   * the layer therefore if the name is already taken it will fail and raise an error.
    */
   public fun setCustomDataLayerName(layerIndex: Int, layerName: String): Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), STRING to layerName)
@@ -671,10 +695,11 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
-   *
-   * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target source when one is available.
-   *
+   * Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers
+   * to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept
+   * the same when using source-level proxies.
+   * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will
+   * find and use the proxy's target source when one is available.
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
   public fun setSourceLevelTileProxy(sourceFrom: Int, sourceTo: Int): Unit {
@@ -684,7 +709,6 @@ public open class TileSet : Resource() {
 
   /**
    * Returns the source-level proxy for the given source identifier.
-   *
    * If the TileSet has no proxy for the given identifier, returns -1.
    */
   public fun getSourceLevelTileProxy(sourceFrom: Int): Int {
@@ -711,10 +735,11 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers. The alternative tile ID is kept the same when using coordinates-level proxies.
-   *
-   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.
-   *
+   * Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile
+   * identifiers to another set of identifiers. The alternative tile ID is kept the same when using
+   * coordinates-level proxies.
+   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will
+   * find and use the proxy's target tile when one is available.
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
   public fun setCoordsLevelTileProxy(
@@ -728,8 +753,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).
-   *
+   * Returns the coordinate-level proxy for the given identifiers. The returned array contains the
+   * two target identifiers of the proxy (source ID and atlas coordinates ID).
    * If the TileSet has no proxy for the given identifiers, returns an empty Array.
    */
   public fun getCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): VariantArray<Any?> {
@@ -756,10 +781,10 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Create an alternative-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers.
-   *
-   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will find and use the proxy's target tile when one is available.
-   *
+   * Create an alternative-level proxy for the given identifiers. A proxy will map set of tile
+   * identifiers to another set of identifiers.
+   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will
+   * find and use the proxy's target tile when one is available.
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
   public fun setAlternativeLevelTileProxy(
@@ -775,8 +800,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the alternative-level proxy for the given identifiers. The returned array contains the three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).
-   *
+   * Returns the alternative-level proxy for the given identifiers. The returned array contains the
+   * three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).
    * If the TileSet has no proxy for the given identifiers, returns an empty Array.
    */
   public fun getAlternativeLevelTileProxy(
@@ -815,11 +840,12 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * According to the configured proxies, maps the provided identifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.
-   *
-   * This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.
-   *
-   * If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.
+   * According to the configured proxies, maps the provided identifiers to a new set of identifiers.
+   * The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.
+   * This function first look for matching alternative-level proxies, then coordinates-level
+   * proxies, then source-level proxies.
+   * If no proxy corresponding to provided identifiers are found, returns the same values the ones
+   * used as arguments.
    */
   public fun mapTileProxy(
     sourceFrom: Int,
@@ -848,7 +874,8 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Adds a [godot.TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [index].
+   * Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the
+   * given [index].
    */
   @JvmOverloads
   public fun addPattern(pattern: TileMapPattern, index: Int = -1): Int {
@@ -858,7 +885,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the [godot.TileMapPattern] at the given [index].
+   * Returns the [TileMapPattern] at the given [index].
    */
   @JvmOverloads
   public fun getPattern(index: Int = -1): TileMapPattern? {
@@ -868,7 +895,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Remove the [godot.TileMapPattern] at the given index.
+   * Remove the [TileMapPattern] at the given index.
    */
   public fun removePattern(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -876,7 +903,7 @@ public open class TileSet : Resource() {
   }
 
   /**
-   * Returns the number of [godot.TileMapPattern] this tile set handles.
+   * Returns the number of [TileMapPattern] this tile set handles.
    */
   public fun getPatternsCount(): Int {
     TransferContext.writeArguments()
@@ -893,8 +920,7 @@ public open class TileSet : Resource() {
     TILE_SHAPE_SQUARE(0),
     /**
      * Diamond tile shape (for isometric look).
-     *
-     * **Note:** Isometric [godot.TileSet] works best if [godot.TileMap] and all its layers have Y-sort enabled.
+     * **Note:** Isometric [TileSet] works best if [TileMap] and all its layers have Y-sort enabled.
      */
     TILE_SHAPE_ISOMETRIC(1),
     /**
@@ -921,7 +947,8 @@ public open class TileSet : Resource() {
     id: Long,
   ) {
     /**
-     * Tile coordinates layout where both axis stay consistent with their respective local horizontal and vertical axis.
+     * Tile coordinates layout where both axis stay consistent with their respective local
+     * horizontal and vertical axis.
      */
     TILE_LAYOUT_STACKED(0),
     /**
@@ -929,19 +956,23 @@ public open class TileSet : Resource() {
      */
     TILE_LAYOUT_STACKED_OFFSET(1),
     /**
-     * Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes down-right.
+     * Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes
+     * down-right.
      */
     TILE_LAYOUT_STAIRS_RIGHT(2),
     /**
-     * Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes down-right.
+     * Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes
+     * down-right.
      */
     TILE_LAYOUT_STAIRS_DOWN(3),
     /**
-     * Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes down-right.
+     * Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes
+     * down-right.
      */
     TILE_LAYOUT_DIAMOND_RIGHT(4),
     /**
-     * Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes down-left.
+     * Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes
+     * down-left.
      */
     TILE_LAYOUT_DIAMOND_DOWN(5),
     ;

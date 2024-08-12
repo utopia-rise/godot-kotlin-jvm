@@ -20,9 +20,8 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A visual shader node that represents a "varying" shader value.
- *
- * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex shader to Fragment shader.
+ * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
+ * shader to Fragment shader.
  */
 @GodotBaseType
 public open class VisualShaderNodeVarying internal constructor() : VisualShaderNode() {

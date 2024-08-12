@@ -24,14 +24,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A stream peer that handles TLS connections.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
- *
- * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or accept a single TLS client connection.
- *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
+ * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or
+ * accept a single TLS client connection.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
+ * export preset before exporting the project or using one-click deploy. Otherwise, network
+ * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
@@ -41,7 +38,8 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Poll the connection to check for incoming bytes. Call this right before [godot.StreamPeer.getAvailableBytes] for it to work properly.
+   * Poll the connection to check for incoming bytes. Call this right before
+   * [StreamPeer.getAvailableBytes] for it to work properly.
    */
   public fun poll(): Unit {
     TransferContext.writeArguments()
@@ -49,7 +47,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Accepts a peer connection as a server using the given [serverOptions]. See [godot.TLSOptions.server].
+   * Accepts a peer connection as a server using the given [serverOptions]. See [TLSOptions.server].
    */
   public fun acceptStream(stream: StreamPeer, serverOptions: TLSOptions): GodotError {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
@@ -58,7 +56,10 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Connects to a peer using an underlying [godot.StreamPeer] [stream] and verifying the remote certificate is correctly signed for the given [commonName]. You can pass the optional [clientOptions] parameter to customize the trusted certification authorities, or disable the common name verification. See [godot.TLSOptions.client] and [godot.TLSOptions.clientUnsafe].
+   * Connects to a peer using an underlying [StreamPeer] [stream] and verifying the remote
+   * certificate is correctly signed for the given [commonName]. You can pass the optional
+   * [clientOptions] parameter to customize the trusted certification authorities, or disable the
+   * common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
   public fun connectToStream(
@@ -72,7 +73,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Returns the status of the connection. See [enum Status] for values.
+   * Returns the status of the connection. See [Status] for values.
    */
   public fun getStatus(): Status {
     TransferContext.writeArguments()
@@ -81,7 +82,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Returns the underlying [godot.StreamPeer] connection, used in [acceptStream] or [connectToStream].
+   * Returns the underlying [StreamPeer] connection, used in [acceptStream] or [connectToStream].
    */
   public fun getStream(): StreamPeer? {
     TransferContext.writeArguments()
@@ -101,23 +102,24 @@ public open class StreamPeerTLS : StreamPeer() {
     id: Long,
   ) {
     /**
-     * A status representing a [godot.StreamPeerTLS] that is disconnected.
+     * A status representing a [StreamPeerTLS] that is disconnected.
      */
     STATUS_DISCONNECTED(0),
     /**
-     * A status representing a [godot.StreamPeerTLS] during handshaking.
+     * A status representing a [StreamPeerTLS] during handshaking.
      */
     STATUS_HANDSHAKING(1),
     /**
-     * A status representing a [godot.StreamPeerTLS] that is connected to a host.
+     * A status representing a [StreamPeerTLS] that is connected to a host.
      */
     STATUS_CONNECTED(2),
     /**
-     * A status representing a [godot.StreamPeerTLS] in error state.
+     * A status representing a [StreamPeerTLS] in error state.
      */
     STATUS_ERROR(3),
     /**
-     * An error status that shows a mismatch in the TLS certificate domain presented by the host and the domain requested for validation.
+     * An error status that shows a mismatch in the TLS certificate domain presented by the host and
+     * the domain requested for validation.
      */
     STATUS_ERROR_HOSTNAME_MISMATCH(4),
     ;

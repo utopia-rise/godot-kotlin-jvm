@@ -23,39 +23,33 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides methods for generating pseudo-random numbers.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/math/random_number_generation.html]($DOCS_URL/tutorials/math/random_number_generation.html)
- *
- * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [godot.PCG32](https://www.pcg-random.org/).
- *
+ * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses
+ * [url=https://www.pcg-random.org/]PCG32[/url].
  * **Note:** The underlying algorithm is an implementation detail and should not be depended upon.
- *
  * To generate a random float number (within a given range) based on a time-dependent seed:
- *
- * ```
- * 		var rng = RandomNumberGenerator.new()
- * 		func _ready():
- * 		    var my_random_number = rng.randf_range(-10.0, 10.0)
- * 		```
+ * [codeblock]
+ * var rng = RandomNumberGenerator.new()
+ * func _ready():
+ *     var my_random_number = rng.randf_range(-10.0, 10.0)
+ * [/codeblock]
  */
 @GodotBaseType
 public open class RandomNumberGenerator : RefCounted() {
   /**
-   * Initializes the random number generator state based on the given seed value. A given seed will give a reproducible sequence of pseudo-random numbers.
-   *
-   * **Note:** The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.
-   *
-   * **Note:** Setting this property produces a side effect of changing the internal [state], so make sure to initialize the seed *before* modifying the [state]:
-   *
-   * **Note:** The default value of this property is pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
-   *
-   * ```
-   * 			var rng = RandomNumberGenerator.new()
-   * 			rng.seed = hash("Godot")
-   * 			rng.state = 100 # Restore to some previously saved state.
-   * 			```
+   * Initializes the random number generator state based on the given seed value. A given seed will
+   * give a reproducible sequence of pseudo-random numbers.
+   * **Note:** The RNG does not have an avalanche effect, and can output similar random streams
+   * given similar seeds. Consider using a hash function to improve your seed quality if they're
+   * sourced externally.
+   * **Note:** Setting this property produces a side effect of changing the internal [state], so
+   * make sure to initialize the seed *before* modifying the [state]:
+   * **Note:** The default value of this property is pseudo-random, and changes when calling
+   * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
+   * [codeblock]
+   * var rng = RandomNumberGenerator.new()
+   * rng.seed = hash("Godot")
+   * rng.state = 100 # Restore to some previously saved state.
+   * [/codeblock]
    */
   public var seed: Long
     get() {
@@ -69,20 +63,22 @@ public open class RandomNumberGenerator : RefCounted() {
     }
 
   /**
-   * The current state of the random number generator. Save and restore this property to restore the generator to a previous state:
-   *
-   * ```
-   * 			var rng = RandomNumberGenerator.new()
-   * 			print(rng.randf())
-   * 			var saved_state = rng.state # Store current state.
-   * 			print(rng.randf()) # Advance internal state.
-   * 			rng.state = saved_state # Restore the state.
-   * 			print(rng.randf()) # Prints the same value as in previous.
-   * 			```
-   *
-   * **Note:** Do not set state to arbitrary values, since the random number generator requires the state to have certain qualities to behave properly. It should only be set to values that came from the state property itself. To initialize the random number generator with arbitrary input, use [seed] instead.
-   *
-   * **Note:** The default value of this property is pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
+   * The current state of the random number generator. Save and restore this property to restore the
+   * generator to a previous state:
+   * [codeblock]
+   * var rng = RandomNumberGenerator.new()
+   * print(rng.randf())
+   * var saved_state = rng.state # Store current state.
+   * print(rng.randf()) # Advance internal state.
+   * rng.state = saved_state # Restore the state.
+   * print(rng.randf()) # Prints the same value as in previous.
+   * [/codeblock]
+   * **Note:** Do not set state to arbitrary values, since the random number generator requires the
+   * state to have certain qualities to behave properly. It should only be set to values that came from
+   * the state property itself. To initialize the random number generator with arbitrary input, use
+   * [seed] instead.
+   * **Note:** The default value of this property is pseudo-random, and changes when calling
+   * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
    */
   public var state: Long
     get() {
@@ -119,7 +115,9 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified [mean] and a standard [deviation]. This is also called Gaussian distribution.
+   * Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url]
+   * pseudo-random number, using Box-Muller transform with the specified [mean] and a standard
+   * [deviation]. This is also called Gaussian distribution.
    */
   @JvmOverloads
   public fun randfn(mean: Float = 0.0f, deviation: Float = 1.0f): Float {
@@ -147,7 +145,9 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Sets up a time-based seed for this [godot.RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [godot.RandomNumberGenerator] instances can use different seeds.
+   * Sets up a time-based seed for this [RandomNumberGenerator] instance. Unlike the [@GlobalScope]
+   * random number generation functions, different [RandomNumberGenerator] instances can use different
+   * seeds.
    */
   public fun randomize(): Unit {
     TransferContext.writeArguments()

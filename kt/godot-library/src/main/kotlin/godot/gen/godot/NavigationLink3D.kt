@@ -29,17 +29,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A link between two positions on [godot.NavigationRegion3D]s that agents can be routed through.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/navigation/navigation_using_navigationlinks.html]($DOCS_URL/tutorials/navigation/navigation_using_navigationlinks.html)
- *
- * A link between two positions on [godot.NavigationRegion3D]s that agents can be routed through. These positions can be on the same [godot.NavigationRegion3D] or on two different ones. Links are useful to express navigation methods other than traveling along the surface of the navigation mesh, such as ziplines, teleporters, or gaps that can be jumped across.
+ * A link between two positions on [NavigationRegion3D]s that agents can be routed through. These
+ * positions can be on the same [NavigationRegion3D] or on two different ones. Links are useful to
+ * express navigation methods other than traveling along the surface of the navigation mesh, such as
+ * ziplines, teleporters, or gaps that can be jumped across.
  */
 @GodotBaseType
 public open class NavigationLink3D : Node3D() {
   /**
-   * Whether this link is currently active. If `false`, [godot.NavigationServer3D.mapGetPath] will ignore this link.
+   * Whether this link is currently active. If `false`, [NavigationServer3D.mapGetPath] will ignore
+   * this link.
    */
   public var enabled: Boolean
     get() {
@@ -53,7 +52,8 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * Whether this link can be traveled in both directions or only from [startPosition] to [endPosition].
+   * Whether this link can be traveled in both directions or only from [startPosition] to
+   * [endPosition].
    */
   public var bidirectional: Boolean
     get() {
@@ -67,7 +67,8 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * A bitfield determining all navigation layers the link belongs to. These navigation layers will be checked when requesting a path with [godot.NavigationServer3D.mapGetPath].
+   * A bitfield determining all navigation layers the link belongs to. These navigation layers will
+   * be checked when requesting a path with [NavigationServer3D.mapGetPath].
    */
   public var navigationLayers: Long
     get() {
@@ -82,10 +83,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Starting position of the link.
-   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
-   *
-   * The distance the link will search is controlled by [godot.NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by
+   * [NavigationServer3D.mapSetLinkConnectionRadius].
    */
   @CoreTypeLocalCopy
   public var startPosition: Vector3
@@ -101,10 +101,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Ending position of the link.
-   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
-   *
-   * The distance the link will search is controlled by [godot.NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by
+   * [NavigationServer3D.mapSetLinkConnectionRadius].
    */
   @CoreTypeLocalCopy
   public var endPosition: Vector3
@@ -119,7 +118,8 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * When pathfinding enters this link from another regions navigation mesh the [enterCost] value is added to the path distance for determining the shortest path.
+   * When pathfinding enters this link from another regions navigation mesh the [enterCost] value is
+   * added to the path distance for determining the shortest path.
    */
   public var enterCost: Float
     get() {
@@ -133,7 +133,8 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * When pathfinding moves along the link the traveled distance is multiplied with [travelCost] for determining the shortest path.
+   * When pathfinding moves along the link the traveled distance is multiplied with [travelCost] for
+   * determining the shortest path.
    */
   public var travelCost: Float
     get() {
@@ -153,10 +154,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Starting position of the link.
-   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
-   *
-   * The distance the link will search is controlled by [godot.NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by
+   * [NavigationServer3D.mapSetLinkConnectionRadius].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -181,10 +181,9 @@ public open class NavigationLink3D : Node3D() {
 
   /**
    * Ending position of the link.
-   *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
-   *
-   * The distance the link will search is controlled by [godot.NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by
+   * [NavigationServer3D.mapSetLinkConnectionRadius].
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -208,7 +207,7 @@ public open class NavigationLink3D : Node3D() {
 
 
   /**
-   * Returns the [RID] of this link on the [godot.NavigationServer3D].
+   * Returns the [RID] of this link on the [NavigationServer3D].
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()
@@ -217,7 +216,8 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
+   * given a [layerNumber] between 1 and 32.
    */
   public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -225,7 +225,8 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
+   * a [layerNumber] between 1 and 32.
    */
   public fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())

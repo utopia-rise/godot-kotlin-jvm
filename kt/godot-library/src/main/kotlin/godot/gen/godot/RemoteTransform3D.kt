@@ -20,16 +20,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * RemoteTransform3D pushes its own [godot.Transform3D] to another [godot.Node3D] derived Node in the scene.
- *
- * RemoteTransform3D pushes its own [godot.Transform3D] to another [godot.Node3D] derived Node (called the remote node) in the scene.
- *
- * It can be set to update another Node's position, rotation and/or scale. It can use either global or local coordinates.
+ * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the
+ * remote node) in the scene.
+ * It can be set to update another Node's position, rotation and/or scale. It can use either global
+ * or local coordinates.
  */
 @GodotBaseType
 public open class RemoteTransform3D : Node3D() {
   /**
-   * The [godot.core.NodePath] to the remote node, relative to the RemoteTransform3D's position in the scene.
+   * The [NodePath] to the remote node, relative to the RemoteTransform3D's position in the scene.
    */
   public var remotePath: NodePath
     get() {
@@ -104,7 +103,8 @@ public open class RemoteTransform3D : Node3D() {
   }
 
   /**
-   * [godot.RemoteTransform3D] caches the remote node. It may not notice if the remote node disappears; [forceUpdateCache] forces it to update the cache again.
+   * [RemoteTransform3D] caches the remote node. It may not notice if the remote node disappears;
+   * [forceUpdateCache] forces it to update the cache again.
    */
   public fun forceUpdateCache(): Unit {
     TransferContext.writeArguments()

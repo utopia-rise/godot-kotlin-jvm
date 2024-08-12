@@ -26,9 +26,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A base dialog used for user notification.
- *
- * The default use of [godot.AcceptDialog] is to allow it to only be accepted or closed, with the same result. However, the [confirmed] and [canceled] signals allow to make the two actions different, and the [addButton] method allows to add custom buttons and actions.
+ * The default use of [AcceptDialog] is to allow it to only be accepted or closed, with the same
+ * result. However, the [signal confirmed] and [signal canceled] signals allow to make the two actions
+ * different, and the [addButton] method allows to add custom buttons and actions.
  */
 @GodotBaseType
 public open class AcceptDialog : Window() {
@@ -76,9 +76,14 @@ public open class AcceptDialog : Window() {
     }
 
   /**
-   * If `true`, the dialog is hidden when the OK button is pressed. You can set it to `false` if you want to do e.g. input validation when receiving the [confirmed] signal, and handle hiding the dialog in your own logic.
-   *
-   * **Note:** Some nodes derived from this class can have a different default value, and potentially their own built-in logic overriding this setting. For example [godot.FileDialog] defaults to `false`, and has its own input validation code that is called when you press OK, which eventually hides the dialog if the input is valid. As such, this property can't be used in [godot.FileDialog] to disable hiding the dialog when pressing OK.
+   * If `true`, the dialog is hidden when the OK button is pressed. You can set it to `false` if you
+   * want to do e.g. input validation when receiving the [signal confirmed] signal, and handle hiding
+   * the dialog in your own logic.
+   * **Note:** Some nodes derived from this class can have a different default value, and
+   * potentially their own built-in logic overriding this setting. For example [FileDialog] defaults to
+   * `false`, and has its own input validation code that is called when you press OK, which eventually
+   * hides the dialog if the input is valid. As such, this property can't be used in [FileDialog] to
+   * disable hiding the dialog when pressing OK.
    */
   public var dialogHideOnOk: Boolean
     get() {
@@ -125,9 +130,9 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Returns the OK [godot.Button] instance.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * Returns the OK [Button] instance.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getOkButton(): Button? {
     TransferContext.writeArguments()
@@ -137,8 +142,8 @@ public open class AcceptDialog : Window() {
 
   /**
    * Returns the label used for built-in text.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getLabel(): Label? {
     TransferContext.writeArguments()
@@ -147,10 +152,9 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Adds a button with label [text] and a custom [action] to the dialog and returns the created button. [action] will be passed to the [customAction] signal when pressed.
-   *
+   * Adds a button with label [text] and a custom [action] to the dialog and returns the created
+   * button. [action] will be passed to the [signal custom_action] signal when pressed.
    * If `true`, [right] will place the button to the right of any sibling buttons.
-   *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   @JvmOverloads
@@ -165,8 +169,8 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Adds a button with label [name] and a cancel action to the dialog and returns the created button.
-   *
+   * Adds a button with label [name] and a cancel action to the dialog and returns the created
+   * button.
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   public fun addCancelButton(name: String): Button? {
@@ -176,7 +180,9 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Removes the [button] from the dialog. Does NOT free the [button]. The [button] must be a [godot.Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button] will no longer emit this dialog's [customAction] or [canceled] signals.
+   * Removes the [button] from the dialog. Does NOT free the [button]. The [button] must be a
+   * [Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button]
+   * will no longer emit this dialog's [signal custom_action] or [signal canceled] signals.
    */
   public fun removeButton(button: Control): Unit {
     TransferContext.writeArguments(OBJECT to button)
@@ -184,7 +190,8 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Registers a [godot.LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
+   * Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be
+   * accepted.
    */
   public fun registerTextEnter(lineEdit: Control): Unit {
     TransferContext.writeArguments(OBJECT to lineEdit)

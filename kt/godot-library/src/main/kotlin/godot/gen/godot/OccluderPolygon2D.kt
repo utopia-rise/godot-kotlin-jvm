@@ -21,14 +21,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Defines a 2D polygon for LightOccluder2D.
- *
- * Editor facility that helps you draw a 2D polygon used as resource for [godot.LightOccluder2D].
+ * Editor facility that helps you draw a 2D polygon used as resource for [LightOccluder2D].
  */
 @GodotBaseType
 public open class OccluderPolygon2D : Resource() {
   /**
-   * If `true`, closes the polygon. A closed OccluderPolygon2D occludes the light coming from any direction. An opened OccluderPolygon2D occludes the light only at its outline's direction.
+   * If `true`, closes the polygon. A closed OccluderPolygon2D occludes the light coming from any
+   * direction. An opened OccluderPolygon2D occludes the light only at its outline's direction.
    */
   public var closed: Boolean
     get() {
@@ -56,8 +55,7 @@ public open class OccluderPolygon2D : Resource() {
     }
 
   /**
-   * A [godot.core.Vector2] array with the index for polygon's vertices positions.
-   *
+   * A [Vector2] array with the index for polygon's vertices positions.
    * **Note:** The returned value is a copy of the underlying array, rather than a reference.
    */
   public var polygon: PackedVector2Array

@@ -56,9 +56,7 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
- * A server interface for font management and text rendering.
- *
- * [godot.TextServer] is the API backend for managing fonts and rendering text.
+ * [TextServer] is the API backend for managing fonts and rendering text.
  */
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
@@ -86,7 +84,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns text server features, see [enum Feature].
+   * Returns text server features, see [Feature].
    */
   public fun getFeatures(): Long {
     TransferContext.writeArguments()
@@ -96,8 +94,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Loads optional TextServer database (e.g. ICU break iterators and dictionaries).
-   *
-   * **Note:** This function should be called before any other TextServer functions used, otherwise it won't have any effect.
+   * **Note:** This function should be called before any other TextServer functions used, otherwise
+   * it won't have any effect.
    */
   public fun loadSupportData(filename: String): Boolean {
     TransferContext.writeArguments(STRING to filename)
@@ -125,7 +123,6 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Saves optional TextServer database (e.g. ICU break iterators and dictionaries) to the file.
-   *
    * **Note:** This function is used by during project export, to include TextServer database.
    */
   public fun saveSupportData(filename: String): Boolean {
@@ -171,7 +168,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Frees an object created by this [godot.TextServer].
+   * Frees an object created by this [TextServer].
    */
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
@@ -179,7 +176,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates a new, empty font cache entry resource. To free the resulting resource, use the [freeRid] method.
+   * Creates a new, empty font cache entry resource. To free the resulting resource, use the
+   * [freeRid] method.
    */
   public fun createFont(): RID {
     TransferContext.writeArguments()
@@ -188,7 +186,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates a new variation existing font which is reusing the same glyph cache and font data. To free the resulting resource, use the [freeRid] method.
+   * Creates a new variation existing font which is reusing the same glyph cache and font data. To
+   * free the resulting resource, use the [freeRid] method.
    */
   public fun createFontLinkedVariation(fontRid: RID): RID {
     TransferContext.writeArguments(_RID to fontRid)
@@ -231,9 +230,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets the font style flags, see [enum FontStyle].
-   *
-   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform] instead.
+   * Sets the font style flags, see [FontStyle].
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use
+   * [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform]
+   * instead.
    */
   public fun fontSetStyle(fontRid: RID, style: FontStyle): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to style.flag)
@@ -241,7 +241,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns font style flags, see [enum FontStyle].
+   * Returns font style flags, see [FontStyle].
    */
   public fun fontGetStyle(fontRid: RID): FontStyle {
     TransferContext.writeArguments(_RID to fontRid)
@@ -267,7 +267,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns [godot.core.Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.).
+   * Returns [Dictionary] with OpenType font name strings (localized font names, version,
+   * description, license information, sample text, etc.).
    */
   public fun fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
@@ -293,9 +294,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
-   *
-   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetEmbolden] instead.
+   * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is
+   * `400`, bold font weight is `700`.
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use
+   * [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetEmbolden] instead.
    */
   public fun fontSetWeight(fontRid: RID, weight: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to weight)
@@ -303,7 +305,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
+   * `400`, bold font weight is `700`.
    */
   public fun fontGetWeight(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
@@ -312,9 +315,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
-   *
-   * **Note:** This value is used for font matching only and will not affect font rendering. Use [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetTransform] instead.
+   * Sets font stretch amount, compared to a normal width. A percentage value between `50&#37;` and
+   * `200&#37;`.
+   * **Note:** This value is used for font matching only and will not affect font rendering. Use
+   * [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetTransform] instead.
    */
   public fun fontSetStretch(fontRid: RID, weight: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to weight)
@@ -322,7 +326,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
+   * and `200&#37;`.
    */
   public fun fontGetStretch(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
@@ -365,9 +370,17 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. MSDF rendering allows displaying the font at any scaling factor without blurriness, and without incurring a CPU cost when the font size changes (since the font no longer needs to be rasterized on the CPU). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes.
-   *
-   * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly. Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs, consider downloading the font file directly from the type foundry instead of relying on Google Fonts.
+   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
+   * field generated from the dynamic font vector data. MSDF rendering allows displaying the font at
+   * any scaling factor without blurriness, and without incurring a CPU cost when the font size changes
+   * (since the font no longer needs to be rasterized on the CPU). As a downside, font hinting is not
+   * available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at
+   * small sizes.
+   * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly.
+   * Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many
+   * font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs,
+   * consider downloading the font file directly from the type foundry instead of relying on Google
+   * Fonts.
    */
   public fun fontSetMultichannelSignedDistanceField(fontRid: RID, msdf: Boolean): Unit {
     TransferContext.writeArguments(_RID to fontRid, BOOL to msdf)
@@ -376,7 +389,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
+   * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance
+   * field generated from the dynamic font vector data.
    */
   public fun fontIsMultichannelSignedDistanceField(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
@@ -386,7 +400,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets the width of the range around the shape between the minimum and maximum representable signed distance.
+   * Sets the width of the range around the shape between the minimum and maximum representable
+   * signed distance.
    */
   public fun fontSetMsdfPixelRange(fontRid: RID, msdfPixelRange: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to msdfPixelRange)
@@ -394,7 +409,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the width of the range around the shape between the minimum and maximum representable signed distance.
+   * Returns the width of the range around the shape between the minimum and maximum representable
+   * signed distance.
    */
   public fun fontGetMsdfPixelRange(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
@@ -420,7 +436,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used for all font sizes.
+   * Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used
+   * for all font sizes.
    */
   public fun fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to fixedSize)
@@ -479,7 +496,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only.
+   * Returns `true` if auto-hinting is supported and preferred over font built-in hinting. Used by
+   * dynamic fonts only.
    */
   public fun fontIsForceAutohinter(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
@@ -523,7 +541,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets font embolden strength. If [strength] is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
+   * Sets font embolden strength. If [strength] is not equal to zero, emboldens the font outlines.
+   * Negative values reduce the outline thickness.
    */
   public fun fontSetEmbolden(fontRid: RID, strength: Double): Unit {
     TransferContext.writeArguments(_RID to fontRid, DOUBLE to strength)
@@ -540,7 +559,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets the spacing for [spacing] (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
+   * relative to the font size).
    */
   public fun fontSetSpacing(
     fontRid: RID,
@@ -552,7 +572,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the spacing for [spacing] (see [enum TextServer.SpacingType]) in pixels (not relative to the font size).
+   * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
+   * font size).
    */
   public fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id)
@@ -561,9 +582,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
-   *
-   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and
+   * rotating glyphs.
+   * For example, to simulate italic typeface by slanting, apply the following transform
+   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
   public fun fontSetTransform(fontRid: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to fontRid, TRANSFORM2D to transform)
@@ -580,7 +602,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets variation coordinates for the specified font cache entry. See [fontSupportedVariationList] for more info.
+   * Sets variation coordinates for the specified font cache entry. See [fontSupportedVariationList]
+   * for more info.
    */
   public fun fontSetVariationCoordinates(fontRid: RID,
       variationCoordinates: Dictionary<Any?, Any?>): Unit {
@@ -589,7 +612,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns variation coordinates for the specified font cache entry. See [fontSupportedVariationList] for more info.
+   * Returns variation coordinates for the specified font cache entry. See
+   * [fontSupportedVariationList] for more info.
    */
   public fun fontGetVariationCoordinates(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
@@ -598,7 +622,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used by dynamic fonts only.
+   * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used
+   * by dynamic fonts only.
    */
   public fun fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
     TransferContext.writeArguments(_RID to fontRid, DOUBLE to oversampling)
@@ -606,7 +631,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used by dynamic fonts only.
+   * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead.
+   * Used by dynamic fonts only.
    */
   public fun fontGetOversampling(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
@@ -615,7 +641,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns list of the font sizes in the cache. Each size is [godot.Vector2i] with font size and outline size.
+   * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline
+   * size.
    */
   public fun fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid)
@@ -755,8 +782,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Removes all textures from font cache entry.
-   *
-   * **Note:** This function will not remove glyphs associated with the texture, use [fontRemoveGlyph] to remove them manually.
+   * **Note:** This function will not remove glyphs associated with the texture, use
+   * [fontRemoveGlyph] to remove them manually.
    */
   public fun fontClearTextures(fontRid: RID, size: Vector2i): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
@@ -765,8 +792,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Removes specified texture from the cache entry.
-   *
-   * **Note:** This function will not remove glyphs associated with the texture, remove them manually, using [fontRemoveGlyph].
+   * **Note:** This function will not remove glyphs associated with the texture, remove them
+   * manually, using [fontRemoveGlyph].
    */
   public fun fontRemoveTexture(
     fontRid: RID,
@@ -840,8 +867,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Removes all rendered glyphs information from the cache entry.
-   *
-   * **Note:** This function will not remove textures associated with the glyphs, use [fontRemoveTexture] to remove them manually.
+   * **Note:** This function will not remove textures associated with the glyphs, use
+   * [fontRemoveTexture] to remove them manually.
    */
   public fun fontClearGlyphs(fontRid: RID, size: Vector2i): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
@@ -850,8 +877,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Removes specified rendered glyph information from the cache entry.
-   *
-   * **Note:** This function will not remove textures associated with the glyphs, use [fontRemoveTexture] to remove them manually.
+   * **Note:** This function will not remove textures associated with the glyphs, use
+   * [fontRemoveTexture] to remove them manually.
    */
   public fun fontRemoveGlyph(
     fontRid: RID,
@@ -864,7 +891,6 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns glyph advance (offset of the next glyph).
-   *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public fun fontGetGlyphAdvance(
@@ -879,7 +905,6 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Sets glyph advance (offset of the next glyph).
-   *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public fun fontSetGlyphAdvance(
@@ -998,8 +1023,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns resource ID of the cache texture containing the glyph.
-   *
-   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the
+   * texture cache update.
    */
   public fun fontGetGlyphTextureRid(
     fontRid: RID,
@@ -1013,8 +1038,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns size of the cache texture containing the glyph.
-   *
-   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the
+   * texture cache update.
    */
   public fun fontGetGlyphTextureSize(
     fontRid: RID,
@@ -1027,12 +1052,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns outline contours of the glyph as a [godot.core.Dictionary] with the following contents:
-   *
-   * `points`         - [godot.PackedVector3Array], containing outline points. `x` and `y` are point coordinates. `z` is the type of the point, using the [enum ContourPointTag] values.
-   *
-   * `contours`       - [godot.PackedInt32Array], containing indices the end points of each contour.
-   *
+   * Returns outline contours of the glyph as a [Dictionary] with the following contents:
+   * `points`         - [PackedVector3Array], containing outline points. `x` and `y` are point
+   * coordinates. `z` is the type of the point, using the [ContourPointTag] values.
+   * `contours`       - [PackedInt32Array], containing indices the end points of each contour.
    * `orientation`    - [bool], contour orientation. If `true`, clockwise contours must be filled.
    */
   public fun fontGetGlyphContours(
@@ -1101,7 +1124,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the glyph index of a [char], optionally modified by the [variationSelector]. See [fontGetCharFromGlyphIndex].
+   * Returns the glyph index of a [char], optionally modified by the [variationSelector]. See
+   * [fontGetCharFromGlyphIndex].
    */
   public fun fontGetGlyphIndex(
     fontRid: RID,
@@ -1115,7 +1139,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See [fontGetGlyphIndex].
+   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See
+   * [fontGetGlyphIndex].
    */
   public fun fontGetCharFromGlyphIndex(
     fontRid: RID,
@@ -1172,10 +1197,10 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Draws single glyph into a canvas item at the position, using [fontRid] at the size [size].
-   *
-   * **Note:** Glyph index is specific to the font, use glyphs indices returned by [shapedTextGetGlyphs] or [fontGetGlyphIndex].
-   *
-   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+   * **Note:** Glyph index is specific to the font, use glyphs indices returned by
+   * [shapedTextGetGlyphs] or [fontGetGlyphIndex].
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the
+   * texture cache update.
    */
   @JvmOverloads
   public fun fontDrawGlyph(
@@ -1191,11 +1216,12 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using [fontRid] at the size [size].
-   *
-   * **Note:** Glyph index is specific to the font, use glyphs indices returned by [shapedTextGetGlyphs] or [fontGetGlyphIndex].
-   *
-   * **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+   * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using
+   * [fontRid] at the size [size].
+   * **Note:** Glyph index is specific to the font, use glyphs indices returned by
+   * [shapedTextGetGlyphs] or [fontGetGlyphIndex].
+   * **Note:** If there are pending glyphs to render, calling this function might trigger the
+   * texture cache update.
    */
   @JvmOverloads
   public fun fontDrawGlyphOutline(
@@ -1212,7 +1238,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true`, if font supports given language ([godot.ISO 639](https://en.wikipedia.org/wiki/ISO_639-1) code).
+   * Returns `true`, if font supports given language
+   * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
   public fun fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
@@ -1355,7 +1382,6 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Sets oversampling factor, shared by all font in the TextServer.
-   *
    * **Note:** This value can be automatically changed by display server.
    */
   public fun fontSetGlobalOversampling(oversampling: Double): Unit {
@@ -1364,7 +1390,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns size of the replacement character (box with character hexadecimal code that is drawn in place of invalid characters).
+   * Returns size of the replacement character (box with character hexadecimal code that is drawn in
+   * place of invalid characters).
    */
   public fun getHexCodeBoxSize(size: Long, index: Long): Vector2 {
     TransferContext.writeArguments(LONG to size, LONG to index)
@@ -1387,11 +1414,12 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates new buffer for complex text layout, with the given [direction] and [orientation]. To free the resulting buffer, use [freeRid] method.
-   *
-   * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
-   *
-   * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
+   * Creates new buffer for complex text layout, with the given [direction] and [orientation]. To
+   * free the resulting buffer, use [freeRid] method.
+   * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature
+   * (supported by [TextServerAdvanced]).
+   * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature
+   * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
   public fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
@@ -1410,9 +1438,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets desired text direction. If set to [DIRECTION_AUTO], direction will be detected based on the buffer contents and current locale.
-   *
-   * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
+   * Sets desired text direction. If set to [DIRECTION_AUTO], direction will be detected based on
+   * the buffer contents and current locale.
+   * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature
+   * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
   public fun shapedTextSetDirection(shaped: RID, direction: Direction =
@@ -1441,8 +1470,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Overrides BiDi for the structured text.
-   *
-   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
+   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
+   * each range separately.
    */
   public fun shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(_RID to shaped, ARRAY to override)
@@ -1450,7 +1479,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.
+   * Sets custom punctuation character list, used for word breaking. If set to empty string, server
+   * defaults are used.
    */
   public fun shapedTextSetCustomPunctuation(shaped: RID, punct: String): Unit {
     TransferContext.writeArguments(_RID to shaped, STRING to punct)
@@ -1458,7 +1488,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.
+   * Returns custom punctuation character list, used for word breaking. If set to empty string,
+   * server defaults are used.
    */
   public fun shapedTextGetCustomPunctuation(shaped: RID): String {
     TransferContext.writeArguments(_RID to shaped)
@@ -1468,8 +1499,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Sets desired text orientation.
-   *
-   * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
+   * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature
+   * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
   public fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
@@ -1488,7 +1519,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise nothing is displayed.
+   * If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise
+   * nothing is displayed.
    */
   public fun shapedTextSetPreserveInvalid(shaped: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to shaped, BOOL to enabled)
@@ -1496,8 +1528,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid characters.
-   *
+   * Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid
+   * characters.
    * **Note:** If set to `false`, nothing is displayed in place of invalid characters.
    */
   public fun shapedTextGetPreserveInvalid(shaped: RID): Boolean {
@@ -1563,7 +1595,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
+   * as [length] object replacement characters.
    */
   @JvmOverloads
   public fun shapedTextAddObject(
@@ -1629,7 +1662,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline objects).
+   * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline
+   * objects).
    */
   public fun shapedTextSubstr(
     shaped: RID,
@@ -1675,8 +1709,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Shapes buffer if it's not shaped. Returns `true` if the string is shaped successfully.
-   *
-   * **Note:** It is not necessary to call this function manually, buffer will be shaped automatically as soon as any of its output data is requested.
+   * **Note:** It is not necessary to call this function manually, buffer will be shaped
+   * automatically as soon as any of its output data is requested.
    */
   public fun shapedTextShape(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
@@ -1772,7 +1806,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what characters are used for breaking (see [enum GraphemeFlag]).
+   * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what
+   * characters are used for breaking (see [GraphemeFlag]).
    */
   @JvmOverloads
   public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: GraphemeFlag =
@@ -1860,9 +1895,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
-   *
-   * **Note:** Overall ascent can be higher than font ascent, if some glyphs are displaced from the baseline.
+   * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the
+   * left of baseline for vertical).
+   * **Note:** Overall ascent can be higher than font ascent, if some glyphs are displaced from the
+   * baseline.
    */
   public fun shapedTextGetAscent(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
@@ -1871,9 +1907,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
-   *
-   * **Note:** Overall descent can be higher than font descent, if some glyphs are displaced from the baseline.
+   * Returns the text descent (number of pixels below the baseline for horizontal layout or to the
+   * right of baseline for vertical).
+   * **Note:** Overall descent can be higher than font descent, if some glyphs are displaced from
+   * the baseline.
    */
   public fun shapedTextGetDescent(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
@@ -1909,7 +1946,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns shapes of the carets corresponding to the character offset [position] in the text. Returned caret shape is 1 pixel wide rectangle.
+   * Returns shapes of the carets corresponding to the character offset [position] in the text.
+   * Returned caret shape is 1 pixel wide rectangle.
    */
   public fun shapedTextGetCarets(shaped: RID, position: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to shaped, LONG to position)
@@ -1941,7 +1979,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns caret character offset at the specified pixel offset at the baseline. This function always returns a valid position.
+   * Returns caret character offset at the specified pixel offset at the baseline. This function
+   * always returns a valid position.
    */
   public fun shapedTextHitTestPosition(shaped: RID, coords: Double): Long {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to coords)
@@ -2014,7 +2053,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout).
+   * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the
+   * leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for
+   * vertical layout).
    */
   @JvmOverloads
   public fun shapedTextDraw(
@@ -2030,7 +2071,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout).
+   * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos]
+   * specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the
+   * baseline (for vertical layout).
    */
   @JvmOverloads
   public fun shapedTextDrawOutline(
@@ -2062,7 +2105,6 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
-   *
    * If [language] is omitted, the active locale will be used.
    */
   @JvmOverloads
@@ -2093,15 +2135,14 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns an array of the word break boundaries. Elements in the returned array are the offsets of the start and end of words. Therefore the length of the array is always even.
-   *
+   * Returns an array of the word break boundaries. Elements in the returned array are the offsets
+   * of the start and end of words. Therefore the length of the array is always even.
    * When [charsPerLine] is greater than zero, line break boundaries are returned instead.
-   *
-   * ```
-   * 				var ts = TextServerManager.get_primary_interface()
-   * 				print(ts.string_get_word_breaks("Godot Engine")) # Prints [0, 5, 6, 12]
-   * 				print(ts.string_get_word_breaks("Godot Engine", "en", 5)) # Prints [0, 5, 6, 11, 11, 12]
-   * 				```
+   * [codeblock]
+   * var ts = TextServerManager.get_primary_interface()
+   * print(ts.string_get_word_breaks("Godot Engine")) # Prints [0, 5, 6, 12]
+   * print(ts.string_get_word_breaks("Godot Engine", "en", 5)) # Prints [0, 5, 6, 11, 11, 12]
+   * [/codeblock]
    */
   @JvmOverloads
   public fun stringGetWordBreaks(
@@ -2116,11 +2157,11 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns array of the composite character boundaries.
-   *
-   * ```
-   * 				var ts = TextServerManager.get_primary_interface()
-   * 				print(ts.string_get_word_breaks("Test ❤️‍🔥 Test")) # Prints [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14]
-   * 				```
+   * [codeblock]
+   * var ts = TextServerManager.get_primary_interface()
+   * print(ts.string_get_word_breaks("Test ❤️‍🔥 Test")) # Prints [1, 2, 3, 4, 5, 9, 10, 11, 12, 13,
+   * 14]
+   * [/codeblock]
    */
   @JvmOverloads
   public fun stringGetCharacterBreaks(string: String, language: String = ""): PackedInt32Array {
@@ -2131,11 +2172,12 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns index of the first string in [dict] which is visually confusable with the [string], or `-1` if none is found.
-   *
-   * **Note:** This method doesn't detect invisible characters, for spoof detection use it in combination with [spoofCheck].
-   *
-   * **Note:** Always returns `-1` if the server does not support the [FEATURE_UNICODE_SECURITY] feature.
+   * Returns index of the first string in [dict] which is visually confusable with the [string], or
+   * `-1` if none is found.
+   * **Note:** This method doesn't detect invisible characters, for spoof detection use it in
+   * combination with [spoofCheck].
+   * **Note:** Always returns `-1` if the server does not support the [FEATURE_UNICODE_SECURITY]
+   * feature.
    */
   public fun isConfusable(string: String, dict: PackedStringArray): Long {
     TransferContext.writeArguments(STRING to string, PACKED_STRING_ARRAY to dict)
@@ -2145,8 +2187,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns `true` if [string] is likely to be an attempt at confusing the reader.
-   *
-   * **Note:** Always returns `false` if the server does not support the [FEATURE_UNICODE_SECURITY] feature.
+   * **Note:** Always returns `false` if the server does not support the [FEATURE_UNICODE_SECURITY]
+   * feature.
    */
   public fun spoofCheck(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
@@ -2156,7 +2198,6 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Strips diacritics from the string.
-   *
    * **Note:** The result may be longer or shorter than the original.
    */
   public fun stripDiacritics(string: String): String {
@@ -2167,21 +2208,13 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns `true` if [string] is a valid identifier.
-   *
    * If the text server supports the [FEATURE_UNICODE_IDENTIFIERS] feature, a valid identifier must:
-   *
    * - Conform to normalization form C.
-   *
    * - Begin with a Unicode character of class XID_Start or `"_"`.
-   *
    * - May contain Unicode characters of class XID_Continue in the other positions.
-   *
    * - Use UAX #31 recommended scripts only (mixed scripts are allowed).
-   *
    * If the [FEATURE_UNICODE_IDENTIFIERS] feature is not supported, a valid identifier must:
-   *
    * - Begin with a Unicode character of class XID_Start or `"_"`.
-   *
    * - May contain Unicode characters of class XID_Continue in the other positions.
    */
   public fun isValidIdentifier(string: String): Boolean {
@@ -2192,9 +2225,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns the string converted to uppercase.
-   *
-   * **Note:** Casing is locale dependent and context sensitive if server support [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [godot.TextServerAdvanced]).
-   *
+   * **Note:** Casing is locale dependent and context sensitive if server support
+   * [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
    * **Note:** The result may be longer or shorter than the original.
    */
   @JvmOverloads
@@ -2206,9 +2238,8 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Returns the string converted to lowercase.
-   *
-   * **Note:** Casing is locale dependent and context sensitive if server support [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [godot.TextServerAdvanced]).
-   *
+   * **Note:** Casing is locale dependent and context sensitive if server support
+   * [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
    * **Note:** The result may be longer or shorter than the original.
    */
   @JvmOverloads
@@ -2219,7 +2250,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Default implementation of the BiDi algorithm override function. See [enum StructuredTextParser] for more info.
+   * Default implementation of the BiDi algorithm override function. See [StructuredTextParser] for
+   * more info.
    */
   public fun parseStructuredText(
     parserType: StructuredTextParser,
@@ -2244,10 +2276,10 @@ public open class TextServer internal constructor() : RefCounted() {
     FONT_ANTIALIASING_GRAY(1),
     /**
      * Font glyphs are rasterized for LCD screens.
-     *
-     * LCD subpixel layout is determined by the value of `gui/theme/lcd_subpixel_layout` project settings.
-     *
-     * LCD subpixel anti-aliasing mode is suitable only for rendering horizontal, unscaled text in 2D.
+     * LCD subpixel layout is determined by the value of `gui/theme/lcd_subpixel_layout` project
+     * settings.
+     * LCD subpixel anti-aliasing mode is suitable only for rendering horizontal, unscaled text in
+     * 2D.
      */
     FONT_ANTIALIASING_LCD(2),
     ;
@@ -2286,7 +2318,7 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     FONT_LCD_SUBPIXEL_LAYOUT_VBGR(4),
     /**
-     * Represents the size of the [enum FontLCDSubpixelLayout] enum.
+     * Represents the size of the [FontLCDSubpixelLayout] enum.
      */
     FONT_LCD_SUBPIXEL_LAYOUT_MAX(5),
     ;
@@ -2317,7 +2349,8 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     DIRECTION_RTL(2),
     /**
-     * Text writing direction is the same as base string writing direction. Used for BiDi override only.
+     * Text writing direction is the same as base string writing direction. Used for BiDi override
+     * only.
      */
     DIRECTION_INHERITED(3),
     ;
@@ -2341,7 +2374,6 @@ public open class TextServer internal constructor() : RefCounted() {
     ORIENTATION_HORIZONTAL(0),
     /**
      * Left to right text is written vertically from top to bottom.
-     *
      * Right to left text is written vertically from bottom to top.
      */
     ORIENTATION_VERTICAL(1),
@@ -2453,7 +2485,8 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     AUTOWRAP_OFF(0),
     /**
-     * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary positions, which is useful when very limited space is available.
+     * Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary
+     * positions, which is useful when very limited space is available.
      */
     AUTOWRAP_ARBITRARY(1),
     /**
@@ -2461,7 +2494,8 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     AUTOWRAP_WORD(2),
     /**
-     * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not fit in one line.
+     * Behaves similarly to [AUTOWRAP_WORD], but force-breaks a word if that single word does not
+     * fit in one line.
      */
     AUTOWRAP_WORD_SMART(3),
     ;
@@ -2555,23 +2589,27 @@ public open class TextServer internal constructor() : RefCounted() {
     id: Long,
   ) {
     /**
-     * Trims text before the shaping. e.g, increasing [godot.Label.visibleCharacters] or [godot.RichTextLabel.visibleCharacters] value is visually identical to typing the text.
+     * Trims text before the shaping. e.g, increasing [Label.visibleCharacters] or
+     * [RichTextLabel.visibleCharacters] value is visually identical to typing the text.
      */
     VC_CHARS_BEFORE_SHAPING(0),
     /**
-     * Displays glyphs that are mapped to the first [godot.Label.visibleCharacters] or [godot.RichTextLabel.visibleCharacters] characters from the beginning of the text.
+     * Displays glyphs that are mapped to the first [Label.visibleCharacters] or
+     * [RichTextLabel.visibleCharacters] characters from the beginning of the text.
      */
     VC_CHARS_AFTER_SHAPING(1),
     /**
-     * Displays [godot.Label.visibleRatio] or [godot.RichTextLabel.visibleRatio] glyphs, starting from the left or from the right, depending on [godot.Control.layoutDirection] value.
+     * Displays [Label.visibleRatio] or [RichTextLabel.visibleRatio] glyphs, starting from the left
+     * or from the right, depending on [Control.layoutDirection] value.
      */
     VC_GLYPHS_AUTO(2),
     /**
-     * Displays [godot.Label.visibleRatio] or [godot.RichTextLabel.visibleRatio] glyphs, starting from the left.
+     * Displays [Label.visibleRatio] or [RichTextLabel.visibleRatio] glyphs, starting from the left.
      */
     VC_GLYPHS_LTR(3),
     /**
-     * Displays [godot.Label.visibleRatio] or [godot.RichTextLabel.visibleRatio] glyphs, starting from the right.
+     * Displays [Label.visibleRatio] or [RichTextLabel.visibleRatio] glyphs, starting from the
+     * right.
      */
     VC_GLYPHS_RTL(4),
     ;
@@ -2799,8 +2837,8 @@ public open class TextServer internal constructor() : RefCounted() {
     HINTING_LIGHT(1),
     /**
      * Use the default font hinting mode (crisper but less smooth).
-     *
-     * **Note:** This hinting mode changes both horizontal and vertical glyph metrics. If applied to monospace font, some glyphs might have different width.
+     * **Note:** This hinting mode changes both horizontal and vertical glyph metrics. If applied to
+     * monospace font, some glyphs might have different width.
      */
     HINTING_NORMAL(2),
     ;
@@ -2824,28 +2862,31 @@ public open class TextServer internal constructor() : RefCounted() {
     SUBPIXEL_POSITIONING_DISABLED(0),
     /**
      * Glyph horizontal position is rounded based on font size.
-     *
-     * - To one quarter of the pixel size if font size is smaller or equal to [SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE].
-     *
-     * - To one half of the pixel size if font size is smaller or equal to [SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE].
-     *
+     * - To one quarter of the pixel size if font size is smaller or equal to
+     * [SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE].
+     * - To one half of the pixel size if font size is smaller or equal to
+     * [SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE].
      * - To the whole pixel size for larger fonts.
      */
     SUBPIXEL_POSITIONING_AUTO(1),
     /**
-     * Glyph horizontal position is rounded to one half of the pixel size, each glyph is rasterized up to two times.
+     * Glyph horizontal position is rounded to one half of the pixel size, each glyph is rasterized
+     * up to two times.
      */
     SUBPIXEL_POSITIONING_ONE_HALF(2),
     /**
-     * Glyph horizontal position is rounded to one quarter of the pixel size, each glyph is rasterized up to four times.
+     * Glyph horizontal position is rounded to one quarter of the pixel size, each glyph is
+     * rasterized up to four times.
      */
     SUBPIXEL_POSITIONING_ONE_QUARTER(3),
     /**
-     * Maximum font size which will use one half of the pixel subpixel positioning in [SUBPIXEL_POSITIONING_AUTO] mode.
+     * Maximum font size which will use one half of the pixel subpixel positioning in
+     * [SUBPIXEL_POSITIONING_AUTO] mode.
      */
     SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE(20),
     /**
-     * Maximum font size which will use one quarter of the pixel subpixel positioning in [SUBPIXEL_POSITIONING_AUTO] mode.
+     * Maximum font size which will use one quarter of the pixel subpixel positioning in
+     * [SUBPIXEL_POSITIONING_AUTO] mode.
      */
     SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE(16),
     ;
@@ -2920,7 +2961,9 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     FEATURE_UNICODE_IDENTIFIERS(8192),
     /**
-     * TextServer supports [godot.Unicode Technical Report #36](https://unicode.org/reports/tr36/) and [godot.Unicode Technical Standard #39](https://unicode.org/reports/tr39/) based spoof detection features.
+     * TextServer supports [url=https://unicode.org/reports/tr36/]Unicode Technical Report #36[/url]
+     * and [url=https://unicode.org/reports/tr39/]Unicode Technical Standard #39[/url] based spoof
+     * detection features.
      */
     FEATURE_UNICODE_SECURITY(16384),
     ;
@@ -2943,7 +2986,8 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     CONTOUR_CURVE_TAG_ON(1),
     /**
-     * Contour point isn't on the curve, but serves as a control point for a conic (quadratic) Bézier arc.
+     * Contour point isn't on the curve, but serves as a control point for a conic (quadratic)
+     * Bézier arc.
      */
     CONTOUR_CURVE_TAG_OFF_CONIC(0),
     /**
@@ -2982,7 +3026,7 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     SPACING_BOTTOM(3),
     /**
-     * Represents the size of the [enum SpacingType] enum.
+     * Represents the size of the [SpacingType] enum.
      */
     SPACING_MAX(4),
     ;
@@ -3078,7 +3122,7 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     STRUCTURED_TEXT_EMAIL(3),
     /**
-     * BiDi override for lists. Structured text options: list separator [godot.String].
+     * BiDi override for lists. Structured text options: list separator [String].
      */
     STRUCTURED_TEXT_LIST(4),
     /**
@@ -3109,11 +3153,13 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     FIXED_SIZE_SCALE_DISABLE(0),
     /**
-     * Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the recommended option for pixel art fonts.
+     * Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the
+     * recommended option for pixel art fonts.
      */
     FIXED_SIZE_SCALE_INTEGER_ONLY(1),
     /**
-     * Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for non-pixel art fonts.
+     * Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for
+     * non-pixel art fonts.
      */
     FIXED_SIZE_SCALE_ENABLED(2),
     ;

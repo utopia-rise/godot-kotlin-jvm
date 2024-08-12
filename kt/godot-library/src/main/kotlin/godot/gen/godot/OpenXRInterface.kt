@@ -34,18 +34,46 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
 
+/**
+ * The OpenXR interface allows Godot to interact with OpenXR runtimes and make it possible to create
+ * XR experiences and games.
+ * Due to the needs of OpenXR this interface works slightly different than other plugin based XR
+ * interfaces. It needs to be initialized when Godot starts. You need to enable OpenXR, settings for
+ * this can be found in your games project settings under the XR heading. You do need to mark a
+ * viewport for use with XR in order for Godot to know which render result should be output to the
+ * headset.
+ */
 @GodotBaseType
 public open class OpenXRInterface : XRInterface() {
+  /**
+   * Informs our OpenXR session has been started.
+   */
   public val sessionBegun: Signal0 by signal()
 
+  /**
+   * Informs our OpenXR session is stopping.
+   */
   public val sessionStopping: Signal0 by signal()
 
+  /**
+   * Informs our OpenXR session now has focus.
+   */
   public val sessionFocussed: Signal0 by signal()
 
+  /**
+   * Informs our OpenXR session is now visible (output is being sent to the HMD).
+   */
   public val sessionVisible: Signal0 by signal()
 
+  /**
+   * Informs the user queued a recenter of the player position.
+   */
   public val poseRecentered: Signal0 by signal()
 
+  /**
+   * The display refresh rate for the current HMD. Only functional if this feature is supported by
+   * the OpenXR runtime and after the interface has been initialized.
+   */
   public var displayRefreshRate: Float
     get() {
       TransferContext.writeArguments()
@@ -57,6 +85,10 @@ public open class OpenXRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
     }
 
+  /**
+   * The render size multiplier for the current HMD. Must be set before the interface has been
+   * initialized.
+   */
   public var renderTargetSizeMultiplier: Double
     get() {
       TransferContext.writeArguments()
@@ -68,6 +100,10 @@ public open class OpenXRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetSizeMultiplierPtr, NIL)
     }
 
+  /**
+   * Set foveation level from 0 (off) to 3 (high), the interface must be initialized before this is
+   * accessible.
+   */
   public var foveationLevel: Int
     get() {
       TransferContext.writeArguments()
@@ -79,6 +115,10 @@ public open class OpenXRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFoveationLevelPtr, NIL)
     }
 
+  /**
+   * Enable dynamic foveation adjustment, the interface must be initialized before this is
+   * accessible. If enabled foveation will automatically adjusted between low and [foveationLevel].
+   */
   public var foveationDynamic: Boolean
     get() {
       TransferContext.writeArguments()
@@ -95,88 +135,146 @@ public open class OpenXRInterface : XRInterface() {
     return true
   }
 
+  /**
+   * Returns `true` if OpenXR's foveation extension is supported, the interface must be initialized
+   * before this returns a valid value.
+   * **Note:** This feature is only available on the compatibility renderer and currently only
+   * available on some stand alone headsets. For Vulkan set [Viewport.vrsMode] to `VRS_XR` on desktop.
+   */
   public fun isFoveationSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFoveationSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Returns `true` if the given action set is active.
+   */
   public fun isActionSetActive(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionSetActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Sets the given action set as active or inactive.
+   */
   public fun setActionSetActive(name: String, active: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionSetActivePtr, NIL)
   }
 
+  /**
+   * Returns a list of action sets registered with Godot (loaded from the action map at runtime).
+   */
   public fun getActionSets(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
+  /**
+   * Returns display refresh rates supported by the current HMD. Only returned if this feature is
+   * supported by the OpenXR runtime and after the interface has been initialized.
+   */
   public fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
+  /**
+   * If handtracking is enabled and motion range is supported, sets the currently configured motion
+   * range for [hand] to [motionRange].
+   */
   public fun setMotionRange(hand: Hand, motionRange: HandMotionRange): Unit {
     TransferContext.writeArguments(LONG to hand.id, LONG to motionRange.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
   }
 
+  /**
+   * If handtracking is enabled and motion range is supported, gets the currently configured motion
+   * range for [hand].
+   */
   public fun getMotionRange(hand: Hand): HandMotionRange {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
     return OpenXRInterface.HandMotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * If handtracking is enabled, returns flags that inform us of the validity of the tracking data.
+   */
   public fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
     return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * If handtracking is enabled, returns the rotation of a joint ([joint]) of a hand ([hand]) as
+   * provided by OpenXR.
+   */
   public fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
+  /**
+   * If handtracking is enabled, returns the position of a joint ([joint]) of a hand ([hand]) as
+   * provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
+   */
   public fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
+  /**
+   * If handtracking is enabled, returns the radius of a joint ([joint]) of a hand ([hand]) as
+   * provided by OpenXR. This is without worldscale applied!
+   */
   public fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
+  /**
+   * If handtracking is enabled, returns the linear velocity of a joint ([joint]) of a hand ([hand])
+   * as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
+   */
   public fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
+  /**
+   * If handtracking is enabled, returns the angular velocity of a joint ([joint]) of a hand
+   * ([hand]) as provided by OpenXR. This is relative to [XROrigin3D]!
+   */
   public fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
+  /**
+   * Returns `true` if OpenXR's hand tracking is supported and enabled.
+   * **Note:** This only returns a valid value after OpenXR has been initialized.
+   */
   public fun isHandTrackingSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHandTrackingSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Returns the capabilities of the eye gaze interaction extension.
+   * **Note:** This only returns a valid value after OpenXR has been initialized.
+   */
   public fun isEyeGazeInteractionSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
@@ -186,8 +284,17 @@ public open class OpenXRInterface : XRInterface() {
   public enum class Hand(
     id: Long,
   ) {
+    /**
+     * Left hand.
+     */
     HAND_LEFT(0),
+    /**
+     * Right hand.
+     */
     HAND_RIGHT(1),
+    /**
+     * Maximum value for the hand enum.
+     */
     HAND_MAX(2),
     ;
 
@@ -222,32 +329,113 @@ public open class OpenXRInterface : XRInterface() {
   public enum class HandJoints(
     id: Long,
   ) {
+    /**
+     * Palm joint.
+     */
     HAND_JOINT_PALM(0),
+    /**
+     * Wrist joint.
+     */
     HAND_JOINT_WRIST(1),
+    /**
+     * Thumb metacarpal joint.
+     */
     HAND_JOINT_THUMB_METACARPAL(2),
+    /**
+     * Thumb proximal joint.
+     */
     HAND_JOINT_THUMB_PROXIMAL(3),
+    /**
+     * Thumb distal joint.
+     */
     HAND_JOINT_THUMB_DISTAL(4),
+    /**
+     * Thumb tip joint.
+     */
     HAND_JOINT_THUMB_TIP(5),
+    /**
+     * Index metacarpal joint.
+     */
     HAND_JOINT_INDEX_METACARPAL(6),
+    /**
+     * Index proximal joint.
+     */
     HAND_JOINT_INDEX_PROXIMAL(7),
+    /**
+     * Index intermediate joint.
+     */
     HAND_JOINT_INDEX_INTERMEDIATE(8),
+    /**
+     * Index distal joint.
+     */
     HAND_JOINT_INDEX_DISTAL(9),
+    /**
+     * Index tip joint.
+     */
     HAND_JOINT_INDEX_TIP(10),
+    /**
+     * Middle metacarpal joint.
+     */
     HAND_JOINT_MIDDLE_METACARPAL(11),
+    /**
+     * Middle proximal joint.
+     */
     HAND_JOINT_MIDDLE_PROXIMAL(12),
+    /**
+     * Middle intermediate joint.
+     */
     HAND_JOINT_MIDDLE_INTERMEDIATE(13),
+    /**
+     * Middle distal joint.
+     */
     HAND_JOINT_MIDDLE_DISTAL(14),
+    /**
+     * Middle tip joint.
+     */
     HAND_JOINT_MIDDLE_TIP(15),
+    /**
+     * Ring metacarpal joint.
+     */
     HAND_JOINT_RING_METACARPAL(16),
+    /**
+     * Ring proximal joint.
+     */
     HAND_JOINT_RING_PROXIMAL(17),
+    /**
+     * Ring intermediate joint.
+     */
     HAND_JOINT_RING_INTERMEDIATE(18),
+    /**
+     * Ring distal joint.
+     */
     HAND_JOINT_RING_DISTAL(19),
+    /**
+     * Ring tip joint.
+     */
     HAND_JOINT_RING_TIP(20),
+    /**
+     * Little metacarpal joint.
+     */
     HAND_JOINT_LITTLE_METACARPAL(21),
+    /**
+     * Little proximal joint.
+     */
     HAND_JOINT_LITTLE_PROXIMAL(22),
+    /**
+     * Little intermediate joint.
+     */
     HAND_JOINT_LITTLE_INTERMEDIATE(23),
+    /**
+     * Little distal joint.
+     */
     HAND_JOINT_LITTLE_DISTAL(24),
+    /**
+     * Little tip joint.
+     */
     HAND_JOINT_LITTLE_TIP(25),
+    /**
+     * Maximum value for the hand joint enum.
+     */
     HAND_JOINT_MAX(26),
     ;
 

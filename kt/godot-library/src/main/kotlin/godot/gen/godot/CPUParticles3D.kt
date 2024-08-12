@@ -36,24 +36,23 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A CPU-based 3D particle emitter.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/particles/index.html]($DOCS_URL/tutorials/3d/particles/index.html)
- *
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
- *
- * See also [godot.GPUParticles3D], which provides the same functionality with hardware acceleration, but may not run on older devices.
+ * See also [GPUParticles3D], which provides the same functionality with hardware acceleration, but
+ * may not run on older devices.
  */
 @GodotBaseType
 public open class CPUParticles3D : GeometryInstance3D() {
   /**
-   * Emitted when all active particles have finished processing. When [oneShot] is disabled, particles will process continuously, so this is never emitted.
+   * Emitted when all active particles have finished processing. When [oneShot] is disabled,
+   * particles will process continuously, so this is never emitted.
    */
   public val finished: Signal0 by signal()
 
   /**
-   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the emission cycle until after all active particles finish processing. You can use the [finished] signal to be notified once all active particles finish processing.
+   * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from
+   * emitting. However, if [oneShot] is `true` setting [emitting] to `true` will not restart the
+   * emission cycle until after all active particles finish processing. You can use the [signal
+   * finished] signal to be notified once all active particles finish processing.
    */
   public var emitting: Boolean
     get() {
@@ -95,7 +94,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
+   * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at
+   * the cycle's end.
    */
   public var oneShot: Boolean
     get() {
@@ -123,7 +123,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
+   * Particle system's running speed scaling ratio. A value of `0` can be used to pause the
+   * particles.
    */
   public var speedScale: Double
     get() {
@@ -137,7 +138,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
+   * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a
+   * gap in emissions before the next cycle begins.
    */
   public var explosiveness: Float
     get() {
@@ -179,7 +181,9 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the particle system itself.
+   * The particle system's frame rate is fixed to a value. For example, changing the value to 2 will
+   * make the particles render at 2 frames per second. Note this does not slow down the particle system
+   * itself.
    */
   public var fixedFps: Int
     get() {
@@ -193,7 +197,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, results in fractional delta calculation which has a smoother particles display effect.
+   * If `true`, results in fractional delta calculation which has a smoother particles display
+   * effect.
    */
   public var fractDelta: Boolean
     get() {
@@ -207,7 +212,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This will cause particles to move and rotate along the [godot.CPUParticles3D] node (and its parents) when it is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate along the [godot.CPUParticles3D] node (and its parents) when it is moved or rotated.
+   * If `true`, particles use the parent node's coordinate space (known as local coordinates). This
+   * will cause particles to move and rotate along the [CPUParticles3D] node (and its parents) when it
+   * is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate
+   * along the [CPUParticles3D] node (and its parents) when it is moved or rotated.
    */
   public var localCoords: Boolean
     get() {
@@ -221,7 +229,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Particle draw order. Uses [enum DrawOrder] values.
+   * Particle draw order. Uses [DrawOrder] values.
    */
   public var drawOrder: DrawOrder
     get() {
@@ -235,7 +243,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The [godot.Mesh] used for each particle. If `null`, particles will be spheres.
+   * The [Mesh] used for each particle. If `null`, particles will be spheres.
    */
   public var mesh: Mesh?
     get() {
@@ -249,7 +257,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
+   * Particles will be emitted inside this region. See [EmissionShape] for possible values.
    */
   public var emissionShape: EmissionShape
     get() {
@@ -263,7 +271,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * The sphere's radius if [enum EmissionShape] is set to [EMISSION_SHAPE_SPHERE].
+   * The sphere's radius if [EmissionShape] is set to [EMISSION_SHAPE_SPHERE].
    */
   public var emissionSphereRadius: Float
     get() {
@@ -292,7 +300,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionPoints: PackedVector3Array
     get() {
@@ -306,7 +315,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the direction the particles will be emitted in when using [EMISSION_SHAPE_DIRECTED_POINTS].
+   * Sets the direction the particles will be emitted in when using
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public var emissionNormals: PackedVector3Array
     get() {
@@ -320,9 +330,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Sets the [godot.core.Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
-   *
-   * **Note:** [emissionColors] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [emissionColors] will have no visible effect.
+   * Sets the [Color]s to modulate particles by when using [EMISSION_SHAPE_POINTS] or
+   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   * **Note:** [emissionColors] multiplies the particle mesh's vertex colors. To have a visible
+   * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [emissionColors] will have no visible effect.
    */
   public var emissionColors: PackedColorArray
     get() {
@@ -450,7 +463,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's initial direction range from `+spread` to `-spread` degrees. Applied to X/Z plane and Y/Z planes.
+   * Each particle's initial direction range from `+spread` to `-spread` degrees. Applied to X/Z
+   * plane and Y/Z planes.
    */
   public var spread: Float
     get() {
@@ -521,7 +535,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Minimum initial angular velocity (rotation speed) applied to each particle in *degrees* per second.
+   * Minimum initial angular velocity (rotation speed) applied to each particle in *degrees* per
+   * second.
    */
   public var angularVelocityMin: Float
     get() {
@@ -535,7 +550,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per second.
+   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per
+   * second.
    */
   public var angularVelocityMax: Float
     get() {
@@ -549,7 +565,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's angular velocity (rotation speed) will vary along this [godot.Curve] over its lifetime.
+   * Each particle's angular velocity (rotation speed) will vary along this [Curve] over its
+   * lifetime.
    */
   public var angularVelocityCurve: Curve?
     get() {
@@ -591,7 +608,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's orbital velocity will vary along this [godot.Curve].
+   * Each particle's orbital velocity will vary along this [Curve].
    */
   public var orbitVelocityCurve: Curve?
     get() {
@@ -633,7 +650,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's linear acceleration will vary along this [godot.Curve].
+   * Each particle's linear acceleration will vary along this [Curve].
    */
   public var linearAccelCurve: Curve?
     get() {
@@ -675,7 +692,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's radial acceleration will vary along this [godot.Curve].
+   * Each particle's radial acceleration will vary along this [Curve].
    */
   public var radialAccelCurve: Curve?
     get() {
@@ -717,7 +734,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's tangential acceleration will vary along this [godot.Curve].
+   * Each particle's tangential acceleration will vary along this [Curve].
    */
   public var tangentialAccelCurve: Curve?
     get() {
@@ -759,7 +776,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Damping will vary along this [godot.Curve].
+   * Damping will vary along this [Curve].
    */
   public var dampingCurve: Curve?
     get() {
@@ -801,7 +818,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's rotation will be animated along this [godot.Curve].
+   * Each particle's rotation will be animated along this [Curve].
    */
   public var angleCurve: Curve?
     get() {
@@ -843,7 +860,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's scale will vary along this [godot.Curve].
+   * Each particle's scale will vary along this [Curve].
    */
   public var scaleAmountCurve: Curve?
     get() {
@@ -914,8 +931,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color.
-   *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
+   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [color] will have no visible effect.
    */
   @CoreTypeLocalCopy
   public var color: Color
@@ -930,9 +949,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's color will vary along this [godot.GradientTexture1D] over its lifetime (multiplied with [color]).
-   *
-   * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorRamp] will have no visible effect.
+   * Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied
+   * with [color]).
+   * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on
+   * a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [colorRamp] will have no visible effect.
    */
   public var colorRamp: Gradient?
     get() {
@@ -946,9 +968,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
-   *
-   * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorInitialRamp] will have no visible effect.
+   * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with
+   * [color]).
+   * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible
+   * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [colorInitialRamp] will have no visible effect.
    */
   public var colorInitialRamp: Gradient?
     get() {
@@ -990,7 +1015,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's hue will vary along this [godot.Curve].
+   * Each particle's hue will vary along this [Curve].
    */
   public var hueVariationCurve: Curve?
     get() {
@@ -1032,7 +1057,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's animation speed will vary along this [godot.Curve].
+   * Each particle's animation speed will vary along this [Curve].
    */
   public var animSpeedCurve: Curve?
     get() {
@@ -1074,7 +1099,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Each particle's animation offset will vary along this [godot.Curve].
+   * Each particle's animation offset will vary along this [Curve].
    */
   public var animOffsetCurve: Curve?
     get() {
@@ -1192,8 +1217,10 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   /**
    * Each particle's initial color.
-   *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [godot.BaseMaterial3D], [godot.BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [godot.ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
+   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
+   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
+   * Otherwise, [color] will have no visible effect.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1225,7 +1252,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets this node's properties to match a given [godot.GPUParticles3D] node with an assigned [godot.ParticleProcessMaterial].
+   * Sets this node's properties to match a given [GPUParticles3D] node with an assigned
+   * [ParticleProcessMaterial].
    */
   public fun convertFromParticles(particles: Node): Unit {
     TransferContext.writeArguments(OBJECT to particles)
@@ -1240,7 +1268,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     DRAW_ORDER_INDEX(0),
     /**
-     * Particles are drawn in order of remaining lifetime. In other words, the particle with the highest lifetime is drawn at the front.
+     * Particles are drawn in order of remaining lifetime. In other words, the particle with the
+     * highest lifetime is drawn at the front.
      */
     DRAW_ORDER_LIFETIME(1),
     /**
@@ -1263,27 +1292,33 @@ public open class CPUParticles3D : GeometryInstance3D() {
     id: Long,
   ) {
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity
+     * properties.
      */
     PARAM_INITIAL_LINEAR_VELOCITY(0),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angular velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set angular velocity
+     * properties.
      */
     PARAM_ANGULAR_VELOCITY(1),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set orbital velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set orbital velocity
+     * properties.
      */
     PARAM_ORBIT_VELOCITY(2),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set linear acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set linear acceleration
+     * properties.
      */
     PARAM_LINEAR_ACCEL(3),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set radial acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set radial acceleration
+     * properties.
      */
     PARAM_RADIAL_ACCEL(4),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set tangential acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set tangential acceleration
+     * properties.
      */
     PARAM_TANGENTIAL_ACCEL(5),
     /**
@@ -1307,11 +1342,12 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     PARAM_ANIM_SPEED(10),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation offset properties.
+     * Use with [setParamMin], [setParamMax], and [setParamCurve] to set animation offset
+     * properties.
      */
     PARAM_ANIM_OFFSET(11),
     /**
-     * Represents the size of the [enum Parameter] enum.
+     * Represents the size of the [Parameter] enum.
      */
     PARAM_MAX(12),
     ;
@@ -1342,7 +1378,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     PARTICLE_FLAG_DISABLE_Z(2),
     /**
-     * Represents the size of the [enum ParticleFlags] enum.
+     * Represents the size of the [ParticleFlags] enum.
      */
     PARTICLE_FLAG_MAX(3),
     ;
@@ -1377,11 +1413,14 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     EMISSION_SHAPE_BOX(3),
     /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
+     * color will be modulated by [emissionColors].
      */
     EMISSION_SHAPE_POINTS(4),
     /**
-     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
+     * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle
+     * velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated
+     * by [emissionColors].
      */
     EMISSION_SHAPE_DIRECTED_POINTS(5),
     /**
@@ -1389,7 +1428,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
      */
     EMISSION_SHAPE_RING(6),
     /**
-     * Represents the size of the [enum EmissionShape] enum.
+     * Represents the size of the [EmissionShape] enum.
      */
     EMISSION_SHAPE_MAX(7),
     ;

@@ -31,15 +31,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Texture for 2D and 3D.
- *
- * A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [godot.Sprite2D] or GUI [godot.Control].
- *
+ * A texture works by registering an image in the video hardware, which then can be used in 3D
+ * models or 2D [Sprite2D] or GUI [Control].
  * Textures are often created by loading them from a file. See [@GDScript.load].
- *
- * [godot.Texture2D] is a base for other resources. It cannot be used directly.
- *
- * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations. Larger textures may fail to import.
+ * [Texture2D] is a base for other resources. It cannot be used directly.
+ * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations.
+ * Larger textures may fail to import.
  */
 @GodotBaseType
 public open class Texture2D : Texture() {
@@ -49,36 +46,39 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Called when the [godot.Texture2D]'s width is queried.
+   * Called when the [Texture2D]'s width is queried.
    */
   public open fun _getWidth(): Int {
     throw NotImplementedError("_get_width is not implemented for Texture2D")
   }
 
   /**
-   * Called when the [godot.Texture2D]'s height is queried.
+   * Called when the [Texture2D]'s height is queried.
    */
   public open fun _getHeight(): Int {
     throw NotImplementedError("_get_height is not implemented for Texture2D")
   }
 
   /**
-   * Called when a pixel's opaque state in the [godot.Texture2D] is queried at the specified `(x, y)` position.
+   * Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)`
+   * position.
    */
   public open fun _isPixelOpaque(x: Int, y: Int): Boolean {
     throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
   }
 
   /**
-   * Called when the presence of an alpha channel in the [godot.Texture2D] is queried.
+   * Called when the presence of an alpha channel in the [Texture2D] is queried.
    */
   public open fun _hasAlpha(): Boolean {
     throw NotImplementedError("_has_alpha is not implemented for Texture2D")
   }
 
   /**
-   * Called when the entire [godot.Texture2D] is requested to be drawn over a [godot.CanvasItem], with the top-left offset specified in [pos]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
-   *
+   * Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the
+   * top-left offset specified in [pos]. [modulate] specifies a multiplier for the colors being drawn,
+   * while [transpose] specifies whether drawing should be performed in column-major order instead of
+   * row-major order (resulting in 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _draw(
@@ -90,8 +90,10 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Called when the [godot.Texture2D] is requested to be drawn onto [godot.CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
-   *
+   * Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [rect].
+   * [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether
+   * drawing should be performed in column-major order instead of row-major order (resulting in
+   * 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRect(
@@ -104,8 +106,10 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Called when a part of the [godot.Texture2D] specified by [srcRect]'s coordinates is requested to be drawn onto [godot.CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being drawn, while [transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
-   *
+   * Called when a part of the [Texture2D] specified by [srcRect]'s coordinates is requested to be
+   * drawn onto [CanvasItem]'s specified [rect]. [modulate] specifies a multiplier for the colors being
+   * drawn, while [transpose] specifies whether drawing should be performed in column-major order
+   * instead of row-major order (resulting in 90-degree clockwise rotation).
    * **Note:** This is only used in 2D rendering, not 3D.
    */
   public open fun _drawRectRegion(
@@ -146,7 +150,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Returns `true` if this [godot.Texture2D] has an alpha channel.
+   * Returns `true` if this [Texture2D] has an alpha channel.
    */
   public fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
@@ -155,7 +159,8 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API at the specified [position].
+   * Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified
+   * [position].
    */
   @JvmOverloads
   public fun draw(
@@ -169,7 +174,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Draws the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API.
+   * Draws the texture using a [CanvasItem] with the [RenderingServer] API.
    */
   @JvmOverloads
   public fun drawRect(
@@ -184,7 +189,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Draws a part of the texture using a [godot.CanvasItem] with the [godot.RenderingServer] API.
+   * Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API.
    */
   @JvmOverloads
   public fun drawRectRegion(
@@ -200,11 +205,11 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Returns an [godot.Image] that is a copy of data from this [godot.Texture2D] (a new [godot.Image] is created each time). [godot.Image]s can be accessed and manipulated directly.
-   *
-   * **Note:** This will return `null` if this [godot.Texture2D] is invalid.
-   *
-   * **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused.
+   * Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each
+   * time). [Image]s can be accessed and manipulated directly.
+   * **Note:** This will return `null` if this [Texture2D] is invalid.
+   * **Note:** This will fetch the texture data from the GPU, which might cause performance problems
+   * when overused.
    */
   public fun getImage(): Image? {
     TransferContext.writeArguments()
@@ -213,7 +218,7 @@ public open class Texture2D : Texture() {
   }
 
   /**
-   * Creates a placeholder version of this resource ([godot.PlaceholderTexture2D]).
+   * Creates a placeholder version of this resource ([PlaceholderTexture2D]).
    */
   public fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()

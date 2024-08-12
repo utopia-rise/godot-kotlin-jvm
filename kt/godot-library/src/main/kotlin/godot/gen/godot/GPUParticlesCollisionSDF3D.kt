@@ -28,24 +28,27 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A baked signed distance field 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
- *
- * A baked signed distance field 3D particle collision shape affecting [godot.GPUParticles3D] nodes.
- *
- * Signed distance fields (SDF) allow for efficiently representing approximate collision shapes for convex and concave objects of any shape. This is more flexible than [godot.GPUParticlesCollisionHeightField3D], but it requires a baking step.
- *
- * **Baking:** The signed distance field texture can be baked by selecting the [godot.GPUParticlesCollisionSDF3D] node in the editor, then clicking **Bake SDF** at the top of the 3D viewport. Any *visible* [godot.MeshInstance3D]s within the [size] will be taken into account for baking, regardless of their [godot.GeometryInstance3D.giMode].
- *
- * **Note:** Baking a [godot.GPUParticlesCollisionSDF3D]'s [texture] is only possible within the editor, as there is no bake method exposed for use in exported projects. However, it's still possible to load pre-baked [godot.Texture3D]s into its [texture] property in an exported project.
- *
- * **Note:** [godot.ParticleProcessMaterial.collisionMode] must be [godot.ParticleProcessMaterial.COLLISION_RIGID] or [godot.ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on the [godot.GPUParticles3D]'s process material for collision to work.
- *
- * **Note:** Particle collision only affects [godot.GPUParticles3D], not [godot.CPUParticles3D].
+ * A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.
+ * Signed distance fields (SDF) allow for efficiently representing approximate collision shapes for
+ * convex and concave objects of any shape. This is more flexible than
+ * [GPUParticlesCollisionHeightField3D], but it requires a baking step.
+ * **Baking:** The signed distance field texture can be baked by selecting the
+ * [GPUParticlesCollisionSDF3D] node in the editor, then clicking **Bake SDF** at the top of the 3D
+ * viewport. Any *visible* [MeshInstance3D]s within the [size] will be taken into account for baking,
+ * regardless of their [GeometryInstance3D.giMode].
+ * **Note:** Baking a [GPUParticlesCollisionSDF3D]'s [texture] is only possible within the editor,
+ * as there is no bake method exposed for use in exported projects. However, it's still possible to
+ * load pre-baked [Texture3D]s into its [texture] property in an exported project.
+ * **Note:** [ParticleProcessMaterial.collisionMode] must be
+ * [ParticleProcessMaterial.COLLISION_RIGID] or [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on
+ * the [GPUParticles3D]'s process material for collision to work.
+ * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
-   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small as possible while covering the parts of the scene you need.
+   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small
+   * as possible while covering the parts of the scene you need.
    */
   @CoreTypeLocalCopy
   public var size: Vector3
@@ -60,7 +63,12 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   /**
-   * The bake resolution to use for the signed distance field [texture]. The texture must be baked again for changes to the [resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of.
+   * The bake resolution to use for the signed distance field [texture]. The texture must be baked
+   * again for changes to the [resolution] property to be effective. Higher resolutions have a greater
+   * performance cost and take more time to bake. Higher resolutions also result in larger baked
+   * textures, leading to increased VRAM and storage space requirements. To improve performance and
+   * reduce bake times, use the lowest resolution possible for the object you're representing the
+   * collision of.
    */
   public var resolution: Resolution
     get() {
@@ -74,7 +82,9 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   /**
-   * The collision shape's thickness. Unlike other particle colliders, [godot.GPUParticlesCollisionSDF3D] is actually hollow on the inside. [thickness] can be increased to prevent particles from tunneling through the collision shape at high speeds, or when the [godot.GPUParticlesCollisionSDF3D] is moved.
+   * The collision shape's thickness. Unlike other particle colliders, [GPUParticlesCollisionSDF3D]
+   * is actually hollow on the inside. [thickness] can be increased to prevent particles from tunneling
+   * through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved.
    */
   public var thickness: Float
     get() {
@@ -88,7 +98,10 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   /**
-   * The visual layers to account for when baking the particle collision SDF. Only [godot.MeshInstance3D]s whose [godot.VisualInstance3D.layers] match with this [bakeMask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking.
+   * The visual layers to account for when baking the particle collision SDF. Only [MeshInstance3D]s
+   * whose [VisualInstance3D.layers] match with this [bakeMask] will be included in the generated
+   * particle collision SDF. By default, all objects are taken into account for the particle collision
+   * SDF baking.
    */
   public var bakeMask: Long
     get() {
@@ -121,7 +134,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   /**
-   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small as possible while covering the parts of the scene you need.
+   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small
+   * as possible while covering the parts of the scene you need.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -145,7 +159,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
 
   /**
-   * Based on [value], enables or disables the specified layer in the [bakeMask], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [bakeMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -153,7 +168,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber]
+   * between 1 and 32.
    */
   public fun getBakeMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -165,7 +181,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     id: Long,
   ) {
     /**
-     * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least precise.
+     * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least
+     * precise.
      */
     RESOLUTION_16(0),
     /**
@@ -185,11 +202,12 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
      */
     RESOLUTION_256(4),
     /**
-     * Bake a 512×512×512 signed distance field. This is the slowest option, but also the most precise.
+     * Bake a 512×512×512 signed distance field. This is the slowest option, but also the most
+     * precise.
      */
     RESOLUTION_512(5),
     /**
-     * Represents the size of the [enum Resolution] enum.
+     * Represents the size of the [Resolution] enum.
      */
     RESOLUTION_MAX(6),
     ;

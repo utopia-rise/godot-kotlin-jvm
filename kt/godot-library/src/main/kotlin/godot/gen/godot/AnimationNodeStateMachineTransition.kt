@@ -29,13 +29,8 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A transition within an [godot.AnimationNodeStateMachine] connecting two [godot.AnimationRootNode]s.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
- *
- * The path generated when using [godot.AnimationNodeStateMachinePlayback.travel] is limited to the nodes connected by [godot.AnimationNodeStateMachineTransition].
- *
+ * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes
+ * connected by [AnimationNodeStateMachineTransition].
  * You can set the timing and conditions of the transition in detail.
  */
 @GodotBaseType
@@ -88,7 +83,8 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Lower priority transitions are preferred when travelling through the tree via [godot.AnimationNodeStateMachinePlayback.travel] or [advanceMode] is set to [ADVANCE_MODE_AUTO].
+   * Lower priority transitions are preferred when travelling through the tree via
+   * [AnimationNodeStateMachinePlayback.travel] or [advanceMode] is set to [ADVANCE_MODE_AUTO].
    */
   public var priority: Int
     get() {
@@ -116,7 +112,9 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Determines whether the transition should disabled, enabled when using [godot.AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [advanceCondition] and [advanceExpression] checks are true (if assigned).
+   * Determines whether the transition should disabled, enabled when using
+   * [AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [advanceCondition]
+   * and [advanceExpression] checks are true (if assigned).
    */
   public var advanceMode: AdvanceMode
     get() {
@@ -130,23 +128,21 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [godot.AnimationTree] that can be controlled from code (see [godot.Using AnimationTree]($DOCS_URL/tutorials/animation/animation_tree.html#controlling-from-code)). For example, if [godot.AnimationTree.treeRoot] is an [godot.AnimationNodeStateMachine] and [advanceCondition] is set to `"idle"`:
+   * Turn on auto advance when this condition is set. The provided name will become a boolean
+   * parameter on the [AnimationTree] that can be controlled from code (see
+   * [url=$DOCS_URL/tutorials/animation/animation_tree.html#controlling-from-code]Using
+   * AnimationTree[/url]). For example, if [AnimationTree.treeRoot] is an [AnimationNodeStateMachine]
+   * and [advanceCondition] is set to `"idle"`:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * $animation_tree.set("parameters/conditions/idle", is_on_floor and (linear_velocity.x == 0))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor && (LinearVelocity.X == 0));
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
+   * csharp:
+   * ```csharp
+   * GetNode<AnimationTree>("animation_tree").Set("parameters/conditions/idle", IsOnFloor &&
+   * (LinearVelocity.X == 0));
+   * ```
    */
   public var advanceCondition: StringName
     get() {
@@ -160,7 +156,9 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   /**
-   * Use an expression as a condition for state machine transitions. It is possible to create complex animation advance conditions for switching between states and gives much greater flexibility for creating complex state machines by directly interfacing with the script code.
+   * Use an expression as a condition for state machine transitions. It is possible to create
+   * complex animation advance conditions for switching between states and gives much greater
+   * flexibility for creating complex state machines by directly interfacing with the script code.
    */
   public var advanceExpression: String
     get() {
@@ -182,15 +180,18 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     id: Long,
   ) {
     /**
-     * Switch to the next state immediately. The current state will end and blend into the beginning of the new one.
+     * Switch to the next state immediately. The current state will end and blend into the beginning
+     * of the new one.
      */
     SWITCH_MODE_IMMEDIATE(0),
     /**
-     * Switch to the next state immediately, but will seek the new state to the playback position of the old state.
+     * Switch to the next state immediately, but will seek the new state to the playback position of
+     * the old state.
      */
     SWITCH_MODE_SYNC(1),
     /**
-     * Wait for the current state playback to end, then switch to the beginning of the next state animation.
+     * Wait for the current state playback to end, then switch to the beginning of the next state
+     * animation.
      */
     SWITCH_MODE_AT_END(2),
     ;
@@ -213,11 +214,12 @@ public open class AnimationNodeStateMachineTransition : Resource() {
      */
     ADVANCE_MODE_DISABLED(0),
     /**
-     * Only use this transition during [godot.AnimationNodeStateMachinePlayback.travel].
+     * Only use this transition during [AnimationNodeStateMachinePlayback.travel].
      */
     ADVANCE_MODE_ENABLED(1),
     /**
-     * Automatically use this transition if the [advanceCondition] and [advanceExpression] checks are true (if assigned).
+     * Automatically use this transition if the [advanceCondition] and [advanceExpression] checks
+     * are true (if assigned).
      */
     ADVANCE_MODE_AUTO(2),
     ;

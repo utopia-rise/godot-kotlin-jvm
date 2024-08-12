@@ -20,19 +20,15 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Adds a delay audio effect to an audio bus. Plays input signal back after a period of time.
- *
- * Two tap delay and feedback options.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
- *
- * Plays input signal back after a period of time. The delayed signal may be played back multiple times to create the sound of a repeating, decaying echo. Delay effects range from a subtle echo effect to a pronounced blending of previous sounds with new sounds.
+ * Plays input signal back after a period of time. The delayed signal may be played back multiple
+ * times to create the sound of a repeating, decaying echo. Delay effects range from a subtle echo
+ * effect to a pronounced blending of previous sounds with new sounds.
  */
 @GodotBaseType
 public open class AudioEffectDelay : AudioEffect() {
   /**
-   * Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0 to 1.
+   * Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0
+   * to 1.
    */
   public var dry: Float
     get() {
@@ -200,7 +196,8 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   /**
-   * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the source signal.
+   * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the
+   * source signal.
    */
   public var feedbackLowpass: Float
     get() {

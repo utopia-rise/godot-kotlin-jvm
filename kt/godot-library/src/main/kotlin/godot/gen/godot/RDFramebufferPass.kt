@@ -20,18 +20,17 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Framebuffer pass attachment description (used by [godot.RenderingDevice]).
- *
- * This class contains the list of attachment descriptions for a framebuffer pass. Each points with an index to a previously supplied list of texture attachments.
- *
- * Multipass framebuffers can optimize some configurations in mobile. On desktop, they provide little to no advantage.
- *
- * This object is used by [godot.RenderingDevice].
+ * This class contains the list of attachment descriptions for a framebuffer pass. Each points with
+ * an index to a previously supplied list of texture attachments.
+ * Multipass framebuffers can optimize some configurations in mobile. On desktop, they provide
+ * little to no advantage.
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDFramebufferPass : RefCounted() {
   /**
-   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip.
+   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
+   * ATTACHMENT_UNUSED to skip.
    */
   public var colorAttachments: PackedInt32Array
     get() {
@@ -45,7 +44,8 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   /**
-   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an input. Make sure to also supply it properly in the [godot.RDUniform] for the uniform set.
+   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
+   * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
    */
   public var inputAttachments: PackedInt32Array
     get() {
@@ -59,7 +59,8 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   /**
-   * If the color attachments are multisampled, non-multisampled resolve attachments can be provided.
+   * If the color attachments are multisampled, non-multisampled resolve attachments can be
+   * provided.
    */
   public var resolveAttachments: PackedInt32Array
     get() {
@@ -89,7 +90,8 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   /**
-   * Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this pass.
+   * Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this
+   * pass.
    */
   public var depthAttachment: Int
     get() {

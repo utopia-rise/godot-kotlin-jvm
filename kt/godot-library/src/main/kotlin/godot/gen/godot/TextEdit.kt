@@ -48,13 +48,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A multiline text editor.
- *
- * A multiline text editor. It also has limited facilities for editing code, such as syntax highlighting support. For more advanced facilities for editing code, see [godot.CodeEdit].
- *
- * **Note:** Most viewport, caret and edit methods contain a `caret_index` argument for [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for the main caret, or greater than `0` for secondary carets.
- *
- * **Note:** When holding down [kbd]Alt[/kbd], the vertical scroll wheel will scroll 5 times as fast as it would normally do. This also works in the Godot script editor.
+ * A multiline text editor. It also has limited facilities for editing code, such as syntax
+ * highlighting support. For more advanced facilities for editing code, see [CodeEdit].
+ * **Note:** Most viewport, caret and edit methods contain a `caret_index` argument for
+ * [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for
+ * the main caret, or greater than `0` for secondary carets.
+ * **Note:** When holding down [kbd]Alt[/kbd], the vertical scroll wheel will scroll 5 times as fast
+ * as it would normally do. This also works in the Godot script editor.
  */
 @GodotBaseType
 public open class TextEdit : Control() {
@@ -70,8 +70,8 @@ public open class TextEdit : Control() {
 
   /**
    * Emitted immediately when the text changes.
-   *
-   * When text is added [fromLine] will be less than [toLine]. On a remove [toLine] will be less than [fromLine].
+   * When text is added [fromLine] will be less than [toLine]. On a remove [toLine] will be less
+   * than [fromLine].
    */
   public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
 
@@ -96,7 +96,7 @@ public open class TextEdit : Control() {
   public val gutterRemoved: Signal0 by signal()
 
   /**
-   * String value of the [godot.TextEdit].
+   * String value of the [TextEdit].
    */
   public var text: String
     get() {
@@ -110,7 +110,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Text shown when the [godot.TextEdit] is empty. It is **not** the [godot.TextEdit]'s default value (see [text]).
+   * Text shown when the [TextEdit] is empty. It is **not** the [TextEdit]'s default value (see
+   * [text]).
    */
   public var placeholderText: String
     get() {
@@ -152,7 +153,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled.
+   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is
+   * disabled.
    */
   public var shortcutKeysEnabled: Boolean
     get() {
@@ -167,7 +169,6 @@ public open class TextEdit : Control() {
 
   /**
    * If `true`, text can be selected.
-   *
    * If `false`, text can not be selected by the user or by the [select] or [selectAll] methods.
    */
   public var selectingEnabled: Boolean
@@ -225,7 +226,6 @@ public open class TextEdit : Control() {
 
   /**
    * If `false`, using middle mouse button to paste clipboard will be disabled.
-   *
    * **Note:** This method is only implemented on Linux.
    */
   public var middleMousePasteEnabled: Boolean
@@ -254,7 +254,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If [wrapMode] is set to [LINE_WRAPPING_BOUNDARY], sets text wrapping mode. To see how each mode behaves, see [enum TextServer.AutowrapMode].
+   * If [wrapMode] is set to [LINE_WRAPPING_BOUNDARY], sets text wrapping mode. To see how each mode
+   * behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
     get() {
@@ -310,7 +311,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
+   * If there is a vertical scrollbar, this determines the current vertical scroll value in line
+   * numbers, starting at 0 for the top line.
    */
   public var scrollVertical: Double
     get() {
@@ -324,7 +326,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
+   * If there is a horizontal scrollbar, this determines the current horizontal scroll value in
+   * pixels.
    */
   public var scrollHorizontal: Int
     get() {
@@ -338,7 +341,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, [godot.TextEdit] will disable vertical scroll and fit minimum height to the number of visible lines.
+   * If `true`, [TextEdit] will disable vertical scroll and fit minimum height to the number of
+   * visible lines.
    */
   public var scrollFitContentHeight: Boolean
     get() {
@@ -436,8 +440,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, a right-click moves the caret at the mouse position before displaying the context menu.
-   *
+   * If `true`, a right-click moves the caret at the mouse position before displaying the context
+   * menu.
    * If `false`, the context menu ignores mouse location.
    */
   public var caretMoveOnRightClick: Boolean
@@ -453,7 +457,6 @@ public open class TextEdit : Control() {
 
   /**
    * Allow moving caret, selecting and removing the individual composite character components.
-   *
    * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
   public var caretMidGrapheme: Boolean
@@ -482,7 +485,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Sets the [godot.SyntaxHighlighter] to use.
+   * Sets the [SyntaxHighlighter] to use.
    */
   public var syntaxHighlighter: SyntaxHighlighter?
     get() {
@@ -580,7 +583,8 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
+   * is used instead.
    */
   public var language: String
     get() {
@@ -629,7 +633,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Override this method to define what happens when the user types in the provided key [unicodeChar].
+   * Override this method to define what happens when the user types in the provided key
+   * [unicodeChar].
    */
   public open fun _handleUnicodeInput(unicodeChar: Int, caretIndex: Int): Unit {
   }
@@ -659,8 +664,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Override this method to define what happens when the user performs a paste operation with middle mouse button.
-   *
+   * Override this method to define what happens when the user performs a paste operation with
+   * middle mouse button.
    * **Note:** This method is only implemented on Linux.
    */
   public open fun _pastePrimaryClipboard(caretIndex: Int): Unit {
@@ -676,7 +681,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the tab size for the [godot.TextEdit] to use.
+   * Sets the tab size for the [TextEdit] to use.
    */
   public fun setTabSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
@@ -684,7 +689,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the [godot.TextEdit]'s' tab size.
+   * Returns the [TextEdit]'s' tab size.
    */
   public fun getTabSize(): Int {
     TransferContext.writeArguments()
@@ -693,7 +698,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * If `true`, sets the user into overtype mode. When the user types in this mode, it will override existing text.
+   * If `true`, sets the user into overtype mode. When the user types in this mode, it will override
+   * existing text.
    */
   public fun setOvertypeModeEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -710,7 +716,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Performs a full reset of [godot.TextEdit], including undo history.
+   * Performs a full reset of [TextEdit], including undo history.
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
@@ -755,8 +761,8 @@ public open class TextEdit : Control() {
 
   /**
    * Returns the maximum value of the line height among all lines.
-   *
-   * **Note:** The return value is influenced by [theme_item line_spacing] and [theme_item font_size]. And it will not be less than `1`.
+   * **Note:** The return value is influenced by [theme_item line_spacing] and [theme_item
+   * font_size]. And it will not be less than `1`.
    */
   public fun getLineHeight(): Int {
     TransferContext.writeArguments()
@@ -809,8 +815,8 @@ public open class TextEdit : Control() {
 
   /**
    * Removes text between the given positions.
-   *
-   * **Note:** This does not adjust the caret or selection, which as a result it can end up in an invalid position.
+   * **Note:** This does not adjust the caret or selection, which as a result it can end up in an
+   * invalid position.
    */
   public fun removeText(
     fromLine: Int,
@@ -823,7 +829,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the last unhidden line in the entire [godot.TextEdit].
+   * Returns the last unhidden line in the entire [TextEdit].
    */
   public fun getLastUnhiddenLine(): Int {
     TransferContext.writeArguments()
@@ -832,7 +838,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the count to the next visible line from [line] to `line + visible_amount`. Can also count backwards. For example if a [godot.TextEdit] has 5 lines with lines 2 and 3 hidden, calling this with `line = 1, visible_amount = 1` would return 3.
+   * Returns the count to the next visible line from [line] to `line + visible_amount`. Can also
+   * count backwards. For example if a [TextEdit] has 5 lines with lines 2 and 3 hidden, calling this
+   * with `line = 1, visible_amount = 1` would return 3.
    */
   public fun getNextVisibleLineOffsetFrom(line: Int, visibleAmount: Int): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to visibleAmount.toLong())
@@ -841,7 +849,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Similar to [getNextVisibleLineOffsetFrom], but takes into account the line wrap indexes. In the returned vector, `x` is the line, `y` is the wrap index.
+   * Similar to [getNextVisibleLineOffsetFrom], but takes into account the line wrap indexes. In the
+   * returned vector, `x` is the line, `y` is the wrap index.
    */
   public fun getNextVisibleLineIndexOffsetFrom(
     line: Int,
@@ -901,8 +910,9 @@ public open class TextEdit : Control() {
 
   /**
    * Starts an action, will end the current action if [action] is different.
-   *
-   * An action will also end after a call to [endAction], after [godot.ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the [startAction] and [endAction] calls.
+   * An action will also end after a call to [endAction], after
+   * [ProjectSettings.gui/timers/textEditIdleDetectSec] is triggered or a new undoable step outside the
+   * [startAction] and [endAction] calls.
    */
   public fun startAction(action: EditAction): Unit {
     TransferContext.writeArguments(LONG to action.id)
@@ -918,7 +928,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Starts a multipart edit. All edits will be treated as one action until [endComplexOperation] is called.
+   * Starts a multipart edit. All edits will be treated as one action until [endComplexOperation] is
+   * called.
    */
   public fun beginComplexOperation(): Unit {
     TransferContext.writeArguments()
@@ -926,7 +937,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Ends a multipart edit, started with [beginComplexOperation]. If called outside a complex operation, the current operation is pushed onto the undo/redo stack.
+   * Ends a multipart edit, started with [beginComplexOperation]. If called outside a complex
+   * operation, the current operation is pushed onto the undo/redo stack.
    */
   public fun endComplexOperation(): Unit {
     TransferContext.writeArguments()
@@ -984,7 +996,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the current version of the [godot.TextEdit]. The version is a count of recorded operations by the undo/redo history.
+   * Returns the current version of the [TextEdit]. The version is a count of recorded operations by
+   * the undo/redo history.
    */
   public fun getVersion(): Long {
     TransferContext.writeArguments()
@@ -1010,7 +1023,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the search [flags]. This is used with [setSearchText] to highlight occurrences of the searched text. Search flags can be specified from the [enum SearchFlags] enum.
+   * Sets the search [flags]. This is used with [setSearchText] to highlight occurrences of the
+   * searched text. Search flags can be specified from the [SearchFlags] enum.
    */
   public fun setSearchFlags(flags: Long): Unit {
     TransferContext.writeArguments(LONG to flags)
@@ -1018,45 +1032,28 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Perform a search inside the text. Search flags can be specified in the [enum SearchFlags] enum.
+   * Perform a search inside the text. Search flags can be specified in the [SearchFlags] enum.
+   * In the returned vector, `x` is the column, `y` is the line. If no results are found, both are
+   * equal to `-1`.
    *
-   * In the returned vector, `x` is the column, `y` is the line. If no results are found, both are equal to `-1`.
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * var result = search("print", SEARCH_WHOLE_WORDS, 0, 0)
-   *
    * if result.x != -1:
-   *
    *     # Result found.
-   *
    *     var line_number = result.y
-   *
    *     var column_number = result.x
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * Vector2I result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
-   *
    * if (result.X != -1)
-   *
    * {
-   *
    *     // Result found.
-   *
    *     int lineNumber = result.Y;
-   *
    *     int columnNumber = result.X;
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun search(
     text: String,
@@ -1070,7 +1067,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Provide custom tooltip text. The callback method must take the following args: `hovered_word: String`.
+   * Provide custom tooltip text. The callback method must take the following args: `hovered_word:
+   * String`.
    */
   public fun setTooltipRequestFunc(callback: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callback)
@@ -1096,7 +1094,9 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the line and column at the given position. In the returned vector, `x` is the column, `y` is the line. If [allowOutOfBounds] is `false` and the position is not over the text, both vector values will be set to `-1`.
+   * Returns the line and column at the given position. In the returned vector, `x` is the column,
+   * `y` is the line. If [allowOutOfBounds] is `false` and the position is not over the text, both
+   * vector values will be set to `-1`.
    */
   @JvmOverloads
   public fun getLineColumnAtPos(position: Vector2i, allowOutOfBounds: Boolean = true): Vector2i {
@@ -1106,9 +1106,10 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the local position for the given [line] and [column]. If `x` or `y` of the returned vector equal `-1`, the position is outside of the viewable area of the control.
-   *
-   * **Note:** The Y position corresponds to the bottom side of the line. Use [getRectAtLineColumn] to get the top side position.
+   * Returns the local position for the given [line] and [column]. If `x` or `y` of the returned
+   * vector equal `-1`, the position is outside of the viewable area of the control.
+   * **Note:** The Y position corresponds to the bottom side of the line. Use [getRectAtLineColumn]
+   * to get the top side position.
    */
   public fun getPosAtLineColumn(line: Int, column: Int): Vector2i {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
@@ -1117,9 +1118,11 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the local position and size for the grapheme at the given [line] and [column]. If `x` or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of the control.
-   *
-   * **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike [getPosAtLineColumn] which returns the bottom side.
+   * Returns the local position and size for the grapheme at the given [line] and [column]. If `x`
+   * or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of
+   * the control.
+   * **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike
+   * [getPosAtLineColumn] which returns the bottom side.
    */
   public fun getRectAtLineColumn(line: Int, column: Int): Rect2i {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
@@ -1146,7 +1149,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the mouse is over selection. If [edges] is `true`, the edges are considered part of the selection.
+   * Returns whether the mouse is over selection. If [edges] is `true`, the edges are considered
+   * part of the selection.
    */
   @JvmOverloads
   public fun isMouseOverSelection(edges: Boolean, caretIndex: Int = -1): Boolean {
@@ -1156,7 +1160,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Adds a new caret at the given location. Returns the index of the new caret, or `-1` if the location is invalid.
+   * Adds a new caret at the given location. Returns the index of the new caret, or `-1` if the
+   * location is invalid.
    */
   public fun addCaret(line: Int, col: Int): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to col.toLong())
@@ -1166,7 +1171,6 @@ public open class TextEdit : Control() {
 
   /**
    * Removes the given caret index.
-   *
    * **Note:** This can result in adjustment of all other caret indices.
    */
   public fun removeCaret(caret: Int): Unit {
@@ -1184,8 +1188,8 @@ public open class TextEdit : Control() {
 
   /**
    * Merges any overlapping carets. Will favor the newest caret, or the caret with a selection.
-   *
-   * **Note:** This is not called when a caret changes position but after certain actions, so it is possible to get into a state where carets overlap.
+   * **Note:** This is not called when a caret changes position but after certain actions, so it is
+   * possible to get into a state where carets overlap.
    */
   public fun mergeOverlappingCarets(): Unit {
     TransferContext.writeArguments()
@@ -1193,7 +1197,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the number of carets in this [godot.TextEdit].
+   * Returns the number of carets in this [TextEdit].
    */
   public fun getCaretCount(): Int {
     TransferContext.writeArguments()
@@ -1202,7 +1206,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Adds an additional caret above or below every caret. If [below] is true the new caret will be added below and above otherwise.
+   * Adds an additional caret above or below every caret. If [below] is true the new caret will be
+   * added below and above otherwise.
    */
   public fun addCaretAtCarets(below: Boolean): Unit {
     TransferContext.writeArguments(BOOL to below)
@@ -1210,7 +1215,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns a list of caret indexes in their edit order, this done from bottom to top. Edit order refers to the way actions such as [insertTextAtCaret] are applied.
+   * Returns a list of caret indexes in their edit order, this done from bottom to top. Edit order
+   * refers to the way actions such as [insertTextAtCaret] are applied.
    */
   public fun getCaretIndexEditOrder(): PackedInt32Array {
     TransferContext.writeArguments()
@@ -1220,7 +1226,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Reposition the carets affected by the edit. This assumes edits are applied in edit order, see [getCaretIndexEditOrder].
+   * Reposition the carets affected by the edit. This assumes edits are applied in edit order, see
+   * [getCaretIndexEditOrder].
    */
   public fun adjustCaretsAfterEdit(
     caret: Int,
@@ -1255,12 +1262,11 @@ public open class TextEdit : Control() {
 
   /**
    * Moves the caret to the specified [line] index.
-   *
-   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move occurs.
-   *
+   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move
+   * occurs.
    * If [canBeHidden] is `true`, the specified [line] can be hidden.
-   *
-   * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
+   * **Note:** If supporting multiple carets this will not check for any overlap. See
+   * [mergeOverlappingCarets].
    */
   @JvmOverloads
   public fun setCaretLine(
@@ -1286,10 +1292,10 @@ public open class TextEdit : Control() {
 
   /**
    * Moves the caret to the specified [column] index.
-   *
-   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move occurs.
-   *
-   * **Note:** If supporting multiple carets this will not check for any overlap. See [mergeOverlappingCarets].
+   * If [adjustViewport] is `true`, the viewport will center at the caret position after the move
+   * occurs.
+   * **Note:** If supporting multiple carets this will not check for any overlap. See
+   * [mergeOverlappingCarets].
    */
   @JvmOverloads
   public fun setCaretColumn(
@@ -1322,7 +1328,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns a [godot.String] text with the word under the caret's location.
+   * Returns a [String] text with the word under the caret's location.
    */
   @JvmOverloads
   public fun getWordUnderCaret(caretIndex: Int = -1): String {
@@ -1356,7 +1362,6 @@ public open class TextEdit : Control() {
 
   /**
    * Select all the text.
-   *
    * If [selectingEnabled] is `false`, no selection will occur.
    */
   public fun selectAll(): Unit {
@@ -1374,7 +1379,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Adds a selection and a caret for the next occurrence of the current selection. If there is no active selection, selects word under caret.
+   * Adds a selection and a caret for the next occurrence of the current selection. If there is no
+   * active selection, selects word under caret.
    */
   public fun addSelectionForNextOccurrence(): Unit {
     TransferContext.writeArguments()
@@ -1383,7 +1389,6 @@ public open class TextEdit : Control() {
 
   /**
    * Perform selection, from line/column to line/column.
-   *
    * If [selectingEnabled] is `false`, no selection will occur.
    */
   @JvmOverloads
@@ -1409,7 +1414,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the text inside the selection of a caret, or all the carets if [caretIndex] is its default value `-1`.
+   * Returns the text inside the selection of a caret, or all the carets if [caretIndex] is its
+   * default value `-1`.
    */
   @JvmOverloads
   public fun getSelectedText(caretIndex: Int = -1): String {
@@ -1524,7 +1530,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns an array of [godot.String]s representing each wrapped index.
+   * Returns an array of [String]s representing each wrapped index.
    */
   public fun getLineWrappedText(line: Int): PackedStringArray {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -1533,7 +1539,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the [godot.VScrollBar] of the [godot.TextEdit].
+   * Returns the [VScrollBar] of the [TextEdit].
    */
   public fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
@@ -1542,7 +1548,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the [godot.HScrollBar] used by [godot.TextEdit].
+   * Returns the [HScrollBar] used by [TextEdit].
    */
   public fun getHScrollBar(): HScrollBar? {
     TransferContext.writeArguments()
@@ -1651,7 +1657,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Centers the viewport on the line the editing caret is at. This also resets the [scrollHorizontal] value to `0`.
+   * Centers the viewport on the line the editing caret is at. This also resets the
+   * [scrollHorizontal] value to `0`.
    */
   @JvmOverloads
   public fun centerViewportToCaret(caretIndex: Int = 0): Unit {
@@ -1669,7 +1676,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Register a new gutter to this [godot.TextEdit]. Use [at] to have a specific gutter order. A value of `-1` appends the gutter to the right.
+   * Register a new gutter to this [TextEdit]. Use [at] to have a specific gutter order. A value of
+   * `-1` appends the gutter to the right.
    */
   @JvmOverloads
   public fun addGutter(at: Int = -1): Unit {
@@ -1678,7 +1686,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Removes the gutter from this [godot.TextEdit].
+   * Removes the gutter from this [TextEdit].
    */
   public fun removeGutter(gutter: Int): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong())
@@ -1763,7 +1771,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Sets the gutter as clickable. This will change the mouse cursor to a pointing hand when hovering over the gutter.
+   * Sets the gutter as clickable. This will change the mouse cursor to a pointing hand when
+   * hovering over the gutter.
    */
   public fun setGutterClickable(gutter: Int, clickable: Boolean): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), BOOL to clickable)
@@ -1805,7 +1814,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Set a custom draw method for the gutter. The callback method must take the following args: `line: int, gutter: int, Area: Rect2`.
+   * Set a custom draw method for the gutter. The callback method must take the following args:
+   * `line: int, gutter: int, Area: Rect2`.
    */
   public fun setGutterCustomDraw(column: Int, drawCallback: Callable): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), CALLABLE to drawCallback)
@@ -1906,7 +1916,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * If [clickable] is `true`, makes the [gutter] on [line] clickable. See [gutterClicked].
+   * If [clickable] is `true`, makes the [gutter] on [line] clickable. See [signal gutter_clicked].
    */
   public fun setLineGutterClickable(
     line: Int,
@@ -1935,7 +1945,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the current background color of the line. `Color(0, 0, 0, 0)` is returned if no color is set.
+   * Returns the current background color of the line. `Color(0, 0, 0, 0)` is returned if no color
+   * is set.
    */
   public fun getLineBackgroundColor(line: Int): Color {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -1944,87 +1955,52 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns the [godot.PopupMenu] of this [godot.TextEdit]. By default, this menu is displayed when right-clicking on the [godot.TextEdit].
+   * Returns the [PopupMenu] of this [TextEdit]. By default, this menu is displayed when
+   * right-clicking on the [TextEdit].
+   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
+   * the standard ones (see [MenuItems]). For example:
    *
-   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:
-   *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _ready():
-   *
    *     var menu = get_menu()
-   *
    *     # Remove all items after "Redo".
-   *
    *     menu.item_count = menu.get_item_index(MENU_REDO) + 1
-   *
    *     # Add custom items.
-   *
    *     menu.add_separator()
-   *
    *     menu.add_item("Insert Date", MENU_MAX + 1)
-   *
    *     # Connect callback.
-   *
    *     menu.id_pressed.connect(_on_item_pressed)
    *
-   *
-   *
    * func _on_item_pressed(id):
-   *
    *     if id == MENU_MAX + 1:
-   *
    *         insert_text_at_caret(Time.get_date_string_from_system())
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * ```
+   * csharp:
+   * ```csharp
    * public override void _Ready()
-   *
    * {
-   *
    *     var menu = GetMenu();
-   *
    *     // Remove all items after "Redo".
-   *
    *     menu.ItemCount = menu.GetItemIndex(TextEdit.MenuItems.Redo) + 1;
-   *
    *     // Add custom items.
-   *
    *     menu.AddSeparator();
-   *
    *     menu.AddItem("Insert Date", TextEdit.MenuItems.Max + 1);
-   *
    *     // Add event handler.
-   *
    *     menu.IdPressed += OnItemPressed;
-   *
    * }
-   *
-   *
    *
    * public void OnItemPressed(int id)
-   *
    * {
-   *
    *     if (id == TextEdit.MenuItems.Max + 1)
-   *
    *     {
-   *
    *         InsertTextAtCaret(Time.GetDateStringFromSystem());
-   *
    *     }
-   *
    * }
+   * ```
    *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
@@ -2033,7 +2009,8 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided).
+   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve
+   * performance (so the creation of the menu is avoided).
    */
   public fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
@@ -2042,7 +2019,7 @@ public open class TextEdit : Control() {
   }
 
   /**
-   * Executes a given action as defined in the [enum MenuItems] enum.
+   * Executes a given action as defined in the [MenuItems] enum.
    */
   public fun menuOption(option: Int): Unit {
     TransferContext.writeArguments(LONG to option.toLong())
@@ -2065,11 +2042,11 @@ public open class TextEdit : Control() {
      */
     MENU_PASTE(2),
     /**
-     * Erases the whole [godot.TextEdit] text.
+     * Erases the whole [TextEdit] text.
      */
     MENU_CLEAR(3),
     /**
-     * Selects the whole [godot.TextEdit] text.
+     * Selects the whole [TextEdit] text.
      */
     MENU_SELECT_ALL(4),
     /**
@@ -2173,7 +2150,7 @@ public open class TextEdit : Control() {
      */
     MENU_INSERT_SHY(29),
     /**
-     * Represents the size of the [enum MenuItems] enum.
+     * Represents the size of the [MenuItems] enum.
      */
     MENU_MAX(30),
     ;

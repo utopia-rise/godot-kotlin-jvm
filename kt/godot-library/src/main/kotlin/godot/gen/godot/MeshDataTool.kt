@@ -36,96 +36,56 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Helper tool to access and edit [godot.Mesh] data.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/3d/procedural_geometry/meshdatatool.html]($DOCS_URL/tutorials/3d/procedural_geometry/meshdatatool.html)
- *
- * MeshDataTool provides access to individual vertices in a [godot.Mesh]. It allows users to read and edit vertex data of meshes. It also creates an array of faces and edges.
- *
- * To use MeshDataTool, load a mesh with [createFromSurface]. When you are finished editing the data commit the data to a mesh with [commitToSurface].
- *
+ * MeshDataTool provides access to individual vertices in a [Mesh]. It allows users to read and edit
+ * vertex data of meshes. It also creates an array of faces and edges.
+ * To use MeshDataTool, load a mesh with [createFromSurface]. When you are finished editing the data
+ * commit the data to a mesh with [commitToSurface].
  * Below is an example of how MeshDataTool may be used.
  *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var mesh = ArrayMesh.new()
- *
  * mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, BoxMesh.new().get_mesh_arrays())
- *
  * var mdt = MeshDataTool.new()
- *
  * mdt.create_from_surface(mesh, 0)
- *
  * for i in range(mdt.get_vertex_count()):
- *
  *     var vertex = mdt.get_vertex(i)
- *
- *     # In this example we extend the mesh by one unit, which results in separated faces as it is flat shaded.
- *
+ *     # In this example we extend the mesh by one unit, which results in separated faces as it is
+ * flat shaded.
  *     vertex += mdt.get_vertex_normal(i)
- *
  *     # Save your change.
- *
  *     mdt.set_vertex(i, vertex)
- *
  * mesh.clear_surfaces()
- *
  * mdt.commit_to_surface(mesh)
- *
  * var mi = MeshInstance.new()
- *
  * mi.mesh = mesh
- *
  * add_child(mi)
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var mesh = new ArrayMesh();
- *
  * mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, new BoxMesh().GetMeshArrays());
- *
  * var mdt = new MeshDataTool();
- *
  * mdt.CreateFromSurface(mesh, 0);
- *
  * for (var i = 0; i < mdt.GetVertexCount(); i++)
- *
  * {
- *
  *     Vector3 vertex = mdt.GetVertex(i);
- *
- *     // In this example we extend the mesh by one unit, which results in separated faces as it is flat shaded.
- *
+ *     // In this example we extend the mesh by one unit, which results in separated faces as it is
+ * flat shaded.
  *     vertex += mdt.GetVertexNormal(i);
- *
  *     // Save your change.
- *
  *     mdt.SetVertex(i, vertex);
- *
  * }
- *
  * mesh.ClearSurfaces();
- *
  * mdt.CommitToSurface(mesh);
- *
  * var mi = new MeshInstance();
- *
  * mi.Mesh = mesh;
- *
  * AddChild(mi);
+ * ```
  *
- * [/csharp]
- *
- * [/codeblocks]
- *
- * See also [godot.ArrayMesh], [godot.ImmediateMesh] and [godot.SurfaceTool] for procedural geometry generation.
- *
- * **Note:** Godot uses clockwise [winding order](https://learnopengl.com/Advanced-OpenGL/Face-culling) for front faces of triangle primitive modes.
+ * See also [ArrayMesh], [ImmediateMesh] and [SurfaceTool] for procedural geometry generation.
+ * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
+ * order[/url] for front faces of triangle primitive modes.
  */
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
@@ -143,9 +103,8 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Uses specified surface of given [godot.Mesh] to populate data for MeshDataTool.
-   *
-   * Requires [godot.Mesh] with primitive type [godot.Mesh.PRIMITIVE_TRIANGLES].
+   * Uses specified surface of given [Mesh] to populate data for MeshDataTool.
+   * Requires [Mesh] with primitive type [Mesh.PRIMITIVE_TRIANGLES].
    */
   public fun createFromSurface(mesh: ArrayMesh, surface: Int): GodotError {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface.toLong())
@@ -154,7 +113,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Adds a new surface to specified [godot.Mesh] with edited data.
+   * Adds a new surface to specified [Mesh] with edited data.
    */
   @JvmOverloads
   public fun commitToSurface(mesh: ArrayMesh, compressionFlags: Long = 0): GodotError {
@@ -164,9 +123,10 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the [godot.Mesh]'s format. Format is an integer made up of [godot.Mesh] format flags combined together. For example, a mesh containing both vertices and normals would return a format of `3` because [godot.Mesh.ARRAY_FORMAT_VERTEX] is `1` and [godot.Mesh.ARRAY_FORMAT_NORMAL] is `2`.
-   *
-   * See [enum Mesh.ArrayFormat] for a list of format flags.
+   * Returns the [Mesh]'s format. Format is an integer made up of [Mesh] format flags combined
+   * together. For example, a mesh containing both vertices and normals would return a format of `3`
+   * because [Mesh.ARRAY_FORMAT_VERTEX] is `1` and [Mesh.ARRAY_FORMAT_NORMAL] is `2`.
+   * See [Mesh.ArrayFormat] for a list of format flags.
    */
   public fun getFormat(): Long {
     TransferContext.writeArguments()
@@ -175,7 +135,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the total number of vertices in [godot.Mesh].
+   * Returns the total number of vertices in [Mesh].
    */
   public fun getVertexCount(): Int {
     TransferContext.writeArguments()
@@ -184,7 +144,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the number of edges in this [godot.Mesh].
+   * Returns the number of edges in this [Mesh].
    */
   public fun getEdgeCount(): Int {
     TransferContext.writeArguments()
@@ -193,7 +153,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the number of faces in this [godot.Mesh].
+   * Returns the number of faces in this [Mesh].
    */
   public fun getFaceCount(): Int {
     TransferContext.writeArguments()
@@ -374,7 +334,6 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Returns index of specified vertex connected to given edge.
-   *
    * Vertex argument can only be 0 or 1 because edges are comprised of two vertices.
    */
   public fun getEdgeVertex(idx: Int, vertex: Int): Int {
@@ -411,34 +370,23 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Returns the specified vertex index of the given face.
-   *
    * Vertex argument must be either 0, 1, or 2 because faces contain three vertices.
-   *
    * **Example:**
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * var index = mesh_data_tool.get_face_vertex(0, 1) # Gets the index of the second vertex of the first face.
-   *
+   * gdscript:
+   * ```gdscript
+   * var index = mesh_data_tool.get_face_vertex(0, 1) # Gets the index of the second vertex of the
+   * first face.
    * var position = mesh_data_tool.get_vertex(index)
-   *
    * var normal = mesh_data_tool.get_vertex_normal(index)
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * int index = meshDataTool.GetFaceVertex(0, 1); // Gets the index of the second vertex of the first face.
-   *
+   * ```
+   * csharp:
+   * ```csharp
+   * int index = meshDataTool.GetFaceVertex(0, 1); // Gets the index of the second vertex of the
+   * first face.
    * Vector3 position = meshDataTool.GetVertex(index);
-   *
    * Vector3 normal = meshDataTool.GetVertexNormal(index);
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public fun getFaceVertex(idx: Int, vertex: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to vertex.toLong())
@@ -448,7 +396,6 @@ public open class MeshDataTool : RefCounted() {
 
   /**
    * Returns specified edge associated with given face.
-   *
    * Edge argument must be either 0, 1, or 2 because a face only has three edges.
    */
   public fun getFaceEdge(idx: Int, edge: Int): Int {
@@ -484,7 +431,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Sets the material to be used by newly-constructed [godot.Mesh].
+   * Sets the material to be used by newly-constructed [Mesh].
    */
   public fun setMaterial(material: Material): Unit {
     TransferContext.writeArguments(OBJECT to material)
@@ -492,7 +439,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the material assigned to the [godot.Mesh].
+   * Returns the material assigned to the [Mesh].
    */
   public fun getMaterial(): Material? {
     TransferContext.writeArguments()

@@ -29,18 +29,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Plays positional sound in 2D space.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
- *
  * Plays audio that is attenuated with distance to the listener.
- *
- * By default, audio is heard from the screen center. This can be changed by adding an [godot.AudioListener2D] node to the scene and enabling it by calling [godot.AudioListener2D.makeCurrent] on it.
- *
- * See also [godot.AudioStreamPlayer] to play a sound non-positionally.
- *
- * **Note:** Hiding an [godot.AudioStreamPlayer2D] node does not disable its audio output. To temporarily disable an [godot.AudioStreamPlayer2D]'s audio output, set [volumeDb] to a very low value like `-100` (which isn't audible to human hearing).
+ * By default, audio is heard from the screen center. This can be changed by adding an
+ * [AudioListener2D] node to the scene and enabling it by calling [AudioListener2D.makeCurrent] on it.
+ * See also [AudioStreamPlayer] to play a sound non-positionally.
+ * **Note:** Hiding an [AudioStreamPlayer2D] node does not disable its audio output. To temporarily
+ * disable an [AudioStreamPlayer2D]'s audio output, set [volumeDb] to a very low value like `-100`
+ * (which isn't audible to human hearing).
  */
 @GodotBaseType
 public open class AudioStreamPlayer2D : Node2D() {
@@ -50,7 +45,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   public val finished: Signal0 by signal()
 
   /**
-   * The [godot.AudioStream] object to be played.
+   * The [AudioStream] object to be played.
    */
   public var stream: AudioStream?
     get() {
@@ -158,7 +153,8 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
+   * The maximum number of sounds this node can play at the same time. Playing additional sounds
+   * after this value is reached will cut off the oldest sounds.
    */
   public var maxPolyphony: Int
     get() {
@@ -172,7 +168,9 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Scales the panning strength for this node by multiplying the base [godot.ProjectSettings.audio/general/2dPanningStrength] with this factor. Higher values will pan audio from left to right more dramatically than lower values.
+   * Scales the panning strength for this node by multiplying the base
+   * [ProjectSettings.audio/general/2dPanningStrength] with this factor. Higher values will pan audio
+   * from left to right more dramatically than lower values.
    */
   public var panningStrength: Float
     get() {
@@ -187,8 +185,10 @@ public open class AudioStreamPlayer2D : Node2D() {
 
   /**
    * Bus on which this audio is playing.
-   *
-   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if
+   * the given name matches an existing bus. This is because audio bus layouts might be loaded after
+   * this property is set. If this given name can't be resolved at runtime, it will fall back to
+   * `"Master"`.
    */
   public var bus: StringName
     get() {
@@ -202,7 +202,10 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Determines which [godot.Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [godot.AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
+   * Determines which [Area2D] layers affect the sound for reverb and audio bus effects. Areas can
+   * be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you
+   * might use this is making a "water" area so that sounds played in the water are redirected through
+   * an audio bus to make them sound like they are being played underwater.
    */
   public var areaMask: Long
     get() {
@@ -221,7 +224,8 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   /**
-   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in
+   * seconds.
    */
   @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {
@@ -246,7 +250,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   /**
-   * Returns the position in the [godot.AudioStream].
+   * Returns the position in the [AudioStream].
    */
   public fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
@@ -255,7 +259,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   /**
-   * Returns whether the [godot.AudioStreamPlayer] can return the [godot.AudioStreamPlayback] object or not.
+   * Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not.
    */
   public fun hasStreamPlayback(): Boolean {
     TransferContext.writeArguments()
@@ -264,7 +268,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   /**
-   * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer2D].
+   * Returns the [AudioStreamPlayback] object associated with this [AudioStreamPlayer2D].
    */
   public fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()

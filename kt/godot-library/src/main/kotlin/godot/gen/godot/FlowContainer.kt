@@ -19,17 +19,15 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A container that arranges its child controls horizontally or vertically and wraps them around at the borders.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
- *
- * A container that arranges its child controls horizontally or vertically and wraps them around at the borders. This is similar to how text in a book wraps around when no more words can fit on a line.
+ * A container that arranges its child controls horizontally or vertically and wraps them around at
+ * the borders. This is similar to how text in a book wraps around when no more words can fit on a
+ * line.
  */
 @GodotBaseType
 public open class FlowContainer : Container() {
   /**
-   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
+   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN],
+   * [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
   public var alignment: AlignmentMode
     get() {
@@ -43,9 +41,8 @@ public open class FlowContainer : Container() {
     }
 
   /**
-   * If `true`, the [godot.FlowContainer] will arrange its children vertically, rather than horizontally.
-   *
-   * Can't be changed when using [godot.HFlowContainer] and [godot.VFlowContainer].
+   * If `true`, the [FlowContainer] will arrange its children vertically, rather than horizontally.
+   * Can't be changed when using [HFlowContainer] and [VFlowContainer].
    */
   public var vertical: Boolean
     get() {
@@ -76,7 +73,8 @@ public open class FlowContainer : Container() {
     id: Long,
   ) {
     /**
-     * The child controls will be arranged at the beginning of the container, i.e. top if orientation is vertical, left if orientation is horizontal (right for RTL layout).
+     * The child controls will be arranged at the beginning of the container, i.e. top if
+     * orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
     ALIGNMENT_BEGIN(0),
     /**
@@ -84,7 +82,8 @@ public open class FlowContainer : Container() {
      */
     ALIGNMENT_CENTER(1),
     /**
-     * The child controls will be arranged at the end of the container, i.e. bottom if orientation is vertical, right if orientation is horizontal (left for RTL layout).
+     * The child controls will be arranged at the end of the container, i.e. bottom if orientation
+     * is vertical, right if orientation is horizontal (left for RTL layout).
      */
     ALIGNMENT_END(2),
     ;

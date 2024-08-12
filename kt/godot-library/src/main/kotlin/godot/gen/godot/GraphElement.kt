@@ -26,9 +26,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A container that represents a basic element that can be placed inside a [godot.GraphEdit] control.
- *
- * [godot.GraphElement] allows to create custom elements for a [godot.GraphEdit] graph. By default such elements can be selected, resized, and repositioned, but they cannot be connected. For a graph element that allows for connections see [godot.GraphNode].
+ * [GraphElement] allows to create custom elements for a [GraphEdit] graph. By default such elements
+ * can be selected, resized, and repositioned, but they cannot be connected. For a graph element that
+ * allows for connections see [GraphNode].
  */
 @GodotBaseType
 public open class GraphElement : Container() {
@@ -43,7 +43,8 @@ public open class GraphElement : Container() {
   public val nodeDeselected: Signal0 by signal()
 
   /**
-   * Emitted when displaying the GraphElement over other ones is requested. Happens on focusing (clicking into) the GraphElement.
+   * Emitted when displaying the GraphElement over other ones is requested. Happens on focusing
+   * (clicking into) the GraphElement.
    */
   public val raiseRequest: Signal0 by signal()
 
@@ -53,7 +54,8 @@ public open class GraphElement : Container() {
   public val deleteRequest: Signal0 by signal()
 
   /**
-   * Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle (see [resizable]).
+   * Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle
+   * (see [resizable]).
    */
   public val resizeRequest: Signal1<Vector2> by signal("newMinsize")
 
@@ -68,7 +70,7 @@ public open class GraphElement : Container() {
   public val positionOffsetChanged: Signal0 by signal()
 
   /**
-   * The offset of the GraphElement, relative to the scroll offset of the [godot.GraphEdit].
+   * The offset of the GraphElement, relative to the scroll offset of the [GraphEdit].
    */
   @CoreTypeLocalCopy
   public var positionOffset: Vector2
@@ -84,8 +86,8 @@ public open class GraphElement : Container() {
 
   /**
    * If `true`, the user can resize the GraphElement.
-   *
-   * **Note:** Dragging the handle will only emit the [resizeRequest] signal, the GraphElement needs to be resized manually.
+   * **Note:** Dragging the handle will only emit the [signal resize_request] signal, the
+   * GraphElement needs to be resized manually.
    */
   public var resizable: Boolean
     get() {
@@ -146,7 +148,7 @@ public open class GraphElement : Container() {
   }
 
   /**
-   * The offset of the GraphElement, relative to the scroll offset of the [godot.GraphEdit].
+   * The offset of the GraphElement, relative to the scroll offset of the [GraphEdit].
    *
    * This is a helper function to make dealing with local copies easier. 
    *

@@ -20,11 +20,10 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Shader source code (used by [godot.RenderingDevice]).
- *
  * Shader source code in text form.
- *
- * See also [godot.RDShaderFile]. [godot.RDShaderSource] is only meant to be used with the [godot.RenderingDevice] API. It should not be confused with Godot's own [godot.Shader] resource, which is what Godot's various nodes use for high-level shader programming.
+ * See also [RDShaderFile]. [RDShaderSource] is only meant to be used with the [RenderingDevice]
+ * API. It should not be confused with Godot's own [Shader] resource, which is what Godot's various
+ * nodes use for high-level shader programming.
  */
 @GodotBaseType
 public open class RDShaderSource : RefCounted() {

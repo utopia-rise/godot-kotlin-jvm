@@ -25,11 +25,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Holds a pattern to be copied from or pasted into [godot.TileMap]s.
- *
- * This resource holds a set of cells to help bulk manipulations of [godot.TileMap].
- *
- * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative coordinates.
+ * This resource holds a set of cells to help bulk manipulations of [TileMap].
+ * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative
+ * coordinates.
  */
 @GodotBaseType
 public open class TileMapPattern : Resource() {
@@ -39,7 +37,7 @@ public open class TileMapPattern : Resource() {
   }
 
   /**
-   * Sets the tile identifiers for the cell at coordinates [coords]. See [godot.TileMap.setCell].
+   * Sets the tile identifiers for the cell at coordinates [coords]. See [TileMap.setCell].
    */
   @JvmOverloads
   public fun setCell(

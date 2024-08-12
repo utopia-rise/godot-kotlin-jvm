@@ -27,14 +27,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Abstract render scene buffer implementation for the RenderingDevice based renderers.
- *
- * This object manages all 3D rendering buffers for the rendering device based renderers. An instance of this object is created for every viewport that has 3D rendering enabled.
- *
- * All buffers are organized in **contexts**. The default context is called **render_buffers** and can contain amongst others the color buffer, depth buffer, velocity buffers, VRS density map and MSAA variants of these buffers.
- *
+ * This object manages all 3D rendering buffers for the rendering device based renderers. An
+ * instance of this object is created for every viewport that has 3D rendering enabled.
+ * All buffers are organized in **contexts**. The default context is called **render_buffers** and
+ * can contain amongst others the color buffer, depth buffer, velocity buffers, VRS density map and
+ * MSAA variants of these buffers.
  * Buffers are only guaranteed to exist during rendering of the viewport.
- *
  * **Note:** this is an internal rendering server object only exposed for GDExtension plugins.
  */
 @GodotBaseType
@@ -54,7 +52,8 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
-   * Create a new texture with the given definition and cache this under the given name. Will return the existing texture if it already exists.
+   * Create a new texture with the given definition and cache this under the given name. Will return
+   * the existing texture if it already exists.
    */
   public fun createTexture(
     context: StringName,
@@ -73,7 +72,8 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
-   * Create a new texture using the given format and view and cache this under the given name. Will return the existing texture if it already exists.
+   * Create a new texture using the given format and view and cache this under the given name. Will
+   * return the existing texture if it already exists.
    */
   public fun createTextureFromFormat(
     context: StringName,
@@ -88,7 +88,9 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
-   * Create a new texture view for an existing texture and cache this under the given view_name. Will return the existing teture view if it already exists. Will error if the source texture doesn't exist.
+   * Create a new texture view for an existing texture and cache this under the given view_name.
+   * Will return the existing teture view if it already exists. Will error if the source texture
+   * doesn't exist.
    */
   public fun createTextureView(
     context: StringName,
@@ -174,7 +176,8 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
-   * Returns the color texture we are rendering 3D content to. If multiview is used this will be a texture array with all views.
+   * Returns the color texture we are rendering 3D content to. If multiview is used this will be a
+   * texture array with all views.
    */
   public fun getColorTexture(): RID {
     TransferContext.writeArguments()
@@ -192,7 +195,8 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
-   * Returns the depth texture we are rendering 3D content to. If multiview is used this will be a texture array with all views.
+   * Returns the depth texture we are rendering 3D content to. If multiview is used this will be a
+   * texture array with all views.
    */
   public fun getDepthTexture(): RID {
     TransferContext.writeArguments()
@@ -210,7 +214,8 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
-   * Returns the velocity texture we are rendering 3D content to. If multiview is used this will be a texture array with all views.
+   * Returns the velocity texture we are rendering 3D content to. If multiview is used this will be
+   * a texture array with all views.
    */
   public fun getVelocityTexture(): RID {
     TransferContext.writeArguments()
@@ -246,7 +251,8 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
-   * Returns the internal size of the render buffer (size before upscaling) with which textures are created by default.
+   * Returns the internal size of the render buffer (size before upscaling) with which textures are
+   * created by default.
    */
   public fun getInternalSize(): Vector2i {
     TransferContext.writeArguments()

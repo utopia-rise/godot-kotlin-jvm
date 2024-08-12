@@ -24,28 +24,30 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A box-shaped region of 3D space that detects whether it is visible on screen.
- *
- * [godot.VisibleOnScreenEnabler3D] represents a box-shaped region of 3D space. When any part of this region becomes visible on screen or in a [godot.Camera3D]'s view, it will emit a [screenEntered] signal, and likewise it will emit a [screenExited] signal when no part of it remains visible.
- *
- * If you want a node to be enabled automatically when this region is visible on screen, use [godot.VisibleOnScreenEnabler3D].
- *
- * **Note:** [godot.VisibleOnScreenNotifier3D] uses an approximate heuristic that doesn't take walls and other occlusion into account, unless occlusion culling is used. It also won't function unless [godot.Node3D.visible] is set to `true`.
+ * [VisibleOnScreenEnabler3D] represents a box-shaped region of 3D space. When any part of this
+ * region becomes visible on screen or in a [Camera3D]'s view, it will emit a [signal screen_entered]
+ * signal, and likewise it will emit a [signal screen_exited] signal when no part of it remains
+ * visible.
+ * If you want a node to be enabled automatically when this region is visible on screen, use
+ * [VisibleOnScreenEnabler3D].
+ * **Note:** [VisibleOnScreenNotifier3D] uses an approximate heuristic that doesn't take walls and
+ * other occlusion into account, unless occlusion culling is used. It also won't function unless
+ * [Node3D.visible] is set to `true`.
  */
 @GodotBaseType
 public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   /**
-   * Emitted when the [godot.VisibleOnScreenNotifier3D] enters the screen.
+   * Emitted when the [VisibleOnScreenNotifier3D] enters the screen.
    */
   public val screenEntered: Signal0 by signal()
 
   /**
-   * Emitted when the [godot.VisibleOnScreenNotifier3D] exits the screen.
+   * Emitted when the [VisibleOnScreenNotifier3D] exits the screen.
    */
   public val screenExited: Signal0 by signal()
 
   /**
-   * The [godot.VisibleOnScreenNotifier3D]'s bounding box.
+   * The [VisibleOnScreenNotifier3D]'s bounding box.
    */
   @CoreTypeLocalCopy
   public var aabb: AABB
@@ -62,7 +64,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   }
 
   /**
-   * The [godot.VisibleOnScreenNotifier3D]'s bounding box.
+   * The [VisibleOnScreenNotifier3D]'s bounding box.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -87,8 +89,9 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
 
   /**
    * Returns `true` if the bounding box is on the screen.
-   *
-   * **Note:** It takes one frame for the [godot.VisibleOnScreenNotifier3D]'s visibility to be assessed once added to the scene tree, so this method will always return `false` right after it is instantiated.
+   * **Note:** It takes one frame for the [VisibleOnScreenNotifier3D]'s visibility to be assessed
+   * once added to the scene tree, so this method will always return `false` right after it is
+   * instantiated.
    */
   public fun isOnScreen(): Boolean {
     TransferContext.writeArguments()

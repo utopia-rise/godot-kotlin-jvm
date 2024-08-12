@@ -22,12 +22,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A container that splits two child controls horizontally or vertically and provides a grabber for adjusting the split ratio.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/ui/gui_containers.html]($DOCS_URL/tutorials/ui/gui_containers.html)
- *
- * A container that accepts only two child controls, then arranges them horizontally or vertically and creates a divisor between them. The divisor can be dragged around to change the size relation between the child controls.
+ * A container that accepts only two child controls, then arranges them horizontally or vertically
+ * and creates a divisor between them. The divisor can be dragged around to change the size relation
+ * between the child controls.
  */
 @GodotBaseType
 public open class SplitContainer : Container() {
@@ -37,7 +34,8 @@ public open class SplitContainer : Container() {
   public val dragged: Signal1<Long> by signal("offset")
 
   /**
-   * The initial offset of the splitting between the two [godot.Control]s, with `0` being at the end of the first [godot.Control].
+   * The initial offset of the splitting between the two [Control]s, with `0` being at the end of
+   * the first [Control].
    */
   public var splitOffset: Int
     get() {
@@ -51,7 +49,7 @@ public open class SplitContainer : Container() {
     }
 
   /**
-   * If `true`, the area of the first [godot.Control] will be collapsed and the dragger will be disabled.
+   * If `true`, the area of the first [Control] will be collapsed and the dragger will be disabled.
    */
   public var collapsed: Boolean
     get() {
@@ -65,7 +63,7 @@ public open class SplitContainer : Container() {
     }
 
   /**
-   * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
+   * Determines the dragger's visibility. See [DraggerVisibility] for details.
    */
   public var draggerVisibility: DraggerVisibility
     get() {
@@ -79,9 +77,8 @@ public open class SplitContainer : Container() {
     }
 
   /**
-   * If `true`, the [godot.SplitContainer] will arrange its children vertically, rather than horizontally.
-   *
-   * Can't be changed when using [godot.HSplitContainer] and [godot.VSplitContainer].
+   * If `true`, the [SplitContainer] will arrange its children vertically, rather than horizontally.
+   * Can't be changed when using [HSplitContainer] and [VSplitContainer].
    */
   public var vertical: Boolean
     get() {
@@ -100,7 +97,8 @@ public open class SplitContainer : Container() {
   }
 
   /**
-   * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum values.
+   * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum
+   * values.
    */
   public fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()

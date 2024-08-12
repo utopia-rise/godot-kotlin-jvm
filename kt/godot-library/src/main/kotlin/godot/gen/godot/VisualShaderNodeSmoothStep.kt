@@ -18,11 +18,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Calculates a SmoothStep function within the visual shader graph.
- *
  * Translates to `smoothstep(edge0, edge1, x)` in the shader language.
- *
- * Returns `0.0` if `x` is smaller than `edge0` and `1.0` if `x` is larger than `edge1`. Otherwise, the return value is interpolated between `0.0` and `1.0` using Hermite polynomials.
+ * Returns `0.0` if `x` is smaller than `edge0` and `1.0` if `x` is larger than `edge1`. Otherwise,
+ * the return value is interpolated between `0.0` and `1.0` using Hermite polynomials.
  */
 @GodotBaseType
 public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
@@ -77,7 +75,7 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
      */
     OP_TYPE_VECTOR_4D_SCALAR(6),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(7),
     ;

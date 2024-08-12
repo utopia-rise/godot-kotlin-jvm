@@ -40,16 +40,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstract base class for fonts and font variations.
- *
- * Abstract base class for different font types. It has methods for drawing text and font character introspection.
+ * Abstract base class for different font types. It has methods for drawing text and font character
+ * introspection.
  */
 @GodotBaseType
 public open class Font internal constructor() : Resource() {
   /**
-   * Array of fallback [godot.Font]s to use as a substitute if a glyph is not found in this current [godot.Font].
-   *
-   * If this array is empty in a [godot.FontVariation], the [godot.FontVariation.baseFont]'s fallbacks are used instead.
+   * Array of fallback [Font]s to use as a substitute if a glyph is not found in this current
+   * [Font].
+   * If this array is empty in a [FontVariation], the [FontVariation.baseFont]'s fallbacks are used
+   * instead.
    */
   public var fallbacks: VariantArray<Font>
     get() {
@@ -68,7 +68,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns [godot.TextServer] RID of the font cache for specific variation.
+   * Returns [TextServer] RID of the font cache for specific variation.
    */
   @JvmOverloads
   public fun findVariation(
@@ -87,7 +87,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns [godot.Array] of valid [godot.Font] [RID]s, which can be passed to the [godot.TextServer] methods.
+   * Returns [Array] of valid [Font] [RID]s, which can be passed to the [TextServer] methods.
    */
   public fun getRids(): VariantArray<RID> {
     TransferContext.writeArguments()
@@ -97,8 +97,9 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the total average font height (ascent plus descent) in pixels.
-   *
-   * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
+   * **Note:** Real height of the string is context-dependent and can be significantly different
+   * from the value returned by this function. Use it only as rough estimate (e.g. as the height of
+   * empty line).
    */
   @JvmOverloads
   public fun getHeight(fontSize: Int = 16): Float {
@@ -109,8 +110,9 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the average font ascent (number of pixels above the baseline).
-   *
-   * **Note:** Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
+   * **Note:** Real ascent of the string is context-dependent and can be significantly different
+   * from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of
+   * empty line).
    */
   @JvmOverloads
   public fun getAscent(fontSize: Int = 16): Float {
@@ -121,8 +123,9 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the average font descent (number of pixels below the baseline).
-   *
-   * **Note:** Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
+   * **Note:** Real descent of the string is context-dependent and can be significantly different
+   * from the value returned by this function. Use it only as rough estimate (e.g. as the descent of
+   * empty line).
    */
   @JvmOverloads
   public fun getDescent(fontSize: Int = 16): Float {
@@ -133,8 +136,8 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns average pixel offset of the underline below the baseline.
-   *
-   * **Note:** Real underline position of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
+   * **Note:** Real underline position of the string is context-dependent and can be significantly
+   * different from the value returned by this function. Use it only as rough estimate.
    */
   @JvmOverloads
   public fun getUnderlinePosition(fontSize: Int = 16): Float {
@@ -145,8 +148,8 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns average thickness of the underline.
-   *
-   * **Note:** Real underline thickness of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
+   * **Note:** Real underline thickness of the string is context-dependent and can be significantly
+   * different from the value returned by this function. Use it only as rough estimate.
    */
   @JvmOverloads
   public fun getUnderlineThickness(fontSize: Int = 16): Float {
@@ -174,7 +177,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns [godot.core.Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.).
+   * Returns [Dictionary] with OpenType font name strings (localized font names, version,
+   * description, license information, sample text, etc.).
    */
   public fun getOtNameStrings(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -183,7 +187,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns font style flags, see [enum TextServer.FontStyle].
+   * Returns font style flags, see [TextServer.FontStyle].
    */
   public fun getFontStyle(): TextServer.FontStyle {
     TransferContext.writeArguments()
@@ -192,7 +196,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
+   * `400`, bold font weight is `700`.
    */
   public fun getFontWeight(): Int {
     TransferContext.writeArguments()
@@ -201,7 +206,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
+   * and `200&#37;`.
    */
   public fun getFontStretch(): Int {
     TransferContext.writeArguments()
@@ -210,7 +216,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the spacing for the given `type` (see [enum TextServer.SpacingType]).
+   * Returns the spacing for the given `type` (see [TextServer.SpacingType]).
    */
   public fun getSpacing(spacing: TextServer.SpacingType): Int {
     TransferContext.writeArguments(LONG to spacing.id)
@@ -219,7 +225,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns a set of OpenType feature tags. More info: [godot.OpenType feature tags](https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags).
+   * Returns a set of OpenType feature tags. More info:
+   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature
+   * tags[/url].
    */
   public fun getOpentypeFeatures(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -236,31 +244,28 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the size of a bounding box of a single-line string, taking kerning, advance and subpixel positioning into account. See also [getMultilineStringSize] and [drawString].
-   *
+   * Returns the size of a bounding box of a single-line string, taking kerning, advance and
+   * subpixel positioning into account. See also [getMultilineStringSize] and [drawString].
    * For example, to get the string size as displayed by a single-line Label, use:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
-   * var string_size = $Label.get_theme_font("font").get_string_size($Label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, $Label.get_theme_font_size("font_size"))
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
+   * gdscript:
+   * ```gdscript
+   * var string_size = $Label.get_theme_font("font").get_string_size($Label.text,
+   * HORIZONTAL_ALIGNMENT_LEFT, -1, $Label.get_theme_font_size("font_size"))
+   * ```
+   * csharp:
+   * ```csharp
    * Label label = GetNode<Label>("Label");
+   * Vector2 stringSize = label.GetThemeFont("font").GetStringSize(label.Text,
+   * HorizontalAlignment.Left, -1, label.GetThemeFontSize("font_size"));
+   * ```
    *
-   * Vector2 stringSize = label.GetThemeFont("font").GetStringSize(label.Text, HorizontalAlignment.Left, -1, label.GetThemeFontSize("font_size"));
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
-   *
-   * **Note:** Since kerning, advance and subpixel positioning are taken into account by [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the results together will return a different result compared to using a single [getStringSize] call on the full string.
-   *
-   * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by [getHeight].
+   * **Note:** Since kerning, advance and subpixel positioning are taken into account by
+   * [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the
+   * results together will return a different result compared to using a single [getStringSize] call on
+   * the full string.
+   * **Note:** Real height of the string is context-dependent and can be significantly different
+   * from the value returned by [getHeight].
    */
   @JvmOverloads
   public fun getStringSize(
@@ -278,8 +283,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the size of a bounding box of a string broken into the lines, taking kerning and advance into account.
-   *
+   * Returns the size of a bounding box of a string broken into the lines, taking kerning and
+   * advance into account.
    * See also [drawMultilineString].
    */
   @JvmOverloads
@@ -300,9 +305,10 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw [text] into a canvas item using the font, at a given position, with [modulate] color, optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
-   *
-   * See also [godot.CanvasItem.drawString].
+   * Draw [text] into a canvas item using the font, at a given position, with [modulate] color,
+   * optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the
+   * top. To draw from the top, *ascent* must be added to the Y axis.
+   * See also [CanvasItem.drawString].
    */
   @JvmOverloads
   public fun drawString(
@@ -322,9 +328,11 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Breaks [text] into lines using rules specified by [brkFlags] and draws it into a canvas item using the font, at a given position, with [modulate] color, optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be added to the Y axis.
-   *
-   * See also [godot.CanvasItem.drawMultilineString].
+   * Breaks [text] into lines using rules specified by [brkFlags] and draws it into a canvas item
+   * using the font, at a given position, with [modulate] color, optionally clipping the width and
+   * aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from
+   * the top, *ascent* must be added to the Y axis.
+   * See also [CanvasItem.drawMultilineString].
    */
   @JvmOverloads
   public fun drawMultilineString(
@@ -346,9 +354,10 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw [text] outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size, optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
-   *
-   * See also [godot.CanvasItem.drawStringOutline].
+   * Draw [text] outline into a canvas item using the font, at a given position, with [modulate]
+   * color and [size] outline size, optionally clipping the width and aligning horizontally. [pos]
+   * specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * See also [CanvasItem.drawStringOutline].
    */
   @JvmOverloads
   public fun drawStringOutline(
@@ -369,9 +378,11 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Breaks [text] to the lines using rules specified by [brkFlags] and draws text outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size, optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be added to the Y axis.
-   *
-   * See also [godot.CanvasItem.drawMultilineStringOutline].
+   * Breaks [text] to the lines using rules specified by [brkFlags] and draws text outline into a
+   * canvas item using the font, at a given position, with [modulate] color and [size] outline size,
+   * optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first
+   * line, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * See also [CanvasItem.drawMultilineStringOutline].
    */
   @JvmOverloads
   public fun drawMultilineStringOutline(
@@ -395,8 +406,9 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns the size of a character. Does not take kerning into account.
-   *
-   * **Note:** Do not use this function to calculate width of the string character by character, use [getStringSize] or [godot.TextLine] instead. The height returned is the font height (see also [getHeight]) and has no relation to the glyph height.
+   * **Note:** Do not use this function to calculate width of the string character by character, use
+   * [getStringSize] or [TextLine] instead. The height returned is the font height (see also
+   * [getHeight]) and has no relation to the glyph height.
    */
   public fun getCharSize(char: Long, fontSize: Int): Vector2 {
     TransferContext.writeArguments(LONG to char, LONG to fontSize.toLong())
@@ -405,9 +417,11 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw a single Unicode character [char] into a canvas item using the font, at a given position, with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
-   *
-   * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
+   * Draw a single Unicode character [char] into a canvas item using the font, at a given position,
+   * with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent*
+   * must be added to the Y axis.
+   * **Note:** Do not use this function to draw strings character by character, use [drawString] or
+   * [TextLine] instead.
    */
   @JvmOverloads
   public fun drawChar(
@@ -423,9 +437,11 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw a single Unicode character [char] outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
-   *
-   * **Note:** Do not use this function to draw strings character by character, use [drawString] or [godot.TextLine] instead.
+   * Draw a single Unicode character [char] outline into a canvas item using the font, at a given
+   * position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the
+   * top. To draw from the top, *ascent* must be added to the Y axis.
+   * **Note:** Do not use this function to draw strings character by character, use [drawString] or
+   * [TextLine] instead.
    */
   @JvmOverloads
   public fun drawCharOutline(
@@ -452,8 +468,8 @@ public open class Font internal constructor() : Resource() {
 
   /**
    * Returns a string containing all the characters available in the font.
-   *
-   * If a given character is included in more than one font data source, it appears only once in the returned string.
+   * If a given character is included in more than one font data source, it appears only once in the
+   * returned string.
    */
   public fun getSupportedChars(): String {
     TransferContext.writeArguments()
@@ -462,7 +478,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true`, if font supports given language ([godot.ISO 639](https://en.wikipedia.org/wiki/ISO_639-1) code).
+   * Returns `true`, if font supports given language
+   * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
   public fun isLanguageSupported(language: String): Boolean {
     TransferContext.writeArguments(STRING to language)
@@ -471,7 +488,8 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true`, if font supports given script ([godot.ISO 15924](https://en.wikipedia.org/wiki/ISO_15924) code).
+   * Returns `true`, if font supports given script ([url=https://en.wikipedia.org/wiki/ISO_15924]ISO
+   * 15924[/url] code).
    */
   public fun isScriptSupported(script: String): Boolean {
     TransferContext.writeArguments(STRING to script)
@@ -489,23 +507,25 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns list of supported [variation coordinates](https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg), each coordinate is returned as `tag: Vector3i(min_value,max_value,default_value)`.
-   *
-   * Font variations allow for continuous change of glyph characteristics along some given design axis, such as weight, width or slant.
-   *
+   * Returns list of supported
+   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]variation
+   * coordinates[/url], each coordinate is returned as `tag:
+   * Vector3i(min_value,max_value,default_value)`.
+   * Font variations allow for continuous change of glyph characteristics along some given design
+   * axis, such as weight, width or slant.
    * To print available variation axes of a variable font:
-   *
-   * ```
-   * 				var fv = FontVariation.new()
-   * 				fv.set_base_font = load("res://RobotoFlex.ttf")
-   * 				var variation_list = fv.get_supported_variation_list()
-   * 				for tag in variation_list:
-   * 				    var name = TextServerManager.get_primary_interface().tag_to_name(tag)
-   * 				    var values = variation_list[tag]
-   * 				    print("variation axis: %s (%d)\n\tmin, max, default: %s" % [name, tag, values])
-   * 				```
-   *
-   * **Note:** To set and get variation coordinates of a [godot.FontVariation], use [godot.FontVariation.variationOpentype].
+   * [codeblock]
+   * var fv = FontVariation.new()
+   * fv.set_base_font = load("res://RobotoFlex.ttf")
+   * var variation_list = fv.get_supported_variation_list()
+   * for tag in variation_list:
+   *     var name = TextServerManager.get_primary_interface().tag_to_name(tag)
+   *     var values = variation_list[tag]
+   *     print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag,
+   * values])
+   * [/codeblock]
+   * **Note:** To set and get variation coordinates of a [FontVariation], use
+   * [FontVariation.variationOpentype].
    */
   public fun getSupportedVariationList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()

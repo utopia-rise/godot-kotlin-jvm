@@ -18,15 +18,10 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Vertex attribute (used by [godot.RenderingDevice]).
- *
- * This object is used by [godot.RenderingDevice].
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDVertexAttribute : RefCounted() {
-  /**
-   *
-   */
   public var location: Long
     get() {
       TransferContext.writeArguments()
@@ -38,9 +33,6 @@ public open class RDVertexAttribute : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var offset: Long
     get() {
       TransferContext.writeArguments()
@@ -52,9 +44,6 @@ public open class RDVertexAttribute : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var format: RenderingDevice.DataFormat
     get() {
       TransferContext.writeArguments()
@@ -66,9 +55,6 @@ public open class RDVertexAttribute : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
     }
 
-  /**
-   *
-   */
   public var stride: Long
     get() {
       TransferContext.writeArguments()
@@ -80,9 +66,6 @@ public open class RDVertexAttribute : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStridePtr, NIL)
     }
 
-  /**
-   *
-   */
   public var frequency: RenderingDevice.VertexFrequency
     get() {
       TransferContext.writeArguments()

@@ -23,8 +23,19 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+/**
+ * A MultiplayerPeer implementation that should be passed to [MultiplayerAPI.multiplayerPeer] after
+ * being initialized as either a client, server, or mesh. Events can then be handled by connecting to
+ * [MultiplayerAPI] signals. See [ENetConnection] for more information on the ENet library wrapper.
+ * **Note:** ENet only uses UDP, not TCP. When forwarding the server port to make your server
+ * accessible on the public Internet, you only need to forward the server port in UDP. You can use the
+ * [UPNP] class to try to forward the server port automatically when starting the server.
+ */
 @GodotBaseType
 public open class ENetMultiplayerPeer : MultiplayerPeer() {
+  /**
+   * The underlying [ENetConnection] created after [createClient] and [createServer].
+   */
   public val host: ENetConnection?
     get() {
       TransferContext.writeArguments()
@@ -37,6 +48,18 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return true
   }
 
+  /**
+   * Create server that listens to connections via [port]. The port needs to be an available, unused
+   * port between 0 and 65535. Note that ports below 1024 are privileged and may require elevated
+   * permissions depending on the platform. To change the interface the server listens on, use
+   * [setBindIp]. The default IP is the wildcard `"*"`, which listens on all available interfaces.
+   * [maxClients] is the maximum number of clients that are allowed at once, any number up to 4095 may
+   * be used, although the achievable number of simultaneous clients may be far lower and depends on
+   * the application. For additional details on the bandwidth parameters, see [createClient]. Returns
+   * [OK] if a server was created, [ERR_ALREADY_IN_USE] if this ENetMultiplayerPeer instance already
+   * has an open connection (in which case you need to call [MultiplayerPeer.close] first) or
+   * [ERR_CANT_CREATE] if the server could not be created.
+   */
   @JvmOverloads
   public fun createServer(
     port: Int,
@@ -50,6 +73,22 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Create client that connects to a server at [address] using specified [port]. The given address
+   * needs to be either a fully qualified domain name (e.g. `"www.example.com"`) or an IP address in
+   * IPv4 or IPv6 format (e.g. `"192.168.1.1"`). The [port] is the port the server is listening on. The
+   * [channelCount] parameter can be used to specify the number of ENet channels allocated for the
+   * connection. The [inBandwidth] and [outBandwidth] parameters can be used to limit the incoming and
+   * outgoing bandwidth to the given number of bytes per second. The default of 0 means unlimited
+   * bandwidth. Note that ENet will strategically drop packets on specific sides of a connection
+   * between peers to ensure the peer's bandwidth is not overwhelmed. The bandwidth parameters also
+   * determine the window size of a connection which limits the amount of reliable packets that may be
+   * in transit at any given time. Returns [OK] if a client was created, [ERR_ALREADY_IN_USE] if this
+   * ENetMultiplayerPeer instance already has an open connection (in which case you need to call
+   * [MultiplayerPeer.close] first) or [ERR_CANT_CREATE] if the client could not be created. If
+   * [localPort] is specified, the client will also listen to the given port; this is useful for some
+   * NAT traversal techniques.
+   */
   @JvmOverloads
   public fun createClient(
     address: String,
@@ -64,23 +103,43 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Initialize this [MultiplayerPeer] in mesh mode. The provided [uniqueId] will be used as the
+   * local peer network unique ID once assigned as the [MultiplayerAPI.multiplayerPeer]. In the mesh
+   * configuration you will need to set up each new peer manually using [ENetConnection] before calling
+   * [addMeshPeer]. While this technique is more advanced, it allows for better control over the
+   * connection process (e.g. when dealing with NAT punch-through) and for better distribution of the
+   * network load (which would otherwise be more taxing on the server).
+   */
   public fun createMesh(uniqueId: Int): GodotError {
     TransferContext.writeArguments(LONG to uniqueId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Add a new remote peer with the given [peerId] connected to the given [host].
+   * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
+   */
   public fun addMeshPeer(peerId: Int, host: ENetConnection): GodotError {
     TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
     TransferContext.callMethod(rawPtr, MethodBindings.addMeshPeerPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * The IP used when creating a server. This is set to the wildcard `"*"` by default, which binds
+   * to all available interfaces. The given IP needs to be in IPv4 or IPv6 address format, for example:
+   * `"192.168.1.1"`.
+   */
   public fun setBindIp(ip: String): Unit {
     TransferContext.writeArguments(STRING to ip)
     TransferContext.callMethod(rawPtr, MethodBindings.setBindIpPtr, NIL)
   }
 
+  /**
+   * Returns the [ENetPacketPeer] associated to the given [id].
+   */
   public fun getPeer(id: Int): ENetPacketPeer? {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, OBJECT)

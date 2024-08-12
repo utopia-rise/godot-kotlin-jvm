@@ -27,9 +27,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A control that displays a texture by keeping its corners intact, but tiling its edges and center.
- *
- * Also known as 9-slice panels, [godot.NinePatchRect] produces clean panels of any size based on a small texture. To do so, it splits the texture in a 3×3 grid. When you scale the node, it tiles the texture's edges horizontally or vertically, tiles the center on both axes, and leaves the corners unchanged.
+ * Also known as 9-slice panels, [NinePatchRect] produces clean panels of any size based on a small
+ * texture. To do so, it splits the texture in a 3×3 grid. When you scale the node, it tiles the
+ * texture's edges horizontally or vertically, tiles the center on both axes, and leaves the corners
+ * unchanged.
  */
 @GodotBaseType
 public open class NinePatchRect : Control() {
@@ -67,7 +68,9 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * Rectangular region of the texture to sample from. If you're working with an atlas, use this property to define the area the 9-slice should use. All other properties are relative to this one. If the rect is empty, NinePatchRect will use the whole texture.
+   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
+   * property to define the area the 9-slice should use. All other properties are relative to this one.
+   * If the rect is empty, NinePatchRect will use the whole texture.
    */
   @CoreTypeLocalCopy
   public var regionRect: Rect2
@@ -82,7 +85,9 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The width of the 9-slice's left column. A margin of 16 means the 9-slice's left corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The width of the 9-slice's left column. A margin of 16 means the 9-slice's left corners and
+   * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
+   * with non-uniform borders.
    */
   public var patchMarginLeft: Int
     get() {
@@ -96,7 +101,9 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The height of the 9-slice's top row. A margin of 16 means the 9-slice's top corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The height of the 9-slice's top row. A margin of 16 means the 9-slice's top corners and side
+   * will have a height of 16 pixels. You can set all 4 margin values individually to create panels
+   * with non-uniform borders.
    */
   public var patchMarginTop: Int
     get() {
@@ -110,7 +117,9 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The width of the 9-slice's right column. A margin of 16 means the 9-slice's right corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The width of the 9-slice's right column. A margin of 16 means the 9-slice's right corners and
+   * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
+   * with non-uniform borders.
    */
   public var patchMarginRight: Int
     get() {
@@ -124,7 +133,9 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The height of the 9-slice's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The height of the 9-slice's bottom row. A margin of 16 means the 9-slice's bottom corners and
+   * side will have a height of 16 pixels. You can set all 4 margin values individually to create
+   * panels with non-uniform borders.
    */
   public var patchMarginBottom: Int
     get() {
@@ -138,7 +149,8 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for horizontal stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
+   * The stretch mode to use for horizontal stretching/tiling. See [NinePatchRect.AxisStretchMode]
+   * for possible values.
    */
   public var axisStretchHorizontal: AxisStretchMode
     get() {
@@ -152,7 +164,8 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for vertical stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
+   * The stretch mode to use for vertical stretching/tiling. See [NinePatchRect.AxisStretchMode] for
+   * possible values.
    */
   public var axisStretchVertical: AxisStretchMode
     get() {
@@ -171,7 +184,9 @@ public open class NinePatchRect : Control() {
   }
 
   /**
-   * Rectangular region of the texture to sample from. If you're working with an atlas, use this property to define the area the 9-slice should use. All other properties are relative to this one. If the rect is empty, NinePatchRect will use the whole texture.
+   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
+   * property to define the area the 9-slice should use. All other properties are relative to this one.
+   * If the rect is empty, NinePatchRect will use the whole texture.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -198,15 +213,20 @@ public open class NinePatchRect : Control() {
     id: Long,
   ) {
     /**
-     * Stretches the center texture across the NinePatchRect. This may cause the texture to be distorted.
+     * Stretches the center texture across the NinePatchRect. This may cause the texture to be
+     * distorted.
      */
     AXIS_STRETCH_MODE_STRETCH(0),
     /**
-     * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion. The texture must be seamless for this to work without displaying artifacts between edges.
+     * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion.
+     * The texture must be seamless for this to work without displaying artifacts between edges.
      */
     AXIS_STRETCH_MODE_TILE(1),
     /**
-     * Repeats the center texture across the NinePatchRect, but will also stretch the texture to make sure each tile is visible in full. This may cause the texture to be distorted, but less than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without displaying artifacts between edges.
+     * Repeats the center texture across the NinePatchRect, but will also stretch the texture to
+     * make sure each tile is visible in full. This may cause the texture to be distorted, but less
+     * than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without
+     * displaying artifacts between edges.
      */
     AXIS_STRETCH_MODE_TILE_FIT(2),
     ;

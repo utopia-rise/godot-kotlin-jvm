@@ -29,9 +29,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 2D sprite node in a 3D world.
- *
- * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation. See also [godot.SpriteBase3D] where properties such as the billboard mode are defined.
+ * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from
+ * a larger atlas texture, or a frame from a sprite sheet animation. See also [SpriteBase3D] where
+ * properties such as the billboard mode are defined.
  */
 @GodotBaseType
 public open class Sprite3D : SpriteBase3D() {
@@ -46,7 +46,8 @@ public open class Sprite3D : SpriteBase3D() {
   public val textureChanged: Signal0 by signal()
 
   /**
-   * [godot.Texture2D] object to draw. If [godot.GeometryInstance3D.materialOverride] is used, this will be overridden. The size information is still used.
+   * [Texture2D] object to draw. If [GeometryInstance3D.materialOverride] is used, this will be
+   * overridden. The size information is still used.
    */
   public var texture: Texture2D?
     get() {
@@ -60,7 +61,9 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
+   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted
+   * so that the same visual frame is maintained (same row and column). If that's impossible, [frame]
+   * is reset to `0`.
    */
   public var hframes: Int
     get() {
@@ -74,7 +77,9 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
+   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so
+   * that the same visual frame is maintained (same row and column). If that's impossible, [frame] is
+   * reset to `0`.
    */
   public var vframes: Int
     get() {
@@ -88,7 +93,9 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`.
+   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This
+   * property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the
+   * same visual frame (same column and row). If that's impossible, this value is reset to `0`.
    */
   public var frame: Int
     get() {
@@ -102,7 +109,8 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
+   * property. [hframes] or [vframes] must be greater than 1.
    */
   @CoreTypeLocalCopy
   public var frameCoords: Vector2i
@@ -151,7 +159,8 @@ public open class Sprite3D : SpriteBase3D() {
   }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
+   * property. [hframes] or [vframes] must be greater than 1.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

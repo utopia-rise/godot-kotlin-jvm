@@ -18,14 +18,13 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Contains functions to modify texture coordinates (`uv`) to be used within the visual shader graph.
- *
- * UV functions are similar to [godot.core.Vector2] functions, but the input port of this node uses the shader's UV value by default.
+ * UV functions are similar to [Vector2] functions, but the input port of this node uses the
+ * shader's UV value by default.
  */
 @GodotBaseType
 public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   /**
-   * A function to be applied to the texture coordinates. See [enum Function] for options.
+   * A function to be applied to the texture coordinates. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -47,15 +46,17 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv + offset * scale`. `uv` port is connected to `UV` built-in by default.
+     * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv +
+     * offset * scale`. `uv` port is connected to `UV` built-in by default.
      */
     FUNC_PANNING(0),
     /**
-     * Scales `uv` by using `scale` and `pivot` values using the following formula: `uv = (uv - pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
+     * Scales `uv` by using `scale` and `pivot` values using the following formula: `uv = (uv -
+     * pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
      */
     FUNC_SCALING(1),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(2),
     ;

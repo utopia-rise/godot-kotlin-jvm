@@ -25,16 +25,16 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A singleton that provides access to static information about [godot.Theme] resources used by the engine and by your project.
- *
- * This singleton provides access to static information about [godot.Theme] resources used by the engine and by your projects. You can fetch the default engine theme, as well as your project configured theme.
- *
- * [godot.ThemeDB] also contains fallback values for theme properties.
+ * This singleton provides access to static information about [Theme] resources used by the engine
+ * and by your projects. You can fetch the default engine theme, as well as your project configured
+ * theme.
+ * [ThemeDB] also contains fallback values for theme properties.
  */
 @GodotBaseType
 public object ThemeDB : Object() {
   /**
-   * Emitted when one of the fallback values had been changed. Use it to refresh the look of controls that may rely on the fallback theme items.
+   * Emitted when one of the fallback values had been changed. Use it to refresh the look of
+   * controls that may rely on the fallback theme items.
    */
   public val fallbackChanged: Signal0 by signal()
 
@@ -44,7 +44,8 @@ public object ThemeDB : Object() {
   }
 
   /**
-   * Returns a reference to the default engine [godot.Theme]. This theme resource is responsible for the out-of-the-box look of [godot.Control] nodes and cannot be overridden.
+   * Returns a reference to the default engine [Theme]. This theme resource is responsible for the
+   * out-of-the-box look of [Control] nodes and cannot be overridden.
    */
   public fun getDefaultTheme(): Theme? {
     TransferContext.writeArguments()
@@ -53,9 +54,9 @@ public object ThemeDB : Object() {
   }
 
   /**
-   * Returns a reference to the custom project [godot.Theme]. This theme resources allows to override the default engine theme for every control node in the project.
-   *
-   * To set the project theme, see [godot.ProjectSettings.gui/theme/custom].
+   * Returns a reference to the custom project [Theme]. This theme resources allows to override the
+   * default engine theme for every control node in the project.
+   * To set the project theme, see [ProjectSettings.gui/theme/custom].
    */
   public fun getProjectTheme(): Theme? {
     TransferContext.writeArguments()

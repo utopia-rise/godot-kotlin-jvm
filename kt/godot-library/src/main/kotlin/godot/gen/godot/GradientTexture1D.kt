@@ -20,14 +20,15 @@ import kotlin.Suppress
 import kotlin.jvm.JvmName
 
 /**
- * A 1D texture that uses colors obtained from a [godot.Gradient].
- *
- * A 1D texture that obtains colors from a [godot.Gradient] to fill the texture data. The texture is filled by sampling the gradient for each pixel. Therefore, the texture does not necessarily represent an exact copy of the gradient, as it may miss some colors if there are not enough pixels. See also [godot.GradientTexture2D], [godot.CurveTexture] and [godot.CurveXYZTexture].
+ * A 1D texture that obtains colors from a [Gradient] to fill the texture data. The texture is
+ * filled by sampling the gradient for each pixel. Therefore, the texture does not necessarily
+ * represent an exact copy of the gradient, as it may miss some colors if there are not enough pixels.
+ * See also [GradientTexture2D], [CurveTexture] and [CurveXYZTexture].
  */
 @GodotBaseType
 public open class GradientTexture1D : Texture2D() {
   /**
-   * The [godot.Gradient] used to fill the texture.
+   * The [Gradient] used to fill the texture.
    */
   public var gradient: Gradient?
     get() {
@@ -41,7 +42,7 @@ public open class GradientTexture1D : Texture2D() {
     }
 
   /**
-   * The number of color samples that will be obtained from the [godot.Gradient].
+   * The number of color samples that will be obtained from the [Gradient].
    */
   public var width: Int
     @JvmName("getWidth_prop")
@@ -52,7 +53,10 @@ public open class GradientTexture1D : Texture2D() {
     }
 
   /**
-   * If `true`, the generated texture will support high dynamic range ([godot.Image.FORMAT_RGBAF] format). This allows for glow effects to work if [godot.Environment.glowEnabled] is `true`. If `false`, the generated texture will use low dynamic range; overbright colors will be clamped ([godot.Image.FORMAT_RGBA8] format).
+   * If `true`, the generated texture will support high dynamic range ([Image.FORMAT_RGBAF] format).
+   * This allows for glow effects to work if [Environment.glowEnabled] is `true`. If `false`, the
+   * generated texture will use low dynamic range; overbright colors will be clamped
+   * ([Image.FORMAT_RGBA8] format).
    */
   public var useHdr: Boolean
     get() {

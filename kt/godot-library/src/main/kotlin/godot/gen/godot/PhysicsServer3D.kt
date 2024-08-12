@@ -36,23 +36,33 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A server interface for low-level 3D physics access.
- *
- * PhysicsServer3D is the server responsible for all 3D physics. It can directly create and manipulate all physics objects:
- *
- * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and joints. Its state can be queried for collision and intersection information, and several parameters of the simulation can be modified.
- *
- * - A *shape* is a geometric shape such as a sphere, a box, a cylinder, or a polygon. It can be used for collision detection by adding it to a body/area, possibly with an extra transformation relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to them, and a single shape can be added to bodies/areas multiple times with different local transformations.
- *
- * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such as position and velocity) can be queried and updated. A force integration callback can be set to customize the body's physics.
- *
- * - An *area* is a region in space which can be used to detect bodies and areas entering and exiting it. A body monitoring callback can be set to report entering/exiting body shapes, and similarly an area monitoring callback can be set. Gravity and damping can be overridden within the area by setting area parameters.
- *
- * - A *joint* is a constraint, either between two bodies or on one body relative to a point. Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
- *
- * Physics objects in [godot.PhysicsServer3D] may be created and manipulated independently; they do not have to be tied to nodes in the scene tree.
- *
- * **Note:** All the 3D physics nodes use the physics server internally. Adding a physics node to the scene tree will cause a corresponding physics object to be created in the physics server. A rigid body node registers a callback that updates the node's transform with the transform of the respective body object in the physics server (every physics update). An area node registers a callback to inform the area node about overlaps with the respective area object in the physics server. The raycast node queries the direct state of the relevant space in the physics server.
+ * PhysicsServer3D is the server responsible for all 3D physics. It can directly create and
+ * manipulate all physics objects:
+ * - A *space* is a self-contained world for a physics simulation. It contains bodies, areas, and
+ * joints. Its state can be queried for collision and intersection information, and several parameters
+ * of the simulation can be modified.
+ * - A *shape* is a geometric shape such as a sphere, a box, a cylinder, or a polygon. It can be
+ * used for collision detection by adding it to a body/area, possibly with an extra transformation
+ * relative to the body/area's origin. Bodies/areas can have multiple (transformed) shapes added to
+ * them, and a single shape can be added to bodies/areas multiple times with different local
+ * transformations.
+ * - A *body* is a physical object which can be in static, kinematic, or rigid mode. Its state (such
+ * as position and velocity) can be queried and updated. A force integration callback can be set to
+ * customize the body's physics.
+ * - An *area* is a region in space which can be used to detect bodies and areas entering and
+ * exiting it. A body monitoring callback can be set to report entering/exiting body shapes, and
+ * similarly an area monitoring callback can be set. Gravity and damping can be overridden within the
+ * area by setting area parameters.
+ * - A *joint* is a constraint, either between two bodies or on one body relative to a point.
+ * Parameters such as the joint bias and the rest length of a spring joint can be adjusted.
+ * Physics objects in [PhysicsServer3D] may be created and manipulated independently; they do not
+ * have to be tied to nodes in the scene tree.
+ * **Note:** All the 3D physics nodes use the physics server internally. Adding a physics node to
+ * the scene tree will cause a corresponding physics object to be created in the physics server. A
+ * rigid body node registers a callback that updates the node's transform with the transform of the
+ * respective body object in the physics server (every physics update). An area node registers a
+ * callback to inform the area node about overlaps with the respective area object in the physics
+ * server. The raycast node queries the direct state of the relevant space in the physics server.
  */
 @GodotBaseType
 public object PhysicsServer3D : Object() {
@@ -61,90 +71,60 @@ public object PhysicsServer3D : Object() {
     return false
   }
 
-  /**
-   *
-   */
   public fun worldBoundaryShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.worldBoundaryShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun separationRayShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.separationRayShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun sphereShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.sphereShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun boxShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.boxShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun capsuleShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.capsuleShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun cylinderShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.cylinderShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun convexPolygonShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.convexPolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun concavePolygonShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.concavePolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun heightmapShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.heightmapShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun customShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.customShapeCreatePtr, _RID)
@@ -152,7 +132,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [shapeGetType].
+   * Sets the shape data that defines its shape and size. The data to be passed depends on the kind
+   * of shape created [shapeGetType].
    */
   public fun shapeSetData(shape: RID, `data`: Any?): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
@@ -160,7 +141,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the type of shape (see [enum ShapeType] constants).
+   * Returns the type of shape (see [ShapeType] constants).
    */
   public fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
@@ -178,7 +159,9 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [areaSetSpace], or to a body with [bodySetSpace].
+   * Creates a space. A space is a collection of parameters for the physics engine that can be
+   * assigned to an area or a body. It can be assigned to an area with [areaSetSpace], or to a body
+   * with [bodySetSpace].
    */
   public fun spaceCreate(): RID {
     TransferContext.writeArguments()
@@ -204,7 +187,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value for a space parameter. A list of available parameters is on the [enum SpaceParameter] constants.
+   * Sets the value for a space parameter. A list of available parameters is on the [SpaceParameter]
+   * constants.
    */
   public fun spaceSetParam(
     space: RID,
@@ -225,7 +209,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the state of a space, a [godot.PhysicsDirectSpaceState3D]. This object can be used to make collision/intersection queries.
+   * Returns the state of a space, a [PhysicsDirectSpaceState3D]. This object can be used to make
+   * collision/intersection queries.
    */
   public fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState3D? {
     TransferContext.writeArguments(_RID to space)
@@ -234,7 +219,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Creates an [godot.Area3D].
+   * Creates an [Area3D].
    */
   public fun areaCreate(): RID {
     TransferContext.writeArguments()
@@ -260,7 +245,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+   * Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their
+   * index, so you should track which shape has a given index.
    */
   @JvmOverloads
   public fun areaAddShape(
@@ -274,7 +260,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID].
+   * Substitutes a given area shape by another. The old shape is selected by its index, the new one
+   * by its [RID].
    */
   public fun areaSetShape(
     area: RID,
@@ -297,9 +284,6 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetShapeTransformPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun areaSetShapeDisabled(
     area: RID,
     shapeIdx: Int,
@@ -345,7 +329,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later.
+   * Removes all shapes from an area. It does not delete the shapes, so they can be reassigned
+   * later.
    */
   public fun areaClearShapes(area: RID): Unit {
     TransferContext.writeArguments(_RID to area)
@@ -387,7 +372,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value for an area parameter. A list of available parameters is on the [enum AreaParameter] constants.
+   * Sets the value for an area parameter. A list of available parameters is on the [AreaParameter]
+   * constants.
    */
   public fun areaSetParam(
     area: RID,
@@ -407,7 +393,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns an area parameter value. A list of available parameters is on the [enum AreaParameter] constants.
+   * Returns an area parameter value. A list of available parameters is on the [AreaParameter]
+   * constants.
    */
   public fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
@@ -425,7 +412,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Assigns the area to a descendant of [godot.Object], so it can exist in the node tree.
+   * Assigns the area to a descendant of [Object], so it can exist in the node tree.
    */
   public fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to id)
@@ -442,19 +429,18 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the area's body monitor callback. This callback will be called when any other (shape of a) body enters or exits (a shape of) the given area, and must take the following five parameters:
-   *
-   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether the other body shape entered or exited the area,
-   *
+   * Sets the area's body monitor callback. This callback will be called when any other (shape of a)
+   * body enters or exits (a shape of) the given area, and must take the following five parameters:
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
+   * the other body shape entered or exited the area,
    * 2. an [RID] `body_rid`: the [RID] of the body that entered or exited the area,
-   *
    * 3. an integer `instance_id`: the `ObjectID` attached to the body,
-   *
-   * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the area,
-   *
-   * 5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or exited.
-   *
-   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a body (with all its shapes) is entering for the first time or exiting for the last time.
+   * 4. an integer `body_shape_idx`: the index of the shape of the body that entered or exited the
+   * area,
+   * 5. an integer `self_shape_idx`: the index of the shape of the area where the body entered or
+   * exited.
+   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a
+   * body (with all its shapes) is entering for the first time or exiting for the last time.
    */
   public fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
@@ -462,28 +448,24 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the area's area monitor callback. This callback will be called when any other (shape of an) area enters or exits (a shape of) the given area, and must take the following five parameters:
-   *
-   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether the other area's shape entered or exited the area,
-   *
+   * Sets the area's area monitor callback. This callback will be called when any other (shape of
+   * an) area enters or exits (a shape of) the given area, and must take the following five parameters:
+   * 1. an integer `status`: either [AREA_BODY_ADDED] or [AREA_BODY_REMOVED] depending on whether
+   * the other area's shape entered or exited the area,
    * 2. an [RID] `area_rid`: the [RID] of the other area that entered or exited the area,
-   *
    * 3. an integer `instance_id`: the `ObjectID` attached to the other area,
-   *
-   * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited the area,
-   *
-   * 5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered or exited.
-   *
-   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an area (with all its shapes) is entering for the first time or exiting for the last time.
+   * 4. an integer `area_shape_idx`: the index of the shape of the other area that entered or exited
+   * the area,
+   * 5. an integer `self_shape_idx`: the index of the shape of the area where the other area entered
+   * or exited.
+   * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an
+   * area (with all its shapes) is entering for the first time or exiting for the last time.
    */
   public fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetAreaMonitorCallbackPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to monitorable)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetMonitorablePtr, NIL)
@@ -497,9 +479,6 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetRayPickablePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun bodyCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.bodyCreatePtr, _RID)
@@ -524,7 +503,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the body mode, from one of the [enum BodyMode] constants.
+   * Sets the body mode, from one of the [BodyMode] constants.
    */
   public fun bodySetMode(body: RID, mode: BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
@@ -592,7 +571,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+   * Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their
+   * index, so you should track which shape has a given index.
    */
   @JvmOverloads
   public fun bodyAddShape(
@@ -606,7 +586,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID].
+   * Substitutes a given body shape by another. The old shape is selected by its index, the new one
+   * by its [RID].
    */
   public fun bodySetShape(
     body: RID,
@@ -629,9 +610,6 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetShapeTransformPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun bodySetShapeDisabled(
     body: RID,
     shapeIdx: Int,
@@ -685,7 +663,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Assigns the area to a descendant of [godot.Object], so it can exist in the node tree.
+   * Assigns the area to a descendant of [Object], so it can exist in the node tree.
    */
   public fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to id)
@@ -703,8 +681,8 @@ public object PhysicsServer3D : Object() {
 
   /**
    * If `true`, the continuous collision detection mode is enabled.
-   *
-   * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+   * Continuous collision detection tries to predict where a moving body will collide, instead of
+   * moving it and correcting its movement if it collided.
    */
   public fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
@@ -723,7 +701,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a body parameter. A list of available parameters is on the [enum BodyParameter] constants.
+   * Sets a body parameter. A list of available parameters is on the [BodyParameter] constants.
    */
   public fun bodySetParam(
     body: RID,
@@ -735,7 +713,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the value of a body parameter. A list of available parameters is on the [enum BodyParameter] constants.
+   * Returns the value of a body parameter. A list of available parameters is on the [BodyParameter]
+   * constants.
    */
   public fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
@@ -744,7 +723,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Restores the default inertia and center of mass based on shapes to cancel any custom values previously set using [bodySetParam].
+   * Restores the default inertia and center of mass based on shapes to cancel any custom values
+   * previously set using [bodySetParam].
    */
   public fun bodyResetMassProperties(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
@@ -752,7 +732,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a body state (see [enum BodyState] constants).
+   * Sets a body state (see [BodyState] constants).
    */
   public fun bodySetState(
     body: RID,
@@ -774,9 +754,9 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Applies a directional impulse without affecting rotation.
-   *
-   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
-   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
    * This is equivalent to using [bodyApplyImpulse] at the body's center of mass.
    */
   public fun bodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
@@ -786,9 +766,9 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Applies a positioned impulse to the body.
-   *
-   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
-   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -803,8 +783,9 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Applies a rotational impulse to the body without affecting the position.
-   *
-   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
    */
   public fun bodyApplyTorqueImpulse(body: RID, impulse: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
@@ -812,8 +793,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.
-   *
+   * Applies a directional force without affecting rotation. A force is time dependent and meant to
+   * be applied every physics update.
    * This is equivalent to using [bodyApplyForce] at the body's center of mass.
    */
   public fun bodyApplyCentralForce(body: RID, force: Vector3): Unit {
@@ -822,8 +803,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
-   *
+   * Applies a positioned force to the body. A force is time dependent and meant to be applied every
+   * physics update.
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -837,7 +818,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
+   * Applies a rotational force without affecting position. A force is time dependent and meant to
+   * be applied every physics update.
    */
   public fun bodyApplyTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
@@ -845,8 +827,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
-   *
+   * Adds a constant directional force without affecting rotation that keeps being applied over time
+   * until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
    * This is equivalent to using [bodyAddConstantForce] at the body's center of mass.
    */
   public fun bodyAddConstantCentralForce(body: RID, force: Vector3): Unit {
@@ -855,8 +837,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Adds a constant positioned force to the body that keeps being applied over time until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
-   *
+   * Adds a constant positioned force to the body that keeps being applied over time until cleared
+   * with `body_set_constant_force(body, Vector3(0, 0, 0))`.
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
@@ -870,7 +852,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `body_set_constant_torque(body, Vector3(0, 0, 0))`.
+   * Adds a constant rotational force without affecting position that keeps being applied over time
+   * until cleared with `body_set_constant_torque(body, Vector3(0, 0, 0))`.
    */
   public fun bodyAddConstantTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
@@ -879,7 +862,6 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Sets the body's total constant positional forces applied during each physics update.
-   *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
   public fun bodySetConstantForce(body: RID, force: Vector3): Unit {
@@ -889,7 +871,6 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Returns the body's total constant positional forces applied during each physics update.
-   *
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
   public fun bodyGetConstantForce(body: RID): Vector3 {
@@ -900,7 +881,6 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Sets the body's total constant rotational forces applied during each physics update.
-   *
    * See [bodyAddConstantTorque].
    */
   public fun bodySetConstantTorque(body: RID, torque: Vector3): Unit {
@@ -910,7 +890,6 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Returns the body's total constant rotational forces applied during each physics update.
-   *
    * See [bodyAddConstantTorque].
    */
   public fun bodyGetConstantTorque(body: RID): Vector3 {
@@ -920,16 +899,14 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+   * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector
+   * length. This is useful for jumping behavior.
    */
   public fun bodySetAxisVelocity(body: RID, axisVelocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to axisVelocity)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetAxisVelocityPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun bodySetAxisLock(
     body: RID,
     axis: BodyAxis,
@@ -939,9 +916,6 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetAxisLockPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun bodyIsAxisLocked(body: RID, axis: BodyAxis): Boolean {
     TransferContext.writeArguments(_RID to body, LONG to axis.id)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyIsAxisLockedPtr, BOOL)
@@ -958,8 +932,8 @@ public object PhysicsServer3D : Object() {
 
   /**
    * Removes a body from the list of bodies exempt from collisions.
-   *
-   * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+   * Continuous collision detection tries to predict where a moving body will collide, instead of
+   * moving it and correcting its movement if it collided.
    */
   public fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
@@ -967,7 +941,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies. This is enabled by setting the maximum number of contacts reported to a number greater than 0.
+   * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies.
+   * This is enabled by setting the maximum number of contacts reported to a number greater than 0.
    */
   public fun bodySetMaxContactsReported(body: RID, amount: Int): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount.toLong())
@@ -984,7 +959,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets whether a body uses a callback function to calculate its own physics (see [bodySetForceIntegrationCallback]).
+   * Sets whether a body uses a callback function to calculate its own physics (see
+   * [bodySetForceIntegrationCallback]).
    */
   public fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
@@ -992,7 +968,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns whether a body uses a callback function to calculate its own physics (see [bodySetForceIntegrationCallback]).
+   * Returns whether a body uses a callback function to calculate its own physics (see
+   * [bodySetForceIntegrationCallback]).
    */
   public fun bodyIsOmittingForceIntegration(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
@@ -1001,11 +978,11 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the function used to calculate physics for an object, if that object allows it (see [bodySetOmitForceIntegration]). The force integration function takes 2 arguments:
-   *
-   * - `state` — [godot.PhysicsDirectBodyState3D] used to retrieve and modify the body's state.
-   *
-   * - [code skip-lint]userdata` — optional user data passed to [bodySetForceIntegrationCallback].
+   * Sets the function used to calculate physics for an object, if that object allows it (see
+   * [bodySetOmitForceIntegration]). The force integration function takes 2 arguments:
+   * - `state` — [PhysicsDirectBodyState3D] used to retrieve and modify the body's state.
+   * - [code skip-lint]userdata[/code] — optional user data passed to
+   * [bodySetForceIntegrationCallback].
    */
   @JvmOverloads
   public fun bodySetForceIntegrationCallback(
@@ -1026,7 +1003,9 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns `true` if a collision would result from moving along a motion vector from a given point in space. [godot.PhysicsTestMotionParameters3D] is passed to set motion parameters. [godot.PhysicsTestMotionResult3D] can be passed to return additional information.
+   * Returns `true` if a collision would result from moving along a motion vector from a given point
+   * in space. [PhysicsTestMotionParameters3D] is passed to set motion parameters.
+   * [PhysicsTestMotionResult3D] can be passed to return additional information.
    */
   @JvmOverloads
   public fun bodyTestMotion(
@@ -1040,7 +1019,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the [godot.PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or removed from the physics space.
+   * Returns the [PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or
+   * removed from the physics space.
    */
   public fun bodyGetDirectState(body: RID): PhysicsDirectBodyState3D? {
     TransferContext.writeArguments(_RID to body)
@@ -1048,9 +1028,6 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectBodyState3D?)
   }
 
-  /**
-   *
-   */
   public fun softBodyGetBounds(body: RID): AABB {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetBoundsPtr,
@@ -1058,26 +1035,17 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
-  /**
-   *
-   */
   public fun jointCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.jointCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  /**
-   *
-   */
   public fun jointClear(joint: RID): Unit {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, MethodBindings.jointClearPtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun jointMakePin(
     joint: RID,
     bodyA: RID,
@@ -1090,7 +1058,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a pin_joint parameter (see [enum PinJointParam] constants).
+   * Sets a pin_joint parameter (see [PinJointParam] constants).
    */
   public fun pinJointSetParam(
     joint: RID,
@@ -1102,7 +1070,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a pin_joint parameter (see [enum PinJointParam] constants).
+   * Gets a pin_joint parameter (see [PinJointParam] constants).
    */
   public fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1144,9 +1112,6 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  /**
-   *
-   */
   public fun jointMakeHinge(
     joint: RID,
     bodyA: RID,
@@ -1159,7 +1124,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a hinge_joint parameter (see [enum HingeJointParam] constants).
+   * Sets a hinge_joint parameter (see [HingeJointParam] constants).
    */
   public fun hingeJointSetParam(
     joint: RID,
@@ -1171,7 +1136,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a hinge_joint parameter (see [enum HingeJointParam]).
+   * Gets a hinge_joint parameter (see [HingeJointParam]).
    */
   public fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1180,7 +1145,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a hinge_joint flag (see [enum HingeJointFlag] constants).
+   * Sets a hinge_joint flag (see [HingeJointFlag] constants).
    */
   public fun hingeJointSetFlag(
     joint: RID,
@@ -1192,7 +1157,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a hinge_joint flag (see [enum HingeJointFlag] constants).
+   * Gets a hinge_joint flag (see [HingeJointFlag] constants).
    */
   public fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id)
@@ -1200,9 +1165,6 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun jointMakeSlider(
     joint: RID,
     bodyA: RID,
@@ -1215,7 +1177,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a slider_joint parameter (see [enum SliderJointParam] constants).
+   * Gets a slider_joint parameter (see [SliderJointParam] constants).
    */
   public fun sliderJointSetParam(
     joint: RID,
@@ -1227,7 +1189,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a slider_joint parameter (see [enum SliderJointParam] constants).
+   * Gets a slider_joint parameter (see [SliderJointParam] constants).
    */
   public fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1235,9 +1197,6 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  /**
-   *
-   */
   public fun jointMakeConeTwist(
     joint: RID,
     bodyA: RID,
@@ -1250,7 +1209,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants).
+   * Sets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
    */
   public fun coneTwistJointSetParam(
     joint: RID,
@@ -1262,7 +1221,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants).
+   * Gets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
    */
   public fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
@@ -1297,7 +1256,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets whether the bodies attached to the [godot.Joint3D] will collide with each other.
+   * Sets whether the bodies attached to the [Joint3D] will collide with each other.
    */
   public fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean): Unit {
     TransferContext.writeArguments(_RID to joint, BOOL to disable)
@@ -1305,7 +1264,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns whether the bodies attached to the [godot.Joint3D] will collide with each other.
+   * Returns whether the bodies attached to the [Joint3D] will collide with each other.
    */
   public fun jointIsDisabledCollisionsBetweenBodies(joint: RID): Boolean {
     TransferContext.writeArguments(_RID to joint)
@@ -1314,9 +1273,6 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun jointMakeGeneric6dof(
     joint: RID,
     bodyA: RID,
@@ -1329,7 +1285,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants).
+   * Sets a generic_6_DOF_joint parameter (see [G6DOFJointAxisParam] constants).
    */
   public fun generic6dofJointSetParam(
     joint: RID,
@@ -1342,7 +1298,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a generic_6_DOF_joint parameter (see [enum G6DOFJointAxisParam] constants).
+   * Gets a generic_6_DOF_joint parameter (see [G6DOFJointAxisParam] constants).
    */
   public fun generic6dofJointGetParam(
     joint: RID,
@@ -1355,7 +1311,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a generic_6_DOF_joint flag (see [enum G6DOFJointAxisFlag] constants).
+   * Sets a generic_6_DOF_joint flag (see [G6DOFJointAxisFlag] constants).
    */
   public fun generic6dofJointSetFlag(
     joint: RID,
@@ -1368,7 +1324,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a generic_6_DOF_joint flag (see [enum G6DOFJointAxisFlag] constants).
+   * Gets a generic_6_DOF_joint flag (see [G6DOFJointAxisFlag] constants).
    */
   public fun generic6dofJointGetFlag(
     joint: RID,
@@ -1381,7 +1337,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Destroys any of the objects created by PhysicsServer3D. If the [RID] passed is not one of the objects that can be created by PhysicsServer3D, an error will be sent to the console.
+   * Destroys any of the objects created by PhysicsServer3D. If the [RID] passed is not one of the
+   * objects that can be created by PhysicsServer3D, an error will be sent to the console.
    */
   public fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
@@ -1397,7 +1354,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states.
+   * Returns information about the current state of the 3D physics engine. See [ProcessInfo] for a
+   * list of available states.
    */
   public fun getProcessInfo(processInfo: ProcessInfo): Int {
     TransferContext.writeArguments(LONG to processInfo.id)
@@ -1409,27 +1367,27 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * The [godot.Joint3D] is a [godot.PinJoint3D].
+     * The [Joint3D] is a [PinJoint3D].
      */
     JOINT_TYPE_PIN(0),
     /**
-     * The [godot.Joint3D] is a [godot.HingeJoint3D].
+     * The [Joint3D] is a [HingeJoint3D].
      */
     JOINT_TYPE_HINGE(1),
     /**
-     * The [godot.Joint3D] is a [godot.SliderJoint3D].
+     * The [Joint3D] is a [SliderJoint3D].
      */
     JOINT_TYPE_SLIDER(2),
     /**
-     * The [godot.Joint3D] is a [godot.ConeTwistJoint3D].
+     * The [Joint3D] is a [ConeTwistJoint3D].
      */
     JOINT_TYPE_CONE_TWIST(3),
     /**
-     * The [godot.Joint3D] is a [godot.Generic6DOFJoint3D].
+     * The [Joint3D] is a [Generic6DOFJoint3D].
      */
     JOINT_TYPE_6DOF(4),
     /**
-     * Represents the size of the [enum JointType] enum.
+     * Represents the size of the [JointType] enum.
      */
     JOINT_TYPE_MAX(5),
     ;
@@ -1449,18 +1407,17 @@ public object PhysicsServer3D : Object() {
   ) {
     /**
      * The strength with which the pinned objects try to stay in positional relation to each other.
-     *
      * The higher, the stronger.
      */
     PIN_JOINT_BIAS(0),
     /**
      * The strength with which the pinned objects try to stay in velocity relation to each other.
-     *
      * The higher, the stronger.
      */
     PIN_JOINT_DAMPING(1),
     /**
-     * If above 0, this value is the maximum value for an impulse that this Joint3D puts on its ends.
+     * If above 0, this value is the maximum value for an impulse that this Joint3D puts on its
+     * ends.
      */
     PIN_JOINT_IMPULSE_CLAMP(2),
     ;
@@ -1479,7 +1436,8 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * The speed with which the two bodies get pulled together when they move in different directions.
+     * The speed with which the two bodies get pulled together when they move in different
+     * directions.
      */
     HINGE_JOINT_BIAS(0),
     /**
@@ -1494,9 +1452,6 @@ public object PhysicsServer3D : Object() {
      * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
      */
     HINGE_JOINT_LIMIT_BIAS(3),
-    /**
-     *
-     */
     HINGE_JOINT_LIMIT_SOFTNESS(4),
     /**
      * The lower this value, the more the rotation gets slowed down.
@@ -1557,11 +1512,13 @@ public object PhysicsServer3D : Object() {
      */
     SLIDER_JOINT_LINEAR_LIMIT_LOWER(1),
     /**
-     * A factor applied to the movement across the slider axis once the limits get surpassed. The lower, the slower the movement.
+     * A factor applied to the movement across the slider axis once the limits get surpassed. The
+     * lower, the slower the movement.
      */
     SLIDER_JOINT_LINEAR_LIMIT_SOFTNESS(2),
     /**
-     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy gets lost.
+     * The amount of restitution once the limits are surpassed. The lower, the more velocity-energy
+     * gets lost.
      */
     SLIDER_JOINT_LINEAR_LIMIT_RESTITUTION(3),
     /**
@@ -1569,7 +1526,8 @@ public object PhysicsServer3D : Object() {
      */
     SLIDER_JOINT_LINEAR_LIMIT_DAMPING(4),
     /**
-     * A factor applied to the movement across the slider axis as long as the slider is in the limits. The lower, the slower the movement.
+     * A factor applied to the movement across the slider axis as long as the slider is in the
+     * limits. The lower, the slower the movement.
      */
     SLIDER_JOINT_LINEAR_MOTION_SOFTNESS(5),
     /**
@@ -1637,7 +1595,7 @@ public object PhysicsServer3D : Object() {
      */
     SLIDER_JOINT_ANGULAR_ORTHOGONAL_DAMPING(21),
     /**
-     * Represents the size of the [enum SliderJointParam] enum.
+     * Represents the size of the [SliderJointParam] enum.
      */
     SLIDER_JOINT_MAX(22),
     ;
@@ -1657,28 +1615,24 @@ public object PhysicsServer3D : Object() {
   ) {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
-     *
      * The swing span defines, how much rotation will not get corrected along the swing axis.
-     *
-     * Could be defined as looseness in the [godot.ConeTwistJoint3D].
-     *
+     * Could be defined as looseness in the [ConeTwistJoint3D].
      * If below 0.05, this behavior is locked.
      */
     CONE_TWIST_JOINT_SWING_SPAN(0),
     /**
      * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
-     *
      * Twist is locked if below 0.05.
      */
     CONE_TWIST_JOINT_TWIST_SPAN(1),
     /**
      * The speed with which the swing or twist will take place.
-     *
      * The higher, the faster.
      */
     CONE_TWIST_JOINT_BIAS(2),
     /**
-     * The ease with which the Joint3D twists, if it's too low, it takes more force to twist the joint.
+     * The ease with which the Joint3D twists, if it's too low, it takes more force to twist the
+     * joint.
      */
     CONE_TWIST_JOINT_SOFTNESS(3),
     /**
@@ -1709,11 +1663,13 @@ public object PhysicsServer3D : Object() {
      */
     G6DOF_JOINT_LINEAR_UPPER_LIMIT(1),
     /**
-     * A factor that gets applied to the movement across the axes. The lower, the slower the movement.
+     * A factor that gets applied to the movement across the axes. The lower, the slower the
+     * movement.
      */
     G6DOF_JOINT_LINEAR_LIMIT_SOFTNESS(2),
     /**
-     * The amount of restitution on the axes movement. The lower, the more velocity-energy gets lost.
+     * The amount of restitution on the axes movement. The lower, the more velocity-energy gets
+     * lost.
      */
     G6DOF_JOINT_LINEAR_RESTITUTION(3),
     /**
@@ -1753,7 +1709,8 @@ public object PhysicsServer3D : Object() {
      */
     G6DOF_JOINT_ANGULAR_FORCE_LIMIT(15),
     /**
-     * When correcting the crossing of limits in rotation across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower.
+     * When correcting the crossing of limits in rotation across the axes, this error tolerance
+     * factor defines how much the correction gets slowed down. The lower, the slower.
      */
     G6DOF_JOINT_ANGULAR_ERP(16),
     /**
@@ -1811,47 +1768,49 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * The [godot.Shape3D] is a [godot.WorldBoundaryShape3D].
+     * The [Shape3D] is a [WorldBoundaryShape3D].
      */
     SHAPE_WORLD_BOUNDARY(0),
     /**
-     * The [godot.Shape3D] is a [godot.SeparationRayShape3D].
+     * The [Shape3D] is a [SeparationRayShape3D].
      */
     SHAPE_SEPARATION_RAY(1),
     /**
-     * The [godot.Shape3D] is a [godot.SphereShape3D].
+     * The [Shape3D] is a [SphereShape3D].
      */
     SHAPE_SPHERE(2),
     /**
-     * The [godot.Shape3D] is a [godot.BoxShape3D].
+     * The [Shape3D] is a [BoxShape3D].
      */
     SHAPE_BOX(3),
     /**
-     * The [godot.Shape3D] is a [godot.CapsuleShape3D].
+     * The [Shape3D] is a [CapsuleShape3D].
      */
     SHAPE_CAPSULE(4),
     /**
-     * The [godot.Shape3D] is a [godot.CylinderShape3D].
+     * The [Shape3D] is a [CylinderShape3D].
      */
     SHAPE_CYLINDER(5),
     /**
-     * The [godot.Shape3D] is a [godot.ConvexPolygonShape3D].
+     * The [Shape3D] is a [ConvexPolygonShape3D].
      */
     SHAPE_CONVEX_POLYGON(6),
     /**
-     * The [godot.Shape3D] is a [godot.ConcavePolygonShape3D].
+     * The [Shape3D] is a [ConcavePolygonShape3D].
      */
     SHAPE_CONCAVE_POLYGON(7),
     /**
-     * The [godot.Shape3D] is a [godot.HeightMapShape3D].
+     * The [Shape3D] is a [HeightMapShape3D].
      */
     SHAPE_HEIGHTMAP(8),
     /**
-     * The [godot.Shape3D] is used internally for a soft body. Any attempt to create this kind of shape results in an error.
+     * The [Shape3D] is used internally for a soft body. Any attempt to create this kind of shape
+     * results in an error.
      */
     SHAPE_SOFT_BODY(9),
     /**
-     * This constant is used internally by the engine. Any attempt to create this kind of shape results in an error.
+     * This constant is used internally by the engine. Any attempt to create this kind of shape
+     * results in an error.
      */
     SHAPE_CUSTOM(10),
     ;
@@ -1870,7 +1829,8 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * Constant to set/get gravity override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values.
      */
     AREA_PARAM_GRAVITY_OVERRIDE_MODE(0),
     /**
@@ -1886,13 +1846,19 @@ public object PhysicsServer3D : Object() {
      */
     AREA_PARAM_GRAVITY_IS_POINT(3),
     /**
-     * Constant to set/get the distance at which the gravity strength is equal to the gravity controlled by [AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with a surface gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 meters from the center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
-     *
-     * The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.
+     * Constant to set/get the distance at which the gravity strength is equal to the gravity
+     * controlled by [AREA_PARAM_GRAVITY]. For example, on a planet 100 meters in radius with a surface
+     * gravity of 4.0 m/s², set the gravity to 4.0 and the unit distance to 100.0. The gravity will
+     * have falloff according to the inverse square law, so in the example, at 200 meters from the
+     * center the gravity will be 1.0 m/s² (twice the distance, 1/4th the gravity), at 50 meters it
+     * will be 16.0 m/s² (half the distance, 4x the gravity), and so on.
+     * The above is true only when the unit distance is a positive number. When this is set to 0.0,
+     * the gravity will be constant regardless of distance.
      */
     AREA_PARAM_GRAVITY_POINT_UNIT_DISTANCE(4),
     /**
-     * Constant to set/get linear damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     * Constant to set/get linear damping override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values.
      */
     AREA_PARAM_LINEAR_DAMP_OVERRIDE_MODE(5),
     /**
@@ -1900,7 +1866,8 @@ public object PhysicsServer3D : Object() {
      */
     AREA_PARAM_LINEAR_DAMP(6),
     /**
-     * Constant to set/get angular damping override mode in an area. See [enum AreaSpaceOverrideMode] for possible values.
+     * Constant to set/get angular damping override mode in an area. See [AreaSpaceOverrideMode] for
+     * possible values.
      */
     AREA_PARAM_ANGULAR_DAMP_OVERRIDE_MODE(7),
     /**
@@ -1916,15 +1883,18 @@ public object PhysicsServer3D : Object() {
      */
     AREA_PARAM_WIND_FORCE_MAGNITUDE(10),
     /**
-     * Constant to set/get the 3D vector that specifies the origin from which an area-specific wind blows.
+     * Constant to set/get the 3D vector that specifies the origin from which an area-specific wind
+     * blows.
      */
     AREA_PARAM_WIND_SOURCE(11),
     /**
-     * Constant to set/get the 3D vector that specifies the direction in which an area-specific wind blows.
+     * Constant to set/get the 3D vector that specifies the direction in which an area-specific wind
+     * blows.
      */
     AREA_PARAM_WIND_DIRECTION(12),
     /**
-     * Constant to set/get the exponential rate at which wind force decreases with distance from its origin.
+     * Constant to set/get the exponential rate at which wind force decreases with distance from its
+     * origin.
      */
     AREA_PARAM_WIND_ATTENUATION_FACTOR(13),
     ;
@@ -1943,23 +1913,28 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * This area does not affect gravity/damp. These are generally areas that exist only to detect collisions, and objects entering or exiting them.
+     * This area does not affect gravity/damp. These are generally areas that exist only to detect
+     * collisions, and objects entering or exiting them.
      */
     AREA_SPACE_OVERRIDE_DISABLED(0),
     /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many overlapping areas can combine their physics to make interesting effects.
+     * This area adds its gravity/damp values to whatever has been calculated so far. This way, many
+     * overlapping areas can combine their physics to make interesting effects.
      */
     AREA_SPACE_OVERRIDE_COMBINE(1),
     /**
-     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops taking into account the rest of the areas, even the default one.
+     * This area adds its gravity/damp values to whatever has been calculated so far. Then stops
+     * taking into account the rest of the areas, even the default one.
      */
     AREA_SPACE_OVERRIDE_COMBINE_REPLACE(2),
     /**
-     * This area replaces any gravity/damp, even the default one, and stops taking into account the rest of the areas.
+     * This area replaces any gravity/damp, even the default one, and stops taking into account the
+     * rest of the areas.
      */
     AREA_SPACE_OVERRIDE_REPLACE(3),
     /**
-     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the areas, down to the default one.
+     * This area replaces any gravity/damp calculated so far, but keeps calculating the rest of the
+     * areas, down to the default one.
      */
     AREA_SPACE_OVERRIDE_REPLACE_COMBINE(4),
     ;
@@ -1978,19 +1953,23 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't collide with other bodies along its path when moved.
+     * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
+     * collide with other bodies along its path when moved.
      */
     BODY_MODE_STATIC(0),
     /**
-     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and collides with other bodies along its path.
+     * Constant for kinematic bodies. In this mode, a body can be only moved by user code and
+     * collides with other bodies along its path.
      */
     BODY_MODE_KINEMATIC(1),
     /**
-     * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces applied.
+     * Constant for rigid bodies. In this mode, a body can be pushed by other bodies and has forces
+     * applied.
      */
     BODY_MODE_RIGID(2),
     /**
-     * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear velocity is affected by external forces.
+     * Constant for linear rigid bodies. In this mode, a body can not rotate, and only its linear
+     * velocity is affected by external forces.
      */
     BODY_MODE_RIGID_LINEAR(3),
     ;
@@ -2033,11 +2012,11 @@ public object PhysicsServer3D : Object() {
      */
     BODY_PARAM_GRAVITY_SCALE(5),
     /**
-     * Constant to set/get a body's linear damping mode. See [enum BodyDampMode] for possible values.
+     * Constant to set/get a body's linear damping mode. See [BodyDampMode] for possible values.
      */
     BODY_PARAM_LINEAR_DAMP_MODE(6),
     /**
-     * Constant to set/get a body's angular damping mode. See [enum BodyDampMode] for possible values.
+     * Constant to set/get a body's angular damping mode. See [BodyDampMode] for possible values.
      */
     BODY_PARAM_ANGULAR_DAMP_MODE(7),
     /**
@@ -2049,7 +2028,7 @@ public object PhysicsServer3D : Object() {
      */
     BODY_PARAM_ANGULAR_DAMP(9),
     /**
-     * Represents the size of the [enum BodyParameter] enum.
+     * Represents the size of the [BodyParameter] enum.
      */
     BODY_PARAM_MAX(10),
     ;
@@ -2126,11 +2105,13 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * The value of the first parameter and area callback function receives, when an object enters one of its shapes.
+     * The value of the first parameter and area callback function receives, when an object enters
+     * one of its shapes.
      */
     AREA_BODY_ADDED(0),
     /**
-     * The value of the first parameter and area callback function receives, when an object exits one of its shapes.
+     * The value of the first parameter and area callback function receives, when an object exits
+     * one of its shapes.
      */
     AREA_BODY_REMOVED(1),
     ;
@@ -2176,35 +2157,45 @@ public object PhysicsServer3D : Object() {
     id: Long,
   ) {
     /**
-     * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
+     * Constant to set/get the maximum distance a pair of bodies has to move before their collision
+     * status has to be recalculated.
      */
     SPACE_PARAM_CONTACT_RECYCLE_RADIUS(0),
     /**
-     * Constant to set/get the maximum distance a shape can be from another before they are considered separated and the contact is discarded.
+     * Constant to set/get the maximum distance a shape can be from another before they are
+     * considered separated and the contact is discarded.
      */
     SPACE_PARAM_CONTACT_MAX_SEPARATION(1),
     /**
-     * Constant to set/get the maximum distance a shape can penetrate another shape before it is considered a collision.
+     * Constant to set/get the maximum distance a shape can penetrate another shape before it is
+     * considered a collision.
      */
     SPACE_PARAM_CONTACT_MAX_ALLOWED_PENETRATION(2),
     /**
-     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in that state because of numerical imprecision.
+     * Constant to set/get the default solver bias for all physics contacts. A solver bias is a
+     * factor controlling how much two objects "rebound", after overlapping, to avoid leaving them in
+     * that state because of numerical imprecision.
      */
     SPACE_PARAM_CONTACT_DEFAULT_BIAS(3),
     /**
-     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
+     * Constant to set/get the threshold linear velocity of activity. A body marked as potentially
+     * inactive for both linear and angular velocity will be put to sleep after the time given.
      */
     SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD(4),
     /**
-     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after the time given.
+     * Constant to set/get the threshold angular velocity of activity. A body marked as potentially
+     * inactive for both linear and angular velocity will be put to sleep after the time given.
      */
     SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD(5),
     /**
-     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for both linear and angular velocity will be put to sleep after this time.
+     * Constant to set/get the maximum time of activity. A body marked as potentially inactive for
+     * both linear and angular velocity will be put to sleep after this time.
      */
     SPACE_PARAM_BODY_TIME_TO_SLEEP(6),
     /**
-     * Constant to set/get the number of solver iterations for contacts and constraints. The greater the number of iterations, the more accurate the collisions and constraints will be. However, a greater number of iterations requires more CPU power, which can decrease performance.
+     * Constant to set/get the number of solver iterations for contacts and constraints. The greater
+     * the number of iterations, the more accurate the collisions and constraints will be. However, a
+     * greater number of iterations requires more CPU power, which can decrease performance.
      */
     SPACE_PARAM_SOLVER_ITERATIONS(7),
     ;
@@ -2222,29 +2213,11 @@ public object PhysicsServer3D : Object() {
   public enum class BodyAxis(
     id: Long,
   ) {
-    /**
-     *
-     */
     BODY_AXIS_LINEAR_X(1),
-    /**
-     *
-     */
     BODY_AXIS_LINEAR_Y(2),
-    /**
-     *
-     */
     BODY_AXIS_LINEAR_Z(4),
-    /**
-     *
-     */
     BODY_AXIS_ANGULAR_X(8),
-    /**
-     *
-     */
     BODY_AXIS_ANGULAR_Y(16),
-    /**
-     *
-     */
     BODY_AXIS_ANGULAR_Z(32),
     ;
 

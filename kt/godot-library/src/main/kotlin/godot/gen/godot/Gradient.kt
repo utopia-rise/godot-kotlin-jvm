@@ -28,16 +28,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A color transition.
- *
- * This resource describes a color transition by defining a set of colored points and how to interpolate between them.
- *
- * See also [godot.Curve] which supports more complex easing methods, but does not support colors.
+ * This resource describes a color transition by defining a set of colored points and how to
+ * interpolate between them.
+ * See also [Curve] which supports more complex easing methods, but does not support colors.
  */
 @GodotBaseType
 public open class Gradient : Resource() {
   /**
-   * The algorithm used to interpolate between points of the gradient. See [enum InterpolationMode] for available modes.
+   * The algorithm used to interpolate between points of the gradient. See [InterpolationMode] for
+   * available modes.
    */
   public var interpolationMode: InterpolationMode
     get() {
@@ -51,9 +50,10 @@ public open class Gradient : Resource() {
     }
 
   /**
-   * The color space used to interpolate between points of the gradient. It does not affect the returned colors, which will always be in sRGB space. See [enum ColorSpace] for available modes.
-   *
-   * **Note:** This setting has no effect when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
+   * The color space used to interpolate between points of the gradient. It does not affect the
+   * returned colors, which will always be in sRGB space. See [ColorSpace] for available modes.
+   * **Note:** This setting has no effect when [interpolationMode] is set to
+   * [GRADIENT_INTERPOLATE_CONSTANT].
    */
   public var interpolationColorSpace: ColorSpace
     get() {
@@ -67,9 +67,10 @@ public open class Gradient : Resource() {
     }
 
   /**
-   * Gradient's offsets returned as a [godot.PackedFloat32Array].
-   *
-   * **Note:** This property returns a copy, modifying the return value does not update the gradient. To update the gradient use [setOffset] method (for updating offsets individually) or assign to this property directly (for bulk-updating all offsets at once).
+   * Gradient's offsets returned as a [PackedFloat32Array].
+   * **Note:** This property returns a copy, modifying the return value does not update the
+   * gradient. To update the gradient use [setOffset] method (for updating offsets individually) or
+   * assign to this property directly (for bulk-updating all offsets at once).
    */
   public var offsets: PackedFloat32Array
     get() {
@@ -83,9 +84,10 @@ public open class Gradient : Resource() {
     }
 
   /**
-   * Gradient's colors returned as a [godot.PackedColorArray].
-   *
-   * **Note:** This property returns a copy, modifying the return value does not update the gradient. To update the gradient use [setColor] method (for updating colors individually) or assign to this property directly (for bulk-updating all colors at once).
+   * Gradient's colors returned as a [PackedColorArray].
+   * **Note:** This property returns a copy, modifying the return value does not update the
+   * gradient. To update the gradient use [setColor] method (for updating colors individually) or
+   * assign to this property directly (for bulk-updating all colors at once).
    */
   public var colors: PackedColorArray
     get() {
@@ -138,8 +140,8 @@ public open class Gradient : Resource() {
 
   /**
    * Reverses/mirrors the gradient.
-   *
-   * **Note:** This method mirrors all points around the middle of the gradient, which may produce unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
+   * **Note:** This method mirrors all points around the middle of the gradient, which may produce
+   * unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */
   public fun reverse(): Unit {
     TransferContext.writeArguments()
@@ -189,7 +191,8 @@ public open class Gradient : Resource() {
      */
     GRADIENT_INTERPOLATE_LINEAR(0),
     /**
-     * Constant interpolation, color changes abruptly at each point and stays uniform between. This might cause visible aliasing when used for a gradient texture in some cases.
+     * Constant interpolation, color changes abruptly at each point and stays uniform between. This
+     * might cause visible aliasing when used for a gradient texture in some cases.
      */
     GRADIENT_INTERPOLATE_CONSTANT(1),
     /**
@@ -220,7 +223,8 @@ public open class Gradient : Resource() {
      */
     GRADIENT_COLOR_SPACE_LINEAR_SRGB(1),
     /**
-     * [godot.Oklab](https://bottosson.github.io/posts/oklab/) color space. This color space provides a smooth and uniform-looking transition between colors.
+     * [url=https://bottosson.github.io/posts/oklab/]Oklab[/url] color space. This color space
+     * provides a smooth and uniform-looking transition between colors.
      */
     GRADIENT_COLOR_SPACE_OKLAB(2),
     ;

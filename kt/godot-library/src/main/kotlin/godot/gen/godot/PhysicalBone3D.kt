@@ -30,14 +30,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A physics body used to make bones in a [godot.Skeleton3D] react to physics.
- *
- * The [godot.PhysicalBone3D] node is a physics body that can be used to make bones in a [godot.Skeleton3D] react to physics.
+ * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D]
+ * react to physics.
  */
 @GodotBaseType
 public open class PhysicalBone3D : PhysicsBody3D() {
   /**
-   * Sets the joint type. See [enum JointType] for possible values.
+   * Sets the joint type. See [JointType] for possible values.
    */
   public var jointType: JointType
     get() {
@@ -125,8 +124,10 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
-   *
-   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [godot.PhysicalBone3D] that preserves all its energy over time, set [bounce] to `1.0`, [linearDampMode] to [DAMP_MODE_REPLACE], [linearDamp] to `0.0`, [angularDampMode] to [DAMP_MODE_REPLACE], and [angularDamp] to `0.0`.
+   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and
+   * angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [bounce]
+   * to `1.0`, [linearDampMode] to [DAMP_MODE_REPLACE], [linearDamp] to `0.0`, [angularDampMode] to
+   * [DAMP_MODE_REPLACE], and [angularDamp] to `0.0`.
    */
   public var bounce: Float
     get() {
@@ -140,7 +141,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * This is multiplied by the global 3D gravity setting found in **Project > Project Settings > Physics > 3d** to produce the body's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object.
+   * This is multiplied by the global 3D gravity setting found in **Project > Project Settings >
+   * Physics > 3d** to produce the body's gravity. For example, a value of 1 will be normal gravity, 2
+   * will apply double gravity, and 0.5 will apply half gravity to this object.
    */
   public var gravityScale: Float
     get() {
@@ -154,7 +157,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [_integrateForces] function, if defined.
+   * If `true`, internal force integration will be disabled (like gravity or air friction) for this
+   * body. Other than collision response, the body will only move as determined by the
+   * [_integrateForces] function, if defined.
    */
   public var customIntegrator: Boolean
     get() {
@@ -168,7 +173,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [linearDamp] is applied. See [DampMode] for possible values.
    */
   public var linearDampMode: DampMode
     get() {
@@ -182,9 +187,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's movement. By default, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [godot.Area3D] the body is in. Depending on [linearDampMode], you can set [linearDamp] to be added to or to replace the body's damping value.
-   *
-   * See [godot.ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
+   * Damps the body's movement. By default, the body will use the **Default Linear Damp** in
+   * **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is
+   * in. Depending on [linearDampMode], you can set [linearDamp] to be added to or to replace the
+   * body's damping value.
+   * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public var linearDamp: Float
     get() {
@@ -198,7 +205,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [angularDamp] is applied. See [enum DampMode] for possible values.
+   * Defines how [angularDamp] is applied. See [DampMode] for possible values.
    */
   public var angularDampMode: DampMode
     get() {
@@ -212,9 +219,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's rotation. By default, the body will use the **Default Angular Damp** in **Project > Project Settings > Physics > 3d** or any value override set by an [godot.Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to replace the body's damping value.
-   *
-   * See [godot.ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
+   * Damps the body's rotation. By default, the body will use the **Default Angular Damp** in
+   * **Project > Project Settings > Physics > 3d** or any value override set by an [Area3D] the body is
+   * in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to replace the
+   * body's damping value.
+   * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public var angularDamp: Float
     get() {
@@ -228,7 +237,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
+   * every frame**, because physics may run in another thread and runs at a different granularity. Use
+   * [_integrateForces] as your process loop for precise control of the body state.
    */
   @CoreTypeLocalCopy
   public var linearVelocity: Vector3
@@ -258,7 +269,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, the body is deactivated when there is no movement, so it will not take part in the simulation until it is awakened by an external force.
+   * If `true`, the body is deactivated when there is no movement, so it will not take part in the
+   * simulation until it is awakened by an external force.
    */
   public var canSleep: Boolean
     get() {
@@ -349,7 +361,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
 
   /**
-   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
+   * every frame**, because physics may run in another thread and runs at a different granularity. Use
+   * [_integrateForces] as your process loop for precise control of the body state.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -397,49 +411,37 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
 
   /**
-   * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [customIntegrator] property allows you to disable the default behavior and do fully custom force integration for a body.
+   * Called during physics processing, allowing you to read and safely modify the simulation state
+   * for the object. By default, it works in addition to the usual physics behavior, but the
+   * [customIntegrator] property allows you to disable the default behavior and do fully custom force
+   * integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {
   }
 
-  /**
-   *
-   */
   public fun applyCentralImpulse(impulse: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
 
-  /**
-   *
-   */
   @JvmOverloads
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
   }
 
-  /**
-   *
-   */
   public fun getSimulatePhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  /**
-   *
-   */
   public fun getBoneId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdPtr, LONG)
@@ -450,7 +452,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     id: Long,
   ) {
     /**
-     * In this mode, the body's damping value is added to any value set in areas or the default value.
+     * In this mode, the body's damping value is added to any value set in areas or the default
+     * value.
      */
     DAMP_MODE_COMBINE(0),
     /**
@@ -472,29 +475,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public enum class JointType(
     id: Long,
   ) {
-    /**
-     *
-     */
     JOINT_TYPE_NONE(0),
-    /**
-     *
-     */
     JOINT_TYPE_PIN(1),
-    /**
-     *
-     */
     JOINT_TYPE_CONE(2),
-    /**
-     *
-     */
     JOINT_TYPE_HINGE(3),
-    /**
-     *
-     */
     JOINT_TYPE_SLIDER(4),
-    /**
-     *
-     */
     JOINT_TYPE_6DOF(5),
     ;
 

@@ -30,9 +30,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A texture-based nine-patch [godot.StyleBox].
- *
- * A texture-based nine-patch [godot.StyleBox], in a way similar to [godot.NinePatchRect]. This stylebox performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it possible to design bordered styles regardless of the stylebox's size.
+ * A texture-based nine-patch [StyleBox], in a way similar to [NinePatchRect]. This stylebox
+ * performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it
+ * possible to design bordered styles regardless of the stylebox's size.
  */
 @GodotBaseType
 public open class StyleBoxTexture : StyleBox() {
@@ -52,10 +52,9 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the left margin of the 3×3 texture box.
-   *
-   * A higher value means more of the source texture is considered to be part of the left border of the 3×3 box.
-   *
-   * This is also the value used as fallback for [godot.StyleBox.contentMarginLeft] if it is negative.
+   * A higher value means more of the source texture is considered to be part of the left border of
+   * the 3×3 box.
+   * This is also the value used as fallback for [StyleBox.contentMarginLeft] if it is negative.
    */
   public var textureMarginLeft: Float
     get() {
@@ -70,10 +69,9 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the top margin of the 3×3 texture box.
-   *
-   * A higher value means more of the source texture is considered to be part of the top border of the 3×3 box.
-   *
-   * This is also the value used as fallback for [godot.StyleBox.contentMarginTop] if it is negative.
+   * A higher value means more of the source texture is considered to be part of the top border of
+   * the 3×3 box.
+   * This is also the value used as fallback for [StyleBox.contentMarginTop] if it is negative.
    */
   public var textureMarginTop: Float
     get() {
@@ -88,10 +86,9 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the right margin of the 3×3 texture box.
-   *
-   * A higher value means more of the source texture is considered to be part of the right border of the 3×3 box.
-   *
-   * This is also the value used as fallback for [godot.StyleBox.contentMarginRight] if it is negative.
+   * A higher value means more of the source texture is considered to be part of the right border of
+   * the 3×3 box.
+   * This is also the value used as fallback for [StyleBox.contentMarginRight] if it is negative.
    */
   public var textureMarginRight: Float
     get() {
@@ -106,10 +103,9 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Increases the bottom margin of the 3×3 texture box.
-   *
-   * A higher value means more of the source texture is considered to be part of the bottom border of the 3×3 box.
-   *
-   * This is also the value used as fallback for [godot.StyleBox.contentMarginBottom] if it is negative.
+   * A higher value means more of the source texture is considered to be part of the bottom border
+   * of the 3×3 box.
+   * This is also the value used as fallback for [StyleBox.contentMarginBottom] if it is negative.
    */
   public var textureMarginBottom: Float
     get() {
@@ -123,7 +119,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the left margin of this style box when drawing, causing it to be drawn larger than requested.
+   * Expands the left margin of this style box when drawing, causing it to be drawn larger than
+   * requested.
    */
   public var expandMarginLeft: Float
     get() {
@@ -137,7 +134,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the top margin of this style box when drawing, causing it to be drawn larger than requested.
+   * Expands the top margin of this style box when drawing, causing it to be drawn larger than
+   * requested.
    */
   public var expandMarginTop: Float
     get() {
@@ -151,7 +149,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the right margin of this style box when drawing, causing it to be drawn larger than requested.
+   * Expands the right margin of this style box when drawing, causing it to be drawn larger than
+   * requested.
    */
   public var expandMarginRight: Float
     get() {
@@ -165,7 +164,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Expands the bottom margin of this style box when drawing, causing it to be drawn larger than requested.
+   * Expands the bottom margin of this style box when drawing, causing it to be drawn larger than
+   * requested.
    */
   public var expandMarginBottom: Float
     get() {
@@ -179,7 +179,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled horizontally. See [enum AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled horizontally. See
+   * [AxisStretchMode] for possible values.
    */
   public var axisStretchHorizontal: AxisStretchMode
     get() {
@@ -193,7 +194,8 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled vertically. See [enum AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled vertically. See
+   * [AxisStretchMode] for possible values.
    */
   public var axisStretchVertical: AxisStretchMode
     get() {
@@ -208,9 +210,7 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Species a sub-region of the texture to use.
-   *
-   * This is equivalent to first wrapping the texture in an [godot.AtlasTexture] with the same region.
-   *
+   * This is equivalent to first wrapping the texture in an [AtlasTexture] with the same region.
    * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
    */
   @CoreTypeLocalCopy
@@ -261,9 +261,7 @@ public open class StyleBoxTexture : StyleBox() {
 
   /**
    * Species a sub-region of the texture to use.
-   *
-   * This is equivalent to first wrapping the texture in an [godot.AtlasTexture] with the same region.
-   *
+   * This is equivalent to first wrapping the texture in an [AtlasTexture] with the same region.
    * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
    *
    * This is a helper function to make dealing with local copies easier. 
@@ -331,15 +329,19 @@ public open class StyleBoxTexture : StyleBox() {
     id: Long,
   ) {
     /**
-     * Stretch the stylebox's texture. This results in visible distortion unless the texture size matches the stylebox's size perfectly.
+     * Stretch the stylebox's texture. This results in visible distortion unless the texture size
+     * matches the stylebox's size perfectly.
      */
     AXIS_STRETCH_MODE_STRETCH(0),
     /**
-     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch system.
+     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
+     * system.
      */
     AXIS_STRETCH_MODE_TILE(1),
     /**
-     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch system. Unlike [AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the nine-patch texture tile seamlessly.
+     * Repeats the stylebox's texture to match the stylebox's size according to the nine-patch
+     * system. Unlike [AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the
+     * nine-patch texture tile seamlessly.
      */
     AXIS_STRETCH_MODE_TILE_FIT(2),
     ;

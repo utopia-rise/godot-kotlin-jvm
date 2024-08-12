@@ -19,14 +19,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node that provides a [godot.Shape3D] to a [godot.CollisionObject3D] parent.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * A node that provides a [godot.Shape3D] to a [godot.CollisionObject3D] parent and allows to edit it. This can give a detection shape to an [godot.Area3D] or turn a [godot.PhysicsBody3D] into a solid object.
- *
- * **Warning:** A non-uniformly scaled [godot.CollisionShape3D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its [shape] resource instead.
+ * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can
+ * give a detection shape to an [Area3D] or turn a [PhysicsBody3D] into a solid object.
+ * **Warning:** A non-uniformly scaled [CollisionShape3D] will likely not behave as expected. Make
+ * sure to keep its scale the same on all axes and adjust its [shape] resource instead.
  */
 @GodotBaseType
 public open class CollisionShape3D : Node3D() {
@@ -64,7 +60,7 @@ public open class CollisionShape3D : Node3D() {
   }
 
   /**
-   * *Obsoleted.* Use [godot.Resource.changed] instead.
+   * *Obsoleted.* Use [signal Resource.changed] instead.
    */
   public fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
@@ -72,7 +68,8 @@ public open class CollisionShape3D : Node3D() {
   }
 
   /**
-   * Sets the collision shape's shape to the addition of all its convexed [godot.MeshInstance3D] siblings geometry.
+   * Sets the collision shape's shape to the addition of all its convexed [MeshInstance3D] siblings
+   * geometry.
    */
   public fun makeConvexFromSiblings(): Unit {
     TransferContext.writeArguments()

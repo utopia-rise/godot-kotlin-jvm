@@ -28,11 +28,10 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
 /**
- * A singleton for saving [godot.Resource]s to the filesystem.
- *
  * A singleton for saving resource types to the filesystem.
- *
- * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
+ * It uses the many [ResourceFormatSaver] classes registered in the engine (either built-in or from
+ * a plugin) to save resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res`
+ * or `.scn`).
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
@@ -42,13 +41,12 @@ public object ResourceSaver : Object() {
   }
 
   /**
-   * Saves a resource to disk to the given path, using a [godot.ResourceFormatSaver] that recognizes the resource object. If [path] is empty, [godot.ResourceSaver] will try to use [godot.Resource.resourcePath].
-   *
-   * The [flags] bitmask can be specified to customize the save behavior using [enum SaverFlags] flags.
-   *
+   * Saves a resource to disk to the given path, using a [ResourceFormatSaver] that recognizes the
+   * resource object. If [path] is empty, [ResourceSaver] will try to use [Resource.resourcePath].
+   * The [flags] bitmask can be specified to customize the save behavior using [SaverFlags] flags.
    * Returns [OK] on success.
-   *
-   * **Note:** When the project is running, any generated UID associated with the resource will not be saved as the required code is only executed in editor mode.
+   * **Note:** When the project is running, any generated UID associated with the resource will not
+   * be saved as the required code is only executed in editor mode.
    */
   @JvmOverloads
   public fun save(
@@ -72,9 +70,10 @@ public object ResourceSaver : Object() {
   }
 
   /**
-   * Registers a new [godot.ResourceFormatSaver]. The ResourceSaver will use the ResourceFormatSaver as described in [save].
-   *
-   * This method is performed implicitly for ResourceFormatSavers written in GDScript (see [godot.ResourceFormatSaver] for more information).
+   * Registers a new [ResourceFormatSaver]. The ResourceSaver will use the ResourceFormatSaver as
+   * described in [save].
+   * This method is performed implicitly for ResourceFormatSavers written in GDScript (see
+   * [ResourceFormatSaver] for more information).
    */
   @JvmOverloads
   public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean = false):
@@ -84,7 +83,7 @@ public object ResourceSaver : Object() {
   }
 
   /**
-   * Unregisters the given [godot.ResourceFormatSaver].
+   * Unregisters the given [ResourceFormatSaver].
    */
   public fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)

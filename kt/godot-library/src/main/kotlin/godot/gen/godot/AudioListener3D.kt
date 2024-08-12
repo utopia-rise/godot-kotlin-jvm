@@ -20,9 +20,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Overrides the location sounds are heard from.
- *
- * Once added to the scene tree and enabled using [makeCurrent], this node will override the location sounds are heard from. This can be used to listen from a location different from the [godot.Camera3D].
+ * Once added to the scene tree and enabled using [makeCurrent], this node will override the
+ * location sounds are heard from. This can be used to listen from a location different from the
+ * [Camera3D].
  */
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
@@ -49,8 +49,8 @@ public open class AudioListener3D : Node3D() {
 
   /**
    * Returns `true` if the listener was made current using [makeCurrent], `false` otherwise.
-   *
-   * **Note:** There may be more than one AudioListener3D marked as "current" in the scene tree, but only the one that was made current last will be used.
+   * **Note:** There may be more than one AudioListener3D marked as "current" in the scene tree, but
+   * only the one that was made current last will be used.
    */
   public fun isCurrent(): Boolean {
     TransferContext.writeArguments()
@@ -59,7 +59,7 @@ public open class AudioListener3D : Node3D() {
   }
 
   /**
-   * Returns the listener's global orthonormalized [godot.Transform3D].
+   * Returns the listener's global orthonormalized [Transform3D].
    */
   public fun getListenerTransform(): Transform3D {
     TransferContext.writeArguments()

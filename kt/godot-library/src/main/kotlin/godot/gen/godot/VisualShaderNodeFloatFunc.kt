@@ -18,14 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A scalar floating-point function to be used within the visual shader graph.
- *
  * Accept a floating-point scalar (`x`) to the input port and transform it according to [function].
  */
 @GodotBaseType
 public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   /**
-   * A function to be applied to the scalar. See [enum Function] for options.
+   * A function to be applied to the scalar. See [Function] for options.
    */
   public var function: Function
     get() {
@@ -63,39 +61,48 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     FUNC_ASIN(3),
     /**
-     * Returns the arc-cosine of the parameter. Translates to `acos(x)` in the Godot Shader Language.
+     * Returns the arc-cosine of the parameter. Translates to `acos(x)` in the Godot Shader
+     * Language.
      */
     FUNC_ACOS(4),
     /**
-     * Returns the arc-tangent of the parameter. Translates to `atan(x)` in the Godot Shader Language.
+     * Returns the arc-tangent of the parameter. Translates to `atan(x)` in the Godot Shader
+     * Language.
      */
     FUNC_ATAN(5),
     /**
-     * Returns the hyperbolic sine of the parameter. Translates to `sinh(x)` in the Godot Shader Language.
+     * Returns the hyperbolic sine of the parameter. Translates to `sinh(x)` in the Godot Shader
+     * Language.
      */
     FUNC_SINH(6),
     /**
-     * Returns the hyperbolic cosine of the parameter. Translates to `cosh(x)` in the Godot Shader Language.
+     * Returns the hyperbolic cosine of the parameter. Translates to `cosh(x)` in the Godot Shader
+     * Language.
      */
     FUNC_COSH(7),
     /**
-     * Returns the hyperbolic tangent of the parameter. Translates to `tanh(x)` in the Godot Shader Language.
+     * Returns the hyperbolic tangent of the parameter. Translates to `tanh(x)` in the Godot Shader
+     * Language.
      */
     FUNC_TANH(8),
     /**
-     * Returns the natural logarithm of the parameter. Translates to `log(x)` in the Godot Shader Language.
+     * Returns the natural logarithm of the parameter. Translates to `log(x)` in the Godot Shader
+     * Language.
      */
     FUNC_LOG(9),
     /**
-     * Returns the natural exponentiation of the parameter. Translates to `exp(x)` in the Godot Shader Language.
+     * Returns the natural exponentiation of the parameter. Translates to `exp(x)` in the Godot
+     * Shader Language.
      */
     FUNC_EXP(10),
     /**
-     * Returns the square root of the parameter. Translates to `sqrt(x)` in the Godot Shader Language.
+     * Returns the square root of the parameter. Translates to `sqrt(x)` in the Godot Shader
+     * Language.
      */
     FUNC_SQRT(11),
     /**
-     * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader Language.
+     * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader
+     * Language.
      */
     FUNC_ABS(12),
     /**
@@ -103,19 +110,23 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     FUNC_SIGN(13),
     /**
-     * Finds the nearest integer less than or equal to the parameter. Translates to `floor(x)` in the Godot Shader Language.
+     * Finds the nearest integer less than or equal to the parameter. Translates to `floor(x)` in
+     * the Godot Shader Language.
      */
     FUNC_FLOOR(14),
     /**
-     * Finds the nearest integer to the parameter. Translates to `round(x)` in the Godot Shader Language.
+     * Finds the nearest integer to the parameter. Translates to `round(x)` in the Godot Shader
+     * Language.
      */
     FUNC_ROUND(15),
     /**
-     * Finds the nearest integer that is greater than or equal to the parameter. Translates to `ceil(x)` in the Godot Shader Language.
+     * Finds the nearest integer that is greater than or equal to the parameter. Translates to
+     * `ceil(x)` in the Godot Shader Language.
      */
     FUNC_CEIL(16),
     /**
-     * Computes the fractional part of the argument. Translates to `fract(x)` in the Godot Shader Language.
+     * Computes the fractional part of the argument. Translates to `fract(x)` in the Godot Shader
+     * Language.
      */
     FUNC_FRACT(17),
     /**
@@ -127,35 +138,43 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     FUNC_NEGATE(19),
     /**
-     * Returns the arc-hyperbolic-cosine of the parameter. Translates to `acosh(x)` in the Godot Shader Language.
+     * Returns the arc-hyperbolic-cosine of the parameter. Translates to `acosh(x)` in the Godot
+     * Shader Language.
      */
     FUNC_ACOSH(20),
     /**
-     * Returns the arc-hyperbolic-sine of the parameter. Translates to `asinh(x)` in the Godot Shader Language.
+     * Returns the arc-hyperbolic-sine of the parameter. Translates to `asinh(x)` in the Godot
+     * Shader Language.
      */
     FUNC_ASINH(21),
     /**
-     * Returns the arc-hyperbolic-tangent of the parameter. Translates to `atanh(x)` in the Godot Shader Language.
+     * Returns the arc-hyperbolic-tangent of the parameter. Translates to `atanh(x)` in the Godot
+     * Shader Language.
      */
     FUNC_ATANH(22),
     /**
-     * Convert a quantity in radians to degrees. Translates to `degrees(x)` in the Godot Shader Language.
+     * Convert a quantity in radians to degrees. Translates to `degrees(x)` in the Godot Shader
+     * Language.
      */
     FUNC_DEGREES(23),
     /**
-     * Returns 2 raised by the power of the parameter. Translates to `exp2(x)` in the Godot Shader Language.
+     * Returns 2 raised by the power of the parameter. Translates to `exp2(x)` in the Godot Shader
+     * Language.
      */
     FUNC_EXP2(24),
     /**
-     * Returns the inverse of the square root of the parameter. Translates to `inversesqrt(x)` in the Godot Shader Language.
+     * Returns the inverse of the square root of the parameter. Translates to `inversesqrt(x)` in
+     * the Godot Shader Language.
      */
     FUNC_INVERSE_SQRT(25),
     /**
-     * Returns the base 2 logarithm of the parameter. Translates to `log2(x)` in the Godot Shader Language.
+     * Returns the base 2 logarithm of the parameter. Translates to `log2(x)` in the Godot Shader
+     * Language.
      */
     FUNC_LOG2(26),
     /**
-     * Convert a quantity in degrees to radians. Translates to `radians(x)` in the Godot Shader Language.
+     * Convert a quantity in degrees to radians. Translates to `radians(x)` in the Godot Shader
+     * Language.
      */
     FUNC_RADIANS(27),
     /**
@@ -163,11 +182,13 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     FUNC_RECIPROCAL(28),
     /**
-     * Finds the nearest even integer to the parameter. Translates to `roundEven(x)` in the Godot Shader Language.
+     * Finds the nearest even integer to the parameter. Translates to `roundEven(x)` in the Godot
+     * Shader Language.
      */
     FUNC_ROUNDEVEN(29),
     /**
-     * Returns a value equal to the nearest integer to `x` whose absolute value is not larger than the absolute value of `x`. Translates to `trunc(x)` in the Godot Shader Language.
+     * Returns a value equal to the nearest integer to `x` whose absolute value is not larger than
+     * the absolute value of `x`. Translates to `trunc(x)` in the Godot Shader Language.
      */
     FUNC_TRUNC(30),
     /**
@@ -175,7 +196,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
      */
     FUNC_ONEMINUS(31),
     /**
-     * Represents the size of the [enum Function] enum.
+     * Represents the size of the [Function] enum.
      */
     FUNC_MAX(32),
     ;

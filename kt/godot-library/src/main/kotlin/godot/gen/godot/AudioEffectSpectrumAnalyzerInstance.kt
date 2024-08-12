@@ -21,9 +21,6 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
-/**
- *
- */
 @GodotBaseType
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
@@ -32,9 +29,6 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     return true
   }
 
-  /**
-   *
-   */
   @JvmOverloads
   public fun getMagnitudeForFrequencyRange(
     fromHz: Float,

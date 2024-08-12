@@ -21,9 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node that applies a color tint to a canvas.
- *
- * [godot.CanvasModulate] applies a color tint to all nodes on a canvas. Only one can be used to tint a canvas, but [godot.CanvasLayer]s can be used to render things independently.
+ * [CanvasModulate] applies a color tint to all nodes on a canvas. Only one can be used to tint a
+ * canvas, but [CanvasLayer]s can be used to render things independently.
  */
 @GodotBaseType
 public open class CanvasModulate : Node2D() {

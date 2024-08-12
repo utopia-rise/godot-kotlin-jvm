@@ -19,14 +19,15 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis.
- *
- * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For example, a [godot.StaticBody2D] representing a piston base can be attached to a [godot.RigidBody2D] representing the piston head, moving up and down.
+ * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
+ * example, a [StaticBody2D] representing a piston base can be attached to a [RigidBody2D] representing
+ * the piston head, moving up and down.
  */
 @GodotBaseType
 public open class GrooveJoint2D : Joint2D() {
   /**
-   * The groove's length. The groove is from the joint's origin towards [length] along the joint's local Y axis.
+   * The groove's length. The groove is from the joint's origin towards [length] along the joint's
+   * local Y axis.
    */
   public var length: Float
     get() {
@@ -40,7 +41,8 @@ public open class GrooveJoint2D : Joint2D() {
     }
 
   /**
-   * The body B's initial anchor position defined by the joint's origin and a local offset [initialOffset] along the joint's Y axis (along the groove).
+   * The body B's initial anchor position defined by the joint's origin and a local offset
+   * [initialOffset] along the joint's Y axis (along the groove).
    */
   public var initialOffset: Float
     get() {

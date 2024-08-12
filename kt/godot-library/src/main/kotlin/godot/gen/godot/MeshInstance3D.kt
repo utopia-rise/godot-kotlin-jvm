@@ -29,17 +29,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Node that instances meshes into a scenario.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * MeshInstance3D is a node that takes a [godot.Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used render 3D geometry and can be used to instance a single [godot.Mesh] in many places. This allows reusing geometry, which can save on resources. When a [godot.Mesh] has to be instantiated more than thousands of times at close proximity, consider using a [godot.MultiMesh] in a [godot.MultiMeshInstance3D] instead.
+ * MeshInstance3D is a node that takes a [Mesh] resource and adds it to the current scenario by
+ * creating an instance of it. This is the class most often used render 3D geometry and can be used to
+ * instance a single [Mesh] in many places. This allows reusing geometry, which can save on resources.
+ * When a [Mesh] has to be instantiated more than thousands of times at close proximity, consider using
+ * a [MultiMesh] in a [MultiMeshInstance3D] instead.
  */
 @GodotBaseType
 public open class MeshInstance3D : GeometryInstance3D() {
   /**
-   * The [godot.Mesh] resource for the instance.
+   * The [Mesh] resource for the instance.
    */
   public var mesh: Mesh?
     get() {
@@ -53,7 +52,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   /**
-   * The [godot.Skin] to be used by this instance.
+   * The [Skin] to be used by this instance.
    */
   public var skin: Skin?
     get() {
@@ -67,7 +66,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   /**
-   * [godot.core.NodePath] to the [godot.Skeleton3D] associated with the instance.
+   * [NodePath] to the [Skeleton3D] associated with the instance.
    */
   public var skeleton: NodePath
     get() {
@@ -86,7 +85,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the number of surface override materials. This is equivalent to [godot.Mesh.getSurfaceCount]. See also [getSurfaceOverrideMaterial].
+   * Returns the number of surface override materials. This is equivalent to [Mesh.getSurfaceCount].
+   * See also [getSurfaceOverrideMaterial].
    */
   public fun getSurfaceOverrideMaterialCount(): Int {
     TransferContext.writeArguments()
@@ -95,9 +95,11 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the override [material] for the specified [surface] of the [godot.Mesh] resource. This material is associated with this [godot.MeshInstance3D] rather than with [mesh].
-   *
-   * **Note:** This assigns the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, not the material within the [godot.Mesh] resource. To set the material within the [godot.Mesh] resource, use [godot.Mesh.surfaceGetMaterial] instead.
+   * Sets the override [material] for the specified [surface] of the [Mesh] resource. This material
+   * is associated with this [MeshInstance3D] rather than with [mesh].
+   * **Note:** This assigns the [Material] associated to the [MeshInstance3D]'s Surface Material
+   * Override properties, not the material within the [Mesh] resource. To set the material within the
+   * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
    */
   public fun setSurfaceOverrideMaterial(surface: Int, material: Material): Unit {
     TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
@@ -105,9 +107,11 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the override [godot.Material] for the specified [surface] of the [godot.Mesh] resource. See also [getSurfaceOverrideMaterialCount].
-   *
-   * **Note:** This returns the [godot.Material] associated to the [godot.MeshInstance3D]'s Surface Material Override properties, not the material within the [godot.Mesh] resource. To get the material within the [godot.Mesh] resource, use [godot.Mesh.surfaceGetMaterial] instead.
+   * Returns the override [Material] for the specified [surface] of the [Mesh] resource. See also
+   * [getSurfaceOverrideMaterialCount].
+   * **Note:** This returns the [Material] associated to the [MeshInstance3D]'s Surface Material
+   * Override properties, not the material within the [Mesh] resource. To get the material within the
+   * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
    */
   public fun getSurfaceOverrideMaterial(surface: Int): Material? {
     TransferContext.writeArguments(LONG to surface.toLong())
@@ -116,8 +120,10 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the [godot.Material] that will be used by the [godot.Mesh] when drawing. This can return the [godot.GeometryInstance3D.materialOverride], the surface override [godot.Material] defined in this [godot.MeshInstance3D], or the surface [godot.Material] defined in the [mesh]. For example, if [godot.GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
-   *
+   * Returns the [Material] that will be used by the [Mesh] when drawing. This can return the
+   * [GeometryInstance3D.materialOverride], the surface override [Material] defined in this
+   * [MeshInstance3D], or the surface [Material] defined in the [mesh]. For example, if
+   * [GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
    * Returns `null` if no material is active, including when [mesh] is `null`.
    */
   public fun getActiveMaterial(surface: Int): Material? {
@@ -127,7 +133,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * This helper creates a [godot.StaticBody3D] child node with a [godot.ConcavePolygonShape3D] collision shape calculated from the mesh geometry. It's mainly used for testing.
+   * This helper creates a [StaticBody3D] child node with a [ConcavePolygonShape3D] collision shape
+   * calculated from the mesh geometry. It's mainly used for testing.
    */
   public fun createTrimeshCollision(): Unit {
     TransferContext.writeArguments()
@@ -135,11 +142,12 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * This helper creates a [godot.StaticBody3D] child node with a [godot.ConvexPolygonShape3D] collision shape calculated from the mesh geometry. It's mainly used for testing.
-   *
-   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
-   *
-   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of vertices. Disabled by default.
+   * This helper creates a [StaticBody3D] child node with a [ConvexPolygonShape3D] collision shape
+   * calculated from the mesh geometry. It's mainly used for testing.
+   * If [clean] is `true` (default), duplicate and interior vertices are removed automatically. You
+   * can set it to `false` to make the process faster if not needed.
+   * If [simplify] is `true`, the geometry can be further simplified to reduce the number of
+   * vertices. Disabled by default.
    */
   @JvmOverloads
   public fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
@@ -148,7 +156,9 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * This helper creates a [godot.StaticBody3D] child node with multiple [godot.ConvexPolygonShape3D] collision shapes calculated from the mesh geometry via convex decomposition. The convex decomposition operation can be controlled with parameters from the optional [settings].
+   * This helper creates a [StaticBody3D] child node with multiple [ConvexPolygonShape3D] collision
+   * shapes calculated from the mesh geometry via convex decomposition. The convex decomposition
+   * operation can be controlled with parameters from the optional [settings].
    */
   @JvmOverloads
   public fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? = null):
@@ -167,7 +177,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with this name exists, including when [mesh] is `null`.
+   * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with
+   * this name exists, including when [mesh] is `null`.
    */
   public fun findBlendShapeByName(name: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -176,7 +187,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
+   * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces
+   * an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
   public fun getBlendShapeValue(blendShapeIdx: Int): Float {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
@@ -185,7 +197,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is `null` or doesn't have a blend shape at that index.
+   * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is
+   * `null` or doesn't have a blend shape at that index.
    */
   public fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong(), DOUBLE to value.toDouble())
@@ -193,7 +206,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
   }
 
   /**
-   * This helper creates a [godot.MeshInstance3D] child node with gizmos at every vertex calculated from the mesh geometry. It's mainly used for testing.
+   * This helper creates a [MeshInstance3D] child node with gizmos at every vertex calculated from
+   * the mesh geometry. It's mainly used for testing.
    */
   public fun createDebugTangents(): Unit {
     TransferContext.writeArguments()

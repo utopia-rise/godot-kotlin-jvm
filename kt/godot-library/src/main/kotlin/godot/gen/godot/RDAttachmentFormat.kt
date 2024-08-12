@@ -18,9 +18,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Attachment format (used by [godot.RenderingDevice]).
- *
- * This object is used by [godot.RenderingDevice].
+ * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDAttachmentFormat : RefCounted() {

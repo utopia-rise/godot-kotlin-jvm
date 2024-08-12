@@ -18,13 +18,11 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Calls the specified method after optional delay.
- *
- * [godot.CallbackTweener] is used to call a method in a tweening sequence. See [godot.Tween.tweenCallback] for more usage information.
- *
+ * [CallbackTweener] is used to call a method in a tweening sequence. See [Tween.tweenCallback] for
+ * more usage information.
  * The tweener will finish automatically if the callback's target object is freed.
- *
- * **Note:** [godot.Tween.tweenCallback] is the only correct way to create [godot.CallbackTweener]. Any [godot.CallbackTweener] created manually will not function correctly.
+ * **Note:** [Tween.tweenCallback] is the only correct way to create [CallbackTweener]. Any
+ * [CallbackTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
@@ -35,13 +33,11 @@ public open class CallbackTweener : Tweener() {
 
   /**
    * Makes the callback call delayed by given time in seconds.
-   *
    * **Example:**
-   *
-   * ```
-   * 				var tween = get_tree().create_tween()
-   * 				tween.tween_callback(queue_free).set_delay(2) #this will call queue_free() after 2 seconds
-   * 				```
+   * [codeblock]
+   * var tween = get_tree().create_tween()
+   * tween.tween_callback(queue_free).set_delay(2) #this will call queue_free() after 2 seconds
+   * [/codeblock]
    */
   public fun setDelay(delay: Double): CallbackTweener? {
     TransferContext.writeArguments(DOUBLE to delay)

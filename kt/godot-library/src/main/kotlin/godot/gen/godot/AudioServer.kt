@@ -34,12 +34,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Server interface for low-level audio access.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
- *
- * [godot.AudioServer] is a low-level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
+ * [AudioServer] is a low-level server interface for audio access. It is in charge of creating
+ * sample data (playable audio) as well as its playback via a voice interface.
  */
 @GodotBaseType
 public object AudioServer : Object() {
@@ -113,7 +109,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified name exist.
+   * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified
+   * name exist.
    */
   public fun getBusIndex(busName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to busName)
@@ -216,7 +213,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Adds an [godot.AudioEffect] effect to the bus [busIdx] at [atPosition].
+   * Adds an [AudioEffect] effect to the bus [busIdx] at [atPosition].
    */
   @JvmOverloads
   public fun addBusEffect(
@@ -246,7 +243,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the [godot.AudioEffect] at position [effectIdx] in bus [busIdx].
+   * Returns the [AudioEffect] at position [effectIdx] in bus [busIdx].
    */
   public fun getBusEffect(busIdx: Int, effectIdx: Int): AudioEffect? {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
@@ -255,7 +252,8 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the [godot.AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel).
+   * Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally
+   * channel).
    */
   @JvmOverloads
   public fun getBusEffectInstance(
@@ -332,7 +330,6 @@ public object AudioServer : Object() {
 
   /**
    * Locks the audio driver's main loop.
-   *
    * **Note:** Remember to unlock it afterwards.
    */
   public fun lock(): Unit {
@@ -358,7 +355,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the sample rate at the output of the [godot.AudioServer].
+   * Returns the sample rate at the output of the [AudioServer].
    */
   public fun getMixRate(): Float {
     TransferContext.writeArguments()
@@ -405,8 +402,9 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Returns the audio driver's effective output latency. This is based on [godot.ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending on the operating system and audio driver.
-   *
+   * Returns the audio driver's effective output latency. This is based on
+   * [ProjectSettings.audio/driver/outputLatency], but the exact returned value will differ depending
+   * on the operating system and audio driver.
    * **Note:** This can be expensive; it is not recommended to call [getOutputLatency] every frame.
    */
   public fun getOutputLatency(): Double {
@@ -417,8 +415,9 @@ public object AudioServer : Object() {
 
   /**
    * Returns the names of all audio input devices detected on the system.
-   *
-   * **Note:** [godot.ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
+   * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work.
+   * See also that setting's description for caveats related to permissions and operating system
+   * privacy settings.
    */
   public fun getInputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
@@ -438,7 +437,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Overwrites the currently used [godot.AudioBusLayout].
+   * Overwrites the currently used [AudioBusLayout].
    */
   public fun setBusLayout(busLayout: AudioBusLayout): Unit {
     TransferContext.writeArguments(OBJECT to busLayout)
@@ -446,7 +445,7 @@ public object AudioServer : Object() {
   }
 
   /**
-   * Generates an [godot.AudioBusLayout] using the available buses and effects.
+   * Generates an [AudioBusLayout] using the available buses and effects.
    */
   public fun generateBusLayout(): AudioBusLayout? {
     TransferContext.writeArguments()
@@ -455,9 +454,10 @@ public object AudioServer : Object() {
   }
 
   /**
-   * If set to `true`, all instances of [godot.AudioStreamPlayback] will call [godot.AudioStreamPlayback.TagUsedStreams] every mix step.
-   *
-   * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the audio stream previews.
+   * If set to `true`, all instances of [AudioStreamPlayback] will call
+   * [AudioStreamPlayback.TagUsedStreams] every mix step.
+   * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the
+   * audio stream previews.
    */
   public fun setEnableTaggingUsedAudioStreams(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)

@@ -27,12 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Represents a screen drag event.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
- *
- * Stores information about screen drag events. See [godot.Node.Input].
+ * Stores information about screen drag events. See [Node.Input].
  */
 @GodotBaseType
 public open class InputEventScreenDrag : InputEventFromWindow() {
@@ -51,7 +46,9 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   /**
-   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
+   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
+   * for both axes.
    */
   @CoreTypeLocalCopy
   public var tilt: Vector2
@@ -144,7 +141,9 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   }
 
   /**
-   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
+   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
+   * for both axes.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

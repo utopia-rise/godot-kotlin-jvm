@@ -26,12 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node that provides a [godot.Shape2D] to a [godot.CollisionObject2D] parent.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
- *
- * A node that provides a [godot.Shape2D] to a [godot.CollisionObject2D] parent and allows to edit it. This can give a detection shape to an [godot.Area2D] or turn a [godot.PhysicsBody2D] into a solid object.
+ * A node that provides a [Shape2D] to a [CollisionObject2D] parent and allows to edit it. This can
+ * give a detection shape to an [Area2D] or turn a [PhysicsBody2D] into a solid object.
  */
 @GodotBaseType
 public open class CollisionShape2D : Node2D() {
@@ -50,7 +46,8 @@ public open class CollisionShape2D : Node2D() {
     }
 
   /**
-   * A disabled collision shape has no effect in the world. This property should be changed with [godot.Object.setDeferred].
+   * A disabled collision shape has no effect in the world. This property should be changed with
+   * [Object.setDeferred].
    */
   public var disabled: Boolean
     get() {
@@ -65,8 +62,8 @@ public open class CollisionShape2D : Node2D() {
 
   /**
    * Sets whether this collision shape should only detect collision on one side (top or bottom).
-   *
-   * **Note:** This property has no effect if this [godot.CollisionShape2D] is a child of an [godot.Area2D] node.
+   * **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D]
+   * node.
    */
   public var oneWayCollision: Boolean
     get() {
@@ -80,7 +77,8 @@ public open class CollisionShape2D : Node2D() {
     }
 
   /**
-   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the shape at a high velocity.
+   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker,
+   * and work better for colliders that enter the shape at a high velocity.
    */
   public var oneWayCollisionMargin: Float
     get() {
@@ -95,8 +93,9 @@ public open class CollisionShape2D : Node2D() {
 
   /**
    * The collision shape debug color.
-   *
-   * **Note:** The default value is [godot.ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
+   * `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug
+   * color.
    */
   @CoreTypeLocalCopy
   public var debugColor: Color
@@ -117,8 +116,9 @@ public open class CollisionShape2D : Node2D() {
 
   /**
    * The collision shape debug color.
-   *
-   * **Note:** The default value is [godot.ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug color.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
+   * `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug
+   * color.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

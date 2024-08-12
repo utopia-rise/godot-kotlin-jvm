@@ -31,14 +31,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides parameters for [godot.PhysicsServer2D.bodyTestMotion].
- *
- * By changing various properties of this object, such as the motion, you can configure the parameters for [godot.PhysicsServer2D.bodyTestMotion].
+ * By changing various properties of this object, such as the motion, you can configure the
+ * parameters for [PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionParameters2D : RefCounted() {
   /**
-   * Transform in global space where the motion should start. Usually set to [godot.Node2D.globalTransform] for the current body's transform.
+   * Transform in global space where the motion should start. Usually set to
+   * [Node2D.globalTransform] for the current body's transform.
    */
   @CoreTypeLocalCopy
   public var from: Transform2D
@@ -82,9 +82,10 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   /**
-   * If set to `true`, shapes of type [godot.PhysicsServer2D.SHAPE_SEPARATION_RAY] are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.
-   *
-   * If set to `false`, shapes of type [godot.PhysicsServer2D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.
+   * If set to `true`, shapes of type [PhysicsServer2D.SHAPE_SEPARATION_RAY] are used to detect
+   * collisions and can stop the motion. Can be useful when snapping to the ground.
+   * If set to `false`, shapes of type [PhysicsServer2D.SHAPE_SEPARATION_RAY] are only used for
+   * separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
   public var collideSeparationRay: Boolean
     get() {
@@ -98,7 +99,8 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   /**
-   * Optional array of body [RID] to exclude from collision. Use [godot.CollisionObject2D.getRid] to get the [RID] associated with a [godot.CollisionObject2D]-derived node.
+   * Optional array of body [RID] to exclude from collision. Use [CollisionObject2D.getRid] to get
+   * the [RID] associated with a [CollisionObject2D]-derived node.
    */
   public var excludeBodies: VariantArray<RID>
     get() {
@@ -112,7 +114,8 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   /**
-   * Optional array of object unique instance ID to exclude from collision. See [godot.Object.getInstanceId].
+   * Optional array of object unique instance ID to exclude from collision. See
+   * [Object.getInstanceId].
    */
   public var excludeObjects: VariantArray<Long>
     get() {
@@ -126,9 +129,10 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
     }
 
   /**
-   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [godot.CharacterBody2D] for improving floor detection during floor snapping.
-   *
-   * If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.
+   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is
+   * used e.g. by [CharacterBody2D] for improving floor detection during floor snapping.
+   * If set to `false`, only collisions resulting from the motion are reported, which is generally
+   * the desired behavior.
    */
   public var recoveryAsCollision: Boolean
     get() {
@@ -147,7 +151,8 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   }
 
   /**
-   * Transform in global space where the motion should start. Usually set to [godot.Node2D.globalTransform] for the current body's transform.
+   * Transform in global space where the motion should start. Usually set to
+   * [Node2D.globalTransform] for the current body's transform.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

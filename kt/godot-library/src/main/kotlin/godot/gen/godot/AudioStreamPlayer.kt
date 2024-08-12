@@ -29,14 +29,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Plays back audio non-positionally.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
- *
  * Plays an audio stream non-positionally.
- *
- * To play audio positionally, use [godot.AudioStreamPlayer2D] or [godot.AudioStreamPlayer3D] instead of [godot.AudioStreamPlayer].
+ * To play audio positionally, use [AudioStreamPlayer2D] or [AudioStreamPlayer3D] instead of
+ * [AudioStreamPlayer].
  */
 @GodotBaseType
 public open class AudioStreamPlayer : Node() {
@@ -46,7 +41,7 @@ public open class AudioStreamPlayer : Node() {
   public val finished: Signal0 by signal()
 
   /**
-   * The [godot.AudioStream] object to be played.
+   * The [AudioStream] object to be played.
    */
   public var stream: AudioStream?
     get() {
@@ -126,7 +121,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants.
+   * If the audio configuration has more than two speakers, this sets the target channels. See
+   * [MixTarget] constants.
    */
   public var mixTarget: MixTarget
     get() {
@@ -140,7 +136,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
+   * The maximum number of sounds this node can play at the same time. Playing additional sounds
+   * after this value is reached will cut off the oldest sounds.
    */
   public var maxPolyphony: Int
     get() {
@@ -155,8 +152,10 @@ public open class AudioStreamPlayer : Node() {
 
   /**
    * Bus on which this audio is playing.
-   *
-   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if
+   * the given name matches an existing bus. This is because audio bus layouts might be loaded after
+   * this property is set. If this given name can't be resolved at runtime, it will fall back to
+   * `"Master"`.
    */
   public var bus: StringName
     get() {
@@ -200,7 +199,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns the position in the [godot.AudioStream] in seconds.
+   * Returns the position in the [AudioStream] in seconds.
    */
   public fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
@@ -209,7 +208,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns whether the [godot.AudioStreamPlayer] can return the [godot.AudioStreamPlayback] object or not.
+   * Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not.
    */
   public fun hasStreamPlayback(): Boolean {
     TransferContext.writeArguments()
@@ -218,7 +217,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer].
+   * Returns the [AudioStreamPlayback] object associated with this [AudioStreamPlayer].
    */
   public fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()

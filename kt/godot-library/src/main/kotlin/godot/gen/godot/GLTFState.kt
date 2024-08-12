@@ -34,6 +34,15 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Contains all nodes and resources of a GLTF file. This is used by [GLTFDocument] as data storage,
+ * which allows [GLTFDocument] and all [GLTFDocumentExtension] classes to remain stateless.
+ * GLTFState can be populated by [GLTFDocument] reading a file or by converting a Godot scene. Then
+ * the data can either be used to create a Godot scene or save to a GLTF file. The code that converts
+ * to/from a Godot scene can be intercepted at arbitrary points by [GLTFDocumentExtension] classes.
+ * This allows for custom data to be stored in the GLTF file or for custom data to be converted to/from
+ * Godot nodes.
+ */
 @GodotBaseType
 public open class GLTFState : Resource() {
   public var json: Dictionary<Any?, Any?>
@@ -69,6 +78,10 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMinorVersionPtr, NIL)
     }
 
+  /**
+   * The copyright string in the asset header of the GLTF file. This is set during import if present
+   * and export if non-empty. See the GLTF asset header documentation for more information.
+   */
   public var copyright: String
     get() {
       TransferContext.writeArguments()
@@ -168,6 +181,10 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaterialsPtr, NIL)
     }
 
+  /**
+   * The name of the scene. When importing, if not specified, this will be the file name. When
+   * exporting, if specified, the scene name will be saved to the GLTF file.
+   */
   public var sceneName: String
     get() {
       TransferContext.writeArguments()
@@ -179,6 +196,11 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSceneNamePtr, NIL)
     }
 
+  /**
+   * The folder path associated with this GLTF data. This is used to find other files the GLTF file
+   * references, like images or binary buffers. This will be set during import when appending from a
+   * file, and will be set during export when writing to a file.
+   */
   public var basePath: String
     get() {
       TransferContext.writeArguments()
@@ -190,6 +212,11 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBasePathPtr, NIL)
     }
 
+  /**
+   * The file name associated with this GLTF data. If it ends with `.gltf`, this is text-based GLTF,
+   * otherwise this is binary GLB. This will be set during import when appending from a file, and will
+   * be set during export when writing to a file. If writing to a buffer, this will be an empty string.
+   */
   public var filename: String
     get() {
       TransferContext.writeArguments()
@@ -201,6 +228,12 @@ public open class GLTFState : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFilenamePtr, NIL)
     }
 
+  /**
+   * The root nodes of the GLTF file. Typically, a GLTF file will only have one scene, and therefore
+   * one root node. However, a GLTF file may have multiple scenes and therefore multiple root nodes,
+   * which will be generated as siblings of each other and as children of the root node of the
+   * generated Godot scene.
+   */
   public var rootNodes: PackedInt32Array
     get() {
       TransferContext.writeArguments()
@@ -349,53 +382,107 @@ public open class GLTFState : Resource() {
     return true
   }
 
+  /**
+   * Appends an extension to the list of extensions used by this GLTF file during serialization. If
+   * [required] is true, the extension will also be added to the list of required extensions. Do not
+   * run this in [GLTFDocumentExtension.ExportPost], as that stage is too late to add extensions. The
+   * final list is sorted alphabetically.
+   */
   public fun addUsedExtension(extensionName: String, required: Boolean): Unit {
     TransferContext.writeArguments(STRING to extensionName, BOOL to required)
     TransferContext.callMethod(rawPtr, MethodBindings.addUsedExtensionPtr, NIL)
   }
 
+  /**
+   * Returns the number of [AnimationPlayer] nodes in this [GLTFState]. These nodes are only used
+   * during the export process when converting Godot [AnimationPlayer] nodes to GLTF animations.
+   */
   public fun getAnimationPlayersCount(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayersCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the [AnimationPlayer] node with the given index. These nodes are only used during the
+   * export process when converting Godot [AnimationPlayer] nodes to GLTF animations.
+   */
   public fun getAnimationPlayer(idx: Int): AnimationPlayer? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AnimationPlayer?)
   }
 
+  /**
+   * Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was
+   * generated from. This is the inverse of [getNodeIndex]. Useful during the import process.
+   * **Note:** Not every [GLTFNode] will have a scene node generated, and not every generated scene
+   * node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index,
+   * `null` is returned.
+   */
   public fun getSceneNode(idx: Int): Node? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSceneNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
+  /**
+   * Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse
+   * of [getSceneNode]. Useful during the export process.
+   * **Note:** Not every Godot scene node will have a corresponding [GLTFNode], and not every
+   * [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node,
+   * `-1` is returned.
+   */
   public fun getNodeIndex(sceneNode: Node): Int {
     TransferContext.writeArguments(OBJECT to sceneNode)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
+   * name in the GLTF file), and the return value can be anything you set. If nothing was set, the
+   * return value is null.
+   */
   public fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
+  /**
+   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
+   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
+   * extension name in the GLTF file), and the second argument can be anything you want.
+   */
   public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   public companion object {
+    /**
+     * Discards all embedded textures and uses untextured materials.
+     */
     public final const val HANDLE_BINARY_DISCARD_TEXTURES: Long = 0
 
+    /**
+     * Extracts embedded textures to be reimported and compressed. Editor only. Acts as uncompressed
+     * at runtime.
+     */
     public final const val HANDLE_BINARY_EXTRACT_TEXTURES: Long = 1
 
+    /**
+     * Embeds textures VRAM compressed with Basis Universal into the generated scene.
+     */
     public final const val HANDLE_BINARY_EMBED_AS_BASISU: Long = 2
 
+    /**
+     * Embeds textures compressed losslessly into the generated scene, matching old behavior.
+     */
     public final const val HANDLE_BINARY_EMBED_AS_UNCOMPRESSED: Long = 3
   }
 

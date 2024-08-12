@@ -19,14 +19,14 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Defines a 3D environment's background by using a [godot.Material].
- *
- * The [godot.Sky] class uses a [godot.Material] to render a 3D environment's background and the light it emits by updating the reflection/radiance cubemaps.
+ * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits
+ * by updating the reflection/radiance cubemaps.
  */
 @GodotBaseType
 public open class Sky : Resource() {
   /**
-   * [godot.Material] used to draw the background. Can be [godot.PanoramaSkyMaterial], [godot.ProceduralSkyMaterial], [godot.PhysicalSkyMaterial], or even a [godot.ShaderMaterial] if you want to use your own custom shader.
+   * [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial],
+   * [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader.
    */
   public var skyMaterial: Material?
     get() {
@@ -40,7 +40,9 @@ public open class Sky : Resource() {
     }
 
   /**
-   * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [enum ProcessMode] for options.
+   * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap
+   * with increasingly blurry versions of the sky corresponding to different levels of roughness.
+   * Radiance maps can be expensive to calculate. See [ProcessMode] for options.
    */
   public var processMode: ProcessMode
     get() {
@@ -54,11 +56,11 @@ public open class Sky : Resource() {
     }
 
   /**
-   * The [godot.Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting from the [godot.Sky] will be.
-   *
-   * See [enum RadianceSize] constants for values.
-   *
-   * **Note:** Some hardware will have trouble with higher radiance sizes, especially [godot.RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
+   * The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting
+   * from the [Sky] will be.
+   * See [RadianceSize] constants for values.
+   * **Note:** Some hardware will have trouble with higher radiance sizes, especially
+   * [RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
   public var radianceSize: RadianceSize
     get() {
@@ -108,7 +110,7 @@ public open class Sky : Resource() {
      */
     RADIANCE_SIZE_2048(6),
     /**
-     * Represents the size of the [enum RadianceSize] enum.
+     * Represents the size of the [RadianceSize] enum.
      */
     RADIANCE_SIZE_MAX(7),
     ;
@@ -127,21 +129,35 @@ public open class Sky : Resource() {
     id: Long,
   ) {
     /**
-     * Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [PROCESS_MODE_QUALITY].
+     * Automatically selects the appropriate process mode based on your sky shader. If your shader
+     * uses `TIME` or `POSITION`, this will use [PROCESS_MODE_REALTIME]. If your shader uses any of the
+     * `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise,
+     * this defaults to [PROCESS_MODE_QUALITY].
      */
     PROCESS_MODE_AUTOMATIC(0),
     /**
-     * Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [godot.ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
+     * Uses high quality importance sampling to process the radiance map. In general, this results
+     * in much higher quality than [PROCESS_MODE_REALTIME] but takes much longer to generate. This
+     * should not be used if you plan on changing the sky at runtime. If you are finding that the
+     * reflection is not blurry enough and is showing sparkles or fireflies, try increasing
+     * [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
      */
     PROCESS_MODE_QUALITY(1),
     /**
-     * Uses the same high quality importance sampling to process the radiance map as [PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [godot.ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly.
+     * Uses the same high quality importance sampling to process the radiance map as
+     * [PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by
+     * [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need
+     * highest quality radiance maps, but have a sky that updates slowly.
      */
     PROCESS_MODE_INCREMENTAL(2),
     /**
-     * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [godot.ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
-     *
-     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must be set to [godot.RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.
+     * Uses the fast filtering algorithm to process the radiance map. In general this results in
+     * lower quality, but substantially faster run times. If you need better quality, but still need to
+     * update the sky every frame, consider turning on
+     * [ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
+     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must
+     * be set to [RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size
+     * is ignored.
      */
     PROCESS_MODE_REALTIME(3),
     ;

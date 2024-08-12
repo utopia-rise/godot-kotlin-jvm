@@ -12,12 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A container that arranges its child controls vertically.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
- * A variant of [godot.BoxContainer] that can only arrange its child controls vertically. Child controls are rearranged automatically when their minimum size changes.
+ * A variant of [BoxContainer] that can only arrange its child controls vertically. Child controls
+ * are rearranged automatically when their minimum size changes.
  */
 @GodotBaseType
 public open class VBoxContainer : BoxContainer() {

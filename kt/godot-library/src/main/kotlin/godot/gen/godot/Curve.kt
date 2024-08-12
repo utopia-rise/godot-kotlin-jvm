@@ -27,11 +27,10 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A mathematical curve.
- *
- * This resource describes a mathematical curve by defining a set of points and tangents at each point. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the `0.5` Y position.
- *
- * See also [godot.Gradient] which is designed for color interpolation. See also [godot.Curve2D] and [godot.Curve3D].
+ * This resource describes a mathematical curve by defining a set of points and tangents at each
+ * point. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the
+ * `0.5` Y position.
+ * See also [Gradient] which is designed for color interpolation. See also [Curve2D] and [Curve3D].
  */
 @GodotBaseType
 public open class Curve : Resource() {
@@ -102,7 +101,9 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Adds a point to the curve. For each side, if the `*_mode` is [TANGENT_LINEAR], the `*_tangent` angle (in degrees) uses the slope of the curve halfway to the adjacent point. Allows custom assignments to the `*_tangent` angle if `*_mode` is set to [TANGENT_FREE].
+   * Adds a point to the curve. For each side, if the `*_mode` is [TANGENT_LINEAR], the `*_tangent`
+   * angle (in degrees) uses the slope of the curve halfway to the adjacent point. Allows custom
+   * assignments to the `*_tangent` angle if `*_mode` is set to [TANGENT_FREE].
    */
   @JvmOverloads
   public fun addPoint(
@@ -169,7 +170,8 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the Y value for the point that would exist at the X position [offset] along the curve using the baked cache. Bakes the curve's points if not already baked.
+   * Returns the Y value for the point that would exist at the X position [offset] along the curve
+   * using the baked cache. Bakes the curve's points if not already baked.
    */
   public fun sampleBaked(offset: Float): Float {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
@@ -196,7 +198,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the left [enum TangentMode] for the point at [index].
+   * Returns the left [TangentMode] for the point at [index].
    */
   public fun getPointLeftMode(index: Int): TangentMode {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -205,7 +207,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the right [enum TangentMode] for the point at [index].
+   * Returns the right [TangentMode] for the point at [index].
    */
   public fun getPointRightMode(index: Int): TangentMode {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -230,7 +232,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Sets the left [enum TangentMode] for the point at [index] to [mode].
+   * Sets the left [TangentMode] for the point at [index] to [mode].
    */
   public fun setPointLeftMode(index: Int, mode: TangentMode): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
@@ -238,7 +240,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Sets the right [enum TangentMode] for the point at [index] to [mode].
+   * Sets the right [TangentMode] for the point at [index] to [mode].
    */
   public fun setPointRightMode(index: Int, mode: TangentMode): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
@@ -246,7 +248,8 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Removes duplicate points, i.e. points that are less than 0.00001 units (engine epsilon value) away from their neighbor on the curve.
+   * Removes duplicate points, i.e. points that are less than 0.00001 units (engine epsilon value)
+   * away from their neighbor on the curve.
    */
   public fun cleanDupes(): Unit {
     TransferContext.writeArguments()
@@ -269,7 +272,8 @@ public open class Curve : Resource() {
      */
     TANGENT_FREE(0),
     /**
-     * The curve calculates the tangent on this side of the point as the slope halfway towards the adjacent point.
+     * The curve calculates the tangent on this side of the point as the slope halfway towards the
+     * adjacent point.
      */
     TANGENT_LINEAR(1),
     /**

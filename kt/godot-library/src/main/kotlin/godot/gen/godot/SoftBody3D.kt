@@ -33,21 +33,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A deformable 3D physics mesh.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/physics/soft_body.html]($DOCS_URL/tutorials/physics/soft_body.html)
- *
- * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
- *
- * **Note:** There are many known bugs in [godot.SoftBody3D]. Therefore, it's not recommended to use them for things that can affect gameplay (such as trampolines).
+ * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber,
+ * or other flexible materials.
+ * **Note:** There are many known bugs in [SoftBody3D]. Therefore, it's not recommended to use them
+ * for things that can affect gameplay (such as trampolines).
  */
 @GodotBaseType
 public open class SoftBody3D : MeshInstance3D() {
   /**
-   * The physics layers this SoftBody3D **is in**. Collision objects can exist in one or more of 32 different layers. See also [collisionMask].
-   *
-   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this SoftBody3D **is in**. Collision objects can exist in one or more of 32
+   * different layers. See also [collisionMask].
+   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
+   * that object A scans. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionLayer: Long
     get() {
@@ -61,9 +60,12 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32 different layers. See also [collisionLayer].
-   *
-   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this SoftBody3D **scans**. Collision objects can scan one or more of 32
+   * different layers. See also [collisionLayer].
+   * **Note:** Object A can detect a contact with object B only if object B is in any of the layers
+   * that object A scans. See
+   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
+   * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
     get() {
@@ -77,7 +79,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * [godot.core.NodePath] to a [godot.CollisionObject3D] this SoftBody3D should avoid clipping.
+   * [NodePath] to a [CollisionObject3D] this SoftBody3D should avoid clipping.
    */
   public var parentCollisionIgnore: NodePath
     get() {
@@ -91,7 +93,8 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * Increasing this value will improve the resulting simulation, but can affect performance. Use with care.
+   * Increasing this value will improve the resulting simulation, but can affect performance. Use
+   * with care.
    */
   public var simulationPrecision: Int
     get() {
@@ -119,7 +122,8 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * Higher values will result in a stiffer body, while lower values will increase the body's ability to bend. The value can be between `0.0` and `1.0` (inclusive).
+   * Higher values will result in a stiffer body, while lower values will increase the body's
+   * ability to bend. The value can be between `0.0` and `1.0` (inclusive).
    */
   public var linearStiffness: Float
     get() {
@@ -133,7 +137,8 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * The pressure coefficient of this soft body. Simulate pressure build-up from inside this body. Higher values increase the strength of this effect.
+   * The pressure coefficient of this soft body. Simulate pressure build-up from inside this body.
+   * Higher values increase the strength of this effect.
    */
   public var pressureCoefficient: Float
     get() {
@@ -147,7 +152,8 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * The body's damping coefficient. Higher values will slow down the body more noticeably when forces are applied.
+   * The body's damping coefficient. Higher values will slow down the body more noticeably when
+   * forces are applied.
    */
   public var dampingCoefficient: Float
     get() {
@@ -162,7 +168,6 @@ public open class SoftBody3D : MeshInstance3D() {
 
   /**
    * The body's drag coefficient. Higher values increase this body's air resistance.
-   *
    * **Note:** This value is currently unused by Godot's default physics implementation.
    */
   public var dragCoefficient: Float
@@ -177,7 +182,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * If `true`, the [godot.SoftBody3D] will respond to [godot.RayCast3D]s.
+   * If `true`, the [SoftBody3D] will respond to [RayCast3D]s.
    */
   public var rayPickable: Boolean
     get() {
@@ -191,7 +196,8 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
-   * Defines the behavior in physics when [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED]. See [enum DisableMode] for more details about the different modes.
+   * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
+   * See [DisableMode] for more details about the different modes.
    */
   public var disableMode: DisableMode
     get() {
@@ -210,7 +216,7 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Returns the internal [RID] used by the [godot.PhysicsServer3D] for this body.
+   * Returns the internal [RID] used by the [PhysicsServer3D] for this body.
    */
   public fun getPhysicsRid(): RID {
     TransferContext.writeArguments()
@@ -219,7 +225,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -227,7 +234,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -236,7 +244,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
+   * [layerNumber] between 1 and 32.
    */
   public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
@@ -244,7 +253,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
+   * [layerNumber] between 1 and 32.
    */
   public fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -287,7 +297,8 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   /**
-   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath] can define a [godot.Node3D] the pinned vertex will be attached to.
+   * Sets the pinned state of a surface vertex. When set to `true`, the optional [attachmentPath]
+   * can define a [Node3D] the pinned vertex will be attached to.
    */
   @JvmOverloads
   public fun setPointPinned(
@@ -312,13 +323,14 @@ public open class SoftBody3D : MeshInstance3D() {
     id: Long,
   ) {
     /**
-     * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], remove from the physics simulation to stop all physics interactions with this [godot.SoftBody3D].
-     *
-     * Automatically re-added to the physics simulation when the [godot.Node] is processed again.
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
+     * simulation to stop all physics interactions with this [SoftBody3D].
+     * Automatically re-added to the physics simulation when the [Node] is processed again.
      */
     DISABLE_MODE_REMOVE(0),
     /**
-     * When [godot.Node.processMode] is set to [godot.Node.PROCESS_MODE_DISABLED], do not affect the physics simulation.
+     * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], do not affect the physics
+     * simulation.
      */
     DISABLE_MODE_KEEP_ACTIVE(1),
     ;

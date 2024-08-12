@@ -37,17 +37,15 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Controls how an individual character will be displayed in a [godot.RichTextEffect].
- *
- * Tutorials:
- * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
- *
- * By setting various properties on this object, you can control how individual characters will be displayed in a [godot.RichTextEffect].
+ * By setting various properties on this object, you can control how individual characters will be
+ * displayed in a [RichTextEffect].
  */
 @GodotBaseType
 public open class CharFXTransform : RefCounted() {
   /**
-   * The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects.
+   * The current transform of the current glyph. It can be overridden (for example, by driving the
+   * position and rotation from a curve). You can also alter the existing value to apply transforms on
+   * top of other effects.
    */
   @CoreTypeLocalCopy
   public var transform: Transform2D
@@ -62,7 +60,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
+   * Absolute character range in the string, corresponding to the glyph. Setting this property won't
+   * affect drawing.
    */
   @CoreTypeLocalCopy
   public var range: Vector2i
@@ -77,9 +76,10 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * The time elapsed since the [godot.RichTextLabel] was added to the scene tree (in seconds). Time stops when the [godot.RichTextLabel] is paused (see [godot.Node.processMode]). Resets when the text in the [godot.RichTextLabel] is changed.
-   *
-   * **Note:** Time still passes while the [godot.RichTextLabel] is hidden.
+   * The time elapsed since the [RichTextLabel] was added to the scene tree (in seconds). Time stops
+   * when the [RichTextLabel] is paused (see [Node.processMode]). Resets when the text in the
+   * [RichTextLabel] is changed.
+   * **Note:** Time still passes while the [RichTextLabel] is hidden.
    */
   public var elapsedTime: Double
     get() {
@@ -93,7 +93,9 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [color] to `Color(1, 1, 1, 0)` instead.
+   * If `true`, the character will be drawn. If `false`, the character will be hidden. Characters
+   * around hidden characters will reflow to take the space of hidden characters. If this is not
+   * desired, set their [color] to `Color(1, 1, 1, 0)` instead.
    */
   public var visible: Boolean
     get() {
@@ -107,7 +109,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * If `true`, FX transform is called for outline drawing. Setting this property won't affect drawing.
+   * If `true`, FX transform is called for outline drawing. Setting this property won't affect
+   * drawing.
    */
   public var outline: Boolean
     get() {
@@ -151,13 +154,16 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if their contents match a type such as [bool], [int] or [float], they will be converted automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [godot.core.Color]. String arguments may not contain spaces, even if they're quoted. If present, quotes will also be present in the final string.
-   *
-   * For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will map to the following [godot.core.Dictionary]:
-   *
-   * ```
-   * 			{"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
-   * 			```
+   * Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if
+   * their contents match a type such as [bool], [int] or [float], they will be converted
+   * automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [Color].
+   * String arguments may not contain spaces, even if they're quoted. If present, quotes will also be
+   * present in the final string.
+   * For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will
+   * map to the following [Dictionary]:
+   * [codeblock]
+   * {"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
+   * [/codeblock]
    */
   public var env: Dictionary<Any?, Any?>
     get() {
@@ -185,7 +191,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster. Setting this property won't affect drawing.
+   * Number of glyphs in the grapheme cluster. This value is set in the first glyph of a cluster.
+   * Setting this property won't affect drawing.
    */
   public var glyphCount: Int
     get() {
@@ -199,7 +206,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * Glyph flags. See [enum TextServer.GraphemeFlag] for more info. Setting this property won't affect drawing.
+   * Glyph flags. See [TextServer.GraphemeFlag] for more info. Setting this property won't affect
+   * drawing.
    */
   public var glyphFlags: Int
     get() {
@@ -213,7 +221,8 @@ public open class CharFXTransform : RefCounted() {
     }
 
   /**
-   * The character offset of the glyph, relative to the current [godot.RichTextEffect] custom block. Setting this property won't affect drawing.
+   * The character offset of the glyph, relative to the current [RichTextEffect] custom block.
+   * Setting this property won't affect drawing.
    */
   public var relativeIndex: Int
     get() {
@@ -246,7 +255,9 @@ public open class CharFXTransform : RefCounted() {
   }
 
   /**
-   * The current transform of the current glyph. It can be overridden (for example, by driving the position and rotation from a curve). You can also alter the existing value to apply transforms on top of other effects.
+   * The current transform of the current glyph. It can be overridden (for example, by driving the
+   * position and rotation from a curve). You can also alter the existing value to apply transforms on
+   * top of other effects.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -270,7 +281,8 @@ public open class CharFXTransform : RefCounted() {
 
 
   /**
-   * Absolute character range in the string, corresponding to the glyph. Setting this property won't affect drawing.
+   * Absolute character range in the string, corresponding to the glyph. Setting this property won't
+   * affect drawing.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

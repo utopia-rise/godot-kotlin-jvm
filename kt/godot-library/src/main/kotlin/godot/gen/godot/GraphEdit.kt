@@ -43,24 +43,31 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An editor for graph-like structures, using [godot.GraphNode]s.
- *
- * [godot.GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main purpose in the engine is to power the visual programming systems, such as visual shaders, but it is also available for use in user projects.
- *
- * [godot.GraphEdit] by itself is only an empty container, representing an infinite grid where [godot.GraphNode]s can be placed. Each [godot.GraphNode] represents a node in the graph, a single unit of data in the connected scheme. [godot.GraphEdit], in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or delete a [godot.GraphNode], a signal is emitted in the [godot.GraphEdit], but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
- *
- * **Performance:** It is greatly advised to enable low-processor usage mode (see [godot.OS.lowProcessorUsageMode]) when using GraphEdits.
+ * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main
+ * purpose in the engine is to power the visual programming systems, such as visual shaders, but it is
+ * also available for use in user projects.
+ * [GraphEdit] by itself is only an empty container, representing an infinite grid where
+ * [GraphNode]s can be placed. Each [GraphNode] represents a node in the graph, a single unit of data
+ * in the connected scheme. [GraphEdit], in turn, helps to control various interactions with nodes and
+ * between nodes. When the user attempts to connect, disconnect, or delete a [GraphNode], a signal is
+ * emitted in the [GraphEdit], but no action is taken by default. It is the responsibility of the
+ * programmer utilizing this control to implement the necessary logic to determine how each request
+ * should be handled.
+ * **Performance:** It is greatly advised to enable low-processor usage mode (see
+ * [OS.lowProcessorUsageMode]) when using GraphEdits.
  */
 @GodotBaseType
 public open class GraphEdit : Control() {
   /**
-   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode] is attempted to be created.
+   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode]
+   * [GraphNode] and the [toPort] of the [toNode] [GraphNode] is attempted to be created.
    */
   public val connectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
       "fromPort", "toNode", "toPort")
 
   /**
-   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [godot.GraphNode] and [toPort] of [toNode] [godot.GraphNode] is attempted to be removed.
+   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [GraphNode] and
+   * [toPort] of [toNode] [GraphNode] is attempted to be removed.
    */
   public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
       "fromPort", "toNode", "toPort")
@@ -89,54 +96,61 @@ public open class GraphEdit : Control() {
   public val connectionDragEnded: Signal0 by signal()
 
   /**
-   * Emitted when this [godot.GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In general, this signal indicates that the selected [godot.GraphElement]s should be copied.
+   * Emitted when this [GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In
+   * general, this signal indicates that the selected [GraphElement]s should be copied.
    */
   public val copyNodesRequest: Signal0 by signal()
 
   /**
-   * Emitted when this [godot.GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In general, this signal indicates that previously copied [godot.GraphElement]s should be pasted.
+   * Emitted when this [GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In
+   * general, this signal indicates that previously copied [GraphElement]s should be pasted.
    */
   public val pasteNodesRequest: Signal0 by signal()
 
   /**
-   * Emitted when this [godot.GraphEdit] captures a `ui_graph_duplicate` action ([kbd]Ctrl + D[/kbd] by default). In general, this signal indicates that the selected [godot.GraphElement]s should be duplicated.
+   * Emitted when this [GraphEdit] captures a `ui_graph_duplicate` action ([kbd]Ctrl + D[/kbd] by
+   * default). In general, this signal indicates that the selected [GraphElement]s should be
+   * duplicated.
    */
   public val duplicateNodesRequest: Signal0 by signal()
 
   /**
-   * Emitted when this [godot.GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by default).
-   *
-   * [nodes] is an array of node names that should be removed. These usually include all selected nodes.
+   * Emitted when this [GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by
+   * default).
+   * [nodes] is an array of node names that should be removed. These usually include all selected
+   * nodes.
    */
   public val deleteNodesRequest: Signal1<VariantArray<StringName>> by signal("nodes")
 
   /**
-   * Emitted when the given [godot.GraphElement] node is selected.
+   * Emitted when the given [GraphElement] node is selected.
    */
   public val nodeSelected: Signal1<Node> by signal("node")
 
   /**
-   * Emitted when the given [godot.GraphElement] node is deselected.
+   * Emitted when the given [GraphElement] node is deselected.
    */
   public val nodeDeselected: Signal1<Node> by signal("node")
 
   /**
-   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is the position of the mouse pointer when the signal is sent.
+   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is
+   * the position of the mouse pointer when the signal is sent.
    */
   public val popupRequest: Signal1<Vector2> by signal("position")
 
   /**
-   * Emitted at the beginning of a [godot.GraphElement]'s movement.
+   * Emitted at the beginning of a [GraphElement]'s movement.
    */
   public val beginNodeMove: Signal0 by signal()
 
   /**
-   * Emitted at the end of a [godot.GraphElement]'s movement.
+   * Emitted at the end of a [GraphElement]'s movement.
    */
   public val endNodeMove: Signal0 by signal()
 
   /**
-   * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in code.
+   * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in
+   * code.
    */
   public val scrollOffsetChanged: Signal1<Vector2> by signal("offset")
 
@@ -212,7 +226,8 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
+   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right
+   * end.
    */
   public var rightDisconnects: Boolean
     get() {
@@ -338,7 +353,8 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
+   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
+   * scaled to fit this rectangle.
    */
   @CoreTypeLocalCopy
   public var minimapSize: Vector2
@@ -381,7 +397,8 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, the label with the current zoom level is visible. The zoom level is displayed in percents.
+   * If `true`, the label with the current zoom level is visible. The zoom level is displayed in
+   * percents.
    */
   public var showZoomLabel: Boolean
     get() {
@@ -480,7 +497,8 @@ public open class GraphEdit : Control() {
 
 
   /**
-   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
+   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
+   * scaled to fit this rectangle.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -505,19 +523,21 @@ public open class GraphEdit : Control() {
 
   /**
    * Returns whether the [mousePosition] is in the input hot zone.
-   *
-   * By default, a hot zone is a [godot.core.Rect2] positioned such that its center is at [inNode].[godot.GraphNode.getInputPortPosition]([inPort]) (For output's case, call [godot.GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
-   *
+   * By default, a hot zone is a [Rect2] positioned such that its center is at
+   * [inNode].[GraphNode.getInputPortPosition]([inPort]) (For output's case, call
+   * [GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property
+   * `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
    * Below is a sample code to help get started:
+   * [codeblock]
+   * func _is_in_input_hotzone(in_node, in_port, mouse_position):
+   *     var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   * get_theme_constant("port_grab_distance_vertical"))
+   *     var port_pos: Vector2 = in_node.get_position() + in_node.get_input_port_position(in_port) -
+   * port_size / 2
+   *     var rect = Rect2(port_pos, port_size)
    *
-   * ```
-   * 				func _is_in_input_hotzone(in_node, in_port, mouse_position):
-   * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_input_port_position(in_port) - port_size / 2
-   * 				    var rect = Rect2(port_pos, port_size)
-   *
-   * 				    return rect.has_point(mouse_position)
-   * 				```
+   *     return rect.has_point(mouse_position)
+   * [/codeblock]
    */
   public open fun _isInInputHotzone(
     inNode: Object,
@@ -528,18 +548,19 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns whether the [mousePosition] is in the output hot zone. For more information on hot zones, see [_isInInputHotzone].
-   *
+   * Returns whether the [mousePosition] is in the output hot zone. For more information on hot
+   * zones, see [_isInInputHotzone].
    * Below is a sample code to help get started:
+   * [codeblock]
+   * func _is_in_output_hotzone(in_node, in_port, mouse_position):
+   *     var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   * get_theme_constant("port_grab_distance_vertical"))
+   *     var port_pos: Vector2 = in_node.get_position() +
+   * in_node.get_output_port_position(in_port) - port_size / 2
+   *     var rect = Rect2(port_pos, port_size)
    *
-   * ```
-   * 				func _is_in_output_hotzone(in_node, in_port, mouse_position):
-   * 				    var port_size: Vector2 = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
-   * 				    var port_pos: Vector2 = in_node.get_position() + in_node.get_output_port_position(in_port) - port_size / 2
-   * 				    var rect = Rect2(port_pos, port_size)
-   *
-   * 				    return rect.has_point(mouse_position)
-   * 				```
+   *     return rect.has_point(mouse_position)
+   * [/codeblock]
    */
   public open fun _isInOutputHotzone(
     inNode: Object,
@@ -558,35 +579,26 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * This virtual method can be used to insert additional error detection while the user is dragging a connection over a valid port.
-   *
-   * Return `true` if the connection is indeed valid or return `false` if the connection is impossible. If the connection is impossible, no snapping to the port and thus no connection request to that port will happen.
-   *
+   * This virtual method can be used to insert additional error detection while the user is dragging
+   * a connection over a valid port.
+   * Return `true` if the connection is indeed valid or return `false` if the connection is
+   * impossible. If the connection is impossible, no snapping to the port and thus no connection
+   * request to that port will happen.
    * In this example a connection to same node is suppressed:
    *
-   * [codeblocks]
-   *
-   * [gdscript]
-   *
+   * gdscript:
+   * ```gdscript
    * func _is_node_hover_valid(from, from_port, to, to_port):
-   *
    *     return from != to
-   *
-   * [/gdscript]
-   *
-   * [csharp]
-   *
-   * public override bool _IsNodeHoverValid(StringName fromNode, int fromPort, StringName toNode, int toPort)
-   *
+   * ```
+   * csharp:
+   * ```csharp
+   * public override bool _IsNodeHoverValid(StringName fromNode, int fromPort, StringName toNode,
+   * int toPort)
    * {
-   *
    *     return fromNode != toNode;
-   *
    * }
-   *
-   * [/csharp]
-   *
-   * [/codeblocks]
+   * ```
    */
   public open fun _isNodeHoverValid(
     fromNode: StringName,
@@ -598,7 +610,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Create a connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode]. If the connection already exists, no connection is created.
+   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
    */
   public fun connectNode(
     fromNode: StringName,
@@ -612,7 +625,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns `true` if the [fromPort] of the [fromNode] [godot.GraphNode] is connected to the [toPort] of the [toNode] [godot.GraphNode].
+   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of
+   * the [toNode] [GraphNode].
    */
   public fun isNodeConnected(
     fromNode: StringName,
@@ -626,7 +640,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Removes the connection between the [fromPort] of the [fromNode] [godot.GraphNode] and the [toPort] of the [toNode] [godot.GraphNode]. If the connection does not exist, no connection is removed.
+   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
+   * the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
    */
   public fun disconnectNode(
     fromNode: StringName,
@@ -639,7 +654,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property. The color is linearly interpolated between the connection color and the activity color using [amount] as weight.
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort]
+   * with the color provided in the [theme_item activity] theme property. The color is linearly
+   * interpolated between the connection color and the activity color using [amount] as weight.
    */
   public fun setConnectionActivity(
     fromNode: StringName,
@@ -653,7 +670,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns an Array containing the list of connections. A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1" }`.
+   * Returns an Array containing the list of connections. A connection consists in a structure of
+   * the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1"
+   * }`.
    */
   public fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -670,11 +689,12 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Ends the creation of the current connection. In other words, if you are dragging a connection you can use this method to abort the process and remove the line that followed your cursor.
-   *
-   * This is best used together with [connectionDragStarted] and [connectionDragEnded] to add custom behavior like node addition through shortcuts.
-   *
-   * **Note:** This method suppresses any other connection request signals apart from [connectionDragEnded].
+   * Ends the creation of the current connection. In other words, if you are dragging a connection
+   * you can use this method to abort the process and remove the line that followed your cursor.
+   * This is best used together with [signal connection_drag_started] and [signal
+   * connection_drag_ended] to add custom behavior like node addition through shortcuts.
+   * **Note:** This method suppresses any other connection request signals apart from [signal
+   * connection_drag_ended].
    */
   public fun forceConnectionDragEnd(): Unit {
     TransferContext.writeArguments()
@@ -682,7 +702,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Allows to disconnect nodes when dragging from the right port of the [godot.GraphNode]'s slot if it has the specified type. See also [removeValidRightDisconnectType].
+   * Allows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it
+   * has the specified type. See also [removeValidRightDisconnectType].
    */
   public fun addValidRightDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
@@ -690,7 +711,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Disallows to disconnect nodes when dragging from the right port of the [godot.GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidRightDisconnectType].
+   * Disallows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it
+   * has the specified type. Use this to disable disconnection previously allowed with
+   * [addValidRightDisconnectType].
    */
   public fun removeValidRightDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
@@ -698,7 +721,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Allows to disconnect nodes when dragging from the left port of the [godot.GraphNode]'s slot if it has the specified type. See also [removeValidLeftDisconnectType].
+   * Allows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it has
+   * the specified type. See also [removeValidLeftDisconnectType].
    */
   public fun addValidLeftDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
@@ -706,7 +730,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Disallows to disconnect nodes when dragging from the left port of the [godot.GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidLeftDisconnectType].
+   * Disallows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it
+   * has the specified type. Use this to disable disconnection previously allowed with
+   * [addValidLeftDisconnectType].
    */
   public fun removeValidLeftDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
@@ -714,8 +740,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Allows the connection between two different port types. The port type is defined individually for the left and the right port of each slot with the [godot.GraphNode.setSlot] method.
-   *
+   * Allows the connection between two different port types. The port type is defined individually
+   * for the left and the right port of each slot with the [GraphNode.setSlot] method.
    * See also [isValidConnectionType] and [removeValidConnectionType].
    */
   public fun addValidConnectionType(fromType: Int, toType: Int): Unit {
@@ -724,8 +750,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Disallows the connection between two different port types previously allowed by [addValidConnectionType]. The port type is defined individually for the left and the right port of each slot with the [godot.GraphNode.setSlot] method.
-   *
+   * Disallows the connection between two different port types previously allowed by
+   * [addValidConnectionType]. The port type is defined individually for the left and the right port of
+   * each slot with the [GraphNode.setSlot] method.
    * See also [isValidConnectionType].
    */
   public fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
@@ -734,8 +761,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns whether it's possible to make a connection between two different port types. The port type is defined individually for the left and the right port of each slot with the [godot.GraphNode.setSlot] method.
-   *
+   * Returns whether it's possible to make a connection between two different port types. The port
+   * type is defined individually for the left and the right port of each slot with the
+   * [GraphNode.setSlot] method.
    * See also [addValidConnectionType] and [removeValidConnectionType].
    */
   public fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
@@ -754,9 +782,11 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Gets the [godot.HBoxContainer] that contains the zooming and grid snap controls in the top left of the graph. You can use this method to reposition the toolbar or to add your own custom controls to it.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of
+   * the graph. You can use this method to reposition the toolbar or to add your own custom controls to
+   * it.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getMenuHbox(): HBoxContainer? {
     TransferContext.writeArguments()
@@ -765,7 +795,8 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Rearranges selected nodes in a layout with minimum crossings between connections and uniform horizontal and vertical gap between nodes.
+   * Rearranges selected nodes in a layout with minimum crossings between connections and uniform
+   * horizontal and vertical gap between nodes.
    */
   public fun arrangeNodes(): Unit {
     TransferContext.writeArguments()

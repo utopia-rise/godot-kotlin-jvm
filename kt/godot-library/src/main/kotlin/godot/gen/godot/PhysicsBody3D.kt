@@ -29,14 +29,10 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstract base class for 3D game objects affected by physics.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
- *
- * [godot.PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics bodies inherit from it.
- *
- * **Warning:** With a non-uniform scale, this node will likely not behave as expected. It is advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
+ * [PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics
+ * bodies inherit from it.
+ * **Warning:** With a non-uniform scale, this node will likely not behave as expected. It is
+ * advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
  */
 @GodotBaseType
 public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
@@ -130,16 +126,17 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   }
 
   /**
-   * Moves the body along the vector [motion]. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
-   *
-   * The body will stop if it collides. Returns a [godot.KinematicCollision3D], which contains information about the collision when stopped, or when touching another body along the motion.
-   *
-   * If [testOnly] is `true`, the body does not move but the would-be collision information is given.
-   *
-   * [safeMargin] is the extra margin used for collision recovery (see [godot.CharacterBody3D.safeMargin] for more details).
-   *
-   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is used e.g. by [godot.CharacterBody3D] for improving floor detection during floor snapping.
-   *
+   * Moves the body along the vector [motion]. In order to be frame rate independent in
+   * [Node.PhysicsProcess] or [Node.Process], [motion] should be computed using `delta`.
+   * The body will stop if it collides. Returns a [KinematicCollision3D], which contains information
+   * about the collision when stopped, or when touching another body along the motion.
+   * If [testOnly] is `true`, the body does not move but the would-be collision information is
+   * given.
+   * [safeMargin] is the extra margin used for collision recovery (see [CharacterBody3D.safeMargin]
+   * for more details).
+   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported
+   * as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor
+   * snapping.
    * [maxCollisions] allows to retrieve more than one collision result.
    */
   @JvmOverloads
@@ -156,16 +153,17 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   }
 
   /**
-   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], [motion] should be computed using `delta`.
-   *
-   * Virtually sets the node's position, scale and rotation to that of the given [godot.Transform3D], then tries to move the body along the vector [motion]. Returns `true` if a collision would stop the body from moving along the whole path.
-   *
-   * [collision] is an optional object of type [godot.KinematicCollision3D], which contains additional information about the collision when stopped, or when touching another body along the motion.
-   *
-   * [safeMargin] is the extra margin used for collision recovery (see [godot.CharacterBody3D.safeMargin] for more details).
-   *
-   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported as a collision; this is useful for checking whether the body would *touch* any other bodies.
-   *
+   * Checks for collisions without moving the body. In order to be frame rate independent in
+   * [Node.PhysicsProcess] or [Node.Process], [motion] should be computed using `delta`.
+   * Virtually sets the node's position, scale and rotation to that of the given [Transform3D], then
+   * tries to move the body along the vector [motion]. Returns `true` if a collision would stop the
+   * body from moving along the whole path.
+   * [collision] is an optional object of type [KinematicCollision3D], which contains additional
+   * information about the collision when stopped, or when touching another body along the motion.
+   * [safeMargin] is the extra margin used for collision recovery (see [CharacterBody3D.safeMargin]
+   * for more details).
+   * If [recoveryAsCollision] is `true`, any depenetration from the recovery phase is also reported
+   * as a collision; this is useful for checking whether the body would *touch* any other bodies.
    * [maxCollisions] allows to retrieve more than one collision result.
    */
   @JvmOverloads

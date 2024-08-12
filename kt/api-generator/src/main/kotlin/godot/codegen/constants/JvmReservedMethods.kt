@@ -14,7 +14,9 @@ val jvmReservedMethods = listOf(
             hashCompatibility = listOf(),
             returnValue = null,
             returnType = null,
-            arguments = null
+            arguments = null,
+            description = null,
+            briefDescription = null
         ),
         ""
     )

@@ -25,20 +25,24 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A modification that uses CCDIK to manipulate a series of bones to reach a target in 2D.
- *
- * This [godot.SkeletonModification2D] uses an algorithm called Cyclic Coordinate Descent Inverse Kinematics, or CCDIK, to manipulate a chain of bones in a [godot.Skeleton2D] so it reaches a defined target.
- *
- * CCDIK works by rotating a set of bones, typically called a "bone chain", on a single axis. Each bone is rotated to face the target from the tip (by default), which over a chain of bones allow it to rotate properly to reach the target. Because the bones only rotate on a single axis, CCDIK *can* look more robotic than other IK solvers.
- *
- * **Note:** The CCDIK modifier has `ccdik_joints`, which are the data objects that hold the data for each joint in the CCDIK chain. This is different from a bone! CCDIK joints hold the data needed for each bone in the bone chain used by CCDIK.
- *
- * CCDIK also fully supports angle constraints, allowing for more control over how a solution is met.
+ * This [SkeletonModification2D] uses an algorithm called Cyclic Coordinate Descent Inverse
+ * Kinematics, or CCDIK, to manipulate a chain of bones in a [Skeleton2D] so it reaches a defined
+ * target.
+ * CCDIK works by rotating a set of bones, typically called a "bone chain", on a single axis. Each
+ * bone is rotated to face the target from the tip (by default), which over a chain of bones allow it
+ * to rotate properly to reach the target. Because the bones only rotate on a single axis, CCDIK *can*
+ * look more robotic than other IK solvers.
+ * **Note:** The CCDIK modifier has `ccdik_joints`, which are the data objects that hold the data
+ * for each joint in the CCDIK chain. This is different from a bone! CCDIK joints hold the data needed
+ * for each bone in the bone chain used by CCDIK.
+ * CCDIK also fully supports angle constraints, allowing for more control over how a solution is
+ * met.
  */
 @GodotBaseType
 public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
-   * The NodePath to the node that is the target for the CCDIK modification. This node is what the CCDIK chain will attempt to rotate the bone chain to.
+   * The NodePath to the node that is the target for the CCDIK modification. This node is what the
+   * CCDIK chain will attempt to rotate the bone chain to.
    */
   public var targetNodepath: NodePath
     get() {
@@ -52,7 +56,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
     }
 
   /**
-   * The end position of the CCDIK chain. Typically, this should be a child of a [godot.Bone2D] node attached to the final [godot.Bone2D] in the CCDIK chain.
+   * The end position of the CCDIK chain. Typically, this should be a child of a [Bone2D] node
+   * attached to the final [Bone2D] in the CCDIK chain.
    */
   public var tipNodepath: NodePath
     get() {
@@ -85,7 +90,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Sets the [godot.Bone2D] node assigned to the CCDIK joint at [jointIdx].
+   * Sets the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
    */
   public fun setCcdikJointBone2dNode(jointIdx: Int, bone2dNodepath: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to bone2dNodepath)
@@ -93,7 +98,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Returns the [godot.Bone2D] node assigned to the CCDIK joint at [jointIdx].
+   * Returns the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
    */
   public fun getCcdikJointBone2dNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
@@ -102,7 +107,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Sets the bone index, [boneIdx], of the CCDIK joint at [jointIdx]. When possible, this will also update the `bone2d_node` of the CCDIK joint based on data provided by the linked skeleton.
+   * Sets the bone index, [boneIdx], of the CCDIK joint at [jointIdx]. When possible, this will also
+   * update the `bone2d_node` of the CCDIK joint based on data provided by the linked skeleton.
    */
   public fun setCcdikJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), LONG to boneIdx.toLong())
@@ -110,7 +116,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Returns the index of the [godot.Bone2D] node assigned to the CCDIK joint at [jointIdx].
+   * Returns the index of the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
    */
   public fun getCcdikJointBoneIndex(jointIdx: Int): Int {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
@@ -119,7 +125,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Sets whether the joint at [jointIdx] is set to rotate from the joint, `true`, or to rotate from the tip, `false`.
+   * Sets whether the joint at [jointIdx] is set to rotate from the joint, `true`, or to rotate from
+   * the tip, `false`.
    */
   public fun setCcdikJointRotateFromJoint(jointIdx: Int, rotateFromJoint: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to rotateFromJoint)
@@ -127,7 +134,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Returns whether the joint at [jointIdx] is set to rotate from the joint, `true`, or to rotate from the tip, `false`. The default is to rotate from the tip.
+   * Returns whether the joint at [jointIdx] is set to rotate from the joint, `true`, or to rotate
+   * from the tip, `false`. The default is to rotate from the tip.
    */
   public fun getCcdikJointRotateFromJoint(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
@@ -136,7 +144,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Determines whether angle constraints on the CCDIK joint at [jointIdx] are enabled. When `true`, constraints will be enabled and taken into account when solving.
+   * Determines whether angle constraints on the CCDIK joint at [jointIdx] are enabled. When `true`,
+   * constraints will be enabled and taken into account when solving.
    */
   public fun setCcdikJointEnableConstraint(jointIdx: Int, enableConstraint: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to enableConstraint)
@@ -188,8 +197,9 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
 
   /**
    * Sets whether the CCDIK joint at [jointIdx] uses an inverted joint constraint.
-   *
-   * An inverted joint constraint only constraints the CCDIK joint to the angles *outside of* the inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint constraint, as it constraints the joint to the outside of the inputted values.
+   * An inverted joint constraint only constraints the CCDIK joint to the angles *outside of* the
+   * inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint
+   * constraint, as it constraints the joint to the outside of the inputted values.
    */
   public fun setCcdikJointConstraintAngleInvert(jointIdx: Int, invert: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to invert)
@@ -197,7 +207,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   }
 
   /**
-   * Returns whether the CCDIK joint at [jointIdx] uses an inverted joint constraint. See [setCcdikJointConstraintAngleInvert] for details.
+   * Returns whether the CCDIK joint at [jointIdx] uses an inverted joint constraint. See
+   * [setCcdikJointConstraintAngleInvert] for details.
    */
   public fun getCcdikJointConstraintAngleInvert(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())

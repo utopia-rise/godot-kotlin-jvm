@@ -34,14 +34,49 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+/**
+ * This class is the default implementation of [MultiplayerAPI], used to provide multiplayer
+ * functionalities in Godot Engine.
+ * This implementation supports RPCs via [Node.rpc] and [Node.rpcId] and requires
+ * [MultiplayerAPI.rpc] to be passed a [Node] (it will fail for other object types).
+ * This implementation additionally provide [SceneTree] replication via the [MultiplayerSpawner] and
+ * [MultiplayerSynchronizer] nodes, and the [SceneReplicationConfig] resource.
+ * **Note:** The high-level multiplayer API protocol is an implementation detail and isn't meant to
+ * be used by non-Godot servers. It may change without notice.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
+ * export preset before exporting the project or using one-click deploy. Otherwise, network
+ * communication of any kind will be blocked by Android.
+ */
 @GodotBaseType
 public open class SceneMultiplayer : MultiplayerAPI() {
+  /**
+   * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] connects to a new peer and
+   * a valid [authCallback] is set. In this case, the [signal MultiplayerAPI.peer_connected] will not
+   * be emitted until [completeAuth] is called with given peer [id]. While in this state, the peer will
+   * not be included in the list returned by [MultiplayerAPI.getPeers] (but in the one returned by
+   * [getAuthenticatingPeers]), and only authentication data will be sent or received. See [sendAuth]
+   * for sending authentication data.
+   */
   public val peerAuthenticating: Signal1<Long> by signal("id")
 
+  /**
+   * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] disconnects from a peer for
+   * which authentication had not yet completed. See [signal peer_authenticating].
+   */
   public val peerAuthenticationFailed: Signal1<Long> by signal("id")
 
+  /**
+   * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] receives a [packet] with
+   * custom data (see [sendBytes]). ID is the peer ID of the peer that sent the packet.
+   */
   public val peerPacket: Signal2<Long, PackedByteArray> by signal("id", "packet")
 
+  /**
+   * The root path to use for RPCs and replication. Instead of an absolute path, a relative path
+   * will be used to find the node upon which the RPC should be executed.
+   * This effectively allows to have different branches of the scene tree to be managed by different
+   * MultiplayerAPI, allowing for example to run both client and server in the same scene.
+   */
   public var rootPath: NodePath
     get() {
       TransferContext.writeArguments()
@@ -53,6 +88,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRootPathPtr, NIL)
     }
 
+  /**
+   * The callback to execute when when receiving authentication data sent via [sendAuth]. If the
+   * [Callable] is empty (default), peers will be automatically accepted as soon as they connect.
+   */
   public var authCallback: Callable
     get() {
       TransferContext.writeArguments()
@@ -64,6 +103,11 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAuthCallbackPtr, NIL)
     }
 
+  /**
+   * If set to a value greater than `0.0`, the maximum amount of time peers can stay in the
+   * authenticating state, after which the authentication will automatically fail. See the [signal
+   * peer_authenticating] and [signal peer_authentication_failed] signals.
+   */
   public var authTimeout: Double
     get() {
       TransferContext.writeArguments()
@@ -75,6 +119,12 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAuthTimeoutPtr, NIL)
     }
 
+  /**
+   * If `true`, the MultiplayerAPI will allow encoding and decoding of object during RPCs.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
+   * if the serialized object comes from untrusted sources to avoid potential security threat such as
+   * remote code execution.
+   */
   public var allowObjectDecoding: Boolean
     get() {
       TransferContext.writeArguments()
@@ -86,6 +136,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAllowObjectDecodingPtr, NIL)
     }
 
+  /**
+   * If `true`, the MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] refuses new incoming
+   * connections.
+   */
   public var refuseNewConnections: Boolean
     get() {
       TransferContext.writeArguments()
@@ -97,6 +151,16 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
     }
 
+  /**
+   * Enable or disable the server feature that notifies clients of other peers'
+   * connection/disconnection, and relays messages between them. When this option is `false`, clients
+   * won't be automatically notified of other peers and won't be able to send them packets through the
+   * server.
+   * **Note:** Changing this option while other peers are connected may lead to unexpected
+   * behaviors.
+   * **Note:** Support for this feature may depend on the current [MultiplayerPeer] configuration.
+   * See [MultiplayerPeer.isServerRelaySupported].
+   */
   public var serverRelay: Boolean
     get() {
       TransferContext.writeArguments()
@@ -108,6 +172,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setServerRelayEnabledPtr, NIL)
     }
 
+  /**
+   * Maximum size of each synchronization packet. Higher values increase the chance of receiving
+   * full updates in a single frame, but also the chance of packet loss. See [MultiplayerSynchronizer].
+   */
   public var maxSyncPacketSize: Int
     get() {
       TransferContext.writeArguments()
@@ -119,6 +187,11 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxSyncPacketSizePtr, NIL)
     }
 
+  /**
+   * Maximum size of each delta packet. Higher values increase the chance of receiving full updates
+   * in a single frame, but also the chance of causing networking congestion (higher latency,
+   * disconnections). See [MultiplayerSynchronizer].
+   */
   public var maxDeltaPacketSize: Int
     get() {
       TransferContext.writeArguments()
@@ -135,16 +208,27 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     return true
   }
 
+  /**
+   * Clears the current SceneMultiplayer network state (you shouldn't call this unless you know what
+   * you are doing).
+   */
   public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
+  /**
+   * Disconnects the peer identified by [id], removing it from the list of connected peers, and
+   * closing the underlying connection with it.
+   */
   public fun disconnectPeer(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.disconnectPeerPtr, NIL)
   }
 
+  /**
+   * Returns the IDs of the peers currently trying to authenticate with this [MultiplayerAPI].
+   */
   public fun getAuthenticatingPeers(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthenticatingPeersPtr,
@@ -152,18 +236,38 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
+  /**
+   * Sends the specified [data] to the remote peer identified by [id] as part of an authentication
+   * message. This can be used to authenticate peers, and control when [signal
+   * MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected
+   * peers).
+   */
   public fun sendAuth(id: Int, `data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.sendAuthPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Mark the authentication step as completed for the remote peer identified by [id]. The [signal
+   * MultiplayerAPI.peer_connected] signal will be emitted for this peer once the remote side also
+   * completes the authentication. No further authentication messages are expected to be received from
+   * this peer.
+   * If a peer disconnects before completing authentication, either due to a network issue, the
+   * [authTimeout] expiring, or manually calling [disconnectPeer], the [signal
+   * peer_authentication_failed] signal will be emitted instead of [signal
+   * MultiplayerAPI.peer_disconnected].
+   */
   public fun completeAuth(id: Int): GodotError {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.completeAuthPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Sends the given raw [bytes] to a specific peer identified by [id] (see
+   * [MultiplayerPeer.setTargetPeer]). Default ID is `0`, i.e. broadcast to all peers.
+   */
   @JvmOverloads
   public fun sendBytes(
     bytes: PackedByteArray,

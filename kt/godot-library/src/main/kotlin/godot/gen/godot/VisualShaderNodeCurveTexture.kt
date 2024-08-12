@@ -17,8 +17,6 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Performs a [godot.CurveTexture] lookup within the visual shader graph.
- *
  * Comes with a built-in editor for texture's curves.
  */
 @GodotBaseType

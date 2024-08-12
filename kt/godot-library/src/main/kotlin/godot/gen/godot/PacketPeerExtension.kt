@@ -14,9 +14,6 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
-/**
- *
- */
 @GodotBaseType
 public open class PacketPeerExtension : PacketPeer() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -24,16 +21,10 @@ public open class PacketPeerExtension : PacketPeer() {
     return true
   }
 
-  /**
-   *
-   */
   public open fun _getAvailablePacketCount(): Int {
     throw NotImplementedError("_get_available_packet_count is not implemented for PacketPeerExtension")
   }
 
-  /**
-   *
-   */
   public open fun _getMaxPacketSize(): Int {
     throw NotImplementedError("_get_max_packet_size is not implemented for PacketPeerExtension")
   }

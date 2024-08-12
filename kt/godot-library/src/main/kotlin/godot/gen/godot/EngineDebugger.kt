@@ -29,9 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Exposes the internal debugger.
- *
- * [godot.EngineDebugger] handles the communication between the editor and the running game. It is active in the running game. Messages can be sent/received through it. It also manages the profilers.
+ * [EngineDebugger] handles the communication between the editor and the running game. It is active
+ * in the running game. Messages can be sent/received through it. It also manages the profilers.
  */
 @GodotBaseType
 public object EngineDebugger : Object() {
@@ -50,7 +49,7 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Registers a profiler with the given [name]. See [godot.EngineProfiler] for more information.
+   * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
    */
   public fun registerProfiler(name: StringName, profiler: EngineProfiler): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
@@ -92,7 +91,8 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables the same profiler depending on [enable] argument.
+   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables
+   * the same profiler depending on [enable] argument.
    */
   @JvmOverloads
   public fun profilerEnable(
@@ -105,9 +105,10 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting with "my_message:" will be called with the given callable.
-   *
-   * Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.
+   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
+   * with "my_message:" will be called with the given callable.
+   * Callable must accept a message string and a data array as argument. If the message and data are
+   * valid then callable must return `true` otherwise `false`.
    */
   public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)

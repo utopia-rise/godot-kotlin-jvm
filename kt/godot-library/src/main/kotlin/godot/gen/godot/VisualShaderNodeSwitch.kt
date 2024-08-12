@@ -18,9 +18,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A selector function for use within the visual shader graph.
- *
- * Returns an associated value of the [opType] type if the provided boolean value is `true` or `false`.
+ * Returns an associated value of the [opType] type if the provided boolean value is `true` or
+ * `false`.
  */
 @GodotBaseType
 public open class VisualShaderNodeSwitch : VisualShaderNode() {
@@ -79,7 +78,7 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
      */
     OP_TYPE_TRANSFORM(7),
     /**
-     * Represents the size of the [enum OpType] enum.
+     * Represents the size of the [OpType] enum.
      */
     OP_TYPE_MAX(8),
     ;

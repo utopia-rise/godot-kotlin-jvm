@@ -18,14 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A vector operator to be used within the visual shader graph.
- *
  * A visual shader node for use of vector operators. Operates on vector `a` and vector `b`.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   /**
-   * The operator to be used. See [enum Operator] for options.
+   * The operator to be used. See [Operator] for options.
    */
   public var `operator`: Operator
     get() {
@@ -67,7 +65,8 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
      */
     OP_MOD(4),
     /**
-     * Returns the value of the first parameter raised to the power of the second, for each component of the vectors.
+     * Returns the value of the first parameter raised to the power of the second, for each
+     * component of the vectors.
      */
     OP_POW(5),
     /**
@@ -87,7 +86,8 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
      */
     OP_ATAN2(9),
     /**
-     * Returns the vector that points in the direction of reflection. `a` is incident vector and `b` is the normal vector.
+     * Returns the vector that points in the direction of reflection. `a` is incident vector and `b`
+     * is the normal vector.
      */
     OP_REFLECT(10),
     /**
@@ -95,7 +95,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
      */
     OP_STEP(11),
     /**
-     * Represents the size of the [enum Operator] enum.
+     * Represents the size of the [Operator] enum.
      */
     OP_ENUM_SIZE(12),
     ;

@@ -22,8 +22,18 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * This node allows you to create a torus for use with the CSG system.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
+ * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
+ * node within another CSG node also has a significant CPU cost, so it should be avoided during
+ * gameplay.
+ */
 @GodotBaseType
 public open class CSGTorus3D : CSGPrimitive3D() {
+  /**
+   * The inner radius of the torus.
+   */
   public var innerRadius: Float
     get() {
       TransferContext.writeArguments()
@@ -35,6 +45,9 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInnerRadiusPtr, NIL)
     }
 
+  /**
+   * The outer radius of the torus.
+   */
   public var outerRadius: Float
     get() {
       TransferContext.writeArguments()
@@ -46,6 +59,9 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOuterRadiusPtr, NIL)
     }
 
+  /**
+   * The number of slices the torus is constructed of.
+   */
   public var sides: Int
     get() {
       TransferContext.writeArguments()
@@ -57,6 +73,9 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
     }
 
+  /**
+   * The number of edges each ring of the torus is constructed of.
+   */
   public var ringSides: Int
     get() {
       TransferContext.writeArguments()
@@ -68,6 +87,10 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRingSidesPtr, NIL)
     }
 
+  /**
+   * If `true` the normals of the torus are set to give a smooth effect making the torus seem
+   * rounded. If `false` the torus will have a flat shaded look.
+   */
   public var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
@@ -79,6 +102,9 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
     }
 
+  /**
+   * The material used to render the torus.
+   */
   public var material: Material?
     get() {
       TransferContext.writeArguments()

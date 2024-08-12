@@ -20,21 +20,18 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Abstract base class for 3D shapes used for physics collision.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
- *
  * Abstract base class for all 3D shapes, intended for use in physics.
- *
- * **Performance:** Primitive shapes, especially [godot.SphereShape3D], are fast to check collisions against. [godot.ConvexPolygonShape3D] and [godot.HeightMapShape3D] are slower, and [godot.ConcavePolygonShape3D] is the slowest.
+ * **Performance:** Primitive shapes, especially [SphereShape3D], are fast to check collisions
+ * against. [ConvexPolygonShape3D] and [HeightMapShape3D] are slower, and [ConcavePolygonShape3D] is
+ * the slowest.
  */
 @GodotBaseType
 public open class Shape3D internal constructor() : Resource() {
   /**
-   * The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.
-   *
-   * When set to `0`, the default value from [godot.ProjectSettings.physics/3d/solver/defaultContactBias] is used.
+   * The shape's custom solver bias. Defines how much bodies react to enforce contact separation
+   * when this shape is involved.
+   * When set to `0`, the default value from [ProjectSettings.physics/3d/solver/defaultContactBias]
+   * is used.
    */
   public var customSolverBias: Float
     get() {
@@ -49,8 +46,10 @@ public open class Shape3D internal constructor() : Resource() {
 
   /**
    * The collision margin for the shape. This is not used in Godot Physics.
-   *
-   * Collision margins allow collision detection to be more efficient by adding an extra shell around shapes. Collision algorithms are more expensive when objects overlap by more than their margin, so a higher value for margins is better for performance, at the cost of accuracy around edges as it makes them less sharp.
+   * Collision margins allow collision detection to be more efficient by adding an extra shell
+   * around shapes. Collision algorithms are more expensive when objects overlap by more than their
+   * margin, so a higher value for margins is better for performance, at the cost of accuracy around
+   * edges as it makes them less sharp.
    */
   public var margin: Float
     get() {
@@ -69,7 +68,7 @@ public open class Shape3D internal constructor() : Resource() {
   }
 
   /**
-   * Returns the [godot.ArrayMesh] used to draw the debug collision for this [godot.Shape3D].
+   * Returns the [ArrayMesh] used to draw the debug collision for this [Shape3D].
    */
   public fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()

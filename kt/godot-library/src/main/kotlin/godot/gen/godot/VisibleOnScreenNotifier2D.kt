@@ -24,16 +24,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A rectangular region of 2D space that detects whether it is visible on screen.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
- * [godot.VisibleOnScreenEnabler2D] represents a rectangular region of 2D space. When any part of this region becomes visible on screen or in a viewport, it will emit a [screenEntered] signal, and likewise it will emit a [screenExited] signal when no part of it remains visible.
- *
- * If you want a node to be enabled automatically when this region is visible on screen, use [godot.VisibleOnScreenEnabler2D].
- *
- * **Note:** [godot.VisibleOnScreenNotifier2D] uses the render culling code to determine whether it's visible on screen, so it won't function unless [godot.CanvasItem.visible] is set to `true`.
+ * [VisibleOnScreenEnabler2D] represents a rectangular region of 2D space. When any part of this
+ * region becomes visible on screen or in a viewport, it will emit a [signal screen_entered] signal,
+ * and likewise it will emit a [signal screen_exited] signal when no part of it remains visible.
+ * If you want a node to be enabled automatically when this region is visible on screen, use
+ * [VisibleOnScreenEnabler2D].
+ * **Note:** [VisibleOnScreenNotifier2D] uses the render culling code to determine whether it's
+ * visible on screen, so it won't function unless [CanvasItem.visible] is set to `true`.
  */
 @GodotBaseType
 public open class VisibleOnScreenNotifier2D : Node2D() {
@@ -93,8 +90,9 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
   /**
    * If `true`, the bounding rectangle is on the screen.
-   *
-   * **Note:** It takes one frame for the [godot.VisibleOnScreenNotifier2D]'s visibility to be determined once added to the scene tree, so this method will always return `false` right after it is instantiated, before the draw pass.
+   * **Note:** It takes one frame for the [VisibleOnScreenNotifier2D]'s visibility to be determined
+   * once added to the scene tree, so this method will always return `false` right after it is
+   * instantiated, before the draw pass.
    */
   public fun isOnScreen(): Boolean {
     TransferContext.writeArguments()

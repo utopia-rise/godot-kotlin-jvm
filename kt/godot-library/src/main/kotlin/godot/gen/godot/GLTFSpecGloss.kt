@@ -24,8 +24,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * KHR_materials_pbrSpecularGlossiness is an archived GLTF extension. This means that it is
+ * deprecated and not recommended for new files. However, it is still supported for loading old files.
+ */
 @GodotBaseType
 public open class GLTFSpecGloss : Resource() {
+  /**
+   * The diffuse texture.
+   */
   public var diffuseImg: Image?
     get() {
       TransferContext.writeArguments()
@@ -37,6 +44,9 @@ public open class GLTFSpecGloss : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseImgPtr, NIL)
     }
 
+  /**
+   * The reflected diffuse factor of the material.
+   */
   @CoreTypeLocalCopy
   public var diffuseFactor: Color
     get() {
@@ -49,6 +59,9 @@ public open class GLTFSpecGloss : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseFactorPtr, NIL)
     }
 
+  /**
+   * The glossiness or smoothness of the material.
+   */
   public var glossFactor: Float
     get() {
       TransferContext.writeArguments()
@@ -60,6 +73,9 @@ public open class GLTFSpecGloss : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setGlossFactorPtr, NIL)
     }
 
+  /**
+   * The specular RGB color of the material. The alpha channel is unused.
+   */
   @CoreTypeLocalCopy
   public var specularFactor: Color
     get() {
@@ -72,6 +88,9 @@ public open class GLTFSpecGloss : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSpecularFactorPtr, NIL)
     }
 
+  /**
+   * The specular-glossiness texture.
+   */
   public var specGlossImg: Image?
     get() {
       TransferContext.writeArguments()
@@ -89,6 +108,8 @@ public open class GLTFSpecGloss : Resource() {
   }
 
   /**
+   * The reflected diffuse factor of the material.
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our
@@ -111,6 +132,8 @@ public open class GLTFSpecGloss : Resource() {
 
 
   /**
+   * The specular RGB color of the material. The alpha channel is unused.
+   *
    * This is a helper function to make dealing with local copies easier. 
    *
    * For more information, see our

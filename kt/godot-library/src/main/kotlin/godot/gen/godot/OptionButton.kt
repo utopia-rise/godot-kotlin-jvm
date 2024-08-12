@@ -28,27 +28,27 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A button that brings up a dropdown with selectable options when pressed.
- *
- * [godot.OptionButton] is a type of button that brings up a dropdown with selectable items when pressed. The item selected becomes the "current" item and is displayed as the button text.
- *
- * See also [godot.BaseButton] which contains common properties and methods associated with this node.
- *
- * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
- *
- * **Note:** The [godot.Button.text] and [godot.Button.icon] properties are set automatically based on the selected item. They shouldn't be changed manually.
+ * [OptionButton] is a type of button that brings up a dropdown with selectable items when pressed.
+ * The item selected becomes the "current" item and is displayed as the button text.
+ * See also [BaseButton] which contains common properties and methods associated with this node.
+ * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
+ * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
+ * **Note:** The [Button.text] and [Button.icon] properties are set automatically based on the
+ * selected item. They shouldn't be changed manually.
  */
 @GodotBaseType
 public open class OptionButton : Button() {
   /**
-   * Emitted when the current item has been changed by the user. The index of the item selected is passed as argument.
-   *
+   * Emitted when the current item has been changed by the user. The index of the item selected is
+   * passed as argument.
    * [allowReselect] must be enabled to reselect an item.
    */
   public val itemSelected: Signal1<Long> by signal("index")
 
   /**
-   * Emitted when the user navigates to an item using the [godot.ProjectSettings.input/uiUp] or [godot.ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as argument.
+   * Emitted when the user navigates to an item using the [ProjectSettings.input/uiUp] or
+   * [ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as
+   * argument.
    */
   public val itemFocused: Signal1<Long> by signal("index")
 
@@ -77,9 +77,10 @@ public open class OptionButton : Button() {
     }
 
   /**
-   * If `true`, minimum size will be determined by the longest item's text, instead of the currently selected one's.
-   *
-   * **Note:** For performance reasons, the minimum size doesn't update immediately when adding, removing or modifying items.
+   * If `true`, minimum size will be determined by the longest item's text, instead of the currently
+   * selected one's.
+   * **Note:** For performance reasons, the minimum size doesn't update immediately when adding,
+   * removing or modifying items.
    */
   public var fitToLongestItem: Boolean
     get() {
@@ -112,7 +113,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index will be used as the item's ID. New items are appended at the end.
+   * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index
+   * will be used as the item's ID. New items are appended at the end.
    */
   @JvmOverloads
   public fun addItem(label: String, id: Int = -1): Unit {
@@ -121,7 +123,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adds an item, with a [texture] icon, text [label] and (optionally) [id]. If no [id] is passed, the item index will be used as the item's ID. New items are appended at the end.
+   * Adds an item, with a [texture] icon, text [label] and (optionally) [id]. If no [id] is passed,
+   * the item index will be used as the item's ID. New items are appended at the end.
    */
   @JvmOverloads
   public fun addIconItem(
@@ -151,8 +154,8 @@ public open class OptionButton : Button() {
 
   /**
    * Sets whether the item at index [idx] is disabled.
-   *
-   * Disabled items are drawn differently in the dropdown and are not selectable by the user. If the current selected item is set as disabled, it will remain selected.
+   * Disabled items are drawn differently in the dropdown and are not selectable by the user. If the
+   * current selected item is set as disabled, it will remain selected.
    */
   public fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
@@ -168,7 +171,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Sets the metadata of an item. Metadata may be of any type and can be used to store extra information about an item, such as an external string ID.
+   * Sets the metadata of an item. Metadata may be of any type and can be used to store extra
+   * information about an item, such as an external string ID.
    */
   public fun setItemMetadata(idx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
@@ -220,7 +224,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Retrieves the metadata of an item. Metadata may be any type and can be used to store extra information about an item, such as an external string ID.
+   * Retrieves the metadata of an item. Metadata may be any type and can be used to store extra
+   * information about an item, such as an external string ID.
    */
   public fun getItemMetadata(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -256,7 +261,9 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adds a separator to the list of items. Separators help to group items, and can optionally be given a [text] header. A separator also gets an index assigned, and is appended at the end of the item list.
+   * Adds a separator to the list of items. Separators help to group items, and can optionally be
+   * given a [text] header. A separator also gets an index assigned, and is appended at the end of the
+   * item list.
    */
   @JvmOverloads
   public fun addSeparator(text: String = ""): Unit {
@@ -265,7 +272,7 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Clears all the items in the [godot.OptionButton].
+   * Clears all the items in the [OptionButton].
    */
   public fun clear(): Unit {
     TransferContext.writeArguments()
@@ -273,8 +280,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Selects an item by index and makes it the current item. This will work even if the item is disabled.
-   *
+   * Selects an item by index and makes it the current item. This will work even if the item is
+   * disabled.
    * Passing `-1` as the index deselects any currently selected item.
    */
   public fun select(idx: Int): Unit {
@@ -309,9 +316,9 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the [godot.PopupMenu] contained in this button.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
+   * Returns the [PopupMenu] contained in this button.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
@@ -320,7 +327,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Adjusts popup position and sizing for the [godot.OptionButton], then shows the [godot.PopupMenu]. Prefer this over using `get_popup().popup()`.
+   * Adjusts popup position and sizing for the [OptionButton], then shows the [PopupMenu]. Prefer
+   * this over using `get_popup().popup()`.
    */
   public fun showPopup(): Unit {
     TransferContext.writeArguments()
@@ -328,7 +336,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns `true` if this button contains at least one item which is not disabled, or marked as a separator.
+   * Returns `true` if this button contains at least one item which is not disabled, or marked as a
+   * separator.
    */
   public fun hasSelectableItems(): Boolean {
     TransferContext.writeArguments()
@@ -337,8 +346,8 @@ public open class OptionButton : Button() {
   }
 
   /**
-   * Returns the index of the first item which is not disabled, or marked as a separator. If [fromLast] is `true`, the items will be searched in reverse order.
-   *
+   * Returns the index of the first item which is not disabled, or marked as a separator. If
+   * [fromLast] is `true`, the items will be searched in reverse order.
    * Returns `-1` if no item is found.
    */
   @JvmOverloads

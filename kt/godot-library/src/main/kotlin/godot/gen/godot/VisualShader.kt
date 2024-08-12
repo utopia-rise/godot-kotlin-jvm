@@ -36,12 +36,10 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A custom shader program with a visual editor.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/shaders/visual_shaders.html]($DOCS_URL/tutorials/shaders/visual_shaders.html)
- *
- * This class provides a graph-like visual editor for creating a [godot.Shader]. Although [godot.VisualShader]s do not require coding, they share the same logic with script shaders. They use [godot.VisualShaderNode]s that can be connected to each other to control the flow of the shader. The visual shader graph is converted to a script shader behind the scenes.
+ * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s
+ * do not require coding, they share the same logic with script shaders. They use [VisualShaderNode]s
+ * that can be connected to each other to control the flow of the shader. The visual shader graph is
+ * converted to a script shader behind the scenes.
  */
 @GodotBaseType
 public open class VisualShader : Shader() {
@@ -238,7 +236,8 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly.
+   * Connects the specified nodes and ports, even if they can't be connected. Such connection is
+   * invalid and will not function properly.
    */
   public fun connectNodesForced(
     type: Type,
@@ -273,7 +272,8 @@ public open class VisualShader : Shader() {
   }
 
   /**
-   * Removes a varying value node with the given [name]. Prints an error if a node with this name is not found.
+   * Removes a varying value node with the given [name]. Prints an error if a node with this name is
+   * not found.
    */
   public fun removeVarying(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
@@ -333,7 +333,7 @@ public open class VisualShader : Shader() {
      */
     TYPE_FOG(9),
     /**
-     * Represents the size of the [enum Type] enum.
+     * Represents the size of the [Type] enum.
      */
     TYPE_MAX(10),
     ;
@@ -360,7 +360,7 @@ public open class VisualShader : Shader() {
      */
     VARYING_MODE_FRAG_TO_LIGHT(1),
     /**
-     * Represents the size of the [enum VaryingMode] enum.
+     * Represents the size of the [VaryingMode] enum.
      */
     VARYING_MODE_MAX(2),
     ;
@@ -391,15 +391,15 @@ public open class VisualShader : Shader() {
      */
     VARYING_TYPE_UINT(2),
     /**
-     * Varying is of type [godot.core.Vector2].
+     * Varying is of type [Vector2].
      */
     VARYING_TYPE_VECTOR_2D(3),
     /**
-     * Varying is of type [godot.core.Vector3].
+     * Varying is of type [Vector3].
      */
     VARYING_TYPE_VECTOR_3D(4),
     /**
-     * Varying is of type [godot.Vector4].
+     * Varying is of type [Vector4].
      */
     VARYING_TYPE_VECTOR_4D(5),
     /**
@@ -407,11 +407,11 @@ public open class VisualShader : Shader() {
      */
     VARYING_TYPE_BOOLEAN(6),
     /**
-     * Varying is of type [godot.Transform3D].
+     * Varying is of type [Transform3D].
      */
     VARYING_TYPE_TRANSFORM(7),
     /**
-     * Represents the size of the [enum VaryingType] enum.
+     * Represents the size of the [VaryingType] enum.
      */
     VARYING_TYPE_MAX(8),
     ;
@@ -428,12 +428,12 @@ public open class VisualShader : Shader() {
 
   public companion object {
     /**
-     * Denotes invalid [godot.VisualShader] node.
+     * Denotes invalid [VisualShader] node.
      */
     public final const val NODE_ID_INVALID: Long = -1
 
     /**
-     * Denotes output node of [godot.VisualShader].
+     * Denotes output node of [VisualShader].
      */
     public final const val NODE_ID_OUTPUT: Long = 0
   }

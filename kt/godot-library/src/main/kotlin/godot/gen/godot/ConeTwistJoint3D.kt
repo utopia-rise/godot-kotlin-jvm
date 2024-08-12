@@ -21,19 +21,17 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint.
- *
- * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint. The twist axis is initiated as the X axis of the [godot.ConeTwistJoint3D]. Once the physics bodies swing, the twist axis is calculated as the middle of the X axes of the joint in the local space of the two physics bodies. Useful for limbs like shoulders and hips, lamps hanging off a ceiling, etc.
+ * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket
+ * joint. The twist axis is initiated as the X axis of the [ConeTwistJoint3D]. Once the physics bodies
+ * swing, the twist axis is calculated as the middle of the X axes of the joint in the local space of
+ * the two physics bodies. Useful for limbs like shoulders and hips, lamps hanging off a ceiling, etc.
  */
 @GodotBaseType
 public open class ConeTwistJoint3D : Joint3D() {
   /**
    * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
-   *
    * The swing span defines, how much rotation will not get corrected along the swing axis.
-   *
-   * Could be defined as looseness in the [godot.ConeTwistJoint3D].
-   *
+   * Could be defined as looseness in the [ConeTwistJoint3D].
    * If below 0.05, this behavior is locked.
    */
   public var swingSpan: Float
@@ -49,7 +47,6 @@ public open class ConeTwistJoint3D : Joint3D() {
 
   /**
    * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
-   *
    * Twist is locked if below 0.05.
    */
   public var twistSpan: Float
@@ -65,7 +62,6 @@ public open class ConeTwistJoint3D : Joint3D() {
 
   /**
    * The speed with which the swing or twist will take place.
-   *
    * The higher, the faster.
    */
   public var bias: Float
@@ -80,7 +76,8 @@ public open class ConeTwistJoint3D : Joint3D() {
     }
 
   /**
-   * The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint.
+   * The ease with which the joint starts to twist. If it's too low, it takes more force to start
+   * twisting the joint.
    */
   public var softness: Float
     get() {
@@ -117,28 +114,24 @@ public open class ConeTwistJoint3D : Joint3D() {
   ) {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
-     *
      * The swing span defines, how much rotation will not get corrected along the swing axis.
-     *
-     * Could be defined as looseness in the [godot.ConeTwistJoint3D].
-     *
+     * Could be defined as looseness in the [ConeTwistJoint3D].
      * If below 0.05, this behavior is locked.
      */
     PARAM_SWING_SPAN(0),
     /**
      * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
-     *
      * Twist is locked if below 0.05.
      */
     PARAM_TWIST_SPAN(1),
     /**
      * The speed with which the swing or twist will take place.
-     *
      * The higher, the faster.
      */
     PARAM_BIAS(2),
     /**
-     * The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint.
+     * The ease with which the joint starts to twist. If it's too low, it takes more force to start
+     * twisting the joint.
      */
     PARAM_SOFTNESS(3),
     /**
@@ -146,7 +139,7 @@ public open class ConeTwistJoint3D : Joint3D() {
      */
     PARAM_RELAXATION(4),
     /**
-     * Represents the size of the [enum Param] enum.
+     * Represents the size of the [Param] enum.
      */
     PARAM_MAX(5),
     ;

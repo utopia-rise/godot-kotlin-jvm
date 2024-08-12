@@ -21,9 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A 2D line segment shape used for physics collision.
- *
- * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a [godot.CollisionShape2D].
+ * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a
+ * [CollisionShape2D].
  */
 @GodotBaseType
 public open class SegmentShape2D : Shape2D() {

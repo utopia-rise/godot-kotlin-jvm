@@ -31,8 +31,6 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * A class information repository.
- *
  * Provides access to metadata stored for every available class.
  */
 @GodotBaseType
@@ -89,7 +87,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns `false`.
+   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns
+   * `false`.
    */
   public fun canInstantiate(_class: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to _class)
@@ -116,7 +115,9 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the [signal] data of [class] or its ancestry. The returned value is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * Returns the [signal] data of [class] or its ancestry. The returned value is a [Dictionary] with
+   * the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint,
+   * hint_string, name, type, usage)`.
    */
   public fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
@@ -125,7 +126,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] as described in [classGetSignal].
+   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`.
+   * Every element of the array is a [Dictionary] as described in [classGetSignal].
    */
   @JvmOverloads
   public fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
@@ -136,7 +138,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is `false`.
+   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is
+   * `false`.
    */
   @JvmOverloads
   public fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
@@ -169,7 +172,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called [method] or not.
+   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called
+   * [method] or not.
    */
   @JvmOverloads
   public fun classHasMethod(
@@ -183,9 +187,11 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [godot.core.Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
-   *
-   * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
+   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`.
+   * Every element of the array is a [Dictionary] with the following keys: `args`, `default_args`,
+   * `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * **Note:** In exported release builds the debug info is not available, so the returned
+   * dictionaries will contain only method names.
    */
   @JvmOverloads
   public fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
@@ -217,7 +223,8 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0 when the constant could not be found.
+   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0
+   * when the constant could not be found.
    */
   public fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
     TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)

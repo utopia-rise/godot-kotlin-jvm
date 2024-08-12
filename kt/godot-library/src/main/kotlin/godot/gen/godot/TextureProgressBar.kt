@@ -30,14 +30,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Texture-based progress bar. Useful for loading screens and life or stamina bars.
- *
- * TextureProgressBar works like [godot.ProgressBar], but uses up to 3 textures instead of Godot's [godot.Theme] resource. It can be used to create horizontal, vertical and radial progress bars.
+ * TextureProgressBar works like [ProgressBar], but uses up to 3 textures instead of Godot's [Theme]
+ * resource. It can be used to create horizontal, vertical and radial progress bars.
  */
 @GodotBaseType
 public open class TextureProgressBar : Range() {
   /**
-   * The fill direction. See [enum FillMode] for possible values.
+   * The fill direction. See [FillMode] for possible values.
    */
   public var fillMode: Int
     get() {
@@ -51,7 +50,9 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * If `true`, Godot treats the bar's textures like in [godot.NinePatchRect]. Use the `stretch_margin_*` properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial [fillMode], this setting will enable stretching.
+   * If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*`
+   * properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial
+   * [fillMode], this setting will enable stretching.
    */
   public var ninePatchStretch: Boolean
     get() {
@@ -107,7 +108,9 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and
+   * side will have a height of 16 pixels. You can set all 4 margin values individually to create
+   * panels with non-uniform borders.
    */
   public var stretchMarginBottom: Int
     get() {
@@ -121,7 +124,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * [godot.Texture2D] that draws under the progress bar. The bar's background.
+   * [Texture2D] that draws under the progress bar. The bar's background.
    */
   public var textureUnder: Texture2D?
     get() {
@@ -135,7 +138,8 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * [godot.Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that hides part of [textureProgress].
+   * [Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that
+   * hides part of [textureProgress].
    */
   public var textureOver: Texture2D?
     get() {
@@ -149,9 +153,10 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * [godot.Texture2D] that clips based on the node's `value` and [fillMode]. As `value` increased, the texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if `value` is equal to `min_value`.
-   *
-   * The `value` property comes from [godot.Range]. See [godot.Range.value], [godot.Range.minValue], [godot.Range.maxValue].
+   * [Texture2D] that clips based on the node's `value` and [fillMode]. As `value` increased, the
+   * texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if
+   * `value` is equal to `min_value`.
+   * The `value` property comes from [Range]. See [Range.value], [Range.minValue], [Range.maxValue].
    */
   public var textureProgress: Texture2D?
     get() {
@@ -165,7 +170,8 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
+   * borders, to avoid transparent margins in your progress texture.
    */
   @CoreTypeLocalCopy
   public var textureProgressOffset: Vector2
@@ -195,7 +201,8 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
+   * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    */
   @CoreTypeLocalCopy
   public var tintOver: Color
@@ -225,7 +232,10 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [radialFillDegrees].
+   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or
+   * [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't
+   * show up at all. When the `value` increases, the texture fills and tends towards
+   * [radialFillDegrees].
    */
   public var radialInitialAngle: Float
     get() {
@@ -239,9 +249,10 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up to this angle.
-   *
-   * See [godot.Range.value], [godot.Range.maxValue].
+   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or
+   * [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills
+   * up to this angle.
+   * See [Range.value], [Range.maxValue].
    */
   public var radialFillDegrees: Float
     get() {
@@ -275,7 +286,8 @@ public open class TextureProgressBar : Range() {
   }
 
   /**
-   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
+   * borders, to avoid transparent margins in your progress texture.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -324,7 +336,8 @@ public open class TextureProgressBar : Range() {
 
 
   /**
-   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to [godot.CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
+   * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
+   * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -416,11 +429,15 @@ public open class TextureProgressBar : Range() {
      */
     FILL_BOTTOM_TO_TOP(3),
     /**
-     * Turns the node into a radial bar. The [textureProgress] fills clockwise. See [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar fills up.
+     * Turns the node into a radial bar. The [textureProgress] fills clockwise. See
+     * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
+     * fills up.
      */
     FILL_CLOCKWISE(4),
     /**
-     * Turns the node into a radial bar. The [textureProgress] fills counterclockwise. See [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar fills up.
+     * Turns the node into a radial bar. The [textureProgress] fills counterclockwise. See
+     * [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar
+     * fills up.
      */
     FILL_COUNTER_CLOCKWISE(5),
     /**
@@ -432,7 +449,9 @@ public open class TextureProgressBar : Range() {
      */
     FILL_BILINEAR_TOP_AND_BOTTOM(7),
     /**
-     * Turns the node into a radial bar. The [textureProgress] fills radially from the center, expanding both clockwise and counterclockwise. See [radialCenterOffset], [radialInitialAngle] and [radialFillDegrees] to control the way the bar fills up.
+     * Turns the node into a radial bar. The [textureProgress] fills radially from the center,
+     * expanding both clockwise and counterclockwise. See [radialCenterOffset], [radialInitialAngle]
+     * and [radialFillDegrees] to control the way the bar fills up.
      */
     FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
     ;

@@ -25,73 +25,45 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Provides a low-level interface for creating parsers for XML files.
+ * Provides a low-level interface for creating parsers for
+ * [url=https://en.wikipedia.org/wiki/XML]XML[/url] files. This class can serve as base to make custom
+ * XML parsers.
+ * To parse XML, you must open a file with the [open] method or a buffer with the [openBuffer]
+ * method. Then, the [read] method must be called to parse the next nodes. Most of the methods take
+ * into consideration the currently parsed node.
+ * Here is an example of using [XMLParser] to parse a SVG file (which is based on XML), printing
+ * each element and its attributes as a dictionary:
  *
- * Provides a low-level interface for creating parsers for [XML](https://en.wikipedia.org/wiki/XML) files. This class can serve as base to make custom XML parsers.
- *
- * To parse XML, you must open a file with the [open] method or a buffer with the [openBuffer] method. Then, the [read] method must be called to parse the next nodes. Most of the methods take into consideration the currently parsed node.
- *
- * Here is an example of using [godot.XMLParser] to parse a SVG file (which is based on XML), printing each element and its attributes as a dictionary:
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var parser = XMLParser.new()
- *
  * parser.open("path/to/file.svg")
- *
  * while parser.read() != ERR_FILE_EOF:
- *
  *     if parser.get_node_type() == XMLParser.NODE_ELEMENT:
- *
  *         var node_name = parser.get_node_name()
- *
  *         var attributes_dict = {}
- *
  *         for idx in range(parser.get_attribute_count()):
- *
  *             attributes_dict[parser.get_attribute_name(idx)] = parser.get_attribute_value(idx)
- *
  *         print("The ", node_name, " element has the following attributes: ", attributes_dict)
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var parser = new XmlParser();
- *
  * parser.Open("path/to/file.svg");
- *
  * while (parser.Read() != Error.FileEof)
- *
  * {
- *
  *     if (parser.GetNodeType() == XmlParser.NodeType.Element)
- *
  *     {
- *
  *         var nodeName = parser.GetNodeName();
- *
  *         var attributesDict = new Godot.Collections.Dictionary();
- *
  *         for (int idx = 0; idx < parser.GetAttributeCount(); idx++)
- *
  *         {
- *
  *             attributesDict[parser.GetAttributeName(idx)] = parser.GetAttributeValue(idx);
- *
  *         }
- *
  *         GD.Print($"The {nodeName} element has the following attributes: {attributesDict}");
- *
  *     }
- *
  * }
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class XMLParser : RefCounted() {
@@ -110,7 +82,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the type of the current node. Compare with [enum NodeType] constants.
+   * Returns the type of the current node. Compare with [NodeType] constants.
    */
   public fun getNodeType(): NodeType {
     TransferContext.writeArguments()
@@ -119,7 +91,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the name of an element node. This method will raise an error if the currently parsed node is not of [NODE_ELEMENT] or [NODE_ELEMENT_END] type.
+   * Returns the name of an element node. This method will raise an error if the currently parsed
+   * node is not of [NODE_ELEMENT] or [NODE_ELEMENT_END] type.
    */
   public fun getNodeName(): String {
     TransferContext.writeArguments()
@@ -128,7 +101,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the contents of a text node. This method will raise an error if the current parsed node is of any other type.
+   * Returns the contents of a text node. This method will raise an error if the current parsed node
+   * is of any other type.
    */
   public fun getNodeData(): String {
     TransferContext.writeArguments()
@@ -137,7 +111,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the byte offset of the currently parsed node since the beginning of the file or buffer. This is usually equivalent to the number of characters before the read position.
+   * Returns the byte offset of the currently parsed node since the beginning of the file or buffer.
+   * This is usually equivalent to the number of characters before the read position.
    */
   public fun getNodeOffset(): Long {
     TransferContext.writeArguments()
@@ -147,8 +122,8 @@ public open class XMLParser : RefCounted() {
 
   /**
    * Returns the number of attributes in the currently parsed element.
-   *
-   * **Note:** If this method is used while the currently parsed node is not [NODE_ELEMENT] or [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
+   * **Note:** If this method is used while the currently parsed node is not [NODE_ELEMENT] or
+   * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */
   public fun getAttributeCount(): Int {
     TransferContext.writeArguments()
@@ -166,7 +141,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by the [idx] index.
+   * Returns the value of an attribute of the currently parsed element, specified by the [idx]
+   * index.
    */
   public fun getAttributeValue(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -184,7 +160,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by its [name]. This method will raise an error if the element has no such attribute.
+   * Returns the value of an attribute of the currently parsed element, specified by its [name].
+   * This method will raise an error if the element has no such attribute.
    */
   public fun getNamedAttributeValue(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -193,7 +170,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by its [name]. This method will return an empty string if the element has no such attribute.
+   * Returns the value of an attribute of the currently parsed element, specified by its [name].
+   * This method will return an empty string if the element has no such attribute.
    */
   public fun getNamedAttributeValueSafe(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -220,7 +198,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Skips the current section. If the currently parsed node contains more inner nodes, they will be ignored and the cursor will go to the closing of the current element.
+   * Skips the current section. If the currently parsed node contains more inner nodes, they will be
+   * ignored and the cursor will go to the closing of the current element.
    */
   public fun skipSection(): Unit {
     TransferContext.writeArguments()
@@ -228,7 +207,8 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Moves the buffer cursor to a certain offset (since the beginning) and reads the next node there. This method returns an error code.
+   * Moves the buffer cursor to a certain offset (since the beginning) and reads the next node
+   * there. This method returns an error code.
    */
   public fun seek(position: Long): GodotError {
     TransferContext.writeArguments(LONG to position)
@@ -278,7 +258,7 @@ public open class XMLParser : RefCounted() {
      */
     NODE_COMMENT(4),
     /**
-     * A node type for CDATA (Character Data) sections, e.g. `<![godot.CDATA[CDATA section]]>`.
+     * A node type for CDATA (Character Data) sections, e.g. `<![CDATA[CDATA section]]>`.
      */
     NODE_CDATA(5),
     /**

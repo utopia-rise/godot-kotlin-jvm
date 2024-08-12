@@ -19,11 +19,14 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Saves a specific resource type to a file.
- *
- * The engine can save resources when you do it from the editor, or when you use the [godot.ResourceSaver] singleton. This is accomplished thanks to multiple [godot.ResourceFormatSaver]s, each handling its own format and called automatically by the engine.
- *
- * By default, Godot saves resources as `.tres` (text-based), `.res` (binary) or another built-in format, but you can choose to create your own format by extending this class. Be sure to respect the documented return types and values. You should give it a global class name with `class_name` for it to be registered. Like built-in ResourceFormatSavers, it will be called automatically when saving resources of its recognized type(s). You may also implement a [godot.ResourceFormatLoader].
+ * The engine can save resources when you do it from the editor, or when you use the [ResourceSaver]
+ * singleton. This is accomplished thanks to multiple [ResourceFormatSaver]s, each handling its own
+ * format and called automatically by the engine.
+ * By default, Godot saves resources as `.tres` (text-based), `.res` (binary) or another built-in
+ * format, but you can choose to create your own format by extending this class. Be sure to respect the
+ * documented return types and values. You should give it a global class name with `class_name` for it
+ * to be registered. Like built-in ResourceFormatSavers, it will be called automatically when saving
+ * resources of its recognized type(s). You may also implement a [ResourceFormatLoader].
  */
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
@@ -33,9 +36,9 @@ public open class ResourceFormatSaver : RefCounted() {
   }
 
   /**
-   * Saves the given resource object to a file at the target [path]. [flags] is a bitmask composed with [enum ResourceSaver.SaverFlags] constants.
-   *
-   * Returns [OK] on success, or an [enum Error] constant in case of failure.
+   * Saves the given resource object to a file at the target [path]. [flags] is a bitmask composed
+   * with [ResourceSaver.SaverFlags] constants.
+   * Returns [OK] on success, or an [Error] constant in case of failure.
    */
   public open fun _save(
     resource: Resource,
@@ -46,7 +49,8 @@ public open class ResourceFormatSaver : RefCounted() {
   }
 
   /**
-   * Sets a new UID for the resource at the given [path]. Returns [OK] on success, or an [enum Error] constant in case of failure.
+   * Sets a new UID for the resource at the given [path]. Returns [OK] on success, or an [Error]
+   * constant in case of failure.
    */
   public open fun _setUid(path: String, uid: Long): GodotError {
     throw NotImplementedError("_set_uid is not implemented for ResourceFormatSaver")
@@ -60,7 +64,8 @@ public open class ResourceFormatSaver : RefCounted() {
   }
 
   /**
-   * Returns the list of extensions available for saving the resource object, provided it is recognized (see [_recognize]).
+   * Returns the list of extensions available for saving the resource object, provided it is
+   * recognized (see [_recognize]).
    */
   public open fun _getRecognizedExtensions(resource: Resource): PackedStringArray {
     throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
@@ -68,8 +73,8 @@ public open class ResourceFormatSaver : RefCounted() {
 
   /**
    * Returns `true` if this saver handles a given save path and `false` otherwise.
-   *
-   * If this method is not implemented, the default behavior returns whether the path's extension is within the ones provided by [_getRecognizedExtensions].
+   * If this method is not implemented, the default behavior returns whether the path's extension is
+   * within the ones provided by [_getRecognizedExtensions].
    */
   public open fun _recognizePath(resource: Resource, path: String): Boolean {
     throw NotImplementedError("_recognize_path is not implemented for ResourceFormatSaver")

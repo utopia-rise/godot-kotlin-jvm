@@ -47,54 +47,37 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Holds font source data and prerendered glyph cache, imported from a dynamic or a bitmap font.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html]($DOCS_URL/tutorials/io/runtime_file_loading_and_saving.html)
- *
- * [godot.FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as well as a cache of rasterized glyphs, and a set of fallback [godot.Font]s to use.
- *
- * Use [godot.FontVariation] to access specific OpenType variation of the font, create simulated bold / slanted version, and draw lines of text.
- *
- * For more complex text processing, use [godot.FontVariation] in conjunction with [godot.TextLine] or [godot.TextParagraph].
- *
+ * [FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as
+ * well as a cache of rasterized glyphs, and a set of fallback [Font]s to use.
+ * Use [FontVariation] to access specific OpenType variation of the font, create simulated bold /
+ * slanted version, and draw lines of text.
+ * For more complex text processing, use [FontVariation] in conjunction with [TextLine] or
+ * [TextParagraph].
  * Supported font formats:
- *
- * - Dynamic font importer: TrueType (.ttf), TrueType collection (.ttc), OpenType (.otf), OpenType collection (.otc), WOFF (.woff), WOFF2 (.woff2), Type 1 (.pfb, .pfm).
- *
- * - Bitmap font importer: AngelCode BMFont (.fnt, .font), text and binary (version 3) format variants.
- *
+ * - Dynamic font importer: TrueType (.ttf), TrueType collection (.ttc), OpenType (.otf), OpenType
+ * collection (.otc), WOFF (.woff), WOFF2 (.woff2), Type 1 (.pfb, .pfm).
+ * - Bitmap font importer: AngelCode BMFont (.fnt, .font), text and binary (version 3) format
+ * variants.
  * - Monospace image font importer: All supported image formats.
+ * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract
+ * way.
+ * **Note:** A glyph is a bitmap or a shape used to draw one or more characters in a
+ * context-dependent manner. Glyph indices are bound to the specific font data source.
+ * **Note:** If none of the font data sources contain glyphs for a character used in a string, the
+ * character in question will be replaced with a box displaying its hexadecimal code.
  *
- * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract way.
- *
- * **Note:** A glyph is a bitmap or a shape used to draw one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
- *
- * **Note:** If none of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
- *
- * [codeblocks]
- *
- * [gdscript]
- *
+ * gdscript:
+ * ```gdscript
  * var f = load("res://BarlowCondensed-Bold.ttf")
- *
  * $Label.add_theme_font_override("font", f)
- *
  * $Label.add_theme_font_size_override("font_size", 64)
- *
- * [/gdscript]
- *
- * [csharp]
- *
+ * ```
+ * csharp:
+ * ```csharp
  * var f = ResourceLoader.Load<FontFile>("res://BarlowCondensed-Bold.ttf");
- *
  * GetNode("Label").AddThemeFontOverride("font", f);
- *
  * GetNode("Label").AddThemeFontSizeOverride("font_size", 64);
- *
- * [/csharp]
- *
- * [/codeblocks]
+ * ```
  */
 @GodotBaseType
 public open class FontFile : Font() {
@@ -163,7 +146,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font style flags, see [enum TextServer.FontStyle].
+   * Font style flags, see [TextServer.FontStyle].
    */
   public var fontStyle: TextServer.FontStyle
     @JvmName("getFontStyle_prop")
@@ -174,7 +157,8 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+   * Weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`,
+   * bold font weight is `700`.
    */
   public var fontWeight: Int
     @JvmName("getFontWeight_prop")
@@ -185,7 +169,8 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+   * Font stretch amount, compared to a normal width. A percentage value between `50&#37;` and
+   * `200&#37;`.
    */
   public var fontStretch: Int
     @JvmName("getFontStretch_prop")
@@ -196,7 +181,10 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of higher memory usage and lower font rasterization speed. Use [godot.TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
+   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better
+   * kerning for smaller font sizes, at the cost of higher memory usage and lower font rasterization
+   * speed. Use [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font
+   * size.
    */
   public var subpixelPositioning: TextServer.SubpixelPositioning
     get() {
@@ -210,11 +198,20 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field (MSDF) generated from the dynamic font vector data. Since this approach does not rely on rasterizing the font every time its size changes, this allows for resizing the font in real-time without any performance penalty. Text will also not look grainy for [godot.Control]s that are scaled down (or for [godot.Label3D]s viewed from a long distance). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes.
-   *
-   * **Note:** If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline.
-   *
-   * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly. Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs, consider downloading the font file directly from the type foundry instead of relying on Google Fonts.
+   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
+   * field (MSDF) generated from the dynamic font vector data. Since this approach does not rely on
+   * rasterizing the font every time its size changes, this allows for resizing the font in real-time
+   * without any performance penalty. Text will also not look grainy for [Control]s that are scaled
+   * down (or for [Label3D]s viewed from a long distance). As a downside, font hinting is not available
+   * with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small
+   * sizes.
+   * **Note:** If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of
+   * the largest font outline.
+   * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly.
+   * Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many
+   * font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs,
+   * consider downloading the font file directly from the type foundry instead of relying on Google
+   * Fonts.
    */
   public var multichannelSignedDistanceField: Boolean
     get() {
@@ -228,7 +225,10 @@ public open class FontFile : Font() {
     }
 
   /**
-   * The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to look correct.
+   * The width of the range around the shape between the minimum and maximum representable signed
+   * distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the
+   * largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to
+   * look correct.
    */
   public var msdfPixelRange: Int
     get() {
@@ -242,7 +242,9 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering.
+   * Source font size used to generate MSDF textures. Higher values allow for more precision, but
+   * are slower to render and require more memory. Only increase this value if you notice a visible
+   * lack of precision in glyph rendering.
    */
   public var msdfSize: Int
     get() {
@@ -270,7 +272,8 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only (MSDF fonts don't support hinting).
+   * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by
+   * dynamic fonts only (MSDF fonts don't support hinting).
    */
   public var forceAutohinter: Boolean
     get() {
@@ -298,7 +301,8 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font oversampling factor. If set to `0.0`, the global oversampling factor is used instead. Used by dynamic fonts only (MSDF fonts ignore oversampling).
+   * Font oversampling factor. If set to `0.0`, the global oversampling factor is used instead. Used
+   * by dynamic fonts only (MSDF fonts ignore oversampling).
    */
   public var oversampling: Float
     get() {
@@ -360,8 +364,8 @@ public open class FontFile : Font() {
 
   /**
    * Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [path].
-   *
-   * **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.
+   * **Warning:** This method should only be used in the editor or in cases when you need to load
+   * external fonts at run-time, such as fonts located at the `user://` directory.
    */
   public fun loadBitmapFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -370,9 +374,10 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm) dynamic font from file [path].
-   *
-   * **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.
+   * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm)
+   * dynamic font from file [path].
+   * **Warning:** This method should only be used in the editor or in cases when you need to load
+   * external fonts at run-time, such as fonts located at the `user://` directory.
    */
   public fun loadDynamicFont(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -406,7 +411,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns list of the font sizes in the cache. Each size is [godot.Vector2i] with font size and outline size.
+   * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline
+   * size.
    */
   public fun getSizeCacheList(cacheIndex: Int): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -431,7 +437,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets variation coordinates for the specified font cache entry. See [godot.Font.getSupportedVariationList] for more info.
+   * Sets variation coordinates for the specified font cache entry. See
+   * [Font.getSupportedVariationList] for more info.
    */
   public fun setVariationCoordinates(cacheIndex: Int, variationCoordinates: Dictionary<Any?, Any?>):
       Unit {
@@ -440,7 +447,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns variation coordinates for the specified font cache entry. See [godot.Font.getSupportedVariationList] for more info.
+   * Returns variation coordinates for the specified font cache entry. See
+   * [Font.getSupportedVariationList] for more info.
    */
   public fun getVariationCoordinates(cacheIndex: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -449,7 +457,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets embolden strength, if is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
+   * Sets embolden strength, if is not equal to zero, emboldens the font outlines. Negative values
+   * reduce the outline thickness.
    */
   public fun setEmbolden(cacheIndex: Int, strength: Float): Unit {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), DOUBLE to strength.toDouble())
@@ -457,7 +466,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns embolden strength, if is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
+   * Returns embolden strength, if is not equal to zero, emboldens the font outlines. Negative
+   * values reduce the outline thickness.
    */
   public fun getEmbolden(cacheIndex: Int): Float {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -466,7 +476,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
+   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and
+   * rotating glyphs.
    */
   public fun setTransform(cacheIndex: Int, transform: Transform2D): Unit {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), TRANSFORM2D to transform)
@@ -474,7 +485,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
+   * Returns 2D transform, applied to the font outlines, can be used for slanting, flipping and
+   * rotating glyphs.
    */
   public fun getTransform(cacheIndex: Int): Transform2D {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -483,7 +495,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets the spacing for [spacing] (see [enum TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
+   * relative to the font size).
    */
   public fun setExtraSpacing(
     cacheIndex: Int,
@@ -495,7 +508,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns spacing for [spacing] (see [enum TextServer.SpacingType]) in pixels (not relative to the font size).
+   * Returns spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
+   * font size).
    */
   public fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
@@ -636,8 +650,8 @@ public open class FontFile : Font() {
 
   /**
    * Removes all textures from font cache entry.
-   *
-   * **Note:** This function will not remove glyphs associated with the texture, use [removeGlyph] to remove them manually.
+   * **Note:** This function will not remove glyphs associated with the texture, use [removeGlyph]
+   * to remove them manually.
    */
   public fun clearTextures(cacheIndex: Int, size: Vector2i): Unit {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
@@ -646,8 +660,8 @@ public open class FontFile : Font() {
 
   /**
    * Removes specified texture from the cache entry.
-   *
-   * **Note:** This function will not remove glyphs associated with the texture. Remove them manually using [removeGlyph].
+   * **Note:** This function will not remove glyphs associated with the texture. Remove them
+   * manually using [removeGlyph].
    */
   public fun removeTexture(
     cacheIndex: Int,
@@ -721,8 +735,8 @@ public open class FontFile : Font() {
 
   /**
    * Removes all rendered glyphs information from the cache entry.
-   *
-   * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
+   * **Note:** This function will not remove textures associated with the glyphs, use
+   * [removeTexture] to remove them manually.
    */
   public fun clearGlyphs(cacheIndex: Int, size: Vector2i): Unit {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
@@ -731,8 +745,8 @@ public open class FontFile : Font() {
 
   /**
    * Removes specified rendered glyph information from the cache entry.
-   *
-   * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
+   * **Note:** This function will not remove textures associated with the glyphs, use
+   * [removeTexture] to remove them manually.
    */
   public fun removeGlyph(
     cacheIndex: Int,
@@ -745,7 +759,6 @@ public open class FontFile : Font() {
 
   /**
    * Sets glyph advance (offset of the next glyph).
-   *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public fun setGlyphAdvance(
@@ -760,7 +773,6 @@ public open class FontFile : Font() {
 
   /**
    * Returns glyph advance (offset of the next glyph).
-   *
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
   public fun getGlyphAdvance(
@@ -958,7 +970,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Adds override for [godot.Font.isLanguageSupported].
+   * Adds override for [Font.isLanguageSupported].
    */
   public fun setLanguageSupportOverride(language: String, supported: Boolean): Unit {
     TransferContext.writeArguments(STRING to language, BOOL to supported)
@@ -993,7 +1005,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Adds override for [godot.Font.isScriptSupported].
+   * Adds override for [Font.isScriptSupported].
    */
   public fun setScriptSupportOverride(script: String, supported: Boolean): Unit {
     TransferContext.writeArguments(STRING to script, BOOL to supported)
@@ -1041,7 +1053,8 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See [getGlyphIndex].
+   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See
+   * [getGlyphIndex].
    */
   public fun getCharFromGlyphIndex(size: Int, glyphIndex: Int): Long {
     TransferContext.writeArguments(LONG to size.toLong(), LONG to glyphIndex.toLong())

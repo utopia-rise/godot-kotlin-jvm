@@ -17,8 +17,6 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * A boolean parameter to be used within the visual shader graph.
- *
  * Translated to `uniform bool` in the shader language.
  */
 @GodotBaseType

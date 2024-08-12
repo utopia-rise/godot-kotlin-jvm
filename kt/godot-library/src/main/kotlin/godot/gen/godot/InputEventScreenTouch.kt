@@ -25,12 +25,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Represents a screen touch event.
- *
- * Tutorials:
- * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
- *
- * Stores information about multi-touch press/release input events. Supports touch press, touch release and [index] for multi-touch count and order.
+ * Stores information about multi-touch press/release input events. Supports touch press, touch
+ * release and [index] for multi-touch count and order.
  */
 @GodotBaseType
 public open class InputEventScreenTouch : InputEventFromWindow() {
@@ -49,7 +45,8 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     }
 
   /**
-   * The touch position in the viewport the node is in, using the coordinate system of this viewport.
+   * The touch position in the viewport the node is in, using the coordinate system of this
+   * viewport.
    */
   @CoreTypeLocalCopy
   public var position: Vector2
@@ -105,7 +102,8 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   }
 
   /**
-   * The touch position in the viewport the node is in, using the coordinate system of this viewport.
+   * The touch position in the viewport the node is in, using the coordinate system of this
+   * viewport.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

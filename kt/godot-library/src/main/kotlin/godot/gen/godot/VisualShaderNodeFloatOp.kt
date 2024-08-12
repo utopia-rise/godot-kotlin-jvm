@@ -18,14 +18,12 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A floating-point scalar operator to be used within the visual shader graph.
- *
  * Applies [operator] to two floating-point inputs: `a` and `b`.
  */
 @GodotBaseType
 public open class VisualShaderNodeFloatOp : VisualShaderNode() {
   /**
-   * An operator to be applied to the inputs. See [enum Operator] for options.
+   * An operator to be applied to the inputs. See [Operator] for options.
    */
   public var `operator`: Operator
     get() {
@@ -63,7 +61,8 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
      */
     OP_DIV(3),
     /**
-     * Calculates the remainder of two numbers. Translates to `mod(a, b)` in the Godot Shader Language.
+     * Calculates the remainder of two numbers. Translates to `mod(a, b)` in the Godot Shader
+     * Language.
      */
     OP_MOD(4),
     /**
@@ -79,15 +78,17 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
      */
     OP_MIN(7),
     /**
-     * Returns the arc-tangent of the parameters. Translates to `atan(a, b)` in the Godot Shader Language.
+     * Returns the arc-tangent of the parameters. Translates to `atan(a, b)` in the Godot Shader
+     * Language.
      */
     OP_ATAN2(8),
     /**
-     * Generates a step function by comparing `b`(x) to `a`(edge). Returns 0.0 if `x` is smaller than `edge` and otherwise 1.0. Translates to `step(a, b)` in the Godot Shader Language.
+     * Generates a step function by comparing `b`(x) to `a`(edge). Returns 0.0 if `x` is smaller
+     * than `edge` and otherwise 1.0. Translates to `step(a, b)` in the Godot Shader Language.
      */
     OP_STEP(9),
     /**
-     * Represents the size of the [enum Operator] enum.
+     * Represents the size of the [Operator] enum.
      */
     OP_ENUM_SIZE(10),
     ;

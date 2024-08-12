@@ -12,12 +12,10 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Class representing a square mesh facing the camera.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/129](https://godotengine.org/asset-library/asset/129)
- *
- * Class representing a square [godot.PrimitiveMesh]. This flat mesh does not have a thickness. By default, this mesh is aligned on the X and Y axes; this rotation is more suited for use with billboarded materials. A [godot.QuadMesh] is equivalent to a [godot.PlaneMesh] except its default [godot.PlaneMesh.orientation] is [godot.PlaneMesh.FACE_Z].
+ * Class representing a square [PrimitiveMesh]. This flat mesh does not have a thickness. By
+ * default, this mesh is aligned on the X and Y axes; this rotation is more suited for use with
+ * billboarded materials. A [QuadMesh] is equivalent to a [PlaneMesh] except its default
+ * [PlaneMesh.orientation] is [PlaneMesh.FACE_Z].
  */
 @GodotBaseType
 public open class QuadMesh : PlaneMesh() {

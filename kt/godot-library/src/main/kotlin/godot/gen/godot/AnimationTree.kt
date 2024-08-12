@@ -24,14 +24,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A node used for advanced animation transitions in an [godot.AnimationPlayer].
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
- *
- * A node used for advanced animation transitions in an [godot.AnimationPlayer].
- *
- * **Note:** When linked with an [godot.AnimationPlayer], several properties and methods of the corresponding [godot.AnimationPlayer] will not function as expected. Playback and transitions should be handled using only the [godot.AnimationTree] and its constituent [godot.AnimationNode](s). The [godot.AnimationPlayer] node should be used solely for adding, deleting, and editing animations.
+ * A node used for advanced animation transitions in an [AnimationPlayer].
+ * **Note:** When linked with an [AnimationPlayer], several properties and methods of the
+ * corresponding [AnimationPlayer] will not function as expected. Playback and transitions should be
+ * handled using only the [AnimationTree] and its constituent [AnimationNode](s). The [AnimationPlayer]
+ * node should be used solely for adding, deleting, and editing animations.
  */
 @GodotBaseType
 public open class AnimationTree : AnimationMixer() {
@@ -41,7 +38,7 @@ public open class AnimationTree : AnimationMixer() {
   public val animationPlayerChanged: Signal0 by signal()
 
   /**
-   * The root animation node of this [godot.AnimationTree]. See [godot.AnimationRootNode].
+   * The root animation node of this [AnimationTree]. See [AnimationRootNode].
    */
   public var treeRoot: AnimationRootNode?
     get() {
@@ -55,7 +52,8 @@ public open class AnimationTree : AnimationMixer() {
     }
 
   /**
-   * The path to the [godot.Node] used to evaluate the [godot.AnimationNode] [godot.Expression] if one is not explicitly specified internally.
+   * The path to the [Node] used to evaluate the [AnimationNode] [Expression] if one is not
+   * explicitly specified internally.
    */
   public var advanceExpressionBaseNode: NodePath
     get() {
@@ -69,7 +67,7 @@ public open class AnimationTree : AnimationMixer() {
     }
 
   /**
-   * The path to the [godot.AnimationPlayer] used for animating.
+   * The path to the [AnimationPlayer] used for animating.
    */
   public var animPlayer: NodePath
     get() {
@@ -88,7 +86,7 @@ public open class AnimationTree : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
    */
   public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -96,7 +94,7 @@ public open class AnimationTree : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [enum AnimationMixer.AnimationCallbackModeProcess].
+   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
    */
   public fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
@@ -108,15 +106,15 @@ public open class AnimationTree : AnimationMixer() {
     id: Long,
   ) {
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
      */
     ANIMATION_PROCESS_PHYSICS(0),
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
      */
     ANIMATION_PROCESS_IDLE(1),
     /**
-     * For backward compatibility. See [godot.AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
+     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
      */
     ANIMATION_PROCESS_MANUAL(2),
     ;

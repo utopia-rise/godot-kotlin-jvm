@@ -25,18 +25,22 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstraction and base class for packet-based protocols.
- *
- * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low-level bytes or having to worry about network ordering.
- *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
+ * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides
+ * an API for sending and receiving packets both as raw data or variables. This makes it easy to
+ * transfer data over a protocol, without having to encode data as low-level bytes or having to worry
+ * about network ordering.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
+ * export preset before exporting the project or using one-click deploy. Otherwise, network
+ * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class PacketPeer internal constructor() : RefCounted() {
   /**
-   * Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier memory allocations.
-   *
-   * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than [encodeBufferMaxSize], the method will error out with [ERR_OUT_OF_MEMORY].
+   * Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier
+   * memory allocations.
+   * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically
+   * to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than
+   * [encodeBufferMaxSize], the method will error out with [ERR_OUT_OF_MEMORY].
    */
   public var encodeBufferMaxSize: Int
     get() {
@@ -56,10 +60,10 @@ public open class PacketPeer internal constructor() : RefCounted() {
 
   /**
    * Gets a Variant. If [allowObjects] is `true`, decoding objects is allowed.
-   *
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
-   *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
+   * if the serialized object comes from untrusted sources to avoid potential security threats such as
+   * remote code execution.
    */
   @JvmOverloads
   public fun getVar(allowObjects: Boolean = false): Any? {
@@ -69,8 +73,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a [Variant] as a packet. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
-   *
+   * Sends a [Variant] as a packet. If [fullObjects] is `true`, encoding objects is allowed (and can
+   * potentially include code).
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads

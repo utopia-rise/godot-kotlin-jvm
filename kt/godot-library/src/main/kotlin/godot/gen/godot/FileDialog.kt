@@ -28,9 +28,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A dialog for selecting files or directories in the filesystem.
- *
- * [godot.FileDialog] is a preset dialog used to choose files and directories in the filesystem. It supports filter masks. [godot.FileDialog] automatically sets its window title according to the [fileMode]. If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
+ * [FileDialog] is a preset dialog used to choose files and directories in the filesystem. It
+ * supports filter masks. [FileDialog] automatically sets its window title according to the [fileMode].
+ * If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
  */
 @GodotBaseType
 public open class FileDialog : ConfirmationDialog() {
@@ -50,7 +50,8 @@ public open class FileDialog : ConfirmationDialog() {
   public val dirSelected: Signal1<String> by signal("dir")
 
   /**
-   * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting [fileMode] to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
+   * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting
+   * [fileMode] to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
    */
   public var modeOverridesTitle: Boolean
     get() {
@@ -64,7 +65,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode].
+   * The dialog's open or save mode, which affects the selection behavior. See [FileMode].
    */
   public var fileMode: FileMode
     get() {
@@ -78,9 +79,10 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The file system access scope. See [enum Access] constants.
-   *
-   * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
+   * The file system access scope. See [Access] constants.
+   * **Warning:** Currently, in sandboxed environments such as Web builds or sandboxed macOS apps,
+   * FileDialog cannot access the host file system. See
+   * [url=https://github.com/godotengine/godot-proposals/issues/1123]godot-proposals#1123[/url].
    */
   public var access: Access
     get() {
@@ -94,7 +96,8 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * If non-empty, the given sub-folder will be "root" of this [godot.FileDialog], i.e. user won't be able to go to its parent directory.
+   * If non-empty, the given sub-folder will be "root" of this [FileDialog], i.e. user won't be able
+   * to go to its parent directory.
    */
   public var rootSubfolder: String
     get() {
@@ -108,7 +111,10 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will show both PNG and JPEG files when selected.
+   * The available file type filters. For example, this shows only `.png` and `.gd` files:
+   * `set_filters(PackedStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`. Multiple file
+   * types can also be specified in a single filter. `"*.png, *.jpg, *.jpeg ; Supported Images"` will
+   * show both PNG and JPEG files when selected.
    */
   public var filters: PackedStringArray
     get() {
@@ -136,8 +142,8 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * If `true`, [access] is set to [ACCESS_FILESYSTEM], and it is supported by the current [godot.DisplayServer], OS native dialog will be used instead of custom one.
-   *
+   * If `true`, [access] is set to [ACCESS_FILESYSTEM], and it is supported by the current
+   * [DisplayServer], OS native dialog will be used instead of custom one.
    * **Note:** On macOS, sandboxed apps always use native dialogs to access host filesystem.
    */
   public var useNativeDialog: Boolean
@@ -207,11 +213,12 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Adds a comma-delimited file name [filter] option to the [godot.FileDialog] with an optional [description], which restricts what files can be picked.
-   *
-   * A [filter] should be of the form `"filename.extension"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
-   *
-   * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter text "Images (*.png, *.jpg)".
+   * Adds a comma-delimited file name [filter] option to the [FileDialog] with an optional
+   * [description], which restricts what files can be picked.
+   * A [filter] should be of the form `"filename.extension"`, where filename and extension can be
+   * `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter
+   * text "Images (*.png, *.jpg)".
    */
   @JvmOverloads
   public fun addFilter(filter: String, description: String = ""): Unit {
@@ -221,8 +228,8 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Returns the vertical box container of the dialog, custom controls can be added to it.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
@@ -232,8 +239,8 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Returns the LineEdit for the selected file.
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
+   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
@@ -296,7 +303,7 @@ public open class FileDialog : ConfirmationDialog() {
     id: Long,
   ) {
     /**
-     * The dialog only allows accessing files under the [godot.Resource] path (`res://`).
+     * The dialog only allows accessing files under the [Resource] path (`res://`).
      */
     ACCESS_RESOURCES(0),
     /**
