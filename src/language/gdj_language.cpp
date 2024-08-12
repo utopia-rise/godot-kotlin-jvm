@@ -113,7 +113,7 @@ void GdjLanguage::get_reserved_words(List<String>* p_words) const {
     }
 }
 
-bool GdjLanguage::is_control_flow_keyword(String p_keyword) const {
+bool GdjLanguage::is_control_flow_keyword(const String& p_keyword) const {
     return false;
 }
 
@@ -136,7 +136,7 @@ Ref<Script> GdjLanguage::make_template(const String& p_template, const String& p
     return gdj_script;
 }
 
-Vector<ScriptLanguage::ScriptTemplate> GdjLanguage::get_built_in_templates(StringName p_object) {
+Vector<ScriptLanguage::ScriptTemplate> GdjLanguage::get_built_in_templates(const StringName& p_object) {
     return {};
 }
 

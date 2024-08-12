@@ -16,16 +16,16 @@ KtSignalInfo::KtSignalInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanc
 }
 
 KtSignalInfo::~KtSignalInfo() {
-    for (auto i = 0; i < arguments.size(); i++) {
-        delete arguments[i];
+    for (const KtPropertyInfo* argument : arguments) {
+        delete argument;
     }
 }
 
 MethodInfo KtSignalInfo::get_member_info() const {
     MethodInfo method_info;
     method_info.name = name;
-    for (int i = 0; i < arguments.size(); i++) {
-        method_info.arguments.push_back(arguments[i]->toPropertyInfo());
+    for (const KtPropertyInfo* argument : arguments) {
+        method_info.arguments.push_back(argument->toPropertyInfo());
     }
     return method_info;
 }

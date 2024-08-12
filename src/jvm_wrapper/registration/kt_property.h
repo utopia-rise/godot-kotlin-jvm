@@ -37,7 +37,7 @@ public:
     String hint_string;
     bool visible_in_editor;
 
-    PropertyInfo toPropertyInfo();
+    PropertyInfo toPropertyInfo() const;
 
 
 };

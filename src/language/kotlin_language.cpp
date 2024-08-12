@@ -151,7 +151,7 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
     }
 }
 
-bool KotlinLanguage::is_control_flow_keyword(String p_keyword) const {
+bool KotlinLanguage::is_control_flow_keyword(const String& p_keyword) const {
     return p_keyword == "break" || p_keyword == "catch" || p_keyword == "continue" || p_keyword == "do"
         || p_keyword == "else" || p_keyword == "finally" || p_keyword == "for" || p_keyword == "if" || p_keyword == "return"
         || p_keyword == "when" || p_keyword == "throw" || p_keyword == "try" || p_keyword == "while";
@@ -180,7 +180,7 @@ Ref<Script> KotlinLanguage::make_template(const String& p_template, const String
     return kotlin_script;
 }
 
-Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(StringName p_object) {
+Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(const StringName& p_object) {
     Vector<ScriptLanguage::ScriptTemplate> templates;
     if (ClassDB::is_parent_class(p_object, "Node")) {
         ScriptLanguage::ScriptTemplate script_template {

@@ -23,7 +23,7 @@ KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmIns
     jname.delete_local_ref(p_env);
 }
 
-PropertyInfo KtPropertyInfo::toPropertyInfo() {
+PropertyInfo KtPropertyInfo::toPropertyInfo() const {
     PropertyInfo info;
     info.type = type;
     info.name = name;
