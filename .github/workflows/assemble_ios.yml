@@ -22,8 +22,12 @@ jobs:
           repository: godotengine/godot
           ref: ${{ inputs.godot-version }}
 
+      # Python must be kept below 3.12
+      #https://github.com/KhronosGroup/MoltenVK/blob/3b9e335fe8fc8a72cf6099acbd54128889445c0a/.github/workflows/CI.yml#L44
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
+        with:
+          python-version: 3.11
 
       - name: Download ios export template binaries
         uses: actions/download-artifact@v4
@@ -36,7 +40,7 @@ jobs:
         with:
           repository: KhronosGroup/MoltenVK
           path: MoltenVk
-          ref: v1.2.6
+          ref: v1.2.10
 
       - name: Build MoltenVK
         run: |
