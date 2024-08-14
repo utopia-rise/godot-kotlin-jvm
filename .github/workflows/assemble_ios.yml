@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   create-ios-export-template-universal:
-    runs-on: macos-latest
+    runs-on: macos-13 #MoltenVK is built differently if using macos-14+
     name: Assemble iOS export template
     steps:
       - name: Clone Godot Engine
