@@ -48,53 +48,6 @@ import godot.signals.Signal
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
-@PublishedApi
-internal val variantMapper = mutableMapOf(
-    Unit::class to NIL,
-    Any::class to ANY,
-    java.lang.Object::class to ANY,
-    Boolean::class to BOOL,
-    Int::class to JVM_INT,
-    Long::class to LONG,
-    Float::class to JVM_FLOAT,
-    Byte::class to JVM_BYTE,
-    Double::class to DOUBLE,
-    String::class to STRING,
-    godot.core.AABB::class to AABB,
-    Basis::class to BASIS,
-    Color::class to COLOR,
-    StringName::class to STRING_NAME,
-    Dictionary::class to DICTIONARY,
-    VariantArray::class to ARRAY,
-    Plane::class to PLANE,
-    NodePath::class to NODE_PATH,
-    Quaternion::class to QUATERNION,
-    Rect2::class to RECT2,
-    Rect2i::class to RECT2I,
-    RID::class to _RID,
-    Transform3D::class to TRANSFORM3D,
-    Transform2D::class to TRANSFORM2D,
-    Vector2::class to VECTOR2,
-    Vector2i::class to VECTOR2I,
-    Vector3::class to VECTOR3,
-    Vector3i::class to VECTOR3I,
-    Vector4::class to VECTOR4,
-    Vector4i::class to VECTOR4I,
-    Projection::class to PROJECTION,
-    NativeCallable::class to CALLABLE,
-    KtCallable::class to CALLABLE,
-    Signal::class to SIGNAL,
-    PackedByteArray::class to PACKED_BYTE_ARRAY,
-    PackedColorArray::class to PACKED_COLOR_ARRAY,
-    PackedInt32Array::class to PACKED_INT_32_ARRAY,
-    PackedInt64Array::class to PACKED_INT_64_ARRAY,
-    PackedFloat32Array::class to PACKED_FLOAT_32_ARRAY,
-    PackedFloat64Array::class to PACKED_FLOAT_64_ARRAY,
-    PackedStringArray::class to PACKED_STRING_ARRAY,
-    PackedVector2Array::class to PACKED_VECTOR2_ARRAY,
-    PackedVector3Array::class to PACKED_VECTOR3_ARRAY
-)
-
 private var ByteBuffer.bool: Boolean
     get() = int == 1
     set(value) {

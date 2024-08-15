@@ -5,6 +5,7 @@
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
 #include "jvm_wrapper/bridge/gd_print_bridge.h"
 #include "jvm_wrapper/bridge/node_path_bridge.h"
+#include "jvm_wrapper/bridge/packed_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_byte_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_color_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_float_32_array_bridge.h"
@@ -94,6 +95,8 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     return true;
 }
 
+inline static constexpr const char packed_color_array_fqdn[] = "godot.core.PackedColorArray$Bridge";
+
 bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader) {
     Bootstrap::initialize_jni_binding(p_env, class_loader);
     KtObject::initialize_jni_binding(p_env, class_loader);
@@ -123,8 +126,8 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
         && bridges::PackedColorArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedFloat32ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedFloat64ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedInt32IntArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedInt64IntArrayBridge::initialize(p_env, class_loader)
+        && bridges::PackedInt32ArrayBridge::initialize(p_env, class_loader)
+        && bridges::PackedInt64ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedStringArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader);
@@ -150,8 +153,8 @@ void JvmManager::destroy_jni_classes() {
     bridges::PackedColorArrayBridge::destroy();
     bridges::PackedFloat32ArrayBridge::destroy();
     bridges::PackedFloat64ArrayBridge::destroy();
-    bridges::PackedInt32IntArrayBridge::destroy();
-    bridges::PackedInt64IntArrayBridge::destroy();
+    bridges::PackedInt32ArrayBridge::destroy();
+    bridges::PackedInt64ArrayBridge::destroy();
     bridges::PackedStringArrayBridge::destroy();
     bridges::PackedVector2ArrayBridge::destroy();
     bridges::PackedVector3ArrayBridge::destroy();

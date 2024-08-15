@@ -34,6 +34,25 @@ public:                                                                         
                                                                                      \
 private:
 
+#define INIT_JNI_BINDINGS_TEMPLATE(...)                                                       \
+                                                                                              \
+public:                                                                                       \
+    static void initialize_jni_binding(jni::Env& p_env, ClassLoader* class_loader) {          \
+        Vector<jni::JNativeMethod> methods;                                                   \
+        jni::JClass clazz;                                                                    \
+        if (class_loader) {                                                                   \
+            clazz = class_loader->load_class(p_env, fq_name);                                 \
+        } else {                                                                              \
+            clazz = p_env.find_class(fq_name);                                                \
+        }                                                                                     \
+                                                                                              \
+        __VA_ARGS__                                                                           \
+        if (methods.size() > 0) { clazz.register_natives(p_env, methods); }                   \
+        clazz.delete_local_ref(p_env);                                                        \
+    }                                                                                         \
+                                                                                              \
+private:
+
 /**
  * This class wraps a JObject representing a JVM instance.
  * This class is a base that allows to setup JavaToNative and NativeToJava call easily.
@@ -60,7 +79,7 @@ public:
 
     void swap_to_weak_unsafe(jni::Env& p_env);
 
-    static const char* get_fully_qualified_name();
+    static constexpr const char* get_fully_qualified_name();
 
     static Derived* create_instance(jni::Env& p_env, ClassLoader* class_loader);
 };
@@ -119,7 +138,7 @@ void JvmInstanceWrapper<Derived, FqName>::swap_to_weak_unsafe(jni::Env& p_env) {
 }
 
 template<class Derived, const char* FqName>
-const char* JvmInstanceWrapper<Derived, FqName>::get_fully_qualified_name() {
+constexpr const char* JvmInstanceWrapper<Derived, FqName>::get_fully_qualified_name() {
     return FqName;
 }
 
