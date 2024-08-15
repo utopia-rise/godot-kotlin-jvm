@@ -2,10 +2,13 @@ package godot.gradle
 
 import godot.gradle.projectExt.checkKotlinVersionCompatibility
 import godot.gradle.projectExt.configureThirdPartyPlugins
+import godot.gradle.projectExt.godotCoroutineLibraryArtifactName
+import godot.gradle.projectExt.godotJvmExtension
 import godot.gradle.projectExt.setupConfigurationsAndCompilations
 import godot.gradle.projectExt.setupTasks
 import godot.gradle.properties.GodotKotlinJvmPropertiesFileImpl
 import godot.plugins.common.GodotKotlinJvmPropertiesFile
+import godot.utils.GodotBuildProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.tooling.provider.model.ToolingModelBuilder
@@ -18,24 +21,30 @@ abstract class GodotPlugin : Plugin<Project> {
     @get:Inject
     abstract val registry: ToolingModelBuilderRegistry
 
-    override fun apply(target: Project) {
-        target.checkKotlinVersionCompatibility()
+    override fun apply(target: Project) = with(target) {
+        checkKotlinVersionCompatibility()
 
-        val extension = target.extensions.create("godot", GodotExtension::class.java).also {
-            it.configureExtensionDefaults(target)
+        val extension = extensions.create("godot", GodotExtension::class.java).also {
+            it.configureExtensionDefaults(this)
         }
 
-        target.configureThirdPartyPlugins()
-        target.setupConfigurationsAndCompilations()
-        target.setupTasks()
+        configureThirdPartyPlugins()
+        setupConfigurationsAndCompilations()
+        setupTasks()
 
         // registers the tooling model builder, so it can be used by the ide plugin
-        target.afterEvaluate {
+        afterEvaluate {
+            if (godotJvmExtension.enableGodotCoroutines.get()) {
+                dependencies.add(
+                    "implementation",
+                    dependencies.create("com.utopia-rise:${godotCoroutineLibraryArtifactName}:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+                )
+            }
             registry.register(
                 PropertiesModelBuilder(
                     isFqNameRegistrationEnabled = extension.isFqNameRegistrationEnabled.get(),
                     isRegistrationFileHierarchyEnabled = extension.isRegistrationFileHierarchyEnabled.get(),
-                    registrationFileBaseDir = extension.registrationFileBaseDir.get().asFile.relativeTo(target.projectDir).path
+                    registrationFileBaseDir = extension.registrationFileBaseDir.get().asFile.relativeTo(projectDir).path
                 )
             )
         }
@@ -55,7 +64,7 @@ abstract class GodotPlugin : Plugin<Project> {
         private val isFqNameRegistrationEnabled: Boolean,
         private val isRegistrationFileHierarchyEnabled: Boolean,
         private val registrationFileBaseDir: String,
-    ): ToolingModelBuilder {
+    ) : ToolingModelBuilder {
         override fun canBuild(modelName: String): Boolean {
             return modelName == GodotKotlinJvmPropertiesFile::class.java.name
         }

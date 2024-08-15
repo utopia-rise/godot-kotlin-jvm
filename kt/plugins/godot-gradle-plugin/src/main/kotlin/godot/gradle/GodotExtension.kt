@@ -159,11 +159,19 @@ open class GodotExtension(objects: ObjectFactory) {
     val additionalGraalResourceConfigurationFiles = objects.property(Array<String>::class.java)
 
     /**
-     * enable verbose mode on native image generation.
+     * Enable verbose mode on native image generation.
      *
-     * if set to true, native-image tool will be in verbose mode.
+     * If set to true, native-image tool will be in verbose mode.
      */
     val isGraalVmNativeImageGenerationVerbose: Property<Boolean> = objects.property(Boolean::class.java)
+
+
+    /**
+     * Enable the use of coroutines in the context of Godot lifecycle callbacks (signals)
+     *
+     * If set to true, import godot-coroutine-library
+     */
+    val enableGodotCoroutines: Property<Boolean> = objects.property(Boolean::class.java)
 
     internal fun configureExtensionDefaults(target: Project) {
         val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
@@ -217,6 +225,8 @@ open class GodotExtension(objects: ObjectFactory) {
         additionalGraalReflectionConfigurationFiles.set(arrayOf())
         additionalGraalResourceConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
+
+        enableGodotCoroutines.set(false)
 
         System.getenv("VC_VARS_PATH")?.let {
             windowsDeveloperVCVarsPath.set(File(it))
