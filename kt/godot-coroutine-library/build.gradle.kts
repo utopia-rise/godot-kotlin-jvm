@@ -26,11 +26,9 @@ java {
 }
 
 dependencies {
-    // added here as a transitive dependency so the user can use reflection
-    // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
-    api(kotlin("reflect", version = libs.versions.kotlin.get()))
+    compileOnly(project(":godot-library"))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    testImplementation("junit", "junit", "4.12")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
 }
 
 val targetSuffix = if (isRelease) "release" else "debug"

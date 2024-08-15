@@ -9,3 +9,4 @@ script = ExtResource("1_on71t")
 [node name="GutControl" parent="." instance=ExtResource("1_qrxmy")]
 offset_right = 1171.0
 offset_bottom = 639.0
+bg_color = Color(0, 0, 0, 1)

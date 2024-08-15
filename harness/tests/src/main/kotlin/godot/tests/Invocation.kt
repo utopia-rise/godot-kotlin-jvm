@@ -40,6 +40,8 @@ import godot.core.Vector3
 import godot.core.asStringName
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
+import godot.coroutines.GodotCoroutine
+import godot.coroutines.await
 import godot.extensions.getNodeAs
 import godot.registration.Range
 import godot.signals.connect
@@ -392,6 +394,12 @@ class Invocation : Node3D() {
 
 	@RegisterFunction
 	override fun _ready() {
+        GodotCoroutine{
+            println("Before")
+            signalWithMultipleTargets.await()
+            println("After")
+        }
+
 		val formerName = name
 		println("Name is: $name")
 		setName("TestName")

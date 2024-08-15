@@ -2,6 +2,7 @@
 
 godotKotlinJvm = "0.9.1"
 kotlin = "2.0.20" # https://kotlinlang.org/docs/releases.html#release-details
+kotlinCoroutine = "1.8.1"
 godot = "4.3.0"
 
 shadowJar = "8.3.0" # https://github.com/johnrengelman/shadow/releases
