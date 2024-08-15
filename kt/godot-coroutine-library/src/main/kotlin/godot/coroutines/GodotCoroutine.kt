@@ -10,6 +10,6 @@ object GodotCoroutine {
     private val scope = CoroutineScope(EmptyCoroutineContext)
 
     operator fun invoke( block: suspend CoroutineScope.() -> Unit) {
-        scope.launch(Dispatchers.Default, CoroutineStart.DEFAULT, block)
+        scope.launch(Dispatchers.Unconfined, CoroutineStart.DEFAULT, block)
     }
 }

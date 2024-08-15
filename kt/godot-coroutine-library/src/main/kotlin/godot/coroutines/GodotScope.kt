@@ -1,9 +1,19 @@
 package godot.coroutines
 
-import godot.signals.Signal
-import kotlinx.coroutines.delay
+import godot.Object
+import godot.signals.Signal0
+import godot.signals.connect
 
-suspend fun Signal.await() {
-    delay(1000)
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
+
+
+suspend fun Signal0.await() {
+    return suspendCancellableCoroutine { cont: CancellableContinuation<Unit> ->
+            connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()){
+                cont.resume(Unit)
+            }
+    }
 }
 

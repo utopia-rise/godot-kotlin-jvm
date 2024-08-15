@@ -396,7 +396,7 @@ class Invocation : Node3D() {
 	override fun _ready() {
         GodotCoroutine{
             println("Before")
-            signalWithMultipleTargets.await()
+            noParam.await()
             println("After")
         }
 
