@@ -18,7 +18,7 @@ Once you have all the necessary dependencies, proceed to do the following:
 aligned to the current binding's version (e.g., current version `0.9.1-4.3.0`, we need Godot at `4.3.0` version).
 
 ```bash
-git clone git@github.com:godotengine/godot.git --branch 03afb92efa18874da19f7fc185a32c005d20aa1d --recursive
+git clone git@github.com:godotengine/godot.git --branch 4.3-stable --recursive
 ```
 
 2. In the `godot` directory, run the following command:

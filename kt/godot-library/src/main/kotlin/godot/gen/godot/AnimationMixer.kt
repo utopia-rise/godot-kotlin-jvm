@@ -374,7 +374,7 @@ public open class AnimationMixer internal constructor() : Node() {
    *     move_and_slide()
    * ```
    *
-   * By using this in combination with [getRootMotionPositionAccumulator], you can apply the root
+   * By using this in combination with [getRootMotionRotationAccumulator], you can apply the root
    * motion position more correctly to account for the rotation of the node.
    *
    * gdscript:

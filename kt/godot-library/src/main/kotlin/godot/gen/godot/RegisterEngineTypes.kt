@@ -202,6 +202,8 @@ public fun registerEngineTypes(): Unit {
       ::AudioStreamGenerator)
   TypeManager.registerEngineType("AudioStreamGeneratorPlayback",
       AudioStreamGeneratorPlayback::class, ::AudioStreamGeneratorPlayback)
+  TypeManager.registerEngineType("AudioStreamInteractive", AudioStreamInteractive::class,
+      ::AudioStreamInteractive)
   TypeManager.registerEngineType("AudioStreamMP3", AudioStreamMP3::class, ::AudioStreamMP3)
   TypeManager.registerEngineType("AudioStreamMicrophone", AudioStreamMicrophone::class,
       ::AudioStreamMicrophone)
@@ -209,21 +211,31 @@ public fun registerEngineTypes(): Unit {
       ::AudioStreamOggVorbis)
   TypeManager.registerEngineType("AudioStreamPlayback", AudioStreamPlayback::class,
       ::AudioStreamPlayback)
+  TypeManager.registerEngineType("AudioStreamPlaybackInteractive",
+      AudioStreamPlaybackInteractive::class, ::AudioStreamPlaybackInteractive)
   TypeManager.registerEngineType("AudioStreamPlaybackOggVorbis",
       AudioStreamPlaybackOggVorbis::class, ::AudioStreamPlaybackOggVorbis)
+  TypeManager.registerEngineType("AudioStreamPlaybackPlaylist", AudioStreamPlaybackPlaylist::class,
+      ::AudioStreamPlaybackPlaylist)
   TypeManager.registerEngineType("AudioStreamPlaybackPolyphonic",
       AudioStreamPlaybackPolyphonic::class, ::AudioStreamPlaybackPolyphonic)
   TypeManager.registerEngineType("AudioStreamPlaybackResampled",
       AudioStreamPlaybackResampled::class, ::AudioStreamPlaybackResampled)
+  TypeManager.registerEngineType("AudioStreamPlaybackSynchronized",
+      AudioStreamPlaybackSynchronized::class, ::AudioStreamPlaybackSynchronized)
   TypeManager.registerEngineType("AudioStreamPlayer", AudioStreamPlayer::class, ::AudioStreamPlayer)
   TypeManager.registerEngineType("AudioStreamPlayer2D", AudioStreamPlayer2D::class,
       ::AudioStreamPlayer2D)
   TypeManager.registerEngineType("AudioStreamPlayer3D", AudioStreamPlayer3D::class,
       ::AudioStreamPlayer3D)
+  TypeManager.registerEngineType("AudioStreamPlaylist", AudioStreamPlaylist::class,
+      ::AudioStreamPlaylist)
   TypeManager.registerEngineType("AudioStreamPolyphonic", AudioStreamPolyphonic::class,
       ::AudioStreamPolyphonic)
   TypeManager.registerEngineType("AudioStreamRandomizer", AudioStreamRandomizer::class,
       ::AudioStreamRandomizer)
+  TypeManager.registerEngineType("AudioStreamSynchronized", AudioStreamSynchronized::class,
+      ::AudioStreamSynchronized)
   TypeManager.registerEngineType("AudioStreamWAV", AudioStreamWAV::class, ::AudioStreamWAV)
   TypeManager.registerEngineType("BackBufferCopy", BackBufferCopy::class, ::BackBufferCopy)
   TypeManager.registerEngineType("BaseButton", BaseButton::class, ::BaseButton)
@@ -344,6 +356,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("EngineProfiler", EngineProfiler::class, ::EngineProfiler)
   TypeManager.registerEngineType("Environment", Environment::class, ::Environment)
   TypeManager.registerEngineType("Expression", Expression::class, ::Expression)
+  TypeManager.registerEngineType("FBXDocument", FBXDocument::class, ::FBXDocument)
+  TypeManager.registerEngineType("FBXState", FBXState::class, ::FBXState)
   TypeManager.registerEngineType("FastNoiseLite", FastNoiseLite::class, ::FastNoiseLite)
   TypeManager.registerEngineType("FileAccess", FileAccess::class, ::FileAccess)
   TypeManager.registerEngineType("FileDialog", FileDialog::class, ::FileDialog)
@@ -1346,18 +1360,24 @@ public fun registerVariantMapping(): Unit {
   variantMapper[AudioStream::class] = OBJECT
   variantMapper[AudioStreamGenerator::class] = OBJECT
   variantMapper[AudioStreamGeneratorPlayback::class] = OBJECT
+  variantMapper[AudioStreamInteractive::class] = OBJECT
   variantMapper[AudioStreamMP3::class] = OBJECT
   variantMapper[AudioStreamMicrophone::class] = OBJECT
   variantMapper[AudioStreamOggVorbis::class] = OBJECT
   variantMapper[AudioStreamPlayback::class] = OBJECT
+  variantMapper[AudioStreamPlaybackInteractive::class] = OBJECT
   variantMapper[AudioStreamPlaybackOggVorbis::class] = OBJECT
+  variantMapper[AudioStreamPlaybackPlaylist::class] = OBJECT
   variantMapper[AudioStreamPlaybackPolyphonic::class] = OBJECT
   variantMapper[AudioStreamPlaybackResampled::class] = OBJECT
+  variantMapper[AudioStreamPlaybackSynchronized::class] = OBJECT
   variantMapper[AudioStreamPlayer::class] = OBJECT
   variantMapper[AudioStreamPlayer2D::class] = OBJECT
   variantMapper[AudioStreamPlayer3D::class] = OBJECT
+  variantMapper[AudioStreamPlaylist::class] = OBJECT
   variantMapper[AudioStreamPolyphonic::class] = OBJECT
   variantMapper[AudioStreamRandomizer::class] = OBJECT
+  variantMapper[AudioStreamSynchronized::class] = OBJECT
   variantMapper[AudioStreamWAV::class] = OBJECT
   variantMapper[BackBufferCopy::class] = OBJECT
   variantMapper[BaseButton::class] = OBJECT
@@ -1459,6 +1479,8 @@ public fun registerVariantMapping(): Unit {
   variantMapper[EngineProfiler::class] = OBJECT
   variantMapper[Environment::class] = OBJECT
   variantMapper[Expression::class] = OBJECT
+  variantMapper[FBXDocument::class] = OBJECT
+  variantMapper[FBXState::class] = OBJECT
   variantMapper[FastNoiseLite::class] = OBJECT
   variantMapper[FileAccess::class] = OBJECT
   variantMapper[FileDialog::class] = OBJECT
@@ -2197,18 +2219,24 @@ public fun registerEngineTypeMethods(): Unit {
   AudioStream.MethodBindings
   AudioStreamGenerator.MethodBindings
   AudioStreamGeneratorPlayback.MethodBindings
+  AudioStreamInteractive.MethodBindings
   AudioStreamMP3.MethodBindings
   AudioStreamMicrophone.MethodBindings
   AudioStreamOggVorbis.MethodBindings
   AudioStreamPlayback.MethodBindings
+  AudioStreamPlaybackInteractive.MethodBindings
   AudioStreamPlaybackOggVorbis.MethodBindings
+  AudioStreamPlaybackPlaylist.MethodBindings
   AudioStreamPlaybackPolyphonic.MethodBindings
   AudioStreamPlaybackResampled.MethodBindings
+  AudioStreamPlaybackSynchronized.MethodBindings
   AudioStreamPlayer.MethodBindings
   AudioStreamPlayer2D.MethodBindings
   AudioStreamPlayer3D.MethodBindings
+  AudioStreamPlaylist.MethodBindings
   AudioStreamPolyphonic.MethodBindings
   AudioStreamRandomizer.MethodBindings
+  AudioStreamSynchronized.MethodBindings
   AudioStreamWAV.MethodBindings
   BackBufferCopy.MethodBindings
   BaseButton.MethodBindings
@@ -2310,6 +2338,8 @@ public fun registerEngineTypeMethods(): Unit {
   EngineProfiler.MethodBindings
   Environment.MethodBindings
   Expression.MethodBindings
+  FBXDocument.MethodBindings
+  FBXState.MethodBindings
   FastNoiseLite.MethodBindings
   FileAccess.MethodBindings
   FileDialog.MethodBindings

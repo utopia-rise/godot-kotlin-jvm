@@ -24,7 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [VisibleOnScreenEnabler3D] represents a box-shaped region of 3D space. When any part of this
+ * [VisibleOnScreenNotifier3D] represents a box-shaped region of 3D space. When any part of this
  * region becomes visible on screen or in a [Camera3D]'s view, it will emit a [signal screen_entered]
  * signal, and likewise it will emit a [signal screen_exited] signal when no part of it remains
  * visible.

@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * [VisibleOnScreenEnabler2D] represents a rectangular region of 2D space. When any part of this
+ * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
  * region becomes visible on screen or in a viewport, it will emit a [signal screen_entered] signal,
  * and likewise it will emit a [signal screen_exited] signal when no part of it remains visible.
  * If you want a node to be enabled automatically when this region is visible on screen, use
