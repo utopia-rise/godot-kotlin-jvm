@@ -2,8 +2,6 @@
 
 package godot.core
 
-import godot.core.bridge.packed.PackedArray
-import godot.core.bridge.packed.PackedArrayBridge
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

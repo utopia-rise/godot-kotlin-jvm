@@ -23,6 +23,7 @@
 #include "jvm_wrapper/registration/kt_class.h"
 #include "kotlin_callable_custom.h"
 #include "jvm_wrapper/bridge/kt_callable_bridge.h"
+#include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
 
 #include <jni.h>
 #include <locale>
@@ -130,7 +131,8 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
         && bridges::PackedInt64ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedStringArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader);
+        && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
+        && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
 }
 
 void JvmManager::destroy_jni_classes() {
@@ -158,6 +160,7 @@ void JvmManager::destroy_jni_classes() {
     bridges::PackedStringArrayBridge::destroy();
     bridges::PackedVector2ArrayBridge::destroy();
     bridges::PackedVector3ArrayBridge::destroy();
+    bridges::PackedVector4ArrayBridge::destroy();
 }
 
 void JvmManager::close_jvm() {

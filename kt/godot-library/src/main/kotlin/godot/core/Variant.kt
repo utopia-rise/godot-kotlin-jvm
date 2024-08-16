@@ -1,47 +1,8 @@
 package godot.core
 
 import godot.Object
-import godot.core.VariantType.AABB
-import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BASIS
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_BYTE
-import godot.core.VariantType.JVM_FLOAT
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_COLOR_ARRAY
-import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
-import godot.core.VariantType.PACKED_FLOAT_64_ARRAY
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_INT_64_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.PACKED_VECTOR3_ARRAY
-import godot.core.VariantType.PLANE
-import godot.core.VariantType.PROJECTION
-import godot.core.VariantType.QUATERNION
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.RECT2I
-import godot.core.VariantType.SIGNAL
-import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.TRANSFORM2D
-import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR2I
-import godot.core.VariantType.VECTOR3
-import godot.core.VariantType.VECTOR3I
-import godot.core.VariantType.VECTOR4
-import godot.core.VariantType.VECTOR4I
-import godot.core.VariantType._RID
 import godot.core.callable.KtCallable
 import godot.core.memory.MemoryManager
 import godot.signals.Signal
@@ -644,9 +605,19 @@ enum class VariantType(
             PACKED_COLOR_ARRAY.toGodotNativeCoreType<PackedColorArray>(buffer, any)
         }
     ),
+    PACKED_VECTOR4_ARRAY(
+        38,
+        { buffer: ByteBuffer, _: Int ->
+            val ptr = buffer.long
+            PackedVector4Array(ptr)
+        },
+        { buffer: ByteBuffer, any: Any ->
+            PACKED_VECTOR4_ARRAY.toGodotNativeCoreType<PackedVector4Array>(buffer, any)
+        }
+    ),
 
     VARIANT_MAX(
-        38,
+        39,
         { _: ByteBuffer, _: Int ->
             throw UnsupportedOperationException("Received VARIANT_MAX type, which should not happen.")
         },

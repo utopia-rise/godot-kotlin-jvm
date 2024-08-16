@@ -1,4 +1,6 @@
-package godot.core.bridge.packed
+@file:Suppress("PackageDirectoryMismatch")
+
+package godot.core
 
 import godot.core.NativeCoreType
 import godot.core.PackedByteArray

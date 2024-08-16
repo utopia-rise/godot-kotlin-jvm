@@ -6,43 +6,41 @@ import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 
-@Suppress("MemberVisibilityCanBePrivate", "unused")
-class PackedStringArray : PackedArray<PackedStringArray, String> {
-
+class PackedVector4Array : PackedArray<PackedVector4Array, Vector4> {
     override val bridge = Bridge
 
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR4_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
-        _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        _handle = bridge.engine_call_constructor()
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR4_ARRAY)
     }
 
     /**
-     * Constructs a [PackedStringArray] as a copy of the given [PackedStringArray].
+     * Constructs a [PackedVector4Array] as a copy of the given [PackedVector4Array].
      */
-    constructor(from: PackedStringArray) {
-        TransferContext.writeArguments(VariantType.PACKED_STRING_ARRAY to from)
+    constructor(from: PackedVector4Array) {
+        TransferContext.writeArguments(VariantType.PACKED_VECTOR4_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR4_ARRAY)
     }
 
     /**
-     * Constructs a new [PackedStringArray] by converting a [VariantArray]<[String]>.
+     * Constructs a new [PackedVector4Array] by converting a [VariantArray]<[Vector4]>.
      */
-    constructor(from: VariantArray<String>) {
+    constructor(from: VariantArray<Vector4>) {
         TransferContext.writeArguments(VariantType.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR4_ARRAY)
     }
 
     override fun toString(): String {
-        return "PoolStringArray(${size})"
+        return "PoolVector4Array(${size})"
     }
 
     /**
@@ -50,7 +48,7 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PackedStringArray) {
+        return if (other is PackedVector4Array) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2
@@ -63,11 +61,10 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
         return _handle.hashCode()
     }
 
-
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_STRING_ARRAY
-        override val elementVariantType = VariantType.STRING
+        override val packedArrayVariantType = VariantType.PACKED_VECTOR4_ARRAY
+        override val elementVariantType = VariantType.VECTOR4
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

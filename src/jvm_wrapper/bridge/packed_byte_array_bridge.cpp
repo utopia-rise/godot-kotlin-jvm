@@ -292,13 +292,24 @@ void PackedByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env,
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf16(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    instance.call(SNAME("get_string_from_utf16"));
+    Variant ret {instance.call(SNAME("get_string_from_utf16"))};
+    TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf32(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
     Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    instance.call(SNAME("get_string_from_utf32"));
+    Variant ret {instance.call(SNAME("get_string_from_utf32"))};
+    TransferContext::get_instance().write_return_value(env, ret);
+}
+
+void PackedByteArrayBridge::engine_call_get_string_from_wchar(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant ret {instance.call(SNAME("get_string_from_wchar"))};
+    TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

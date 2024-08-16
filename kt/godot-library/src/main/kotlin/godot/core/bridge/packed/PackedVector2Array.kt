@@ -2,11 +2,8 @@
 
 package godot.core
 
-import godot.core.bridge.packed.PackedArray
-import godot.core.bridge.packed.PackedArrayBridge
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -15,7 +12,7 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
     override val bridge = Bridge
 
     //INTERNALS
-    internal constructor(_handle: VoidPtr) {
+    internal constructor(@Suppress("LocalVariableName") _handle: VoidPtr) {
         this._handle = _handle
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
     }
@@ -23,6 +20,24 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
     //CONSTRUCTOR
     constructor() {
         _handle = bridge.engine_call_constructor()
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
+    }
+
+    /**
+     * Constructs a [PackedVector2Array] as a copy of the given [PackedVector2Array].
+     */
+    constructor(from: PackedVector2Array) {
+        TransferContext.writeArguments(VariantType.PACKED_VECTOR2_ARRAY to from)
+        _handle = Bridge.engine_call_constructor_packed_array()
+        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
+    }
+
+    /**
+     * Constructs a new [PackedVector2Array] by converting a [VariantArray]<[Vector2]>.
+     */
+    constructor(from: VariantArray<Vector2>) {
+        TransferContext.writeArguments(VariantType.ARRAY to from)
+        _handle = Bridge.engine_call_constructor_array()
         MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
     }
 

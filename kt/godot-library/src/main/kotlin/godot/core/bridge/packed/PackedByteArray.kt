@@ -2,11 +2,8 @@
 
 package godot.core
 
-import godot.core.bridge.packed.PackedArray
-import godot.core.bridge.packed.PackedArrayBridge
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -400,6 +397,15 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
     }
 
     /**
+     * Converts wide character (wchar_t, UTF-16 on Windows, UTF-32 on other platforms) encoded array to String.
+     * Returns empty string if source array is not valid wide string.
+     */
+    fun getStringFromWchar(): String {
+        Bridge.engine_call_get_string_from_wchar(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING) as String
+    }
+
+    /**
      * Returns a copy of the array's contents as String.
      * Slower than get_string_from_ascii but supports UTF-8 encoded data.
      * Use this function if you are unsure about the source of the data.
@@ -514,6 +520,7 @@ class PackedByteArray : PackedArray<PackedByteArray, Byte> {
         external fun engine_call_get_string_from_ascii(_handle: VoidPtr)
         external fun engine_call_get_string_from_utf16(_handle: VoidPtr)
         external fun engine_call_get_string_from_utf32(_handle: VoidPtr)
+        external fun engine_call_get_string_from_wchar(_handle: VoidPtr)
         external fun engine_call_get_string_from_utf8(_handle: VoidPtr)
         external override fun engine_call_has(_handle: VoidPtr)
         external fun engine_call_has_encoded_var(_handle: VoidPtr)
