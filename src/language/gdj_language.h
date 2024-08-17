@@ -13,6 +13,7 @@ public:
     static GdjLanguage* get_instance();
 
     void init() override;
+    void frame() override;
 
     void thread_enter() override;
     void thread_exit() override;

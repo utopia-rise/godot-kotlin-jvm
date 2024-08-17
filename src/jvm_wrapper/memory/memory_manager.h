@@ -10,18 +10,14 @@
 JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     SINGLETON_CLASS(MemoryManager)
 
-    JNI_METHOD(START)
+    JNI_METHOD(MANAGE_MEMORY)
     JNI_METHOD(SET_DISPLAY)
     JNI_METHOD(CLEAN_UP)
-    JNI_METHOD(IS_CLOSED)
-    JNI_METHOD(CLOSE)
 
     INIT_JNI_BINDINGS(
-        INIT_JNI_METHOD(START, "start", "(Z)V")
+        INIT_JNI_METHOD(MANAGE_MEMORY, "manageMemory", "()B")
         INIT_JNI_METHOD(SET_DISPLAY, "setShouldDisplayLeakInstancesOnClose", "(Z)V")
         INIT_JNI_METHOD(CLEAN_UP, "cleanUp", "()V")
-        INIT_JNI_METHOD(IS_CLOSED, "isClosed", "()Z")
-        INIT_JNI_METHOD(CLOSE, "close", "()V")
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryManager::decrement_ref_counter)
         INIT_NATIVE_METHOD("bindInstance", "(JLgodot/core/memory/GodotBinding;)V", MemoryManager::bind_instance)
@@ -43,11 +39,9 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     static void notify_leak(JNIEnv* p_raw_env, jobject p_instance);
 
 public:
-    void start(jni::Env& p_env, bool force_gc);
+    void manageMemory(jni::Env& p_env);
     void setDisplayLeaks(jni::Env& p_env, bool b);
     void clean_up(jni::Env& p_env);
-    bool is_closed(jni::Env& p_env);
-    void close(jni::Env& p_env);
 };
 // clang-format on
 #endif// GODOT_JVM_MEMORY_MANAGER_H

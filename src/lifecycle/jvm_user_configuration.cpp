@@ -101,19 +101,6 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         }
         json_dict.erase(MAX_STRING_SIZE_JSON_IDENTIFIER);
     }
-    if (json_dict.has(FORCE_GC_JSON_IDENTIFIER)) {
-        String boolean = json_dict[FORCE_GC_JSON_IDENTIFIER];
-        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", FORCE_GC_JSON_IDENTIFIER, boolean));
-        if (boolean == TRUE_STRING) {
-            json_config.force_gc = true;
-        } else if (boolean == FALSE_STRING) {
-            json_config.force_gc = false;
-        } else {
-            is_invalid = true;
-            LOG_WARNING(vformat("Invalid Force GC value in configuration file: %s. It will be ignored", boolean));
-        }
-        json_dict.erase(FORCE_GC_JSON_IDENTIFIER);
-    }
     if (json_dict.has(DISABLE_GC_JSON_IDENTIFIER)) {
         String boolean = json_dict[DISABLE_GC_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DISABLE_GC_JSON_IDENTIFIER, boolean));
@@ -204,7 +191,6 @@ String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfigura
 
     json[MAX_STRING_SIZE_JSON_IDENTIFIER] = configuration.max_string_size;
 
-    json[FORCE_GC_JSON_IDENTIFIER] = configuration.force_gc;
     json[DISABLE_GC_JSON_IDENTIFIER] = configuration.disable_gc;
     json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = configuration.disable_leak_warning_on_close;
 
@@ -299,8 +285,6 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             } else {
                 LOG_WARNING(vformat("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size));
             }
-        } else if (identifier == FORCE_GC_CMD_IDENTIFIER) {
-            configuration_map[FORCE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == DISABLE_GC_CMD_IDENTIFIER) {
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         } else if (identifier == DISABLE_LEAK_WARNING_CMD_IDENTIFIER) {
@@ -334,7 +318,6 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
 
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_jmx_port, JMX_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.max_string_size, MAX_STRING_SIZE_CMD_IDENTIFIER);
-    replace_json_value_by_cmd_value(cmd_map, json_config.force_gc, FORCE_GC_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_gc, DISABLE_GC_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_leak_warning_on_close, DISABLE_LEAK_WARNING_CMD_IDENTIFIER);
 }
@@ -346,14 +329,6 @@ void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& 
           "Be aware that it might impact performance and memory usage.",
           config.max_string_size
         ));
-    }
-
-    // Initialize if jvm GC should be forced
-    if (config.force_gc) {
-        config.disable_gc = false;
-        LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose");
-    } else if (config.disable_gc) {
-        LOG_WARNING("GC thread was disable. this should only be used for debugging purpose");
     }
 
     if (config.disable_leak_warning_on_close) {

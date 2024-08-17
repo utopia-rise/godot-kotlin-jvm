@@ -7,21 +7,15 @@ import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.VariantType
 import godot.util.VoidPtr
-import godot.util.info
 import godot.util.warning
 import java.lang.ref.ReferenceQueue
-import java.lang.ref.WeakReference
 import java.time.Duration
 import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
 internal object MemoryManager {
-    /** The delay between 2 iterations of the memory manager. Set to 60fps.*/
-    private const val DELAY = 1000L / 60L
-
     /** Number of references to check each loop.*/
     private const val CHECK_NUMBER = 256
 
@@ -61,13 +55,9 @@ internal object MemoryManager {
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
-    private var forceJvmGarbageCollector = false
-
     // Not private because accessed by engine.
     @Suppress("MemberVisibilityCanBePrivate")
     var shouldDisplayLeakInstancesOnClose = true
-
-    private var gcState = GCState.NONE
 
     // A basic LRU cache.
     private class LRUCache<K, V>(private val capacity: Int) : LinkedHashMap<K, V>(capacity, 0.75f, true) {
@@ -102,10 +92,6 @@ internal object MemoryManager {
     fun getOrCreateNodePath(key: StringName): NodePath {
         return getOrCreateNodePath(key.toString())
     }
-
-    @Suppress("unused")
-    val isClosed: Boolean
-        get() = gcState == GCState.CLOSED
 
     fun registerObject(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
@@ -185,31 +171,8 @@ internal object MemoryManager {
 
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
-    fun start(forceJvmGarbageCollector: Boolean) {
-        MemoryManager.forceJvmGarbageCollector = forceJvmGarbageCollector
-        gcState = GCState.STARTED
-        info("Starting GC thread")
-        executor.schedule(MemoryManager::run, 0, TimeUnit.MILLISECONDS)
-    }
-
-    private fun run() {
-        while (gcState == GCState.STARTED) {
-            if (forceJvmGarbageCollector) {
-                forceJvmGc()
-            }
-
-            var active = true
-            while (active) {
-                active = manageMemory()
-            }
-
-            Thread.sleep(DELAY)
-        }
-        gcState = GCState.CLOSED
-    }
 
     private fun manageMemory() = bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
-
 
     /**
      * Binding a newly created KtObject by setting itself in the c++ binding.
@@ -293,13 +256,6 @@ internal object MemoryManager {
         return isActive
     }
 
-    fun close() {
-        info("Closing GC thread")
-        gcState = GCState.CLOSING
-        executor.shutdown()
-        executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
-    }
-
     @Suppress("unused")
     fun cleanUp() {
         for (singletonIndex in singletonIndexes) {
@@ -323,7 +279,7 @@ internal object MemoryManager {
         var begin = Instant.now()
         while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
 
-            forceJvmGc()
+            System.gc()
             if (manageMemory()) {
                 begin = Instant.now()
             }
@@ -356,32 +312,11 @@ internal object MemoryManager {
         }
     }
 
-    /**
-     * Force JVM garbage collector to run
-     */
-    private fun forceJvmGc() {
-        var any: Any? = Any()
-        val wkRef = WeakReference(any)
-        @Suppress("UNUSED_VALUE")
-        any = null
-        while (wkRef.get() != null) {
-            System.gc()
-        }
-    }
-
     private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     private external fun bindInstance(instanceId: Long, obj: GodotBinding)
     private external fun unbindInstance(instanceId: Long)
     private external fun decrementRefCounter(instanceId: Long)
     private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
     private external fun notifyLeak()
-
-
-    private enum class GCState {
-        NONE,
-        STARTED,
-        CLOSING,
-        CLOSED
-    }
 
 }

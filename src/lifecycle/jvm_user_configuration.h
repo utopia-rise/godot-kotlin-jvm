@@ -12,7 +12,6 @@ static constexpr const char* DEBUG_ADDRESS_JSON_IDENTIFIER {"debug_address"};
 static constexpr const char* JMX_PORT_JSON_IDENTIFIER {"jmx_port"};
 static constexpr const char* WAIT_FOR_DEBUGGER_JSON_IDENTIFIER {"wait_for_debugger"};
 static constexpr const char* MAX_STRING_SIZE_JSON_IDENTIFIER {"max_string_size"};
-static constexpr const char* FORCE_GC_JSON_IDENTIFIER {"force_gc"};
 static constexpr const char* DISABLE_GC_JSON_IDENTIFIER {"disable_gc"};
 static constexpr const char* DISABLE_LEAK_WARNING_JSON_IDENTIFIER {"disable_closing_leaks_warning"};
 static constexpr const char* JVM_ARGUMENTS_JSON_IDENTIFIER {"jvm_args"};
@@ -25,7 +24,6 @@ static constexpr const char* DEBUG_ADDRESS_CMD_IDENTIFIER {"--jvm-debug-address"
 static constexpr const char* WAIT_FOR_DEBUGGER_CMD_IDENTIFIER {"--wait-for-debugger"};
 static constexpr const char* JMX_PORT_CMD_IDENTIFIER {"--jvm-jmx-port"};
 static constexpr const char* MAX_STRING_SIZE_CMD_IDENTIFIER {"--jvm-max-string-size"};
-static constexpr const char* FORCE_GC_CMD_IDENTIFIER {"--jvm-force-gc"};
 static constexpr const char* DISABLE_GC_CMD_IDENTIFIER {"--jvm-disable-gc"};
 static constexpr const char* DISABLE_LEAK_WARNING_CMD_IDENTIFIER {"--jvm-disable-closing-leaks-warning"};
 
@@ -52,7 +50,6 @@ struct JvmUserConfiguration {
     // -1 means "auto". The module will let the LongStringQueue::max_string_size as it is.
     int32_t max_string_size {-1};
 
-    bool force_gc {false};
     bool disable_gc {false};
 
     bool disable_leak_warning_on_close {false};
