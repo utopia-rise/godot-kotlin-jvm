@@ -30,9 +30,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamGeneratorPlayback internal constructor() :
     AudioStreamPlaybackResampled() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK, scriptIndex)
-    return true
   }
 
   /**

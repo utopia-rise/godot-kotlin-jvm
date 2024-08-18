@@ -14,7 +14,6 @@ import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -33,9 +32,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSION, scriptIndex)
-    return true
   }
 
   /**

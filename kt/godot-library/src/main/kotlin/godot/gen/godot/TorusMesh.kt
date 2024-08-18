@@ -13,12 +13,12 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class representing a torus [PrimitiveMesh].
@@ -81,9 +81,8 @@ public open class TorusMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRingSegmentsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TORUSMESH, scriptIndex)
-    return true
   }
 
   public companion object

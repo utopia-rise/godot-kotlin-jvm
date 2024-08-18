@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract base class for separators, used for separating other controls. [Separator]s are purely
@@ -17,9 +17,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Separator internal constructor() : Control() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SEPARATOR, scriptIndex)
-    return true
   }
 
   public companion object

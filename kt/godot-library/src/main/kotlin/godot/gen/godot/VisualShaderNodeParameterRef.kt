@@ -12,10 +12,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in
@@ -37,9 +37,8 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETERREF, scriptIndex)
-    return true
   }
 
   public companion object

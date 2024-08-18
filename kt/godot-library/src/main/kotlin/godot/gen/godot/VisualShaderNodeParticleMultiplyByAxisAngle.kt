@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node helps to multiply a position input vector by rotation using specific axis. Intended to
@@ -36,9 +37,8 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
       TransferContext.callMethod(rawPtr, MethodBindings.setDegreesModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE, scriptIndex)
-    return true
   }
 
   public companion object

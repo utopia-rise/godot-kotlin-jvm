@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Creates a 4×4 transform matrix using four vectors of type `vec3`. Each vector is one row in the
@@ -17,9 +17,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeTransformCompose : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCOMPOSE, scriptIndex)
-    return true
   }
 
   public companion object

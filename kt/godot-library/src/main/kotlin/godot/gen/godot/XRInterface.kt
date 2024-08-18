@@ -105,9 +105,8 @@ public open class XRInterface internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAnchorDetectionIsEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRINTERFACE, scriptIndex)
-    return true
   }
 
   /**

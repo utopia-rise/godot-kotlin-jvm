@@ -13,10 +13,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for
@@ -64,9 +64,8 @@ public open class PacketPeerStream : PacketPeer() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStreamPeerPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKETPEERSTREAM, scriptIndex)
-    return true
   }
 
   public companion object

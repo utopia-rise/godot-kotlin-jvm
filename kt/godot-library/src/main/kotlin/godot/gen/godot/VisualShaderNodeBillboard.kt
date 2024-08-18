@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The output port of this node needs to be connected to `Model View Matrix` port of
@@ -53,9 +54,8 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setKeepScaleEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBILLBOARD, scriptIndex)
-    return true
   }
 
   public enum class BillboardType(

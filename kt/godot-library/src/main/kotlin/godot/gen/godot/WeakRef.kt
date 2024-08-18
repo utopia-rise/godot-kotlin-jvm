@@ -12,9 +12,9 @@ import godot.core.VariantType.ANY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A weakref can hold a [RefCounted] without contributing to the reference counter. A weakref can be
@@ -27,9 +27,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class WeakRef : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEAKREF, scriptIndex)
-    return true
   }
 
   /**

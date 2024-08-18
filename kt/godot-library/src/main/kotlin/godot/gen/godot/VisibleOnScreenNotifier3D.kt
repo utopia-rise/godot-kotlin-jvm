@@ -58,9 +58,8 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER3D, scriptIndex)
-    return true
   }
 
   /**

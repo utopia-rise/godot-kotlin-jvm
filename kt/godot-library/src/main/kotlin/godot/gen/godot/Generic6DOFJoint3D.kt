@@ -30,9 +30,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Generic6DOFJoint3D : Joint3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GENERIC6DOFJOINT3D, scriptIndex)
-    return true
   }
 
   public fun setParamX(`param`: Param, `value`: Float): Unit {

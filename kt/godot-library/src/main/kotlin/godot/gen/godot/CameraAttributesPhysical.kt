@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's
@@ -173,9 +173,8 @@ public open class CameraAttributesPhysical : CameraAttributes() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMaxExposureValuePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERAATTRIBUTESPHYSICAL, scriptIndex)
-    return true
   }
 
   /**

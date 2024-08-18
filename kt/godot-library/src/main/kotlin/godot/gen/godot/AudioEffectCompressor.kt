@@ -14,11 +14,11 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Dynamic range compressor reduces the level of the sound when the amplitude goes over a certain
@@ -137,9 +137,8 @@ public open class AudioEffectCompressor : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSidechainPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, scriptIndex)
-    return true
   }
 
   public companion object

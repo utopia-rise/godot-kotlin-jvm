@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Determines how much of an audio signal is sent to the left and right buses.
@@ -37,9 +37,8 @@ public open class AudioEffectPanner : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPanPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTPANNER, scriptIndex)
-    return true
   }
 
   public companion object

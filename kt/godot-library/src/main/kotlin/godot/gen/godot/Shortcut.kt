@@ -21,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
@@ -46,9 +47,8 @@ public open class Shortcut : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHORTCUT, scriptIndex)
-    return true
   }
 
   /**

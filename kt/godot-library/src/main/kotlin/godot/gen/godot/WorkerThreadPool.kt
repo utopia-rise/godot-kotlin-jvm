@@ -76,9 +76,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object WorkerThreadPool : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_WORKERTHREADPOOL)
-    return false
   }
 
   /**

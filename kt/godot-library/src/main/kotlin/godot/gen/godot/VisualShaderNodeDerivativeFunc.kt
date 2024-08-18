@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node is only available in `Fragment` and `Light` visual shaders.
@@ -65,9 +65,8 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPrecisionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC, scriptIndex)
-    return true
   }
 
   public enum class OpType(

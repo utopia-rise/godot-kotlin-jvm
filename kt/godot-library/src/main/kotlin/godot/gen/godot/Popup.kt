@@ -9,9 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [Popup] is a base class for contextual windows and panels with fixed position. It's a modal by
@@ -24,9 +24,8 @@ public open class Popup : Window() {
    */
   public val popupHide: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_POPUP, scriptIndex)
-    return true
   }
 
   public companion object

@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved
@@ -42,9 +43,8 @@ public open class AnimatableBody3D : StaticBody3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATABLEBODY3D, scriptIndex)
-    return true
   }
 
   public companion object

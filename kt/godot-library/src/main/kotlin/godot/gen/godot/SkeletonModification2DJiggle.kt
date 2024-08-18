@@ -147,9 +147,8 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DJIGGLE, scriptIndex)
-    return true
   }
 
   /**

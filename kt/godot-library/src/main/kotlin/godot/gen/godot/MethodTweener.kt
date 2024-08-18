@@ -13,10 +13,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [MethodTweener] is similar to a combination of [CallbackTweener] and [PropertyTweener]. It calls
@@ -28,9 +28,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class MethodTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_METHODTWEENER, scriptIndex)
-    return true
   }
 
   /**

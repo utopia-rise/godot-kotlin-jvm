@@ -328,9 +328,8 @@ public open class CanvasItem internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseParentMaterialPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CANVASITEM, scriptIndex)
-    return true
   }
 
   /**

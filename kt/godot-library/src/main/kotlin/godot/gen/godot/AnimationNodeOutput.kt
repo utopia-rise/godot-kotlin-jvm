@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node created automatically in an [AnimationNodeBlendTree] that outputs the final animation.
  */
 @GodotBaseType
 public open class AnimationNodeOutput : AnimationNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEOUTPUT, scriptIndex)
-    return true
   }
 
   public companion object

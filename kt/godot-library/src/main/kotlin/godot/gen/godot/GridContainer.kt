@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [GridContainer] arranges its child controls in a grid layout. The number of columns is specified
@@ -41,9 +41,8 @@ public open class GridContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GRIDCONTAINER, scriptIndex)
-    return true
   }
 
   public companion object

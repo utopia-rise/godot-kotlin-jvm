@@ -419,9 +419,8 @@ public open class NavigationMesh : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONMESH, scriptIndex)
-    return true
   }
 
   /**

@@ -12,9 +12,9 @@ import godot.core.VariantType.ANY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A script implemented in the GDScript programming language, saved with the `.gd` extension. The
@@ -25,9 +25,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class GDScript : Script() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GDSCRIPT, scriptIndex)
-    return true
   }
 
   /**

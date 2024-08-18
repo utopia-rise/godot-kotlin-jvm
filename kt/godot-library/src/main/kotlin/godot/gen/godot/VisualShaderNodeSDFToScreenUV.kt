@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translates to `sdf_to_screen_uv(sdf_pos)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeSDFToScreenUV : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESDFTOSCREENUV, scriptIndex)
-    return true
   }
 
   public companion object

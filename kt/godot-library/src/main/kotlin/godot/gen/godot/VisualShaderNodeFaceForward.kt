@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translates to `faceforward(N, I, Nref)` in the shader language. The function has three vector
@@ -19,9 +19,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeFaceForward : VisualShaderNodeVectorBase() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFACEFORWARD, scriptIndex)
-    return true
   }
 
   public companion object

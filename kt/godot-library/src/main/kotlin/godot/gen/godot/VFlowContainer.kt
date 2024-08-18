@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A variant of [FlowContainer] that can only arrange its child controls vertically, wrapping them
@@ -18,9 +18,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VFlowContainer : FlowContainer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VFLOWCONTAINER, scriptIndex)
-    return true
   }
 
   public companion object

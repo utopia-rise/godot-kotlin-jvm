@@ -78,9 +78,8 @@ public object NavigationServer3D : Object() {
    */
   public val avoidanceDebugChanged: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
-    return false
   }
 
   /**

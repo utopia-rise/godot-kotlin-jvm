@@ -15,7 +15,6 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -57,9 +56,8 @@ public open class ArrayOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ARRAYOCCLUDER3D, scriptIndex)
-    return true
   }
 
   /**

@@ -14,10 +14,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [VisibleOnScreenEnabler2D] contains a rectangular region of 2D space and a target node. The
@@ -63,9 +63,8 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER2D, scriptIndex)
-    return true
   }
 
   public enum class EnableMode(

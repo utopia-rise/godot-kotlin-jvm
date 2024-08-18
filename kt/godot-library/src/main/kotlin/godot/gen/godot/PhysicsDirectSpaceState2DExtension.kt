@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can
@@ -26,9 +27,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION, scriptIndex)
-    return true
   }
 
   public fun isBodyExcludedFromQuery(body: RID): Boolean {

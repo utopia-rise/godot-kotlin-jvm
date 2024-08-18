@@ -26,9 +26,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioListener2D : Node2D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOLISTENER2D, scriptIndex)
-    return true
   }
 
   /**

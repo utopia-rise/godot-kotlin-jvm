@@ -463,9 +463,8 @@ public open class RichTextLabel : Control() {
           NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RICHTEXTLABEL, scriptIndex)
-    return true
   }
 
   /**

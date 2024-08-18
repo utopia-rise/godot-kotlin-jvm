@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A physics joint that connects two 2D physics bodies with a spring-like force. This resembles a
@@ -85,9 +85,8 @@ public open class DampedSpringJoint2D : Joint2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_DAMPEDSPRINGJOINT2D, scriptIndex)
-    return true
   }
 
   public companion object

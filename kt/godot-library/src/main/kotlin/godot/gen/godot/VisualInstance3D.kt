@@ -97,9 +97,8 @@ public open class VisualInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALINSTANCE3D, scriptIndex)
-    return true
   }
 
   public open fun _getAabb(): AABB {

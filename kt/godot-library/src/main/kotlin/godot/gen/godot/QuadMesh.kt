@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class representing a square [PrimitiveMesh]. This flat mesh does not have a thickness. By
@@ -19,9 +19,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class QuadMesh : PlaneMesh() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_QUADMESH, scriptIndex)
-    return true
   }
 
   public companion object

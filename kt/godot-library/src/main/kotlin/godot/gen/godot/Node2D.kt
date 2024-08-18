@@ -210,9 +210,8 @@ public open class Node2D : CanvasItem() {
       TransferContext.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NODE2D, scriptIndex)
-    return true
   }
 
   /**

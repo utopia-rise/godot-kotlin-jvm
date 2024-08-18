@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The PointMesh is made from a single point. Instead of relying on triangles, points are rendered
@@ -24,9 +24,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PointMesh : PrimitiveMesh() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_POINTMESH, scriptIndex)
-    return true
   }
 
   public companion object

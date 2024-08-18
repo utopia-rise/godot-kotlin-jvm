@@ -1918,9 +1918,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BASEMATERIAL3D, scriptIndex)
-    return true
   }
 
   /**

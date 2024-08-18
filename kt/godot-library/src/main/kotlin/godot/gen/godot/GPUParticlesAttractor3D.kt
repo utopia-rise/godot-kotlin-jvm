@@ -13,12 +13,12 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Particle attractors can be used to attract particles towards the attractor's origin, or to push
@@ -101,9 +101,8 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
       TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTOR3D, scriptIndex)
-    return true
   }
 
   public companion object

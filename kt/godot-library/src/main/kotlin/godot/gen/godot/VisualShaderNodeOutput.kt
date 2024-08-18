@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This visual shader node is present in all shader graphs in form of "Output" block with multiple
@@ -17,9 +17,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeOutput internal constructor() : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEOUTPUT, scriptIndex)
-    return true
   }
 
   public companion object

@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`
@@ -65,9 +65,8 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConditionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOMPARE, scriptIndex)
-    return true
   }
 
   public enum class ComparisonType(

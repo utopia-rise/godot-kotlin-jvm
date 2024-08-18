@@ -105,9 +105,8 @@ public open class StyleBoxLine : StyleBox() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_STYLEBOXLINE, scriptIndex)
-    return true
   }
 
   /**

@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw
@@ -101,9 +102,8 @@ public open class CanvasGroup : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CANVASGROUP, scriptIndex)
-    return true
   }
 
   public companion object

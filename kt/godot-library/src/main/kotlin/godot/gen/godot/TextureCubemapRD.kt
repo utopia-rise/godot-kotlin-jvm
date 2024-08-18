@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This texture class allows you to use a cubemap texture created directly on the [RenderingDevice]
@@ -17,9 +17,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class TextureCubemapRD : TextureLayeredRD() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTURECUBEMAPRD, scriptIndex)
-    return true
   }
 
   public companion object

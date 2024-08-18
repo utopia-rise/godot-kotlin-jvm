@@ -14,9 +14,9 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [MultiMeshInstance2D] is a specialized node to instance a [MultiMesh] resource in 2D.
@@ -58,9 +58,8 @@ public open class MultiMeshInstance2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE2D, scriptIndex)
-    return true
   }
 
   public companion object

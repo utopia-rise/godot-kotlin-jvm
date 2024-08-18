@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * UV functions are similar to [Vector2] functions, but the input port of this node uses the
@@ -37,9 +37,8 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUVFUNC, scriptIndex)
-    return true
   }
 
   public enum class Function(

@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is
@@ -89,9 +90,8 @@ public open class PhysicsMaterial : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAbsorbentPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSMATERIAL, scriptIndex)
-    return true
   }
 
   public companion object

@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Returns falloff based on the dot product of surface normal and view direction of camera (pass
@@ -17,9 +17,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeFresnel : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFRESNEL, scriptIndex)
-    return true
   }
 
   public companion object

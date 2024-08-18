@@ -13,9 +13,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be
@@ -47,9 +47,8 @@ public open class ViewportTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setViewportPathInScenePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VIEWPORTTEXTURE, scriptIndex)
-    return true
   }
 
   public companion object

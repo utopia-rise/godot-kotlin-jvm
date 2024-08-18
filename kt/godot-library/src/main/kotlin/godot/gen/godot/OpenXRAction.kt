@@ -15,11 +15,11 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
@@ -80,9 +80,8 @@ public open class OpenXRAction : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setToplevelPathsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRACTION, scriptIndex)
-    return true
   }
 
   public enum class ActionType(

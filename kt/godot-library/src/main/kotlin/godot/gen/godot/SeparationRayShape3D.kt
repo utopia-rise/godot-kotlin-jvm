@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 3D ray shape, intended for use in physics. Usually used to provide a shape for a
@@ -57,9 +58,8 @@ public open class SeparationRayShape3D : Shape3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSlideOnSlopePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE3D, scriptIndex)
-    return true
   }
 
   public companion object

@@ -341,9 +341,8 @@ public open class FastNoiseLite : Noise() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalGainPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FASTNOISELITE, scriptIndex)
-    return true
   }
 
   /**

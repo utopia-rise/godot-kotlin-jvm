@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A container that accepts only two child controls, then arranges them horizontally and creates a
@@ -18,9 +18,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class HSplitContainer : SplitContainer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_HSPLITCONTAINER, scriptIndex)
-    return true
   }
 
   public companion object

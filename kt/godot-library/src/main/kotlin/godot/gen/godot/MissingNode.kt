@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is an internal editor class intended for keeping data of nodes of unknown type (most likely
@@ -70,9 +71,8 @@ public open class MissingNode : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MISSINGNODE, scriptIndex)
-    return true
   }
 
   public companion object

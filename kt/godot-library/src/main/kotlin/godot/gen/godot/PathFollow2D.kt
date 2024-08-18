@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node takes its parent [Path2D], and returns the coordinates of a point within it, given a
@@ -139,9 +140,8 @@ public open class PathFollow2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PATHFOLLOW2D, scriptIndex)
-    return true
   }
 
   public companion object

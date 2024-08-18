@@ -249,9 +249,8 @@ public open class CharFXTransform : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CHARFXTRANSFORM, scriptIndex)
-    return true
   }
 
   /**

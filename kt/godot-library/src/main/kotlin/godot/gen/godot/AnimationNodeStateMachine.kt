@@ -94,9 +94,8 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setResetEndsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE, scriptIndex)
-    return true
   }
 
   /**

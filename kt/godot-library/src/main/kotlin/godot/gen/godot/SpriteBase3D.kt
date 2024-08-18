@@ -343,9 +343,8 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPRITEBASE3D, scriptIndex)
-    return true
   }
 
   /**

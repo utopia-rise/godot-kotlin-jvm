@@ -12,7 +12,6 @@ import godot.core.GodotError
 import godot.core.TypeManager
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
@@ -21,9 +20,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION, scriptIndex)
-    return true
   }
 
   public open fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {

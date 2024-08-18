@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -29,9 +28,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_PHYSICSSERVER2DMANAGER)
-    return false
   }
 
   /**

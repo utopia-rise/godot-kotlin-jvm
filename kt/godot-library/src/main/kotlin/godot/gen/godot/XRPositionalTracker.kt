@@ -111,9 +111,8 @@ public open class XRPositionalTracker : XRTracker() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRPOSITIONALTRACKER, scriptIndex)
-    return true
   }
 
   /**

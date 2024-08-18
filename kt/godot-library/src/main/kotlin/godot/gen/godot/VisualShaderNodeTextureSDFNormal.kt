@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translates to `texture_sdf_normal(sdf_pos)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeTextureSDFNormal : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURESDFNORMAL, scriptIndex)
-    return true
   }
 
   public companion object

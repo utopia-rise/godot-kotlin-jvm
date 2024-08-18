@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Similar to how a [WorldEnvironment] node can be used to override the environment while a specific
@@ -26,9 +26,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class ShaderGlobalsOverride : Node() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHADERGLOBALSOVERRIDE, scriptIndex)
-    return true
   }
 
   public companion object

@@ -20,6 +20,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
@@ -48,9 +49,8 @@ public open class ButtonGroup : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BUTTONGROUP, scriptIndex)
-    return true
   }
 
   /**

@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range
@@ -53,9 +54,8 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUINTPARAMETER, scriptIndex)
-    return true
   }
 
   public companion object

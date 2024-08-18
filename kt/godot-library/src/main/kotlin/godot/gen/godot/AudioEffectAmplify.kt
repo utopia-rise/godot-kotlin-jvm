@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Increases or decreases the volume being routed through the audio bus.
@@ -38,9 +38,8 @@ public open class AudioEffectAmplify : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY, scriptIndex)
-    return true
   }
 
   public companion object

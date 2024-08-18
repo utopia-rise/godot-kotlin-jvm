@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Reduces all frequencies below the [AudioEffectFilter.cutoffHz].
  */
 @GodotBaseType
 public open class AudioEffectLowShelfFilter : AudioEffectFilter() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTLOWSHELFFILTER, scriptIndex)
-    return true
   }
 
   public companion object

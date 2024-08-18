@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Uses three operands to compute `(a * b + c)` expression.
@@ -36,9 +36,8 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEMULTIPLYADD, scriptIndex)
-    return true
   }
 
   public enum class OpType(

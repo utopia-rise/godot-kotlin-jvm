@@ -97,9 +97,8 @@ public open class RemoteTransform3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUpdateScalePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_REMOTETRANSFORM3D, scriptIndex)
-    return true
   }
 
   /**

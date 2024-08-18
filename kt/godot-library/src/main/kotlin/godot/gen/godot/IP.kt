@@ -19,7 +19,6 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -45,9 +44,8 @@ public object IP : Object() {
    */
   public final const val RESOLVER_INVALID_ID: Long = -1
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_IP)
-    return false
   }
 
   /**

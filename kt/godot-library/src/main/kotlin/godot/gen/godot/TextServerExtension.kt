@@ -38,9 +38,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTSERVEREXTENSION, scriptIndex)
-    return true
   }
 
   /**

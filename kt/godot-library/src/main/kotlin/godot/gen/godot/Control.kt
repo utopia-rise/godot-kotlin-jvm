@@ -800,9 +800,8 @@ public open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, MethodBindings.setThemeTypeVariationPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONTROL, scriptIndex)
-    return true
   }
 
   /**

@@ -189,9 +189,8 @@ public open class NavigationObstacle3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUse3dAvoidancePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONOBSTACLE3D, scriptIndex)
-    return true
   }
 
   /**

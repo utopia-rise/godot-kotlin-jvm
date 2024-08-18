@@ -128,9 +128,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D, scriptIndex)
-    return true
   }
 
   /**

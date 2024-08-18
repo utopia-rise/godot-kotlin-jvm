@@ -87,9 +87,8 @@ public open class MainLoop : Object() {
    */
   public val onRequestPermissionsResult: Signal2<String, Boolean> by signal("permission", "granted")
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MAINLOOP, scriptIndex)
-    return true
   }
 
   /**

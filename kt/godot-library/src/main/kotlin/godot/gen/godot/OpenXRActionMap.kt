@@ -17,7 +17,6 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -64,9 +63,8 @@ public open class OpenXRActionMap : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRACTIONMAP, scriptIndex)
-    return true
   }
 
   /**

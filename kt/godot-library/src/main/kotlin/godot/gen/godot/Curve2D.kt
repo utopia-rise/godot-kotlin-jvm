@@ -66,9 +66,8 @@ public open class Curve2D : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CURVE2D, scriptIndex)
-    return true
   }
 
   /**

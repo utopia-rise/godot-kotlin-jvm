@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains
@@ -31,9 +32,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Texture3D : Texture() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTURE3D, scriptIndex)
-    return true
   }
 
   /**

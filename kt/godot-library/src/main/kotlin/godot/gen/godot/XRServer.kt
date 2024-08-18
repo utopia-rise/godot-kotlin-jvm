@@ -79,9 +79,8 @@ public object XRServer : Object() {
    */
   public val trackerRemoved: Signal2<StringName, Long> by signal("trackerName", "type")
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_XRSERVER)
-    return false
   }
 
   public fun getWorldScale(): Double {

@@ -453,9 +453,8 @@ public open class GPUParticles2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTrailSectionSubdivisionsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLES2D, scriptIndex)
-    return true
   }
 
   /**

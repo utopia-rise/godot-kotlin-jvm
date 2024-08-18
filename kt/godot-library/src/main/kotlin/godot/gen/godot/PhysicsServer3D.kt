@@ -66,9 +66,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object PhysicsServer3D : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_PHYSICSSERVER3D)
-    return false
   }
 
   public fun worldBoundaryShapeCreate(): RID {

@@ -45,9 +45,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object Performance : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_PERFORMANCE)
-    return false
   }
 
   /**

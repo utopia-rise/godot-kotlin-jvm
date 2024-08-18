@@ -126,9 +126,8 @@ public open class TileSetAtlasSource : TileSetSource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseTexturePaddingPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TILESETATLASSOURCE, scriptIndex)
-    return true
   }
 
   /**

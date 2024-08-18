@@ -22,7 +22,6 @@ import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -99,9 +98,8 @@ public open class MultiplayerSpawner : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSpawnFunctionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
-    return true
   }
 
   /**

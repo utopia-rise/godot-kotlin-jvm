@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Creates a `vec2`, `vec3` or `vec4` using scalar values that can be provided from separate inputs.
  */
 @GodotBaseType
 public open class VisualShaderNodeVectorCompose : VisualShaderNodeVectorBase() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORCOMPOSE, scriptIndex)
-    return true
   }
 
   public companion object

@@ -110,9 +110,8 @@ public open class RootMotionView : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setZeroYPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ROOTMOTIONVIEW, scriptIndex)
-    return true
   }
 
   /**

@@ -119,9 +119,8 @@ public open class OccluderInstance3D : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OCCLUDERINSTANCE3D, scriptIndex)
-    return true
   }
 
   /**

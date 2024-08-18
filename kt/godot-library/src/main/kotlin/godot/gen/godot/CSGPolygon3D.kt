@@ -25,6 +25,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An array of 2D points is extruded to quickly and easily create a variety of 3D meshes. See also
@@ -275,9 +276,8 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGPOLYGON3D, scriptIndex)
-    return true
   }
 
   public enum class Mode(

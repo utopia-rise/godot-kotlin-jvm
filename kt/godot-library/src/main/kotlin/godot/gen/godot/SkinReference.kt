@@ -13,9 +13,9 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An internal object containing a mapping from a [Skin] used within the context of a particular
@@ -31,9 +31,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class SkinReference internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKINREFERENCE, scriptIndex)
-    return true
   }
 
   /**

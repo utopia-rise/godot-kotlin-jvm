@@ -17,6 +17,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -69,9 +70,8 @@ public open class GradientTexture1D : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GRADIENTTEXTURE1D, scriptIndex)
-    return true
   }
 
   public companion object

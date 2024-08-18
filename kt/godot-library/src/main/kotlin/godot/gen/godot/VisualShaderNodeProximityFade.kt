@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The proximity fade effect fades out each pixel based on its distance to another object.
  */
 @GodotBaseType
 public open class VisualShaderNodeProximityFade : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPROXIMITYFADE, scriptIndex)
-    return true
   }
 
   public companion object

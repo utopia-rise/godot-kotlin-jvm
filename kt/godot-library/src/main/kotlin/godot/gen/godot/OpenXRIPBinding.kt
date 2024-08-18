@@ -60,9 +60,8 @@ public open class OpenXRIPBinding : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPathsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRIPBINDING, scriptIndex)
-    return true
   }
 
   /**

@@ -108,9 +108,8 @@ public open class TreeItem internal constructor() : Object() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCustomMinimumHeightPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TREEITEM, scriptIndex)
-    return true
   }
 
   /**

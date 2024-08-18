@@ -61,9 +61,8 @@ public open class SkeletonModification2D : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2D, scriptIndex)
-    return true
   }
 
   /**

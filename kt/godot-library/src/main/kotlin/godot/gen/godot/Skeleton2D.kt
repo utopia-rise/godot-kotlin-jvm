@@ -43,9 +43,8 @@ public open class Skeleton2D : Node2D() {
    */
   public val boneSetupChanged: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETON2D, scriptIndex)
-    return true
   }
 
   /**

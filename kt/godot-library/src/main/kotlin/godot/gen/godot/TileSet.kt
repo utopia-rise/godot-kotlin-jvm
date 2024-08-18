@@ -124,9 +124,8 @@ public open class TileSet : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUvClippingPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TILESET, scriptIndex)
-    return true
   }
 
   /**

@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is a helper spatial node for our camera; note that, if stereoscopic rendering is applicable
@@ -23,9 +23,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class XRCamera3D : Camera3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRCAMERA3D, scriptIndex)
-    return true
   }
 
   public companion object

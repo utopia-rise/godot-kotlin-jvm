@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
@@ -110,9 +111,8 @@ public open class PhysicalBone2D : RigidBody2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICALBONE2D, scriptIndex)
-    return true
   }
 
   /**

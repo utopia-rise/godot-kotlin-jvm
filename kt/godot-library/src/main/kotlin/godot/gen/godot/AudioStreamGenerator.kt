@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;
@@ -125,9 +125,8 @@ public open class AudioStreamGenerator : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR, scriptIndex)
-    return true
   }
 
   public companion object

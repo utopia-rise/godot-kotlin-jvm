@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when
@@ -329,9 +330,8 @@ public open class RDPipelineDepthStencilState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackOpReferencePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE, scriptIndex)
-    return true
   }
 
   public companion object

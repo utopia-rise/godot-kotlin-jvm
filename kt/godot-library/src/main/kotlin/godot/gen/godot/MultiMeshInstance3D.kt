@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
@@ -39,9 +39,8 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE3D, scriptIndex)
-    return true
   }
 
   public companion object

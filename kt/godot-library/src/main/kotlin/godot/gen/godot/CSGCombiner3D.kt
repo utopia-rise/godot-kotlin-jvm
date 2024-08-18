@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * For complex arrangements of shapes, it is sometimes needed to add structure to your CSG nodes.
@@ -25,9 +25,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class CSGCombiner3D : CSGShape3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGCOMBINER3D, scriptIndex)
-    return true
   }
 
   public companion object

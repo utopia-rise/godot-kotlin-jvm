@@ -23,10 +23,7 @@ internal object MemoryManager {
 
     /** Pointers to Godot objects.*/
     private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { null }
-
-    /** Indexes of singletons in [ObjectDB] */
-    private val singletonIndexes = mutableListOf<Int>()
-
+    
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
@@ -48,9 +45,6 @@ internal object MemoryManager {
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
-
-    /** Holds the instances to clean up when the JVM stops.*/
-    private var staticInstances = mutableSetOf<GodotStatic>()
 
     // Not private because accessed by engine.
     @Suppress("MemberVisibilityCanBePrivate")
@@ -130,26 +124,11 @@ internal object MemoryManager {
         }
     }
 
-    fun registerSingleton(instance: KtObject): GodotBinding {
-        synchronized(ObjectDB) {
-            val index = instance.id.index
-            return GodotBinding().also {
-                it.wrapper = instance
-                ObjectDB[index] = GodotNativeReference(it, refReferenceQueue, instance.id)
-                singletonIndexes.add(index)
-                bindingQueue.addLast(it)
-            }
-        }
-    }
-
     fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantType) {
         val rawPtr = nativeCoreType._handle
         nativeCoreTypeMap[rawPtr] = NativeCoreWeakReference(nativeCoreType, nativeReferenceQueue, variantType)
     }
 
-    fun registerStatic(instance: GodotStatic) {
-        staticInstances.add(instance)
-    }
 
     fun getInstance(id: Long): KtObject? {
         synchronized(ObjectDB) {
@@ -255,26 +234,19 @@ internal object MemoryManager {
 
     @Suppress("unused")
     fun cleanUp() {
-        for (singletonIndex in singletonIndexes) {
-            val id = ObjectDB[singletonIndex]!!.id
-            unbindInstance(id.id)
-            ObjectDB[singletonIndex] = null
-        }
 
-        while (staticInstances.size > 0) {
-            val iterator = staticInstances.iterator()
-            staticInstances = mutableSetOf()
-            for (instance in iterator) {
-                instance.collect()
+        // Get through all remaining [RefCounted] instance and decrement their pointers.
+        for (ref in ObjectDB.filterNotNull()) {
+            if(ref.id.isReference) {
+                decrementRefCounter(ref.id.id)
             }
         }
-
-        // Clear any cached StringName or NodePath objects.
+        ObjectDB.fill(null)
         stringNameCache.clear()
         nodePathCache.clear()
 
         var begin = Instant.now()
-        while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
+        while (nativeCoreTypeMap.isNotEmpty()) {
 
             System.gc()
             if (manageMemory()) {
@@ -287,14 +259,6 @@ internal object MemoryManager {
                     buildString {
                         appendLine("Some JVM godot instances are leaked.")
                         if (shouldDisplayLeakInstancesOnClose) {
-                            val leakedObjects = ObjectDB.filterNotNull()
-                            appendLine("${leakedObjects.size} Objects:")
-                            for (entry in leakedObjects) {
-                                val obj = entry.get()!!.value!!
-                                append("    ${obj::class.simpleName} ${entry.id.id} ")
-                                append("C++ instance alive: ${checkInstance(obj.rawPtr, obj.id.id)}")
-                                append(System.lineSeparator())
-                            }
                             appendLine("${nativeCoreTypeMap.size} Leaked native core types:")
                             for (entry in nativeCoreTypeMap) {
                                 append("    ${entry.key}: ${entry.value.get()}")

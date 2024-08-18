@@ -212,9 +212,8 @@ public open class AStarGrid2D : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDiagonalModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ASTARGRID2D, scriptIndex)
-    return true
   }
 
   /**

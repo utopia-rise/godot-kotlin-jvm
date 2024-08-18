@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for any object that keeps a reference count. [Resource] and many other helper objects
@@ -38,9 +39,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class RefCounted : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_REFCOUNTED, scriptIndex)
-    return true
   }
 
   /**

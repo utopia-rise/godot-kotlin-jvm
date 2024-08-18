@@ -83,9 +83,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class AStar3D : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ASTAR3D, scriptIndex)
-    return true
   }
 
   /**

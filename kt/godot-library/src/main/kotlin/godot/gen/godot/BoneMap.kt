@@ -16,7 +16,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -55,9 +54,8 @@ public open class BoneMap : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setProfilePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BONEMAP, scriptIndex)
-    return true
   }
 
   /**

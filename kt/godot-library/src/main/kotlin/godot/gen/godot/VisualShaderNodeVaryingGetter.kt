@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Outputs a value of a varying defined in the shader. You need to first create a varying that can
@@ -18,9 +18,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeVaryingGetter : VisualShaderNodeVarying() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVARYINGGETTER, scriptIndex)
-    return true
   }
 
   public companion object

@@ -55,35 +55,26 @@ abstract class KtObject {
 
         val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
 
-        binding = if (config.shouldOverride) {
+        if (config.shouldOverride) {
             //Native object already exists, so we know the id and ptr without going back to the other side.
             rawPtr = config.ptr
             id = config.id
             //Singletons are never initialized here as we force their initialization on JVM side at engine start
             config.reset()
-            if(scriptIndex != - 1){
-                MemoryManager.registerScriptInstance(this)
-            } else {
-                MemoryManager.registerObject(this)
-            }
         } else {
-
             //Native object doesn't exist yet, we have to create it.
             //If the class is a script, the ScriptInstance is going to be created at the same time as the native object.
-            val isSingleton = !new(scriptIndex)
-            if (isSingleton) {
-                MemoryManager.registerSingleton(this)
-            } else {
-                if(scriptIndex != - 1){
-                    MemoryManager.registerScriptInstance(this)
-                } else {
-                    MemoryManager.registerObject(this)
-                }
-            }
+            new(scriptIndex)
+        }
+
+        binding = if (scriptIndex != -1) {
+            MemoryManager.registerScriptInstance(this)
+        } else {
+            MemoryManager.registerObject(this)
         }
     }
 
-    protected abstract fun new(scriptIndex: Int): Boolean
+    protected abstract fun new(scriptIndex: Int)
 
     @Suppress("NOTHING_TO_INLINE")
     internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
@@ -98,10 +89,10 @@ abstract class KtObject {
     }
 
     @Suppress("FunctionName")
-    open fun _notification(): GodotNotification = godotNotification{}
+    open fun _notification(): GodotNotification = godotNotification {}
 
     @Suppress("UNCHECKED_CAST")
-    protected fun <T: KtObject> T.godotNotification(block: T.(Int) -> Unit ): GodotNotification = GodotNotification(block as Any.(Int) -> Unit)
+    protected fun <T : KtObject> T.godotNotification(block: T.(Int) -> Unit): GodotNotification = GodotNotification(block as Any.(Int) -> Unit)
 
     @Suppress("FunctionName")
     open fun _onDestroy() = Unit

@@ -204,9 +204,8 @@ public open class BaseButton : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setShortcutInTooltipPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BASEBUTTON, scriptIndex)
-    return true
   }
 
   /**

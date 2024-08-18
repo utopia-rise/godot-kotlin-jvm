@@ -17,10 +17,10 @@ import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
@@ -30,9 +30,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PROPERTYTWEENER, scriptIndex)
-    return true
   }
 
   /**

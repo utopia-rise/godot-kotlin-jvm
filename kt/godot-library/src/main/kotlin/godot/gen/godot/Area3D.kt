@@ -473,9 +473,8 @@ public open class Area3D : CollisionObject3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setReverbUniformityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AREA3D, scriptIndex)
-    return true
   }
 
   /**

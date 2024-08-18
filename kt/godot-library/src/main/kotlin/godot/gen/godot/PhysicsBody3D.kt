@@ -120,9 +120,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSBODY3D, scriptIndex)
-    return true
   }
 
   /**

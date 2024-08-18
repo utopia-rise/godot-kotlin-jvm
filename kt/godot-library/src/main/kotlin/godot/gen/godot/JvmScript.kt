@@ -12,15 +12,14 @@ import godot.core.VariantType.ANY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class JvmScript internal constructor() : Script() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_JVMSCRIPT, scriptIndex)
-    return true
   }
 
   public fun new(vararg __var_args: Any?): Any? {

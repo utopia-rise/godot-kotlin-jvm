@@ -157,9 +157,8 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATEDSPRITE3D, scriptIndex)
-    return true
   }
 
   /**

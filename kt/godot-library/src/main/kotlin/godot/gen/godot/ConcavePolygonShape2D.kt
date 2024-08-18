@@ -13,9 +13,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when
@@ -55,9 +55,8 @@ public open class ConcavePolygonShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSegmentsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE2D, scriptIndex)
-    return true
   }
 
   public companion object

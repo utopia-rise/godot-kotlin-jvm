@@ -33,9 +33,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class TCPServer : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TCPSERVER, scriptIndex)
-    return true
   }
 
   /**

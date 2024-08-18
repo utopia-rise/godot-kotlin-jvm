@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node defines how particles are emitted. It allows to customize e.g. position and velocity.
@@ -18,9 +18,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleOutput : VisualShaderNodeOutput() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEOUTPUT, scriptIndex)
-    return true
   }
 
   public companion object

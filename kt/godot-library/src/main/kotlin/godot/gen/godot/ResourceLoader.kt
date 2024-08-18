@@ -39,9 +39,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object ResourceLoader : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_RESOURCELOADER)
-    return false
   }
 
   /**

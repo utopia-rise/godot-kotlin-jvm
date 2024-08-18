@@ -21,7 +21,6 @@ import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -45,9 +44,8 @@ public object TextServerManager : Object() {
    */
   public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_TEXTSERVERMANAGER)
-    return false
   }
 
   /**

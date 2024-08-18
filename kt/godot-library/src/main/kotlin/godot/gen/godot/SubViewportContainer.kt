@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A container that displays the contents of underlying [SubViewport] child nodes. It uses the
@@ -63,9 +64,8 @@ public open class SubViewportContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SUBVIEWPORTCONTAINER, scriptIndex)
-    return true
   }
 
   /**

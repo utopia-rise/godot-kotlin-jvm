@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [CheckBox] allows the user to choose one of only two possible options. It's similar to
@@ -23,9 +23,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class CheckBox : Button() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CHECKBOX, scriptIndex)
-    return true
   }
 
   public companion object

@@ -467,9 +467,8 @@ public open class Camera2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMarginDrawingEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERA2D, scriptIndex)
-    return true
   }
 
   /**

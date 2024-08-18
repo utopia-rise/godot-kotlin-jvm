@@ -13,12 +13,12 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
@@ -74,9 +74,8 @@ public open class AudioEffectPitchShift : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT, scriptIndex)
-    return true
   }
 
   public enum class FFTSize(

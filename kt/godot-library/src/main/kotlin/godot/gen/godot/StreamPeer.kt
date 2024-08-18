@@ -55,9 +55,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_STREAMPEER, scriptIndex)
-    return true
   }
 
   /**

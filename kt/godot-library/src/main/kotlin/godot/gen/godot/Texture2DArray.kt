@@ -11,9 +11,9 @@ import godot.core.TypeManager
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A Texture2DArray is different from a Texture3D: The Texture2DArray does not support trilinear
@@ -29,9 +29,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTURE2DARRAY, scriptIndex)
-    return true
   }
 
   /**

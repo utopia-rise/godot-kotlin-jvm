@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The GDExtensionManager loads, initializes, and keeps track of all available [GDExtension]
@@ -36,9 +37,8 @@ public object GDExtensionManager : Object() {
    */
   public val extensionsReloaded: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_GDEXTENSIONMANAGER)
-    return false
   }
 
   /**

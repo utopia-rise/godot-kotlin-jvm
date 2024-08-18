@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Represents a texture sampler as defined by the base GLTF spec. Texture samplers in GLTF specify
@@ -81,9 +81,8 @@ public open class GLTFTextureSampler : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFTEXTURESAMPLER, scriptIndex)
-    return true
   }
 
   public companion object

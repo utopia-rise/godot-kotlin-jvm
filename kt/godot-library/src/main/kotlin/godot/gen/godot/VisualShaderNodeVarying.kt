@@ -13,11 +13,11 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
@@ -53,9 +53,8 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
       TransferContext.callMethod(rawPtr, MethodBindings.setVaryingTypePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVARYING, scriptIndex)
-    return true
   }
 
   public companion object

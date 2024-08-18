@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This animation node can be used to cause a seek command to happen to any sub-children of the
@@ -41,9 +41,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class AnimationNodeTimeSeek : AnimationNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK, scriptIndex)
-    return true
   }
 
   public companion object

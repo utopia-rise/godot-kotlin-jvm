@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A control that displays a texture, for example an icon inside a GUI. The texture's placement can
@@ -97,9 +98,8 @@ public open class TextureRect : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTURERECT, scriptIndex)
-    return true
   }
 
   public enum class ExpandMode(

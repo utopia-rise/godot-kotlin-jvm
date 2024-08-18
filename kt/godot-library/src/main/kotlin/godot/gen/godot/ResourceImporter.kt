@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is the base class for Godot's resource importers. To implement your own resource importers
@@ -18,9 +18,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RESOURCEIMPORTER, scriptIndex)
-    return true
   }
 
   public enum class ImportOrder(

@@ -17,7 +17,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -47,9 +46,8 @@ public open class Translation : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TRANSLATION, scriptIndex)
-    return true
   }
 
   /**

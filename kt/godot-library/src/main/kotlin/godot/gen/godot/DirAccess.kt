@@ -121,9 +121,8 @@ public open class DirAccess internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIncludeHiddenPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_DIRACCESS, scriptIndex)
-    return true
   }
 
   /**

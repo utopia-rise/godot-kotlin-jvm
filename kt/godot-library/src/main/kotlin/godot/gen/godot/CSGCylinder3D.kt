@@ -21,6 +21,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node allows you to create a cylinder (or cone) for use with the CSG system.
@@ -117,9 +118,8 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGCYLINDER3D, scriptIndex)
-    return true
   }
 
   public companion object

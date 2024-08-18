@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translates to `determinant(x)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeDeterminant : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEDETERMINANT, scriptIndex)
-    return true
   }
 
   public companion object

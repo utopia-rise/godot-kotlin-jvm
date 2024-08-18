@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This abstract class helps connect the [Node3D] scene with the editor-specific [EditorNode3DGizmo]
@@ -19,9 +19,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Node3DGizmo internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NODE3DGIZMO, scriptIndex)
-    return true
   }
 
   public companion object

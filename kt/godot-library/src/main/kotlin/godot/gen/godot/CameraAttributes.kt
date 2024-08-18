@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.
@@ -107,9 +108,8 @@ public open class CameraAttributes : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureSpeedPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERAATTRIBUTES, scriptIndex)
-    return true
   }
 
   public companion object

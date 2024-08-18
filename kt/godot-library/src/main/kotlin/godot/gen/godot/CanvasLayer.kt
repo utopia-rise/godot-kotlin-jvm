@@ -194,9 +194,8 @@ public open class CanvasLayer : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFollowViewportScalePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CANVASLAYER, scriptIndex)
-    return true
   }
 
   /**

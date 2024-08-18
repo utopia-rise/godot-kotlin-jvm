@@ -31,9 +31,8 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class Semaphore : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SEMAPHORE, scriptIndex)
-    return true
   }
 
   /**

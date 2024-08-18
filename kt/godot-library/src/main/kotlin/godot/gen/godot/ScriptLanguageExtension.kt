@@ -25,9 +25,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCRIPTLANGUAGEEXTENSION, scriptIndex)
-    return true
   }
 
   public open fun _getName(): String {

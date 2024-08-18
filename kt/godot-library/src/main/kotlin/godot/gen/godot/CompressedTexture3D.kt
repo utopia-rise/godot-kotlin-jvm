@@ -13,11 +13,11 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [CompressedTexture3D] is the VRAM-compressed counterpart of [ImageTexture3D]. The file extension
@@ -41,9 +41,8 @@ public open class CompressedTexture3D : Texture3D() {
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDTEXTURE3D, scriptIndex)
-    return true
   }
 
   /**

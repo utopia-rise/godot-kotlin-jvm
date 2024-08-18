@@ -19,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * GLTFAccessor is a data structure representing GLTF a `accessor` that would be found in the
@@ -249,9 +250,8 @@ public open class GLTFAccessor : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSparseValuesByteOffsetPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFACCESSOR, scriptIndex)
-    return true
   }
 
   public enum class GLTFAccessorType(

@@ -17,6 +17,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a
@@ -66,9 +67,8 @@ public open class ConcavePolygonShape3D : Shape3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE3D, scriptIndex)
-    return true
   }
 
   public companion object

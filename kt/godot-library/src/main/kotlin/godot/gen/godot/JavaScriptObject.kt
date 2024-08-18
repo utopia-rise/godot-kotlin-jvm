@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * JavaScriptObject is used to interact with JavaScript objects retrieved or created via
@@ -46,9 +46,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class JavaScriptObject internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_JAVASCRIPTOBJECT, scriptIndex)
-    return true
   }
 
   public companion object

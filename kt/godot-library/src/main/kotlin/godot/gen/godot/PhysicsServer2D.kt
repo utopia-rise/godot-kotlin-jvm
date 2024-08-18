@@ -65,9 +65,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object PhysicsServer2D : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_PHYSICSSERVER2D)
-    return false
   }
 
   /**

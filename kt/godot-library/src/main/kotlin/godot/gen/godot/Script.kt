@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -56,9 +57,8 @@ public open class Script internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSourceCodePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCRIPT, scriptIndex)
-    return true
   }
 
   /**

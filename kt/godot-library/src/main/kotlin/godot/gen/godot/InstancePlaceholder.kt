@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -35,9 +36,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class InstancePlaceholder internal constructor() : Node() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INSTANCEPLACEHOLDER, scriptIndex)
-    return true
   }
 
   /**

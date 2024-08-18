@@ -116,9 +116,8 @@ public open class VoxelGI : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setProbeDataPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VOXELGI, scriptIndex)
-    return true
   }
 
   /**

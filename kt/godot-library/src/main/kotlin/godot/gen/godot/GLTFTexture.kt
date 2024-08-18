@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFTexture : Resource() {
@@ -49,9 +49,8 @@ public open class GLTFTexture : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSamplerPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFTEXTURE, scriptIndex)
-    return true
   }
 
   public companion object

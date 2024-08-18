@@ -11,9 +11,9 @@ import godot.core.TypeManager
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A cubemap is made of 6 textures organized in layers. They are typically used for faking
@@ -30,9 +30,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Cubemap : ImageTextureLayered() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CUBEMAP, scriptIndex)
-    return true
   }
 
   /**

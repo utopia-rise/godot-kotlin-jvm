@@ -354,9 +354,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
-    return true
   }
 
   /**

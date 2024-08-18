@@ -73,9 +73,8 @@ public object NavigationServer2D : Object() {
    */
   public val navigationDebugChanged: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_NAVIGATIONSERVER2D)
-    return false
   }
 
   /**

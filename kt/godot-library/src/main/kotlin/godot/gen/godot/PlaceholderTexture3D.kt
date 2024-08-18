@@ -15,7 +15,6 @@ import godot.core.VariantType.VECTOR3I
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -47,9 +46,8 @@ public open class PlaceholderTexture3D : Texture3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PLACEHOLDERTEXTURE3D, scriptIndex)
-    return true
   }
 
   /**

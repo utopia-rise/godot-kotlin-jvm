@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This class is used when loading a project that uses a [Texture2D] subclass in 2 conditions:
@@ -23,9 +23,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PlaceholderTexture2DArray : PlaceholderTextureLayered() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PLACEHOLDERTEXTURE2DARRAY, scriptIndex)
-    return true
   }
 
   public companion object

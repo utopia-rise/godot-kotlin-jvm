@@ -336,9 +336,8 @@ public open class Tree : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVScrollEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TREE, scriptIndex)
-    return true
   }
 
   /**

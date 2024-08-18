@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
@@ -97,9 +98,8 @@ public open class Slider internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTicksOnBordersPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SLIDER, scriptIndex)
-    return true
   }
 
   public companion object

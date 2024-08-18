@@ -20,11 +20,11 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
@@ -72,9 +72,8 @@ public open class GLTFSkeleton : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setGodotBoneNodePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFSKELETON, scriptIndex)
-    return true
   }
 
   public fun getGodotSkeleton(): Skeleton3D? {

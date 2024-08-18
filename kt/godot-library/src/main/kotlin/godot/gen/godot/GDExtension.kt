@@ -27,9 +27,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class GDExtension : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GDEXTENSION, scriptIndex)
-    return true
   }
 
   /**

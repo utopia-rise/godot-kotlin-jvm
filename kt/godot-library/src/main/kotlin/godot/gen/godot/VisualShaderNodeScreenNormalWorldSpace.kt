@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The ScreenNormalWorldSpace node allows to create outline effects.
  */
 @GodotBaseType
 public open class VisualShaderNodeScreenNormalWorldSpace : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE, scriptIndex)
-    return true
   }
 
   public companion object

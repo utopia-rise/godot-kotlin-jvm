@@ -35,9 +35,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_RESOURCESAVER)
-    return false
   }
 
   /**

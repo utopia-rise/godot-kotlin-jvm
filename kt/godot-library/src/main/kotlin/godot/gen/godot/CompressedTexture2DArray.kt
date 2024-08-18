@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A texture array that is loaded from a `.ctexarray` file. This file format is internal to Godot;
@@ -31,9 +31,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class CompressedTexture2DArray : CompressedTextureLayered() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2DARRAY, scriptIndex)
-    return true
   }
 
   public companion object

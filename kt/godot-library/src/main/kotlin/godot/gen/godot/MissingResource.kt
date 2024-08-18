@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is an internal editor class intended for keeping data of resources of unknown type (most
@@ -56,9 +57,8 @@ public open class MissingResource : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MISSINGRESOURCE, scriptIndex)
-    return true
   }
 
   public companion object

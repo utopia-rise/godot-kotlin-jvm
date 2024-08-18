@@ -93,9 +93,8 @@ public open class GLTFDocument : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRootNodeModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFDOCUMENT, scriptIndex)
-    return true
   }
 
   /**

@@ -170,9 +170,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPickablePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLLISIONOBJECT2D, scriptIndex)
-    return true
   }
 
   /**

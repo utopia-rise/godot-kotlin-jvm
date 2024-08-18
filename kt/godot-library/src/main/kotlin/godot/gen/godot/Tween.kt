@@ -182,9 +182,8 @@ public open class Tween : RefCounted() {
    */
   public val finished: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TWEEN, scriptIndex)
-    return true
   }
 
   /**

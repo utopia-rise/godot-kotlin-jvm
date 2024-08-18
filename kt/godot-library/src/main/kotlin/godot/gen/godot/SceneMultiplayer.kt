@@ -203,9 +203,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxDeltaPacketSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCENEMULTIPLAYER, scriptIndex)
-    return true
   }
 
   /**

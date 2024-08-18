@@ -13,6 +13,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A custom effect for a [RichTextLabel], which can be loaded in the [RichTextLabel] inspector or
@@ -35,9 +36,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class RichTextEffect : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RICHTEXTEFFECT, scriptIndex)
-    return true
   }
 
   /**

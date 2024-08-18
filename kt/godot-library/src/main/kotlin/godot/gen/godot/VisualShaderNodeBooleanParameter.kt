@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translated to `uniform bool` in the shader language.
@@ -49,9 +50,8 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
       TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANPARAMETER, scriptIndex)
-    return true
   }
 
   public companion object

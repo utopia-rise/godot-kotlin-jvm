@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. Blends two animations subtractively based on
@@ -25,9 +25,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class AnimationNodeSub2 : AnimationNodeSync() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESUB2, scriptIndex)
-    return true
   }
 
   public companion object

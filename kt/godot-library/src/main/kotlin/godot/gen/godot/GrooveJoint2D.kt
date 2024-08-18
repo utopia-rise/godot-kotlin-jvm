@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
@@ -55,9 +55,8 @@ public open class GrooveJoint2D : Joint2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GROOVEJOINT2D, scriptIndex)
-    return true
   }
 
   public companion object

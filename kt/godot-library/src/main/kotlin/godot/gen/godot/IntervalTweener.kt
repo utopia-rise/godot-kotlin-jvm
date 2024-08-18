@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [IntervalTweener] is used to make delays in a tweening sequence. See [Tween.tweenInterval] for
@@ -19,9 +19,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class IntervalTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INTERVALTWEENER, scriptIndex)
-    return true
   }
 
   public companion object

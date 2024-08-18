@@ -22,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a
@@ -172,9 +173,8 @@ public open class PathFollow3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTiltEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PATHFOLLOW3D, scriptIndex)
-    return true
   }
 
   public enum class RotationMode(

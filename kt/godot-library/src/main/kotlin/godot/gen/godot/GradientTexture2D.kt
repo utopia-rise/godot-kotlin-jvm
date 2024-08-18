@@ -150,9 +150,8 @@ public open class GradientTexture2D : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRepeatPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GRADIENTTEXTURE2D, scriptIndex)
-    return true
   }
 
   /**

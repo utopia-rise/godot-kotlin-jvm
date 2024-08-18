@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [SphereOccluder3D] stores a sphere shape that can be used by the engine's occlusion culling
@@ -39,9 +39,8 @@ public open class SphereOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPHEREOCCLUDER3D, scriptIndex)
-    return true
   }
 
   public companion object

@@ -168,9 +168,8 @@ public open class UDPServer : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_UDPSERVER, scriptIndex)
-    return true
   }
 
   /**

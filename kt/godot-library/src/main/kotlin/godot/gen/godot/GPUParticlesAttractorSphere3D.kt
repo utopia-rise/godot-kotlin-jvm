@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes. Can be used to
@@ -43,9 +43,8 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORSPHERE3D, scriptIndex)
-    return true
   }
 
   public companion object

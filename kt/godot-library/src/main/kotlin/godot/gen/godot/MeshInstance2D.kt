@@ -14,9 +14,9 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an
@@ -59,9 +59,8 @@ public open class MeshInstance2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MESHINSTANCE2D, scriptIndex)
-    return true
   }
 
   public companion object

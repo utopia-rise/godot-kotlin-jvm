@@ -22,6 +22,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Represents a camera as defined by the base GLTF spec.
@@ -106,9 +107,8 @@ public open class GLTFCamera : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthNearPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFCAMERA, scriptIndex)
-    return true
   }
 
   /**

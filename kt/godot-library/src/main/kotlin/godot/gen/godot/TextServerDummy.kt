@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A dummy [TextServer] interface that doesn't do anything. Useful for freeing up memory when
@@ -31,9 +31,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTSERVERDUMMY, scriptIndex)
-    return true
   }
 
   public companion object

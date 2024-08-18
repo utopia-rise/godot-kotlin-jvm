@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A Spotlight is a type of [Light3D] node that emits lights in a specific direction, in the shape
@@ -27,9 +27,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class SpotLight3D : Light3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPOTLIGHT3D, scriptIndex)
-    return true
   }
 
   public companion object

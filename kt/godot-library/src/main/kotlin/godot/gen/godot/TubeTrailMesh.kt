@@ -21,6 +21,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed
@@ -150,9 +151,8 @@ public open class TubeTrailMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TUBETRAILMESH, scriptIndex)
-    return true
   }
 
   public companion object

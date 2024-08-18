@@ -110,9 +110,8 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS3D, scriptIndex)
-    return true
   }
 
   /**

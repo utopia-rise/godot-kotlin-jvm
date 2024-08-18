@@ -288,9 +288,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSafeMarginPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CHARACTERBODY3D, scriptIndex)
-    return true
   }
 
   /**

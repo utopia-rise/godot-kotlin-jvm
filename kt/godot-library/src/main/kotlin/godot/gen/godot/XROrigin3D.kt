@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is a special node within the AR/VR system that maps the physical location of the center of
@@ -65,9 +66,8 @@ public open class XROrigin3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRORIGIN3D, scriptIndex)
-    return true
   }
 
   public companion object

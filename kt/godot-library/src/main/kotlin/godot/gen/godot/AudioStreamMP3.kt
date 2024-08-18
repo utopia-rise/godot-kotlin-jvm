@@ -21,6 +21,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
@@ -124,9 +125,8 @@ public open class AudioStreamMP3 : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMMP3, scriptIndex)
-    return true
   }
 
   public companion object

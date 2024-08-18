@@ -497,9 +497,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLES3D, scriptIndex)
-    return true
   }
 
   /**

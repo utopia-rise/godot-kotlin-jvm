@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * By inheriting this class you can create a custom [VisualShader] script addon which will be
@@ -35,9 +36,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM, scriptIndex)
-    return true
   }
 
   /**

@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An implementation of [TextServer] that uses HarfBuzz, ICU and SIL Graphite to support BiDi,
@@ -18,9 +18,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class TextServerAdvanced : TextServerExtension() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTSERVERADVANCED, scriptIndex)
-    return true
   }
 
   public companion object

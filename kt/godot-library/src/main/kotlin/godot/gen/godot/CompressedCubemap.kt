@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A cubemap that is loaded from a `.ccube` file. This file format is internal to Godot; it is
@@ -31,9 +31,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class CompressedCubemap : CompressedTextureLayered() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDCUBEMAP, scriptIndex)
-    return true
   }
 
   public companion object

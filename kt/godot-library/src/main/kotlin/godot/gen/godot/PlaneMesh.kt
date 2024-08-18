@@ -18,7 +18,6 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -106,9 +105,8 @@ public open class PlaneMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PLANEMESH, scriptIndex)
-    return true
   }
 
   /**

@@ -13,9 +13,9 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space.
@@ -66,9 +66,8 @@ public open class World2D : Resource() {
       return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WORLD2D, scriptIndex)
-    return true
   }
 
   public companion object

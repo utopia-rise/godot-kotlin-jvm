@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Particle collision shapes can be used to make particles stop or bounce against them.
@@ -55,9 +55,8 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
       TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISION3D, scriptIndex)
-    return true
   }
 
   public companion object

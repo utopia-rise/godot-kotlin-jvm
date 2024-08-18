@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an
@@ -69,9 +70,8 @@ public open class LightOccluder2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOccluderLightMaskPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LIGHTOCCLUDER2D, scriptIndex)
-    return true
   }
 
   public companion object

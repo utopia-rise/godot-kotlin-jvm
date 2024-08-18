@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This CSG node allows you to use any mesh resource as a CSG shape, provided it is closed, does not
@@ -62,9 +62,8 @@ public open class CSGMesh3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGMESH3D, scriptIndex)
-    return true
   }
 
   public companion object

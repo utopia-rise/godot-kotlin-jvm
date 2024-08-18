@@ -31,9 +31,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PacketPeerUDP : PacketPeer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKETPEERUDP, scriptIndex)
-    return true
   }
 
   /**

@@ -14,7 +14,6 @@ import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,9 +41,8 @@ public open class PlaceholderMesh : Mesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PLACEHOLDERMESH, scriptIndex)
-    return true
   }
 
   /**

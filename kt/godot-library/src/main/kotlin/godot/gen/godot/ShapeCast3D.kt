@@ -194,9 +194,8 @@ public open class ShapeCast3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDebugShapeCustomColorPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHAPECAST3D, scriptIndex)
-    return true
   }
 
   /**

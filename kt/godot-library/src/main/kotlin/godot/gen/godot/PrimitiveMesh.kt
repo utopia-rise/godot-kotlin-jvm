@@ -114,9 +114,8 @@ public open class PrimitiveMesh : Mesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUv2PaddingPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PRIMITIVEMESH, scriptIndex)
-    return true
   }
 
   /**

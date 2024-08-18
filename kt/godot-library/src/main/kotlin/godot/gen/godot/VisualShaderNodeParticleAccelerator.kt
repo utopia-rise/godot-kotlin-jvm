@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Particle accelerator can be used in "process" step of particle shader. It will accelerate the
@@ -37,9 +37,8 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEACCELERATOR, scriptIndex)
-    return true
   }
 
   public enum class Mode(

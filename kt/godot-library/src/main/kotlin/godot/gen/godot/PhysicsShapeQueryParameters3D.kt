@@ -206,9 +206,8 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D, scriptIndex)
-    return true
   }
 
   /**

@@ -84,9 +84,8 @@ public open class Curve3D : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUpVectorEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CURVE3D, scriptIndex)
-    return true
   }
 
   /**

@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [SkeletonProfile] as a preset that is optimized for the human form. This exists for
@@ -75,9 +75,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONPROFILEHUMANOID, scriptIndex)
-    return true
   }
 
   public companion object

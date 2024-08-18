@@ -412,9 +412,8 @@ public open class StyleBoxFlat : StyleBox() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAaSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_STYLEBOXFLAT, scriptIndex)
-    return true
   }
 
   /**

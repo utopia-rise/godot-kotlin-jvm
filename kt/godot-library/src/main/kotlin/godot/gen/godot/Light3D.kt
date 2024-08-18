@@ -478,9 +478,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LIGHT3D, scriptIndex)
-    return true
   }
 
   /**

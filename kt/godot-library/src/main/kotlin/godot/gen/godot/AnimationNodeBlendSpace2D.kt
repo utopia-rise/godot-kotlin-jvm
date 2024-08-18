@@ -164,9 +164,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D, scriptIndex)
-    return true
   }
 
   /**

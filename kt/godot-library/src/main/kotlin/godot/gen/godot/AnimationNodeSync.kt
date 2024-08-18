@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An animation node used to combine, mix, or blend two or more animations together while keeping
@@ -37,9 +38,8 @@ public open class AnimationNodeSync : AnimationNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESYNC, scriptIndex)
-    return true
   }
 
   public companion object

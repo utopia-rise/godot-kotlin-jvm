@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A 3D cylinder shape, intended for use in physics. Usually used to provide a shape for a
@@ -56,9 +56,8 @@ public open class CylinderShape3D : Shape3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CYLINDERSHAPE3D, scriptIndex)
-    return true
   }
 
   public companion object

@@ -13,11 +13,11 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A parameter represents a variable in the shader which is set externally, i.e. from the
@@ -54,9 +54,8 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
       TransferContext.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETER, scriptIndex)
-    return true
   }
 
   public enum class Qualifier(

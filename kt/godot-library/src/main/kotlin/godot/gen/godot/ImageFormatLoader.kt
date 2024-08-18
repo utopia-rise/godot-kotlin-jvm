@@ -7,10 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmInline
 
 /**
@@ -20,9 +20,8 @@ import kotlin.jvm.JvmInline
  */
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_IMAGEFORMATLOADER, scriptIndex)
-    return true
   }
 
   public sealed interface LoaderFlags {

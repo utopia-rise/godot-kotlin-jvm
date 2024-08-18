@@ -16,7 +16,6 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -66,9 +65,8 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
       TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D, scriptIndex)
-    return true
   }
 
   /**

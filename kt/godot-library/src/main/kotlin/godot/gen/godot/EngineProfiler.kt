@@ -24,9 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ENGINEPROFILER, scriptIndex)
-    return true
   }
 
   /**

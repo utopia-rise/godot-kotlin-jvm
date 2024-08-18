@@ -109,9 +109,8 @@ public open class CollisionShape2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDebugColorPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLLISIONSHAPE2D, scriptIndex)
-    return true
   }
 
   /**

@@ -17,11 +17,11 @@ import godot.core.VariantType.PACKED_INT_64_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A sequence of Ogg packets.
@@ -72,9 +72,8 @@ public open class OggPacketSequence : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSamplingRatePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OGGPACKETSEQUENCE, scriptIndex)
-    return true
   }
 
   /**

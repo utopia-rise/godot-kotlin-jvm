@@ -20,9 +20,9 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -31,9 +31,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D, scriptIndex)
-    return true
   }
 
   /**

@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This object is used by [RenderingDevice].
@@ -255,9 +256,8 @@ public open class RDSamplerState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUnnormalizedUvwPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDSAMPLERSTATE, scriptIndex)
-    return true
   }
 
   public companion object

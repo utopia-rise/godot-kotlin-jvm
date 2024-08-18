@@ -17,7 +17,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -45,9 +44,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
       TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneChainLengthPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES, scriptIndex)
-    return true
   }
 
   /**

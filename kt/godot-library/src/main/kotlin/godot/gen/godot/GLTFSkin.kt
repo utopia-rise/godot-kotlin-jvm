@@ -21,10 +21,10 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSkin : Resource() {
@@ -138,9 +138,8 @@ public open class GLTFSkin : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setGodotSkinPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFSKIN, scriptIndex)
-    return true
   }
 
   public companion object

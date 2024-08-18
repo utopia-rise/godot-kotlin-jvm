@@ -7,16 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class ScriptLanguage internal constructor() : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCRIPTLANGUAGE, scriptIndex)
-    return true
   }
 
   public enum class ScriptNameCasing(

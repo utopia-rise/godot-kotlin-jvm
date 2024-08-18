@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [VisualShaderNodeParameter] of type [int]. Offers additional customization for range of
@@ -112,9 +113,8 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINTPARAMETER, scriptIndex)
-    return true
   }
 
   public enum class Hint(

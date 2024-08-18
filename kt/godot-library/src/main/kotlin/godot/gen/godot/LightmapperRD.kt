@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * LightmapperRD ("RD" stands for [RenderingDevice]) is the built-in GPU-based lightmapper for use
@@ -20,9 +20,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class LightmapperRD : Lightmapper() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LIGHTMAPPERRD, scriptIndex)
-    return true
   }
 
   public companion object

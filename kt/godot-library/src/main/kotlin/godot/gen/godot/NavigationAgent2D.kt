@@ -526,9 +526,8 @@ public open class NavigationAgent2D : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomLineWidthPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT2D, scriptIndex)
-    return true
   }
 
   /**
