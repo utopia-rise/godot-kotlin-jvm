@@ -153,7 +153,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressionMode = entries.single { it.id == `value` }
     }
   }
 

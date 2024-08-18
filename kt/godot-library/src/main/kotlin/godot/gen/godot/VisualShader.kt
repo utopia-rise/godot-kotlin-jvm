@@ -364,7 +364,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Type = entries.single { it.id == `value` }
     }
   }
 
@@ -391,7 +391,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VaryingMode = entries.single { it.id == `value` }
     }
   }
 
@@ -442,7 +442,7 @@ public open class VisualShader : Shader() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VaryingType = entries.single { it.id == `value` }
     }
   }
 

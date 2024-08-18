@@ -309,7 +309,7 @@ public object XRServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackerType = entries.single { it.id == `value` }
     }
   }
 
@@ -338,7 +338,7 @@ public object XRServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RotationMode = entries.single { it.id == `value` }
     }
   }
 

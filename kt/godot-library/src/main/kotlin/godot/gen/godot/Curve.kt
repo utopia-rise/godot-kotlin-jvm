@@ -288,7 +288,7 @@ public open class Curve : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TangentMode = entries.single { it.id == `value` }
     }
   }
 

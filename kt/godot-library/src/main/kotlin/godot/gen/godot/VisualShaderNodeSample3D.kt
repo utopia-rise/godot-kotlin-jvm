@@ -64,7 +64,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Source = entries.single { it.id == `value` }
     }
   }
 

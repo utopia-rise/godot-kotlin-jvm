@@ -121,7 +121,7 @@ public open class Sky : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RadianceSize = entries.single { it.id == `value` }
     }
   }
 
@@ -168,7 +168,7 @@ public open class Sky : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessMode = entries.single { it.id == `value` }
     }
   }
 

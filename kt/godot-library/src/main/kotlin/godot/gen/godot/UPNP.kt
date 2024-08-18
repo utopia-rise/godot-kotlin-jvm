@@ -428,7 +428,7 @@ public open class UPNP : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UPNPResult = entries.single { it.id == `value` }
     }
   }
 

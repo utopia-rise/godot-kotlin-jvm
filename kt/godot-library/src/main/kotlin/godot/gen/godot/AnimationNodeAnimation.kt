@@ -160,7 +160,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlayMode = entries.single { it.id == `value` }
     }
   }
 

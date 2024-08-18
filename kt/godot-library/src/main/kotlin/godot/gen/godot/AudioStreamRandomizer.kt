@@ -182,7 +182,7 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlaybackMode = entries.single { it.id == `value` }
     }
   }
 

@@ -64,7 +64,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Function = entries.single { it.id == `value` }
     }
   }
 

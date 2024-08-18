@@ -237,7 +237,7 @@ public open class NinePatchRect : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AxisStretchMode = entries.single { it.id == `value` }
     }
   }
 

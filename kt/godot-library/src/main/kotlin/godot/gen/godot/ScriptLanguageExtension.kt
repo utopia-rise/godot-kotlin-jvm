@@ -314,7 +314,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LookupResultType = entries.single { it.id == `value` }
     }
   }
 
@@ -352,7 +352,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CodeCompletionLocation = entries.single { it.id == `value` }
     }
   }
 
@@ -378,7 +378,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CodeCompletionKind = entries.single { it.id == `value` }
     }
   }
 

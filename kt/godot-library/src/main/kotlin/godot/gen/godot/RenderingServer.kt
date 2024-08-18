@@ -5600,7 +5600,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureLayeredType = entries.single { it.id == `value` }
     }
   }
 
@@ -5639,7 +5639,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CubeMapLayer = entries.single { it.id == `value` }
     }
   }
 
@@ -5678,7 +5678,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShaderMode = entries.single { it.id == `value` }
     }
   }
 
@@ -5749,7 +5749,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayType = entries.single { it.id == `value` }
     }
   }
 
@@ -5808,7 +5808,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.id == `value` }
     }
   }
 
@@ -5974,7 +5974,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PrimitiveType = entries.single { it.id == `value` }
     }
   }
 
@@ -5997,7 +5997,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendShapeMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6020,7 +6020,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MultimeshTransformFormat = entries.single { it.id == `value` }
     }
   }
 
@@ -6075,7 +6075,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightProjectorFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -6102,7 +6102,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightType = entries.single { it.id == `value` }
     }
   }
 
@@ -6217,7 +6217,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightParam = entries.single { it.id == `value` }
     }
   }
 
@@ -6254,7 +6254,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightBakeMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6277,7 +6277,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightOmniShadowMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6304,7 +6304,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightDirectionalShadowMode =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -6331,7 +6332,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightDirectionalSkyMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6391,7 +6392,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowQuality = entries.single { it.id == `value` }
     }
   }
 
@@ -6414,7 +6415,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ReflectionProbeUpdateMode =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -6443,7 +6445,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ReflectionProbeAmbientMode =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -6478,7 +6481,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DecalTexture = entries.single { it.id == `value` }
     }
   }
 
@@ -6533,7 +6536,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DecalFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -6556,7 +6559,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VoxelGIQuality = entries.single { it.id == `value` }
     }
   }
 
@@ -6579,7 +6582,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6598,7 +6601,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesTransformAlign = entries.single { it.id == `value` }
     }
   }
 
@@ -6631,7 +6634,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesDrawOrder = entries.single { it.id == `value` }
     }
   }
 
@@ -6653,7 +6656,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesCollisionType = entries.single { it.id == `value` }
     }
   }
 
@@ -6678,7 +6681,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesCollisionHeightfieldResolution =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -6722,7 +6726,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FogVolumeShape = entries.single { it.id == `value` }
     }
   }
 
@@ -6762,7 +6766,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportScaling3DMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6797,7 +6801,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportUpdateMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6824,7 +6828,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportClearMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6857,7 +6861,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportEnvironmentMode = entries.single { it.id == `value` }
     }
   }
 
@@ -6897,7 +6901,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportSDFOversize = entries.single { it.id == `value` }
     }
   }
 
@@ -6930,7 +6934,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportSDFScale = entries.single { it.id == `value` }
     }
   }
 
@@ -6969,7 +6973,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportMSAA = entries.single { it.id == `value` }
     }
   }
 
@@ -6998,7 +7002,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportScreenSpaceAA = entries.single { it.id == `value` }
     }
   }
 
@@ -7027,7 +7031,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportOcclusionCullingBuildQuality =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7058,7 +7063,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportRenderInfo = entries.single { it.id == `value` }
     }
   }
 
@@ -7090,7 +7095,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportRenderInfoType = entries.single { it.id == `value` }
     }
   }
 
@@ -7242,7 +7247,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportDebugDraw = entries.single { it.id == `value` }
     }
   }
 
@@ -7275,7 +7280,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportVRSMode = entries.single { it.id == `value` }
     }
   }
 
@@ -7353,7 +7358,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SkyMode = entries.single { it.id == `value` }
     }
   }
 
@@ -7472,7 +7477,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentBG = entries.single { it.id == `value` }
     }
   }
 
@@ -7503,7 +7508,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentAmbientSource = entries.single { it.id == `value` }
     }
   }
 
@@ -7530,7 +7535,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentReflectionSource =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7570,7 +7576,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentGlowBlendMode = entries.single { it.id == `value` }
     }
   }
 
@@ -7633,7 +7639,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentToneMapper = entries.single { it.id == `value` }
     }
   }
 
@@ -7666,7 +7672,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSSRRoughnessQuality =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7702,7 +7709,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSSAOQuality = entries.single { it.id == `value` }
     }
   }
 
@@ -7738,7 +7745,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSSILQuality = entries.single { it.id == `value` }
     }
   }
 
@@ -7771,7 +7778,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSDFGIYScale = entries.single { it.id == `value` }
     }
   }
 
@@ -7820,7 +7827,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSDFGIRayCount = entries.single { it.id == `value` }
     }
   }
 
@@ -7865,7 +7872,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSDFGIFramesToConverge =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7906,7 +7914,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSDFGIFramesToUpdateLight =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7938,7 +7947,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SubSurfaceScatteringQuality =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7968,7 +7978,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DOFBokehShape = entries.single { it.id == `value` }
     }
   }
 
@@ -8001,7 +8011,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DOFBlurQuality = entries.single { it.id == `value` }
     }
   }
 
@@ -8076,7 +8086,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InstanceType = entries.single { it.id == `value` }
     }
   }
 
@@ -8112,7 +8122,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InstanceFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -8144,7 +8154,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowCastingSetting = entries.single { it.id == `value` }
     }
   }
 
@@ -8171,7 +8181,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VisibilityRangeFadeMode = entries.single { it.id == `value` }
     }
   }
 
@@ -8211,7 +8221,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BakeChannels = entries.single { it.id == `value` }
     }
   }
 
@@ -8238,7 +8248,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasTextureChannel = entries.single { it.id == `value` }
     }
   }
 
@@ -8265,7 +8275,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): NinePatchAxisMode = entries.single { it.id == `value` }
     }
   }
 
@@ -8342,7 +8352,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasItemTextureFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -8381,7 +8391,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasItemTextureRepeat = entries.single { it.id == `value` }
     }
   }
 
@@ -8411,7 +8421,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasGroupMode = entries.single { it.id == `value` }
     }
   }
 
@@ -8434,7 +8444,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasLightMode = entries.single { it.id == `value` }
     }
   }
 
@@ -8461,7 +8471,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasLightBlendMode = entries.single { it.id == `value` }
     }
   }
 
@@ -8492,7 +8502,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasLightShadowFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -8519,7 +8529,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasOccluderPolygonCullMode =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -8663,7 +8674,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GlobalShaderParameterType =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -8710,7 +8722,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderingInfo = entries.single { it.id == `value` }
     }
   }
 
@@ -8727,7 +8739,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Features = entries.single { it.id == `value` }
     }
   }
 

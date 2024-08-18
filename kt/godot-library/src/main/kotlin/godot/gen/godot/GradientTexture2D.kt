@@ -226,7 +226,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Fill = entries.single { it.id == `value` }
     }
   }
 
@@ -255,7 +255,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Repeat = entries.single { it.id == `value` }
     }
   }
 

@@ -787,6 +787,6 @@ public enum class Key(
   }
 
   public companion object {
-    public fun from(`value`: Long) = entries.single { it.id == `value` }
+    public fun from(`value`: Long): Key = entries.single { it.id == `value` }
   }
 }

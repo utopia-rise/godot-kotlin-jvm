@@ -127,7 +127,7 @@ public open class FlowContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlignmentMode = entries.single { it.id == `value` }
     }
   }
 

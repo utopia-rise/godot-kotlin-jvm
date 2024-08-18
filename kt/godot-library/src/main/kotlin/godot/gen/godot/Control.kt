@@ -2058,7 +2058,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FocusMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2159,7 +2159,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CursorShape = entries.single { it.id == `value` }
     }
   }
 
@@ -2258,7 +2258,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutPreset = entries.single { it.id == `value` }
     }
   }
 
@@ -2289,7 +2289,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutPresetMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2397,7 +2397,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MouseFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -2427,7 +2427,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GrowDirection = entries.single { it.id == `value` }
     }
   }
 
@@ -2454,7 +2454,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Anchor = entries.single { it.id == `value` }
     }
   }
 
@@ -2485,7 +2485,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutDirection = entries.single { it.id == `value` }
     }
   }
 
@@ -2516,7 +2516,7 @@ public open class Control : CanvasItem() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextDirection = entries.single { it.id == `value` }
     }
   }
 

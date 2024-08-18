@@ -473,7 +473,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DampMode = entries.single { it.id == `value` }
     }
   }
 
@@ -494,7 +494,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): JointType = entries.single { it.id == `value` }
     }
   }
 

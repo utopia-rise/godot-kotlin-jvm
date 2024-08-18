@@ -1267,7 +1267,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PositionalShadowAtlasQuadrantSubdiv =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -1307,7 +1308,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Scaling3DMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1347,7 +1348,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MSAA = entries.single { it.id == `value` }
     }
   }
 
@@ -1376,7 +1377,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ScreenSpaceAA = entries.single { it.id == `value` }
     }
   }
 
@@ -1407,7 +1408,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderInfo = entries.single { it.id == `value` }
     }
   }
 
@@ -1439,7 +1440,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderInfoType = entries.single { it.id == `value` }
     }
   }
 
@@ -1577,7 +1578,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DebugDraw = entries.single { it.id == `value` }
     }
   }
 
@@ -1626,7 +1627,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DefaultCanvasItemTextureFilter =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -1661,7 +1663,8 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DefaultCanvasItemTextureRepeat =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -1699,7 +1702,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SDFOversize = entries.single { it.id == `value` }
     }
   }
 
@@ -1730,7 +1733,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SDFScale = entries.single { it.id == `value` }
     }
   }
 
@@ -1762,7 +1765,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VRSMode = entries.single { it.id == `value` }
     }
   }
 

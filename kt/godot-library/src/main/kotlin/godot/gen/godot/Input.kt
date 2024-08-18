@@ -750,7 +750,7 @@ public object Input : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MouseMode = entries.single { it.id == `value` }
     }
   }
 
@@ -848,7 +848,7 @@ public object Input : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CursorShape = entries.single { it.id == `value` }
     }
   }
 

@@ -394,7 +394,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowCastingSetting = entries.single { it.id == `value` }
     }
   }
 
@@ -429,7 +429,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GIMode = entries.single { it.id == `value` }
     }
   }
 
@@ -467,7 +467,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightmapScale = entries.single { it.id == `value` }
     }
   }
 
@@ -508,7 +508,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VisibilityRangeFadeMode = entries.single { it.id == `value` }
     }
   }
 

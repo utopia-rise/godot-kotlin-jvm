@@ -134,7 +134,7 @@ public open class HashingContext : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HashType = entries.single { it.id == `value` }
     }
   }
 

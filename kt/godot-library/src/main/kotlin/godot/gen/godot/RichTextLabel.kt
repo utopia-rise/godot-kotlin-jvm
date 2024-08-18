@@ -1280,7 +1280,7 @@ public open class RichTextLabel : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ListType = entries.single { it.id == `value` }
     }
   }
 
@@ -1307,7 +1307,7 @@ public open class RichTextLabel : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MenuItems = entries.single { it.id == `value` }
     }
   }
 

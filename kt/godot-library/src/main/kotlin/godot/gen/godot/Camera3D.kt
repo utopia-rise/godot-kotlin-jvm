@@ -563,7 +563,7 @@ public open class Camera3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProjectionType = entries.single { it.id == `value` }
     }
   }
 
@@ -590,7 +590,7 @@ public open class Camera3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): KeepAspect = entries.single { it.id == `value` }
     }
   }
 
@@ -624,7 +624,7 @@ public open class Camera3D : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DopplerTracking = entries.single { it.id == `value` }
     }
   }
 

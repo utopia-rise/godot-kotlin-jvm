@@ -174,6 +174,6 @@ public enum class VariantType(
   }
 
   public companion object {
-    public fun from(`value`: Long) = entries.single { it.id == `value` }
+    public fun from(`value`: Long): VariantType = entries.single { it.id == `value` }
   }
 }

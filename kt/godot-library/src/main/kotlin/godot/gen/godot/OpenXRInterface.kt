@@ -377,7 +377,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Hand = entries.single { it.id == `value` }
     }
   }
 
@@ -405,7 +405,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandMotionRange = entries.single { it.id == `value` }
     }
   }
 
@@ -561,7 +561,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandJoints = entries.single { it.id == `value` }
     }
   }
 

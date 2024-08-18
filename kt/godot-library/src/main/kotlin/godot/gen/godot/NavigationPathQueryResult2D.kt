@@ -123,7 +123,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PathSegmentType = entries.single { it.id == `value` }
     }
   }
 

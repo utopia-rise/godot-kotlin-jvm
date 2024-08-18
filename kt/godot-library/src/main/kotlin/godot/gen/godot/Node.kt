@@ -414,40 +414,40 @@ public open class Node : Object() {
     return true
   }
 
-  public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION) =
+  public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION): GodotError =
       rpc(function.name.camelToSnakeCase().asStringName())
 
-  public inline fun <reified FUNCTION : KFunction0<*>> rpcId(id: Long, function: FUNCTION) =
-      rpcId(id, function.name.camelToSnakeCase().asStringName())
+  public inline fun <reified FUNCTION : KFunction0<*>> rpcId(id: Long, function: FUNCTION):
+      GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName())
 
   public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpc(function: FUNCTION,
-      arg0: ARG0) = rpc(function.name.camelToSnakeCase().asStringName(), arg0)
+      arg0: ARG0): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0)
 
   public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0)
 
   public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1)
 
   public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1)
 
   public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
 
   public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpcId(
     id: Long,
@@ -455,7 +455,7 @@ public open class Node : Object() {
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
       KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpc(
@@ -464,7 +464,7 @@ public open class Node : Object() {
     arg1: ARG1,
     arg2: ARG2,
     arg3: ARG3,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
       KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpcId(
@@ -474,7 +474,7 @@ public open class Node : Object() {
     arg1: ARG1,
     arg2: ARG2,
     arg3: ARG3,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
       KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpc(
@@ -484,7 +484,7 @@ public open class Node : Object() {
     arg2: ARG2,
     arg3: ARG3,
     arg4: ARG4,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
       KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpcId(
@@ -495,7 +495,8 @@ public open class Node : Object() {
     arg2: ARG2,
     arg3: ARG3,
     arg4: ARG4,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3,
+      arg4)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
       KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpc(
@@ -506,7 +507,8 @@ public open class Node : Object() {
     arg3: ARG3,
     arg4: ARG4,
     arg5: ARG5,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4,
+      arg5)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
       KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpcId(
@@ -518,7 +520,8 @@ public open class Node : Object() {
     arg3: ARG3,
     arg4: ARG4,
     arg5: ARG5,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3,
+      arg4, arg5)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
       KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpc(
@@ -530,7 +533,8 @@ public open class Node : Object() {
     arg4: ARG4,
     arg5: ARG5,
     arg6: ARG6,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4,
+      arg5, arg6)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
       KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcId(
@@ -543,8 +547,8 @@ public open class Node : Object() {
     arg4: ARG4,
     arg5: ARG5,
     arg6: ARG6,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
-      arg6)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3,
+      arg4, arg5, arg6)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
       KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpc(
@@ -557,8 +561,8 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4,
+      arg5, arg6, arg7)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
       KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcId(
@@ -572,8 +576,8 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
-      arg6, arg7)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3,
+      arg4, arg5, arg6, arg7)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpc(
@@ -587,8 +591,8 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4,
+      arg5, arg6, arg7, arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcId(
@@ -603,8 +607,8 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
-      arg6, arg7, arg8)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3,
+      arg4, arg5, arg6, arg7, arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpc(
@@ -619,8 +623,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9,
-  ) = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8, arg9)
+  ): GodotError = rpc(function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4,
+      arg5, arg6, arg7, arg8, arg9)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcId(
@@ -636,8 +640,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9,
-  ) = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3, arg4, arg5,
-      arg6, arg7, arg8, arg9)
+  ): GodotError = rpcId(id, function.name.camelToSnakeCase().asStringName(), arg0, arg1, arg2, arg3,
+      arg4, arg5, arg6, arg7, arg8, arg9)
 
   /**
    * Called during the processing step of the main loop. Processing happens at every frame and as
@@ -2071,7 +2075,7 @@ public open class Node : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2101,7 +2105,7 @@ public open class Node : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessThreadGroup = entries.single { it.id == `value` }
     }
   }
 
@@ -2246,7 +2250,7 @@ public open class Node : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DuplicateFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -2274,7 +2278,7 @@ public open class Node : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InternalMode = entries.single { it.id == `value` }
     }
   }
 

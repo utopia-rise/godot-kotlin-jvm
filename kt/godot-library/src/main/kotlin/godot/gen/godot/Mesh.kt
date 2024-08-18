@@ -348,7 +348,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PrimitiveType = entries.single { it.id == `value` }
     }
   }
 
@@ -444,7 +444,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayType = entries.single { it.id == `value` }
     }
   }
 
@@ -502,7 +502,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.id == `value` }
     }
   }
 
@@ -639,7 +639,7 @@ public open class Mesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendShapeMode = entries.single { it.id == `value` }
     }
   }
 

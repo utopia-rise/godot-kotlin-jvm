@@ -303,7 +303,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
     }
   }
 
@@ -332,7 +332,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PathRotation = entries.single { it.id == `value` }
     }
   }
 
@@ -356,7 +356,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PathIntervalType = entries.single { it.id == `value` }
     }
   }
 

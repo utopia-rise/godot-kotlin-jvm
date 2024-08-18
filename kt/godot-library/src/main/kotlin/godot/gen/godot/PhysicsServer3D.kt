@@ -1758,7 +1758,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): JointType = entries.single { it.id == `value` }
     }
   }
 
@@ -1788,7 +1788,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PinJointParam = entries.single { it.id == `value` }
     }
   }
 
@@ -1833,7 +1833,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HingeJointParam = entries.single { it.id == `value` }
     }
   }
 
@@ -1856,7 +1856,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HingeJointFlag = entries.single { it.id == `value` }
     }
   }
 
@@ -1966,7 +1966,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SliderJointParam = entries.single { it.id == `value` }
     }
   }
 
@@ -2007,7 +2007,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ConeTwistJointParam = entries.single { it.id == `value` }
     }
   }
 
@@ -2099,7 +2099,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): G6DOFJointAxisParam = entries.single { it.id == `value` }
     }
   }
 
@@ -2136,7 +2136,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): G6DOFJointAxisFlag = entries.single { it.id == `value` }
     }
   }
 
@@ -2197,7 +2197,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShapeType = entries.single { it.id == `value` }
     }
   }
 
@@ -2282,7 +2282,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AreaParameter = entries.single { it.id == `value` }
     }
   }
 
@@ -2322,7 +2322,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AreaSpaceOverrideMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2357,7 +2357,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2416,7 +2416,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyParameter = entries.single { it.id == `value` }
     }
   }
 
@@ -2439,7 +2439,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyDampMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2474,7 +2474,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyState = entries.single { it.id == `value` }
     }
   }
 
@@ -2499,7 +2499,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AreaBodyStatus = entries.single { it.id == `value` }
     }
   }
 
@@ -2526,7 +2526,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessInfo = entries.single { it.id == `value` }
     }
   }
 
@@ -2583,7 +2583,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpaceParameter = entries.single { it.id == `value` }
     }
   }
 
@@ -2604,7 +2604,7 @@ public object PhysicsServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyAxis = entries.single { it.id == `value` }
     }
   }
 

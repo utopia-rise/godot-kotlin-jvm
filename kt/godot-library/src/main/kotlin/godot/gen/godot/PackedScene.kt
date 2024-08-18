@@ -176,7 +176,7 @@ public open class PackedScene : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GenEditState = entries.single { it.id == `value` }
     }
   }
 

@@ -110,6 +110,6 @@ public enum class MIDIMessage(
   }
 
   public companion object {
-    public fun from(`value`: Long) = entries.single { it.id == `value` }
+    public fun from(`value`: Long): MIDIMessage = entries.single { it.id == `value` }
   }
 }

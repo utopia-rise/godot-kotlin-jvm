@@ -252,7 +252,7 @@ public open class ScrollContainer : Container() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ScrollMode = entries.single { it.id == `value` }
     }
   }
 

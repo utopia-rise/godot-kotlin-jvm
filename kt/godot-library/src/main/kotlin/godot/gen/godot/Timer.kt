@@ -189,7 +189,7 @@ public open class Timer : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TimerProcessCallback = entries.single { it.id == `value` }
     }
   }
 

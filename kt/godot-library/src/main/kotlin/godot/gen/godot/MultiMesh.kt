@@ -306,7 +306,7 @@ public open class MultiMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransformFormat = entries.single { it.id == `value` }
     }
   }
 

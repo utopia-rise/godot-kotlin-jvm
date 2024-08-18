@@ -1754,7 +1754,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BGMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1786,7 +1786,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AmbientSource = entries.single { it.id == `value` }
     }
   }
 
@@ -1813,7 +1813,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ReflectionSource = entries.single { it.id == `value` }
     }
   }
 
@@ -1852,7 +1852,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ToneMapper = entries.single { it.id == `value` }
     }
   }
 
@@ -1892,7 +1892,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GlowBlendMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1949,7 +1949,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SDFGIYScale = entries.single { it.id == `value` }
     }
   }
 

@@ -929,7 +929,7 @@ public open class GraphEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PanningScheme = entries.single { it.id == `value` }
     }
   }
 
