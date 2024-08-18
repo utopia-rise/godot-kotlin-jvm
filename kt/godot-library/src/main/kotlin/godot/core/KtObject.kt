@@ -1,6 +1,6 @@
 package godot.core
 
-import godot.core.memory.GodotBinding
+import godot.core.memory.binding.GodotBinding
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

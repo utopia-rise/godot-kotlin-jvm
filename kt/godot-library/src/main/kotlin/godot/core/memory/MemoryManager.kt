@@ -6,6 +6,9 @@ import godot.core.NodePath
 import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.VariantType
+import godot.core.memory.binding.GodotBinding
+import godot.core.memory.binding.GodotNativeEntry
+import godot.core.memory.binding.GodotRefCountedEntry
 import godot.util.VoidPtr
 import godot.util.warning
 import java.lang.ref.ReferenceQueue
@@ -22,8 +25,8 @@ internal object MemoryManager {
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { null }
-    
+    private val ObjectDB = Array<GodotNativeEntry?>(OBJECTDB_SIZE) { null }
+
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
@@ -41,7 +44,7 @@ internal object MemoryManager {
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
 
     /** List of element to remove from ObjectDB*/
-    private val deleteList = ArrayList<GodotNativeReference>(CHECK_NUMBER)
+    private val deleteList = ArrayList<GodotNativeEntry>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
@@ -91,7 +94,7 @@ internal object MemoryManager {
             return if (binding == null) {
                 GodotBinding().also {
                     it.wrapper = instance
-                    ObjectDB[id.index] = GodotNativeReference(it, refReferenceQueue, instance.id)
+                    ObjectDB[id.index] = GodotNativeEntry.create(it, refReferenceQueue)
                     bindingQueue.addLast(it)
                 }
             } else {
@@ -108,7 +111,7 @@ internal object MemoryManager {
             return if (binding == null) {
                 GodotBinding().also {
                     it.scriptInstance = instance
-                    ObjectDB[id.index] = GodotNativeReference(it, refReferenceQueue, instance.id)
+                    ObjectDB[id.index] = GodotNativeEntry.create(it, refReferenceQueue)
                     bindingQueue.addLast(it)
                 }
             } else {
@@ -139,8 +142,8 @@ internal object MemoryManager {
     private fun getBinding(id: Long): GodotBinding? {
         val objectID = ObjectID(id)
         val ref = ObjectDB[objectID.index]
-        if (ref != null && ref.id.id == objectID.id) {
-            return ref.get()
+        if (ref != null && ref.objectID.id == objectID.id) {
+            return ref.binding
         }
         return null
     }
@@ -188,8 +191,8 @@ internal object MemoryManager {
         //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
         synchronized(ObjectDB) {
             while (counter < CHECK_NUMBER) {
-                val ref = ((refReferenceQueue.poll() ?: break) as GodotNativeReference)
-                val index = ref.id.index
+                val ref = ((refReferenceQueue.poll() ?: break) as GodotRefCountedEntry)
+                val index = ref.objectID.index
                 val otherRef = ObjectDB[index]
                 //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
                 if (otherRef === ref) {
@@ -203,8 +206,8 @@ internal object MemoryManager {
 
         // We let cpp destroy the references in `deleteList`
         for (ref in deleteList) {
-            if (ref.id.isReference) {
-                decrementRefCounter(ref.id.id)
+            if (ref.objectID.isReference) {
+                decrementRefCounter(ref.objectID.id)
             }
         }
 
@@ -237,8 +240,8 @@ internal object MemoryManager {
 
         // Get through all remaining [RefCounted] instance and decrement their pointers.
         for (ref in ObjectDB.filterNotNull()) {
-            if(ref.id.isReference) {
-                decrementRefCounter(ref.id.id)
+            if(ref.objectID.isReference) {
+                decrementRefCounter(ref.objectID.id)
             }
         }
         ObjectDB.fill(null)
