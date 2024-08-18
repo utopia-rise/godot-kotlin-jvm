@@ -23,7 +23,6 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
         INIT_NATIVE_METHOD("bindInstance", "(JLgodot/core/memory/GodotBinding;)V", MemoryManager::bind_instance)
         INIT_NATIVE_METHOD("unbindInstance", "(J)V", MemoryManager::unbind_instance)
         INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryManager::unref_native_core_type)
-        INIT_NATIVE_METHOD("notifyLeak", "()V", MemoryManager::notify_leak)
       )
 
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
@@ -35,8 +34,6 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     static void decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
 
     static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
-
-    static void notify_leak(JNIEnv* p_raw_env, jobject p_instance);
 
 public:
     void manageMemory(jni::Env& p_env);

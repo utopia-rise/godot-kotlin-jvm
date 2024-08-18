@@ -102,12 +102,6 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
     return has_free;
 }
 
-void MemoryManager::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
-#ifdef DEBUG_ENABLED
-    JVM_CRASH_NOW_MSG("JVM instances are leaking.");
-#endif
-}
-
 void MemoryManager::manageMemory(jni::Env& p_env) {
     wrapped.call_boolean_method(p_env, MANAGE_MEMORY);
 }
