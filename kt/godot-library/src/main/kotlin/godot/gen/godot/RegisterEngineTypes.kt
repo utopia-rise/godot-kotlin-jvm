@@ -65,26 +65,28 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("JavaClassWrapper")
   TypeManager.registerEngineType("JavaScriptBridge", JavaScriptBridge::class) { JavaScriptBridge }
   TypeManager.registerSingleton("JavaScriptBridge")
-  TypeManager.registerEngineType("DisplayServer", DisplayServer::class) { DisplayServer }
-  TypeManager.registerSingleton("DisplayServer")
-  TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
-  TypeManager.registerSingleton("RenderingServer")
   TypeManager.registerEngineType("AudioServer", AudioServer::class) { AudioServer }
   TypeManager.registerSingleton("AudioServer")
-  TypeManager.registerEngineType("PhysicsServer2D", PhysicsServer2D::class) { PhysicsServer2D }
-  TypeManager.registerSingleton("PhysicsServer2D")
-  TypeManager.registerEngineType("PhysicsServer3D", PhysicsServer3D::class) { PhysicsServer3D }
-  TypeManager.registerSingleton("PhysicsServer3D")
+  TypeManager.registerEngineType("CameraServer", CameraServer::class) { CameraServer }
+  TypeManager.registerSingleton("CameraServer")
+  TypeManager.registerEngineType("DisplayServer", DisplayServer::class) { DisplayServer }
+  TypeManager.registerSingleton("DisplayServer")
+  TypeManager.registerEngineType("NativeMenu", NativeMenu::class) { NativeMenu }
+  TypeManager.registerSingleton("NativeMenu")
   TypeManager.registerEngineType("NavigationServer2D", NavigationServer2D::class) {
       NavigationServer2D }
   TypeManager.registerSingleton("NavigationServer2D")
   TypeManager.registerEngineType("NavigationServer3D", NavigationServer3D::class) {
       NavigationServer3D }
   TypeManager.registerSingleton("NavigationServer3D")
+  TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
+  TypeManager.registerSingleton("RenderingServer")
+  TypeManager.registerEngineType("PhysicsServer2D", PhysicsServer2D::class) { PhysicsServer2D }
+  TypeManager.registerSingleton("PhysicsServer2D")
+  TypeManager.registerEngineType("PhysicsServer3D", PhysicsServer3D::class) { PhysicsServer3D }
+  TypeManager.registerSingleton("PhysicsServer3D")
   TypeManager.registerEngineType("XRServer", XRServer::class) { XRServer }
   TypeManager.registerSingleton("XRServer")
-  TypeManager.registerEngineType("CameraServer", CameraServer::class) { CameraServer }
-  TypeManager.registerSingleton("CameraServer")
   TypeManager.registerEngineType("AESContext", AESContext::class, ::AESContext)
   TypeManager.registerEngineType("AStar2D", AStar2D::class, ::AStar2D)
   TypeManager.registerEngineType("AStar3D", AStar3D::class, ::AStar3D)
@@ -162,6 +164,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AudioEffectEQ21", AudioEffectEQ21::class, ::AudioEffectEQ21)
   TypeManager.registerEngineType("AudioEffectEQ6", AudioEffectEQ6::class, ::AudioEffectEQ6)
   TypeManager.registerEngineType("AudioEffectFilter", AudioEffectFilter::class, ::AudioEffectFilter)
+  TypeManager.registerEngineType("AudioEffectHardLimiter", AudioEffectHardLimiter::class,
+      ::AudioEffectHardLimiter)
   TypeManager.registerEngineType("AudioEffectHighPassFilter", AudioEffectHighPassFilter::class,
       ::AudioEffectHighPassFilter)
   TypeManager.registerEngineType("AudioEffectHighShelfFilter", AudioEffectHighShelfFilter::class,
@@ -190,11 +194,16 @@ public fun registerEngineTypes(): Unit {
       ::AudioEffectStereoEnhance)
   TypeManager.registerEngineType("AudioListener2D", AudioListener2D::class, ::AudioListener2D)
   TypeManager.registerEngineType("AudioListener3D", AudioListener3D::class, ::AudioListener3D)
+  TypeManager.registerEngineType("AudioSample", AudioSample::class, ::AudioSample)
+  TypeManager.registerEngineType("AudioSamplePlayback", AudioSamplePlayback::class,
+      ::AudioSamplePlayback)
   TypeManager.registerEngineType("AudioStream", AudioStream::class, ::AudioStream)
   TypeManager.registerEngineType("AudioStreamGenerator", AudioStreamGenerator::class,
       ::AudioStreamGenerator)
   TypeManager.registerEngineType("AudioStreamGeneratorPlayback",
       AudioStreamGeneratorPlayback::class, ::AudioStreamGeneratorPlayback)
+  TypeManager.registerEngineType("AudioStreamInteractive", AudioStreamInteractive::class,
+      ::AudioStreamInteractive)
   TypeManager.registerEngineType("AudioStreamMP3", AudioStreamMP3::class, ::AudioStreamMP3)
   TypeManager.registerEngineType("AudioStreamMicrophone", AudioStreamMicrophone::class,
       ::AudioStreamMicrophone)
@@ -202,21 +211,31 @@ public fun registerEngineTypes(): Unit {
       ::AudioStreamOggVorbis)
   TypeManager.registerEngineType("AudioStreamPlayback", AudioStreamPlayback::class,
       ::AudioStreamPlayback)
+  TypeManager.registerEngineType("AudioStreamPlaybackInteractive",
+      AudioStreamPlaybackInteractive::class, ::AudioStreamPlaybackInteractive)
   TypeManager.registerEngineType("AudioStreamPlaybackOggVorbis",
       AudioStreamPlaybackOggVorbis::class, ::AudioStreamPlaybackOggVorbis)
+  TypeManager.registerEngineType("AudioStreamPlaybackPlaylist", AudioStreamPlaybackPlaylist::class,
+      ::AudioStreamPlaybackPlaylist)
   TypeManager.registerEngineType("AudioStreamPlaybackPolyphonic",
       AudioStreamPlaybackPolyphonic::class, ::AudioStreamPlaybackPolyphonic)
   TypeManager.registerEngineType("AudioStreamPlaybackResampled",
       AudioStreamPlaybackResampled::class, ::AudioStreamPlaybackResampled)
+  TypeManager.registerEngineType("AudioStreamPlaybackSynchronized",
+      AudioStreamPlaybackSynchronized::class, ::AudioStreamPlaybackSynchronized)
   TypeManager.registerEngineType("AudioStreamPlayer", AudioStreamPlayer::class, ::AudioStreamPlayer)
   TypeManager.registerEngineType("AudioStreamPlayer2D", AudioStreamPlayer2D::class,
       ::AudioStreamPlayer2D)
   TypeManager.registerEngineType("AudioStreamPlayer3D", AudioStreamPlayer3D::class,
       ::AudioStreamPlayer3D)
+  TypeManager.registerEngineType("AudioStreamPlaylist", AudioStreamPlaylist::class,
+      ::AudioStreamPlaylist)
   TypeManager.registerEngineType("AudioStreamPolyphonic", AudioStreamPolyphonic::class,
       ::AudioStreamPolyphonic)
   TypeManager.registerEngineType("AudioStreamRandomizer", AudioStreamRandomizer::class,
       ::AudioStreamRandomizer)
+  TypeManager.registerEngineType("AudioStreamSynchronized", AudioStreamSynchronized::class,
+      ::AudioStreamSynchronized)
   TypeManager.registerEngineType("AudioStreamWAV", AudioStreamWAV::class, ::AudioStreamWAV)
   TypeManager.registerEngineType("BackBufferCopy", BackBufferCopy::class, ::BackBufferCopy)
   TypeManager.registerEngineType("BaseButton", BaseButton::class, ::BaseButton)
@@ -282,6 +301,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("ColorPicker", ColorPicker::class, ::ColorPicker)
   TypeManager.registerEngineType("ColorPickerButton", ColorPickerButton::class, ::ColorPickerButton)
   TypeManager.registerEngineType("ColorRect", ColorRect::class, ::ColorRect)
+  TypeManager.registerEngineType("Compositor", Compositor::class, ::Compositor)
+  TypeManager.registerEngineType("CompositorEffect", CompositorEffect::class, ::CompositorEffect)
   TypeManager.registerEngineType("CompressedCubemap", CompressedCubemap::class, ::CompressedCubemap)
   TypeManager.registerEngineType("CompressedCubemapArray", CompressedCubemapArray::class,
       ::CompressedCubemapArray)
@@ -335,6 +356,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("EngineProfiler", EngineProfiler::class, ::EngineProfiler)
   TypeManager.registerEngineType("Environment", Environment::class, ::Environment)
   TypeManager.registerEngineType("Expression", Expression::class, ::Expression)
+  TypeManager.registerEngineType("FBXDocument", FBXDocument::class, ::FBXDocument)
+  TypeManager.registerEngineType("FBXState", FBXState::class, ::FBXState)
   TypeManager.registerEngineType("FastNoiseLite", FastNoiseLite::class, ::FastNoiseLite)
   TypeManager.registerEngineType("FileAccess", FileAccess::class, ::FileAccess)
   TypeManager.registerEngineType("FileDialog", FileDialog::class, ::FileDialog)
@@ -344,6 +367,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Font", Font::class, ::Font)
   TypeManager.registerEngineType("FontFile", FontFile::class, ::FontFile)
   TypeManager.registerEngineType("FontVariation", FontVariation::class, ::FontVariation)
+  TypeManager.registerEngineType("FramebufferCacheRD", FramebufferCacheRD::class,
+      ::FramebufferCacheRD)
   TypeManager.registerEngineType("GDExtension", GDExtension::class, ::GDExtension)
   TypeManager.registerEngineType("GDScript", GDScript::class, ::GDScript)
   TypeManager.registerEngineType("GLTFAccessor", GLTFAccessor::class, ::GLTFAccessor)
@@ -397,6 +422,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GradientTexture2D", GradientTexture2D::class, ::GradientTexture2D)
   TypeManager.registerEngineType("GraphEdit", GraphEdit::class, ::GraphEdit)
   TypeManager.registerEngineType("GraphElement", GraphElement::class, ::GraphElement)
+  TypeManager.registerEngineType("GraphFrame", GraphFrame::class, ::GraphFrame)
   TypeManager.registerEngineType("GraphNode", GraphNode::class, ::GraphNode)
   TypeManager.registerEngineType("GridContainer", GridContainer::class, ::GridContainer)
   TypeManager.registerEngineType("GridMap", GridMap::class, ::GridMap)
@@ -572,6 +598,14 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OpenXRAction", OpenXRAction::class, ::OpenXRAction)
   TypeManager.registerEngineType("OpenXRActionMap", OpenXRActionMap::class, ::OpenXRActionMap)
   TypeManager.registerEngineType("OpenXRActionSet", OpenXRActionSet::class, ::OpenXRActionSet)
+  TypeManager.registerEngineType("OpenXRCompositionLayer", OpenXRCompositionLayer::class,
+      ::OpenXRCompositionLayer)
+  TypeManager.registerEngineType("OpenXRCompositionLayerCylinder",
+      OpenXRCompositionLayerCylinder::class, ::OpenXRCompositionLayerCylinder)
+  TypeManager.registerEngineType("OpenXRCompositionLayerEquirect",
+      OpenXRCompositionLayerEquirect::class, ::OpenXRCompositionLayerEquirect)
+  TypeManager.registerEngineType("OpenXRCompositionLayerQuad", OpenXRCompositionLayerQuad::class,
+      ::OpenXRCompositionLayerQuad)
   TypeManager.registerEngineType("OpenXRExtensionWrapperExtension",
       OpenXRExtensionWrapperExtension::class, ::OpenXRExtensionWrapperExtension)
   TypeManager.registerEngineType("OpenXRHand", OpenXRHand::class, ::OpenXRHand)
@@ -600,6 +634,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("PanelContainer", PanelContainer::class, ::PanelContainer)
   TypeManager.registerEngineType("PanoramaSkyMaterial", PanoramaSkyMaterial::class,
       ::PanoramaSkyMaterial)
+  TypeManager.registerEngineType("Parallax2D", Parallax2D::class, ::Parallax2D)
   TypeManager.registerEngineType("ParallaxBackground", ParallaxBackground::class,
       ::ParallaxBackground)
   TypeManager.registerEngineType("ParallaxLayer", ParallaxLayer::class, ::ParallaxLayer)
@@ -611,6 +646,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("PathFollow3D", PathFollow3D::class, ::PathFollow3D)
   TypeManager.registerEngineType("PhysicalBone2D", PhysicalBone2D::class, ::PhysicalBone2D)
   TypeManager.registerEngineType("PhysicalBone3D", PhysicalBone3D::class, ::PhysicalBone3D)
+  TypeManager.registerEngineType("PhysicalBoneSimulator3D", PhysicalBoneSimulator3D::class,
+      ::PhysicalBoneSimulator3D)
   TypeManager.registerEngineType("PhysicalSkyMaterial", PhysicalSkyMaterial::class,
       ::PhysicalSkyMaterial)
   TypeManager.registerEngineType("PhysicsBody2D", PhysicsBody2D::class, ::PhysicsBody2D)
@@ -726,6 +763,10 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RegExMatch", RegExMatch::class, ::RegExMatch)
   TypeManager.registerEngineType("RemoteTransform2D", RemoteTransform2D::class, ::RemoteTransform2D)
   TypeManager.registerEngineType("RemoteTransform3D", RemoteTransform3D::class, ::RemoteTransform3D)
+  TypeManager.registerEngineType("RenderData", RenderData::class, ::RenderData)
+  TypeManager.registerEngineType("RenderDataExtension", RenderDataExtension::class,
+      ::RenderDataExtension)
+  TypeManager.registerEngineType("RenderDataRD", RenderDataRD::class, ::RenderDataRD)
   TypeManager.registerEngineType("RenderSceneBuffers", RenderSceneBuffers::class,
       ::RenderSceneBuffers)
   TypeManager.registerEngineType("RenderSceneBuffersConfiguration",
@@ -734,6 +775,10 @@ public fun registerEngineTypes(): Unit {
       ::RenderSceneBuffersExtension)
   TypeManager.registerEngineType("RenderSceneBuffersRD", RenderSceneBuffersRD::class,
       ::RenderSceneBuffersRD)
+  TypeManager.registerEngineType("RenderSceneData", RenderSceneData::class, ::RenderSceneData)
+  TypeManager.registerEngineType("RenderSceneDataExtension", RenderSceneDataExtension::class,
+      ::RenderSceneDataExtension)
+  TypeManager.registerEngineType("RenderSceneDataRD", RenderSceneDataRD::class, ::RenderSceneDataRD)
   TypeManager.registerEngineType("RenderingDevice", RenderingDevice::class, ::RenderingDevice)
   TypeManager.registerEngineType("Resource", Resource::class, ::Resource)
   TypeManager.registerEngineType("ResourceFormatLoader", ResourceFormatLoader::class,
@@ -799,6 +844,8 @@ public fun registerEngineTypes(): Unit {
       SkeletonModification2DTwoBoneIK::class, ::SkeletonModification2DTwoBoneIK)
   TypeManager.registerEngineType("SkeletonModificationStack2D", SkeletonModificationStack2D::class,
       ::SkeletonModificationStack2D)
+  TypeManager.registerEngineType("SkeletonModifier3D", SkeletonModifier3D::class,
+      ::SkeletonModifier3D)
   TypeManager.registerEngineType("SkeletonProfile", SkeletonProfile::class, ::SkeletonProfile)
   TypeManager.registerEngineType("SkeletonProfileHumanoid", SkeletonProfileHumanoid::class,
       ::SkeletonProfileHumanoid)
@@ -823,6 +870,7 @@ public fun registerEngineTypes(): Unit {
       ::StandardMaterial3D)
   TypeManager.registerEngineType("StaticBody2D", StaticBody2D::class, ::StaticBody2D)
   TypeManager.registerEngineType("StaticBody3D", StaticBody3D::class, ::StaticBody3D)
+  TypeManager.registerEngineType("StatusIndicator", StatusIndicator::class, ::StatusIndicator)
   TypeManager.registerEngineType("StreamPeer", StreamPeer::class, ::StreamPeer)
   TypeManager.registerEngineType("StreamPeerBuffer", StreamPeerBuffer::class, ::StreamPeerBuffer)
   TypeManager.registerEngineType("StreamPeerExtension", StreamPeerExtension::class,
@@ -875,6 +923,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Thread", Thread::class, ::Thread)
   TypeManager.registerEngineType("TileData", TileData::class, ::TileData)
   TypeManager.registerEngineType("TileMap", TileMap::class, ::TileMap)
+  TypeManager.registerEngineType("TileMapLayer", TileMapLayer::class, ::TileMapLayer)
   TypeManager.registerEngineType("TileMapPattern", TileMapPattern::class, ::TileMapPattern)
   TypeManager.registerEngineType("TileSet", TileSet::class, ::TileSet)
   TypeManager.registerEngineType("TileSetAtlasSource", TileSetAtlasSource::class,
@@ -896,6 +945,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("UPNP", UPNP::class, ::UPNP)
   TypeManager.registerEngineType("UPNPDevice", UPNPDevice::class, ::UPNPDevice)
   TypeManager.registerEngineType("UndoRedo", UndoRedo::class, ::UndoRedo)
+  TypeManager.registerEngineType("UniformSetCacheRD", UniformSetCacheRD::class, ::UniformSetCacheRD)
   TypeManager.registerEngineType("VBoxContainer", VBoxContainer::class, ::VBoxContainer)
   TypeManager.registerEngineType("VFlowContainer", VFlowContainer::class, ::VFlowContainer)
   TypeManager.registerEngineType("VScrollBar", VScrollBar::class, ::VScrollBar)
@@ -974,6 +1024,8 @@ public fun registerEngineTypes(): Unit {
       ::VisualShaderNodeFloatOp)
   TypeManager.registerEngineType("VisualShaderNodeFloatParameter",
       VisualShaderNodeFloatParameter::class, ::VisualShaderNodeFloatParameter)
+  TypeManager.registerEngineType("VisualShaderNodeFrame", VisualShaderNodeFrame::class,
+      ::VisualShaderNodeFrame)
   TypeManager.registerEngineType("VisualShaderNodeFresnel", VisualShaderNodeFresnel::class,
       ::VisualShaderNodeFresnel)
   TypeManager.registerEngineType("VisualShaderNodeGlobalExpression",
@@ -1037,6 +1089,8 @@ public fun registerEngineTypes(): Unit {
       ::VisualShaderNodeRandomRange)
   TypeManager.registerEngineType("VisualShaderNodeRemap", VisualShaderNodeRemap::class,
       ::VisualShaderNodeRemap)
+  TypeManager.registerEngineType("VisualShaderNodeReroute", VisualShaderNodeReroute::class,
+      ::VisualShaderNodeReroute)
   TypeManager.registerEngineType("VisualShaderNodeResizableBase",
       VisualShaderNodeResizableBase::class, ::VisualShaderNodeResizableBase)
   TypeManager.registerEngineType("VisualShaderNodeRotationByAxis",
@@ -1166,8 +1220,16 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("X509Certificate", X509Certificate::class, ::X509Certificate)
   TypeManager.registerEngineType("XMLParser", XMLParser::class, ::XMLParser)
   TypeManager.registerEngineType("XRAnchor3D", XRAnchor3D::class, ::XRAnchor3D)
+  TypeManager.registerEngineType("XRBodyModifier3D", XRBodyModifier3D::class, ::XRBodyModifier3D)
+  TypeManager.registerEngineType("XRBodyTracker", XRBodyTracker::class, ::XRBodyTracker)
   TypeManager.registerEngineType("XRCamera3D", XRCamera3D::class, ::XRCamera3D)
   TypeManager.registerEngineType("XRController3D", XRController3D::class, ::XRController3D)
+  TypeManager.registerEngineType("XRControllerTracker", XRControllerTracker::class,
+      ::XRControllerTracker)
+  TypeManager.registerEngineType("XRFaceModifier3D", XRFaceModifier3D::class, ::XRFaceModifier3D)
+  TypeManager.registerEngineType("XRFaceTracker", XRFaceTracker::class, ::XRFaceTracker)
+  TypeManager.registerEngineType("XRHandModifier3D", XRHandModifier3D::class, ::XRHandModifier3D)
+  TypeManager.registerEngineType("XRHandTracker", XRHandTracker::class, ::XRHandTracker)
   TypeManager.registerEngineType("XRInterface", XRInterface::class, ::XRInterface)
   TypeManager.registerEngineType("XRInterfaceExtension", XRInterfaceExtension::class,
       ::XRInterfaceExtension)
@@ -1176,6 +1238,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("XRPose", XRPose::class, ::XRPose)
   TypeManager.registerEngineType("XRPositionalTracker", XRPositionalTracker::class,
       ::XRPositionalTracker)
+  TypeManager.registerEngineType("XRTracker", XRTracker::class, ::XRTracker)
+  TypeManager.registerEngineType("XRVRS", XRVRS::class, ::XRVRS)
   TypeManager.registerEngineType("ZIPPacker", ZIPPacker::class, ::ZIPPacker)
   TypeManager.registerEngineType("ZIPReader", ZIPReader::class, ::ZIPReader)
 }
@@ -1207,15 +1271,16 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ThemeDB::class] = OBJECT
   variantMapper[JavaClassWrapper::class] = OBJECT
   variantMapper[JavaScriptBridge::class] = OBJECT
-  variantMapper[DisplayServer::class] = OBJECT
-  variantMapper[RenderingServer::class] = OBJECT
   variantMapper[AudioServer::class] = OBJECT
-  variantMapper[PhysicsServer2D::class] = OBJECT
-  variantMapper[PhysicsServer3D::class] = OBJECT
+  variantMapper[CameraServer::class] = OBJECT
+  variantMapper[DisplayServer::class] = OBJECT
+  variantMapper[NativeMenu::class] = OBJECT
   variantMapper[NavigationServer2D::class] = OBJECT
   variantMapper[NavigationServer3D::class] = OBJECT
+  variantMapper[RenderingServer::class] = OBJECT
+  variantMapper[PhysicsServer2D::class] = OBJECT
+  variantMapper[PhysicsServer3D::class] = OBJECT
   variantMapper[XRServer::class] = OBJECT
-  variantMapper[CameraServer::class] = OBJECT
   variantMapper[AESContext::class] = OBJECT
   variantMapper[AStar2D::class] = OBJECT
   variantMapper[AStar3D::class] = OBJECT
@@ -1272,6 +1337,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[AudioEffectEQ21::class] = OBJECT
   variantMapper[AudioEffectEQ6::class] = OBJECT
   variantMapper[AudioEffectFilter::class] = OBJECT
+  variantMapper[AudioEffectHardLimiter::class] = OBJECT
   variantMapper[AudioEffectHighPassFilter::class] = OBJECT
   variantMapper[AudioEffectHighShelfFilter::class] = OBJECT
   variantMapper[AudioEffectInstance::class] = OBJECT
@@ -1289,21 +1355,29 @@ public fun registerVariantMapping(): Unit {
   variantMapper[AudioEffectStereoEnhance::class] = OBJECT
   variantMapper[AudioListener2D::class] = OBJECT
   variantMapper[AudioListener3D::class] = OBJECT
+  variantMapper[AudioSample::class] = OBJECT
+  variantMapper[AudioSamplePlayback::class] = OBJECT
   variantMapper[AudioStream::class] = OBJECT
   variantMapper[AudioStreamGenerator::class] = OBJECT
   variantMapper[AudioStreamGeneratorPlayback::class] = OBJECT
+  variantMapper[AudioStreamInteractive::class] = OBJECT
   variantMapper[AudioStreamMP3::class] = OBJECT
   variantMapper[AudioStreamMicrophone::class] = OBJECT
   variantMapper[AudioStreamOggVorbis::class] = OBJECT
   variantMapper[AudioStreamPlayback::class] = OBJECT
+  variantMapper[AudioStreamPlaybackInteractive::class] = OBJECT
   variantMapper[AudioStreamPlaybackOggVorbis::class] = OBJECT
+  variantMapper[AudioStreamPlaybackPlaylist::class] = OBJECT
   variantMapper[AudioStreamPlaybackPolyphonic::class] = OBJECT
   variantMapper[AudioStreamPlaybackResampled::class] = OBJECT
+  variantMapper[AudioStreamPlaybackSynchronized::class] = OBJECT
   variantMapper[AudioStreamPlayer::class] = OBJECT
   variantMapper[AudioStreamPlayer2D::class] = OBJECT
   variantMapper[AudioStreamPlayer3D::class] = OBJECT
+  variantMapper[AudioStreamPlaylist::class] = OBJECT
   variantMapper[AudioStreamPolyphonic::class] = OBJECT
   variantMapper[AudioStreamRandomizer::class] = OBJECT
+  variantMapper[AudioStreamSynchronized::class] = OBJECT
   variantMapper[AudioStreamWAV::class] = OBJECT
   variantMapper[BackBufferCopy::class] = OBJECT
   variantMapper[BaseButton::class] = OBJECT
@@ -1364,6 +1438,8 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ColorPicker::class] = OBJECT
   variantMapper[ColorPickerButton::class] = OBJECT
   variantMapper[ColorRect::class] = OBJECT
+  variantMapper[Compositor::class] = OBJECT
+  variantMapper[CompositorEffect::class] = OBJECT
   variantMapper[CompressedCubemap::class] = OBJECT
   variantMapper[CompressedCubemapArray::class] = OBJECT
   variantMapper[CompressedTexture2D::class] = OBJECT
@@ -1403,6 +1479,8 @@ public fun registerVariantMapping(): Unit {
   variantMapper[EngineProfiler::class] = OBJECT
   variantMapper[Environment::class] = OBJECT
   variantMapper[Expression::class] = OBJECT
+  variantMapper[FBXDocument::class] = OBJECT
+  variantMapper[FBXState::class] = OBJECT
   variantMapper[FastNoiseLite::class] = OBJECT
   variantMapper[FileAccess::class] = OBJECT
   variantMapper[FileDialog::class] = OBJECT
@@ -1412,6 +1490,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Font::class] = OBJECT
   variantMapper[FontFile::class] = OBJECT
   variantMapper[FontVariation::class] = OBJECT
+  variantMapper[FramebufferCacheRD::class] = OBJECT
   variantMapper[GDExtension::class] = OBJECT
   variantMapper[GDScript::class] = OBJECT
   variantMapper[GLTFAccessor::class] = OBJECT
@@ -1451,6 +1530,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GradientTexture2D::class] = OBJECT
   variantMapper[GraphEdit::class] = OBJECT
   variantMapper[GraphElement::class] = OBJECT
+  variantMapper[GraphFrame::class] = OBJECT
   variantMapper[GraphNode::class] = OBJECT
   variantMapper[GridContainer::class] = OBJECT
   variantMapper[GridMap::class] = OBJECT
@@ -1588,6 +1668,10 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OpenXRAction::class] = OBJECT
   variantMapper[OpenXRActionMap::class] = OBJECT
   variantMapper[OpenXRActionSet::class] = OBJECT
+  variantMapper[OpenXRCompositionLayer::class] = OBJECT
+  variantMapper[OpenXRCompositionLayerCylinder::class] = OBJECT
+  variantMapper[OpenXRCompositionLayerEquirect::class] = OBJECT
+  variantMapper[OpenXRCompositionLayerQuad::class] = OBJECT
   variantMapper[OpenXRExtensionWrapperExtension::class] = OBJECT
   variantMapper[OpenXRHand::class] = OBJECT
   variantMapper[OpenXRIPBinding::class] = OBJECT
@@ -1608,6 +1692,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Panel::class] = OBJECT
   variantMapper[PanelContainer::class] = OBJECT
   variantMapper[PanoramaSkyMaterial::class] = OBJECT
+  variantMapper[Parallax2D::class] = OBJECT
   variantMapper[ParallaxBackground::class] = OBJECT
   variantMapper[ParallaxLayer::class] = OBJECT
   variantMapper[ParticleProcessMaterial::class] = OBJECT
@@ -1617,6 +1702,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[PathFollow3D::class] = OBJECT
   variantMapper[PhysicalBone2D::class] = OBJECT
   variantMapper[PhysicalBone3D::class] = OBJECT
+  variantMapper[PhysicalBoneSimulator3D::class] = OBJECT
   variantMapper[PhysicalSkyMaterial::class] = OBJECT
   variantMapper[PhysicsBody2D::class] = OBJECT
   variantMapper[PhysicsBody3D::class] = OBJECT
@@ -1695,10 +1781,16 @@ public fun registerVariantMapping(): Unit {
   variantMapper[RegExMatch::class] = OBJECT
   variantMapper[RemoteTransform2D::class] = OBJECT
   variantMapper[RemoteTransform3D::class] = OBJECT
+  variantMapper[RenderData::class] = OBJECT
+  variantMapper[RenderDataExtension::class] = OBJECT
+  variantMapper[RenderDataRD::class] = OBJECT
   variantMapper[RenderSceneBuffers::class] = OBJECT
   variantMapper[RenderSceneBuffersConfiguration::class] = OBJECT
   variantMapper[RenderSceneBuffersExtension::class] = OBJECT
   variantMapper[RenderSceneBuffersRD::class] = OBJECT
+  variantMapper[RenderSceneData::class] = OBJECT
+  variantMapper[RenderSceneDataExtension::class] = OBJECT
+  variantMapper[RenderSceneDataRD::class] = OBJECT
   variantMapper[RenderingDevice::class] = OBJECT
   variantMapper[Resource::class] = OBJECT
   variantMapper[ResourceFormatLoader::class] = OBJECT
@@ -1748,6 +1840,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[SkeletonModification2DStackHolder::class] = OBJECT
   variantMapper[SkeletonModification2DTwoBoneIK::class] = OBJECT
   variantMapper[SkeletonModificationStack2D::class] = OBJECT
+  variantMapper[SkeletonModifier3D::class] = OBJECT
   variantMapper[SkeletonProfile::class] = OBJECT
   variantMapper[SkeletonProfileHumanoid::class] = OBJECT
   variantMapper[Skin::class] = OBJECT
@@ -1770,6 +1863,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[StandardMaterial3D::class] = OBJECT
   variantMapper[StaticBody2D::class] = OBJECT
   variantMapper[StaticBody3D::class] = OBJECT
+  variantMapper[StatusIndicator::class] = OBJECT
   variantMapper[StreamPeer::class] = OBJECT
   variantMapper[StreamPeerBuffer::class] = OBJECT
   variantMapper[StreamPeerExtension::class] = OBJECT
@@ -1816,6 +1910,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Thread::class] = OBJECT
   variantMapper[TileData::class] = OBJECT
   variantMapper[TileMap::class] = OBJECT
+  variantMapper[TileMapLayer::class] = OBJECT
   variantMapper[TileMapPattern::class] = OBJECT
   variantMapper[TileSet::class] = OBJECT
   variantMapper[TileSetAtlasSource::class] = OBJECT
@@ -1835,6 +1930,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[UPNP::class] = OBJECT
   variantMapper[UPNPDevice::class] = OBJECT
   variantMapper[UndoRedo::class] = OBJECT
+  variantMapper[UniformSetCacheRD::class] = OBJECT
   variantMapper[VBoxContainer::class] = OBJECT
   variantMapper[VFlowContainer::class] = OBJECT
   variantMapper[VScrollBar::class] = OBJECT
@@ -1882,6 +1978,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[VisualShaderNodeFloatFunc::class] = OBJECT
   variantMapper[VisualShaderNodeFloatOp::class] = OBJECT
   variantMapper[VisualShaderNodeFloatParameter::class] = OBJECT
+  variantMapper[VisualShaderNodeFrame::class] = OBJECT
   variantMapper[VisualShaderNodeFresnel::class] = OBJECT
   variantMapper[VisualShaderNodeGlobalExpression::class] = OBJECT
   variantMapper[VisualShaderNodeGroupBase::class] = OBJECT
@@ -1913,6 +2010,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[VisualShaderNodeProximityFade::class] = OBJECT
   variantMapper[VisualShaderNodeRandomRange::class] = OBJECT
   variantMapper[VisualShaderNodeRemap::class] = OBJECT
+  variantMapper[VisualShaderNodeReroute::class] = OBJECT
   variantMapper[VisualShaderNodeResizableBase::class] = OBJECT
   variantMapper[VisualShaderNodeRotationByAxis::class] = OBJECT
   variantMapper[VisualShaderNodeSDFRaymarch::class] = OBJECT
@@ -1984,14 +2082,23 @@ public fun registerVariantMapping(): Unit {
   variantMapper[X509Certificate::class] = OBJECT
   variantMapper[XMLParser::class] = OBJECT
   variantMapper[XRAnchor3D::class] = OBJECT
+  variantMapper[XRBodyModifier3D::class] = OBJECT
+  variantMapper[XRBodyTracker::class] = OBJECT
   variantMapper[XRCamera3D::class] = OBJECT
   variantMapper[XRController3D::class] = OBJECT
+  variantMapper[XRControllerTracker::class] = OBJECT
+  variantMapper[XRFaceModifier3D::class] = OBJECT
+  variantMapper[XRFaceTracker::class] = OBJECT
+  variantMapper[XRHandModifier3D::class] = OBJECT
+  variantMapper[XRHandTracker::class] = OBJECT
   variantMapper[XRInterface::class] = OBJECT
   variantMapper[XRInterfaceExtension::class] = OBJECT
   variantMapper[XRNode3D::class] = OBJECT
   variantMapper[XROrigin3D::class] = OBJECT
   variantMapper[XRPose::class] = OBJECT
   variantMapper[XRPositionalTracker::class] = OBJECT
+  variantMapper[XRTracker::class] = OBJECT
+  variantMapper[XRVRS::class] = OBJECT
   variantMapper[ZIPPacker::class] = OBJECT
   variantMapper[ZIPReader::class] = OBJECT
 }
@@ -2023,15 +2130,16 @@ public fun registerEngineTypeMethods(): Unit {
   ThemeDB.MethodBindings
   JavaClassWrapper.MethodBindings
   JavaScriptBridge.MethodBindings
-  DisplayServer.MethodBindings
-  RenderingServer.MethodBindings
   AudioServer.MethodBindings
-  PhysicsServer2D.MethodBindings
-  PhysicsServer3D.MethodBindings
+  CameraServer.MethodBindings
+  DisplayServer.MethodBindings
+  NativeMenu.MethodBindings
   NavigationServer2D.MethodBindings
   NavigationServer3D.MethodBindings
+  RenderingServer.MethodBindings
+  PhysicsServer2D.MethodBindings
+  PhysicsServer3D.MethodBindings
   XRServer.MethodBindings
-  CameraServer.MethodBindings
   AESContext.MethodBindings
   AStar2D.MethodBindings
   AStar3D.MethodBindings
@@ -2088,6 +2196,7 @@ public fun registerEngineTypeMethods(): Unit {
   AudioEffectEQ21.MethodBindings
   AudioEffectEQ6.MethodBindings
   AudioEffectFilter.MethodBindings
+  AudioEffectHardLimiter.MethodBindings
   AudioEffectHighPassFilter.MethodBindings
   AudioEffectHighShelfFilter.MethodBindings
   AudioEffectInstance.MethodBindings
@@ -2105,21 +2214,29 @@ public fun registerEngineTypeMethods(): Unit {
   AudioEffectStereoEnhance.MethodBindings
   AudioListener2D.MethodBindings
   AudioListener3D.MethodBindings
+  AudioSample.MethodBindings
+  AudioSamplePlayback.MethodBindings
   AudioStream.MethodBindings
   AudioStreamGenerator.MethodBindings
   AudioStreamGeneratorPlayback.MethodBindings
+  AudioStreamInteractive.MethodBindings
   AudioStreamMP3.MethodBindings
   AudioStreamMicrophone.MethodBindings
   AudioStreamOggVorbis.MethodBindings
   AudioStreamPlayback.MethodBindings
+  AudioStreamPlaybackInteractive.MethodBindings
   AudioStreamPlaybackOggVorbis.MethodBindings
+  AudioStreamPlaybackPlaylist.MethodBindings
   AudioStreamPlaybackPolyphonic.MethodBindings
   AudioStreamPlaybackResampled.MethodBindings
+  AudioStreamPlaybackSynchronized.MethodBindings
   AudioStreamPlayer.MethodBindings
   AudioStreamPlayer2D.MethodBindings
   AudioStreamPlayer3D.MethodBindings
+  AudioStreamPlaylist.MethodBindings
   AudioStreamPolyphonic.MethodBindings
   AudioStreamRandomizer.MethodBindings
+  AudioStreamSynchronized.MethodBindings
   AudioStreamWAV.MethodBindings
   BackBufferCopy.MethodBindings
   BaseButton.MethodBindings
@@ -2180,6 +2297,8 @@ public fun registerEngineTypeMethods(): Unit {
   ColorPicker.MethodBindings
   ColorPickerButton.MethodBindings
   ColorRect.MethodBindings
+  Compositor.MethodBindings
+  CompositorEffect.MethodBindings
   CompressedCubemap.MethodBindings
   CompressedCubemapArray.MethodBindings
   CompressedTexture2D.MethodBindings
@@ -2219,6 +2338,8 @@ public fun registerEngineTypeMethods(): Unit {
   EngineProfiler.MethodBindings
   Environment.MethodBindings
   Expression.MethodBindings
+  FBXDocument.MethodBindings
+  FBXState.MethodBindings
   FastNoiseLite.MethodBindings
   FileAccess.MethodBindings
   FileDialog.MethodBindings
@@ -2228,6 +2349,7 @@ public fun registerEngineTypeMethods(): Unit {
   Font.MethodBindings
   FontFile.MethodBindings
   FontVariation.MethodBindings
+  FramebufferCacheRD.MethodBindings
   GDExtension.MethodBindings
   GDScript.MethodBindings
   GLTFAccessor.MethodBindings
@@ -2267,6 +2389,7 @@ public fun registerEngineTypeMethods(): Unit {
   GradientTexture2D.MethodBindings
   GraphEdit.MethodBindings
   GraphElement.MethodBindings
+  GraphFrame.MethodBindings
   GraphNode.MethodBindings
   GridContainer.MethodBindings
   GridMap.MethodBindings
@@ -2404,6 +2527,10 @@ public fun registerEngineTypeMethods(): Unit {
   OpenXRAction.MethodBindings
   OpenXRActionMap.MethodBindings
   OpenXRActionSet.MethodBindings
+  OpenXRCompositionLayer.MethodBindings
+  OpenXRCompositionLayerCylinder.MethodBindings
+  OpenXRCompositionLayerEquirect.MethodBindings
+  OpenXRCompositionLayerQuad.MethodBindings
   OpenXRExtensionWrapperExtension.MethodBindings
   OpenXRHand.MethodBindings
   OpenXRIPBinding.MethodBindings
@@ -2424,6 +2551,7 @@ public fun registerEngineTypeMethods(): Unit {
   Panel.MethodBindings
   PanelContainer.MethodBindings
   PanoramaSkyMaterial.MethodBindings
+  Parallax2D.MethodBindings
   ParallaxBackground.MethodBindings
   ParallaxLayer.MethodBindings
   ParticleProcessMaterial.MethodBindings
@@ -2433,6 +2561,7 @@ public fun registerEngineTypeMethods(): Unit {
   PathFollow3D.MethodBindings
   PhysicalBone2D.MethodBindings
   PhysicalBone3D.MethodBindings
+  PhysicalBoneSimulator3D.MethodBindings
   PhysicalSkyMaterial.MethodBindings
   PhysicsBody2D.MethodBindings
   PhysicsBody3D.MethodBindings
@@ -2511,10 +2640,16 @@ public fun registerEngineTypeMethods(): Unit {
   RegExMatch.MethodBindings
   RemoteTransform2D.MethodBindings
   RemoteTransform3D.MethodBindings
+  RenderData.MethodBindings
+  RenderDataExtension.MethodBindings
+  RenderDataRD.MethodBindings
   RenderSceneBuffers.MethodBindings
   RenderSceneBuffersConfiguration.MethodBindings
   RenderSceneBuffersExtension.MethodBindings
   RenderSceneBuffersRD.MethodBindings
+  RenderSceneData.MethodBindings
+  RenderSceneDataExtension.MethodBindings
+  RenderSceneDataRD.MethodBindings
   RenderingDevice.MethodBindings
   Resource.MethodBindings
   ResourceFormatLoader.MethodBindings
@@ -2564,6 +2699,7 @@ public fun registerEngineTypeMethods(): Unit {
   SkeletonModification2DStackHolder.MethodBindings
   SkeletonModification2DTwoBoneIK.MethodBindings
   SkeletonModificationStack2D.MethodBindings
+  SkeletonModifier3D.MethodBindings
   SkeletonProfile.MethodBindings
   SkeletonProfileHumanoid.MethodBindings
   Skin.MethodBindings
@@ -2586,6 +2722,7 @@ public fun registerEngineTypeMethods(): Unit {
   StandardMaterial3D.MethodBindings
   StaticBody2D.MethodBindings
   StaticBody3D.MethodBindings
+  StatusIndicator.MethodBindings
   StreamPeer.MethodBindings
   StreamPeerBuffer.MethodBindings
   StreamPeerExtension.MethodBindings
@@ -2632,6 +2769,7 @@ public fun registerEngineTypeMethods(): Unit {
   Thread.MethodBindings
   TileData.MethodBindings
   TileMap.MethodBindings
+  TileMapLayer.MethodBindings
   TileMapPattern.MethodBindings
   TileSet.MethodBindings
   TileSetAtlasSource.MethodBindings
@@ -2651,6 +2789,7 @@ public fun registerEngineTypeMethods(): Unit {
   UPNP.MethodBindings
   UPNPDevice.MethodBindings
   UndoRedo.MethodBindings
+  UniformSetCacheRD.MethodBindings
   VBoxContainer.MethodBindings
   VFlowContainer.MethodBindings
   VScrollBar.MethodBindings
@@ -2698,6 +2837,7 @@ public fun registerEngineTypeMethods(): Unit {
   VisualShaderNodeFloatFunc.MethodBindings
   VisualShaderNodeFloatOp.MethodBindings
   VisualShaderNodeFloatParameter.MethodBindings
+  VisualShaderNodeFrame.MethodBindings
   VisualShaderNodeFresnel.MethodBindings
   VisualShaderNodeGlobalExpression.MethodBindings
   VisualShaderNodeGroupBase.MethodBindings
@@ -2729,6 +2869,7 @@ public fun registerEngineTypeMethods(): Unit {
   VisualShaderNodeProximityFade.MethodBindings
   VisualShaderNodeRandomRange.MethodBindings
   VisualShaderNodeRemap.MethodBindings
+  VisualShaderNodeReroute.MethodBindings
   VisualShaderNodeResizableBase.MethodBindings
   VisualShaderNodeRotationByAxis.MethodBindings
   VisualShaderNodeSDFRaymarch.MethodBindings
@@ -2800,14 +2941,23 @@ public fun registerEngineTypeMethods(): Unit {
   X509Certificate.MethodBindings
   XMLParser.MethodBindings
   XRAnchor3D.MethodBindings
+  XRBodyModifier3D.MethodBindings
+  XRBodyTracker.MethodBindings
   XRCamera3D.MethodBindings
   XRController3D.MethodBindings
+  XRControllerTracker.MethodBindings
+  XRFaceModifier3D.MethodBindings
+  XRFaceTracker.MethodBindings
+  XRHandModifier3D.MethodBindings
+  XRHandTracker.MethodBindings
   XRInterface.MethodBindings
   XRInterfaceExtension.MethodBindings
   XRNode3D.MethodBindings
   XROrigin3D.MethodBindings
   XRPose.MethodBindings
   XRPositionalTracker.MethodBindings
+  XRTracker.MethodBindings
+  XRVRS.MethodBindings
   ZIPPacker.MethodBindings
   ZIPReader.MethodBindings
 }

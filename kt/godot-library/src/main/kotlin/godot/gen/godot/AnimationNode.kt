@@ -44,6 +44,15 @@ import kotlin.jvm.JvmOverloads
  * custom ones with custom blending formulas.
  * Inherit this when creating animation nodes mainly for use in [AnimationNodeBlendTree], otherwise
  * [AnimationRootNode] should be used instead.
+ * You can access the time information as read-only parameter which is processed and stored in the
+ * previous frame for all nodes except [AnimationNodeOutput].
+ * **Note:** If multiple inputs exist in the [AnimationNode], which time information takes
+ * precedence depends on the type of [AnimationNode].
+ * [codeblock]
+ * var current_length = $AnimationTree[parameters/AnimationNodeName/current_length]
+ * var current_position = $AnimationTree[parameters/AnimationNodeName/current_position]
+ * var current_delta = $AnimationTree[parameters/AnimationNodeName/current_delta]
+ * [/codeblock]
  */
 @GodotBaseType
 public open class AnimationNode : Resource() {
@@ -141,8 +150,7 @@ public open class AnimationNode : Resource() {
    * `true`, in which case it is absolute.
    * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use
    * [getParameter] and [setParameter] to modify local memory.
-   * This function should return the time left for the current animation to finish (if unsure, pass
-   * the value from the main blend being called).
+   * This function should return the delta.
    */
   public open fun _process(
     time: Double,

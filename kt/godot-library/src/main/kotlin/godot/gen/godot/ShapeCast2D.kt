@@ -294,6 +294,9 @@ public open class ShapeCast2D : Node2D() {
   /**
    * The fraction from the [ShapeCast2D]'s origin to its [targetPosition] (between 0 and 1) of how
    * far the shape must move to trigger a collision.
+   * In ideal conditions this would be the same as [getClosestCollisionSafeFraction], however shape
+   * casting is calculated in discrete steps, so the precise point of collision can occur between two
+   * calculated positions.
    */
   public fun getClosestCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()

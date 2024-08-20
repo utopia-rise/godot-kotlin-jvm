@@ -158,6 +158,25 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
+   * The size of the non-navigable border around the bake bounding area.
+   * In conjunction with the [filterBakingAabb] and a [edgeMaxError] value at `1.0` or below the
+   * border size can be used to bake tile aligned navigation meshes without the tile edges being shrunk
+   * by [agentRadius].
+   * **Note:** While baking and not zero, this value will be rounded up to the nearest multiple of
+   * [cellSize].
+   */
+  public var borderSize: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+    }
+
+  /**
    * The minimum floor to ceiling height that will still allow the floor area to be considered
    * walkable.
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellHeight].
@@ -673,6 +692,12 @@ public open class NavigationMesh : Resource() {
 
     public val getCellHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_height")
+
+    public val setBorderSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_border_size")
+
+    public val getBorderSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_border_size")
 
     public val setAgentHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_height")

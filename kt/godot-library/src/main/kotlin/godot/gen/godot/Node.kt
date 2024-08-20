@@ -163,11 +163,16 @@ public open class Node : Object() {
   public val replacingBy: Signal1<Node> by signal("node")
 
   /**
+   * Emitted when the node's editor description field changed.
+   */
+  public val editorDescriptionChanged: Signal1<Node> by signal("node")
+
+  /**
    * The name of the node. This name must be unique among the siblings (other child nodes from the
    * same parent). When set to an existing sibling's name, the node is automatically renamed.
-   * **Note:** When changing the name, the following characters will be removed: (`.` `:` `@` `/`
-   * `"` `&#37;`). In particular, the `@` character is reserved for auto-generated names. See also
-   * [String.validateNodeName].
+   * **Note:** When changing the name, the following characters will be replaced with an underscore:
+   * (`.` `:` `@` `/` `"` `&#37;`). In particular, the `@` character is reserved for auto-generated
+   * names. See also [String.validateNodeName].
    */
   public var name: StringName
     get() {
@@ -214,7 +219,7 @@ public open class Node : Object() {
 
   /**
    * The owner of this node. The owner must be an ancestor of this node. When packing the owner node
-   * in a [PackedScene], all the nodes it owns are also saved with it. 
+   * in a [PackedScene], all the nodes it owns are also saved with it.
    * **Note:** In the editor, nodes not owned by the scene root are usually not displayed in the
    * Scene dock, and will **not** be saved. To prevent this, remember to set the owner after calling
    * [addChild]. See also (see [uniqueNameInOwner])
@@ -243,8 +248,8 @@ public open class Node : Object() {
     }
 
   /**
-   * The node's processing behavior (see [ProcessMode]). To check if the node is able to process,
-   * with the current mode and [SceneTree.paused], use [canProcess].
+   * The node's processing behavior (see [ProcessMode]). To check if the node can process in its
+   * current mode, use [canProcess].
    */
   public var processMode: ProcessMode
     get() {
@@ -338,7 +343,7 @@ public open class Node : Object() {
 
   /**
    * Set whether the current thread group will process messages (calls to [callDeferredThreadGroup]
-   * on threads, and whether it wants to receive them during regular process or physics process
+   * on threads), and whether it wants to receive them during regular process or physics process
    * callbacks.
    */
   public var processThreadMessages: ProcessThreadMessages
@@ -350,6 +355,43 @@ public open class Node : Object() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, MethodBindings.setProcessThreadMessagesPtr, NIL)
+    }
+
+  /**
+   * Allows enabling or disabling physics interpolation per node, offering a finer grain of control
+   * than turning physics interpolation on and off globally. See
+   * [ProjectSettings.physics/common/physicsInterpolation] and [SceneTree.physicsInterpolation] for the
+   * global setting.
+   * **Note:** When teleporting a node to a distant position you should temporarily disable
+   * interpolation with [Node.resetPhysicsInterpolation].
+   */
+  public var physicsInterpolationMode: PhysicsInterpolationMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsInterpolationModePtr, LONG)
+      return Node.PhysicsInterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationModePtr, NIL)
+    }
+
+  /**
+   * Defines if any text should automatically change to its translated version depending on the
+   * current locale (for nodes such as [Label], [RichTextLabel], [Window], etc.). Also decides if the
+   * node's strings should be parsed for POT generation.
+   * **Note:** For the root node, auto translate mode can also be set via
+   * [ProjectSettings.internationalization/rendering/rootNodeAutoTranslate].
+   */
+  public var autoTranslateMode: AutoTranslateMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutoTranslateModePtr, LONG)
+      return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslateModePtr, NIL)
     }
 
   /**
@@ -832,6 +874,8 @@ public open class Node : Object() {
 
   /**
    * Changes the parent of this [Node] to the [newParent]. The node needs to already have a parent.
+   * The node's [owner] is preserved if its owner is still reachable from the new location (i.e., the
+   * node is still a descendant of the new parent after the operation).
    * If [keepGlobalTransform] is `true`, the node's global transform will be preserved if supported.
    * [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only position).
    */
@@ -908,7 +952,7 @@ public open class Node : Object() {
    * **Note:** Fetching by absolute path only works when the node is inside the scene tree (see
    * [isInsideTree]).
    * **Example:** Assume this method is called from the Character node, inside the following tree:
-   * [codeblock]
+   * [codeblock lang=text]
    *  ┖╴root
    *     ┠╴Character (you are here!)
    *     ┃  ┠╴Sword
@@ -1101,6 +1145,15 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns `true` if the node is part of the scene currently opened in the editor.
+   */
+  public fun isPartOfEditedScene(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPartOfEditedScenePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns `true` if the given [node] is a direct or indirect child of this node.
    */
   public fun isAncestorOf(node: Node): Boolean {
@@ -1131,7 +1184,8 @@ public open class Node : Object() {
 
   /**
    * Returns the relative [NodePath] from this node to the specified [node]. Both nodes must be in
-   * the same [SceneTree], otherwise this method fails and returns an empty [NodePath].
+   * the same [SceneTree] or scene hierarchy, otherwise this method fails and returns an empty
+   * [NodePath].
    * If [useUniquePath] is `true`, returns the shortest path accounting for this node's unique name
    * (see [uniqueNameInOwner]).
    * **Note:** If you get a relative path which starts from a unique node, the path may be longer
@@ -1243,8 +1297,8 @@ public open class Node : Object() {
    * Prints the node and its children to the console, recursively. The node does not have to be
    * inside the tree. This method outputs [NodePath]s relative to this node, and is good for
    * copy/pasting into [getNode]. See also [printTreePretty].
-   * **Example output:**
-   * [codeblock]
+   * May print, for example:
+   * [codeblock lang=text]
    * .
    * Menu
    * Menu/Label
@@ -1262,8 +1316,8 @@ public open class Node : Object() {
    * Prints the node and its children to the console, recursively. The node does not have to be
    * inside the tree. Similar to [printTree], but the graphical representation looks like what is
    * displayed in the editor's Scene dock. It is useful for inspecting larger trees.
-   * **Example output:**
-   * [codeblock]
+   * May print, for example:
+   * [codeblock lang=text]
    *  ┖╴TheGame
    *     ┠╴Menu
    *     ┃  ┠╴Label
@@ -1281,8 +1335,8 @@ public open class Node : Object() {
    * Returns the tree as a [String]. Used mainly for debugging purposes. This version displays the
    * path relative to the current node, and is good for copy/pasting into the [getNode] function. It
    * also can be used in game UI/UX.
-   * **Example output:**
-   * [codeblock]
+   * May print, for example:
+   * [codeblock lang=text]
    * TheGame
    * TheGame/Menu
    * TheGame/Menu/Label
@@ -1301,8 +1355,8 @@ public open class Node : Object() {
    * Similar to [getTreeString], this returns the tree as a [String]. This version displays a more
    * graphical representation similar to what is displayed in the Scene Dock. It is useful for
    * inspecting larger trees.
-   * **Example output:**
-   * [codeblock]
+   * May print, for example:
+   * [codeblock lang=text]
    *  ┖╴TheGame
    *     ┠╴Menu
    *     ┃  ┠╴Label
@@ -1345,7 +1399,9 @@ public open class Node : Object() {
    * If set to `true`, enables physics (fixed framerate) processing. When a node is being processed,
    * it will receive a [NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see
    * [Engine.physicsTicksPerSecond] to change) interval (and the [_physicsProcess] callback will be
-   * called if exists). Enabled automatically if [_physicsProcess] is overridden.
+   * called if it exists).
+   * **Note:** If [_physicsProcess] is overridden, this will be automatically enabled before
+   * [_ready] is called.
    */
   public fun setPhysicsProcess(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1385,8 +1441,13 @@ public open class Node : Object() {
 
   /**
    * If set to `true`, enables processing. When a node is being processed, it will receive a
-   * [NOTIFICATION_PROCESS] on every drawn frame (and the [_process] callback will be called if
-   * exists). Enabled automatically if [_process] is overridden.
+   * [NOTIFICATION_PROCESS] on every drawn frame (and the [_process] callback will be called if it
+   * exists).
+   * **Note:** If [_process] is overridden, this will be automatically enabled before [_ready] is
+   * called.
+   * **Note:** This method only affects the [_process] callback, i.e. it has no effect on other
+   * callbacks like [_physicsProcess]. If you want to disable all processing for the node, set
+   * [processMode] to [PROCESS_MODE_DISABLED].
    */
   public fun setProcess(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1403,8 +1464,10 @@ public open class Node : Object() {
   }
 
   /**
-   * If set to `true`, enables input processing. This is not required for GUI controls! Enabled
-   * automatically if [_input] is overridden.
+   * If set to `true`, enables input processing.
+   * **Note:** If [_input] is overridden, this will be automatically enabled before [_ready] is
+   * called. Input processing is also already enabled for GUI controls, such as [Button] and
+   * [TextEdit].
    */
   public fun setProcessInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1421,8 +1484,9 @@ public open class Node : Object() {
   }
 
   /**
-   * If set to `true`, enables shortcut processing for this node. Enabled automatically if
-   * [_shortcutInput] is overridden.
+   * If set to `true`, enables shortcut processing for this node.
+   * **Note:** If [_shortcutInput] is overridden, this will be automatically enabled before [_ready]
+   * is called.
    */
   public fun setProcessShortcutInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1439,9 +1503,11 @@ public open class Node : Object() {
   }
 
   /**
-   * If set to `true`, enables unhandled input processing. This is not required for GUI controls! It
-   * enables the node to receive all input that was not previously handled (usually by a [Control]).
-   * Enabled automatically if [_unhandledInput] is overridden.
+   * If set to `true`, enables unhandled input processing. It enables the node to receive all input
+   * that was not previously handled (usually by a [Control]).
+   * **Note:** If [_unhandledInput] is overridden, this will be automatically enabled before
+   * [_ready] is called. Unhandled input processing is also already enabled for GUI controls, such as
+   * [Button] and [TextEdit].
    */
   public fun setProcessUnhandledInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1458,8 +1524,9 @@ public open class Node : Object() {
   }
 
   /**
-   * If set to `true`, enables unhandled key input processing. Enabled automatically if
-   * [_unhandledKeyInput] is overridden.
+   * If set to `true`, enables unhandled key input processing.
+   * **Note:** If [_unhandledKeyInput] is overridden, this will be automatically enabled before
+   * [_ready] is called.
    */
   public fun setProcessUnhandledKeyInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1478,9 +1545,17 @@ public open class Node : Object() {
 
   /**
    * Returns `true` if the node can receive processing notifications and input callbacks
-   * ([NOTIFICATION_PROCESS], [_input], etc) from the [SceneTree] and [Viewport]. The value depends on
-   * both the current [processMode] and [SceneTree.paused]. Returns `false` if the node is not inside
-   * the tree.
+   * ([NOTIFICATION_PROCESS], [_input], etc.) from the [SceneTree] and [Viewport]. The returned value
+   * depends on [processMode]:
+   * - If set to [PROCESS_MODE_PAUSABLE], returns `true` when the game is processing, i.e.
+   * [SceneTree.paused] is `false`;
+   * - If set to [PROCESS_MODE_WHEN_PAUSED], returns `true` when the game is paused, i.e.
+   * [SceneTree.paused] is `true`;
+   * - If set to [PROCESS_MODE_ALWAYS], always returns `true`;
+   * - If set to [PROCESS_MODE_DISABLED], always returns `false`;
+   * - If set to [PROCESS_MODE_INHERIT], use the parent node's [processMode] to determine the
+   * result.
+   * If the node is not inside the tree, returns `false` no matter the value of [processMode].
    */
   public fun canProcess(): Boolean {
     TransferContext.writeArguments()
@@ -1553,6 +1628,47 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns `true` if physics interpolation is enabled for this node (see
+   * [physicsInterpolationMode]).
+   * **Note:** Interpolation will only be active if both the flag is set **and** physics
+   * interpolation is enabled within the [SceneTree]. This can be tested using
+   * [isPhysicsInterpolatedAndEnabled].
+   */
+  public fun isPhysicsInterpolated(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPhysicsInterpolatedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns `true` if physics interpolation is enabled (see [physicsInterpolationMode]) **and**
+   * enabled in the [SceneTree].
+   * This is a convenience version of [isPhysicsInterpolated] that also checks whether physics
+   * interpolation is enabled globally.
+   * See [SceneTree.physicsInterpolation] and [ProjectSettings.physics/common/physicsInterpolation].
+   */
+  public fun isPhysicsInterpolatedAndEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPhysicsInterpolatedAndEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * When physics interpolation is active, moving a node to a radically different transform (such as
+   * placement within a level) can result in a visible glitch as the object is rendered moving from the
+   * old to new position over the physics tick.
+   * That glitch can be prevented by calling this method, which temporarily disables interpolation
+   * until the physics tick is complete.
+   * The notification [NOTIFICATION_RESET_PHYSICS_INTERPOLATION] will be received by the node and
+   * all children recursively.
+   * **Note:** This function should be called **after** moving the node, rather than before.
+   */
+  public fun resetPhysicsInterpolation(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.resetPhysicsInterpolationPtr, NIL)
+  }
+
+  /**
    * Returns the [Window] that contains this node. If the node is in the main window, this is
    * equivalent to getting the root node (`get_tree().get_root()`).
    */
@@ -1583,7 +1699,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Creates a new [Tween] and binds it to this node. Fails if the node is not inside the tree.
+   * Creates a new [Tween] and binds it to this node.
    * This is the equivalent of doing:
    *
    * gdscript:
@@ -1596,7 +1712,9 @@ public open class Node : Object() {
    * ```
    *
    * The Tween will start automatically on the next process frame or physics frame (depending on
-   * [Tween.TweenProcessMode]).
+   * [Tween.TweenProcessMode]). See [Tween.bindNode] for more info on Tweens bound to nodes.
+   * **Note:** The method can still be used when the node is not inside [SceneTree]. It can fail in
+   * an unlikely case of using a custom [MainLoop].
    */
   public fun createTween(): Tween? {
     TransferContext.writeArguments()
@@ -1769,6 +1887,51 @@ public open class Node : Object() {
   }
 
   /**
+   * Translates a [message], using the translation catalogs configured in the Project Settings.
+   * Further [context] can be specified to help with the translation. Note that most [Control] nodes
+   * automatically translate their strings, so this method is mostly useful for formatted strings or
+   * custom drawn text.
+   * This method works the same as [Object.tr], with the addition of respecting the
+   * [autoTranslateMode] state.
+   * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
+   * returns the [message] without changes. See [Object.setMessageTranslation].
+   * For detailed examples, see
+   * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
+   */
+  @JvmOverloads
+  public fun atr(message: String, context: StringName = StringName("")): String {
+    TransferContext.writeArguments(STRING to message, STRING_NAME to context)
+    TransferContext.callMethod(rawPtr, MethodBindings.atrPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Translates a [message] or [pluralMessage], using the translation catalogs configured in the
+   * Project Settings. Further [context] can be specified to help with the translation.
+   * This method works the same as [Object.trN], with the addition of respecting the
+   * [autoTranslateMode] state.
+   * If [Object.canTranslateMessages] is `false`, or no translation is available, this method
+   * returns [message] or [pluralMessage], without changes. See [Object.setMessageTranslation].
+   * The [n] is the number, or amount, of the message's subject. It is used by the translation
+   * system to fetch the correct plural form for the current language.
+   * For detailed examples, see
+   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].
+   * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
+   * recommended to handle these cases with [atr].
+   */
+  @JvmOverloads
+  public fun atrN(
+    message: String,
+    pluralMessage: StringName,
+    n: Int,
+    context: StringName = StringName(""),
+  ): String {
+    TransferContext.writeArguments(STRING to message, STRING_NAME to pluralMessage, LONG to n.toLong(), STRING_NAME to context)
+    TransferContext.callMethod(rawPtr, MethodBindings.atrNPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
    * Sends a remote procedure call request for the given [method] to peers on the network (and
    * locally), sending additional arguments to the method called by the RPC. The call request will only
    * be received by nodes with the same [NodePath], including the exact same [name]. Behavior depends
@@ -1876,13 +2039,13 @@ public open class Node : Object() {
     id: Long,
   ) {
     /**
-     * Inherits [processMode] from the node's parent. For the root node, it is equivalent to
-     * [PROCESS_MODE_PAUSABLE]. This is the default for any newly created node.
+     * Inherits [processMode] from the node's parent. This is the default for any newly created
+     * node.
      */
     PROCESS_MODE_INHERIT(0),
     /**
      * Stops processing when [SceneTree.paused] is `true`. This is the inverse of
-     * [PROCESS_MODE_WHEN_PAUSED].
+     * [PROCESS_MODE_WHEN_PAUSED], and the default for the root node.
      */
     PROCESS_MODE_PAUSABLE(1),
     /**
@@ -2024,6 +2187,36 @@ public open class Node : Object() {
     public override val flag: Long,
   ) : ProcessThreadMessages
 
+  public enum class PhysicsInterpolationMode(
+    id: Long,
+  ) {
+    /**
+     * Inherits [physicsInterpolationMode] from the node's parent. This is the default for any newly
+     * created node.
+     */
+    PHYSICS_INTERPOLATION_MODE_INHERIT(0),
+    /**
+     * Enables physics interpolation for this node and for children set to
+     * [PHYSICS_INTERPOLATION_MODE_INHERIT]. This is the default for the root node.
+     */
+    PHYSICS_INTERPOLATION_MODE_ON(1),
+    /**
+     * Disables physics interpolation for this node and for children set to
+     * [PHYSICS_INTERPOLATION_MODE_INHERIT].
+     */
+    PHYSICS_INTERPOLATION_MODE_OFF(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public enum class DuplicateFlags(
     id: Long,
   ) {
@@ -2036,8 +2229,8 @@ public open class Node : Object() {
      */
     DUPLICATE_GROUPS(2),
     /**
-     * Duplicate the node's script (including the ancestor's script, if combined with
-     * [DUPLICATE_USE_INSTANTIATION]).
+     * Duplicate the node's script (also overriding the duplicated children's scripts, if combined
+     * with [DUPLICATE_USE_INSTANTIATION]).
      */
     DUPLICATE_SCRIPTS(4),
     /**
@@ -2085,6 +2278,37 @@ public open class Node : Object() {
     }
   }
 
+  public enum class AutoTranslateMode(
+    id: Long,
+  ) {
+    /**
+     * Inherits [autoTranslateMode] from the node's parent. This is the default for any newly
+     * created node.
+     */
+    AUTO_TRANSLATE_MODE_INHERIT(0),
+    /**
+     * Always automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_DISABLED], and
+     * the default for the root node.
+     */
+    AUTO_TRANSLATE_MODE_ALWAYS(1),
+    /**
+     * Never automatically translate. This is the inverse of [AUTO_TRANSLATE_MODE_ALWAYS].
+     * String parsing for POT generation will be skipped for this node and children that are set to
+     * [AUTO_TRANSLATE_MODE_INHERIT].
+     */
+    AUTO_TRANSLATE_MODE_DISABLED(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public companion object {
     /**
      * Notification received when the node enters a [SceneTree]. See [_enterTree].
@@ -2098,10 +2322,6 @@ public open class Node : Object() {
      */
     public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
-    /**
-     * *Deprecated.* This notification is no longer emitted. Use [NOTIFICATION_CHILD_ORDER_CHANGED]
-     * instead.
-     */
     public final const val NOTIFICATION_MOVED_IN_PARENT: Long = 12
 
     /**
@@ -2207,6 +2427,12 @@ public open class Node : Object() {
     public final const val NOTIFICATION_ENABLED: Long = 29
 
     /**
+     * Notification received when [resetPhysicsInterpolation] is called on the node or its
+     * ancestors.
+     */
+    public final const val NOTIFICATION_RESET_PHYSICS_INTERPOLATION: Long = 2001
+
+    /**
      * Notification received right before the scene with the node is saved in the editor. This
      * notification is only sent in the Godot editor and will not occur in exported projects.
      */
@@ -2258,7 +2484,7 @@ public open class Node : Object() {
     /**
      * Notification received from the OS when a go back request is sent (e.g. pressing the "Back"
      * button on Android).
-     * Implemented only on iOS.
+     * Implemented only on Android.
      */
     public final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
 
@@ -2297,8 +2523,20 @@ public open class Node : Object() {
 
     /**
      * Notification received when translations may have changed. Can be triggered by the user
-     * changing the locale. Can be used to respond to language changes, for example to change the UI
-     * strings on the fly. Useful when working with the built-in translation support, like [Object.tr].
+     * changing the locale, changing [autoTranslateMode] or when the node enters the scene tree. Can be
+     * used to respond to language changes, for example to change the UI strings on the fly. Useful
+     * when working with the built-in translation support, like [Object.tr].
+     * **Note:** This notification is received alongside [NOTIFICATION_ENTER_TREE], so if you are
+     * instantiating a scene, the child nodes will not be initialized yet. You can use it to setup
+     * translations for this node, child nodes created from script, or if you want to access child
+     * nodes added in the editor, make sure the node is ready using [isNodeReady].
+     * [codeblock]
+     * func _notification(what):
+     *     if what == NOTIFICATION_TRANSLATION_CHANGED:
+     *         if not is_node_ready():
+     *             await ready # Wait until ready signal.
+     *         $Label.text = atr("&#37;d Bananas") &#37; banana_counter
+     * [/codeblock]
      */
     public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 2010
 
@@ -2323,27 +2561,29 @@ public open class Node : Object() {
 
     /**
      * Notification received from the OS when the application is resumed.
-     * Implemented only on Android.
+     * Specific to the Android and iOS platforms.
      */
     public final const val NOTIFICATION_APPLICATION_RESUMED: Long = 2014
 
     /**
      * Notification received from the OS when the application is paused.
-     * Implemented only on Android.
+     * Specific to the Android and iOS platforms.
+     * **Note:** On iOS, you only have approximately 5 seconds to finish a task started by this
+     * signal. If you go over this allotment, iOS will kill the app instead of pausing it.
      */
     public final const val NOTIFICATION_APPLICATION_PAUSED: Long = 2015
 
     /**
      * Notification received from the OS when the application is focused, i.e. when changing the
-     * focus from the OS desktop or a third-party application to any open window of the Godot instance.
-     * Implemented on desktop platforms.
+     * focus from the OS desktop or a thirdparty application to any open window of the Godot instance.
+     * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_IN: Long = 2016
 
     /**
      * Notification received from the OS when the application is defocused, i.e. when changing the
-     * focus from any open window of the Godot instance to the OS desktop or a third-party application.
-     * Implemented on desktop platforms.
+     * focus from any open window of the Godot instance to the OS desktop or a thirdparty application.
+     * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_OUT: Long = 2017
 
@@ -2430,6 +2670,9 @@ public open class Node : Object() {
         TypeManager.getMethodBindPtr("Node", "get_node_and_resource")
 
     public val isInsideTreePtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "is_inside_tree")
+
+    public val isPartOfEditedScenePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "is_part_of_edited_scene")
 
     public val isAncestorOfPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "is_ancestor_of")
 
@@ -2571,6 +2814,27 @@ public open class Node : Object() {
     public val isPhysicsProcessingInternalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "is_physics_processing_internal")
 
+    public val setPhysicsInterpolationModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "set_physics_interpolation_mode")
+
+    public val getPhysicsInterpolationModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_physics_interpolation_mode")
+
+    public val isPhysicsInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "is_physics_interpolated")
+
+    public val isPhysicsInterpolatedAndEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "is_physics_interpolated_and_enabled")
+
+    public val resetPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "reset_physics_interpolation")
+
+    public val setAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "set_auto_translate_mode")
+
+    public val getAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_auto_translate_mode")
+
     public val getWindowPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "get_window")
 
     public val getLastExclusiveWindowPtr: VoidPtr =
@@ -2628,6 +2892,10 @@ public open class Node : Object() {
 
     public val isUniqueNameInOwnerPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "is_unique_name_in_owner")
+
+    public val atrPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "atr")
+
+    public val atrNPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "atr_n")
 
     public val rpcPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "rpc")
 

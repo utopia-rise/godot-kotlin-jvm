@@ -232,7 +232,7 @@ public open class XRPose : RefCounted() {
      */
     XR_TRACKING_CONFIDENCE_LOW(1),
     /**
-     * Tracking information is deemed accurate and up to date.
+     * Tracking information is considered accurate and up to date.
      */
     XR_TRACKING_CONFIDENCE_HIGH(2),
     ;

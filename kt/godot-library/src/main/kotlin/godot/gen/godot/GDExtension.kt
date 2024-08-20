@@ -7,21 +7,24 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
-import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
+/**
+ * The [GDExtension] resource type represents a
+ * [url=https://en.wikipedia.org/wiki/Shared_library]shared library[/url] which can expand the
+ * functionality of the engine. The [GDExtensionManager] singleton is responsible for loading,
+ * reloading, and unloading [GDExtension] resources.
+ * **Note:** GDExtension itself is not a scripting language and has no relation to [GDScript]
+ * resources.
+ */
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -29,40 +32,45 @@ public open class GDExtension : Resource() {
     return true
   }
 
-  public fun openLibrary(path: String, entrySymbol: String): GodotError {
-    TransferContext.writeArguments(STRING to path, STRING to entrySymbol)
-    TransferContext.callMethod(rawPtr, MethodBindings.openLibraryPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
-  }
-
-  public fun closeLibrary(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closeLibraryPtr, NIL)
-  }
-
+  /**
+   * Returns `true` if this extension's library has been opened.
+   */
   public fun isLibraryOpen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLibraryOpenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Returns the lowest level required for this extension to be properly initialized (see the
+   * [InitializationLevel] enum).
+   */
   public fun getMinimumLibraryInitializationLevel(): InitializationLevel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
     return GDExtension.InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun initializeLibrary(level: InitializationLevel): Unit {
-    TransferContext.writeArguments(LONG to level.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.initializeLibraryPtr, NIL)
-  }
-
   public enum class InitializationLevel(
     id: Long,
   ) {
+    /**
+     * The library is initialized at the same time as the core features of the engine.
+     */
     INITIALIZATION_LEVEL_CORE(0),
+    /**
+     * The library is initialized at the same time as the engine's servers (such as
+     * [RenderingServer] or [PhysicsServer3D]).
+     */
     INITIALIZATION_LEVEL_SERVERS(1),
+    /**
+     * The library is initialized at the same time as the engine's scene-related classes.
+     */
     INITIALIZATION_LEVEL_SCENE(2),
+    /**
+     * The library is initialized at the same time as the engine's editor classes. Only happens when
+     * loading the GDExtension in the editor.
+     */
     INITIALIZATION_LEVEL_EDITOR(3),
     ;
 
@@ -79,18 +87,10 @@ public open class GDExtension : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val openLibraryPtr: VoidPtr = TypeManager.getMethodBindPtr("GDExtension", "open_library")
-
-    public val closeLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtension", "close_library")
-
     public val isLibraryOpenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GDExtension", "is_library_open")
 
     public val getMinimumLibraryInitializationLevelPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GDExtension", "get_minimum_library_initialization_level")
-
-    public val initializeLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtension", "initialize_library")
   }
 }

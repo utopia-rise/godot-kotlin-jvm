@@ -120,7 +120,8 @@ public open class SpriteFrames : Resource() {
 
   /**
    * Adds a frame to the [anim] animation. If [atPosition] is `-1`, the frame will be added to the
-   * end of the animation.
+   * end of the animation. [duration] specifies the relative duration, see [getFrameDuration] for
+   * details.
    */
   @JvmOverloads
   public fun addFrame(
@@ -134,7 +135,8 @@ public open class SpriteFrames : Resource() {
   }
 
   /**
-   * Sets the [texture] and the [duration] of the frame [idx] in the [anim] animation.
+   * Sets the [texture] and the [duration] of the frame [idx] in the [anim] animation. [duration]
+   * specifies the relative duration, see [getFrameDuration] for details.
    */
   @JvmOverloads
   public fun setFrame(

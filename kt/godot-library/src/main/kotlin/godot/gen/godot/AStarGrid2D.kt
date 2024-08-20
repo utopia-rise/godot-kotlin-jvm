@@ -90,7 +90,6 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
    * needs to be called before finding the next path.
-   * *Deprecated.* Use [region] instead.
    */
   @CoreTypeLocalCopy
   public var size: Vector2i
@@ -134,6 +133,21 @@ public open class AStarGrid2D : RefCounted() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+    }
+
+  /**
+   * The cell shape. Affects how the positions are placed in the grid. If changed, [update] needs to
+   * be called before finding the next path.
+   */
+  public var cellShape: CellShape
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCellShapePtr, LONG)
+      return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCellShapePtr, NIL)
     }
 
   /**
@@ -231,7 +245,6 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
    * needs to be called before finding the next path.
-   * *Deprecated.* Use [region] instead.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -439,11 +452,18 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns an array with the points that are in the path found by [AStarGrid2D] between the given
    * points. The array is ordered from the starting point to the ending point of the path.
+   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
+   * the point closest to the target that can be reached.
    * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
-   * [PackedVector2Array] and will print an error message.
+   * array and will print an error message.
    */
-  public fun getPointPath(fromId: Vector2i, toId: Vector2i): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId)
+  @JvmOverloads
+  public fun getPointPath(
+    fromId: Vector2i,
+    toId: Vector2i,
+    allowPartialPath: Boolean = false,
+  ): PackedVector2Array {
+    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPathPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
@@ -451,9 +471,16 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns an array with the IDs of the points that form the path found by AStar2D between the
    * given points. The array is ordered from the starting point to the ending point of the path.
+   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
+   * the point closest to the target that can be reached.
    */
-  public fun getIdPath(fromId: Vector2i, toId: Vector2i): VariantArray<Vector2i> {
-    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId)
+  @JvmOverloads
+  public fun getIdPath(
+    fromId: Vector2i,
+    toId: Vector2i,
+    allowPartialPath: Boolean = false,
+  ): VariantArray<Vector2i> {
+    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
   }
@@ -559,6 +586,39 @@ public open class AStarGrid2D : RefCounted() {
     }
   }
 
+  public enum class CellShape(
+    id: Long,
+  ) {
+    /**
+     * Rectangular cell shape.
+     */
+    CELL_SHAPE_SQUARE(0),
+    /**
+     * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
+     * goes up-right, and the vertical one goes down-right.
+     */
+    CELL_SHAPE_ISOMETRIC_RIGHT(1),
+    /**
+     * Diamond cell shape (for isometric look). Cell coordinates layout where the horizontal axis
+     * goes down-right, and the vertical one goes down-left.
+     */
+    CELL_SHAPE_ISOMETRIC_DOWN(2),
+    /**
+     * Represents the size of the [CellShape] enum.
+     */
+    CELL_SHAPE_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -585,6 +645,12 @@ public open class AStarGrid2D : RefCounted() {
 
     public val getCellSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_size")
+
+    public val setCellShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_cell_shape")
+
+    public val getCellShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_shape")
 
     public val isInBoundsPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "is_in_bounds")
 

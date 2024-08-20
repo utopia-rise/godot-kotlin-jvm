@@ -7,12 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -37,7 +39,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   }
 
   /**
-   * Play an [AudioStream] at a given offset, volume and pitch scale. Playback starts immediately.
+   * Play an [AudioStream] at a given offset, volume, pitch scale, playback type, and bus. Playback
+   * starts immediately.
    * The return value is a unique integer ID that is associated to this playback stream and which
    * can be used to control it.
    * This ID becomes invalid when the stream ends (if it does not loop), when the
@@ -52,8 +55,10 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     fromOffset: Float = 0.0f,
     volumeDb: Float = 0.0f,
     pitchScale: Float = 1.0f,
+    playbackType: AudioServer.PlaybackType = AudioServer.PlaybackType.PLAYBACK_TYPE_DEFAULT,
+    bus: StringName = StringName("Master"),
   ): Long {
-    TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset.toDouble(), DOUBLE to volumeDb.toDouble(), DOUBLE to pitchScale.toDouble())
+    TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset.toDouble(), DOUBLE to volumeDb.toDouble(), DOUBLE to pitchScale.toDouble(), LONG to playbackType.id, STRING_NAME to bus)
     TransferContext.callMethod(rawPtr, MethodBindings.playStreamPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }

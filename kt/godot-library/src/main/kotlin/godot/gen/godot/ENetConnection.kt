@@ -43,8 +43,11 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Create an ENetHost like [createHost] which is also bound to the given [bindAddress] and
-   * [bindPort].
+   * Creates an ENetHost bound to the given [bindAddress] and [bindPort] that allows up to
+   * [maxPeers] connected peers, each allocating up to [maxChannels] channels, optionally limiting
+   * bandwidth to [inBandwidth] and [outBandwidth] (if greater than zero).
+   * **Note:** It is necessary to create a host in both client and server in order to establish a
+   * connection.
    */
   @JvmOverloads
   public fun createHostBound(
@@ -61,8 +64,13 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Create an ENetHost that will allow up to [maxPeers] connected peers, each allocating up to
-   * [maxChannels] channels, optionally limiting bandwidth to [inBandwidth] and [outBandwidth].
+   * Creates an ENetHost that allows up to [maxPeers] connected peers, each allocating up to
+   * [maxChannels] channels, optionally limiting bandwidth to [inBandwidth] and [outBandwidth] (if
+   * greater than zero).
+   * This method binds a random available dynamic UDP port on the host machine at the *unspecified*
+   * address. Use [createHostBound] to specify the address and port.
+   * **Note:** It is necessary to create a host in both client and server in order to establish a
+   * connection.
    */
   @JvmOverloads
   public fun createHost(
@@ -88,7 +96,8 @@ public open class ENetConnection : RefCounted() {
    * Initiates a connection to a foreign [address] using the specified [port] and allocating the
    * requested [channels]. Optional [data] can be passed during connection in the form of a 32 bit
    * integer.
-   * **Note:** You must call either [createHost] or [createHostBound] before calling this method.
+   * **Note:** You must call either [createHost] or [createHostBound] on both ends before calling
+   * this method.
    */
   @JvmOverloads
   public fun connectToHost(
@@ -103,11 +112,14 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Waits for events on the host specified and shuttles packets between the host and its peers. The
-   * returned [Array] will have 4 elements. An [EventType], the [ENetPacketPeer] which generated the
-   * event, the event associated data (if any), the event associated channel (if any). If the generated
-   * event is [EVENT_RECEIVE], the received packet will be queued to the associated [ENetPacketPeer].
+   * Waits for events on this connection and shuttles packets between the host and its peers, with
+   * the given [timeout] (in milliseconds). The returned [Array] will have 4 elements. An [EventType],
+   * the [ENetPacketPeer] which generated the event, the event associated data (if any), the event
+   * associated channel (if any). If the generated event is [EVENT_RECEIVE], the received packet will
+   * be queued to the associated [ENetPacketPeer].
    * Call this function regularly to handle connections, disconnections, and to receive new packets.
+   * **Note:** This method must be called on both ends involved in the event (sending and receiving
+   * hosts).
    */
   @JvmOverloads
   public fun service(timeout: Int = 0): VariantArray<Any?> {
@@ -244,7 +256,7 @@ public open class ENetConnection : RefCounted() {
 
   /**
    * Sends a [packet] toward a destination from the address and port currently bound by this
-   * ENetConnection instance. 
+   * ENetConnection instance.
    * This is useful as it serves to establish entries in NAT routing tables on all devices between
    * this bound instance and the public facing internet, allowing a prospective client's connection
    * packets to be routed backward through the NAT device(s) between the public internet and this host.

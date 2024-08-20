@@ -17,7 +17,9 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
+import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -170,6 +172,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
+   * in both directions. The size is twice the area of the extents.
    */
   @CoreTypeLocalCopy
   public var emissionBoxExtents: Vector3
@@ -308,6 +312,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var angle: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 7L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 7L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum equivalent of [angleMax].
    */
@@ -425,6 +441,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFlatnessPtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var initialVelocity: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 0L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 0L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum equivalent of [initialVelocityMax].
    */
@@ -452,6 +480,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var angularVelocity: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 1L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 1L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -498,6 +538,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var directionalVelocity: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 16L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 16L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -549,6 +601,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var orbitVelocity: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 2L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 2L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum equivalent of [orbitVelocityMax].
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
@@ -597,6 +661,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var radialVelocity: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 15L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 15L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -679,6 +755,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var linearAccel: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 3L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 3L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum equivalent of [linearAccelMax].
    */
@@ -719,6 +807,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var radialAccel: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 4L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 4L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -764,6 +864,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var tangentialAccel: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 5L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 5L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum equivalent of [tangentialAccelMax].
    */
@@ -805,6 +917,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 5L, OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var damping: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 6L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 6L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -865,6 +989,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAttractorInteractionEnabledPtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var scale: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 8L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 8L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum equivalent of [scaleMax].
    */
@@ -894,8 +1030,8 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's scale will vary along this [CurveTexture]. If a [CurveXYZTexture] is supplied
-   * instead, the scale will be separated per-axis.
+   * Each particle's scale will vary along this [CurveTexture] over its lifetime. If a
+   * [CurveXYZTexture] is supplied instead, the scale will be separated per-axis.
    */
   public var scaleCurve: Material?
     get() {
@@ -906,6 +1042,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var scaleOverVelocity: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 17L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 17L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -1043,6 +1191,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEmissionCurvePtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var hueVariation: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 9L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 9L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum equivalent of [hueVariationMax].
    */
@@ -1083,6 +1243,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 9L, OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var animSpeed: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 10L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 10L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -1128,6 +1300,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 10L, OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setParamTexturePtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var animOffset: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 11L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 11L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -1257,6 +1441,18 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTurbulenceNoiseSpeedRandomPtr, NIL)
     }
 
+  @CoreTypeLocalCopy
+  public var turbulenceInfluence: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 13L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 13L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    }
+
   /**
    * Minimum turbulence influence on each particle.
    * The actual amount of turbulence influence on each particle is calculated as a random value
@@ -1289,6 +1485,18 @@ public open class ParticleProcessMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 13L, DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
+    }
+
+  @CoreTypeLocalCopy
+  public var turbulenceInitialDisplacement: Vector2
+    get() {
+      TransferContext.writeArguments(LONG to 14L)
+      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to 14L, VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
   /**
@@ -1545,6 +1753,8 @@ public open class ParticleProcessMaterial : Material() {
 
   /**
    * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
+   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
+   * in both directions. The size is twice the area of the extents.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -1590,6 +1800,28 @@ public open class ParticleProcessMaterial : Material() {
       emissionRingAxis.apply{
       block(this)
       emissionRingAxis = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.angle
+   * //Your changes
+   * particleprocessmaterial.angle = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angleMutate(block: Vector2.() -> Unit): Vector2 = angle.apply{
+      block(this)
+      angle = this
   }
 
 
@@ -1642,6 +1874,117 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.initialVelocity
+   * //Your changes
+   * particleprocessmaterial.initialVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun initialVelocityMutate(block: Vector2.() -> Unit): Vector2 = initialVelocity.apply{
+      block(this)
+      initialVelocity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.angularVelocity
+   * //Your changes
+   * particleprocessmaterial.angularVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun angularVelocityMutate(block: Vector2.() -> Unit): Vector2 = angularVelocity.apply{
+      block(this)
+      angularVelocity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.directionalVelocity
+   * //Your changes
+   * particleprocessmaterial.directionalVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun directionalVelocityMutate(block: Vector2.() -> Unit): Vector2 =
+      directionalVelocity.apply{
+      block(this)
+      directionalVelocity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.orbitVelocity
+   * //Your changes
+   * particleprocessmaterial.orbitVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun orbitVelocityMutate(block: Vector2.() -> Unit): Vector2 = orbitVelocity.apply{
+      block(this)
+      orbitVelocity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.radialVelocity
+   * //Your changes
+   * particleprocessmaterial.radialVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun radialVelocityMutate(block: Vector2.() -> Unit): Vector2 = radialVelocity.apply{
+      block(this)
+      radialVelocity = this
+  }
+
+
+  /**
    * Gravity applied to every particle.
    *
    * This is a helper function to make dealing with local copies easier. 
@@ -1662,6 +2005,139 @@ public open class ParticleProcessMaterial : Material() {
   public open fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
       block(this)
       gravity = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.linearAccel
+   * //Your changes
+   * particleprocessmaterial.linearAccel = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun linearAccelMutate(block: Vector2.() -> Unit): Vector2 = linearAccel.apply{
+      block(this)
+      linearAccel = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.radialAccel
+   * //Your changes
+   * particleprocessmaterial.radialAccel = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun radialAccelMutate(block: Vector2.() -> Unit): Vector2 = radialAccel.apply{
+      block(this)
+      radialAccel = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.tangentialAccel
+   * //Your changes
+   * particleprocessmaterial.tangentialAccel = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun tangentialAccelMutate(block: Vector2.() -> Unit): Vector2 = tangentialAccel.apply{
+      block(this)
+      tangentialAccel = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.damping
+   * //Your changes
+   * particleprocessmaterial.damping = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun dampingMutate(block: Vector2.() -> Unit): Vector2 = damping.apply{
+      block(this)
+      damping = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.scale
+   * //Your changes
+   * particleprocessmaterial.scale = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
+      block(this)
+      scale = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.scaleOverVelocity
+   * //Your changes
+   * particleprocessmaterial.scaleOverVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun scaleOverVelocityMutate(block: Vector2.() -> Unit): Vector2 =
+      scaleOverVelocity.apply{
+      block(this)
+      scaleOverVelocity = this
   }
 
 
@@ -1695,6 +2171,72 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.hueVariation
+   * //Your changes
+   * particleprocessmaterial.hueVariation = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun hueVariationMutate(block: Vector2.() -> Unit): Vector2 = hueVariation.apply{
+      block(this)
+      hueVariation = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.animSpeed
+   * //Your changes
+   * particleprocessmaterial.animSpeed = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun animSpeedMutate(block: Vector2.() -> Unit): Vector2 = animSpeed.apply{
+      block(this)
+      animSpeed = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.animOffset
+   * //Your changes
+   * particleprocessmaterial.animOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun animOffsetMutate(block: Vector2.() -> Unit): Vector2 = animOffset.apply{
+      block(this)
+      animOffset = this
+  }
+
+
+  /**
    * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
    * move in over time.
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
@@ -1718,6 +2260,52 @@ public open class ParticleProcessMaterial : Material() {
       turbulenceNoiseSpeed.apply{
       block(this)
       turbulenceNoiseSpeed = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.turbulenceInfluence
+   * //Your changes
+   * particleprocessmaterial.turbulenceInfluence = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun turbulenceInfluenceMutate(block: Vector2.() -> Unit): Vector2 =
+      turbulenceInfluence.apply{
+      block(this)
+      turbulenceInfluence = this
+  }
+
+
+  /**
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = particleprocessmaterial.turbulenceInitialDisplacement
+   * //Your changes
+   * particleprocessmaterial.turbulenceInitialDisplacement = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun turbulenceInitialDisplacementMutate(block: Vector2.() -> Unit): Vector2 =
+      turbulenceInitialDisplacement.apply{
+      block(this)
+      turbulenceInitialDisplacement = this
   }
 
 
@@ -1989,6 +2577,12 @@ public open class ParticleProcessMaterial : Material() {
 
     public val getFlatnessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_flatness")
+
+    public val setParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param")
+
+    public val getParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param")
 
     public val setParamMinPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_min")

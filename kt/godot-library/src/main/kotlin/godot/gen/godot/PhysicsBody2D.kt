@@ -90,6 +90,16 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   }
 
   /**
+   * Returns the gravity vector computed from all sources that can affect the body, including all
+   * gravity overrides from [Area2D] nodes and the global world gravity.
+   */
+  public fun getGravity(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
   public fun getCollisionExceptions(): VariantArray<PhysicsBody2D> {
@@ -121,6 +131,8 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
         TypeManager.getMethodBindPtr("PhysicsBody2D", "move_and_collide")
 
     public val testMovePtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsBody2D", "test_move")
+
+    public val getGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsBody2D", "get_gravity")
 
     public val getCollisionExceptionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsBody2D", "get_collision_exceptions")

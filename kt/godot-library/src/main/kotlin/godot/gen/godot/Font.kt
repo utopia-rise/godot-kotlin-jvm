@@ -80,8 +80,9 @@ public open class Font internal constructor() : Resource() {
     spacingBottom: Int = 0,
     spacingSpace: Int = 0,
     spacingGlyph: Int = 0,
+    baselineOffset: Float = 0.0f,
   ): RID {
-    TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex.toLong(), DOUBLE to strength.toDouble(), TRANSFORM2D to transform, LONG to spacingTop.toLong(), LONG to spacingBottom.toLong(), LONG to spacingSpace.toLong(), LONG to spacingGlyph.toLong())
+    TransferContext.writeArguments(DICTIONARY to variationCoordinates, LONG to faceIndex.toLong(), DOUBLE to strength.toDouble(), TRANSFORM2D to transform, LONG to spacingTop.toLong(), LONG to spacingBottom.toLong(), LONG to spacingSpace.toLong(), LONG to spacingGlyph.toLong(), DOUBLE to baselineOffset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.findVariationPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
@@ -516,7 +517,7 @@ public open class Font internal constructor() : Resource() {
    * To print available variation axes of a variable font:
    * [codeblock]
    * var fv = FontVariation.new()
-   * fv.set_base_font = load("res://RobotoFlex.ttf")
+   * fv.base_font = load("res://RobotoFlex.ttf")
    * var variation_list = fv.get_supported_variation_list()
    * for tag in variation_list:
    *     var name = TextServerManager.get_primary_interface().tag_to_name(tag)

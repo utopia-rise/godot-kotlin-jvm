@@ -12,22 +12,26 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedVector2Array
+import godot.core.Rect2
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.Signal1
+import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.Signal4
 import godot.signals.signal
@@ -41,6 +45,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main
@@ -55,6 +60,8 @@ import kotlin.Unit
  * should be handled.
  * **Performance:** It is greatly advised to enable low-processor usage mode (see
  * [OS.lowProcessorUsageMode]) when using GraphEdits.
+ * **Note:** Keep in mind that [Node.getChildren] will also return the connection layer node named
+ * `_connection_layer` due to technical limitations. This behavior may change in future releases.
  */
 @GodotBaseType
 public open class GraphEdit : Control() {
@@ -133,10 +140,15 @@ public open class GraphEdit : Control() {
   public val nodeDeselected: Signal1<Node> by signal("node")
 
   /**
-   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [position] is
+   * Emitted when the [GraphFrame] [frame] is resized to [newRect].
+   */
+  public val frameRectChanged: Signal2<GraphFrame, Vector2> by signal("frame", "newRect")
+
+  /**
+   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [atPosition] is
    * the position of the mouse pointer when the signal is sent.
    */
-  public val popupRequest: Signal1<Vector2> by signal("position")
+  public val popupRequest: Signal1<Vector2> by signal("atPosition")
 
   /**
    * Emitted at the beginning of a [GraphElement]'s movement.
@@ -147,6 +159,14 @@ public open class GraphEdit : Control() {
    * Emitted at the end of a [GraphElement]'s movement.
    */
   public val endNodeMove: Signal0 by signal()
+
+  /**
+   * Emitted when one or more [GraphElement]s are dropped onto the [GraphFrame] named [frame], when
+   * they were not previously attached to any other one.
+   * [elements] is an array of [GraphElement]s to be attached.
+   */
+  public val graphElementsLinkedToFrameRequest: Signal2<VariantArray<Any?>, StringName> by
+      signal("elements", "frame")
 
   /**
    * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in
@@ -181,6 +201,20 @@ public open class GraphEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setShowGridPtr, NIL)
+    }
+
+  /**
+   * The pattern used for drawing the grid.
+   */
+  public var gridPattern: GridPattern
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getGridPatternPtr, LONG)
+      return GraphEdit.GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setGridPatternPtr, NIL)
     }
 
   /**
@@ -670,13 +704,44 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns an Array containing the list of connections. A connection consists in a structure of
+   * Returns an [Array] containing the list of connections. A connection consists in a structure of
    * the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1"
    * }`.
    */
   public fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionListPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+  }
+
+  /**
+   * Returns the closest connection to the given point in screen space. If no connection is found
+   * within [maxDistance] pixels, an empty [Dictionary] is returned.
+   * A connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name
+   * 0", to_port: 1, to_node: "GraphNode name 1" }`.
+   * For example, getting a connection at a given mouse position can be achieved like this:
+   *
+   * gdscript:
+   * ```gdscript
+   * var connection = get_closest_connection_at_point(mouse_event.get_position())
+   * ```
+   */
+  @JvmOverloads
+  public fun getClosestConnectionAtPoint(point: Vector2, maxDistance: Float = 4.0f):
+      Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(VECTOR2 to point, DOUBLE to maxDistance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.getClosestConnectionAtPointPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  /**
+   * Returns an [Array] containing the list of connections that intersect with the given [Rect2]. A
+   * connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0",
+   * to_port: 1, to_node: "GraphNode name 1" }`.
+   */
+  public fun getConnectionsIntersectingWithRect(rect: Rect2): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionsIntersectingWithRectPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
@@ -782,6 +847,40 @@ public open class GraphEdit : Control() {
   }
 
   /**
+   * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
+   */
+  public fun attachGraphElementToFrame(element: StringName, frame: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to element, STRING_NAME to frame)
+    TransferContext.callMethod(rawPtr, MethodBindings.attachGraphElementToFramePtr, NIL)
+  }
+
+  /**
+   * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
+   */
+  public fun detachGraphElementFromFrame(element: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to element)
+    TransferContext.callMethod(rawPtr, MethodBindings.detachGraphElementFromFramePtr, NIL)
+  }
+
+  /**
+   * Returns the [GraphFrame] that contains the [GraphElement] with the given name.
+   */
+  public fun getElementFrame(element: StringName): GraphFrame? {
+    TransferContext.writeArguments(STRING_NAME to element)
+    TransferContext.callMethod(rawPtr, MethodBindings.getElementFramePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as GraphFrame?)
+  }
+
+  /**
+   * Returns an array of node names that are attached to the [GraphFrame] with the given name.
+   */
+  public fun getAttachedNodesOfFrame(frame: StringName): VariantArray<StringName> {
+    TransferContext.writeArguments(STRING_NAME to frame)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesOfFramePtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+  }
+
+  /**
    * Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of
    * the graph. You can use this method to reposition the toolbar or to add your own custom controls to
    * it.
@@ -834,6 +933,29 @@ public open class GraphEdit : Control() {
     }
   }
 
+  public enum class GridPattern(
+    id: Long,
+  ) {
+    /**
+     * Draw the grid using solid lines.
+     */
+    GRID_PATTERN_LINES(0),
+    /**
+     * Draw the grid using dots.
+     */
+    GRID_PATTERN_DOTS(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -862,6 +984,12 @@ public open class GraphEdit : Control() {
 
     public val getConnectionListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "get_connection_list")
+
+    public val getClosestConnectionAtPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point")
+
+    public val getConnectionsIntersectingWithRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connections_intersecting_with_rect")
 
     public val clearConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "clear_connections")
@@ -899,6 +1027,18 @@ public open class GraphEdit : Control() {
     public val getConnectionLinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "get_connection_line")
 
+    public val attachGraphElementToFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "attach_graph_element_to_frame")
+
+    public val detachGraphElementFromFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "detach_graph_element_from_frame")
+
+    public val getElementFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_element_frame")
+
+    public val getAttachedNodesOfFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_attached_nodes_of_frame")
+
     public val setPanningSchemePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "set_panning_scheme")
 
@@ -925,6 +1065,12 @@ public open class GraphEdit : Control() {
 
     public val isShowingGridPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid")
+
+    public val setGridPatternPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_grid_pattern")
+
+    public val getGridPatternPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_grid_pattern")
 
     public val setSnappingEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_enabled")

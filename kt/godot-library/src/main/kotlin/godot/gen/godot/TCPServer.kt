@@ -44,8 +44,8 @@ public open class TCPServer : RefCounted() {
    * (both IPv4 and IPv6).
    * If [bindAddress] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen
    * on all available addresses matching that IP type.
-   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server
-   * will only listen on the interface with that addresses (or fail if no interface with the given
+   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the
+   * server will only listen on the interface with that address (or fail if no interface with the given
    * address exists).
    */
   @JvmOverloads

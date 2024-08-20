@@ -141,6 +141,15 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
+   * Sets the collision margin for the shape.
+   * **Note:** This is not used in Godot Physics.
+   */
+  public fun shapeSetMargin(shape: RID, margin: Float): Unit {
+    TransferContext.writeArguments(_RID to shape, DOUBLE to margin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.shapeSetMarginPtr, NIL)
+  }
+
+  /**
    * Returns the type of shape (see [ShapeType] constants).
    */
   public fun shapeGetType(shape: RID): ShapeType {
@@ -156,6 +165,16 @@ public object PhysicsServer3D : Object() {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeGetDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
+  }
+
+  /**
+   * Returns the collision margin for the shape.
+   * **Note:** This is not used in Godot Physics, so will always return `0`.
+   */
+  public fun shapeGetMargin(shape: RID): Float {
+    TransferContext.writeArguments(_RID to shape)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapeGetMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -219,7 +238,12 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Creates an [Area3D].
+   * Creates a 3D area object in the physics server, and returns the [RID] that identifies it. The
+   * default settings for the created area include a collision layer and mask set to `1`, and
+   * `monitorable` set to `false`.
+   * Use [areaAddShape] to add shapes to it, use [areaSetTransform] to set its transform, and use
+   * [areaSetSpace] to add the area to a space. If you want the area to be detectable use
+   * [areaSetMonitorable].
    */
   public fun areaCreate(): RID {
     TransferContext.writeArguments()
@@ -479,6 +503,13 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetRayPickablePtr, NIL)
   }
 
+  /**
+   * Creates a 3D body object in the physics server, and returns the [RID] that identifies it. The
+   * default settings for the created area include a collision layer and mask set to `1`, and body mode
+   * set to [BODY_MODE_RIGID].
+   * Use [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use
+   * [bodySetSpace] to add the body to a space.
+   */
   public fun bodyCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.bodyCreatePtr, _RID)
@@ -959,8 +990,11 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets whether a body uses a callback function to calculate its own physics (see
-   * [bodySetForceIntegrationCallback]).
+   * Sets whether the body omits the standard force integration. If [enable] is `true`, the body
+   * will not automatically use applied forces, torques, and damping to update the body's linear and
+   * angular velocity. In this case, [bodySetForceIntegrationCallback] can be used to manually update
+   * the linear and angular velocity instead.
+   * This method is called when the property [RigidBody3D.customIntegrator] is set.
    */
   public fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
@@ -968,8 +1002,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns whether a body uses a callback function to calculate its own physics (see
-   * [bodySetForceIntegrationCallback]).
+   * Returns `true` if the body is omitting the standard force integration. See
+   * [bodySetOmitForceIntegration].
    */
   public fun bodyIsOmittingForceIntegration(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
@@ -978,11 +1012,30 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the function used to calculate physics for an object, if that object allows it (see
-   * [bodySetOmitForceIntegration]). The force integration function takes 2 arguments:
-   * - `state` — [PhysicsDirectBodyState3D] used to retrieve and modify the body's state.
-   * - [code skip-lint]userdata[/code] — optional user data passed to
-   * [bodySetForceIntegrationCallback].
+   * Sets the body's state synchronization callback function to [callable]. Use an empty [Callable]
+   * ([code skip-lint]Callable()[/code]) to clear the callback.
+   * The function [callable] will be called every physics frame, assuming that the body was active
+   * during the previous physics tick, and can be used to fetch the latest state from the physics
+   * server.
+   * The function [callable] must take the following parameters:
+   * 1. `state`: a [PhysicsDirectBodyState3D], used to retrieve the body's state.
+   */
+  public fun bodySetStateSyncCallback(body: RID, callable: Callable): Unit {
+    TransferContext.writeArguments(_RID to body, CALLABLE to callable)
+    TransferContext.callMethod(rawPtr, MethodBindings.bodySetStateSyncCallbackPtr, NIL)
+  }
+
+  /**
+   * Sets the body's custom force integration callback function to [callable]. Use an empty
+   * [Callable] ([code skip-lint]Callable()[/code]) to clear the custom callback.
+   * The function [callable] will be called every physics tick, before the standard force
+   * integration (see [bodySetOmitForceIntegration]). It can be used for example to update the body's
+   * linear and angular velocity based on contact with other bodies.
+   * If [userdata] is not `null`, the function [callable] must take the following two parameters:
+   * 1. `state`: a [PhysicsDirectBodyState3D], used to retrieve and modify the body's state,
+   * 2. [code skip-lint]userdata[/code]: a [Variant]; its value will be the [userdata] passed into
+   * this method.
+   * If [userdata] is `null`, then [callable] must take only the `state` parameter.
    */
   @JvmOverloads
   public fun bodySetForceIntegrationCallback(
@@ -1028,11 +1081,310 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectBodyState3D?)
   }
 
+  /**
+   * Creates a new soft body and returns its internal [RID].
+   */
+  public fun softBodyCreate(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * Requests that the physics server updates the rendering server with the latest positions of the
+   * given soft body's points through the [renderingServerHandler] interface.
+   */
+  public fun softBodyUpdateRenderingServer(body: RID,
+      renderingServerHandler: PhysicsServer3DRenderingServerHandler): Unit {
+    TransferContext.writeArguments(_RID to body, OBJECT to renderingServerHandler)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyUpdateRenderingServerPtr, NIL)
+  }
+
+  /**
+   * Assigns a space to the given soft body (see [spaceCreate]).
+   */
+  public fun softBodySetSpace(body: RID, space: RID): Unit {
+    TransferContext.writeArguments(_RID to body, _RID to space)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetSpacePtr, NIL)
+  }
+
+  /**
+   * Returns the [RID] of the space assigned to the given soft body.
+   */
+  public fun softBodyGetSpace(body: RID): RID {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetSpacePtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * Sets the mesh of the given soft body.
+   */
+  public fun softBodySetMesh(body: RID, mesh: RID): Unit {
+    TransferContext.writeArguments(_RID to body, _RID to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetMeshPtr, NIL)
+  }
+
+  /**
+   * Returns the bounds of the given soft body in global coordinates.
+   */
   public fun softBodyGetBounds(body: RID): AABB {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetBoundsPtr,
         godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+  }
+
+  /**
+   * Sets the physics layer or layers the given soft body belongs to.
+   */
+  public fun softBodySetCollisionLayer(body: RID, layer: Long): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to layer)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetCollisionLayerPtr, NIL)
+  }
+
+  /**
+   * Returns the physics layer or layers that the given soft body belongs to.
+   */
+  public fun softBodyGetCollisionLayer(body: RID): Long {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetCollisionLayerPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Sets the physics layer or layers the given soft body can collide with.
+   */
+  public fun softBodySetCollisionMask(body: RID, mask: Long): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetCollisionMaskPtr, NIL)
+  }
+
+  /**
+   * Returns the physics layer or layers that the given soft body can collide with.
+   */
+  public fun softBodyGetCollisionMask(body: RID): Long {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
+   * Adds the given body to the list of bodies exempt from collisions.
+   */
+  public fun softBodyAddCollisionException(body: RID, bodyB: RID): Unit {
+    TransferContext.writeArguments(_RID to body, _RID to bodyB)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyAddCollisionExceptionPtr, NIL)
+  }
+
+  /**
+   * Removes the given body from the list of bodies exempt from collisions.
+   */
+  public fun softBodyRemoveCollisionException(body: RID, bodyB: RID): Unit {
+    TransferContext.writeArguments(_RID to body, _RID to bodyB)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyRemoveCollisionExceptionPtr, NIL)
+  }
+
+  /**
+   * Sets the given body state for the given body (see [BodyState] constants).
+   * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
+   * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
+   */
+  public fun softBodySetState(
+    body: RID,
+    state: BodyState,
+    variant: Any?,
+  ): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to variant)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetStatePtr, NIL)
+  }
+
+  /**
+   * Returns the given soft body state (see [BodyState] constants).
+   * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
+   * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
+   */
+  public fun softBodyGetState(body: RID, state: BodyState): Any? {
+    TransferContext.writeArguments(_RID to body, LONG to state.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetStatePtr, ANY)
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
+  }
+
+  /**
+   * Sets the global transform of the given soft body.
+   */
+  public fun softBodySetTransform(body: RID, transform: Transform3D): Unit {
+    TransferContext.writeArguments(_RID to body, TRANSFORM3D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetTransformPtr, NIL)
+  }
+
+  /**
+   * Sets whether the given soft body will be pickable when using object picking.
+   */
+  public fun softBodySetRayPickable(body: RID, enable: Boolean): Unit {
+    TransferContext.writeArguments(_RID to body, BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetRayPickablePtr, NIL)
+  }
+
+  /**
+   * Sets the simulation precision of the given soft body. Increasing this value will improve the
+   * resulting simulation, but can affect performance. Use with care.
+   */
+  public fun softBodySetSimulationPrecision(body: RID, simulationPrecision: Int): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to simulationPrecision.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetSimulationPrecisionPtr, NIL)
+  }
+
+  /**
+   * Returns the simulation precision of the given soft body.
+   */
+  public fun softBodyGetSimulationPrecision(body: RID): Int {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetSimulationPrecisionPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Sets the total mass for the given soft body.
+   */
+  public fun softBodySetTotalMass(body: RID, totalMass: Float): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to totalMass.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetTotalMassPtr, NIL)
+  }
+
+  /**
+   * Returns the total mass assigned to the given soft body.
+   */
+  public fun softBodyGetTotalMass(body: RID): Float {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetTotalMassPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Sets the linear stiffness of the given soft body. Higher values will result in a stiffer body,
+   * while lower values will increase the body's ability to bend. The value can be between `0.0` and
+   * `1.0` (inclusive).
+   */
+  public fun softBodySetLinearStiffness(body: RID, stiffness: Float): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to stiffness.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetLinearStiffnessPtr, NIL)
+  }
+
+  /**
+   * Returns the linear stiffness of the given soft body.
+   */
+  public fun softBodyGetLinearStiffness(body: RID): Float {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetLinearStiffnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Sets the pressure coefficient of the given soft body. Simulates pressure build-up from inside
+   * this body. Higher values increase the strength of this effect.
+   */
+  public fun softBodySetPressureCoefficient(body: RID, pressureCoefficient: Float): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to pressureCoefficient.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetPressureCoefficientPtr, NIL)
+  }
+
+  /**
+   * Returns the pressure coefficient of the given soft body.
+   */
+  public fun softBodyGetPressureCoefficient(body: RID): Float {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetPressureCoefficientPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Sets the damping coefficient of the given soft body. Higher values will slow down the body more
+   * noticeably when forces are applied.
+   */
+  public fun softBodySetDampingCoefficient(body: RID, dampingCoefficient: Float): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to dampingCoefficient.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetDampingCoefficientPtr, NIL)
+  }
+
+  /**
+   * Returns the damping coefficient of the given soft body.
+   */
+  public fun softBodyGetDampingCoefficient(body: RID): Float {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetDampingCoefficientPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Sets the drag coefficient of the given soft body. Higher values increase this body's air
+   * resistance.
+   * **Note:** This value is currently unused by Godot's default physics implementation.
+   */
+  public fun softBodySetDragCoefficient(body: RID, dragCoefficient: Float): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to dragCoefficient.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodySetDragCoefficientPtr, NIL)
+  }
+
+  /**
+   * Returns the drag coefficient of the given soft body.
+   */
+  public fun softBodyGetDragCoefficient(body: RID): Float {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetDragCoefficientPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Moves the given soft body point to a position in global coordinates.
+   */
+  public fun softBodyMovePoint(
+    body: RID,
+    pointIndex: Int,
+    globalPosition: Vector3,
+  ): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), VECTOR3 to globalPosition)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyMovePointPtr, NIL)
+  }
+
+  /**
+   * Returns the current position of the given soft body point in global coordinates.
+   */
+  public fun softBodyGetPointGlobalPosition(body: RID, pointIndex: Int): Vector3 {
+    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetPointGlobalPositionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  /**
+   * Unpins all points of the given soft body.
+   */
+  public fun softBodyRemoveAllPinnedPoints(body: RID): Unit {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyRemoveAllPinnedPointsPtr, NIL)
+  }
+
+  /**
+   * Pins or unpins the given soft body point based on the value of [pin].
+   * **Note:** Pinning a point effectively makes it kinematic, preventing it from being affected by
+   * forces, but you can still move it using [softBodyMovePoint].
+   */
+  public fun softBodyPinPoint(
+    body: RID,
+    pointIndex: Int,
+    pin: Boolean,
+  ): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), BOOL to pin)
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyPinPointPtr, NIL)
+  }
+
+  /**
+   * Returns whether the given soft body point is pinned.
+   */
+  public fun softBodyIsPointPinned(body: RID, pointIndex: Int): Boolean {
+    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.softBodyIsPointPinnedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public fun jointCreate(): RID {
@@ -1273,6 +1625,10 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  /**
+   * Make the joint a generic six degrees of freedom (6DOF) joint. Use [generic6dofJointSetFlag] and
+   * [generic6dofJointSetParam] to set the joint's flags and parameters respectively.
+   */
   public fun jointMakeGeneric6dof(
     joint: RID,
     bodyA: RID,
@@ -1285,7 +1641,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a generic_6_DOF_joint parameter (see [G6DOFJointAxisParam] constants).
+   * Sets the value of a given generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list
+   * of available parameters.
    */
   public fun generic6dofJointSetParam(
     joint: RID,
@@ -1298,7 +1655,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a generic_6_DOF_joint parameter (see [G6DOFJointAxisParam] constants).
+   * Returns the value of a generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list of
+   * available parameters.
    */
   public fun generic6dofJointGetParam(
     joint: RID,
@@ -1311,7 +1669,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a generic_6_DOF_joint flag (see [G6DOFJointAxisFlag] constants).
+   * Sets the value of a given generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
+   * available flags.
    */
   public fun generic6dofJointSetFlag(
     joint: RID,
@@ -1324,7 +1683,8 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a generic_6_DOF_joint flag (see [G6DOFJointAxisFlag] constants).
+   * Returns the value of a generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
+   * available flags.
    */
   public fun generic6dofJointGetFlag(
     joint: RID,
@@ -1684,6 +2044,9 @@ public object PhysicsServer3D : Object() {
      * The maximum force that the linear motor can apply while trying to reach the target velocity.
      */
     G6DOF_JOINT_LINEAR_MOTOR_FORCE_LIMIT(6),
+    G6DOF_JOINT_LINEAR_SPRING_STIFFNESS(7),
+    G6DOF_JOINT_LINEAR_SPRING_DAMPING(8),
+    G6DOF_JOINT_LINEAR_SPRING_EQUILIBRIUM_POINT(9),
     /**
      * The minimum rotation in negative direction to break loose and rotate around the axes.
      */
@@ -1721,6 +2084,13 @@ public object PhysicsServer3D : Object() {
      * Maximum acceleration for the motor at the axes.
      */
     G6DOF_JOINT_ANGULAR_MOTOR_FORCE_LIMIT(18),
+    G6DOF_JOINT_ANGULAR_SPRING_STIFFNESS(19),
+    G6DOF_JOINT_ANGULAR_SPRING_DAMPING(20),
+    G6DOF_JOINT_ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
+    /**
+     * Represents the size of the [G6DOFJointAxisParam] enum.
+     */
+    G6DOF_JOINT_MAX(22),
     ;
 
     public val id: Long
@@ -1744,6 +2114,8 @@ public object PhysicsServer3D : Object() {
      * If set, rotational motion is possible.
      */
     G6DOF_JOINT_FLAG_ENABLE_ANGULAR_LIMIT(1),
+    G6DOF_JOINT_FLAG_ENABLE_ANGULAR_SPRING(2),
+    G6DOF_JOINT_FLAG_ENABLE_LINEAR_SPRING(3),
     /**
      * If set, there is a rotational motor across these axes.
      */
@@ -1752,6 +2124,10 @@ public object PhysicsServer3D : Object() {
      * If set, there is a linear motor on this axis that targets a specific velocity.
      */
     G6DOF_JOINT_FLAG_ENABLE_LINEAR_MOTOR(5),
+    /**
+     * Represents the size of the [G6DOFJointAxisFlag] enum.
+     */
+    G6DOF_JOINT_FLAG_MAX(6),
     ;
 
     public val id: Long
@@ -1879,7 +2255,8 @@ public object PhysicsServer3D : Object() {
      */
     AREA_PARAM_PRIORITY(9),
     /**
-     * Constant to set/get the magnitude of area-specific wind force.
+     * Constant to set/get the magnitude of area-specific wind force. This wind force only applies
+     * to [SoftBody3D] nodes. Other physics bodies are currently not affected by wind.
      */
     AREA_PARAM_WIND_FORCE_MAGNITUDE(10),
     /**
@@ -2265,11 +2642,17 @@ public object PhysicsServer3D : Object() {
     public val shapeSetDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_data")
 
+    public val shapeSetMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_margin")
+
     public val shapeGetTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_type")
 
     public val shapeGetDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_data")
+
+    public val shapeGetMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_margin")
 
     public val spaceCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "space_create")
@@ -2520,6 +2903,9 @@ public object PhysicsServer3D : Object() {
     public val bodyIsOmittingForceIntegrationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_omitting_force_integration")
 
+    public val bodySetStateSyncCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state_sync_callback")
+
     public val bodySetForceIntegrationCallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_force_integration_callback")
 
@@ -2532,8 +2918,104 @@ public object PhysicsServer3D : Object() {
     public val bodyGetDirectStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_direct_state")
 
+    public val softBodyCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_create")
+
+    public val softBodyUpdateRenderingServerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_update_rendering_server")
+
+    public val softBodySetSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_space")
+
+    public val softBodyGetSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_space")
+
+    public val softBodySetMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_mesh")
+
     public val softBodyGetBoundsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_bounds")
+
+    public val softBodySetCollisionLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_layer")
+
+    public val softBodyGetCollisionLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_layer")
+
+    public val softBodySetCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_mask")
+
+    public val softBodyGetCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_mask")
+
+    public val softBodyAddCollisionExceptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_add_collision_exception")
+
+    public val softBodyRemoveCollisionExceptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_collision_exception")
+
+    public val softBodySetStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_state")
+
+    public val softBodyGetStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_state")
+
+    public val softBodySetTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_transform")
+
+    public val softBodySetRayPickablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_ray_pickable")
+
+    public val softBodySetSimulationPrecisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_simulation_precision")
+
+    public val softBodyGetSimulationPrecisionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_simulation_precision")
+
+    public val softBodySetTotalMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_total_mass")
+
+    public val softBodyGetTotalMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_total_mass")
+
+    public val softBodySetLinearStiffnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_linear_stiffness")
+
+    public val softBodyGetLinearStiffnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_linear_stiffness")
+
+    public val softBodySetPressureCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_pressure_coefficient")
+
+    public val softBodyGetPressureCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_pressure_coefficient")
+
+    public val softBodySetDampingCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_damping_coefficient")
+
+    public val softBodyGetDampingCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_damping_coefficient")
+
+    public val softBodySetDragCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_drag_coefficient")
+
+    public val softBodyGetDragCoefficientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_drag_coefficient")
+
+    public val softBodyMovePointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_move_point")
+
+    public val softBodyGetPointGlobalPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_point_global_position")
+
+    public val softBodyRemoveAllPinnedPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_all_pinned_points")
+
+    public val softBodyPinPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_pin_point")
+
+    public val softBodyIsPointPinnedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_is_point_pinned")
 
     public val jointCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_create")

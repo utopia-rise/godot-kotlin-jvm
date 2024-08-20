@@ -65,6 +65,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Emitted when the animation reaches the end, or the start if it is played in reverse. When the
    * animation finishes, it pauses the playback.
+   * **Note:** This signal is not emitted if an animation is looping.
    */
   public val animationFinished: Signal0 by signal()
 
@@ -161,6 +162,10 @@ public open class AnimatedSprite2D : Node2D() {
 
   /**
    * If `true`, texture will be centered.
+   * **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered.
+   * This is caused by their position being between pixels. To prevent this, set this property to
+   * `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and
+   * [ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
    */
   public var centered: Boolean
     get() {

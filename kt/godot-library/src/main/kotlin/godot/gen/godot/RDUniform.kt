@@ -60,16 +60,26 @@ public open class RDUniform : RefCounted() {
     return true
   }
 
+  /**
+   * Binds the given id to the uniform. The data associated with the id is then used when the
+   * uniform is passed to a shader.
+   */
   public fun addId(id: RID): Unit {
     TransferContext.writeArguments(_RID to id)
     TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
   }
 
+  /**
+   * Unbinds all ids currently bound to the uniform.
+   */
   public fun clearIds(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearIdsPtr, NIL)
   }
 
+  /**
+   * Returns an array of all ids currently bound to the uniform.
+   */
   public fun getIds(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdsPtr, ARRAY)

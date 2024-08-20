@@ -11,6 +11,8 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TypeManager
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -19,6 +21,8 @@ import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -129,6 +133,39 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, MethodBindings.setMetadataFlagsPtr, NIL)
+    }
+
+  /**
+   * If `true` a simplified version of the path will be returned with less critical path points
+   * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
+   * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   * Path simplification can be helpful to mitigate various path following issues that can arise
+   * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
+   * fields".
+   */
+  public var simplifyPath: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
+    }
+
+  /**
+   * The path simplification amount in worlds units.
+   */
+  public var simplifyEpsilon: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -354,6 +391,18 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
 
     public val getMetadataFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_metadata_flags")
+
+    public val setSimplifyPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_simplify_path")
+
+    public val getSimplifyPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_simplify_path")
+
+    public val setSimplifyEpsilonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_simplify_epsilon")
+
+    public val getSimplifyEpsilonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_simplify_epsilon")
   }
 }
 

@@ -97,7 +97,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns the [XRInterface.PlayAreaMode] that sets up our play area.
+   * Returns the play area mode that sets up our play area.
    */
   public open fun _getPlayAreaMode(): XRInterface.PlayAreaMode {
     throw NotImplementedError("_get_play_area_mode is not implemented for XRInterfaceExtension")
@@ -111,7 +111,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns an [PackedVector3Array] that denotes the play areas boundaries (if applicable).
+   * Returns a [PackedVector3Array] that represents the play areas boundaries (if applicable).
    */
   public open fun _getPlayArea(): PackedVector3Array {
     throw NotImplementedError("_get_play_area is not implemented for XRInterfaceExtension")

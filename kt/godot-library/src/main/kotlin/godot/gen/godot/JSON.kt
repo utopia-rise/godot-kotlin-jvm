@@ -25,8 +25,8 @@ import kotlin.Suppress
 import kotlin.jvm.JvmOverloads
 
 /**
- * The [JSON] enables all data types to be converted to and from a JSON string. This useful for
- * serializing data to save to a file or send over the network.
+ * The [JSON] class enables all data types to be converted to and from a JSON string. This is useful
+ * for serializing data, e.g. to save to a file or send over the network.
  * [stringify] is used to convert any data type into a JSON string.
  * [parse] is used to convert any existing JSON data into a [Variant] that can be used within Godot.
  * If successfully parsed, use [data] to retrieve the [Variant], and use `typeof` to check if the
@@ -51,8 +51,8 @@ import kotlin.jvm.JvmOverloads
  *     print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ",
  * json.get_error_line())
  * [/codeblock]
- * Alternatively, you can parse string using the static [parseString] method, but it doesn't allow
- * to handle errors.
+ * Alternatively, you can parse strings using the static [parseString] method, but it doesn't handle
+ * errors.
  * [codeblock]
  * var data = JSON.parse_string(json_string) # Returns null if parsing failed.
  * [/codeblock]
@@ -89,8 +89,8 @@ public open class JSON : Resource() {
   /**
    * Attempts to parse the [jsonText] provided.
    * Returns an [Error]. If the parse was successful, it returns [OK] and the result can be
-   * retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] for identifying
-   * the source of the failure.
+   * retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] to identify the
+   * source of the failure.
    * Non-static variant of [parseString], if you want custom error handling.
    * The optional [keepText] argument instructs the parser to keep a copy of the original text. This
    * text can be obtained later by using the [getParsedText] function and is used when saving the
@@ -104,7 +104,7 @@ public open class JSON : Resource() {
   }
 
   /**
-   * Return the text parsed by [parse] as long as the function is instructed to keep it.
+   * Return the text parsed by [parse] (requires passing `keep_text` to [parse]).
    */
   public fun getParsedText(): String {
     TransferContext.writeArguments()
@@ -141,10 +141,9 @@ public open class JSON : Resource() {
      * types.
      * **Note:** If [fullPrecision] is `true`, when stringifying floats, the unreliable digits are
      * stringified in addition to the reliable digits to guarantee exact decoding.
-     * The [indent] parameter controls if and how something is indented, the string used for this
-     * parameter will be used where there should be an indent in the output, even spaces like `"   "`
-     * will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each indent
-     * respectively.
+     * The [indent] parameter controls if and how something is indented; its contents will be used
+     * where there should be an indent in the output. Even spaces like `"   "` will work. `\t` and `\n`
+     * can also be used for a tab indent, or to make a newline for each indent respectively.
      * **Example output:**
      * [codeblock]
      * ## JSON.stringify(my_dictionary)

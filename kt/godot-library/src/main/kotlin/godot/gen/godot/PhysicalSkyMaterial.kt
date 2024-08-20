@@ -31,9 +31,6 @@ import kotlin.Unit
  * [ProceduralSkyMaterial], but it is slightly slower and less flexible.
  * The [PhysicalSkyMaterial] only supports one sun. The color, energy, and direction of the sun are
  * taken from the first [DirectionalLight3D] in the scene tree.
- * As it is based on a daylight model, the sky fades to black as the sunset ends. If you want a full
- * day/night cycle, you will have to add a night sky by converting this to a [ShaderMaterial] and
- * adding a night sky directly into the resulting shader.
  */
 @GodotBaseType
 public open class PhysicalSkyMaterial : Material() {

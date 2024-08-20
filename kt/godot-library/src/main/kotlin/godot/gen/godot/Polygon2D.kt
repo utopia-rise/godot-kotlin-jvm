@@ -199,7 +199,6 @@ public open class Polygon2D : Node2D() {
 
   /**
    * The polygon's list of vertices. The final point will be connected to the first.
-   * **Note:** This returns a copy of the [PackedVector2Array] rather than a reference.
    */
   public var polygon: PackedVector2Array
     get() {

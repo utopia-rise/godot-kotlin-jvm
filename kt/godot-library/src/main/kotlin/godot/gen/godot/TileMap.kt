@@ -55,7 +55,8 @@ public open class TileMap : Node2D() {
   public val changed: Signal0 by signal()
 
   /**
-   * The assigned [TileSet].
+   * The [TileSet] used by this [TileMap]. The textures, collisions, and additional behavior of all
+   * available tiles are stored here.
    */
   public var tileSet: TileSet?
     get() {
@@ -71,10 +72,10 @@ public open class TileMap : Node2D() {
   /**
    * The TileMap's quadrant size. A quadrant is a group of tiles to be drawn together on a single
    * canvas item, for optimization purposes. [renderingQuadrantSize] defines the length of a square's
-   * side, in the map's coordinate system, that forms the quadrant. Thus, the default quandrant size
+   * side, in the map's coordinate system, that forms the quadrant. Thus, the default quadrant size
    * groups together `16 * 16 = 256` tiles.
-   * The quadrant size does not apply on Y-sorted layers, as tiles are be grouped by Y position
-   * instead in that case.
+   * The quadrant size does not apply on Y-sorted layers, as tiles are grouped by Y position instead
+   * in that case.
    * **Note:** As quadrants are created according to the map's coordinate system, the quadrant's
    * "square shape" might not look like square in the TileMap's local coordinate system.
    */
@@ -171,7 +172,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * See [setLayerNavigationMap].
+   * Assigns [map] as a [NavigationServer2D] navigation map for the specified TileMap layer [layer].
    */
   public fun setNavigationMap(layer: Int, map: RID): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), _RID to map)
@@ -179,7 +180,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * See [getLayerNavigationMap].
+   * Returns the [RID] of the [NavigationServer2D] navigation map assigned to the specified TileMap
+   * layer [layer].
    */
   public fun getNavigationMap(layer: Int): RID {
     TransferContext.writeArguments(LONG to layer.toLong())
@@ -188,7 +190,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * *Deprecated.* See [notifyRuntimeTileDataUpdate] and [updateInternals].
+   * Forces the TileMap and the layer [layer] to update.
    */
   @JvmOverloads
   public fun forceUpdate(layer: Int = -1): Unit {
@@ -251,7 +253,7 @@ public open class TileMap : Node2D() {
 
   /**
    * Enables or disables the layer [layer]. A disabled layer is not processed at all (no rendering,
-   * no physics, etc...).
+   * no physics, etc.).
    * If [layer] is negative, the layers are accessed from the last one.
    */
   public fun setLayerEnabled(layer: Int, enabled: Boolean): Unit {
@@ -371,7 +373,7 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Assigns a [NavigationServer2D] navigation map [RID] to the specified TileMap [layer].
+   * Assigns [map] as a [NavigationServer2D] navigation map for the specified TileMap layer [layer].
    * By default the TileMap uses the default [World2D] navigation map for the first TileMap layer.
    * For each additional TileMap layer a new navigation map is created for the additional layer.
    * In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use
@@ -385,8 +387,8 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the [NavigationServer2D] navigation map [RID] currently assigned to the specified
-   * TileMap [layer].
+   * Returns the [RID] of the [NavigationServer2D] navigation map assigned to the specified TileMap
+   * layer [layer].
    * By default the TileMap uses the default [World2D] navigation map for the first TileMap layer.
    * For each additional TileMap layer a new navigation map is created for the additional layer.
    * In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use
@@ -439,7 +441,7 @@ public open class TileMap : Node2D() {
   /**
    * Returns the tile source ID of the cell on layer [layer] at coordinates [coords]. Returns `-1`
    * if the cell does not exist.
-   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
+   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw source
    * identifier. See [TileSet.mapTileProxy].
    * If [layer] is negative, the layers are accessed from the last one.
    */
@@ -455,9 +457,10 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords]. If
-   * [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
-   * identifier. See [TileSet.mapTileProxy].
+   * Returns the tile atlas coordinates ID of the cell on layer [layer] at coordinates [coords].
+   * Returns `Vector2i(-1, -1)` if the cell does not exist.
+   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw atlas
+   * coordinate identifier. See [TileSet.mapTileProxy].
    * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
@@ -472,9 +475,9 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile alternative ID of the cell on layer [layer] at [coords]. If [useProxies] is
-   * `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See
-   * [TileSet.mapTileProxy].
+   * Returns the tile alternative ID of the cell on layer [layer] at [coords].
+   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
+   * identifier. See [TileSet.mapTileProxy].
    * If [layer] is negative, the layers are accessed from the last one.
    */
   @JvmOverloads
@@ -492,8 +495,6 @@ public open class TileMap : Node2D() {
    * Returns the [TileData] object associated with the given cell, or `null` if the cell does not
    * exist or is not a [TileSetAtlasSource].
    * If [layer] is negative, the layers are accessed from the last one.
-   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative
-   * identifier. See [TileSet.mapTileProxy].
    * [codeblock]
    * func get_clicked_tile_power():
    *     var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
@@ -503,6 +504,7 @@ public open class TileMap : Node2D() {
    *     else:
    *         return 0
    * [/codeblock]
+   * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies. See [TileSet.mapTileProxy].
    */
   @JvmOverloads
   public fun getCellTileData(

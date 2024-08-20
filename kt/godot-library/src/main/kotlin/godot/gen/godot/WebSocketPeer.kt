@@ -274,8 +274,8 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Disable Nagle's algorithm on the underling TCP socket (default). See [StreamPeerTCP.setNoDelay]
-   * for more information.
+   * Disable Nagle's algorithm on the underlying TCP socket (default). See
+   * [StreamPeerTCP.setNoDelay] for more information.
    * **Note:** Not available in the Web export.
    */
   public fun setNoDelay(enabled: Boolean): Unit {

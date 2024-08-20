@@ -68,8 +68,8 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   }
 
   /**
-   * Called to get the [MultiplayerPeer.TransferMode] the remote peer used to send the next
-   * available packet. See [MultiplayerPeer.getPacketMode].
+   * Called to get the transfer mode the remote peer used to send the next available packet. See
+   * [MultiplayerPeer.getPacketMode].
    */
   public open fun _getPacketMode(): MultiplayerPeer.TransferMode {
     throw NotImplementedError("_get_packet_mode is not implemented for MultiplayerPeerExtension")

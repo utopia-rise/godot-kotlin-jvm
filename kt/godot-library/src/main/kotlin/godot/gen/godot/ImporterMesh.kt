@@ -112,10 +112,10 @@ public open class ImporterMesh : Resource() {
    * [Mesh.ARRAY_TANGENT] are set if and only if they are set in [arrays] and all other entries are
    * `null`.
    * The [lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry
-   * in the dictionary represents a LOD level of the surface, where the value is the [Mesh.ARRAY_INDEX]
-   * array to use for the LOD level and the key is roughly proportional to the distance at which the
-   * LOD stats being used. I.e., increasing the key of a LOD also increases the distance that the
-   * objects has to be from the camera before the LOD is used.
+   * in the dictionary represents an LOD level of the surface, where the value is the
+   * [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
+   * distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the
+   * distance that the objects has to be from the camera before the LOD is used.
    * The [flags] argument is the bitwise or of, as required: One value of [Mesh.ArrayCustomFormat]
    * left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use,
    * [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or

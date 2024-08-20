@@ -87,6 +87,14 @@ public open class ScriptExtension : Script() {
     throw NotImplementedError("_has_static_method is not implemented for ScriptExtension")
   }
 
+  /**
+   * Return the expected argument count for the given [method], or `null` if it can't be determined
+   * (which will then fall back to the default behavior).
+   */
+  public open fun _getScriptMethodArgumentCount(method: StringName): Any? {
+    throw NotImplementedError("_get_script_method_argument_count is not implemented for ScriptExtension")
+  }
+
   public open fun _getMethodInfo(method: StringName): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_method_info is not implemented for ScriptExtension")
   }
@@ -213,6 +221,9 @@ public open class ScriptExtension : Script() {
 
     public val _hasStaticMethodPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptExtension", "_has_static_method")
+
+    public val _getScriptMethodArgumentCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ScriptExtension", "_get_script_method_argument_count")
 
     public val _getMethodInfoPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ScriptExtension", "_get_method_info")

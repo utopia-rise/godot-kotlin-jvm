@@ -6,9 +6,12 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
+import godot.core.Rect2
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -18,7 +21,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
+import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING_NAME
+import godot.core.VariantType.VECTOR2
+import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -169,6 +175,23 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
+   * The size of the non-navigable border around the bake bounding area defined by the [bakingRect]
+   * [Rect2].
+   * In conjunction with the [bakingRect] the border size can be used to bake tile aligned
+   * navigation meshes without the tile edges being shrunk by [agentRadius].
+   */
+  public var borderSize: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+    }
+
+  /**
    * The distance to erode/shrink the walkable surface when baking the navigation mesh.
    */
   public var agentRadius: Float
@@ -182,10 +205,91 @@ public open class NavigationPolygon : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
     }
 
+  /**
+   * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
+   * enclosing area.
+   */
+  @CoreTypeLocalCopy
+  public var bakingRect: Rect2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectPtr, RECT2)
+      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(RECT2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectPtr, NIL)
+    }
+
+  /**
+   * The position offset applied to the [bakingRect] [Rect2].
+   */
+  @CoreTypeLocalCopy
+  public var bakingRectOffset: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectOffsetPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectOffsetPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_NAVIGATIONPOLYGON, scriptIndex)
     return true
   }
+
+  /**
+   * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
+   * enclosing area.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpolygon.bakingRect
+   * //Your changes
+   * navigationpolygon.bakingRect = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun bakingRectMutate(block: Rect2.() -> Unit): Rect2 = bakingRect.apply{
+      block(this)
+      bakingRect = this
+  }
+
+
+  /**
+   * The position offset applied to the [bakingRect] [Rect2].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = navigationpolygon.bakingRectOffset
+   * //Your changes
+   * navigationpolygon.bakingRectOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun bakingRectOffsetMutate(block: Vector2.() -> Unit): Vector2 =
+      bakingRectOffset.apply{
+      block(this)
+      bakingRectOffset = this
+  }
+
 
   /**
    * Adds a polygon using the indices of the vertices you get when calling [getVertices].
@@ -299,9 +403,6 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * Creates polygons from the outlines added in the editor or by script.
-   * *Deprecated.* This function is deprecated, and might be removed in a future release. Use
-   * [NavigationServer2D.parseSourceGeometryData] and [NavigationServer2D.bakeFromSourceGeometryData]
-   * instead.
    */
   public fun makePolygonsFromOutlines(): Unit {
     TransferContext.writeArguments()
@@ -455,6 +556,12 @@ public open class NavigationPolygon : Resource() {
     public val getCellSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPolygon", "get_cell_size")
 
+    public val setBorderSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_border_size")
+
+    public val getBorderSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_border_size")
+
     public val setParsedGeometryTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_geometry_type")
 
@@ -490,6 +597,18 @@ public open class NavigationPolygon : Resource() {
 
     public val getAgentRadiusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPolygon", "get_agent_radius")
+
+    public val setBakingRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect")
+
+    public val getBakingRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect")
+
+    public val setBakingRectOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect_offset")
+
+    public val getBakingRectOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect_offset")
 
     public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationPolygon", "clear")
   }

@@ -364,15 +364,15 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Override this method to define how the selected entry should be inserted. If [replace] is true,
-   * any existing text should be replaced.
+   * Override this method to define how the selected entry should be inserted. If [replace] is
+   * `true`, any existing text should be replaced.
    */
   public open fun _confirmCodeCompletion(replace: Boolean): Unit {
   }
 
   /**
    * Override this method to define what happens when the user requests code completion. If [force]
-   * is true, any checks should be bypassed.
+   * is `true`, any checks should be bypassed.
    */
   public open fun _requestCodeCompletion(force: Boolean): Unit {
   }
@@ -612,6 +612,14 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
+   * Toggle the folding of the code block on all lines with a caret on them.
+   */
+  public fun toggleFoldableLinesAtCarets(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.toggleFoldableLinesAtCaretsPtr, NIL)
+  }
+
+  /**
    * Returns whether the line at the specified index is folded or not.
    */
   public fun isLineFolded(line: Int): Boolean {
@@ -689,10 +697,10 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Adds a string delimiter.
-   * Both the start and end keys must be symbols. Only the start key has to be unique.
-   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to
-   * the next line. If the end key is blank this is automatically set to `true`.
+   * Defines a string delimiter from [startKey] to [endKey]. Both keys should be symbols, and
+   * [startKey] must not be shared with other delimiters.
+   * If [lineOnly] is `true` or [endKey] is an empty [String], the region does not carry over to the
+   * next line.
    */
   @JvmOverloads
   public fun addStringDelimiter(
@@ -741,10 +749,10 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Adds a comment delimiter.
-   * Both the start and end keys must be symbols. Only the start key has to be unique.
-   * [lineOnly] denotes if the region should continue until the end of the line or carry over on to
-   * the next line. If the end key is blank this is automatically set to `true`.
+   * Adds a comment delimiter from [startKey] to [endKey]. Both keys should be symbols, and
+   * [startKey] must not be shared with other delimiters.
+   * If [lineOnly] is `true` or [endKey] is an empty [String], the region does not carry over to the
+   * next line.
    */
   @JvmOverloads
   public fun addCommentDelimiter(
@@ -856,9 +864,9 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Emits [signal code_completion_requested], if [force] is true will bypass all checks. Otherwise
-   * will check that the caret is in a word or in front of a prefix. Will ignore the request if all
-   * current options are of type file path, node path or signal.
+   * Emits [signal code_completion_requested], if [force] is `true` will bypass all checks.
+   * Otherwise will check that the caret is in a word or in front of a prefix. Will ignore the request
+   * if all current options are of type file path, node path, or signal.
    */
   @JvmOverloads
   public fun requestCodeCompletion(force: Boolean = false): Unit {
@@ -880,7 +888,7 @@ public open class CodeEdit : TextEdit() {
     insertText: String,
     textColor: Color = Color(Color(1, 1, 1, 1)),
     icon: Resource? = null,
-    `value`: Any? = 0,
+    `value`: Any? = null,
     location: Int = 1024,
   ): Unit {
     TransferContext.writeArguments(LONG to type.id, STRING to displayText, STRING to insertText, COLOR to textColor, OBJECT to icon, ANY to value, LONG to location.toLong())
@@ -939,7 +947,7 @@ public open class CodeEdit : TextEdit() {
   }
 
   /**
-   * Inserts the selected entry into the text. If [replace] is true, any existing text is replaced
+   * Inserts the selected entry into the text. If [replace] is `true`, any existing text is replaced
    * rather than merged.
    */
   @JvmOverloads
@@ -980,6 +988,38 @@ public open class CodeEdit : TextEdit() {
   public fun setSymbolLookupWordAsValid(valid: Boolean): Unit {
     TransferContext.writeArguments(BOOL to valid)
     TransferContext.callMethod(rawPtr, MethodBindings.setSymbolLookupWordAsValidPtr, NIL)
+  }
+
+  /**
+   * Moves all lines up that are selected or have a caret on them.
+   */
+  public fun moveLinesUp(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.moveLinesUpPtr, NIL)
+  }
+
+  /**
+   * Moves all lines down that are selected or have a caret on them.
+   */
+  public fun moveLinesDown(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.moveLinesDownPtr, NIL)
+  }
+
+  /**
+   * Deletes all lines that are selected or have a caret on them.
+   */
+  public fun deleteLines(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.deleteLinesPtr, NIL)
+  }
+
+  /**
+   * Duplicates all selected text and duplicates all lines with a caret on them.
+   */
+  public fun duplicateSelection(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.duplicateSelectionPtr, NIL)
   }
 
   /**
@@ -1057,9 +1097,9 @@ public open class CodeEdit : TextEdit() {
     LOCATION_LOCAL(0),
     /**
      * The option is from the containing class or a parent class, relative to the location of the
-     * code completion query. Perform a bitwise OR with the class depth (e.g. 0 for the local class, 1
-     * for the parent, 2 for the grandparent, etc) to store the depth of an option in the class or a
-     * parent class.
+     * code completion query. Perform a bitwise OR with the class depth (e.g. `0` for the local class,
+     * `1` for the parent, `2` for the grandparent, etc.) to store the depth of an option in the class
+     * or a parent class.
      */
     LOCATION_PARENT_MASK(256),
     /**
@@ -1252,6 +1292,9 @@ public open class CodeEdit : TextEdit() {
     public val toggleFoldableLinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "toggle_foldable_line")
 
+    public val toggleFoldableLinesAtCaretsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "toggle_foldable_lines_at_carets")
+
     public val isLineFoldedPtr: VoidPtr = TypeManager.getMethodBindPtr("CodeEdit", "is_line_folded")
 
     public val getFoldedLinesPtr: VoidPtr =
@@ -1394,6 +1437,16 @@ public open class CodeEdit : TextEdit() {
 
     public val setSymbolLookupWordAsValidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "set_symbol_lookup_word_as_valid")
+
+    public val moveLinesUpPtr: VoidPtr = TypeManager.getMethodBindPtr("CodeEdit", "move_lines_up")
+
+    public val moveLinesDownPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "move_lines_down")
+
+    public val deleteLinesPtr: VoidPtr = TypeManager.getMethodBindPtr("CodeEdit", "delete_lines")
+
+    public val duplicateSelectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CodeEdit", "duplicate_selection")
 
     public val duplicateLinesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "duplicate_lines")

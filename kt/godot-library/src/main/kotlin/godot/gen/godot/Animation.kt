@@ -121,6 +121,17 @@ public open class Animation : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
     }
 
+  /**
+   * Returns `true` if the capture track is included. This is a cached readonly value for
+   * performance.
+   */
+  public val captureIncluded: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isCaptureIncludedPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_ANIMATION, scriptIndex)
     return true
@@ -173,7 +184,7 @@ public open class Animation : Resource() {
 
   /**
    * Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified
-   * starting from the parent node of the node that will reproduce the animation. Tracks that control
+   * starting from the [AnimationMixer.rootNode] that will reproduce the animation. Tracks that control
    * properties or bones must append their name after the path, separated by `":"`.
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
@@ -313,8 +324,13 @@ public open class Animation : Resource() {
    * Returns the interpolated position value at the given time (in seconds). The [trackIdx] must be
    * the index of a 3D position track.
    */
-  public fun positionTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
+  @JvmOverloads
+  public fun positionTrackInterpolate(
+    trackIdx: Int,
+    timeSec: Double,
+    backward: Boolean = false,
+  ): Vector3 {
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec, BOOL to backward)
     TransferContext.callMethod(rawPtr, MethodBindings.positionTrackInterpolatePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
@@ -323,8 +339,13 @@ public open class Animation : Resource() {
    * Returns the interpolated rotation value at the given time (in seconds). The [trackIdx] must be
    * the index of a 3D rotation track.
    */
-  public fun rotationTrackInterpolate(trackIdx: Int, timeSec: Double): Quaternion {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
+  @JvmOverloads
+  public fun rotationTrackInterpolate(
+    trackIdx: Int,
+    timeSec: Double,
+    backward: Boolean = false,
+  ): Quaternion {
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec, BOOL to backward)
     TransferContext.callMethod(rawPtr, MethodBindings.rotationTrackInterpolatePtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
@@ -333,8 +354,13 @@ public open class Animation : Resource() {
    * Returns the interpolated scale value at the given time (in seconds). The [trackIdx] must be the
    * index of a 3D scale track.
    */
-  public fun scaleTrackInterpolate(trackIdx: Int, timeSec: Double): Vector3 {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
+  @JvmOverloads
+  public fun scaleTrackInterpolate(
+    trackIdx: Int,
+    timeSec: Double,
+    backward: Boolean = false,
+  ): Vector3 {
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec, BOOL to backward)
     TransferContext.callMethod(rawPtr, MethodBindings.scaleTrackInterpolatePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
@@ -343,8 +369,13 @@ public open class Animation : Resource() {
    * Returns the interpolated blend shape value at the given time (in seconds). The [trackIdx] must
    * be the index of a blend shape track.
    */
-  public fun blendShapeTrackInterpolate(trackIdx: Int, timeSec: Double): Float {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
+  @JvmOverloads
+  public fun blendShapeTrackInterpolate(
+    trackIdx: Int,
+    timeSec: Double,
+    backward: Boolean = false,
+  ): Float {
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec, BOOL to backward)
     TransferContext.callMethod(rawPtr, MethodBindings.blendShapeTrackInterpolatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
@@ -457,14 +488,22 @@ public open class Animation : Resource() {
   /**
    * Finds the key index by time in a given track. Optionally, only find it if the approx/exact time
    * is given.
+   * If [limit] is `true`, it does not return keys outside the animation range.
+   * If [backward] is `true`, the direction is reversed in methods that rely on one directional
+   * processing.
+   * For example, in case [findMode] is [FIND_MODE_NEAREST], if there is no key in the current
+   * position just after seeked, the first key found is retrieved by searching before the position, but
+   * if [backward] is `true`, the first key found is retrieved after the position.
    */
   @JvmOverloads
   public fun trackFindKey(
     trackIdx: Int,
     time: Double,
     findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST,
+    limit: Boolean = false,
+    backward: Boolean = false,
   ): Int {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, LONG to findMode.id)
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, LONG to findMode.id, BOOL to limit, BOOL to backward)
     TransferContext.callMethod(rawPtr, MethodBindings.trackFindKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
@@ -533,9 +572,17 @@ public open class Animation : Resource() {
   /**
    * Returns the interpolated value at the given time (in seconds). The [trackIdx] must be the index
    * of a value track.
+   * A [backward] mainly affects the direction of key retrieval of the track with [UPDATE_DISCRETE]
+   * converted by [AnimationMixer.ANIMATION_CALLBACK_MODE_DISCRETE_FORCE_CONTINUOUS] to match the
+   * result with [trackFindKey].
    */
-  public fun valueTrackInterpolate(trackIdx: Int, timeSec: Double): Any? {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec)
+  @JvmOverloads
+  public fun valueTrackInterpolate(
+    trackIdx: Int,
+    timeSec: Double,
+    backward: Boolean = false,
+  ): Any? {
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to timeSec, BOOL to backward)
     TransferContext.callMethod(rawPtr, MethodBindings.valueTrackInterpolatePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
@@ -946,8 +993,9 @@ public open class Animation : Resource() {
      */
     UPDATE_DISCRETE(1),
     /**
-     * Same as linear interpolation, but also interpolates from the current value (i.e. dynamically
-     * at runtime) if the first key isn't at 0 seconds.
+     * Same as [UPDATE_CONTINUOUS] but works as a flag to capture the value of the current object
+     * and perform interpolation in some methods. See also [AnimationMixer.capture],
+     * [AnimationPlayer.playbackAutoCapture], and [AnimationPlayer.playWithCapture].
      */
     UPDATE_CAPTURE(2),
     ;
@@ -1252,5 +1300,8 @@ public open class Animation : Resource() {
     public val copyTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "copy_track")
 
     public val compressPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "compress")
+
+    public val isCaptureIncludedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "is_capture_included")
   }
 }

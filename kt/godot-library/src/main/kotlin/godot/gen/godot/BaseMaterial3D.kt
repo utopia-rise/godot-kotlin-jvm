@@ -1636,6 +1636,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Controls how the object faces the camera. See [BillboardMode].
+   * **Note:** When billboarding is enabled and the material also casts shadows, billboards will
+   * face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the
+   * intended shadow cannot be determined and this will result in undefined behavior. See
+   * [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.
    * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is
    * not horizontal when the screen is attached to your head instead of on the table. See
    * [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
@@ -2465,6 +2469,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * The color of the object is multiplied by the background.
      */
     BLEND_MODE_MUL(3),
+    /**
+     * The color of the object is added to the background and the alpha channel is used to mask out
+     * the background. This is effectively a hybrid of the blend mix and add modes, useful for effects
+     * like fire where you want the flame to add but the smoke to mix. By default, this works with
+     * unshaded materials using premultiplied textures. For shaded materials, use the
+     * `PREMUL_ALPHA_FACTOR` built-in so that lighting can be modulated as well.
+     */
+    BLEND_MODE_PREMULT_ALPHA(4),
     ;
 
     public val id: Long

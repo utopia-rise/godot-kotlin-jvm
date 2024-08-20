@@ -9,6 +9,7 @@ package godot
 import godot.TextServer.JustificationFlagValue
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
+import godot.core.Rect2
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -18,6 +19,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
+import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -155,6 +157,20 @@ public open class Label : Control() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.id)
       TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+    }
+
+  /**
+   * Ellipsis character used for text clipping.
+   */
+  public var ellipsisChar: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
     }
 
   /**
@@ -366,6 +382,18 @@ public open class Label : Control() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  /**
+   * Returns the bounding rectangle of the character at position [pos]. If the character is a
+   * non-visual character or [pos] is outside the valid range, an empty [Rect2] is returned. If the
+   * character is a part of a composite grapheme, the bounding rectangle of the whole grapheme is
+   * returned.
+   */
+  public fun getCharacterBounds(pos: Int): Rect2 {
+    TransferContext.writeArguments(LONG to pos.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getCharacterBoundsPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -428,6 +456,12 @@ public open class Label : Control() {
     public val getTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label", "get_text_overrun_behavior")
 
+    public val setEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_ellipsis_char")
+
+    public val getEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_ellipsis_char")
+
     public val setUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_uppercase")
 
     public val isUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "is_uppercase")
@@ -483,5 +517,8 @@ public open class Label : Control() {
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override_options")
+
+    public val getCharacterBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_character_bounds")
   }
 }

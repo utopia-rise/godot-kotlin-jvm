@@ -7,12 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Dictionary
 import godot.core.TypeManager
+import godot.core.VariantArray
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
+import godot.signals.Signal0
+import godot.signals.signal
 import godot.util.VoidPtr
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -26,6 +31,11 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class AudioStream : Resource() {
+  /**
+   * Signal to be emitted to notify when the parameter list changed.
+   */
+  public val parameterListChanged: Signal0 by signal()
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOSTREAM, scriptIndex)
     return true
@@ -84,6 +94,15 @@ public open class AudioStream : Resource() {
   }
 
   /**
+   * Return the controllable parameters of this stream. This array contains dictionaries with a
+   * property info description format (see [Object.getPropertyList]). Additionally, the default value
+   * for this parameter must be added tho each dictionary in "default_value" field.
+   */
+  public open fun _getParameterList(): VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("_get_parameter_list is not implemented for AudioStream")
+  }
+
+  /**
    * Returns the length of the audio stream in seconds.
    */
   public fun getLength(): Double {
@@ -114,6 +133,34 @@ public open class AudioStream : Resource() {
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
   }
 
+  /**
+   * Returns if the current [AudioStream] can be used as a sample. Only static streams can be
+   * sampled.
+   */
+  public fun canBeSampled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.canBeSampledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Generates an [AudioSample] based on the current stream.
+   */
+  public fun generateSample(): AudioSample? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.generateSamplePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as AudioSample?)
+  }
+
+  /**
+   * Returns `true` if the stream is a collection of other streams, `false` otherwise.
+   */
+  public fun isMetaStream(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMetaStreamPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -133,6 +180,9 @@ public open class AudioStream : Resource() {
     public val _getBeatCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStream", "_get_beat_count")
 
+    public val _getParameterListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "_get_parameter_list")
+
     public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStream", "get_length")
 
     public val isMonophonicPtr: VoidPtr =
@@ -140,5 +190,14 @@ public open class AudioStream : Resource() {
 
     public val instantiatePlaybackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStream", "instantiate_playback")
+
+    public val canBeSampledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "can_be_sampled")
+
+    public val generateSamplePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "generate_sample")
+
+    public val isMetaStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "is_meta_stream")
   }
 }

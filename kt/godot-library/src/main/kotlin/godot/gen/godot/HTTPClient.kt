@@ -592,11 +592,11 @@ public open class HTTPClient : RefCounted() {
      */
     RESPONSE_NOT_MODIFIED(304),
     /**
-     * *Deprecated.* HTTP status code `305 Use Proxy`.
+     * HTTP status code `305 Use Proxy`.
      */
     RESPONSE_USE_PROXY(305),
     /**
-     * *Deprecated.* HTTP status code `306 Switch Proxy`.
+     * HTTP status code `306 Switch Proxy`.
      */
     RESPONSE_SWITCH_PROXY(306),
     /**

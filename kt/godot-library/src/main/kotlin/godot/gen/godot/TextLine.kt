@@ -159,6 +159,20 @@ public open class TextLine : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
     }
 
+  /**
+   * Ellipsis character used for text clipping.
+   */
+  public var ellipsisChar: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TEXTLINE, scriptIndex)
     return true
@@ -417,6 +431,12 @@ public open class TextLine : RefCounted() {
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "get_text_overrun_behavior")
+
+    public val setEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "set_ellipsis_char")
+
+    public val getEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_ellipsis_char")
 
     public val getObjectsPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_objects")
 

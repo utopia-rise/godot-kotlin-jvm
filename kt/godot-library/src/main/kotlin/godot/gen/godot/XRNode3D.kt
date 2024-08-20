@@ -32,7 +32,7 @@ import kotlin.Unit
  * the [XROrigin3D] node.
  */
 @GodotBaseType
-public open class XRNode3D internal constructor() : Node3D() {
+public open class XRNode3D : Node3D() {
   /**
    * Emitted when the [tracker] starts or stops receiving updated tracking data for the [pose] being
    * tracked. The [tracking] argument indicates whether the tracker is getting updated tracking data.
@@ -73,6 +73,20 @@ public open class XRNode3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPoseNamePtr, NIL)
     }
 
+  /**
+   * Enables showing the node when tracking starts, and hiding the node when tracking is lost.
+   */
+  public var showWhenTracked: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getShowWhenTrackedPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_XRNODE3D, scriptIndex)
     return true
@@ -109,6 +123,11 @@ public open class XRNode3D internal constructor() : Node3D() {
   /**
    * Triggers a haptic pulse on a device associated with this interface.
    * [actionName] is the name of the action for this pulse.
+   * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default
+   * frequency.
+   * [amplitude] is the amplitude of the pulse between `0.0` and `1.0`.
+   * [durationSec] is the duration of the pulse in seconds.
+   * [delaySec] is a delay in seconds before the pulse is given.
    */
   public fun triggerHapticPulse(
     actionName: String,
@@ -131,6 +150,12 @@ public open class XRNode3D internal constructor() : Node3D() {
     public val setPoseNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "set_pose_name")
 
     public val getPoseNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "get_pose_name")
+
+    public val setShowWhenTrackedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "set_show_when_tracked")
+
+    public val getShowWhenTrackedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "get_show_when_tracked")
 
     public val getIsActivePtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "get_is_active")
 

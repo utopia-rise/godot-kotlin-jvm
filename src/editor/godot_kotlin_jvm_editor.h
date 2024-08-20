@@ -10,7 +10,7 @@
 #include "menu_option.h"
 #include "panel/bottom_panel.h"
 
-#include <editor/editor_plugin.h>
+#include <editor/plugins/editor_plugin.h>
 
 class GodotKotlinJvmEditor : public EditorPlugin {
 public:

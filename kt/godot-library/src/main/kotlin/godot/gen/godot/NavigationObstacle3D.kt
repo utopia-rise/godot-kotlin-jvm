@@ -31,49 +31,23 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 3D Obstacle used in navigation to constrain avoidance controlled agents outside or inside an
- * area. The obstacle needs a navigation map and outline vertices defined to work correctly.
- * If the obstacle's vertices are winded in clockwise order, avoidance agents will be pushed in by
- * the obstacle, otherwise, avoidance agents will be pushed out. Outlines must not cross or overlap.
- * Obstacles are **not** a replacement for a (re)baked navigation mesh. Obstacles **don't** change
- * the resulting path from the pathfinding, obstacles only affect the navigation avoidance agent
- * movement by altering the suggested velocity of the avoidance agent.
- * Obstacles using vertices can warp to a new position but should not moved every frame as each move
+ * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
+ * can not cross or overlap and are restricted to a plane projection. This means the y-axis of the
+ * vertices is ignored, instead the obstacle's global y-axis position is used for placement. The
+ * projected shape is extruded by the obstacles height along the y-axis.
+ * Obstacles can be included in the navigation mesh baking process when [affectNavigationMesh] is
+ * enabled. They do not add walkable geometry, instead their role is to discard other source geometry
+ * inside the shape. This can be used to prevent navigation mesh from appearing in unwanted places,
+ * e.g. inside "solid" geometry or on top of it. If [carveNavigationMesh] is enabled the baked shape
+ * will not be affected by offsets of the navigation mesh baking, e.g. the agent radius.
+ * With [avoidanceEnabled] the obstacle can constrain the avoidance velocities of avoidance using
+ * agents. If the obstacle's vertices are wound in clockwise order, avoidance agents will be pushed in
+ * by the obstacle, otherwise, avoidance agents will be pushed out. Obstacles using vertices and
+ * avoidance can warp to a new position but should not be moved every single frame as each change
  * requires a rebuild of the avoidance map.
  */
 @GodotBaseType
 public open class NavigationObstacle3D : Node3D() {
-  /**
-   * If `true` the obstacle affects avoidance using agents.
-   */
-  public var avoidanceEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
-    }
-
-  /**
-   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
-   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
-   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
-   */
-  @CoreTypeLocalCopy
-  public var velocity: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
-    }
-
   /**
    * Sets the avoidance radius for the obstacle.
    */
@@ -118,6 +92,70 @@ public open class NavigationObstacle3D : Node3D() {
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+    }
+
+  /**
+   * If enabled and parsed in a navigation mesh baking process the obstacle will discard source
+   * geometry inside its [vertices] and [height] defined shape.
+   */
+  public var affectNavigationMesh: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAffectNavigationMeshPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAffectNavigationMeshPtr, NIL)
+    }
+
+  /**
+   * If enabled the obstacle vertices will carve into the baked navigation mesh with the shape
+   * unaffected by additional offsets (e.g. agent radius).
+   * It will still be affected by further postprocessing of the baking process, like edge and
+   * polygon simplification.
+   * Requires [affectNavigationMesh] to be enabled.
+   */
+  public var carveNavigationMesh: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getCarveNavigationMeshPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setCarveNavigationMeshPtr, NIL)
+    }
+
+  /**
+   * If `true` the obstacle affects avoidance using agents.
+   */
+  public var avoidanceEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
+    }
+
+  /**
+   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
+   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
+   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   */
+  @CoreTypeLocalCopy
+  public var velocity: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR3)
+      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
     }
 
   /**
@@ -290,5 +328,17 @@ public open class NavigationObstacle3D : Node3D() {
 
     public val getUse3dAvoidancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_use_3d_avoidance")
+
+    public val setAffectNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_affect_navigation_mesh")
+
+    public val getAffectNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_affect_navigation_mesh")
+
+    public val setCarveNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "set_carve_navigation_mesh")
+
+    public val getCarveNavigationMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle3D", "get_carve_navigation_mesh")
   }
 }

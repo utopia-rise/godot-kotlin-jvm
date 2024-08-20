@@ -366,6 +366,8 @@ public open class Object : KtObject() {
   /**
    * Returns the object's unique instance ID. This ID can be saved in [EncodedObjectAsID], and can
    * be used to retrieve this object instance with [@GlobalScope.instanceFromId].
+   * **Note:** This ID is only useful during the current session. It won't correspond to a similar
+   * object if the ID is sent over a network, or loaded from a file at a later time.
    */
   public fun getInstanceId(): Long {
     TransferContext.writeArguments()
@@ -466,7 +468,7 @@ public open class Object : KtObject() {
   /**
    * Adds a user-defined [signal]. Optional arguments for the signal can be added as an [Array] of
    * dictionaries, each defining a `name` [String] and a `type` [int] (see [Variant.Type]). See also
-   * [hasUserSignal].
+   * [hasUserSignal] and [removeUserSignal].
    *
    * gdscript:
    * ```gdscript
@@ -501,12 +503,21 @@ public open class Object : KtObject() {
 
   /**
    * Returns `true` if the given user-defined [signal] name exists. Only signals added with
-   * [addUserSignal] are included.
+   * [addUserSignal] are included. See also [removeUserSignal].
    */
   public fun hasUserSignal(signal: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signal)
     TransferContext.callMethod(rawPtr, MethodBindings.hasUserSignalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Removes the given user signal [signal] from the object. See also [addUserSignal] and
+   * [hasUserSignal].
+   */
+  public fun removeUserSignal(signal: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to signal)
+    TransferContext.callMethod(rawPtr, MethodBindings.removeUserSignalPtr, NIL)
   }
 
   /**
@@ -681,6 +692,18 @@ public open class Object : KtObject() {
   }
 
   /**
+   * Returns the number of arguments of the given [method] by name.
+   * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
+   * Prefer using the names exposed in the `MethodName` class to avoid allocating a new [StringName] on
+   * each call.
+   */
+  public fun getMethodArgumentCount(method: StringName): Int {
+    TransferContext.writeArguments(STRING_NAME to method)
+    TransferContext.callMethod(rawPtr, MethodBindings.getMethodArgumentCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
    * Returns `true` if the given [signal] name exists in the object.
    * **Note:** In C#, [signal] must be in snake_case when referring to built-in Godot methods.
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
@@ -842,8 +865,8 @@ public open class Object : KtObject() {
    * **Binding and passing parameters:**
    * The syntax to bind parameters is through [Callable.bind], which returns a copy of the
    * [Callable] with its parameters bound.
-   * When calling [emitSignal], the signal parameters can be also passed. The examples below show
-   * the relationship between these signal parameters and bound parameters.
+   * When calling [emitSignal] or [Signal.emit], the signal parameters can be also passed. The
+   * examples below show the relationship between these signal parameters and bound parameters.
    *
    * gdscript:
    * ```gdscript
@@ -854,7 +877,7 @@ public open class Object : KtObject() {
    *     player.hit.connect(_on_player_hit.bind("sword", 100))
    *
    *     # Parameters added when emitting the signal are passed first.
-   *     player.emit_signal("hit", "Dark lord", 5)
+   *     player.hit.emit("Dark lord", 5)
    *
    * # We pass two arguments when emitting (`hit_by`, `level`),
    * # and bind two more arguments when connecting (`weapon_type`, `damage`).
@@ -964,11 +987,16 @@ public open class Object : KtObject() {
 
   /**
    * Translates a [message], using the translation catalogs configured in the Project Settings.
-   * Further [context] can be specified to help with the translation.
+   * Further [context] can be specified to help with the translation. Note that most [Control] nodes
+   * automatically translate their strings, so this method is mostly useful for formatted strings or
+   * custom drawn text.
    * If [canTranslateMessages] is `false`, or no translation is available, this method returns the
    * [message] without changes. See [setMessageTranslation].
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/internationalizing_games.html]Internationalizing games[/url].
+   * **Note:** This method can't be used without an [Object] instance, as it requires the
+   * [canTranslateMessages] method. To translate strings in a static context, use
+   * [TranslationServer.translate].
    */
   @JvmOverloads
   public fun tr(message: StringName, context: StringName = StringName("")): String {
@@ -987,7 +1015,10 @@ public open class Object : KtObject() {
    * For detailed examples, see
    * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]Localization using gettext[/url].
    * **Note:** Negative and [float] numbers may not properly apply to some countable subjects. It's
-   * recommended handling these cases with [tr].
+   * recommended to handle these cases with [tr].
+   * **Note:** This method can't be used without an [Object] instance, as it requires the
+   * [canTranslateMessages] method. To translate strings in a static context, use
+   * [TranslationServer.translatePlural].
    */
   @JvmOverloads
   public fun trN(
@@ -1124,6 +1155,9 @@ public open class Object : KtObject() {
 
     public val hasUserSignalPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_user_signal")
 
+    public val removeUserSignalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "remove_user_signal")
+
     public val emitSignalPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "emit_signal")
 
     public val callPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "call")
@@ -1135,6 +1169,9 @@ public open class Object : KtObject() {
     public val callvPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "callv")
 
     public val hasMethodPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_method")
+
+    public val getMethodArgumentCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_method_argument_count")
 
     public val hasSignalPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_signal")
 

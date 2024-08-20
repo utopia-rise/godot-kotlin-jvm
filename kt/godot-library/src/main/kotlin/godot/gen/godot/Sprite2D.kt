@@ -62,6 +62,10 @@ public open class Sprite2D : Node2D() {
 
   /**
    * If `true`, texture is centered.
+   * **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered.
+   * This is caused by their position being between pixels. To prevent this, set this property to
+   * `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and
+   * [ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
    */
   public var centered: Boolean
     get() {
@@ -303,7 +307,8 @@ public open class Sprite2D : Node2D() {
 
 
   /**
-   * Returns `true`, if the pixel at the given position is opaque and `false` in other case.
+   * Returns `true`, if the pixel at the given position is opaque and `false` in other case. The
+   * position is in local coordinates.
    * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position
    * is invalid.
    */

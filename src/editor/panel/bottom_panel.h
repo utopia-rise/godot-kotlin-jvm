@@ -4,7 +4,7 @@
 #ifndef GODOT_JVM_BOTTOM_PANEL_H
 #define GODOT_JVM_BOTTOM_PANEL_H
 
-#include <editor/editor_plugin.h>
+#include <editor/plugins/editor_plugin.h>
 #include <scene/gui/box_container.h>
 #include <scene/gui/scroll_container.h>
 #include <scene/gui/tab_container.h>

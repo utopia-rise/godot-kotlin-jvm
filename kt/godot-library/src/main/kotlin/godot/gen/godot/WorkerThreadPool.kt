@@ -86,6 +86,9 @@ public object WorkerThreadPool : Object() {
    * task has a high priority or a low priority (default). You can optionally provide a [description]
    * to help with debugging.
    * Returns a task ID that can be used by other methods.
+   * **Warning:** Every task must be waited for completion using [waitForTaskCompletion] or
+   * [waitForGroupTaskCompletion] at some point so that any allocated resources inside the task can be
+   * cleaned up.
    */
   @JvmOverloads
   public fun addTask(
@@ -100,6 +103,7 @@ public object WorkerThreadPool : Object() {
 
   /**
    * Returns `true` if the task with the given ID is completed.
+   * **Note:** You should only call this method between adding the task and awaiting its completion.
    */
   public fun isTaskCompleted(taskId: Long): Boolean {
     TransferContext.writeArguments(LONG to taskId)
@@ -113,8 +117,10 @@ public object WorkerThreadPool : Object() {
    * Returns [@GlobalScope.ERR_INVALID_PARAMETER] if a task with the passed ID does not exist (maybe
    * because it was already awaited and disposed of).
    * Returns [@GlobalScope.ERR_BUSY] if the call is made from another running task and, due to task
-   * scheduling, the task to await is at a lower level in the call stack and therefore can't progress.
-   * This is an advanced situation that should only matter when some tasks depend on others.
+   * scheduling, there's potential for deadlocking (e.g., the task to await may be at a lower level in
+   * the call stack and therefore can't progress). This is an advanced situation that should only
+   * matter when some tasks depend on others (in the current implementation, the tricky case is a task
+   * trying to wait on an older one).
    */
   public fun waitForTaskCompletion(taskId: Long): GodotError {
     TransferContext.writeArguments(LONG to taskId)
@@ -132,6 +138,9 @@ public object WorkerThreadPool : Object() {
    * has a high priority or a low priority (default). You can optionally provide a [description] to
    * help with debugging.
    * Returns a group task ID that can be used by other methods.
+   * **Warning:** Every task must be waited for completion using [waitForTaskCompletion] or
+   * [waitForGroupTaskCompletion] at some point so that any allocated resources inside the task can be
+   * cleaned up.
    */
   @JvmOverloads
   public fun addGroupTask(
@@ -148,6 +157,8 @@ public object WorkerThreadPool : Object() {
 
   /**
    * Returns `true` if the group task with the given ID is completed.
+   * **Note:** You should only call this method between adding the group task and awaiting its
+   * completion.
    */
   public fun isGroupTaskCompleted(groupId: Long): Boolean {
     TransferContext.writeArguments(LONG to groupId)

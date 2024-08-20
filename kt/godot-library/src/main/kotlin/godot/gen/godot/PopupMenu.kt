@@ -152,6 +152,37 @@ public open class PopupMenu : Popup() {
     }
 
   /**
+   * If set to one of the values of [NativeMenu.SystemMenus], this [PopupMenu] is bound to the
+   * special system menu. Only one [PopupMenu] can be bound to each special menu at a time.
+   */
+  public var systemMenuId: NativeMenu.SystemMenus
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSystemMenuPtr, LONG)
+      return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSystemMenuPtr, NIL)
+    }
+
+  /**
+   * If `true`, [MenuBar] will use native menu when supported.
+   * **Note:** If [PopupMenu] is linked to [StatusIndicator], [MenuBar], or another [PopupMenu] item
+   * it can use native menu regardless of this property, use [isNativeMenu] to check it.
+   */
+  public var preferNativeMenu: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isPreferNativeMenuPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPreferNativeMenuPtr, NIL)
+    }
+
+  /**
    * The number of items currently in the list.
    */
   public var itemCount: Int
@@ -181,6 +212,15 @@ public open class PopupMenu : Popup() {
   public fun activateItemByEvent(event: InputEvent, forGlobalOnly: Boolean = false): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to forGlobalOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.activateItemByEventPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns `true` if the system native menu is supported and currently used by this [PopupMenu].
+   */
+  public fun isNativeMenu(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isNativeMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -299,12 +339,30 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new multistate item with text [label].
    * Contrarily to normal binary items, multistate items can have more than two states, as defined
-   * by [maxStates]. Each press or activate of the item will increase the state by one. The default
-   * value is defined by [defaultState].
+   * by [maxStates]. The default value is defined by [defaultState].
    * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
    * provided, one will be created from the index. If no [accel] is provided, then the default value of
    * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * **Note:** Multistate items don't update their state automatically and must be done manually.
+   * See [toggleItemMultistate], [setItemMultistate] and [getItemMultistate] for more info on how to
+   * control it.
+   * Example usage:
+   * [codeblock]
+   * func _ready():
+   *     add_multistate_item("Item", 3, 0)
+   *
+   *     index_pressed.connect(func(index: int):
+   *             toggle_item_multistate(index)
+   *             match get_item_multistate(index):
+   *                 0:
+   *                     print("First state")
+   *                 1:
+   *                     print("Second state")
+   *                 2:
+   *                     print("Third state")
+   *         )
+   * [/codeblock]
    */
   @JvmOverloads
   public fun addMultistateItem(
@@ -439,6 +497,25 @@ public open class PopupMenu : Popup() {
   }
 
   /**
+   * Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. This
+   * submenu will be shown when the item is clicked, hovered for long enough, or activated using the
+   * `ui_select` or `ui_right` input actions.
+   * [submenu] must be either child of this [PopupMenu] or has no parent node (in which case it will
+   * be automatically added as a child). If the [submenu] popup has another parent, this method will
+   * fail.
+   * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
+   */
+  @JvmOverloads
+  public fun addSubmenuNodeItem(
+    label: String,
+    submenu: PopupMenu,
+    id: Int = -1,
+  ): Unit {
+    TransferContext.writeArguments(STRING to label, OBJECT to submenu, LONG to id.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.addSubmenuNodeItemPtr, NIL)
+  }
+
+  /**
    * Sets the text of the item at the given [index].
    */
   public fun setItemText(index: Int, text: String): Unit {
@@ -545,6 +622,17 @@ public open class PopupMenu : Popup() {
   }
 
   /**
+   * Sets the submenu of the item at the given [index]. The submenu is a [PopupMenu] node that would
+   * be shown when the item is clicked. It must either be a child of this [PopupMenu] or has no parent
+   * (in which case it will be automatically added as a child). If the [submenu] popup has another
+   * parent, this method will fail.
+   */
+  public fun setItemSubmenuNode(index: Int, submenu: PopupMenu): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to submenu)
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemSubmenuNodePtr, NIL)
+  }
+
+  /**
    * Mark the item at the given [index] as a separator, which means that it would be displayed as a
    * line. If `false`, sets the type of the item to plain text.
    */
@@ -608,6 +696,14 @@ public open class PopupMenu : Popup() {
   public fun setItemMultistate(index: Int, state: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to state.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemMultistatePtr, NIL)
+  }
+
+  /**
+   * Sets the max states of a multistate item. See [addMultistateItem] for details.
+   */
+  public fun setItemMultistateMax(index: Int, maxStates: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to maxStates.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemMultistateMaxPtr, NIL)
   }
 
   /**
@@ -762,6 +858,16 @@ public open class PopupMenu : Popup() {
   }
 
   /**
+   * Returns the submenu of the item at the given [index], or `null` if no submenu was added. See
+   * [addSubmenuNodeItem] for more info on how to add a submenu.
+   */
+  public fun getItemSubmenuNode(index: Int): PopupMenu? {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemSubmenuNodePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
+  }
+
+  /**
    * Returns `true` if the item is a separator. If it is, it will be displayed as a line. See
    * [addSeparator] for more info on how to add a separator.
    */
@@ -831,6 +937,24 @@ public open class PopupMenu : Popup() {
   }
 
   /**
+   * Returns the max states of the item at the given [index].
+   */
+  public fun getItemMultistateMax(index: Int): Int {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemMultistateMaxPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Returns the state of the item at the given [index].
+   */
+  public fun getItemMultistate(index: Int): Int {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemMultistatePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
    * Sets the currently focused item as the given [index].
    * Passing `-1` as the index makes so that no item is focused.
    */
@@ -886,11 +1010,29 @@ public open class PopupMenu : Popup() {
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
+  /**
+   * Returns `true` if the menu is bound to the special system menu.
+   */
+  public fun isSystemMenu(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSystemMenuPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   public companion object
 
   internal object MethodBindings {
     public val activateItemByEventPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "activate_item_by_event")
+
+    public val setPreferNativeMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_prefer_native_menu")
+
+    public val isPreferNativeMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "is_prefer_native_menu")
+
+    public val isNativeMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "is_native_menu")
 
     public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("PopupMenu", "add_item")
 
@@ -931,6 +1073,9 @@ public open class PopupMenu : Popup() {
     public val addSubmenuItemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "add_submenu_item")
 
+    public val addSubmenuNodeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "add_submenu_node_item")
+
     public val setItemTextPtr: VoidPtr = TypeManager.getMethodBindPtr("PopupMenu", "set_item_text")
 
     public val setItemTextDirectionPtr: VoidPtr =
@@ -964,6 +1109,9 @@ public open class PopupMenu : Popup() {
     public val setItemSubmenuPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_item_submenu")
 
+    public val setItemSubmenuNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_submenu_node")
+
     public val setItemAsSeparatorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_item_as_separator")
 
@@ -984,6 +1132,9 @@ public open class PopupMenu : Popup() {
 
     public val setItemMultistatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_item_multistate")
+
+    public val setItemMultistateMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_multistate_max")
 
     public val setItemShortcutDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_item_shortcut_disabled")
@@ -1030,6 +1181,9 @@ public open class PopupMenu : Popup() {
     public val getItemSubmenuPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "get_item_submenu")
 
+    public val getItemSubmenuNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_submenu_node")
+
     public val isItemSeparatorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "is_item_separator")
 
@@ -1050,6 +1204,12 @@ public open class PopupMenu : Popup() {
 
     public val getItemIndentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "get_item_indent")
+
+    public val getItemMultistateMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_multistate_max")
+
+    public val getItemMultistatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_multistate")
 
     public val setFocusedItemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_focused_item")
@@ -1101,5 +1261,14 @@ public open class PopupMenu : Popup() {
 
     public val getAllowSearchPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "get_allow_search")
+
+    public val isSystemMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "is_system_menu")
+
+    public val setSystemMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_system_menu")
+
+    public val getSystemMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_system_menu")
   }
 }

@@ -140,7 +140,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   /**
-   * If enabled normalizes the mesh before applying the convex decomposition.
+   * If `true`, normalizes the mesh before applying the convex decomposition.
    */
   public var normalizeMesh: Boolean
     get() {
@@ -168,7 +168,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   /**
-   * If enabled uses approximation for computing convex hulls.
+   * If `true`, uses approximation for computing convex hulls.
    */
   public var convexHullApproximation: Boolean
     get() {
@@ -196,8 +196,8 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   /**
-   * If enabled projects output convex hull vertices onto original source mesh to increase floating
-   * point accuracy of the results.
+   * If `true`, projects output convex hull vertices onto the original source mesh to increase
+   * floating-point accuracy of the results.
    */
   public var projectHullVertices: Boolean
     get() {

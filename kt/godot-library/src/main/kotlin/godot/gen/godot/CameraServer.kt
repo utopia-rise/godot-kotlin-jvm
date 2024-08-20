@@ -27,8 +27,10 @@ import kotlin.Unit
  * The [CameraServer] keeps track of different cameras accessible in Godot. These are external
  * cameras such as webcams or the cameras on your phone.
  * It is notably used to provide AR modules with a video feed from the camera.
- * **Note:** This class is currently only implemented on macOS and iOS. On other platforms, no
- * [CameraFeed]s will be available.
+ * **Note:** This class is currently only implemented on macOS and iOS. To get a [CameraFeed] on
+ * iOS, the camera plugin from
+ * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required. On other
+ * platforms, no [CameraFeed]s will be available.
  */
 @GodotBaseType
 public object CameraServer : Object() {

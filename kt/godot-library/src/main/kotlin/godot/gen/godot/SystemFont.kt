@@ -116,6 +116,21 @@ public open class SystemFont : Font() {
     }
 
   /**
+   * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore
+   * this property).
+   */
+  public var disableEmbeddedBitmaps: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
+    }
+
+  /**
    * If set to `true`, system fonts can be automatically used as fallbacks.
    */
   public var allowSystemFallback: Boolean
@@ -248,6 +263,12 @@ public open class SystemFont : Font() {
 
     public val getAntialiasingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SystemFont", "get_antialiasing")
+
+    public val setDisableEmbeddedBitmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps")
+
+    public val getDisableEmbeddedBitmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps")
 
     public val setGenerateMipmapsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SystemFont", "set_generate_mipmaps")

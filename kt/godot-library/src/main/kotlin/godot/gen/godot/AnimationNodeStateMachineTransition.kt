@@ -42,6 +42,10 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
   /**
    * The time to cross-fade between this state and the next.
+   * **Note:** [AnimationNodeStateMachine] transitions the current state immediately after the start
+   * of the fading. The precise remaining time can only be inferred from the main animation. When
+   * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
+   * depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
    */
   public var xfadeTime: Float
     get() {
@@ -66,6 +70,21 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
+    }
+
+  /**
+   * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
+   * is looping.
+   */
+  public var breakLoopAtEnd: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
     }
 
   /**
@@ -266,6 +285,12 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
     public val getXfadeCurvePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_curve")
+
+    public val setBreakLoopAtEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_break_loop_at_end")
+
+    public val isLoopBrokenAtEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_loop_broken_at_end")
 
     public val setResetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_reset")

@@ -631,7 +631,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      * account when baking global illumination. This mode should generally be used for dynamic lights
      * that change quickly, as the effect of global illumination is less noticeable on those lights.
      * **Note:** Hiding a light does *not* affect baking [LightmapGI]. Hiding a light will still
-     * affect baking [VoxelGI] and SDFGI (see [member Environment.sdfgi_enabled).
+     * affect baking [VoxelGI] and SDFGI (see [Environment.sdfgiEnabled]).
      */
     BAKE_DISABLED(0),
     /**

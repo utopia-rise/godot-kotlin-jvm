@@ -24,13 +24,13 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies and
- * apply a constraint.
+ * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies
+ * ([nodeA] and [nodeB]) and apply a constraint.
  */
 @GodotBaseType
 public open class Joint2D internal constructor() : Node2D() {
   /**
-   * The first body attached to the joint. Must derive from [PhysicsBody2D].
+   * Path to the first body (A) attached to the joint. The node must inherit [PhysicsBody2D].
    */
   public var nodeA: NodePath
     get() {
@@ -44,7 +44,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   /**
-   * The second body attached to the joint. Must derive from [PhysicsBody2D].
+   * Path to the second body (B) attached to the joint. The node must inherit [PhysicsBody2D].
    */
   public var nodeB: NodePath
     get() {
@@ -76,7 +76,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   /**
-   * If `true`, [nodeA] and [nodeB] can not collide.
+   * If `true`, the two bodies bound together do not collide with each other.
    */
   public var disableCollision: Boolean
     get() {
@@ -95,7 +95,7 @@ public open class Joint2D internal constructor() : Node2D() {
   }
 
   /**
-   * Returns the joint's [RID].
+   * Returns the joint's internal [RID] from the [PhysicsServer2D].
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()

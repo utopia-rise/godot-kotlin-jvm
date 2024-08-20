@@ -11,6 +11,7 @@ import godot.core.RID
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -21,10 +22,13 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 
 /**
  * This object manages all 3D rendering buffers for the rendering device based renderers. An
@@ -33,10 +37,10 @@ import kotlin.Unit
  * can contain amongst others the color buffer, depth buffer, velocity buffers, VRS density map and
  * MSAA variants of these buffers.
  * Buffers are only guaranteed to exist during rendering of the viewport.
- * **Note:** this is an internal rendering server object only exposed for GDExtension plugins.
+ * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType
-public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffers() {
+public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RENDERSCENEBUFFERSRD, scriptIndex)
     return true
@@ -178,18 +182,22 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   /**
    * Returns the color texture we are rendering 3D content to. If multiview is used this will be a
    * texture array with all views.
+   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
-  public fun getColorTexture(): RID {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public fun getColorTexture(msaa: Boolean = false): RID {
+    TransferContext.writeArguments(BOOL to msaa)
     TransferContext.callMethod(rawPtr, MethodBindings.getColorTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Returns the specified layer from the color texture we are rendering 3D content to.
+   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
-  public fun getColorLayer(layer: Long): RID {
-    TransferContext.writeArguments(LONG to layer)
+  @JvmOverloads
+  public fun getColorLayer(layer: Long, msaa: Boolean = false): RID {
+    TransferContext.writeArguments(LONG to layer, BOOL to msaa)
     TransferContext.callMethod(rawPtr, MethodBindings.getColorLayerPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
@@ -197,18 +205,22 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   /**
    * Returns the depth texture we are rendering 3D content to. If multiview is used this will be a
    * texture array with all views.
+   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
-  public fun getDepthTexture(): RID {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public fun getDepthTexture(msaa: Boolean = false): RID {
+    TransferContext.writeArguments(BOOL to msaa)
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   /**
    * Returns the specified layer from the depth texture we are rendering 3D content to.
+   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
-  public fun getDepthLayer(layer: Long): RID {
-    TransferContext.writeArguments(LONG to layer)
+  @JvmOverloads
+  public fun getDepthLayer(layer: Long, msaa: Boolean = false): RID {
+    TransferContext.writeArguments(LONG to layer, BOOL to msaa)
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthLayerPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
@@ -216,9 +228,11 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   /**
    * Returns the velocity texture we are rendering 3D content to. If multiview is used this will be
    * a texture array with all views.
+   * If [msaa] is **true** and MSAA is enabled, this returns the MSAA variant of the buffer.
    */
-  public fun getVelocityTexture(): RID {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public fun getVelocityTexture(msaa: Boolean = false): RID {
+    TransferContext.writeArguments(BOOL to msaa)
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
@@ -226,8 +240,9 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   /**
    * Returns the specified layer from the velocity texture we are rendering 3D content to.
    */
-  public fun getVelocityLayer(layer: Long): RID {
-    TransferContext.writeArguments(LONG to layer)
+  @JvmOverloads
+  public fun getVelocityLayer(layer: Long, msaa: Boolean = false): RID {
+    TransferContext.writeArguments(LONG to layer, BOOL to msaa)
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityLayerPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
@@ -261,11 +276,75 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
   }
 
   /**
+   * Returns the target size of the render buffer (size after upscaling).
+   */
+  public fun getTargetSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  /**
+   * Returns the scaling mode used for upscaling.
+   */
+  public fun getScaling3dMode(): RenderingServer.ViewportScaling3DMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
+    return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the FSR sharpness value used while rendering the 3D content (if [getScaling3dMode] is
+   * an FSR mode).
+   */
+  public fun getFsrSharpness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Returns the applied 3D MSAA mode for this viewport.
+   */
+  public fun getMsaa3d(): RenderingServer.ViewportMSAA {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
+    return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the number of MSAA samples used.
+   */
+  public fun getTextureSamples(): RenderingDevice.TextureSamples {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureSamplesPtr, LONG)
+    return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the screen-space antialiasing method applied.
+   */
+  public fun getScreenSpaceAa(): RenderingServer.ViewportScreenSpaceAA {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
+    return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Returns `true` if TAA is enabled.
    */
   public fun getUseTaa(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseTaaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns `true` if debanding is enabled.
+   */
+  public fun getUseDebanding(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -329,7 +408,28 @@ public open class RenderSceneBuffersRD internal constructor() : RenderSceneBuffe
     public val getInternalSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_internal_size")
 
+    public val getTargetSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_target_size")
+
+    public val getScaling3dModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_scaling_3d_mode")
+
+    public val getFsrSharpnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_fsr_sharpness")
+
+    public val getMsaa3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_msaa_3d")
+
+    public val getTextureSamplesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_samples")
+
+    public val getScreenSpaceAaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_screen_space_aa")
+
     public val getUseTaaPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_taa")
+
+    public val getUseDebandingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_debanding")
   }
 }

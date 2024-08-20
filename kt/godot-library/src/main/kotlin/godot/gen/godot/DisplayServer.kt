@@ -15,6 +15,7 @@ import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
+import godot.core.RID
 import godot.core.Rect2
 import godot.core.Rect2i
 import godot.core.TypeManager
@@ -24,6 +25,7 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.COLOR
+import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -37,6 +39,7 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType.VECTOR3I
+import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3i
@@ -65,22 +68,26 @@ import kotlin.jvm.JvmOverloads
 public object DisplayServer : Object() {
   /**
    * Represents the screen containing the mouse pointer.
+   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
    */
   public final const val SCREEN_WITH_MOUSE_FOCUS: Long = -4
 
   /**
    * Represents the screen containing the window with the keyboard focus.
+   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
    */
   public final const val SCREEN_WITH_KEYBOARD_FOCUS: Long = -3
 
   /**
    * Represents the primary screen.
+   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
    */
   public final const val SCREEN_PRIMARY: Long = -2
 
   /**
    * Represents the screen where the main window is located. This is usually the default value in
    * functions that allow specifying one of several screens.
+   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
    */
   public final const val SCREEN_OF_MAIN_WINDOW: Long = -1
 
@@ -95,6 +102,11 @@ public object DisplayServer : Object() {
    * no window matches the requested result.
    */
   public final const val INVALID_WINDOW_ID: Long = -1
+
+  /**
+   * The ID that refers to a nonexistent application status indicator.
+   */
+  public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Boolean {
     getSingleton(ENGINECLASS_DISPLAYSERVER)
@@ -113,10 +125,10 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the name of the [DisplayServer] currently in use. Most operating systems only have a
-   * single [DisplayServer], but Linux has access to more than one [DisplayServer] (although only X11
-   * is currently implemented in Godot).
-   * The names of built-in display servers are `Windows`, `macOS`, `X11` (Linux), `Android`, `iOS`,
-   * `web` (HTML5) and `headless` (when started with the `--headless`
+   * single [DisplayServer], but Linux has access to more than one [DisplayServer] (currently X11 and
+   * Wayland).
+   * The names of built-in display servers are `Windows`, `macOS`, `X11` (Linux), `Wayland` (Linux),
+   * `Android`, `iOS`, `web` (HTML5), and `headless` (when started with the `--headless`
    * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url]).
    */
   public fun getName(): String {
@@ -126,7 +138,22 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Registers callables to emit when the menu is respectively about to show or closed.
+   * Sets native help system search callbacks.
+   * [searchCallback] has the following arguments: `String search_string, int result_limit` and
+   * return a [Dictionary] with "key, display name" pairs for the search results. Called when the user
+   * enters search terms in the `Help` menu.
+   * [actionCallback] has the following arguments: `String key`. Called when the user selects a
+   * search result in the `Help` menu.
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun helpSetSearchCallbacks(searchCallback: Callable, actionCallback: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to searchCallback, CALLABLE to actionCallback)
+    TransferContext.callMethod(rawPtr, MethodBindings.helpSetSearchCallbacksPtr, NIL)
+  }
+
+  /**
+   * Registers callables to emit when the menu is respectively about to show or closed. Callback
+   * methods should have zero arguments.
    */
   public fun globalMenuSetPopupCallbacks(
     menuRoot: String,
@@ -143,9 +170,12 @@ public object DisplayServer : Object() {
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -171,9 +201,12 @@ public object DisplayServer : Object() {
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -202,9 +235,12 @@ public object DisplayServer : Object() {
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -233,9 +269,12 @@ public object DisplayServer : Object() {
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -266,9 +305,12 @@ public object DisplayServer : Object() {
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -301,9 +343,12 @@ public object DisplayServer : Object() {
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -336,9 +381,12 @@ public object DisplayServer : Object() {
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -373,9 +421,12 @@ public object DisplayServer : Object() {
    * parameter, the parameter passed to the Callables will be the value passed to [tag].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -401,9 +452,12 @@ public object DisplayServer : Object() {
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   @JvmOverloads
@@ -414,8 +468,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [text]. Index is automatically assigned to
-   * each item by the engine. Index can not be set manually.
+   * Returns the index of the item with the specified [text]. Indices are automatically assigned to
+   * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Int {
@@ -425,8 +479,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [tag]. Index is automatically assigned to each
-   * item by the engine. Index can not be set manually.
+   * Returns the index of the item with the specified [tag]. Indices are automatically assigned to
+   * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented only on macOS.
    */
   public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
@@ -870,9 +924,12 @@ public object DisplayServer : Object() {
    * Removes all items from the global menu with ID [menuRoot].
    * **Note:** This method is implemented only on macOS.
    * **Supported system menu IDs:**
-   * [codeblock]
+   * [codeblock lang=text]
    * "_main" - Main menu (macOS).
    * "_dock" - Dock popup menu (macOS).
+   * "_apple" - Apple menu (macOS, custom items added before "Services").
+   * "_window" - Window menu (macOS, custom items added after "Bring All to Front").
+   * "_help" - Help menu (macOS).
    * [/codeblock]
    */
   public fun globalMenuClear(menuRoot: String): Unit {
@@ -881,8 +938,19 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns Dictionary of supported system menu IDs and names.
+   * **Note:** This method is implemented only on macOS.
+   */
+  public fun globalMenuGetSystemMenuRoots(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetSystemMenuRootsPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  /**
    * Returns `true` if the synthesizer is generating speech, or have utterance waiting in the queue.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsIsSpeaking(): Boolean {
@@ -893,7 +961,8 @@ public object DisplayServer : Object() {
 
   /**
    * Returns `true` if the synthesizer is in a paused state.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsIsPaused(): Boolean {
@@ -914,7 +983,8 @@ public object DisplayServer : Object() {
    * are installed by default on Windows and macOS, but not on all Linux distributions. If they are not
    * present, this method will return an empty list. This applies to both Godot users on Linux, as well
    * as end-users on Linux running Godot games that use text-to-speech.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
@@ -925,7 +995,8 @@ public object DisplayServer : Object() {
 
   /**
    * Returns an [PackedStringArray] of voice identifiers for the [language].
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
@@ -945,12 +1016,13 @@ public object DisplayServer : Object() {
    * - [rate] ranges from `0.1` (lowest) to `10.0` (highest), `1.0` is a normal speaking rate. Other
    * values act as a percentage relative.
    * - [utteranceId] is passed as a parameter to the callback functions.
-   * **Note:** On Windows and Linux (X11), utterance [text] can use SSML markup. SSML support is
-   * engine and voice dependent. If the engine does not support SSML, you should strip out all XML
-   * markup before calling [ttsSpeak].
+   * **Note:** On Windows and Linux (X11/Wayland), utterance [text] can use SSML markup. SSML
+   * support is engine and voice dependent. If the engine does not support SSML, you should strip out
+   * all XML markup before calling [ttsSpeak].
    * **Note:** The granularity of pitch, rate, and volume is engine and voice dependent. Values may
    * be truncated.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmOverloads
@@ -969,7 +1041,8 @@ public object DisplayServer : Object() {
 
   /**
    * Puts the synthesizer into a paused state.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsPause(): Unit {
@@ -979,7 +1052,8 @@ public object DisplayServer : Object() {
 
   /**
    * Resumes the synthesizer if it was paused.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsResume(): Unit {
@@ -989,7 +1063,8 @@ public object DisplayServer : Object() {
 
   /**
    * Stops synthesis in progress and removes all utterances from the queue.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Linux), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsStop(): Unit {
@@ -1005,7 +1080,8 @@ public object DisplayServer : Object() {
    * - [TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] parameters, the index of the
    * character and the utterance ID.
    * **Note:** The granularity of the boundary callbacks is engine dependent.
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
+   * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   public fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
@@ -1015,7 +1091,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns `true` if OS supports dark mode.
-   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).
+   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
   public fun isDarkModeSupported(): Boolean {
     TransferContext.writeArguments()
@@ -1025,7 +1101,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns `true` if OS is using dark mode.
-   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11).
+   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
   public fun isDarkMode(): Boolean {
     TransferContext.writeArguments()
@@ -1041,6 +1117,27 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccentColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  /**
+   * Returns the OS theme base color (default control background). Returns `Color(0, 0, 0, 0)` if
+   * the base color is unknown.
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  public fun getBaseColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBaseColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  /**
+   * Sets the [callable] that should be called when system theme settings are changed. Callback
+   * method should have zero arguments.
+   * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
+   */
+  public fun setSystemThemeChangeCallback(callable: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to callable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSystemThemeChangeCallbackPtr, NIL)
   }
 
   /**
@@ -1063,8 +1160,8 @@ public object DisplayServer : Object() {
   /**
    * Sets the mouse cursor position to the given [position] relative to an origin at the upper left
    * corner of the currently focused game Window Manager window.
-   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
-   * Android, iOS and Web.
+   * **Note:** [warpMouse] is only supported on Windows, macOS, and Linux (X11/Wayland). It has no
+   * effect on Android, iOS, and Web.
    */
   public fun warpMouse(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
@@ -1110,6 +1207,8 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the user's clipboard as an image if possible.
+   * **Note:** This method uses the copied pixel data, e.g. from a image editing software or a web
+   * browser, not an image file copied from file explorer.
    */
   public fun clipboardGetImage(): Image? {
     TransferContext.writeArguments()
@@ -1142,7 +1241,7 @@ public object DisplayServer : Object() {
    * text in any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can
    * then be pasted by clicking the middle mouse button in any application that supports the primary
    * clipboard mechanism.
-   * **Note:** This method is only implemented on Linux (X11).
+   * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
   public fun clipboardSetPrimary(clipboardPrimary: String): Unit {
     TransferContext.writeArguments(STRING to clipboardPrimary)
@@ -1156,7 +1255,7 @@ public object DisplayServer : Object() {
    * any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can then be
    * pasted by clicking the middle mouse button in any application that supports the primary clipboard
    * mechanism.
-   * **Note:** This method is only implemented on Linux (X11).
+   * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
   public fun clipboardGetPrimary(): String {
     TransferContext.writeArguments()
@@ -1228,7 +1327,7 @@ public object DisplayServer : Object() {
    * Returns the screen's top-left corner position in pixels. On multi-monitor setups, the screen
    * position is relative to the virtual desktop area. On multi-monitor setups with different screen
    * resolutions or orientations, the origin may be located outside any display like this:
-   * [codeblock]
+   * [codeblock lang=text]
    * * (0, 0)        +-------+
    *                 |       |
    * +-------------+ |       |
@@ -1237,6 +1336,7 @@ public object DisplayServer : Object() {
    * +-------------+ +-------+
    * [/codeblock]
    * See also [screenGetSize].
+   * **Note:** On Linux (Wayland) this method always returns `(0, 0)`.
    */
   @JvmOverloads
   public fun screenGetPosition(screen: Int = -1): Vector2i {
@@ -1272,7 +1372,7 @@ public object DisplayServer : Object() {
    * **Note:** On macOS, returned value is inaccurate if fractional display scaling mode is used.
    * **Note:** On Android devices, the actual screen densities are grouped into six generalized
    * densities:
-   * [codeblock]
+   * [codeblock lang=text]
    *    ldpi - 120 dpi
    *    mdpi - 160 dpi
    *    hdpi - 240 dpi
@@ -1280,8 +1380,8 @@ public object DisplayServer : Object() {
    *  xxhdpi - 480 dpi
    * xxxhdpi - 640 dpi
    * [/codeblock]
-   * **Note:** This method is implemented on Android, Linux (X11), macOS and Windows. Returns `72`
-   * on unsupported platforms.
+   * **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS and Windows.
+   * Returns `72` on unsupported platforms.
    */
   @JvmOverloads
   public fun screenGetDpi(screen: Int = -1): Int {
@@ -1292,9 +1392,12 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the scale factor of the specified screen by index.
-   * **Note:** On macOS returned value is `2.0` for hiDPI (Retina) screen, and `1.0` for all other
-   * cases.
-   * **Note:** This method is implemented only on macOS.
+   * **Note:** On macOS, the returned value is `2.0` for hiDPI (Retina) screens, and `1.0` for all
+   * other cases.
+   * **Note:** On Linux (Wayland), the returned value is accurate only when [screen] is
+   * [SCREEN_OF_MAIN_WINDOW]. Due to API limitations, passing a direct index will return a rounded-up
+   * integer, if the screen has a fractional scale (e.g. `1.25` would get rounded up to `2.0`).
+   * **Note:** This method is implemented only on macOS and Linux (Wayland).
    */
   @JvmOverloads
   public fun screenGetScale(screen: Int = -1): Float {
@@ -1426,7 +1529,7 @@ public object DisplayServer : Object() {
    * setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with
    * different screen resolutions or orientations, the origin may be located outside any display like
    * this:
-   * [codeblock]
+   * [codeblock lang=text]
    * * (0, 0)        +-------+
    *                 |       |
    * +-------------+ |       |
@@ -1443,7 +1546,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns internal structure pointers for use in plugins.
-   * **Note:** This method is implemented on Android, Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS, and Windows.
    */
   @JvmOverloads
   public fun windowGetNativeHandle(handleType: HandleType, windowId: Int = 0): Long {
@@ -1590,7 +1693,7 @@ public object DisplayServer : Object() {
    * Sets the position of the given window to [position]. On multi-monitor setups, the screen
    * position is relative to the virtual desktop area. On multi-monitor setups with different screen
    * resolutions or orientations, the origin may be located outside any display like this:
-   * [codeblock]
+   * [codeblock lang=text]
    * * (0, 0)        +-------+
    *                 |       |
    * +-------------+ |       |
@@ -1600,6 +1703,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    * See also [windowGetPosition] and [windowSetSize].
    * **Note:** It's recommended to change this value using [Window.position] instead.
+   * **Note:** On Linux (Wayland): this method is a no-op.
    */
   @JvmOverloads
   public fun windowSetPosition(position: Vector2i, windowId: Int = 0): Unit {
@@ -1680,10 +1784,11 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [callback] that should be called when files are dropped from the operating system's
-   * file manager to the window specified by [windowId].
+   * file manager to the window specified by [windowId]. [callback] should take one [PackedStringArray]
+   * argument, which is the list of dropped files.
    * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
    * default implementation, which can introduce bugs.
-   * **Note:** This method is implemented on Windows, macOS, Linux (X11) and Web.
+   * **Note:** This method is implemented on Windows, macOS, Linux (X11/Wayland), and Web.
    */
   @JvmOverloads
   public fun windowSetDropFilesCallback(callback: Callable, windowId: Int = 0): Unit {
@@ -1713,7 +1818,7 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the maximum size of the window specified by [windowId] in pixels. Normally, the user will
-   * not be able to drag the window to make it smaller than the specified size. See also
+   * not be able to drag the window to make it larger than the specified size. See also
    * [windowGetMaxSize].
    * **Note:** It's recommended to change this value using [Window.maxSize] instead.
    * **Note:** Using third-party tools, it is possible for users to disable window geometry
@@ -1736,8 +1841,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the minimum size for the given window to [minSize] (in pixels). Normally, the user will
-   * not be able to drag the window to make it larger than the specified size. See also
+   * Sets the minimum size for the given window to [minSize] in pixels. Normally, the user will not
+   * be able to drag the window to make it smaller than the specified size. See also
    * [windowGetMinSize].
    * **Note:** It's recommended to change this value using [Window.minSize] instead.
    * **Note:** By default, the main window has a minimum size of `Vector2i(64, 64)`. This prevents
@@ -2059,11 +2164,12 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets a custom mouse cursor image for the defined [shape]. This means the user's operating
-   * system and mouse cursor theme will no longer influence the mouse cursor's appearance. The image
-   * must be `256x256` or smaller for correct appearance. [hotspot] can optionally be set to define the
-   * area where the cursor will click. By default, [hotspot] is set to `Vector2(0, 0)`, which is the
-   * top-left corner of the image. See also [cursorSetShape].
+   * Sets a custom mouse cursor image for the given [shape]. This means the user's operating system
+   * and mouse cursor theme will no longer influence the mouse cursor's appearance.
+   * [cursor] can be either a [Texture2D] or an [Image], and it should not be larger than 256×256 to
+   * display correctly. Optionally, [hotspot] can be set to offset the image's position relative to the
+   * click point. By default, [hotspot] is set to the top-left corner of the image. See also
+   * [cursorSetShape].
    */
   @JvmOverloads
   public fun cursorSetCustomImage(
@@ -2099,9 +2205,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Shows a text dialog which uses the operating system's native look-and-feel. [callback] will be
-   * called when the dialog is closed for any reason.
-   * **Note:** This method is implemented only on macOS.
+   * Shows a text dialog which uses the operating system's native look-and-feel. [callback] should
+   * accept a single [int] parameter which corresponds to the index of the pressed button.
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG]
+   * feature. Supported platforms include macOS and Windows.
    */
   public fun dialogShow(
     title: String,
@@ -2116,9 +2223,9 @@ public object DisplayServer : Object() {
 
   /**
    * Shows a text input dialog which uses the operating system's native look-and-feel. [callback]
-   * will be called with a [String] argument equal to the text field's contents when the dialog is
-   * closed for any reason.
-   * **Note:** This method is implemented only on macOS.
+   * should accept a single [String] parameter which contains the text field's contents.
+   * **Note:** This method is implemented if the display server has the
+   * [FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS and Windows.
    */
   public fun dialogInputText(
     title: String,
@@ -2133,11 +2240,13 @@ public object DisplayServer : Object() {
 
   /**
    * Displays OS native dialog for selecting files or directories in the file system.
-   * Callbacks have the following arguments: `bool status, PackedStringArray selected_paths, int
-   * selected_filter_index`.
-   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG]
-   * feature.
-   * **Note:** This method is implemented on Linux, Windows and macOS.
+   * Each filter string in the [filters] array should be formatted like this: `*.txt,*.doc;Text
+   * Files`. The description text of the filter is optional and can be omitted. See also
+   * [FileDialog.filters].
+   * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray,
+   * selected_filter_index: int`.
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE]
+   * feature. Supported platforms include Linux (X11/Wayland), Windows, and macOS.
    * **Note:** [currentDirectory] might be ignored.
    * **Note:** On Linux, [showHidden] is ignored.
    * **Note:** On macOS, native file dialogs have no title.
@@ -2160,8 +2269,45 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Displays OS native dialog for selecting files or directories in the file system with additional
+   * user selectable options.
+   * Each filter string in the [filters] array should be formatted like this: `*.txt,*.doc;Text
+   * Files`. The description text of the filter is optional and can be omitted. See also
+   * [FileDialog.filters].
+   * [options] is array of [Dictionary]s with the following keys:
+   * - `"name"` - option's name [String].
+   * - `"values"` - [PackedStringArray] of values. If empty, boolean option (check box) is used.
+   * - `"default"` - default selected option index ([int]) or default boolean value ([bool]).
+   * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray,
+   * selected_filter_index: int, selected_option: Dictionary`.
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE]
+   * feature. Supported platforms include Linux (X11/Wayland), Windows, and macOS.
+   * **Note:** [currentDirectory] might be ignored.
+   * **Note:** On Linux (X11), [showHidden] is ignored.
+   * **Note:** On macOS, native file dialogs have no title.
+   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
+   * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
+   * bookmarks.
+   */
+  public fun fileDialogWithOptionsShow(
+    title: String,
+    currentDirectory: String,
+    root: String,
+    filename: String,
+    showHidden: Boolean,
+    mode: FileDialogMode,
+    filters: PackedStringArray,
+    options: VariantArray<Dictionary<Any?, Any?>>,
+    callback: Callable,
+  ): GodotError {
+    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
+    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Returns the number of keyboard layouts.
-   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
   public fun keyboardGetLayoutCount(): Int {
     TransferContext.writeArguments()
@@ -2171,7 +2317,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns active keyboard layout index.
-   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.
    */
   public fun keyboardGetCurrentLayout(): Int {
     TransferContext.writeArguments()
@@ -2181,7 +2327,7 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the active keyboard layout.
-   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
   public fun keyboardSetCurrentLayout(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -2190,7 +2336,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the ISO-639/BCP-47 language code of the keyboard layout at position [index].
-   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
   public fun keyboardGetLayoutLanguage(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -2200,7 +2346,7 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the localized name of the keyboard layout at position [index].
-   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
   public fun keyboardGetLayoutName(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -2210,7 +2356,7 @@ public object DisplayServer : Object() {
 
   /**
    * Converts a physical (US QWERTY) [keycode] to one in the active keyboard layout.
-   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
   public fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
@@ -2221,7 +2367,7 @@ public object DisplayServer : Object() {
   /**
    * Converts a physical (US QWERTY) [keycode] to localized label printed on the key in the active
    * keyboard layout.
-   * **Note:** This method is implemented on Linux (X11), macOS and Windows.
+   * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
   public fun keyboardGetLabelFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
@@ -2254,6 +2400,7 @@ public object DisplayServer : Object() {
    * icons depending on the size the icon is displayed at. This size is determined by the operating
    * system and user preferences (including the display scale factor). To use icons in other formats,
    * use [setIcon] instead.
+   * **Note:** Requires support for [FEATURE_NATIVE_ICON].
    */
   public fun setNativeIcon(filename: String): Unit {
     TransferContext.writeArguments(STRING to filename)
@@ -2263,10 +2410,90 @@ public object DisplayServer : Object() {
   /**
    * Sets the window icon (usually displayed in the top-left corner) with an [Image]. To use icons
    * in the operating system's native format, use [setNativeIcon] instead.
+   * **Note:** Requires support for [FEATURE_ICON].
    */
   public fun setIcon(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
+  }
+
+  /**
+   * Creates a new application status indicator with the specified icon, tooltip, and activation
+   * callback.
+   * [callback] should take two arguments: the pressed mouse button (one of the [MouseButton]
+   * constants) and the click position in screen coordinates (a [Vector2i]).
+   */
+  public fun createStatusIndicator(
+    icon: Texture2D,
+    tooltip: String,
+    callback: Callable,
+  ): Int {
+    TransferContext.writeArguments(OBJECT to icon, STRING to tooltip, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.createStatusIndicatorPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Sets the application status indicator icon.
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  public fun statusIndicatorSetIcon(id: Int, icon: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to icon)
+    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetIconPtr, NIL)
+  }
+
+  /**
+   * Sets the application status indicator tooltip.
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  public fun statusIndicatorSetTooltip(id: Int, tooltip: String): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), STRING to tooltip)
+    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetTooltipPtr, NIL)
+  }
+
+  /**
+   * Sets the application status indicator native popup menu.
+   * **Note:** On macOS, the menu is activated by any mouse button. Its activation callback is *not*
+   * triggered.
+   * **Note:** On Windows, the menu is activated by the right mouse button, selecting the status
+   * icon and pressing [kbd]Shift + F10[/kbd], or the applications key. The menu's activation callback
+   * for the other mouse buttons is still triggered.
+   * **Note:** Native popup is only supported if [NativeMenu] supports the
+   * [NativeMenu.FEATURE_POPUP_MENU] feature.
+   */
+  public fun statusIndicatorSetMenu(id: Int, menuRid: RID): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), _RID to menuRid)
+    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetMenuPtr, NIL)
+  }
+
+  /**
+   * Sets the application status indicator activation callback. [callback] should take two
+   * arguments: [int] mouse button index (one of [MouseButton] values) and [Vector2i] click position in
+   * screen coordinates.
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  public fun statusIndicatorSetCallback(id: Int, callback: Callable): Unit {
+    TransferContext.writeArguments(LONG to id.toLong(), CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetCallbackPtr, NIL)
+  }
+
+  /**
+   * Returns the rectangle for the given status indicator [id] in screen coordinates. If the status
+   * indicator is not visible, returns an empty [Rect2].
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  public fun statusIndicatorGetRect(id: Int): Rect2 {
+    TransferContext.writeArguments(LONG to id.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorGetRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  /**
+   * Removes the application status indicator.
+   */
+  public fun deleteStatusIndicator(id: Int): Unit {
+    TransferContext.writeArguments(LONG to id.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.deleteStatusIndicatorPtr, NIL)
   }
 
   /**
@@ -2301,11 +2528,55 @@ public object DisplayServer : Object() {
 
   /**
    * Set active tablet driver name.
+   * Supported drivers:
+   * - `winink`: Windows Ink API, default (Windows 8.1+ required).
+   * - `wintab`: Wacom Wintab API (compatible device driver required).
+   * - `dummy`: Dummy driver, tablet input is disabled.
    * **Note:** This method is implemented only on Windows.
    */
   public fun tabletSetCurrentDriver(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.tabletSetCurrentDriverPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the window background can be made transparent. This method returns `false` if
+   * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`, or if
+   * transparency is not supported by the renderer or OS compositor.
+   */
+  public fun isWindowTransparencyAvailable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isWindowTransparencyAvailablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Registers an [Object] which represents an additional output that will be rendered too, beyond
+   * normal windows. The [Object] is only used as an identifier, which can be later passed to
+   * [unregisterAdditionalOutput].
+   * This can be used to prevent Godot from skipping rendering when no normal windows are visible.
+   */
+  public fun registerAdditionalOutput(_object: Object): Unit {
+    TransferContext.writeArguments(OBJECT to _object)
+    TransferContext.callMethod(rawPtr, MethodBindings.registerAdditionalOutputPtr, NIL)
+  }
+
+  /**
+   * Unregisters an [Object] representing an additional output, that was registered via
+   * [registerAdditionalOutput].
+   */
+  public fun unregisterAdditionalOutput(_object: Object): Unit {
+    TransferContext.writeArguments(OBJECT to _object)
+    TransferContext.callMethod(rawPtr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if any additional outputs have been registered via [registerAdditionalOutput].
+   */
+  public fun hasAdditionalOutputs(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAdditionalOutputsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class Feature(
@@ -2326,17 +2597,17 @@ public object DisplayServer : Object() {
      */
     FEATURE_TOUCHSCREEN(2),
     /**
-     * Display server supports mouse input. **Windows, macOS, Linux (X11), Android, Web**
+     * Display server supports mouse input. **Windows, macOS, Linux (X11/Wayland), Android, Web**
      */
     FEATURE_MOUSE(3),
     /**
      * Display server supports warping mouse coordinates to keep the mouse cursor constrained within
-     * an area, but looping when one of the edges is reached. **Windows, macOS, Linux (X11)**
+     * an area, but looping when one of the edges is reached. **Windows, macOS, Linux (X11/Wayland)**
      */
     FEATURE_MOUSE_WARP(4),
     /**
      * Display server supports setting and getting clipboard data. See also
-     * [FEATURE_CLIPBOARD_PRIMARY]. **Windows, macOS, Linux (X11), Android, iOS, Web**
+     * [FEATURE_CLIPBOARD_PRIMARY]. **Windows, macOS, Linux (X11/Wayland), Android, iOS, Web**
      */
     FEATURE_CLIPBOARD(5),
     /**
@@ -2346,17 +2617,17 @@ public object DisplayServer : Object() {
     FEATURE_VIRTUAL_KEYBOARD(6),
     /**
      * Display server supports setting the mouse cursor shape to be different from the default.
-     * **Windows, macOS, Linux (X11), Android, Web**
+     * **Windows, macOS, Linux (X11/Wayland), Android, Web**
      */
     FEATURE_CURSOR_SHAPE(7),
     /**
      * Display server supports setting the mouse cursor shape to a custom image. **Windows, macOS,
-     * Linux (X11), Web**
+     * Linux (X11/Wayland), Web**
      */
     FEATURE_CUSTOM_CURSOR_SHAPE(8),
     /**
-     * Display server supports spawning dialogs using the operating system's native look-and-feel.
-     * **Windows, macOS, Linux (X11)**
+     * Display server supports spawning text dialogs using the operating system's native
+     * look-and-feel. See [dialogShow]. **Windows, macOS**
      */
     FEATURE_NATIVE_DIALOG(9),
     /**
@@ -2367,14 +2638,14 @@ public object DisplayServer : Object() {
     FEATURE_IME(10),
     /**
      * Display server supports windows can use per-pixel transparency to make windows behind them
-     * partially or fully visible. **Windows, macOS, Linux (X11)**
+     * partially or fully visible. **Windows, macOS, Linux (X11/Wayland)**
      */
     FEATURE_WINDOW_TRANSPARENCY(11),
     /**
      * Display server supports querying the operating system's display scale factor. This allows for
      * *reliable* automatic hiDPI display detection, as opposed to guessing based on the screen
      * resolution and reported display DPI (which can be unreliable due to broken monitor EDID).
-     * **Windows, macOS**
+     * **Windows, Linux (Wayland), macOS**
      */
     FEATURE_HIDPI(12),
     /**
@@ -2393,17 +2664,17 @@ public object DisplayServer : Object() {
     FEATURE_ORIENTATION(15),
     /**
      * Display server supports V-Sync status can be changed from the default (which is forced to be
-     * enabled platforms not supporting this feature). **Windows, macOS, Linux (X11)**
+     * enabled platforms not supporting this feature). **Windows, macOS, Linux (X11/Wayland)**
      */
     FEATURE_SWAP_BUFFERS(16),
     /**
      * Display server supports Primary clipboard can be used. This is a different clipboard from
-     * [FEATURE_CLIPBOARD]. **Linux (X11)**
+     * [FEATURE_CLIPBOARD]. **Linux (X11/Wayland)**
      */
     FEATURE_CLIPBOARD_PRIMARY(18),
     /**
-     * Display server supports text-to-speech. See `tts_*` methods. **Windows, macOS, Linux (X11),
-     * Android, iOS, Web**
+     * Display server supports text-to-speech. See `tts_*` methods. **Windows, macOS, Linux
+     * (X11/Wayland), Android, iOS, Web**
      */
     FEATURE_TEXT_TO_SPEECH(19),
     /**
@@ -2415,6 +2686,25 @@ public object DisplayServer : Object() {
      * Display server supports reading screen pixels. See [screenGetPixel].
      */
     FEATURE_SCREEN_CAPTURE(21),
+    /**
+     * Display server supports application status indicators.
+     */
+    FEATURE_STATUS_INDICATOR(22),
+    /**
+     * Display server supports native help system search callbacks. See [helpSetSearchCallbacks].
+     */
+    FEATURE_NATIVE_HELP(23),
+    /**
+     * Display server supports spawning text input dialogs using the operating system's native
+     * look-and-feel. See [dialogInputText]. **Windows, macOS**
+     */
+    FEATURE_NATIVE_DIALOG_INPUT(24),
+    /**
+     * Display server supports spawning dialogs for selecting files or directories using the
+     * operating system's native look-and-feel. See [fileDialogShow] and [fileDialogWithOptionsShow].
+     * **Windows, macOS, Linux (X11/Wayland)**
+     */
+    FEATURE_NATIVE_DIALOG_FILE(25),
     ;
 
     public val id: Long
@@ -2785,9 +3075,8 @@ public object DisplayServer : Object() {
     WINDOW_FLAG_ALWAYS_ON_TOP(2),
     /**
      * The window background can be transparent.
-     * **Note:** This flag has no effect if
-     * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
-     * **Note:** Transparency support is implemented on Linux (X11), macOS and Windows, but
+     * **Note:** This flag has no effect if [isWindowTransparencyAvailable] returns `false`.
+     * **Note:** Transparency support is implemented on Linux (X11/Wayland), macOS, and Windows, but
      * availability might vary depending on GPU driver, display manager, and compositor capabilities.
      */
     WINDOW_FLAG_TRANSPARENT(3),
@@ -2954,7 +3243,7 @@ public object DisplayServer : Object() {
     /**
      * OpenGL context (only with the GL Compatibility renderer):
      * - Windows: `HGLRC` for the window (native GL), or `EGLContext` for the window (ANGLE).
-     * - Linux: `GLXContext*` for the window.
+     * - Linux (X11): `GLXContext*` for the window.
      * - macOS: `NSOpenGLContext*` for the window (native GL), or `EGLContext` for the window
      * (ANGLE).
      * - Android: `EGLContext` for the window.
@@ -3007,6 +3296,9 @@ public object DisplayServer : Object() {
     public val hasFeaturePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "has_feature")
 
     public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "get_name")
+
+    public val helpSetSearchCallbacksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "help_set_search_callbacks")
 
     public val globalMenuSetPopupCallbacksPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks")
@@ -3152,6 +3444,9 @@ public object DisplayServer : Object() {
     public val globalMenuClearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "global_menu_clear")
 
+    public val globalMenuGetSystemMenuRootsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_system_menu_roots")
+
     public val ttsIsSpeakingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "tts_is_speaking")
 
@@ -3183,6 +3478,12 @@ public object DisplayServer : Object() {
 
     public val getAccentColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "get_accent_color")
+
+    public val getBaseColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "get_base_color")
+
+    public val setSystemThemeChangeCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "set_system_theme_change_callback")
 
     public val mouseSetModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "mouse_set_mode")
@@ -3455,6 +3756,9 @@ public object DisplayServer : Object() {
     public val fileDialogShowPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show")
 
+    public val fileDialogWithOptionsShowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show")
+
     public val keyboardGetLayoutCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count")
 
@@ -3487,6 +3791,27 @@ public object DisplayServer : Object() {
 
     public val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "set_icon")
 
+    public val createStatusIndicatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "create_status_indicator")
+
+    public val statusIndicatorSetIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_icon")
+
+    public val statusIndicatorSetTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_tooltip")
+
+    public val statusIndicatorSetMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_menu")
+
+    public val statusIndicatorSetCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_callback")
+
+    public val statusIndicatorGetRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_get_rect")
+
+    public val deleteStatusIndicatorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "delete_status_indicator")
+
     public val tabletGetDriverCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_count")
 
@@ -3498,5 +3823,17 @@ public object DisplayServer : Object() {
 
     public val tabletSetCurrentDriverPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "tablet_set_current_driver")
+
+    public val isWindowTransparencyAvailablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "is_window_transparency_available")
+
+    public val registerAdditionalOutputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "register_additional_output")
+
+    public val unregisterAdditionalOutputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "unregister_additional_output")
+
+    public val hasAdditionalOutputsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "has_additional_outputs")
   }
 }

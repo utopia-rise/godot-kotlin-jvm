@@ -189,7 +189,7 @@ uintptr_t PackedFloat64ArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, j
 
 jdoubleArray PackedFloat64ArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     PackedFloat64Array* packed {from_uint_to_ptr<PackedFloat64Array>(p_raw_ptr)};
-    int size {packed->size()};
+    auto size {static_cast<int>(packed->size())};
 
     jni::Env env {p_raw_env};
     jni::JDoubleArray arr {env, size};

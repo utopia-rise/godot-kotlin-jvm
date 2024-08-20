@@ -159,27 +159,29 @@ public open class MainLoop : Object() {
 
     /**
      * Notification received from the OS when the application is resumed.
-     * Specific to the Android platform.
+     * Specific to the Android and iOS platforms.
      */
     public final const val NOTIFICATION_APPLICATION_RESUMED: Long = 2014
 
     /**
      * Notification received from the OS when the application is paused.
-     * Specific to the Android platform.
+     * Specific to the Android and iOS platforms.
+     * **Note:** On iOS, you only have approximately 5 seconds to finish a task started by this
+     * signal. If you go over this allotment, iOS will kill the app instead of pausing it.
      */
     public final const val NOTIFICATION_APPLICATION_PAUSED: Long = 2015
 
     /**
      * Notification received from the OS when the application is focused, i.e. when changing the
      * focus from the OS desktop or a thirdparty application to any open window of the Godot instance.
-     * Implemented on desktop platforms.
+     * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_IN: Long = 2016
 
     /**
      * Notification received from the OS when the application is defocused, i.e. when changing the
      * focus from any open window of the Godot instance to the OS desktop or a thirdparty application.
-     * Implemented on desktop platforms.
+     * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_OUT: Long = 2017
 

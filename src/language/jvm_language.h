@@ -48,9 +48,11 @@ public:
 
     void profiling_start() override;
     void profiling_stop() override;
+    void profiling_set_save_native_calls(bool p_enable) override;
     int profiling_get_accumulated_data(ProfilingInfo* p_info_arr, int p_info_max) override;
     int profiling_get_frame_data(ProfilingInfo* p_info_arr, int p_info_max) override;
 
+    void reload_scripts(const Array &p_scripts, bool p_soft_reload) override;
     void reload_all_scripts() override;
     void reload_tool_script(const Ref<Script>& p_script, bool p_soft_reload) override;
 };

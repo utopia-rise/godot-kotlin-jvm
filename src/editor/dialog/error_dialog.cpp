@@ -3,7 +3,7 @@
 
 #include "error_dialog.h"
 
-#include <editor/editor_scale.h>
+#include <editor/themes/editor_scale.h>
 #include <editor/editor_settings.h>
 #include <scene/gui/rich_text_label.h>
 #include <scene/gui/texture_rect.h>

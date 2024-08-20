@@ -60,13 +60,18 @@ public open class NavigationAgent3D : Node() {
   public val pathChanged: Signal0 by signal()
 
   /**
-   * Emitted once per loaded path when the agent's global position is the first time within
-   * [targetDesiredDistance] to the [targetPosition].
+   * Signals that the agent reached the target, i.e. the agent moved within [targetDesiredDistance]
+   * of the [targetPosition]. This signal is emitted only once per loaded path.
+   * This signal will be emitted just before [signal navigation_finished] when the target is
+   * reachable.
+   * It may not always be possible to reach the target but it should always be possible to reach the
+   * final position. See [getFinalPosition].
    */
   public val targetReached: Signal0 by signal()
 
   /**
-   * Notifies when a waypoint along the path has been reached.
+   * Signals that the agent reached a waypoint. Emitted when the agent moves within
+   * [pathDesiredDistance] of the next position of the path.
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
    * - `position`: The position of the waypoint that was reached.
@@ -77,7 +82,8 @@ public open class NavigationAgent3D : Node() {
   public val waypointReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
-   * Notifies when a navigation link has been reached.
+   * Signals that the agent reached a navigation link. Emitted when the agent moves within
+   * [pathDesiredDistance] of the next position of the path when that position is a navigation link.
    * The details dictionary may contain the following keys depending on the value of
    * [pathMetadataFlags]:
    * - `position`: The start position of the link that was reached.
@@ -92,15 +98,16 @@ public open class NavigationAgent3D : Node() {
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
 
   /**
-   * Emitted once per loaded path when the agent internal navigation path index reaches the last
-   * index of the loaded path array. The agent internal navigation path index can be received with
-   * [getCurrentNavigationPathIndex].
+   * Signals that the agent's navigation has finished. If the target is reachable, navigation ends
+   * when the target is reached. If the target is unreachable, navigation ends when the last waypoint
+   * of the path is reached. This signal is emitted only once per loaded path.
+   * This signal will be emitted just after [signal target_reached] when the target is reachable.
    */
   public val navigationFinished: Signal0 by signal()
 
   /**
-   * Notifies when the collision avoidance velocity is calculated. Emitted when [velocity] is set.
-   * Only emitted when [avoidanceEnabled] is true.
+   * Notifies when the collision avoidance velocity is calculated. Emitted every update as long as
+   * [avoidanceEnabled] is `true` and the agent has a navigation map.
    */
   public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
 
@@ -123,10 +130,10 @@ public open class NavigationAgent3D : Node() {
   /**
    * The distance threshold before a path point is considered to be reached. This allows agents to
    * not have to hit a path point on the path exactly, but only to reach its general area. If this
-   * value is set too high, the NavigationAgent will skip points on the path, which can lead to leaving
-   * the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a repath
-   * loop because it will constantly overshoot or undershoot the distance to the next point on each
-   * physics frame update.
+   * value is set too high, the NavigationAgent will skip points on the path, which can lead to it
+   * leaving the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a
+   * repath loop because it will constantly overshoot the distance to the next point on each physics
+   * frame update.
    */
   public var pathDesiredDistance: Float
     get() {
@@ -140,11 +147,16 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before the final target point is considered to be reached. This allows
-   * agents to not have to hit the point of the final target exactly, but only to reach its general
-   * area. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it
-   * will constantly overshoot or undershoot the distance to the final target point on each physics
-   * frame update.
+   * The distance threshold before the target is considered to be reached. On reaching the target,
+   * [signal target_reached] is emitted and navigation ends (see [isNavigationFinished] and [signal
+   * navigation_finished]).
+   * You can make navigation end early by setting this property to a value greater than
+   * [pathDesiredDistance] (navigation will end before reaching the last waypoint).
+   * You can also make navigation end closer to the target than each individual path position by
+   * setting this property to a value lower than [pathDesiredDistance] (navigation won't immediately
+   * end when reaching the last waypoint). However, if the value set is too low, the agent will be
+   * stuck in a repath loop because it will constantly overshoot the distance to the target on each
+   * physics frame update.
    */
   public var targetDesiredDistance: Float
     get() {
@@ -247,6 +259,39 @@ public open class NavigationAgent3D : Node() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.flag)
       TransferContext.callMethod(rawPtr, MethodBindings.setPathMetadataFlagsPtr, NIL)
+    }
+
+  /**
+   * If `true` a simplified version of the path will be returned with less critical path points
+   * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
+   * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   * Path simplification can be helpful to mitigate various path following issues that can arise
+   * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
+   * fields".
+   */
+  public var simplifyPath: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
+    }
+
+  /**
+   * The path simplification amount in worlds units.
+   */
+  public var simplifyEpsilon: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
     }
 
   /**
@@ -420,7 +465,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * If `true`, and the agent uses 2D avoidance, it will remember the set y-axis velocity and
    * reapply it after the avoidance step. While 2D avoidance has no y-axis and simulates on a flat
-   * plane this setting can help mitigate the most obvious clipping on uneven 3D geometry.
+   * plane this setting can help to soften the most obvious clipping on uneven 3D geometry.
    */
   public var keepYVelocity: Boolean
     get() {
@@ -735,8 +780,9 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns true if [targetPosition] is reached. It may not always be possible to reach the target
-   * position. It should always be possible to reach the final position though. See [getFinalPosition].
+   * Returns `true` if the agent reached the target, i.e. the agent moved within
+   * [targetDesiredDistance] of the [targetPosition]. It may not always be possible to reach the target
+   * but it should always be possible to reach the final position. See [getFinalPosition].
    */
   public fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
@@ -754,8 +800,10 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns `true` if the end of the currently loaded navigation path has been reached.
-   * **Note:** While true prefer to stop calling update functions like [getNextPathPosition]. This
+   * Returns `true` if the agent's navigation has finished. If the target is reachable, navigation
+   * ends when the target is reached. If the target is unreachable, navigation ends when the last
+   * waypoint of the path is reached.
+   * **Note:** While `true` prefer to stop calling update functions like [getNextPathPosition]. This
    * avoids jittering the standing agent due to calling repeated path updates.
    */
   public fun isNavigationFinished(): Boolean {
@@ -943,6 +991,18 @@ public open class NavigationAgent3D : Node() {
 
     public val getTargetPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationAgent3D", "get_target_position")
+
+    public val setSimplifyPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_simplify_path")
+
+    public val getSimplifyPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_simplify_path")
+
+    public val setSimplifyEpsilonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_simplify_epsilon")
+
+    public val getSimplifyEpsilonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_simplify_epsilon")
 
     public val getNextPathPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationAgent3D", "get_next_path_position")

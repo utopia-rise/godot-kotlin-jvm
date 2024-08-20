@@ -45,6 +45,9 @@ import kotlin.Unit
 public open class TextMesh : PrimitiveMesh() {
   /**
    * The text to generate mesh from.
+   * **Note:** Due to being a [Resource], it doesn't follow the rules of [Node.autoTranslateMode].
+   * If disabling translation is desired, it should be done manually with
+   * [Object.setMessageTranslation].
    */
   public var text: String
     get() {

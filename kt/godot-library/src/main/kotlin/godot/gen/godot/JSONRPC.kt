@@ -132,13 +132,26 @@ public open class JSONRPC : Object() {
   public enum class ErrorCode(
     id: Long,
   ) {
+    /**
+     * The request could not be parsed as it was not valid by JSON standard ([JSON.parse] failed).
+     */
     PARSE_ERROR(-32700),
+    /**
+     * A method call was requested but the request's format is not valid.
+     */
     INVALID_REQUEST(-32600),
     /**
      * A method call was requested but no function of that name existed in the JSONRPC subclass.
      */
     METHOD_NOT_FOUND(-32601),
+    /**
+     * A method call was requested but the given method parameters are not valid. Not used by the
+     * built-in JSONRPC.
+     */
     INVALID_PARAMS(-32602),
+    /**
+     * An internal error occurred while processing the request. Not used by the built-in JSONRPC.
+     */
     INTERNAL_ERROR(-32603),
     ;
 

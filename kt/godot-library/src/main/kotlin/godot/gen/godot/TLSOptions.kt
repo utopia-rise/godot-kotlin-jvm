@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.TypeManager
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
@@ -41,6 +42,62 @@ public open class TLSOptions internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TLSOPTIONS, scriptIndex)
     return true
+  }
+
+  /**
+   * Returns `true` if created with [TLSOptions.server], `false` otherwise.
+   */
+  public fun isServer(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isServerPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns `true` if created with [TLSOptions.clientUnsafe], `false` otherwise.
+   */
+  public fun isUnsafeClient(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUnsafeClientPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Returns the common name (domain name) override specified when creating with
+   * [TLSOptions.client].
+   */
+  public fun getCommonNameOverride(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCommonNameOverridePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Returns the CA [X509Certificate] chain specified when creating with [TLSOptions.client] or
+   * [TLSOptions.clientUnsafe].
+   */
+  public fun getTrustedCaChain(): X509Certificate? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrustedCaChainPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as X509Certificate?)
+  }
+
+  /**
+   * Returns the [CryptoKey] specified when creating with [TLSOptions.server].
+   */
+  public fun getPrivateKey(): CryptoKey? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPrivateKeyPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as CryptoKey?)
+  }
+
+  /**
+   * Returns the [X509Certificate] specified when creating with [TLSOptions.server].
+   */
+  public fun getOwnCertificate(): X509Certificate? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOwnCertificatePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as X509Certificate?)
   }
 
   public companion object {
@@ -95,5 +152,22 @@ public open class TLSOptions internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("TLSOptions", "client_unsafe")
 
     public val serverPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "server")
+
+    public val isServerPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "is_server")
+
+    public val isUnsafeClientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "is_unsafe_client")
+
+    public val getCommonNameOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "get_common_name_override")
+
+    public val getTrustedCaChainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "get_trusted_ca_chain")
+
+    public val getPrivateKeyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "get_private_key")
+
+    public val getOwnCertificatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "get_own_certificate")
   }
 }

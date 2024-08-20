@@ -18,7 +18,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * A multiplication operation on a transform (4x4 matrix) and a vector, with support for different
+ * A multiplication operation on a transform (4×4 matrix) and a vector, with support for different
  * multiplication operators.
  */
 @GodotBaseType

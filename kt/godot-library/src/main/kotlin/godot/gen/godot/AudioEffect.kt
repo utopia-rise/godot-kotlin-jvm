@@ -15,7 +15,13 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * Base resource for audio bus. Applies an audio effect on the bus that the resource is applied on.
+ * The base [Resource] for every audio effect. In the editor, an audio effect can be added to the
+ * current bus layout through the Audio panel. At run-time, it is also possible to manipulate audio
+ * effects through [AudioServer.addBusEffect], [AudioServer.removeBusEffect], and
+ * [AudioServer.getBusEffect].
+ * When applied on a bus, an audio effect creates a corresponding [AudioEffectInstance]. The
+ * instance is directly responsible for manipulating the sound, based on the original audio effect's
+ * properties.
  */
 @GodotBaseType
 public open class AudioEffect : Resource() {
@@ -24,6 +30,24 @@ public open class AudioEffect : Resource() {
     return true
   }
 
+  /**
+   * Override this method to customize the [AudioEffectInstance] created when this effect is applied
+   * on a bus in the editor's Audio panel, or through [AudioServer.addBusEffect].
+   * [codeblock]
+   * extends AudioEffect
+   *
+   * @export var strength = 4.0
+   *
+   * func _instantiate():
+   *     var effect = CustomAudioEffectInstance.new()
+   *     effect.base = self
+   *
+   *     return effect
+   * [/codeblock]
+   * **Note:** It is recommended to keep a reference to the original [AudioEffect] in the new
+   * instance. Depending on the implementation this allows the effect instance to listen for changes at
+   * run-time and be modified accordingly.
+   */
   public open fun _instantiate(): AudioEffectInstance? {
     throw NotImplementedError("_instantiate is not implemented for AudioEffect")
   }

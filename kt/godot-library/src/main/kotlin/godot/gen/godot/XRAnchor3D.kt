@@ -19,9 +19,9 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * The [XRAnchor3D] point is a spatial node that maps a real world location identified by the AR
+ * The [XRAnchor3D] point is an [XRNode3D] that maps a real world location identified by the AR
  * platform to a position within the game world. For example, as long as plane detection in ARKit is
- * on, ARKit will identify and update the position of planes (tables, floors, etc) and create anchors
+ * on, ARKit will identify and update the position of planes (tables, floors, etc.) and create anchors
  * for them.
  * This node is mapped to one of the anchors through its unique ID. When you receive a signal that a
  * new anchor is available, you should add this node to your scene for that anchor. You can predefine

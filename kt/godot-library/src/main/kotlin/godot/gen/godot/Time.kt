@@ -259,7 +259,7 @@ public object Time : Object() {
   }
 
   /**
-   * Returns the current time zone as a dictionary of keys: `bias` and `name`. 
+   * Returns the current time zone as a dictionary of keys: `bias` and `name`.
    * - `bias` is the offset from UTC in minutes, since not all time zones are multiples of an hour
    * from UTC.
    * - `name` is the localized name of the time zone, according to the OS locale settings of the

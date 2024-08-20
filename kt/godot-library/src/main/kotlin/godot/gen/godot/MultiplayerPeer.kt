@@ -133,8 +133,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the [MultiplayerPeer.TransferMode] the remote peer used to send the next available
-   * packet. See [PacketPeer.getAvailablePacketCount].
+   * Returns the transfer mode the remote peer used to send the next available packet. See
+   * [PacketPeer.getAvailablePacketCount].
    */
   public fun getPacketMode(): TransferMode {
     TransferContext.writeArguments()

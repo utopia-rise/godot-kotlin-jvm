@@ -56,7 +56,6 @@ public open class OccluderPolygon2D : Resource() {
 
   /**
    * A [Vector2] array with the index for polygon's vertices positions.
-   * **Note:** The returned value is a copy of the underlying array, rather than a reference.
    */
   public var polygon: PackedVector2Array
     get() {

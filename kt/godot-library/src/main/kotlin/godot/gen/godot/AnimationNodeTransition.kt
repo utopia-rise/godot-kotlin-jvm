@@ -63,6 +63,10 @@ import kotlin.jvm.JvmName
 public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Cross-fading time (in seconds) between each animation connected to the inputs.
+   * **Note:** [AnimationNodeTransition] transitions the current state immediately after the start
+   * of the fading. The precise remaining time can only be inferred from the main animation. When
+   * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
+   * depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
    */
   public var xfadeTime: Double
     get() {
@@ -141,6 +145,24 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
+   * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
+   * is looping.
+   */
+  public fun setInputBreakLoopAtEnd(input: Int, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputBreakLoopAtEndPtr, NIL)
+  }
+
+  /**
+   * Returns whether the animation breaks the loop at the end of the loop cycle for transition.
+   */
+  public fun isInputLoopBrokenAtEnd(input: Int): Boolean {
+    TransferContext.writeArguments(LONG to input.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.isInputLoopBrokenAtEndPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * If `true`, the destination animation is restarted when the animation transitions.
    */
   public fun setInputReset(input: Int, enable: Boolean): Unit {
@@ -168,6 +190,12 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
 
     public val isInputSetAsAutoAdvancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_set_as_auto_advance")
+
+    public val setInputBreakLoopAtEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_break_loop_at_end")
+
+    public val isInputLoopBrokenAtEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_loop_broken_at_end")
 
     public val setInputResetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_reset")

@@ -67,10 +67,9 @@ public open class Gradient : Resource() {
     }
 
   /**
-   * Gradient's offsets returned as a [PackedFloat32Array].
-   * **Note:** This property returns a copy, modifying the return value does not update the
-   * gradient. To update the gradient use [setOffset] method (for updating offsets individually) or
-   * assign to this property directly (for bulk-updating all offsets at once).
+   * Gradient's offsets as a [PackedFloat32Array].
+   * **Note:** Setting this property updates all offsets at once. To update any offset individually
+   * use [setOffset].
    */
   public var offsets: PackedFloat32Array
     get() {
@@ -84,10 +83,9 @@ public open class Gradient : Resource() {
     }
 
   /**
-   * Gradient's colors returned as a [PackedColorArray].
-   * **Note:** This property returns a copy, modifying the return value does not update the
-   * gradient. To update the gradient use [setColor] method (for updating colors individually) or
-   * assign to this property directly (for bulk-updating all colors at once).
+   * Gradient's colors as a [PackedColorArray].
+   * **Note:** Setting this property updates all colors at once. To update any color individually
+   * use [setColor].
    */
   public var colors: PackedColorArray
     get() {

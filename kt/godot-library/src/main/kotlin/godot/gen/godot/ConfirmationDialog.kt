@@ -26,11 +26,11 @@ import kotlin.Suppress
  *
  * gdscript:
  * ```gdscript
- * get_cancel_button().pressed.connect(self.canceled)
+ * get_cancel_button().pressed.connect(_on_canceled)
  * ```
  * csharp:
  * ```csharp
- * GetCancelButton().Pressed += Canceled;
+ * GetCancelButton().Pressed += OnCanceled;
  * ```
  */
 @GodotBaseType

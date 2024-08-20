@@ -184,7 +184,7 @@ public open class AcceptDialog : Window() {
    * [Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button]
    * will no longer emit this dialog's [signal custom_action] or [signal canceled] signals.
    */
-  public fun removeButton(button: Control): Unit {
+  public fun removeButton(button: Button): Unit {
     TransferContext.writeArguments(OBJECT to button)
     TransferContext.callMethod(rawPtr, MethodBindings.removeButtonPtr, NIL)
   }
@@ -193,7 +193,7 @@ public open class AcceptDialog : Window() {
    * Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be
    * accepted.
    */
-  public fun registerTextEnter(lineEdit: Control): Unit {
+  public fun registerTextEnter(lineEdit: LineEdit): Unit {
     TransferContext.writeArguments(OBJECT to lineEdit)
     TransferContext.callMethod(rawPtr, MethodBindings.registerTextEnterPtr, NIL)
   }

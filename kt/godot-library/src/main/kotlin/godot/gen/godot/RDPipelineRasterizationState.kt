@@ -26,6 +26,10 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class RDPipelineRasterizationState : RefCounted() {
+  /**
+   * If `true`, clamps depth values according to the minimum and maximum depth of the associated
+   * viewport.
+   */
   public var enableDepthClamp: Boolean
     get() {
       TransferContext.writeArguments()
@@ -94,6 +98,10 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFrontFacePtr, NIL)
     }
 
+  /**
+   * If `true`, each generated depth value will by offset by some amount. The specific amount is
+   * generated per polygon based on the values of [depthBiasSlopeFactor] and [depthBiasConstantFactor].
+   */
   public var depthBiasEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -105,6 +113,9 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasEnabledPtr, NIL)
     }
 
+  /**
+   * A constant offset added to each depth value. Applied after [depthBiasSlopeFactor].
+   */
   public var depthBiasConstantFactor: Float
     get() {
       TransferContext.writeArguments()
@@ -116,6 +127,10 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasConstantFactorPtr, NIL)
     }
 
+  /**
+   * A limit for how much each depth value can be offset. If negative, it serves as a minimum value,
+   * but if positive, it serves as a maximum value.
+   */
   public var depthBiasClamp: Float
     get() {
       TransferContext.writeArguments()
@@ -127,6 +142,10 @@ public open class RDPipelineRasterizationState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasClampPtr, NIL)
     }
 
+  /**
+   * A constant scale applied to the slope of each polygons' depth. Applied before
+   * [depthBiasConstantFactor].
+   */
   public var depthBiasSlopeFactor: Float
     get() {
       TransferContext.writeArguments()

@@ -28,15 +28,18 @@ import kotlin.jvm.JvmOverloads
 /**
  * Resource is the base class for all Godot-specific resource types, serving primarily as data
  * containers. Since they inherit from [RefCounted], resources are reference-counted and freed when no
- * longer in use. They can also be nested within other resources, and saved on disk. Once loaded from
- * disk, further attempts to load a resource by [resourcePath] returns the same reference.
- * [PackedScene], one of the most common [Object]s in a Godot project, is also a resource, uniquely
- * capable of storing and instantiating the [Node]s it contains as many times as desired.
+ * longer in use. They can also be nested within other resources, and saved on disk. [PackedScene], one
+ * of the most common [Object]s in a Godot project, is also a resource, uniquely capable of storing and
+ * instantiating the [Node]s it contains as many times as desired.
  * In GDScript, resources can loaded from disk by their [resourcePath] using [@GDScript.load] or
  * [@GDScript.preload].
+ * The engine keeps a global cache of all loaded resources, referenced by paths (see
+ * [ResourceLoader.hasCached]). A resource will be cached when loaded for the first time and removed
+ * from cache once all references are released. When a resource is cached, subsequent loads using its
+ * path will return the cached reference.
  * **Note:** In C#, resources will not be freed instantly after they are no longer in use. Instead,
  * garbage collection will run periodically and will free resources that are no longer in use. This
- * means that unused resources will linger on for a while before being removed.
+ * means that unused resources will remain in memory for a while before being removed.
  */
 @GodotBaseType
 public open class Resource : RefCounted() {
@@ -49,9 +52,7 @@ public open class Resource : RefCounted() {
   public val changed: Signal0 by signal()
 
   /**
-   * Emitted by a newly duplicated resource with [resourceLocalToScene] set to `true`. 
-   * *Deprecated.* This signal is only emitted when the resource is created. Override
-   * [_setupLocalToScene] instead.
+   * Emitted by a newly duplicated resource with [resourceLocalToScene] set to `true`.
    */
   public val setupLocalToSceneRequested: Signal0 by signal()
 
@@ -110,6 +111,28 @@ public open class Resource : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
     }
 
+  /**
+   * An unique identifier relative to the this resource's scene. If left empty, the ID is
+   * automatically generated when this resource is saved inside a [PackedScene]. If the resource is not
+   * inside a scene, this property is empty by default.
+   * **Note:** When the [PackedScene] is saved, if multiple resources in the same scene use the same
+   * ID, only the earliest resource in the scene hierarchy keeps the original ID. The other resources
+   * are assigned new IDs from [generateSceneUniqueId].
+   * **Note:** Setting this property does not emit the [signal changed] signal.
+   * **Warning:** When setting, the ID must only consist of letters, numbers, and underscores.
+   * Otherwise, it will fail and default to a randomly generated ID.
+   */
+  public var resourceSceneUniqueId: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_RESOURCE, scriptIndex)
     return true
@@ -166,8 +189,6 @@ public open class Resource : RefCounted() {
    * Calls [_setupLocalToScene]. If [resourceLocalToScene] is set to `true`, this method is
    * automatically called from [PackedScene.instantiate] by the newly duplicated resource within the
    * scene instance.
-   * *Deprecated.* This method should only be called internally. Override [_setupLocalToScene]
-   * instead.
    */
   public fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
@@ -197,11 +218,13 @@ public open class Resource : RefCounted() {
    * Duplicates this resource, returning a new resource with its `export`ed or
    * [PROPERTY_USAGE_STORAGE] properties copied from the original.
    * If [subresources] is `false`, a shallow copy is returned; nested resources within subresources
-   * are not duplicated and are shared from the original resource. If [subresources] is `true`, a deep
-   * copy is returned; nested subresources will be duplicated and are not shared.
-   * Subresource properties with the [PROPERTY_USAGE_ALWAYS_DUPLICATE] flag are always duplicated
-   * even with [subresources] set to `false`, and properties with the [PROPERTY_USAGE_NEVER_DUPLICATE]
-   * flag are never duplicated even with [subresources] set to `true`.
+   * are not duplicated and are shared with the original resource (with one exception; see below). If
+   * [subresources] is `true`, a deep copy is returned; nested subresources will be duplicated and are
+   * not shared (with two exceptions; see below).
+   * [subresources] is usually respected, with the following exceptions:
+   * - Subresource properties with the [PROPERTY_USAGE_ALWAYS_DUPLICATE] flag are always duplicated.
+   * - Subresource properties with the [PROPERTY_USAGE_NEVER_DUPLICATE] flag are never duplicated.
+   * - Subresources inside [Array] and [Dictionary] properties are never duplicated.
    * **Note:** For custom resources, this method will fail if [Object.Init] has been defined with
    * required parameters.
    */
@@ -212,7 +235,18 @@ public open class Resource : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
   }
 
-  public companion object
+  public companion object {
+    /**
+     * Generates a unique identifier for a resource to be contained inside a [PackedScene], based on
+     * the current date, time, and a random value. The returned string is only composed of letters (`a`
+     * to `y`) and numbers (`0` to `8`). See also [resourceSceneUniqueId].
+     */
+    public fun generateSceneUniqueId(): String {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+  }
 
   internal object MethodBindings {
     public val _setupLocalToScenePtr: VoidPtr =
@@ -241,6 +275,15 @@ public open class Resource : RefCounted() {
 
     public val setupLocalToScenePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "setup_local_to_scene")
+
+    public val generateSceneUniqueIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "generate_scene_unique_id")
+
+    public val setSceneUniqueIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "set_scene_unique_id")
+
+    public val getSceneUniqueIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "get_scene_unique_id")
 
     public val emitChangedPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "emit_changed")
 

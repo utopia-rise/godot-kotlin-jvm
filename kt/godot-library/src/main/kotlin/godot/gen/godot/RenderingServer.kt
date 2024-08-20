@@ -134,15 +134,17 @@ public object RenderingServer : Object() {
    */
   public final const val MAX_GLOW_LEVELS: Long = 7
 
-  /**
-   * *Deprecated.* This constant is unused internally.
-   */
   public final const val MAX_CURSORS: Long = 8
 
   /**
    * The maximum number of directional lights that can be rendered at a given time in 2D.
    */
   public final const val MAX_2D_DIRECTIONAL_LIGHTS: Long = 8
+
+  /**
+   * The maximum number of surfaces a mesh can have.
+   */
+  public final const val MAX_MESH_SURFACES: Long = 256
 
   /**
    * The minimum renderpriority of all materials.
@@ -233,8 +235,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * *Deprecated.* ProxyTexture was removed in Godot 4, so this method does nothing when called and
-   * always returns a null [RID].
+   * This method does nothing and always returns an invalid [RID].
    */
   public fun textureProxyCreate(base: RID): RID {
     TransferContext.writeArguments(_RID to base)
@@ -271,7 +272,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * *Deprecated.* ProxyTexture was removed in Godot 4, so this method cannot be used anymore.
+   * This method does nothing.
    */
   public fun textureProxyUpdate(texture: RID, proxyTo: RID): Unit {
     TransferContext.writeArguments(_RID to texture, _RID to proxyTo)
@@ -383,7 +384,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the [Image.Format] for the texture.
+   * Returns the format for the texture.
    */
   public fun textureGetFormat(texture: RID): Image.Format {
     TransferContext.writeArguments(_RID to texture)
@@ -930,6 +931,24 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the custom AABB for this MultiMesh resource.
+   */
+  public fun multimeshSetCustomAabb(multimesh: RID, aabb: AABB): Unit {
+    TransferContext.writeArguments(_RID to multimesh, godot.core.VariantType.AABB to aabb)
+    TransferContext.callMethod(rawPtr, MethodBindings.multimeshSetCustomAabbPtr, NIL)
+  }
+
+  /**
+   * Returns the custom AABB defined for this MultiMesh resource.
+   */
+  public fun multimeshGetCustomAabb(multimesh: RID): AABB {
+    TransferContext.writeArguments(_RID to multimesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetCustomAabbPtr,
+        godot.core.VariantType.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+  }
+
+  /**
    * Returns the [Transform3D] of the specified instance.
    */
   public fun multimeshInstanceGetTransform(multimesh: RID, index: Int): Transform3D {
@@ -991,7 +1010,7 @@ public object RenderingServer : Object() {
    * per-instance data size (which depends on the enabled MultiMesh fields). Otherwise, an error
    * message is printed and nothing is rendered. See also [multimeshGetBuffer].
    * The per-instance data size and expected data order is:
-   * [codeblock]
+   * [codeblock lang=text]
    * 2D:
    *   - Position: 8 floats (8 floats for Transform2D)
    *   - Position + Vertex color: 12 floats (8 floats for Transform2D, 4 floats for Color)
@@ -1012,8 +1031,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the MultiMesh data (such as instance transforms, colors, etc). See [multimeshSetBuffer]
-   * for a description of the returned data.
+   * Returns the MultiMesh data (such as instance transforms, colors, etc.). See
+   * [multimeshSetBuffer] for details on the returned data.
    * **Note:** If the buffer is in the engine's internal cache, it will have to be fetched from GPU
    * memory and possibly decompressed. This means [multimeshGetBuffer] is potentially a slow operation
    * and should be avoided whenever possible.
@@ -1435,12 +1454,21 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the render cull mask for this reflection probe. Only instances with a matching cull mask
-   * will be rendered by this probe. Equivalent to [ReflectionProbe.cullMask].
+   * Sets the render cull mask for this reflection probe. Only instances with a matching layer will
+   * be reflected by this probe. Equivalent to [ReflectionProbe.cullMask].
    */
   public fun reflectionProbeSetCullMask(probe: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to probe, LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetCullMaskPtr, NIL)
+  }
+
+  /**
+   * Sets the render reflection mask for this reflection probe. Only instances with a matching layer
+   * will have reflections applied from this probe. Equivalent to [ReflectionProbe.reflectionMask].
+   */
+  public fun reflectionProbeSetReflectionMask(probe: RID, layers: Long): Unit {
+    TransferContext.writeArguments(_RID to probe, LONG to layers)
+    TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeSetReflectionMaskPtr, NIL)
   }
 
   /**
@@ -2441,6 +2469,14 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the compositor used by this camera. Equivalent to [Camera3D.compositor].
+   */
+  public fun cameraSetCompositor(camera: RID, compositor: RID): Unit {
+    TransferContext.writeArguments(_RID to camera, _RID to compositor)
+    TransferContext.callMethod(rawPtr, MethodBindings.cameraSetCompositorPtr, NIL)
+  }
+
+  /**
    * If `true`, preserves the horizontal aspect ratio which is equivalent to [Camera3D.KEEP_WIDTH].
    * If `false`, preserves the vertical aspect ratio which is equivalent to [Camera3D.KEEP_HEIGHT].
    */
@@ -2617,6 +2653,17 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Returns the viewport's update mode. See [ViewportUpdateMode] constants for options.
+   * **Warning:** Calling this from any thread other than the rendering thread will be detrimental
+   * to performance.
+   */
+  public fun viewportGetUpdateMode(viewport: RID): ViewportUpdateMode {
+    TransferContext.writeArguments(_RID to viewport)
+    TransferContext.callMethod(rawPtr, MethodBindings.viewportGetUpdateModePtr, LONG)
+    return RenderingServer.ViewportUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Sets the clear mode of a viewport. See [ViewportClearMode] for options.
    */
   public fun viewportSetClearMode(viewport: RID, clearMode: ViewportClearMode): Unit {
@@ -2697,7 +2744,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Detaches a viewport from a canvas and vice versa.
+   * Detaches a viewport from a canvas.
    */
   public fun viewportRemoveCanvas(viewport: RID, canvas: RID): Unit {
     TransferContext.writeArguments(_RID to viewport, _RID to canvas)
@@ -2860,15 +2907,15 @@ public object RenderingServer : Object() {
 
   /**
    * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit
-   * depth of the 3D framebuffer. When using the Forward+ renderer this will be a `RGBA16` framebuffer,
-   * while when using the Mobile renderer it will be a `RGB10_A2` framebuffer. Additionally, 2D
-   * rendering will take place in linear color space and will be converted to sRGB space immediately
-   * before blitting to the screen (if the Viewport is attached to the screen). Practically speaking,
-   * this means that the end result of the Viewport will not be clamped into the `0-1` range and can be
-   * used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage
-   * of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the
-   * appearance of effects requiring highly detailed gradients. This setting has the same effect as
-   * [Viewport.useHdr2d].
+   * depth of the 3D framebuffer. When using the Forward+ renderer this will be an `RGBA16`
+   * framebuffer, while when using the Mobile renderer it will be an `RGB10_A2` framebuffer.
+   * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
+   * space immediately before blitting to the screen (if the Viewport is attached to the screen).
+   * Practically speaking, this means that the end result of the Viewport will not be clamped into the
+   * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
+   * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
+   * substantially improves the appearance of effects requiring highly detailed gradients. This setting
+   * has the same effect as [Viewport.useHdr2d].
    * **Note:** This setting will have no effect when using the GL Compatibility renderer as the GL
    * Compatibility renderer always renders in low dynamic range for performance reasons.
    */
@@ -3028,6 +3075,19 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Sets the update mode for Variable Rate Shading (VRS) for the viewport. VRS requires the input
+   * texture to be converted to the format usable by the VRS method supported by the hardware. The
+   * update mode defines how often this happens. If the GPU does not support VRS, or VRS is not
+   * enabled, this property is ignored.
+   * If set to [RenderingServer.VIEWPORT_VRS_UPDATE_ONCE], the input texture is copied once and the
+   * mode is changed to [RenderingServer.VIEWPORT_VRS_UPDATE_DISABLED].
+   */
+  public fun viewportSetVrsUpdateMode(viewport: RID, mode: ViewportVRSUpdateMode): Unit {
+    TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.viewportSetVrsUpdateModePtr, NIL)
+  }
+
+  /**
    * The texture to use when the VRS mode is set to [RenderingServer.VIEWPORT_VRS_TEXTURE].
    * Equivalent to [ProjectSettings.rendering/vrs/texture].
    */
@@ -3096,6 +3156,72 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to sky, DOUBLE to energy.toDouble(), BOOL to bakeIrradiance, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.skyBakePanoramaPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+  }
+
+  /**
+   * Creates a new rendering effect and adds it to the RenderingServer. It can be accessed with the
+   * RID that is returned.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   */
+  public fun compositorEffectCreate(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * Enables/disables this rendering effect.
+   */
+  public fun compositorEffectSetEnabled(effect: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to effect, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectSetEnabledPtr, NIL)
+  }
+
+  /**
+   * Sets the callback type ([callbackType]) and callback method([callback]) for this rendering
+   * effect.
+   */
+  public fun compositorEffectSetCallback(
+    effect: RID,
+    callbackType: CompositorEffectCallbackType,
+    callback: Callable,
+  ): Unit {
+    TransferContext.writeArguments(_RID to effect, LONG to callbackType.id, CALLABLE to callback)
+    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectSetCallbackPtr, NIL)
+  }
+
+  /**
+   * Sets the flag ([flag]) for this rendering effect to `true` or `false` ([set]).
+   */
+  public fun compositorEffectSetFlag(
+    effect: RID,
+    flag: CompositorEffectFlags,
+    `set`: Boolean,
+  ): Unit {
+    TransferContext.writeArguments(_RID to effect, LONG to flag.id, BOOL to set)
+    TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectSetFlagPtr, NIL)
+  }
+
+  /**
+   * Creates a new compositor and adds it to the RenderingServer. It can be accessed with the RID
+   * that is returned.
+   * Once finished with your RID, you will want to free the RID using the RenderingServer's
+   * [freeRid] method.
+   */
+  public fun compositorCreate(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.compositorCreatePtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  /**
+   * Sets the compositor effects for the specified compositor RID. [effects] should be an array
+   * containing RIDs created with [compositorEffectCreate].
+   */
+  public fun compositorSetCompositorEffects(compositor: RID, effects: VariantArray<RID>): Unit {
+    TransferContext.writeArguments(_RID to compositor, ARRAY to effects)
+    TransferContext.callMethod(rawPtr, MethodBindings.compositorSetCompositorEffectsPtr, NIL)
   }
 
   /**
@@ -3286,6 +3412,7 @@ public object RenderingServer : Object() {
    * Configures fog for the specified environment RID. See `fog_*` properties in [Environment] for
    * more information.
    */
+  @JvmOverloads
   public fun environmentSetFog(
     env: RID,
     enable: Boolean,
@@ -3297,8 +3424,9 @@ public object RenderingServer : Object() {
     heightDensity: Float,
     aerialPerspective: Float,
     skyAffect: Float,
+    fogMode: EnvironmentFogMode = RenderingServer.EnvironmentFogMode.ENV_FOG_MODE_EXPONENTIAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy.toDouble(), DOUBLE to sunScatter.toDouble(), DOUBLE to density.toDouble(), DOUBLE to height.toDouble(), DOUBLE to heightDensity.toDouble(), DOUBLE to aerialPerspective.toDouble(), DOUBLE to skyAffect.toDouble())
+    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy.toDouble(), DOUBLE to sunScatter.toDouble(), DOUBLE to density.toDouble(), DOUBLE to height.toDouble(), DOUBLE to heightDensity.toDouble(), DOUBLE to aerialPerspective.toDouble(), DOUBLE to skyAffect.toDouble(), LONG to fogMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.environmentSetFogPtr, NIL)
   }
 
@@ -3558,14 +3686,14 @@ public object RenderingServer : Object() {
    * scene.
    * The normalization factor can be calculated from exposure value (EV100) as follows:
    * [codeblock]
-   * func get_exposure_normalization(float ev100):
-   *         return 1.0 / (pow(2.0, ev100) * 1.2)
+   * func get_exposure_normalization(ev100: float):
+   *     return 1.0 / (pow(2.0, ev100) * 1.2)
    * [/codeblock]
    * The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds),
    * and sensitivity (in ISO) as follows:
    * [codeblock]
-   * func get_exposure(float aperture, float shutter_speed, float sensitivity):
-   *     return log2((aperture * aperture) / shutterSpeed * (100.0 / sensitivity))
+   * func get_exposure(aperture: float, shutter_speed: float, sensitivity: float):
+   *     return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
    * [/codeblock]
    */
   public fun cameraAttributesSetExposure(
@@ -3630,6 +3758,14 @@ public object RenderingServer : Object() {
   public fun scenarioSetCameraAttributes(scenario: RID, effects: RID): Unit {
     TransferContext.writeArguments(_RID to scenario, _RID to effects)
     TransferContext.callMethod(rawPtr, MethodBindings.scenarioSetCameraAttributesPtr, NIL)
+  }
+
+  /**
+   * Sets the compositor ([compositor]) that will be used with this scenario. See also [Compositor].
+   */
+  public fun scenarioSetCompositor(scenario: RID, compositor: RID): Unit {
+    TransferContext.writeArguments(_RID to scenario, _RID to compositor)
+    TransferContext.callMethod(rawPtr, MethodBindings.scenarioSetCompositorPtr, NIL)
   }
 
   /**
@@ -4040,6 +4176,20 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * A copy of the canvas item will be drawn with a local offset of the [repeatSize] by the number
+   * of times of the [repeatTimes]. As the [repeatTimes] increases, the copies will spread away from
+   * the origin texture.
+   */
+  public fun canvasSetItemRepeat(
+    item: RID,
+    repeatSize: Vector2,
+    repeatTimes: Int,
+  ): Unit {
+    TransferContext.writeArguments(_RID to item, VECTOR2 to repeatSize, LONG to repeatTimes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasSetItemRepeatPtr, NIL)
+  }
+
+  /**
    * Modulates all colors in the given canvas.
    */
   public fun canvasSetModulate(canvas: RID, color: Color): Unit {
@@ -4257,6 +4407,35 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * If [interpolated] is `true`, turns on physics interpolation for the canvas item.
+   */
+  public fun canvasItemSetInterpolated(item: RID, interpolated: Boolean): Unit {
+    TransferContext.writeArguments(_RID to item, BOOL to interpolated)
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemSetInterpolatedPtr, NIL)
+  }
+
+  /**
+   * Prevents physics interpolation for the current physics tick.
+   * This is useful when moving a canvas item to a new location, to give an instantaneous change
+   * rather than interpolation from the previous location.
+   */
+  public fun canvasItemResetPhysicsInterpolation(item: RID): Unit {
+    TransferContext.writeArguments(_RID to item)
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemResetPhysicsInterpolationPtr, NIL)
+  }
+
+  /**
+   * Transforms both the current and previous stored transform for a canvas item.
+   * This allows transforming a canvas item without creating a "glitch" in the interpolation, which
+   * is particularly useful for large worlds utilizing a shifting origin.
+   */
+  public fun canvasItemTransformPhysicsInterpolation(item: RID, transform: Transform2D): Unit {
+    TransferContext.writeArguments(_RID to item, TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasItemTransformPhysicsInterpolationPtr,
+        NIL)
+  }
+
+  /**
    * Draws a line on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawLine].
    */
@@ -4299,8 +4478,9 @@ public object RenderingServer : Object() {
     points: PackedVector2Array,
     colors: PackedColorArray,
     width: Float = -1.0f,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width.toDouble())
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, DOUBLE to width.toDouble(), BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddMultilinePtr, NIL)
   }
 
@@ -4308,12 +4488,14 @@ public object RenderingServer : Object() {
    * Draws a rectangle on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawRect].
    */
+  @JvmOverloads
   public fun canvasItemAddRect(
     item: RID,
     rect: Rect2,
     color: Color,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to item, RECT2 to rect, COLOR to color)
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, COLOR to color, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddRectPtr, NIL)
   }
 
@@ -4321,13 +4503,15 @@ public object RenderingServer : Object() {
    * Draws a circle on the [CanvasItem] pointed to by the [item] [RID]. See also
    * [CanvasItem.drawCircle].
    */
+  @JvmOverloads
   public fun canvasItemAddCircle(
     item: RID,
     pos: Vector2,
     radius: Float,
     color: Color,
+    antialiased: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to item, VECTOR2 to pos, DOUBLE to radius.toDouble(), COLOR to color)
+    TransferContext.writeArguments(_RID to item, VECTOR2 to pos, DOUBLE to radius.toDouble(), COLOR to color, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, MethodBindings.canvasItemAddCirclePtr, NIL)
   }
 
@@ -4845,6 +5029,35 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * If [interpolated] is `true`, turns on physics interpolation for the canvas light.
+   */
+  public fun canvasLightSetInterpolated(light: RID, interpolated: Boolean): Unit {
+    TransferContext.writeArguments(_RID to light, BOOL to interpolated)
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightSetInterpolatedPtr, NIL)
+  }
+
+  /**
+   * Prevents physics interpolation for the current physics tick.
+   * This is useful when moving a canvas item to a new location, to give an instantaneous change
+   * rather than interpolation from the previous location.
+   */
+  public fun canvasLightResetPhysicsInterpolation(light: RID): Unit {
+    TransferContext.writeArguments(_RID to light)
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightResetPhysicsInterpolationPtr, NIL)
+  }
+
+  /**
+   * Transforms both the current and previous stored transform for a canvas light.
+   * This allows transforming a light without creating a "glitch" in the interpolation, which is is
+   * particularly useful for large worlds utilizing a shifting origin.
+   */
+  public fun canvasLightTransformPhysicsInterpolation(light: RID, transform: Transform2D): Unit {
+    TransferContext.writeArguments(_RID to light, TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightTransformPhysicsInterpolationPtr,
+        NIL)
+  }
+
+  /**
    * Creates a light occluder and adds it to the RenderingServer. It can be accessed with the RID
    * that is returned. This RID will be used in all `canvas_light_occluder_*` RenderingServer
    * functions.
@@ -4901,6 +5114,37 @@ public object RenderingServer : Object() {
   public fun canvasLightOccluderSetLightMask(occluder: RID, mask: Int): Unit {
     TransferContext.writeArguments(_RID to occluder, LONG to mask.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetLightMaskPtr, NIL)
+  }
+
+  /**
+   * If [interpolated] is `true`, turns on physics interpolation for the light occluder.
+   */
+  public fun canvasLightOccluderSetInterpolated(occluder: RID, interpolated: Boolean): Unit {
+    TransferContext.writeArguments(_RID to occluder, BOOL to interpolated)
+    TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderSetInterpolatedPtr, NIL)
+  }
+
+  /**
+   * Prevents physics interpolation for the current physics tick.
+   * This is useful when moving an occluder to a new location, to give an instantaneous change
+   * rather than interpolation from the previous location.
+   */
+  public fun canvasLightOccluderResetPhysicsInterpolation(occluder: RID): Unit {
+    TransferContext.writeArguments(_RID to occluder)
+    TransferContext.callMethod(rawPtr,
+        MethodBindings.canvasLightOccluderResetPhysicsInterpolationPtr, NIL)
+  }
+
+  /**
+   * Transforms both the current and previous stored transform for a light occluder.
+   * This allows transforming an occluder without creating a "glitch" in the interpolation, which is
+   * particularly useful for large worlds utilizing a shifting origin.
+   */
+  public fun canvasLightOccluderTransformPhysicsInterpolation(occluder: RID,
+      transform: Transform2D): Unit {
+    TransferContext.writeArguments(_RID to occluder, TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr,
+        MethodBindings.canvasLightOccluderTransformPhysicsInterpolationPtr, NIL)
   }
 
   /**
@@ -5223,15 +5467,6 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Not yet implemented. Always returns `false`.
-   */
-  public fun hasFeature(feature: Features): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-  }
-
-  /**
    * Returns `true` if the OS supports a certain [feature]. Features might be `s3tc`, `etc`, and
    * `etc2`.
    */
@@ -5314,6 +5549,15 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Returns `true` if our code is currently executing on the rendering thread.
+   */
+  public fun isOnRenderThread(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isOnRenderThreadPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * As the RenderingServer actual logic may run on an separate thread, accessing its internals from
    * the main (or any other) thread will result in errors. To make it easier to run code that can
    * safely access the rendering internals (such as [RenderingDevice] and similar RD classes), push a
@@ -5322,6 +5566,15 @@ public object RenderingServer : Object() {
   public fun callOnRenderThread(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.callOnRenderThreadPtr, NIL)
+  }
+
+  /**
+   * This method does nothing and always returns `false`.
+   */
+  public fun hasFeature(feature: Features): Boolean {
+    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class TextureLayeredType(
@@ -6822,9 +7075,13 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_RENDER_INFO_TYPE_SHADOW(1),
     /**
+     * Canvas item rendering. This includes all 2D rendering.
+     */
+    VIEWPORT_RENDER_INFO_TYPE_CANVAS(2),
+    /**
      * Represents the size of the [ViewportRenderInfoType] enum.
      */
-    VIEWPORT_RENDER_INFO_TYPE_MAX(2),
+    VIEWPORT_RENDER_INFO_TYPE_MAX(3),
     ;
 
     public val id: Long
@@ -7002,13 +7259,45 @@ public object RenderingServer : Object() {
      */
     VIEWPORT_VRS_TEXTURE(1),
     /**
-     * Variable rate shading texture is supplied by the primary [XRInterface].
+     * Variable rate shading texture is supplied by the primary [XRInterface]. Note that this may
+     * override the update mode.
      */
     VIEWPORT_VRS_XR(2),
     /**
      * Represents the size of the [ViewportVRSMode] enum.
      */
     VIEWPORT_VRS_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class ViewportVRSUpdateMode(
+    id: Long,
+  ) {
+    /**
+     * The input texture for variable rate shading will not be processed.
+     */
+    VIEWPORT_VRS_UPDATE_DISABLED(0),
+    /**
+     * The input texture for variable rate shading will be processed once.
+     */
+    VIEWPORT_VRS_UPDATE_ONCE(1),
+    /**
+     * The input texture for variable rate shading will be processed each frame.
+     */
+    VIEWPORT_VRS_UPDATE_ALWAYS(2),
+    /**
+     * Represents the size of the [ViewportVRSUpdateMode] enum.
+     */
+    VIEWPORT_VRS_UPDATE_MAX(3),
     ;
 
     public val id: Long
@@ -7056,6 +7345,81 @@ public object RenderingServer : Object() {
      * radiance size is ignored.
      */
     SKY_MODE_REALTIME(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class CompositorEffectFlags(
+    id: Long,
+  ) {
+    /**
+     * The rendering effect requires the color buffer to be resolved if MSAA is enabled.
+     */
+    COMPOSITOR_EFFECT_FLAG_ACCESS_RESOLVED_COLOR(1),
+    /**
+     * The rendering effect requires the depth buffer to be resolved if MSAA is enabled.
+     */
+    COMPOSITOR_EFFECT_FLAG_ACCESS_RESOLVED_DEPTH(2),
+    /**
+     * The rendering effect requires motion vectors to be produced.
+     */
+    COMPOSITOR_EFFECT_FLAG_NEEDS_MOTION_VECTORS(4),
+    /**
+     * The rendering effect requires normals and roughness g-buffer to be produced (Forward+ only).
+     */
+    COMPOSITOR_EFFECT_FLAG_NEEDS_ROUGHNESS(8),
+    /**
+     * The rendering effect requires specular data to be separated out (Forward+ only).
+     */
+    COMPOSITOR_EFFECT_FLAG_NEEDS_SEPARATE_SPECULAR(16),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class CompositorEffectCallbackType(
+    id: Long,
+  ) {
+    /**
+     * The callback is called before our opaque rendering pass, but after depth prepass (if
+     * applicable).
+     */
+    COMPOSITOR_EFFECT_CALLBACK_TYPE_PRE_OPAQUE(0),
+    /**
+     * The callback is called after our opaque rendering pass, but before our sky is rendered.
+     */
+    COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_OPAQUE(1),
+    /**
+     * The callback is called after our sky is rendered, but before our back buffers are created
+     * (and if enabled, before subsurface scattering and/or screen space reflections).
+     */
+    COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_SKY(2),
+    /**
+     * The callback is called before our transparent rendering pass, but after our sky is rendered
+     * and we've created our back buffers.
+     */
+    COMPOSITOR_EFFECT_CALLBACK_TYPE_PRE_TRANSPARENT(3),
+    /**
+     * The callback is called after our transparent rendering pass, but before any build in post
+     * effects and output to our render target.
+     */
+    COMPOSITOR_EFFECT_CALLBACK_TYPE_POST_TRANSPARENT(4),
+    COMPOSITOR_EFFECT_CALLBACK_TYPE_ANY(-1),
     ;
 
     public val id: Long
@@ -7198,6 +7562,30 @@ public object RenderingServer : Object() {
      * maintaining a glow effect.
      */
     ENV_GLOW_BLEND_MODE_MIX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class EnvironmentFogMode(
+    id: Long,
+  ) {
+    /**
+     * Use a physically-based fog model defined primarily by fog density.
+     */
+    ENV_FOG_MODE_EXPONENTIAL(0),
+    /**
+     * Use a simple fog model defined by start and end positions and a custom curve. While not
+     * physically accurate, this model can be useful when you need more artistic control.
+     */
+    ENV_FOG_MODE_DEPTH(1),
     ;
 
     public val id: Long
@@ -8329,13 +8717,7 @@ public object RenderingServer : Object() {
   public enum class Features(
     id: Long,
   ) {
-    /**
-     * Hardware supports shaders. This enum is currently unused in Godot 3.x.
-     */
     FEATURE_SHADERS(0),
-    /**
-     * Hardware supports multithreading. This enum is currently unused in Godot 3.x.
-     */
     FEATURE_MULTITHREADED(1),
     ;
 
@@ -8562,6 +8944,12 @@ public object RenderingServer : Object() {
     public val multimeshGetAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_aabb")
 
+    public val multimeshSetCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_custom_aabb")
+
+    public val multimeshGetCustomAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_custom_aabb")
+
     public val multimeshInstanceGetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_transform")
 
@@ -8711,6 +9099,9 @@ public object RenderingServer : Object() {
 
     public val reflectionProbeSetCullMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_cull_mask")
+
+    public val reflectionProbeSetReflectionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_reflection_mask")
 
     public val reflectionProbeSetResolutionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_resolution")
@@ -9024,6 +9415,9 @@ public object RenderingServer : Object() {
     public val cameraSetCameraAttributesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "camera_set_camera_attributes")
 
+    public val cameraSetCompositorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_compositor")
+
     public val cameraSetUseVerticalAspectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "camera_set_use_vertical_aspect")
 
@@ -9065,6 +9459,9 @@ public object RenderingServer : Object() {
 
     public val viewportSetUpdateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_update_mode")
+
+    public val viewportGetUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_update_mode")
 
     public val viewportSetClearModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_clear_mode")
@@ -9174,6 +9571,9 @@ public object RenderingServer : Object() {
     public val viewportSetVrsModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_mode")
 
+    public val viewportSetVrsUpdateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_update_mode")
+
     public val viewportSetVrsTexturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_texture")
 
@@ -9190,6 +9590,24 @@ public object RenderingServer : Object() {
 
     public val skyBakePanoramaPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "sky_bake_panorama")
+
+    public val compositorEffectCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_create")
+
+    public val compositorEffectSetEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_enabled")
+
+    public val compositorEffectSetCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_callback")
+
+    public val compositorEffectSetFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_flag")
+
+    public val compositorCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_create")
+
+    public val compositorSetCompositorEffectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_set_compositor_effects")
 
     public val environmentCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_create")
@@ -9311,6 +9729,9 @@ public object RenderingServer : Object() {
     public val scenarioSetCameraAttributesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_camera_attributes")
 
+    public val scenarioSetCompositorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_compositor")
+
     public val instanceCreate2Ptr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "instance_create2")
 
@@ -9413,6 +9834,9 @@ public object RenderingServer : Object() {
     public val canvasSetItemMirroringPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_item_mirroring")
 
+    public val canvasSetItemRepeatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_item_repeat")
+
     public val canvasSetModulatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_modulate")
 
@@ -9475,6 +9899,15 @@ public object RenderingServer : Object() {
 
     public val canvasItemSetDrawBehindParentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_draw_behind_parent")
+
+    public val canvasItemSetInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_interpolated")
+
+    public val canvasItemResetPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_reset_physics_interpolation")
+
+    public val canvasItemTransformPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_transform_physics_interpolation")
 
     public val canvasItemAddLinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_line")
@@ -9626,6 +10059,15 @@ public object RenderingServer : Object() {
     public val canvasLightSetBlendModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_blend_mode")
 
+    public val canvasLightSetInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_interpolated")
+
+    public val canvasLightResetPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_reset_physics_interpolation")
+
+    public val canvasLightTransformPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_transform_physics_interpolation")
+
     public val canvasLightOccluderCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_create")
 
@@ -9646,6 +10088,15 @@ public object RenderingServer : Object() {
 
     public val canvasLightOccluderSetLightMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_light_mask")
+
+    public val canvasLightOccluderSetInterpolatedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_interpolated")
+
+    public val canvasLightOccluderResetPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_reset_physics_interpolation")
+
+    public val canvasLightOccluderTransformPhysicsInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_transform_physics_interpolation")
 
     public val canvasOccluderPolygonCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_create")
@@ -9724,9 +10175,6 @@ public object RenderingServer : Object() {
     public val setDefaultClearColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "set_default_clear_color")
 
-    public val hasFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "has_feature")
-
     public val hasOsFeaturePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "has_os_feature")
 
@@ -9752,8 +10200,14 @@ public object RenderingServer : Object() {
     public val createLocalRenderingDevicePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "create_local_rendering_device")
 
+    public val isOnRenderThreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "is_on_render_thread")
+
     public val callOnRenderThreadPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "call_on_render_thread")
+
+    public val hasFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "has_feature")
   }
 }
 

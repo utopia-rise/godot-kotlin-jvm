@@ -24,10 +24,11 @@ namespace jni {
 
     void Jvm::attach() {
         JNIEnv* r_env;
+        //TODO: change for AttachCurrentThread when https://github.com/godotengine/godot/issues/95809 is resolved
 #ifdef __ANDROID__
-        jint result = _instance->vm->AttachCurrentThread(&r_env, nullptr);
+        jint result = _instance->vm->AttachCurrentThreadAsDaemon(&r_env, nullptr);
 #else
-        jint result = _instance->vm->AttachCurrentThread((void**) &r_env, nullptr);
+        jint result = _instance->vm->AttachCurrentThreadAsDaemon((void**) &r_env, nullptr);
 #endif
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!");
         env = new Env(r_env);

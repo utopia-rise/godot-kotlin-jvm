@@ -21,6 +21,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.signals.Signal0
+import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Any
@@ -66,9 +67,25 @@ public open class OpenXRInterface : XRInterface() {
   public val sessionVisible: Signal0 by signal()
 
   /**
+   * Informs our OpenXR session is in the process of being lost.
+   */
+  public val sessionLossPending: Signal0 by signal()
+
+  /**
+   * Informs our OpenXR instance is exiting.
+   */
+  public val instanceExiting: Signal0 by signal()
+
+  /**
    * Informs the user queued a recenter of the player position.
    */
   public val poseRecentered: Signal0 by signal()
+
+  /**
+   * Informs the user the HMD refresh rate has changed.
+   * **Note:** Only emitted if XR runtime supports the refresh rate extension.
+   */
+  public val refreshRateChanged: Signal1<Double> by signal("refreshRate")
 
   /**
    * The display refresh rate for the current HMD. Only functional if this feature is supported by
@@ -103,6 +120,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Set foveation level from 0 (off) to 3 (high), the interface must be initialized before this is
    * accessible.
+   * **Note:** Only works on compatibility renderer.
    */
   public var foveationLevel: Int
     get() {
@@ -118,6 +136,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Enable dynamic foveation adjustment, the interface must be initialized before this is
    * accessible. If enabled foveation will automatically adjusted between low and [foveationLevel].
+   * **Note:** Only works on compatibility renderer.
    */
   public var foveationDynamic: Boolean
     get() {
@@ -128,6 +147,40 @@ public open class OpenXRInterface : XRInterface() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setFoveationDynamicPtr, NIL)
+    }
+
+  /**
+   * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a
+   * percentage of screen size.
+   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
+   * [Viewport.VRS_XR].
+   */
+  public var vrsMinRadius: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+    }
+
+  /**
+   * The strength used to calculate the VRS density map. The greater this value, the more noticeable
+   * VRS is. This improves performance at the cost of quality.
+   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
+   * [Viewport.VRS_XR].
+   */
+  public var vrsStrength: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -203,6 +256,16 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
+   * If handtracking is enabled and hand tracking source is supported, gets the source of the hand
+   * tracking data for [hand].
+   */
+  public fun getHandTrackingSource(hand: Hand): HandTrackedSource {
+    TransferContext.writeArguments(LONG to hand.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
+    return OpenXRInterface.HandTrackedSource.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * If handtracking is enabled, returns flags that inform us of the validity of the tracking data.
    */
   public fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
@@ -272,6 +335,16 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   /**
+   * Returns `true` if OpenXR's hand interaction profile is supported and enabled.
+   * **Note:** This only returns a valid value after OpenXR has been initialized.
+   */
+  public fun isHandInteractionSupported(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHandInteractionSupportedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns the capabilities of the eye gaze interaction extension.
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
@@ -311,9 +384,52 @@ public open class OpenXRInterface : XRInterface() {
   public enum class HandMotionRange(
     id: Long,
   ) {
+    /**
+     * Full hand range, if user closes their hands, we make a full fist.
+     */
     HAND_MOTION_RANGE_UNOBSTRUCTED(0),
+    /**
+     * Conform to controller, if user closes their hands, the tracked data conforms to the shape of
+     * the controller.
+     */
     HAND_MOTION_RANGE_CONFORM_TO_CONTROLLER(1),
+    /**
+     * Maximum value for the motion range enum.
+     */
     HAND_MOTION_RANGE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
+  public enum class HandTrackedSource(
+    id: Long,
+  ) {
+    /**
+     * The source of hand tracking data is unknown (the extension is likely unsupported).
+     */
+    HAND_TRACKED_SOURCE_UNKNOWN(0),
+    /**
+     * The source of hand tracking is unobstructed, this means that an accurate method of hand
+     * tracking is used, e.g. optical hand tracking, data gloves, etc.
+     */
+    HAND_TRACKED_SOURCE_UNOBSTRUCTED(1),
+    /**
+     * The source of hand tracking is a controller, bone positions are inferred from controller
+     * inputs.
+     */
+    HAND_TRACKED_SOURCE_CONTROLLER(2),
+    /**
+     * Maximum value for the hand tracked source enum.
+     */
+    HAND_TRACKED_SOURCE_MAX(3),
     ;
 
     public val id: Long
@@ -574,6 +690,9 @@ public open class OpenXRInterface : XRInterface() {
     public val getMotionRangePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "get_motion_range")
 
+    public val getHandTrackingSourcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_tracking_source")
+
     public val getHandJointFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_flags")
 
@@ -595,8 +714,23 @@ public open class OpenXRInterface : XRInterface() {
     public val isHandTrackingSupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_tracking_supported")
 
+    public val isHandInteractionSupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_interaction_supported")
+
     public val isEyeGazeInteractionSupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "is_eye_gaze_interaction_supported")
+
+    public val getVrsMinRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_min_radius")
+
+    public val setVrsMinRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_min_radius")
+
+    public val getVrsStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_strength")
+
+    public val setVrsStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_strength")
   }
 }
 

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.TypeManager
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -288,6 +289,25 @@ public open class SkeletonProfile : Resource() {
     TransferContext.callMethod(rawPtr, MethodBindings.setGroupPtr, NIL)
   }
 
+  /**
+   * Returns whether the bone at [boneIdx] is required for retargeting.
+   * This value is used by the bone map editor. If this method returns `true`, and no bone is
+   * assigned, the handle color will be red on the bone map editor.
+   */
+  public fun isRequired(boneIdx: Int): Boolean {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.isRequiredPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Sets the required status for bone [boneIdx] to [required].
+   */
+  public fun setRequired(boneIdx: Int, required: Boolean): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to required)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRequiredPtr, NIL)
+  }
+
   public enum class TailDirection(
     id: Long,
   ) {
@@ -395,5 +415,11 @@ public open class SkeletonProfile : Resource() {
     public val getGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonProfile", "get_group")
 
     public val setGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonProfile", "set_group")
+
+    public val isRequiredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonProfile", "is_required")
+
+    public val setRequiredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_required")
   }
 }

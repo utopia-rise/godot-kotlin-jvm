@@ -134,6 +134,21 @@ public open class Button : BaseButton() {
     }
 
   /**
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
+   * node's bounding rectangle.
+   */
+  public var autowrapMode: TextServer.AutowrapMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    }
+
+  /**
    * When this property is enabled, text that is too large to fit the button is clipped, when
    * disabled the Button will always be wide enough to hold the text.
    */
@@ -241,6 +256,12 @@ public open class Button : BaseButton() {
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Button", "get_text_overrun_behavior")
+
+    public val setAutowrapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "set_autowrap_mode")
+
+    public val getAutowrapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "get_autowrap_mode")
 
     public val setTextDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Button", "set_text_direction")

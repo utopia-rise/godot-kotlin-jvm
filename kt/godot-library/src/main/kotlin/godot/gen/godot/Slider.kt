@@ -28,7 +28,8 @@ import kotlin.Suppress
 @GodotBaseType
 public open class Slider internal constructor() : Range() {
   /**
-   * Emitted when dragging is started.
+   * Emitted when dragging is started. This is emitted before the corresponding [signal
+   * Range.value_changed] signal.
    */
   public val dragStarted: Signal0 by signal()
 

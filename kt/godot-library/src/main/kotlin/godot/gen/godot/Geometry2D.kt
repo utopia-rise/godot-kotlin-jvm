@@ -170,6 +170,9 @@ public object Geometry2D : Object() {
   /**
    * Returns `true` if [polygon]'s vertices are ordered in clockwise order, otherwise returns
    * `false`.
+   * **Note:** Assumes a Cartesian coordinate system where `+x` is right and `+y` is up. If using
+   * screen coordinates (`+y` is down), the result will need to be flipped (i.e. a `true` result will
+   * indicate counter-clockwise).
    */
   public fun isPolygonClockwise(polygon: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)

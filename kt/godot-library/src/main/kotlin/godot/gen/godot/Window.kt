@@ -330,6 +330,23 @@ public open class Window : Viewport() {
     }
 
   /**
+   * If `true`, and the [Window] is [transient], this window will (at the time of becoming visible)
+   * become transient to the currently focused window instead of the immediate parent window in the
+   * hierarchy. Note that the transient parent is assigned at the time this window becomes visible, so
+   * changing it afterwards has no effect until re-shown.
+   */
+  public var transientToFocused: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isTransientToFocusedPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setTransientToFocusedPtr, NIL)
+    }
+
+  /**
    * If `true`, the [Window] will be in exclusive mode. Exclusive windows are always on top of their
    * parent and will block all input going to the parent [Window].
    * Needs [transient] enabled to work.
@@ -393,9 +410,8 @@ public open class Window : Viewport() {
    * windows.
    * **Note:** Transparency support is implemented on Linux, macOS and Windows, but availability
    * might vary depending on GPU driver, display manager, and compositor capabilities.
-   * **Note:** This property has no effect if either
-   * [ProjectSettings.display/window/perPixelTransparency/allowed], or the window's
-   * [Viewport.transparentBg] is set to `false`.
+   * **Note:** This property has no effect if
+   * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
    */
   public var transparent: Boolean
     get() {
@@ -470,6 +486,20 @@ public open class Window : Viewport() {
     set(`value`) {
       TransferContext.writeArguments(LONG to 7L, BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+    }
+
+  /**
+   * If `true`, native window will be used regardless of parent viewport and project settings.
+   */
+  public var forceNative: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getForceNativePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setForceNativePtr, NIL)
     }
 
   /**
@@ -814,6 +844,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns the window's position including its border.
+   * **Note:** If [visible] is `false`, this method returns the same value as [position].
    */
   public fun getPositionWithDecorations(): Vector2i {
     TransferContext.writeArguments()
@@ -823,6 +854,7 @@ public open class Window : Viewport() {
 
   /**
    * Returns the window's size including its border.
+   * **Note:** If [visible] is `false`, this method returns the same value as [size].
    */
   public fun getSizeWithDecorations(): Vector2i {
     TransferContext.writeArguments()
@@ -849,7 +881,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Moves the [Window] on top of other windows and focuses it.
+   * Causes the window to grab focus, allowing it to receive user input.
    */
   public fun moveToForeground(): Unit {
     TransferContext.writeArguments()
@@ -1381,6 +1413,15 @@ public open class Window : Viewport() {
   /**
    * Shows the [Window] and makes it transient (see [transient]). If [rect] is provided, it will be
    * set as the [Window]'s size. Fails if called on the main window.
+   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `true` (single-window mode),
+   * [rect]'s coordinates are global and relative to the main window's top-left corner (excluding
+   * window decorations). If [rect]'s position coordinates are negative, the window will be located
+   * outside the main window and may not be visible as a result.
+   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false` (multi-window mode),
+   * [rect]'s coordinates are global and relative to the top-left corner of the leftmost screen. If
+   * [rect]'s position coordinates are negative, the window will be placed at the top-left corner of
+   * the screen.
+   * **Note:** [rect] must be in global coordinates if specified.
    */
   @JvmOverloads
   public fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
@@ -1885,6 +1926,12 @@ public open class Window : Viewport() {
 
     public val isTransientPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "is_transient")
 
+    public val setTransientToFocusedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_transient_to_focused")
+
+    public val isTransientToFocusedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_transient_to_focused")
+
     public val setExclusivePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_exclusive")
 
     public val isExclusivePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "is_exclusive")
@@ -1907,6 +1954,12 @@ public open class Window : Viewport() {
 
     public val getContentsMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_contents_minimum_size")
+
+    public val setForceNativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_force_native")
+
+    public val getForceNativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_force_native")
 
     public val setContentScaleSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "set_content_scale_size")

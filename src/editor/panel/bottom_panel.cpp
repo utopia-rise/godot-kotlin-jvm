@@ -6,7 +6,7 @@
 #include "editor/build/build_manager.h"
 #include "editor/godot_kotlin_jvm_editor.h"
 
-#include <editor/editor_scale.h>
+#include <editor/themes/editor_scale.h>
 
 BottomPanel::BottomPanel() :
   log_scroll_container(memnew(ScrollContainer)),

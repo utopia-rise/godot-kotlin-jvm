@@ -45,9 +45,8 @@ import kotlin.Unit
  * are baked again.
  * **Note:** Lightmap baking on [CSGShape3D]s and [PrimitiveMesh]es is not supported, as these
  * cannot store UV2 data required for baking.
- * **Note:** If no custom lightmappers are installed, [LightmapGI] can only be baked when using the
- * Vulkan backend (Forward+ or Mobile), not OpenGL. Additionally, [LightmapGI] rendering is not
- * currently supported when using the OpenGL backend (Compatibility).
+ * **Note:** If no custom lightmappers are installed, [LightmapGI] can only be baked from devices
+ * that support the Forward+ or Mobile rendering backends.
  */
 @GodotBaseType
 public open class LightmapGI : VisualInstance3D() {
@@ -192,6 +191,23 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   /**
+   * The distance in pixels from which the denoiser samples. Lower values preserve more details, but
+   * may give blotchy results if the lightmap quality is not high enough. Only effective if
+   * [useDenoiser] is `true` and [ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to
+   * JNLM.
+   */
+  public var denoiserRange: Int
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserRangePtr, LONG)
+      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.toLong())
+      TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserRangePtr, NIL)
+    }
+
+  /**
    * The bias to use when computing shadows. Increasing [bias] can fix shadow acne on the resulting
    * baked lightmap, but can introduce peter-panning (shadows not connecting to their casters).
    * Real-time [Light3D] shadows are not affected by this [bias] property.
@@ -205,6 +221,23 @@ public open class LightmapGI : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+    }
+
+  /**
+   * Scales the lightmap texel density of all meshes for the current bake. This is a multiplier that
+   * builds upon the existing lightmap texel size defined in each imported 3D scene, along with the
+   * per-mesh density multiplier (which is designed to be used when the same mesh is used at different
+   * scales). Lower values will result in faster bake times.
+   */
+  public var texelScale: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getTexelScalePtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setTexelScalePtr, NIL)
     }
 
   /**
@@ -490,6 +523,14 @@ public open class LightmapGI : VisualInstance3D() {
      * marked for baking.
      */
     BAKE_ERROR_TEXTURE_SIZE_TOO_SMALL(9),
+    /**
+     * Lightmap baking failed as the lightmap is too small.
+     */
+    BAKE_ERROR_LIGHTMAP_TOO_SMALL(10),
+    /**
+     * Lightmap baking failed as the lightmap was unable to fit into an atlas.
+     */
+    BAKE_ERROR_ATLAS_TOO_SMALL(11),
     ;
 
     public val id: Long
@@ -596,6 +637,12 @@ public open class LightmapGI : VisualInstance3D() {
     public val getEnvironmentCustomEnergyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_energy")
 
+    public val setTexelScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_texel_scale")
+
+    public val getTexelScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_texel_scale")
+
     public val setMaxTextureSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "set_max_texture_size")
 
@@ -613,6 +660,12 @@ public open class LightmapGI : VisualInstance3D() {
 
     public val getDenoiserStrengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength")
+
+    public val setDenoiserRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_range")
+
+    public val getDenoiserRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_range")
 
     public val setInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_interior")
 

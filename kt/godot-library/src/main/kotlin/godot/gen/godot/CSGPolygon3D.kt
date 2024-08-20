@@ -169,7 +169,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   /**
-   * When [mode] is [MODE_PATH], the [PathRotation] method used to rotate the [polygon] as it is
+   * When [mode] is [MODE_PATH], the path rotation method used to rotate the [polygon] as it is
    * extruded.
    */
   public var pathRotation: PathRotation

@@ -17,6 +17,12 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * The JavaClassWrapper singleton provides a way for the Godot application to send and receive data
+ * through the [url=https://developer.android.com/training/articles/perf-jni]Java Native
+ * Interface[/url] (JNI).
+ * **Note:** This singleton is only available in Android builds.
+ */
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Boolean {
@@ -24,6 +30,12 @@ public object JavaClassWrapper : Object() {
     return false
   }
 
+  /**
+   * Wraps a class defined in Java, and returns it as a [JavaClass] [Object] type that Godot can
+   * interact with.
+   * **Note:** This method only works on Android. On every other platform, this method does nothing
+   * and returns an empty [JavaClass].
+   */
   public fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)

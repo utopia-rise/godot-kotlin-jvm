@@ -439,8 +439,9 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the surface normal of the floor at the last collision point. Only valid after calling
+   * Returns the collision normal of the floor at the last collision point. Only valid after calling
    * [moveAndSlide] and when [isOnFloor] returns `true`.
+   * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public fun getFloorNormal(): Vector2 {
     TransferContext.writeArguments()
@@ -449,8 +450,9 @@ public open class CharacterBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns the surface normal of the wall at the last collision point. Only valid after calling
+   * Returns the collision normal of the wall at the last collision point. Only valid after calling
    * [moveAndSlide] and when [isOnWall] returns `true`.
+   * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public fun getWallNormal(): Vector2 {
     TransferContext.writeArguments()

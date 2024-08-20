@@ -202,7 +202,7 @@ public open class MeshLibrary : Resource() {
   }
 
   /**
-   * Returns the first item with the given name.
+   * Returns the first item with the given name, or `-1` if no item is found.
    */
   public fun findItemByName(name: String): Int {
     TransferContext.writeArguments(STRING to name)

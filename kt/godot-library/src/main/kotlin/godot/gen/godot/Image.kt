@@ -108,6 +108,15 @@ public open class Image : Resource() {
   }
 
   /**
+   * Returns size (in bytes) of the image's raw data.
+   */
+  public fun getDataSize(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  /**
    * Converts the image's format. See [Format] constants.
    */
   public fun convert(format: Format): Unit {
@@ -130,10 +139,10 @@ public open class Image : Resource() {
    * Returns the offset where the image's mipmap with index [mipmap] is stored in the [data]
    * dictionary.
    */
-  public fun getMipmapOffset(mipmap: Int): Int {
+  public fun getMipmapOffset(mipmap: Int): Long {
     TransferContext.writeArguments(LONG to mipmap.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getMipmapOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -827,7 +836,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Loads an image from the string contents of a SVG file (**.svg**).
+   * Loads an image from the string contents of an SVG file (**.svg**).
    * **Note:** This method is only available in engine builds with the SVG module enabled. By
    * default, the SVG module is enabled, but it can be disabled at build-time using the
    * `module_svg_enabled=no` SCons option.
@@ -1048,7 +1057,7 @@ public open class Image : Resource() {
     FORMAT_DXT5_RA_AS_RG(34),
     /**
      * [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable
-     * Texture Compression[/url]. This implements the 4x4 (high quality) mode.
+     * Texture Compression[/url]. This implements the 4×4 (high quality) mode.
      */
     FORMAT_ASTC_4x4(35),
     /**
@@ -1057,7 +1066,7 @@ public open class Image : Resource() {
     FORMAT_ASTC_4x4_HDR(36),
     /**
      * [url=https://en.wikipedia.org/wiki/Adaptive_scalable_texture_compression]Adaptive Scalable
-     * Texture Compression[/url]. This implements the 8x8 (low quality) mode.
+     * Texture Compression[/url]. This implements the 8×8 (low quality) mode.
      */
     FORMAT_ASTC_8x8(37),
     /**
@@ -1265,11 +1274,11 @@ public open class Image : Resource() {
     id: Long,
   ) {
     /**
-     * Hint to indicate that the high quality 4x4 ASTC compression format should be used.
+     * Hint to indicate that the high quality 4×4 ASTC compression format should be used.
      */
     ASTC_FORMAT_4x4(0),
     /**
-     * Hint to indicate that the low quality 8x8 ASTC compression format should be used.
+     * Hint to indicate that the low quality 8×8 ASTC compression format should be used.
      */
     ASTC_FORMAT_8x8(1),
     ;
@@ -1307,6 +1316,21 @@ public open class Image : Resource() {
     ): Image? {
       TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
       TransferContext.callMethod(0, MethodBindings.createPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    }
+
+    /**
+     * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
+     * `true`, then generate mipmaps for this image. See the [generateMipmaps].
+     */
+    public fun createEmpty(
+      width: Int,
+      height: Int,
+      useMipmaps: Boolean,
+      format: Format,
+    ): Image? {
+      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
+      TransferContext.callMethod(0, MethodBindings.createEmptyPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as Image?)
     }
 
@@ -1350,6 +1374,8 @@ public open class Image : Resource() {
 
     public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "get_data")
 
+    public val getDataSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "get_data_size")
+
     public val convertPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "convert")
 
     public val getMipmapCountPtr: VoidPtr =
@@ -1376,6 +1402,8 @@ public open class Image : Resource() {
     public val clearMipmapsPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "clear_mipmaps")
 
     public val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create")
+
+    public val createEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create_empty")
 
     public val createFromDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "create_from_data")

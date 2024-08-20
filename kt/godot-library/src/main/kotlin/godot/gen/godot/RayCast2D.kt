@@ -28,8 +28,7 @@ import kotlin.Unit
 
 /**
  * A raycast represents a ray from its origin to its [targetPosition] that finds the closest
- * [CollisionObject2D] along its path, if it intersects any. This is useful for a lot of things, such
- * as
+ * [CollisionObject2D] along its path, if it intersects any.
  * [RayCast2D] can ignore some objects by adding them to an exception list, by making its detection
  * reporting ignore [Area2D]s ([collideWithAreas]) or [PhysicsBody2D]s ([collideWithBodies]), or by
  * configuring physics layers.
@@ -241,10 +240,11 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns the collision point at which the ray intersects the closest object. If [hitFromInside]
-   * is `true` and the ray starts inside of a collision shape, this function will return the origin
-   * point of the ray.
-   * **Note:** This point is in the **global** coordinate system.
+   * Returns the collision point at which the ray intersects the closest object, in the global
+   * coordinate system. If [hitFromInside] is `true` and the ray starts inside of a collision shape,
+   * this function will return the origin point of the ray.
+   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
+   * returned point is valid and up-to-date.
    */
   public fun getCollisionPoint(): Vector2 {
     TransferContext.writeArguments()
@@ -255,6 +255,8 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns the normal of the intersecting object's shape at the collision point, or `Vector2(0,
    * 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
+   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
+   * returned normal is valid and up-to-date.
    */
   public fun getCollisionNormal(): Vector2 {
     TransferContext.writeArguments()

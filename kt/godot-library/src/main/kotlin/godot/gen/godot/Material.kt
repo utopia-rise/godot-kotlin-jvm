@@ -33,7 +33,7 @@ public open class Material : Resource() {
   /**
    * Sets the render priority for objects in 3D scenes. Higher priority objects will be sorted in
    * front of lower priority objects. In other words, all objects with [renderPriority] `1` will render
-   * before all objects with [renderPriority] `0`).
+   * before all objects with [renderPriority] `0`.
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
    * **Note:** This will not impact how transparent objects are sorted relative to opaque objects or
    * how dynamic meshes will be sorted relative to other opaque meshes. This is because all transparent

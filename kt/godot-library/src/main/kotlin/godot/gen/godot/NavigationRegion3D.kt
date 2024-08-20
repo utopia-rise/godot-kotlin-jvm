@@ -201,7 +201,6 @@ public open class NavigationRegion3D : Node3D() {
 
   /**
    * Returns the [RID] of this region on the [NavigationServer3D].
-   * *Deprecated.* Use [getRid] instead.
    */
   public fun getRegionRid(): RID {
     TransferContext.writeArguments()
@@ -222,6 +221,15 @@ public open class NavigationRegion3D : Node3D() {
   public fun bakeNavigationMesh(onThread: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to onThread)
     TransferContext.callMethod(rawPtr, MethodBindings.bakeNavigationMeshPtr, NIL)
+  }
+
+  /**
+   * Returns `true` when the [NavigationMesh] is being baked on a background thread.
+   */
+  public fun isBaking(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBakingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object
@@ -282,5 +290,8 @@ public open class NavigationRegion3D : Node3D() {
 
     public val bakeNavigationMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationRegion3D", "bake_navigation_mesh")
+
+    public val isBakingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion3D", "is_baking")
   }
 }

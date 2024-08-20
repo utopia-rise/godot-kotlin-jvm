@@ -48,7 +48,8 @@ public open class AtlasTexture : Texture2D() {
     }
 
   /**
-   * The region used to draw the [atlas].
+   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
+   * from [atlas] size will be used for that axis instead.
    */
   @CoreTypeLocalCopy
   public var region: Rect2
@@ -100,7 +101,8 @@ public open class AtlasTexture : Texture2D() {
   }
 
   /**
-   * The region used to draw the [atlas].
+   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
+   * from [atlas] size will be used for that axis instead.
    *
    * This is a helper function to make dealing with local copies easier. 
    *

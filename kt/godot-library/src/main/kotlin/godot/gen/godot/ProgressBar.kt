@@ -52,6 +52,36 @@ public open class ProgressBar : Range() {
       TransferContext.callMethod(rawPtr, MethodBindings.setShowPercentagePtr, NIL)
     }
 
+  /**
+   * When set to `true`, the progress bar indicates that something is happening with an animation,
+   * but does not show the fill percentage or value.
+   */
+  public var indeterminate: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setIndeterminatePtr, NIL)
+    }
+
+  /**
+   * If `false`, the [indeterminate] animation will be paused in the editor.
+   */
+  public var editorPreviewIndeterminate: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr,
+          BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_PROGRESSBAR, scriptIndex)
     return true
@@ -106,5 +136,17 @@ public open class ProgressBar : Range() {
 
     public val isPercentageShownPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ProgressBar", "is_percentage_shown")
+
+    public val setIndeterminatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "set_indeterminate")
+
+    public val isIndeterminatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "is_indeterminate")
+
+    public val setEditorPreviewIndeterminatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "set_editor_preview_indeterminate")
+
+    public val isEditorPreviewIndeterminateEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProgressBar", "is_editor_preview_indeterminate_enabled")
   }
 }

@@ -31,7 +31,7 @@ import kotlin.Unit
  * To parse XML, you must open a file with the [open] method or a buffer with the [openBuffer]
  * method. Then, the [read] method must be called to parse the next nodes. Most of the methods take
  * into consideration the currently parsed node.
- * Here is an example of using [XMLParser] to parse a SVG file (which is based on XML), printing
+ * Here is an example of using [XMLParser] to parse an SVG file (which is based on XML), printing
  * each element and its attributes as a dictionary:
  *
  * gdscript:
@@ -91,8 +91,10 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the name of an element node. This method will raise an error if the currently parsed
-   * node is not of [NODE_ELEMENT] or [NODE_ELEMENT_END] type.
+   * Returns the name of a node. This method will raise an error if the currently parsed node is a
+   * text node.
+   * **Note:** The content of a [NODE_CDATA] node and the comment string of a [NODE_COMMENT] node
+   * are also considered names.
    */
   public fun getNodeName(): String {
     TransferContext.writeArguments()

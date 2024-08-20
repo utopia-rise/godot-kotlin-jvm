@@ -50,6 +50,56 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
+   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE],
+   * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
+   * equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the
+   * texture fills and tends towards [radialFillDegrees].
+   */
+  public var radialInitialAngle: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadialInitialAnglePtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadialInitialAnglePtr, NIL)
+    }
+
+  /**
+   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE],
+   * [FILL_COUNTER_CLOCKWISE], or [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is
+   * equal to its `max_value`, the texture fills up to this angle.
+   * See [Range.value], [Range.maxValue].
+   */
+  public var radialFillDegrees: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFillDegreesPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setFillDegreesPtr, NIL)
+    }
+
+  /**
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
+   * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   */
+  @CoreTypeLocalCopy
+  public var radialCenterOffset: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getRadialCenterOffsetPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setRadialCenterOffsetPtr, NIL)
+    }
+
+  /**
    * If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*`
    * properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial
    * [fillMode], this setting will enable stretching.
@@ -66,7 +116,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * The width of the 9-patch's left column.
+   * The width of the 9-patch's left column. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginLeft: Int
     get() {
@@ -80,7 +130,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * The height of the 9-patch's top row.
+   * The height of the 9-patch's top row. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginTop: Int
     get() {
@@ -94,7 +144,7 @@ public open class TextureProgressBar : Range() {
     }
 
   /**
-   * The width of the 9-patch's right column.
+   * The width of the 9-patch's right column. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginRight: Int
     get() {
@@ -110,7 +160,7 @@ public open class TextureProgressBar : Range() {
   /**
    * The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and
    * side will have a height of 16 pixels. You can set all 4 margin values individually to create
-   * panels with non-uniform borders.
+   * panels with non-uniform borders. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginBottom: Int
     get() {
@@ -231,59 +281,36 @@ public open class TextureProgressBar : Range() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTintProgressPtr, NIL)
     }
 
-  /**
-   * Starting angle for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or
-   * [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't
-   * show up at all. When the `value` increases, the texture fills and tends towards
-   * [radialFillDegrees].
-   */
-  public var radialInitialAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialInitialAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialInitialAnglePtr, NIL)
-    }
-
-  /**
-   * Upper limit for the fill of [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or
-   * [FILL_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills
-   * up to this angle.
-   * See [Range.value], [Range.maxValue].
-   */
-  public var radialFillDegrees: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFillDegreesPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFillDegreesPtr, NIL)
-    }
-
-  /**
-   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
-   */
-  @CoreTypeLocalCopy
-  public var radialCenterOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialCenterOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialCenterOffsetPtr, NIL)
-    }
-
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_TEXTUREPROGRESSBAR, scriptIndex)
     return true
   }
+
+  /**
+   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
+   * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = textureprogressbar.radialCenterOffset
+   * //Your changes
+   * textureprogressbar.radialCenterOffset = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun radialCenterOffsetMutate(block: Vector2.() -> Unit): Vector2 =
+      radialCenterOffset.apply{
+      block(this)
+      radialCenterOffset = this
+  }
+
 
   /**
    * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
@@ -381,31 +408,6 @@ public open class TextureProgressBar : Range() {
   public open fun tintProgressMutate(block: Color.() -> Unit): Color = tintProgress.apply{
       block(this)
       tintProgress = this
-  }
-
-
-  /**
-   * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE] or [FILL_COUNTER_CLOCKWISE].
-   *
-   * This is a helper function to make dealing with local copies easier. 
-   *
-   * For more information, see our
-   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
-   *
-   * Allow to directly modify the local copy of the property and assign it back to the Object.
-   *
-   * Prefer that over writing:
-   * ``````
-   * val myCoreType = textureprogressbar.radialCenterOffset
-   * //Your changes
-   * textureprogressbar.radialCenterOffset = myCoreType
-   * ``````
-   */
-  @CoreTypeHelper
-  public open fun radialCenterOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      radialCenterOffset.apply{
-      block(this)
-      radialCenterOffset = this
   }
 
 

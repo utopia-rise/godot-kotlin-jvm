@@ -68,6 +68,8 @@ public object ResourceLoader : Object() {
    * resource at [path]. See [ThreadLoadStatus] for possible return values.
    * An array variable can optionally be passed via [progress], and will return a one-element array
    * containing the percentage of completion of the threaded loading.
+   * **Note:** The recommended way of using this method is to call it during different frames (e.g.,
+   * in [Node.Process], instead of a loop).
    */
   @JvmOverloads
   public fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
@@ -81,6 +83,8 @@ public object ResourceLoader : Object() {
    * Returns the resource loaded by [loadThreadedRequest].
    * If this is called before the loading thread is done (i.e. [loadThreadedGetStatus] is not
    * [THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.
+   * However, it's recommended to use [loadThreadedGetStatus] to known when the load has actually
+   * completed.
    */
   public fun loadThreadedGet(path: String): Resource? {
     TransferContext.writeArguments(STRING to path)
@@ -98,7 +102,8 @@ public object ResourceLoader : Object() {
    * type hint, for example [Image].
    * The [cacheMode] property defines whether and how the cache should be used or updated when
    * loading the resource. See [CacheMode] for details.
-   * Returns an empty resource if no [ResourceFormatLoader] could handle the file.
+   * Returns an empty resource if no [ResourceFormatLoader] could handle the file, and prints an
+   * error if no file is found at the specified path.
    * GDScript has a simplified [@GDScript.load] built-in method which can be used in most
    * situations, leaving the use of [ResourceLoader] for more advanced scenarios.
    * **Note:** If [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`,
@@ -191,6 +196,8 @@ public object ResourceLoader : Object() {
    * An optional [typeHint] can be used to further specify the [Resource] type that should be
    * handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a
    * type hint, for example [Image].
+   * **Note:** If you use [Resource.takeOverPath], this method will return `true` for the taken path
+   * even if the resource wasn't saved (i.e. exists only in resource cache).
    */
   @JvmOverloads
   public fun exists(path: String, typeHint: String = ""): Boolean {
@@ -242,9 +249,36 @@ public object ResourceLoader : Object() {
   public enum class CacheMode(
     id: Long,
   ) {
+    /**
+     * Neither the main resource (the one requested to be loaded) nor any of its subresources are
+     * retrieved from cache nor stored into it. Dependencies (external resources) are loaded with
+     * [CACHE_MODE_REUSE].
+     */
     CACHE_MODE_IGNORE(0),
+    /**
+     * The main resource (the one requested to be loaded), its subresources, and its dependencies
+     * (external resources) are retrieved from cache if present, instead of loaded. Those not cached
+     * are loaded and then stored into the cache. The same rules are propagated recursively down the
+     * tree of dependencies (external resources).
+     */
     CACHE_MODE_REUSE(1),
+    /**
+     * Like [CACHE_MODE_REUSE], but the cache is checked for the main resource (the one requested to
+     * be loaded) as well as for each of its subresources. Those already in the cache, as long as the
+     * loaded and cached types match, have their data refreshed from storage into the already existing
+     * instances. Otherwise, they are recreated as completely new objects.
+     */
     CACHE_MODE_REPLACE(2),
+    /**
+     * Like [CACHE_MODE_IGNORE], but propagated recursively down the tree of dependencies (external
+     * resources).
+     */
+    CACHE_MODE_IGNORE_DEEP(3),
+    /**
+     * Like [CACHE_MODE_REPLACE], but propagated recursively down the tree of dependencies (external
+     * resources).
+     */
+    CACHE_MODE_REPLACE_DEEP(4),
     ;
 
     public val id: Long

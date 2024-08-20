@@ -256,6 +256,21 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
+   * The playback type of the stream player. If set other than to the default value, it will force
+   * that playback type.
+   */
+  public var playbackType: AudioServer.PlaybackType
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackTypePtr, LONG)
+      return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
+    }
+
+  /**
    * If `true`, the audio should be attenuated according to the direction of the sound.
    */
   public var emissionAngleEnabled: Boolean
@@ -594,5 +609,11 @@ public open class AudioStreamPlayer3D : Node3D() {
 
     public val getStreamPlaybackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_stream_playback")
+
+    public val setPlaybackTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_playback_type")
+
+    public val getPlaybackTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_playback_type")
   }
 }

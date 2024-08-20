@@ -7,8 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TypeManager
+import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
+import godot.core.memory.TransferContext
 import godot.util.VoidPtr
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -79,6 +84,38 @@ public open class AudioStreamPlayback : RefCounted() {
   public open fun _tagUsedStreams(): Unit {
   }
 
+  /**
+   * Set the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
+   */
+  public open fun _setParameter(name: StringName, `value`: Any?): Unit {
+  }
+
+  /**
+   * Return the current value of a playback parameter by name (see [AudioStream.GetParameterList]).
+   */
+  public open fun _getParameter(name: StringName): Any? {
+    throw NotImplementedError("_get_parameter is not implemented for AudioStreamPlayback")
+  }
+
+  /**
+   * Associates [AudioSamplePlayback] to this [AudioStreamPlayback] for playing back the audio
+   * sample of this stream.
+   */
+  public fun setSamplePlayback(playbackSample: AudioSamplePlayback): Unit {
+    TransferContext.writeArguments(OBJECT to playbackSample)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSamplePlaybackPtr, NIL)
+  }
+
+  /**
+   * Returns the [AudioSamplePlayback] associated with this [AudioStreamPlayback] for playing back
+   * the audio sample of this stream.
+   */
+  public fun getSamplePlayback(): AudioSamplePlayback? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSamplePlaybackPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as AudioSamplePlayback?)
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -101,5 +138,17 @@ public open class AudioStreamPlayback : RefCounted() {
 
     public val _tagUsedStreamsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayback", "_tag_used_streams")
+
+    public val _setParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "_set_parameter")
+
+    public val _getParameterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "_get_parameter")
+
+    public val setSamplePlaybackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "set_sample_playback")
+
+    public val getSamplePlaybackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "get_sample_playback")
   }
 }

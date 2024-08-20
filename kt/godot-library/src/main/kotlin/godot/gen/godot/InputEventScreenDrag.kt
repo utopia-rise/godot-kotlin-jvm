@@ -107,6 +107,10 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   /**
    * The drag position relative to the previous position (position at the last frame).
+   * **Note:** [relative] is automatically scaled according to the content scale factor, which is
+   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
+   * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
+   * this, use [screenRelative] instead.
    */
   @CoreTypeLocalCopy
   public var relative: Vector2
@@ -121,7 +125,29 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   /**
+   * The unscaled drag position relative to the previous position in screen coordinates (position at
+   * the last frame). This position is *not* scaled according to the content scale factor or calls to
+   * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
+   * the project's stretch mode.
+   */
+  @CoreTypeLocalCopy
+  public var screenRelative: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getScreenRelativePtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScreenRelativePtr, NIL)
+    }
+
+  /**
    * The drag velocity.
+   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
+   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
+   * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
+   * this, use [screenVelocity] instead.
    */
   @CoreTypeLocalCopy
   public var velocity: Vector2
@@ -133,6 +159,23 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+    }
+
+  /**
+   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not*
+   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
+   * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
+   */
+  @CoreTypeLocalCopy
+  public var screenVelocity: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getScreenVelocityPtr, VECTOR2)
+      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setScreenVelocityPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -192,6 +235,10 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   /**
    * The drag position relative to the previous position (position at the last frame).
+   * **Note:** [relative] is automatically scaled according to the content scale factor, which is
+   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
+   * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
+   * this, use [screenRelative] instead.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -215,7 +262,38 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
 
   /**
+   * The unscaled drag position relative to the previous position in screen coordinates (position at
+   * the last frame). This position is *not* scaled according to the content scale factor or calls to
+   * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
+   * the project's stretch mode.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventscreendrag.screenRelative
+   * //Your changes
+   * inputeventscreendrag.screenRelative = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun screenRelativeMutate(block: Vector2.() -> Unit): Vector2 = screenRelative.apply{
+      block(this)
+      screenRelative = this
+  }
+
+
+  /**
    * The drag velocity.
+   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
+   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
+   * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
+   * this, use [screenVelocity] instead.
    *
    * This is a helper function to make dealing with local copies easier. 
    *
@@ -235,6 +313,32 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public open fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
       block(this)
       velocity = this
+  }
+
+
+  /**
+   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not*
+   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
+   * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
+   *
+   * This is a helper function to make dealing with local copies easier. 
+   *
+   * For more information, see our
+   * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
+   *
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = inputeventscreendrag.screenVelocity
+   * //Your changes
+   * inputeventscreendrag.screenVelocity = myCoreType
+   * ``````
+   */
+  @CoreTypeHelper
+  public open fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply{
+      block(this)
+      screenVelocity = this
   }
 
 
@@ -277,10 +381,22 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     public val getRelativePtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_relative")
 
+    public val setScreenRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_relative")
+
+    public val getScreenRelativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_relative")
+
     public val setVelocityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_velocity")
 
     public val getVelocityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_velocity")
+
+    public val setScreenVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_velocity")
+
+    public val getScreenVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_velocity")
   }
 }

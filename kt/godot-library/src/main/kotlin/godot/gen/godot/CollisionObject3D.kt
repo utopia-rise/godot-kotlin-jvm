@@ -43,12 +43,12 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionObject3D internal constructor() : Node3D() {
   /**
-   * Emitted when the object receives an unhandled [InputEvent]. [position] is the location in world
-   * space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is the
-   * normal vector of the surface at that point.
+   * Emitted when the object receives an unhandled [InputEvent]. [eventPosition] is the location in
+   * world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is
+   * the normal vector of the surface at that point.
    */
   public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
-      "event", "position", "normal", "shapeIdx")
+      "event", "eventPosition", "normal", "shapeIdx")
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable]
@@ -176,7 +176,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   }
 
   /**
-   * Receives unhandled [InputEvent]s. [position] is the location in world space of the mouse
+   * Receives unhandled [InputEvent]s. [eventPosition] is the location in world space of the mouse
    * pointer on the surface of the shape with index [shapeIdx] and [normal] is the normal vector of the
    * surface at that point. Connect to the [signal input_event] signal to easily pick up these events.
    * **Note:** [_inputEvent] requires [inputRayPickable] to be `true` and at least one
@@ -185,7 +185,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public open fun _inputEvent(
     camera: Camera3D,
     event: InputEvent,
-    position: Vector3,
+    eventPosition: Vector3,
     normal: Vector3,
     shapeIdx: Int,
   ): Unit {

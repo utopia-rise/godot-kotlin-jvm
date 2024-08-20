@@ -130,6 +130,67 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   /**
+   * If `true`, performs [AnimationMixer.capture] before playback automatically. This means just
+   * [playWithCapture] is executed with default arguments instead of [play].
+   * **Note:** Capture interpolation is only performed if the animation contains a capture track.
+   * See also [Animation.UPDATE_CAPTURE].
+   */
+  public var playbackAutoCapture: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isAutoCapturePtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCapturePtr, NIL)
+    }
+
+  /**
+   * See also [playWithCapture] and [AnimationMixer.capture].
+   * If [playbackAutoCaptureDuration] is negative value, the duration is set to the interval between
+   * the current position and the first key.
+   */
+  public var playbackAutoCaptureDuration: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureDurationPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureDurationPtr, NIL)
+    }
+
+  /**
+   * The transition type of the capture interpolation. See also [Tween.TransitionType].
+   */
+  public var playbackAutoCaptureTransitionType: Tween.TransitionType
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureTransitionTypePtr, LONG)
+      return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureTransitionTypePtr, NIL)
+    }
+
+  /**
+   * The ease type of the capture interpolation. See also [Tween.EaseType].
+   */
+  public var playbackAutoCaptureEaseType: Tween.EaseType
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureEaseTypePtr, LONG)
+      return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureEaseTypePtr, NIL)
+    }
+
+  /**
    * The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision.
    */
   public var playbackDefaultBlendTime: Double
@@ -257,6 +318,37 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
+   * See also [AnimationMixer.capture].
+   * You can use this method to use more detailed options for capture than those performed by
+   * [playbackAutoCapture]. When [playbackAutoCapture] is `false`, this method is almost the same as
+   * the following:
+   * [codeblock]
+   * capture(name, duration, trans_type, ease_type)
+   * play(name, custom_blend, custom_speed, from_end)
+   * [/codeblock]
+   * If [name] is blank, it specifies [assignedAnimation].
+   * If [duration] is a negative value, the duration is set to the interval between the current
+   * position and the first key, when [fromEnd] is `true`, uses the interval between the current
+   * position and the last key instead.
+   * **Note:** The [duration] takes [speedScale] into account, but [customSpeed] does not, because
+   * the capture cache is interpolated with the blend result and the result may contain multiple
+   * animations.
+   */
+  @JvmOverloads
+  public fun playWithCapture(
+    name: StringName = StringName(""),
+    duration: Double = -1.0,
+    customBlend: Double = -1.0,
+    customSpeed: Float = 1.0f,
+    fromEnd: Boolean = false,
+    transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
+    easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
+  ): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd, LONG to transType.id, LONG to easeType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.playWithCapturePtr, NIL)
+  }
+
+  /**
    * Pauses the currently playing animation. The [currentAnimationPosition] will be kept and calling
    * [play] or [playBackwards] without arguments or with the same animation name as [assignedAnimation]
    * will resume the animation.
@@ -290,7 +382,8 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Queues an animation for playback once the current one is done.
+   * Queues an animation for playback once the current animation and all previously queued
+   * animations are done.
    * **Note:** If a looped animation is currently playing, the queued animation will never play
    * unless the looped animation is stopped somehow.
    */
@@ -332,7 +425,8 @@ public open class AnimationPlayer : AnimationMixer() {
    * Seeks the animation to the [seconds] point in time (in seconds). If [update] is `true`, the
    * animation updates too, otherwise it updates at process time. Events between the current frame and
    * [seconds] are skipped.
-   * If [updateOnly] is true, the method / audio / animation playback tracks will not be processed.
+   * If [updateOnly] is `true`, the method / audio / animation playback tracks will not be
+   * processed.
    * **Note:** Seeking to the end of the animation doesn't emit [signal
    * AnimationMixer.animation_finished]. If you want to skip animation and emit the signal, use
    * [AnimationMixer.advance].
@@ -348,7 +442,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
+   * Sets the process notification in which to update animations.
    */
   public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -356,7 +450,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeProcess].
+   * Returns the process notification in which to update animations.
    */
   public fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
@@ -365,7 +459,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeMethod].
+   * Sets the call mode used for "Call Method" tracks.
    */
   public fun setMethodCallMode(mode: AnimationMethodCallMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
@@ -373,7 +467,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.AnimationCallbackModeMethod].
+   * Returns the call mode used for "Call Method" tracks.
    */
   public fun getMethodCallMode(): AnimationMethodCallMode {
     TransferContext.writeArguments()
@@ -382,7 +476,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.rootNode].
+   * Sets the node which node path references will travel from.
    */
   public fun setRoot(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -390,7 +484,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * For backward compatibility. See [AnimationMixer.rootNode].
+   * Returns the node which node path references will travel from.
    */
   public fun getRoot(): NodePath {
     TransferContext.writeArguments()
@@ -401,17 +495,8 @@ public open class AnimationPlayer : AnimationMixer() {
   public enum class AnimationProcessCallback(
     id: Long,
   ) {
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS].
-     */
     ANIMATION_PROCESS_PHYSICS(0),
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE].
-     */
     ANIMATION_PROCESS_IDLE(1),
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL].
-     */
     ANIMATION_PROCESS_MANUAL(2),
     ;
 
@@ -428,13 +513,7 @@ public open class AnimationPlayer : AnimationMixer() {
   public enum class AnimationMethodCallMode(
     id: Long,
   ) {
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_DEFERRED].
-     */
     ANIMATION_METHOD_CALL_DEFERRED(0),
-    /**
-     * For backward compatibility. See [AnimationMixer.ANIMATION_CALLBACK_MODE_METHOD_IMMEDIATE].
-     */
     ANIMATION_METHOD_CALL_IMMEDIATE(1),
     ;
 
@@ -469,10 +548,37 @@ public open class AnimationPlayer : AnimationMixer() {
     public val getDefaultBlendTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "get_default_blend_time")
 
+    public val setAutoCapturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_auto_capture")
+
+    public val isAutoCapturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "is_auto_capture")
+
+    public val setAutoCaptureDurationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_auto_capture_duration")
+
+    public val getAutoCaptureDurationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_auto_capture_duration")
+
+    public val setAutoCaptureTransitionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_auto_capture_transition_type")
+
+    public val getAutoCaptureTransitionTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_auto_capture_transition_type")
+
+    public val setAutoCaptureEaseTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "set_auto_capture_ease_type")
+
+    public val getAutoCaptureEaseTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "get_auto_capture_ease_type")
+
     public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "play")
 
     public val playBackwardsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationPlayer", "play_backwards")
+
+    public val playWithCapturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationPlayer", "play_with_capture")
 
     public val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationPlayer", "pause")
 

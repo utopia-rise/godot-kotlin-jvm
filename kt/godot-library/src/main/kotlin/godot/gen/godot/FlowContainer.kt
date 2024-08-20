@@ -41,6 +41,22 @@ public open class FlowContainer : Container() {
     }
 
   /**
+   * The wrap behavior of the last, partially filled row or column (must be one of
+   * [LAST_WRAP_ALIGNMENT_INHERIT], [LAST_WRAP_ALIGNMENT_BEGIN], [LAST_WRAP_ALIGNMENT_CENTER], or
+   * [LAST_WRAP_ALIGNMENT_END]).
+   */
+  public var lastWrapAlignment: LastWrapAlignmentMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getLastWrapAlignmentPtr, LONG)
+      return FlowContainer.LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setLastWrapAlignmentPtr, NIL)
+    }
+
+  /**
    * If `true`, the [FlowContainer] will arrange its children vertically, rather than horizontally.
    * Can't be changed when using [HFlowContainer] and [VFlowContainer].
    */
@@ -53,6 +69,23 @@ public open class FlowContainer : Container() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    }
+
+  /**
+   * If `true`, reverses fill direction. Horizontal [FlowContainer]s will fill rows bottom to top,
+   * vertical [FlowContainer]s will fill columns right to left.
+   * When using a vertical [FlowContainer] with a right to left [Control.layoutDirection], columns
+   * will fill left to right instead.
+   */
+  public var reverseFill: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isReverseFillPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setReverseFillPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -98,6 +131,41 @@ public open class FlowContainer : Container() {
     }
   }
 
+  public enum class LastWrapAlignmentMode(
+    id: Long,
+  ) {
+    /**
+     * The last partially filled row or column will wrap aligned to the previous row or column in
+     * accordance with [alignment].
+     */
+    LAST_WRAP_ALIGNMENT_INHERIT(0),
+    /**
+     * The last partially filled row or column will wrap aligned to the beginning of the previous
+     * row or column.
+     */
+    LAST_WRAP_ALIGNMENT_BEGIN(1),
+    /**
+     * The last partially filled row or column will wrap aligned to the center of the previous row
+     * or column.
+     */
+    LAST_WRAP_ALIGNMENT_CENTER(2),
+    /**
+     * The last partially filled row or column will wrap aligned to the end of the previous row or
+     * column.
+     */
+    LAST_WRAP_ALIGNMENT_END(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public companion object
 
   internal object MethodBindings {
@@ -110,9 +178,21 @@ public open class FlowContainer : Container() {
     public val getAlignmentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FlowContainer", "get_alignment")
 
+    public val setLastWrapAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment")
+
+    public val getLastWrapAlignmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment")
+
     public val setVerticalPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FlowContainer", "set_vertical")
 
     public val isVerticalPtr: VoidPtr = TypeManager.getMethodBindPtr("FlowContainer", "is_vertical")
+
+    public val setReverseFillPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FlowContainer", "set_reverse_fill")
+
+    public val isReverseFillPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FlowContainer", "is_reverse_fill")
   }
 }

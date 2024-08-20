@@ -57,7 +57,12 @@ public open class GraphElement : Container() {
    * Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle
    * (see [resizable]).
    */
-  public val resizeRequest: Signal1<Vector2> by signal("newMinsize")
+  public val resizeRequest: Signal1<Vector2> by signal("newSize")
+
+  /**
+   * Emitted when releasing the mouse button after dragging the resizer handle (see [resizable]).
+   */
+  public val resizeEnd: Signal1<Vector2> by signal("newSize")
 
   /**
    * Emitted when the GraphElement is dragged.
@@ -86,8 +91,8 @@ public open class GraphElement : Container() {
 
   /**
    * If `true`, the user can resize the GraphElement.
-   * **Note:** Dragging the handle will only emit the [signal resize_request] signal, the
-   * GraphElement needs to be resized manually.
+   * **Note:** Dragging the handle will only emit the [signal resize_request] and [signal
+   * resize_end] signals, the GraphElement needs to be resized manually.
    */
   public var resizable: Boolean
     get() {

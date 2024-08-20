@@ -41,7 +41,7 @@ import kotlin.jvm.JvmOverloads
  * internally to solve the bone chain and applies the results to the [Skeleton3D]
  * `bones_global_pose_override` property for all affected bones in the chain. If fully applied, this
  * overwrites any bone transform from [Animation]s or bone custom poses set by users. The applied
- * amount can be controlled with the [interpolation] property.
+ * amount can be controlled with the [SkeletonModifier3D.influence] property.
  * [codeblock]
  * # Apply IK effect automatically on every new frame (not the current)
  * skeleton_ik_node.start()
@@ -53,19 +53,18 @@ import kotlin.jvm.JvmOverloads
  * skeleton_ik_node.stop()
  *
  * # Apply full IK effect
- * skeleton_ik_node.set_interpolation(1.0)
+ * skeleton_ik_node.set_influence(1.0)
  *
  * # Apply half IK effect
- * skeleton_ik_node.set_interpolation(0.5)
+ * skeleton_ik_node.set_influence(0.5)
  *
  * # Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on
  * Skeleton)
- * skeleton_ik_node.set_interpolation(0.0)
+ * skeleton_ik_node.set_influence(0.0)
  * [/codeblock]
- * *Deprecated.* This class is deprecated, and might be removed in a future release.
  */
 @GodotBaseType
-public open class SkeletonIK3D : Node() {
+public open class SkeletonIK3D : SkeletonModifier3D() {
   /**
    * The name of the current root bone, the first bone in the IK chain.
    */
@@ -93,23 +92,6 @@ public open class SkeletonIK3D : Node() {
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setTipBonePtr, NIL)
-    }
-
-  /**
-   * Interpolation value for how much the IK results are applied to the current skeleton bone chain.
-   * A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0`
-   * will visually disable the SkeletonIK. A value at or below `0.01` also calls
-   * [Skeleton3D.clearBonesGlobalPoseOverride].
-   */
-  public var interpolation: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
     }
 
   /**
@@ -221,6 +203,22 @@ public open class SkeletonIK3D : Node() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxIterationsPtr, NIL)
+    }
+
+  /**
+   * Interpolation value for how much the IK results are applied to the current skeleton bone chain.
+   * A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0`
+   * will visually disable the SkeletonIK.
+   */
+  public var interpolation: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
     }
 
   public override fun new(scriptIndex: Int): Boolean {
@@ -336,12 +334,6 @@ public open class SkeletonIK3D : Node() {
 
     public val getTipBonePtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonIK3D", "get_tip_bone")
 
-    public val setInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_interpolation")
-
-    public val getInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_interpolation")
-
     public val setTargetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SkeletonIK3D", "set_target_transform")
 
@@ -392,5 +384,11 @@ public open class SkeletonIK3D : Node() {
     public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonIK3D", "start")
 
     public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonIK3D", "stop")
+
+    public val setInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_interpolation")
+
+    public val getInterpolationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_interpolation")
   }
 }

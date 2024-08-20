@@ -109,6 +109,8 @@ void JvmLanguage::profiling_start() {}
 
 void JvmLanguage::profiling_stop() {}
 
+void JvmLanguage::profiling_set_save_native_calls(bool p_enable) {}
+
 int JvmLanguage::profiling_get_accumulated_data(ProfilingInfo* p_info_arr, int p_info_max) {
     return 0;
 }
@@ -116,6 +118,8 @@ int JvmLanguage::profiling_get_accumulated_data(ProfilingInfo* p_info_arr, int p
 int JvmLanguage::profiling_get_frame_data(ProfilingInfo* p_info_arr, int p_info_max) {
     return 0;
 }
+
+void JvmLanguage::reload_scripts(const Array& p_scripts, bool p_soft_reload) {}
 
 void JvmLanguage::reload_all_scripts() {}
 

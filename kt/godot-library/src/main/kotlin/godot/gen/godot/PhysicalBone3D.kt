@@ -32,6 +32,9 @@ import kotlin.jvm.JvmOverloads
 /**
  * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D]
  * react to physics.
+ * **Note:** In order to detect physical bones with raycasts, the [SkeletonModifier3D.active]
+ * property of the parent [PhysicalBoneSimulator3D] must be `true` and the [Skeleton3D]'s bone must be
+ * assigned to [PhysicalBone3D] correctly; it means that [getBoneId] should return a valid id (`>= 0`).
  */
 @GodotBaseType
 public open class PhysicalBone3D : PhysicsBody3D() {
@@ -157,9 +160,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, internal force integration will be disabled (like gravity or air friction) for this
+   * If `true`, the standard force integration (like gravity or damping) will be disabled for this
    * body. Other than collision response, the body will only move as determined by the
-   * [_integrateForces] function, if defined.
+   * [_integrateForces] method, if that virtual method is overridden.
+   * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration]
+   * internally.
    */
   public var customIntegrator: Boolean
     get() {
@@ -412,9 +417,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   /**
    * Called during physics processing, allowing you to read and safely modify the simulation state
-   * for the object. By default, it works in addition to the usual physics behavior, but the
-   * [customIntegrator] property allows you to disable the default behavior and do fully custom force
-   * integration for a body.
+   * for the object. By default, it is called before the standard force integration, but the
+   * [customIntegrator] property allows you to disable the standard force integration and do fully
+   * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {
   }

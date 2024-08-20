@@ -42,6 +42,8 @@ import kotlin.Unit
  * it).
  * This node can also locally alter or override physics parameters (gravity, damping) and route
  * audio to custom audio buses.
+ * **Note:** Areas and bodies created with [PhysicsServer2D] might not interact as expected with
+ * [Area2D]s, and might not emit signals or track objects correctly.
  */
 @GodotBaseType
 public open class Area2D : CollisionObject2D() {

@@ -301,7 +301,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns a SDL2-compatible device GUID on platforms that use gamepad remapping, e.g.
+   * Returns an SDL2-compatible device GUID on platforms that use gamepad remapping, e.g.
    * `030000004c050000c405000000010000`. Returns `"Default Gamepad"` otherwise. Godot uses the
    * [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to
    * determine gamepad names and mappings based on this GUID.
@@ -381,6 +381,7 @@ public object Input : Object() {
    * stopped early by calling [stopJoyVibration].
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to
    * restart an effect if it has to be played for more than a few seconds.
+   * **Note:** For macOS, vibration is only supported in macOS 11 and later.
    */
   @JvmOverloads
   public fun startJoyVibration(
@@ -403,17 +404,20 @@ public object Input : Object() {
 
   /**
    * Vibrate the handheld device for the specified duration in milliseconds.
+   * [amplitude] is the strength of the vibration, as a value between `0.0` and `1.0`. If set to
+   * `-1.0`, the default vibration strength of the device is used.
    * **Note:** This method is implemented on Android, iOS, and Web. It has no effect on other
    * platforms.
    * **Note:** For Android, [vibrateHandheld] requires enabling the `VIBRATE` permission in the
    * export preset. Otherwise, [vibrateHandheld] will have no effect.
    * **Note:** For iOS, specifying the duration is only supported in iOS 13 and later.
+   * **Note:** For Web, the amplitude cannot be changed.
    * **Note:** Some web browsers such as Safari and Firefox for Android do not support
    * [vibrateHandheld].
    */
   @JvmOverloads
-  public fun vibrateHandheld(durationMs: Int = 500): Unit {
-    TransferContext.writeArguments(LONG to durationMs.toLong())
+  public fun vibrateHandheld(durationMs: Int = 500, amplitude: Float = -1.0f): Unit {
+    TransferContext.writeArguments(LONG to durationMs.toLong(), DOUBLE to amplitude.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.vibrateHandheldPtr, NIL)
   }
 
@@ -523,6 +527,17 @@ public object Input : Object() {
   }
 
   /**
+   * Returns the last mouse velocity in screen coordinates. To provide a precise and jitter-free
+   * velocity, mouse velocity is only calculated every 0.1s. Therefore, mouse velocity will lag mouse
+   * movements.
+   */
+  public fun getLastMouseScreenVelocity(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLastMouseScreenVelocityPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  /**
    * Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the
    * bits are added together. Equivalent to [DisplayServer.mouseGetButtonState].
    */
@@ -603,8 +618,8 @@ public object Input : Object() {
    * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can
    * also be specified. Passing `null` to the image parameter resets to the system cursor. See
    * [CursorShape] for the list of shapes.
-   * [image]'s size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower
-   * than or equal to 128×128 are recommended.
+   * [image] can be either [Texture2D] or [Image] and its size must be lower than or equal to
+   * 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.
    * [hotspot] must be within [image]'s size.
    * **Note:** [AnimatedTexture]s aren't supported as custom mouse cursors. If using an
    * [AnimatedTexture], only the first frame will be displayed.
@@ -679,6 +694,28 @@ public object Input : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.flushBufferedEventsPtr, NIL)
   }
 
+  public fun setEmulateMouseFromTouch(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmulateMouseFromTouchPtr, NIL)
+  }
+
+  public fun isEmulatingMouseFromTouch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEmulatingMouseFromTouchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEmulateTouchFromMouse(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmulateTouchFromMousePtr, NIL)
+  }
+
+  public fun isEmulatingTouchFromMouse(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEmulatingTouchFromMousePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   public enum class MouseMode(
     id: Long,
   ) {
@@ -740,14 +777,13 @@ public object Input : Object() {
      */
     CURSOR_CROSS(3),
     /**
-     * Wait cursor. Indicates that the application is busy performing an operation. This cursor
-     * shape denotes that the application isn't usable during the operation (e.g. something is blocking
-     * its main thread).
+     * Wait cursor. Indicates that the application is busy performing an operation, and that it
+     * cannot be used during the operation (e.g. something is blocking its main thread).
      */
     CURSOR_WAIT(4),
     /**
-     * Busy cursor. Indicates that the application is busy performing an operation. This cursor
-     * shape denotes that the application is still usable during the operation.
+     * Busy cursor. Indicates that the application is busy performing an operation, and that it is
+     * still usable during the operation.
      */
     CURSOR_BUSY(5),
     /**
@@ -912,6 +948,9 @@ public object Input : Object() {
     public val getLastMouseVelocityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "get_last_mouse_velocity")
 
+    public val getLastMouseScreenVelocityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_last_mouse_screen_velocity")
+
     public val getMouseButtonMaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "get_mouse_button_mask")
 
@@ -945,5 +984,17 @@ public object Input : Object() {
 
     public val flushBufferedEventsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "flush_buffered_events")
+
+    public val setEmulateMouseFromTouchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_emulate_mouse_from_touch")
+
+    public val isEmulatingMouseFromTouchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_emulating_mouse_from_touch")
+
+    public val setEmulateTouchFromMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_emulate_touch_from_mouse")
+
+    public val isEmulatingTouchFromMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_emulating_touch_from_mouse")
   }
 }

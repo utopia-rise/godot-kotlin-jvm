@@ -11,6 +11,11 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * Represents an object from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
+ * **Note:** This class only works on Android. For any other build, this class does nothing.
+ * **Note:** This class is not to be confused with [JavaScriptObject].
+ */
 @GodotBaseType
 public open class JavaClass : RefCounted() {
   public override fun new(scriptIndex: Int): Boolean {

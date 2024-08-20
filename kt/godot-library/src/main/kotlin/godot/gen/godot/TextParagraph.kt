@@ -178,6 +178,20 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
+   * Ellipsis character used for text clipping.
+   */
+  public var ellipsisChar: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
+      return (TransferContext.readReturnValue(STRING, false) as String)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+    }
+
+  /**
    * Paragraph width.
    */
   public var width: Float
@@ -382,7 +396,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Returns size of the bounding box of the line of text.
+   * Returns size of the bounding box of the line of text. Returned size is rounded up.
    */
   public fun getLineSize(line: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -640,6 +654,12 @@ public open class TextParagraph : RefCounted() {
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "get_text_overrun_behavior")
+
+    public val setEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "set_ellipsis_char")
+
+    public val getEllipsisCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "get_ellipsis_char")
 
     public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextParagraph", "set_width")
 

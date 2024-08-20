@@ -23,13 +23,16 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies and
- * apply a constraint.
+ * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies
+ * ([nodeA] and [nodeB]) and apply a constraint. If only one body is defined, it is attached to a fixed
+ * [StaticBody3D] without collision shapes.
  */
 @GodotBaseType
 public open class Joint3D internal constructor() : Node3D() {
   /**
-   * The node attached to the first side (A) of the joint.
+   * Path to the first node (A) attached to the joint. The node must inherit [PhysicsBody3D].
+   * If left empty and [nodeB] is set, the body is attached to a fixed [StaticBody3D] without
+   * collision shapes.
    */
   public var nodeA: NodePath
     get() {
@@ -43,7 +46,9 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   /**
-   * The node attached to the second side (B) of the joint.
+   * Path to the second node (B) attached to the joint. The node must inherit [PhysicsBody3D].
+   * If left empty and [nodeA] is set, the body is attached to a fixed [StaticBody3D] without
+   * collision shapes.
    */
   public var nodeB: NodePath
     get() {
@@ -72,7 +77,7 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   /**
-   * If `true`, the two bodies of the nodes are not able to collide with each other.
+   * If `true`, the two bodies bound together do not collide with each other.
    */
   public var excludeNodesFromCollision: Boolean
     get() {
@@ -91,7 +96,7 @@ public open class Joint3D internal constructor() : Node3D() {
   }
 
   /**
-   * Returns the joint's [RID].
+   * Returns the joint's internal [RID] from the [PhysicsServer3D].
    */
   public fun getRid(): RID {
     TransferContext.writeArguments()

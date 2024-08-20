@@ -18,7 +18,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Applies [operator] to two transform (4x4 matrices) inputs.
+ * Applies [operator] to two transform (4×4 matrices) inputs.
  */
 @GodotBaseType
 public open class VisualShaderNodeTransformOp : VisualShaderNode() {

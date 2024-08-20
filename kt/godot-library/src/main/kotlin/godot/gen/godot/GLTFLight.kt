@@ -11,13 +11,16 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.StringName
 import godot.core.TypeManager
+import godot.core.VariantType.ANY
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
@@ -179,6 +182,17 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
+  public fun getAdditionalData(extensionName: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to extensionName)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
+  }
+
+  public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+    TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
+  }
+
   public companion object {
     /**
      * Create a new GLTFLight instance from the given Godot [Light3D] node.
@@ -238,5 +252,11 @@ public open class GLTFLight : Resource() {
 
     public val setOuterConeAnglePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFLight", "set_outer_cone_angle")
+
+    public val getAdditionalDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "get_additional_data")
+
+    public val setAdditionalDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data")
   }
 }

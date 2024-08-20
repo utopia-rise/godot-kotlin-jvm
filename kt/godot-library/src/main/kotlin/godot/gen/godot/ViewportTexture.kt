@@ -18,21 +18,23 @@ import kotlin.Int
 import kotlin.Suppress
 
 /**
- * Provides the content of a [Viewport] as a dynamic [Texture2D]. This can be used to mix controls,
- * 2D game objects, and 3D game objects in the same scene.
- * To create a [ViewportTexture] in code, use the [Viewport.getTexture] method on the target
- * viewport.
+ * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be
+ * used to combine the rendering of [Control], [Node2D] and [Node3D] nodes. For example, you can use
+ * this texture to display a 3D scene inside a [TextureRect], or a 2D overlay in a [Sprite3D].
+ * To get a [ViewportTexture] in code, use the [Viewport.getTexture] method on the target viewport.
  * **Note:** A [ViewportTexture] is always local to its scene (see [Resource.resourceLocalToScene]).
  * If the scene root is not ready, it may return incorrect data (see [signal Node.ready]).
+ * **Note:** Instantiating scenes containing a high-resolution [ViewportTexture] may cause
+ * noticeable stutter.
  */
 @GodotBaseType
 public open class ViewportTexture : Texture2D() {
   /**
-   * The path to the [Viewport] node to display. This is relative to the scene root, not to the node
-   * that uses the texture.
+   * The path to the [Viewport] node to display. This is relative to the local scene root (see
+   * [Resource.getLocalScene]), **not** to the nodes that use this texture.
    * **Note:** In the editor, this path is automatically updated when the target viewport or one of
-   * its ancestors is renamed or moved. At runtime, the path may not be able to automatically update
-   * due to the inability to determine the scene root.
+   * its ancestors is renamed or moved. At runtime, this path may not automatically update if the scene
+   * root cannot be found.
    */
   public var viewportPath: NodePath
     get() {

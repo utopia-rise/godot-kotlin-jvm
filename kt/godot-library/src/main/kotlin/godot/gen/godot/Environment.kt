@@ -254,7 +254,7 @@ public open class Environment : Resource() {
 
   /**
    * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be
-   * suitable for rendering on a LDR display. (Godot doesn't support rendering on HDR displays yet.)
+   * suitable for rendering on an LDR display. (Godot doesn't support rendering on HDR displays yet.)
    */
   public var tonemapMode: ToneMapper
     get() {
@@ -815,10 +815,14 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, the glow effect is enabled.
-   * **Note:** Glow is only supported in the Forward+ and Mobile rendering methods, not
-   * Compatibility. When using the Mobile rendering method, glow will look different due to the lower
-   * dynamic range available in the Mobile rendering method.
+   * If `true`, the glow effect is enabled. This simulates real world eye/camera behavior where
+   * bright pixels bleed onto surrounding pixels.
+   * **Note:** When using the Mobile rendering method, glow looks different due to the lower dynamic
+   * range available in the Mobile rendering method.
+   * **Note:** When using the Compatibility rendering method, glow uses a different implementation
+   * with some properties being unavailable and hidden from the inspector: `glow_levels&#47;*`,
+   * [glowNormalized], [glowStrength], [glowBlendMode], [glowMix], [glowMap], and [glowMapStrength].
+   * This implementation is optimized to run on low-end devices and is less flexible as a result.
    */
   public var glowEnabled: Boolean
     get() {
@@ -834,6 +838,8 @@ public open class Environment : Resource() {
   /**
    * If `true`, glow levels will be normalized so that summed together their intensities equal
    * `1.0`.
+   * **Note:** [glowNormalized] has no effect when using the Compatibility rendering method, due to
+   * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public var glowNormalized: Boolean
     get() {
@@ -866,6 +872,8 @@ public open class Environment : Resource() {
    * The strength of the glow effect. This applies as the glow is blurred across the screen and
    * increases the distance and intensity of the blur. When using the Mobile rendering method, this
    * should be increased to compensate for the lower dynamic range.
+   * **Note:** [glowStrength] has no effect when using the Compatibility rendering method, due to
+   * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public var glowStrength: Float
     get() {
@@ -882,6 +890,8 @@ public open class Environment : Resource() {
    * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image
    * is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value
    * of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
+   * **Note:** [glowMix] has no effect when using the Compatibility rendering method, due to this
+   * rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public var glowMix: Float
     get() {
@@ -911,6 +921,8 @@ public open class Environment : Resource() {
 
   /**
    * The glow blending mode.
+   * **Note:** [glowBlendMode] has no effect when using the Compatibility rendering method, due to
+   * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public var glowBlendMode: GlowBlendMode
     get() {
@@ -974,6 +986,8 @@ public open class Environment : Resource() {
    * `0.0` means the glow map has no effect on the overall glow effect. A strength of `1.0` means the
    * glow has a full effect on the overall glow effect (and can turn off glow entirely in specific
    * areas of the screen if the glow map has black areas).
+   * **Note:** [glowMapStrength] has no effect when using the Compatibility rendering method, due to
+   * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public var glowMapStrength: Float
     get() {
@@ -992,6 +1006,8 @@ public open class Environment : Resource() {
    * channels are used for modulation, but the alpha channel is ignored.
    * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a
    * texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
+   * **Note:** [glowMap] has no effect when using the Compatibility rendering method, due to this
+   * rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public var glowMap: Texture?
     get() {
@@ -1016,6 +1032,20 @@ public open class Environment : Resource() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, MethodBindings.setFogEnabledPtr, NIL)
+    }
+
+  /**
+   * The fog mode. See [FogMode] for possible values.
+   */
+  public var fogMode: FogMode
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogModePtr, LONG)
+      return Environment.FogMode.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogModePtr, NIL)
     }
 
   /**
@@ -1063,8 +1093,13 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The *exponential* fog density to use. Higher values result in a more dense fog. Fog rendering
-   * is exponential as in real life.
+   * The fog density to be used. This is demonstrated in different ways depending on the [fogMode]
+   * mode chosen:
+   * **Exponential Fog Mode:** Higher values result in denser fog. The fog rendering is exponential
+   * like in real life.
+   * **Depth Fog mode:** The maximum intensity of the deep fog, effect will appear in the distance
+   * (relative to the camera). At `1.0` the fog will fully obscure the scene, at `0.0` the fog will not
+   * be visible.
    */
   public var fogDensity: Float
     get() {
@@ -1141,6 +1176,52 @@ public open class Environment : Resource() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value.toDouble())
       TransferContext.callMethod(rawPtr, MethodBindings.setFogHeightDensityPtr, NIL)
+    }
+
+  /**
+   * The fog depth's intensity curve. A number of presets are available in the Inspector by
+   * right-clicking the curve. Only available when [fogMode] is set to [FOG_MODE_DEPTH].
+   */
+  public var fogDepthCurve: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthCurvePtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthCurvePtr, NIL)
+    }
+
+  /**
+   * The fog's depth starting distance from the camera. Only available when [fogMode] is set to
+   * [FOG_MODE_DEPTH].
+   */
+  public var fogDepthBegin: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthBeginPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthBeginPtr, NIL)
+    }
+
+  /**
+   * The fog's depth end distance from the camera. If this value is set to `0`, it will be equal to
+   * the current camera's [Camera3D.far] value. Only available when [fogMode] is set to
+   * [FOG_MODE_DEPTH].
+   */
+  public var fogDepthEnd: Float
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthEndPtr, DOUBLE)
+      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value.toDouble())
+      TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthEndPtr, NIL)
     }
 
   /**
@@ -1381,8 +1462,6 @@ public open class Environment : Resource() {
   /**
    * If `true`, enables the `adjustment_*` properties provided by this resource. If `false`,
    * modifications to the `adjustment_*` properties will have no effect on the rendered scene.
-   * **Note:** Adjustments are only supported in the Forward+ and Mobile rendering methods, not
-   * Compatibility.
    */
   public var adjustmentEnabled: Boolean
     get() {
@@ -1817,6 +1896,30 @@ public open class Environment : Resource() {
     }
   }
 
+  public enum class FogMode(
+    id: Long,
+  ) {
+    /**
+     * Use a physically-based fog model defined primarily by fog density.
+     */
+    FOG_MODE_EXPONENTIAL(0),
+    /**
+     * Use a simple fog model defined by start and end positions and a custom curve. While not
+     * physically accurate, this model can be useful when you need more artistic control.
+     */
+    FOG_MODE_DEPTH(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = entries.single { it.id == `value` }
+    }
+  }
+
   public enum class SDFGIYScale(
     id: Long,
   ) {
@@ -2217,6 +2320,10 @@ public open class Environment : Resource() {
     public val isFogEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Environment", "is_fog_enabled")
 
+    public val setFogModePtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_fog_mode")
+
+    public val getFogModePtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_fog_mode")
+
     public val setFogLightColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Environment", "set_fog_light_color")
 
@@ -2264,6 +2371,24 @@ public open class Environment : Resource() {
 
     public val getFogSkyAffectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Environment", "get_fog_sky_affect")
+
+    public val setFogDepthCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_curve")
+
+    public val getFogDepthCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_curve")
+
+    public val setFogDepthBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_begin")
+
+    public val getFogDepthBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_begin")
+
+    public val setFogDepthEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_end")
+
+    public val getFogDepthEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_end")
 
     public val setVolumetricFogEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_enabled")

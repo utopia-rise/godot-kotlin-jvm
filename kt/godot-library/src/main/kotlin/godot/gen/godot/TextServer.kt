@@ -57,6 +57,19 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * [TextServer] is the API backend for managing fonts and rendering text.
+ * **Note:** This is a low-level API, consider using [TextLine], [TextParagraph], and [Font] classes
+ * instead.
+ * This is an abstract class, so to get the currently active [TextServer] instance, use the
+ * following code:
+ *
+ * gdscript:
+ * ```gdscript
+ * var ts = TextServerManager.get_primary_interface()
+ * ```
+ * csharp:
+ * ```csharp
+ * var ts = TextServerManager.GetPrimaryInterface();
+ * ```
  */
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
@@ -141,7 +154,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts readable feature, variation, script or language name to OpenType tag.
+   * Converts readable feature, variation, script, or language name to OpenType tag.
    */
   public fun nameToTag(name: String): Long {
     TransferContext.writeArguments(STRING to name)
@@ -150,7 +163,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Converts OpenType tag to readable feature, variation, script or language name.
+   * Converts OpenType tag to readable feature, variation, script, or language name.
    */
   public fun tagToName(tag: Long): String {
     TransferContext.writeArguments(LONG to tag)
@@ -350,6 +363,24 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetAntialiasingPtr, LONG)
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore
+   * this property).
+   */
+  public fun fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean): Unit {
+    TransferContext.writeArguments(_RID to fontRid, BOOL to disableEmbeddedBitmaps)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontSetDisableEmbeddedBitmapsPtr, NIL)
+  }
+
+  /**
+   * Returns whether the font's embedded bitmap loading is disabled.
+   */
+  public fun fontGetDisableEmbeddedBitmaps(fontRid: RID): Boolean {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontGetDisableEmbeddedBitmapsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -582,7 +613,24 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and
+   * Sets extra baseline offset (as a fraction of font height).
+   */
+  public fun fontSetBaselineOffset(fontRid: RID, baselineOffset: Double): Unit {
+    TransferContext.writeArguments(_RID to fontRid, DOUBLE to baselineOffset)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontSetBaselineOffsetPtr, NIL)
+  }
+
+  /**
+   * Returns extra baseline offset (as a fraction of font height).
+   */
+  public fun fontGetBaselineOffset(fontRid: RID): Double {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, MethodBindings.fontGetBaselineOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  /**
+   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and
    * rotating glyphs.
    * For example, to simulate italic typeface by slanting, apply the following transform
    * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
@@ -866,7 +914,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Removes all rendered glyphs information from the cache entry.
+   * Removes all rendered glyph information from the cache entry.
    * **Note:** This function will not remove textures associated with the glyphs, use
    * [fontRemoveTexture] to remove them manually.
    */
@@ -1414,7 +1462,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Creates new buffer for complex text layout, with the given [direction] and [orientation]. To
+   * Creates a new buffer for complex text layout, with the given [direction] and [orientation]. To
    * free the resulting buffer, use [freeRid] method.
    * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature
    * (supported by [TextServerAdvanced]).
@@ -1495,6 +1543,23 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCustomPunctuationPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Sets ellipsis character used for text clipping.
+   */
+  public fun shapedTextSetCustomEllipsis(shaped: RID, char: Long): Unit {
+    TransferContext.writeArguments(_RID to shaped, LONG to char)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetCustomEllipsisPtr, NIL)
+  }
+
+  /**
+   * Returns ellipsis character used for text clipping.
+   */
+  public fun shapedTextGetCustomEllipsis(shaped: RID): Long {
+    TransferContext.writeArguments(_RID to shaped)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCustomEllipsisPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1647,7 +1712,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Changes text span font, font size and OpenType features, without changing the text.
+   * Changes text span font, font size, and OpenType features, without changing the text.
    */
   @JvmOverloads
   public fun shapedSetSpanUpdateFont(
@@ -1810,9 +1875,12 @@ public open class TextServer internal constructor() : RefCounted() {
    * characters are used for breaking (see [GraphemeFlag]).
    */
   @JvmOverloads
-  public fun shapedTextGetWordBreaks(shaped: RID, graphemeFlags: GraphemeFlag =
-      TextServer.GraphemeFlagValue(264)): PackedInt32Array {
-    TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags.flag)
+  public fun shapedTextGetWordBreaks(
+    shaped: RID,
+    graphemeFlags: GraphemeFlag = TextServer.GraphemeFlagValue(264),
+    skipGraphemeFlags: GraphemeFlag = TextServer.GraphemeFlag.GRAPHEME_IS_VIRTUAL,
+  ): PackedInt32Array {
+    TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags.flag, LONG to skipGraphemeFlags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetWordBreaksPtr,
         PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1883,6 +1951,24 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  /**
+   * Returns the character range of the inline object.
+   */
+  public fun shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
+    TransferContext.writeArguments(_RID to shaped, ANY to key)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectRangePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  /**
+   * Returns the glyph index of the inline object.
+   */
+  public fun shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
+    TransferContext.writeArguments(_RID to shaped, ANY to key)
+    TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectGlyphPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -2140,8 +2226,12 @@ public open class TextServer internal constructor() : RefCounted() {
    * When [charsPerLine] is greater than zero, line break boundaries are returned instead.
    * [codeblock]
    * var ts = TextServerManager.get_primary_interface()
-   * print(ts.string_get_word_breaks("Godot Engine")) # Prints [0, 5, 6, 12]
-   * print(ts.string_get_word_breaks("Godot Engine", "en", 5)) # Prints [0, 5, 6, 11, 11, 12]
+   * print(ts.string_get_word_breaks("The Godot Engine, 4")) # Prints [0, 3, 4, 9, 10, 16, 18, 19],
+   * which corresponds to the following substrings: "The", "Godot", "Engine", "4"
+   * print(ts.string_get_word_breaks("The Godot Engine, 4", "en", 5)) # Prints [0, 3, 4, 9, 10, 15,
+   * 15, 19], which corresponds to the following substrings: "The", "Godot", "Engin", "e, 4"
+   * print(ts.string_get_word_breaks("The Godot Engine, 4", "en", 10)) # Prints [0, 9, 10, 19],
+   * which corresponds to the following substrings: "The Godot", "Engine, 4"
    * [/codeblock]
    */
   @JvmOverloads
@@ -2224,6 +2314,16 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns `true` if the given code point is a valid letter, i.e. it belongs to the Unicode
+   * category "L".
+   */
+  public fun isValidLetter(unicode: Long): Boolean {
+    TransferContext.writeArguments(LONG to unicode)
+    TransferContext.callMethod(rawPtr, MethodBindings.isValidLetterPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns the string converted to uppercase.
    * **Note:** Casing is locale dependent and context sensitive if server support
    * [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
@@ -2246,6 +2346,19 @@ public open class TextServer internal constructor() : RefCounted() {
   public fun stringToLower(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringToLowerPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  /**
+   * Returns the string converted to title case.
+   * **Note:** Casing is locale dependent and context sensitive if server support
+   * [FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
+   * **Note:** The result may be longer or shorter than the original.
+   */
+  @JvmOverloads
+  public fun stringToTitle(string: String, language: String = ""): String {
+    TransferContext.writeArguments(STRING to string, STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.stringToTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
@@ -2577,6 +2690,8 @@ public open class TextServer internal constructor() : RefCounted() {
       public val BREAK_ADAPTIVE: LineBreakFlag = LineBreakFlagValue(8)
 
       public val BREAK_TRIM_EDGE_SPACES: LineBreakFlag = LineBreakFlagValue(16)
+
+      public val BREAK_TRIM_INDENT: LineBreakFlag = LineBreakFlagValue(32)
     }
   }
 
@@ -2816,6 +2931,8 @@ public open class TextServer internal constructor() : RefCounted() {
       public val GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL: GraphemeFlag = GraphemeFlagValue(2048)
 
       public val GRAPHEME_IS_EMBEDDED_OBJECT: GraphemeFlag = GraphemeFlagValue(4096)
+
+      public val GRAPHEME_IS_SOFT_HYPHEN: GraphemeFlag = GraphemeFlagValue(8192)
     }
   }
 
@@ -3259,6 +3376,12 @@ public open class TextServer internal constructor() : RefCounted() {
     public val fontGetAntialiasingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_get_antialiasing")
 
+    public val fontSetDisableEmbeddedBitmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_disable_embedded_bitmaps")
+
+    public val fontGetDisableEmbeddedBitmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_disable_embedded_bitmaps")
+
     public val fontSetGenerateMipmapsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_generate_mipmaps")
 
@@ -3330,6 +3453,12 @@ public open class TextServer internal constructor() : RefCounted() {
 
     public val fontGetSpacingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_get_spacing")
+
+    public val fontSetBaselineOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_baseline_offset")
+
+    public val fontGetBaselineOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_baseline_offset")
 
     public val fontSetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_transform")
@@ -3573,6 +3702,12 @@ public open class TextServer internal constructor() : RefCounted() {
     public val shapedTextGetCustomPunctuationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_custom_punctuation")
 
+    public val shapedTextSetCustomEllipsisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_set_custom_ellipsis")
+
+    public val shapedTextGetCustomEllipsisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_custom_ellipsis")
+
     public val shapedTextSetOrientationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_set_orientation")
 
@@ -3678,6 +3813,12 @@ public open class TextServer internal constructor() : RefCounted() {
     public val shapedTextGetObjectRectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_object_rect")
 
+    public val shapedTextGetObjectRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_object_range")
+
+    public val shapedTextGetObjectGlyphPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_object_glyph")
+
     public val shapedTextGetSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_size")
 
@@ -3762,11 +3903,17 @@ public open class TextServer internal constructor() : RefCounted() {
     public val isValidIdentifierPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "is_valid_identifier")
 
+    public val isValidLetterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "is_valid_letter")
+
     public val stringToUpperPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "string_to_upper")
 
     public val stringToLowerPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "string_to_lower")
+
+    public val stringToTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "string_to_title")
 
     public val parseStructuredTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "parse_structured_text")

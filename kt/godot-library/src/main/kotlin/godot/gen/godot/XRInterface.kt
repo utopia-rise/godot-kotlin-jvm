@@ -111,7 +111,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the name of this interface (OpenXR, OpenVR, OpenHMD, ARKit, etc).
+   * Returns the name of this interface (`"OpenXR"`, `"OpenVR"`, `"OpenHMD"`, `"ARKit"`, etc.).
    */
   public fun getName(): StringName {
     TransferContext.writeArguments()
@@ -130,7 +130,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Is `true` if this interface has been initialized.
+   * Returns `true` if this interface has been initialized.
    */
   public fun isInitialized(): Boolean {
     TransferContext.writeArguments()
@@ -215,6 +215,11 @@ public open class XRInterface internal constructor() : RefCounted() {
    * [actionName] is the name of the action for this pulse.
    * [trackerName] is optional and can be used to direct the pulse to a specific device provided
    * that device is bound to this haptic.
+   * [frequency] is the frequency of the pulse, set to `0.0` to have the system use a default
+   * frequency.
+   * [amplitude] is the amplitude of the pulse between `0.0` and `1.0`.
+   * [durationSec] is the duration of the pulse in seconds.
+   * [delaySec] is a delay in seconds before the pulse is given.
    */
   public fun triggerHapticPulse(
     actionName: String,
@@ -240,6 +245,9 @@ public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Sets the active play area mode, will return `false` if the mode can't be used with this
    * interface.
+   * **Note:** Changing this after the interface has already been initialized can be jarring for the
+   * player, so it's recommended to recenter on the HMD with [XRServer.centerOnHmd] (if switching to
+   * [XRInterface.XR_PLAY_AREA_STAGE]) or make the switch during a scene change.
    */
   public fun setPlayAreaMode(mode: PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
@@ -248,7 +256,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns an array of vectors that denotes the physical play area mapped to the virtual space
+   * Returns an array of vectors that represent the physical play area mapped to the virtual space
    * around the [XROrigin3D] point. The points form a convex polygon that can be used to react to or
    * visualize the play area. This returns an empty array if this feature is not supported or if the
    * information is not yet available.
@@ -270,7 +278,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Is `true` if this interface supports passthrough.
+   * Returns `true` if this interface supports passthrough.
    */
   public fun isPassthroughSupported(): Boolean {
     TransferContext.writeArguments()
@@ -279,7 +287,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   }
 
   /**
-   * Is `true` if passthrough is enabled.
+   * Returns `true` if passthrough is enabled.
    */
   public fun isPassthroughEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -344,22 +352,22 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   /**
    * Sets the active environment blend mode.
-   * [mode] is the [XRInterface.EnvironmentBlendMode] starting with the next frame.
+   * [mode] is the environment blend mode starting with the next frame.
    * **Note:** Not all runtimes support all environment blend modes, so it is important to check
    * this at startup. For example:
    * [codeblock]
-   *                 func _ready():
-   *                     var xr_interface: XRInterface = XRServer.find_interface("OpenXR")
-   *                     if xr_interface and xr_interface.is_initialized():
-   *                         var vp: Viewport = get_viewport()
-   *                         vp.use_xr = true
-   *                         var acceptable_modes = [ XRInterface.XR_ENV_BLEND_MODE_OPAQUE,
-   * XRInterface.XR_ENV_BLEND_MODE_ADDITIVE ]
-   *                         var modes = xr_interface.get_supported_environment_blend_modes()
-   *                         for mode in acceptable_modes:
-   *                             if mode in modes:
-   *                                 xr_interface.set_environment_blend_mode(mode)
-   *                                 break
+   * func _ready():
+   *     var xr_interface: XRInterface = XRServer.find_interface("OpenXR")
+   *     if xr_interface and xr_interface.is_initialized():
+   *         var vp: Viewport = get_viewport()
+   *         vp.use_xr = true
+   *         var acceptable_modes = [XRInterface.XR_ENV_BLEND_MODE_OPAQUE,
+   * XRInterface.XR_ENV_BLEND_MODE_ADDITIVE]
+   *         var modes = xr_interface.get_supported_environment_blend_modes()
+   *         for mode in acceptable_modes:
+   *             if mode in modes:
+   *                 xr_interface.set_environment_blend_mode(mode)
+   *                 break
    * [/codeblock]
    */
   public fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {
@@ -473,7 +481,8 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_PLAY_AREA_ROOMSCALE(3),
     /**
      * Same as [XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical
-     * space, [XRServer.centerOnHmd] disabled.
+     * space. In this mode, system-level recentering may be disabled, requiring the use of
+     * [XRServer.centerOnHmd].
      */
     XR_PLAY_AREA_STAGE(4),
     ;

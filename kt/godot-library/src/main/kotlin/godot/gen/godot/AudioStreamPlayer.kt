@@ -29,19 +29,24 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Plays an audio stream non-positionally.
- * To play audio positionally, use [AudioStreamPlayer2D] or [AudioStreamPlayer3D] instead of
- * [AudioStreamPlayer].
+ * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user
+ * interfaces, menus, or background music.
+ * To use this node, [stream] needs to be set to a valid [AudioStream] resource. Playing more than
+ * one sound at the same time is also supported, see [maxPolyphony].
+ * If you need to play audio at a specific position, use [AudioStreamPlayer2D] or
+ * [AudioStreamPlayer3D] instead.
  */
 @GodotBaseType
 public open class AudioStreamPlayer : Node() {
   /**
-   * Emitted when the audio stops playing.
+   * Emitted when a sound finishes playing without interruptions. This signal is *not* emitted when
+   * calling [stop], or when exiting the tree while sounds are playing.
    */
   public val finished: Signal0 by signal()
 
   /**
-   * The [AudioStream] object to be played.
+   * The [AudioStream] resource to be played. Setting this property stops all currently playing
+   * sounds. If left empty, the [AudioStreamPlayer] does not work.
    */
   public var stream: AudioStream?
     get() {
@@ -55,7 +60,9 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * Volume of sound, in dB.
+   * Volume of sound, in decibel. This is an offset of the [stream]'s volume.
+   * **Note:** To convert between decibel and linear energy (like most volume sliders do), use
+   * [@GlobalScope.dbToLinear] and [@GlobalScope.linearToDb].
    */
   public var volumeDb: Float
     get() {
@@ -69,7 +76,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
+   * The audio's pitch and tempo, as a multiplier of the [stream]'s sample rate. A value of `2.0`
+   * doubles the audio's pitch, while a value of `0.5` halves the pitch.
    */
   public var pitchScale: Float
     get() {
@@ -83,7 +91,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If `true`, audio is playing.
+   * If `true`, this node is playing sounds. Setting this property has the same effect as [play] and
+   * [stop].
    */
   public val playing: Boolean
     get() {
@@ -93,7 +102,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If `true`, audio plays when added to scene tree.
+   * If `true`, this node calls [play] when entering the tree.
    */
   public var autoplay: Boolean
     get() {
@@ -107,7 +116,9 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If `true`, the playback is paused. You can resume it by setting [streamPaused] to `false`.
+   * If `true`, the sounds are paused. Setting [streamPaused] to `false` resumes all sounds.
+   * **Note:** This property is automatically changed when exiting or entering the tree, or this
+   * node is paused (see [Node.processMode]).
    */
   public var streamPaused: Boolean
     get() {
@@ -121,8 +132,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * If the audio configuration has more than two speakers, this sets the target channels. See
-   * [MixTarget] constants.
+   * The mix target channels, as one of the [MixTarget] constants. Has no effect when two speakers
+   * or less are detected (see [AudioServer.SpeakerMode]).
    */
   public var mixTarget: MixTarget
     get() {
@@ -136,8 +147,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The maximum number of sounds this node can play at the same time. Playing additional sounds
-   * after this value is reached will cut off the oldest sounds.
+   * The maximum number of sounds this node can play at the same time. Calling [play] after this
+   * value is reached will cut off the oldest sounds.
    */
   public var maxPolyphony: Int
     get() {
@@ -151,11 +162,9 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * Bus on which this audio is playing.
-   * **Note:** When setting this property, keep in mind that no validation is performed to see if
-   * the given name matches an existing bus. This is because audio bus layouts might be loaded after
-   * this property is set. If this given name can't be resolved at runtime, it will fall back to
-   * `"Master"`.
+   * The target bus name. All sounds from this node will be playing on this bus.
+   * **Note:** At runtime, if no bus with the given name exists, all sounds will fall back on
+   * `"Master"`. See also [AudioServer.getBusName].
    */
   public var bus: StringName
     get() {
@@ -168,13 +177,28 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
     }
 
+  /**
+   * The playback type of the stream player. If set other than to the default value, it will force
+   * that playback type.
+   */
+  public var playbackType: AudioServer.PlaybackType
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackTypePtr, LONG)
+      return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value.id)
+      TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
+    }
+
   public override fun new(scriptIndex: Int): Boolean {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER, scriptIndex)
     return true
   }
 
   /**
-   * Plays the audio from the given [fromPosition], in seconds.
+   * Plays a sound from the beginning, or the given [fromPosition] in seconds.
    */
   @JvmOverloads
   public fun play(fromPosition: Float = 0.0f): Unit {
@@ -183,7 +207,8 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Sets the position from which audio will be played, in seconds.
+   * Restarts all sounds to be played from the given [toPosition], in seconds. Does nothing if no
+   * sounds are playing.
    */
   public fun seek(toPosition: Float): Unit {
     TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
@@ -191,7 +216,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Stops the audio.
+   * Stops all sounds from this node.
    */
   public fun stop(): Unit {
     TransferContext.writeArguments()
@@ -199,7 +224,11 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns the position in the [AudioStream] in seconds.
+   * Returns the position in the [AudioStream] of the latest sound, in seconds. Returns `0.0` if no
+   * sounds are playing.
+   * **Note:** The position is not always accurate, as the [AudioServer] does not mix audio every
+   * processed frame. To get more accurate results, add [AudioServer.getTimeSinceLastMix] to the
+   * returned position.
    */
   public fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
@@ -208,7 +237,8 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns whether the [AudioStreamPlayer] can return the [AudioStreamPlayback] object or not.
+   * Returns `true` if any sound is active, even if [streamPaused] is set to `true`. See also
+   * [playing] and [getStreamPlayback].
    */
   public fun hasStreamPlayback(): Boolean {
     TransferContext.writeArguments()
@@ -217,7 +247,8 @@ public open class AudioStreamPlayer : Node() {
   }
 
   /**
-   * Returns the [AudioStreamPlayback] object associated with this [AudioStreamPlayer].
+   * Returns the latest [AudioStreamPlayback] of this node, usually the most recently created by
+   * [play]. If no sounds are playing, this method fails and returns an empty playback.
    */
   public fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
@@ -229,7 +260,7 @@ public open class AudioStreamPlayer : Node() {
     id: Long,
   ) {
     /**
-     * The audio will be played only on the first channel.
+     * The audio will be played only on the first channel. This is the default.
      */
     MIX_TARGET_STEREO(0),
     /**
@@ -318,5 +349,11 @@ public open class AudioStreamPlayer : Node() {
 
     public val getStreamPlaybackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_playback")
+
+    public val setPlaybackTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_playback_type")
+
+    public val getPlaybackTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_type")
   }
 }

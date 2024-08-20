@@ -40,12 +40,12 @@ import kotlin.Unit
  * point. HMDs aren't represented here as they are handled internally.
  * As controllers are turned on and the [XRInterface] detects them, instances of this object are
  * automatically added to this list of active tracking objects accessible through the [XRServer].
- * The [XRController3D] and [XRAnchor3D] both consume objects of this type and should be used in
- * your project. The positional trackers are just under-the-hood objects that make this all work. These
- * are mostly exposed so that GDExtension-based interfaces can interact with them.
+ * The [XRNode3D] and [XRAnchor3D] both consume objects of this type and should be used in your
+ * project. The positional trackers are just under-the-hood objects that make this all work. These are
+ * mostly exposed so that GDExtension-based interfaces can interact with them.
  */
 @GodotBaseType
-public open class XRPositionalTracker : RefCounted() {
+public open class XRPositionalTracker : XRTracker() {
   /**
    * Emitted when the state of a pose tracked by this tracker changes.
    */
@@ -81,52 +81,6 @@ public open class XRPositionalTracker : RefCounted() {
    * Emitted when the profile of our tracker changes.
    */
   public val profileChanged: Signal1<String> by signal("role")
-
-  /**
-   * The type of tracker.
-   */
-  public var type: XRServer.TrackerType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
-      return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
-    }
-
-  /**
-   * The unique name of this tracker. The trackers that are available differ between various XR
-   * runtimes and can often be configured by the user. Godot maintains a number of reserved names that
-   * it expects the [XRInterface] to implement if applicable:
-   * - `left_hand` identifies the controller held in the players left hand
-   * - `right_hand` identifies the controller held in the players right hand
-   */
-  public var name: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
-    }
-
-  /**
-   * The description of this tracker.
-   */
-  public var description: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
-    }
 
   /**
    * The profile associated with this tracker, interface dependent but will indicate the type of
@@ -239,6 +193,10 @@ public open class XRPositionalTracker : RefCounted() {
      * This tracker is the right hand controller.
      */
     TRACKER_HAND_RIGHT(2),
+    /**
+     * Represents the size of the [TrackerHand] enum.
+     */
+    TRACKER_HAND_MAX(3),
     ;
 
     public val id: Long
@@ -254,24 +212,6 @@ public open class XRPositionalTracker : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val getTrackerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_type")
-
-    public val setTrackerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_type")
-
-    public val getTrackerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_name")
-
-    public val setTrackerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_name")
-
-    public val getTrackerDescPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_desc")
-
-    public val setTrackerDescPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_desc")
-
     public val getTrackerProfilePtr: VoidPtr =
         TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile")
 

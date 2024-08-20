@@ -310,8 +310,11 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * If `true`, internal force integration is disabled for this body. Aside from collision response,
-   * the body will only move as determined by the [_integrateForces] function.
+   * If `true`, the standard force integration (like gravity or damping) will be disabled for this
+   * body. Other than collision response, the body will only move as determined by the
+   * [_integrateForces] method, if that virtual method is overridden.
+   * Setting this property will call the method [PhysicsServer2D.bodySetOmitForceIntegration]
+   * internally.
    */
   public var customIntegrator: Boolean
     get() {
@@ -344,6 +347,22 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
+   * If `true`, the RigidBody2D will emit signals when it collides with another body.
+   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be
+   * recorded, see [maxContactsReported].
+   */
+  public var contactMonitor: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
+    }
+
+  /**
    * The maximum number of contacts that will be recorded. Requires a value greater than 0 and
    * [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to
    * retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
@@ -360,22 +379,6 @@ public open class RigidBody2D : PhysicsBody2D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
-    }
-
-  /**
-   * If `true`, the RigidBody2D will emit signals when it collides with another body.
-   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be
-   * recorded, see [maxContactsReported].
-   */
-  public var contactMonitor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
     }
 
   /**
@@ -590,10 +593,10 @@ public open class RigidBody2D : PhysicsBody2D() {
 
 
   /**
-   * Allows you to read and safely modify the simulation state for the object. Use this instead of
-   * [Node.PhysicsProcess] if you need to directly change the body's `position` or other physics
-   * properties. By default, it works in addition to the usual physics behavior, but [customIntegrator]
-   * allows you to disable the default behavior and write custom force integration for a body.
+   * Called during physics processing, allowing you to read and safely modify the simulation state
+   * for the object. By default, it is called before the standard force integration, but the
+   * [customIntegrator] property allows you to disable the standard force integration and do fully
+   * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState2D): Unit {
   }

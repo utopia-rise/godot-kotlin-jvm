@@ -313,9 +313,11 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, internal force integration will be disabled (like gravity or air friction) for this
+   * If `true`, the standard force integration (like gravity or damping) will be disabled for this
    * body. Other than collision response, the body will only move as determined by the
-   * [_integrateForces] function, if defined.
+   * [_integrateForces] method, if that virtual method is overridden.
+   * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration]
+   * internally.
    */
   public var customIntegrator: Boolean
     get() {
@@ -348,6 +350,22 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
+   * If `true`, the RigidBody3D will emit signals when it collides with another body.
+   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be
+   * recorded, see [maxContactsReported].
+   */
+  public var contactMonitor: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
+      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
+    }
+
+  /**
    * The maximum number of contacts that will be recorded. Requires a value greater than 0 and
    * [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to
    * retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
@@ -364,22 +382,6 @@ public open class RigidBody3D : PhysicsBody3D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value.toLong())
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
-    }
-
-  /**
-   * If `true`, the RigidBody3D will emit signals when it collides with another body.
-   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be
-   * recorded, see [maxContactsReported].
-   */
-  public var contactMonitor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
     }
 
   /**
@@ -698,9 +700,9 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   /**
    * Called during physics processing, allowing you to read and safely modify the simulation state
-   * for the object. By default, it works in addition to the usual physics behavior, but the
-   * [customIntegrator] property allows you to disable the default behavior and do fully custom force
-   * integration for a body.
+   * for the object. By default, it is called before the standard force integration, but the
+   * [customIntegrator] property allows you to disable the standard force integration and do fully
+   * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {
   }

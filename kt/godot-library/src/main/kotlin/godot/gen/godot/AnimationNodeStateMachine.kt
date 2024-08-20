@@ -112,6 +112,9 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.callMethod(rawPtr, MethodBindings.addNodePtr, NIL)
   }
 
+  /**
+   * Replaces the given animation node with a new animation node.
+   */
   public fun replaceNode(name: StringName, node: AnimationNode): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.replaceNodePtr, NIL)

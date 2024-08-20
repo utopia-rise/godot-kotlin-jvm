@@ -137,9 +137,36 @@ public open class ResourceFormatLoader : RefCounted() {
   public enum class CacheMode(
     id: Long,
   ) {
+    /**
+     * Neither the main resource (the one requested to be loaded) nor any of its subresources are
+     * retrieved from cache nor stored into it. Dependencies (external resources) are loaded with
+     * [CACHE_MODE_REUSE].
+     */
     CACHE_MODE_IGNORE(0),
+    /**
+     * The main resource (the one requested to be loaded), its subresources, and its dependencies
+     * (external resources) are retrieved from cache if present, instead of loaded. Those not cached
+     * are loaded and then stored into the cache. The same rules are propagated recursively down the
+     * tree of dependencies (external resources).
+     */
     CACHE_MODE_REUSE(1),
+    /**
+     * Like [CACHE_MODE_REUSE], but the cache is checked for the main resource (the one requested to
+     * be loaded) as well as for each of its subresources. Those already in the cache, as long as the
+     * loaded and cached types match, have their data refreshed from storage into the already existing
+     * instances. Otherwise, they are recreated as completely new objects.
+     */
     CACHE_MODE_REPLACE(2),
+    /**
+     * Like [CACHE_MODE_IGNORE], but propagated recursively down the tree of dependencies (external
+     * resources).
+     */
+    CACHE_MODE_IGNORE_DEEP(3),
+    /**
+     * Like [CACHE_MODE_REPLACE], but propagated recursively down the tree of dependencies (external
+     * resources).
+     */
+    CACHE_MODE_REPLACE_DEEP(4),
     ;
 
     public val id: Long

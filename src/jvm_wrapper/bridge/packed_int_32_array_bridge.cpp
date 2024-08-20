@@ -189,7 +189,7 @@ uintptr_t PackedInt32IntArrayBridge::engine_convert_to_godot(JNIEnv* p_raw_env, 
 
 jintArray PackedInt32IntArrayBridge::engine_convert_to_jvm(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     PackedInt32Array* packed {from_uint_to_ptr<PackedInt32Array>(p_raw_ptr)};
-    int size {packed->size()};
+    auto size {static_cast<int>(packed->size())};
 
     jni::Env env {p_raw_env};
     jni::JIntArray arr {env, size};

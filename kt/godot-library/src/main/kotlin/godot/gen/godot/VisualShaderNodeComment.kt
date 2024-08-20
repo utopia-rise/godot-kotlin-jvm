@@ -18,27 +18,14 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A resizable rectangular area with changeable [title] and [description] used for better organizing
- * of other visual shader nodes.
+ * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In
+ * the [VisualShader] editor it behaves exactly like [VisualShaderNodeFrame].
  */
 @GodotBaseType
-public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
+public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
   /**
-   * A title of the node.
-   */
-  public var title: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
-    }
-
-  /**
-   * An additional description which placed below the title.
+   * This property only exists to preserve data authored in earlier versions of Godot. It has
+   * currently no function.
    */
   public var description: String
     get() {
@@ -59,12 +46,6 @@ public open class VisualShaderNodeComment : VisualShaderNodeResizableBase() {
   public companion object
 
   internal object MethodBindings {
-    public val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_title")
-
-    public val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_title")
-
     public val setDescriptionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_description")
 

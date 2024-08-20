@@ -43,6 +43,9 @@ jobs:
             sconsflags: ''
 
     steps:
+      - name: Maximize build disk space
+        uses: easimon/maximize-build-space@v10
+
       - name: Clone Godot Engine
         uses: actions/checkout@v4
         with:
