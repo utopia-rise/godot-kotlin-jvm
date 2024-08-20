@@ -49,7 +49,7 @@ jobs:
       - name: Create iOS template app
         run: |
           cp -r misc/dist/ios_xcode .
-          cp -r MoltenVK/Package/Release/MoltenVK/MoltenVK.xcframework ios_xcode/
+          cp -r MoltenVK/Package/Release/MoltenVK/dynamic/MoltenVK.xcframework ios_xcode/
           cp libgodot.ios.template_release.arm64.a ios_xcode/libgodot.ios.release.xcframework/ios-arm64/libgodot.a
           cp libgodot.ios.template_debug.arm64.a ios_xcode/libgodot.ios.debug.xcframework/ios-arm64/libgodot.a
           mv ios_xcode/ ios/ && cd ios/
