@@ -103,11 +103,11 @@ class AABB(
         val dstMin = other._position
         val dstMax = other._position + other._size
         return ((srcMin.x <= dstMin.x) &&
-            (srcMax.x > dstMax.x) &&
+            (srcMax.x >= dstMax.x) &&
             (srcMin.y <= dstMin.y) &&
-            (srcMax.y > dstMax.y) &&
+            (srcMax.y >= dstMax.y) &&
             (srcMin.z <= dstMin.z) &&
-            (srcMax.z > dstMax.z))
+            (srcMax.z >= dstMax.z))
     }
 
     /**

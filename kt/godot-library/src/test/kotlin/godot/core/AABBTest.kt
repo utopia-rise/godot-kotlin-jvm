@@ -234,8 +234,19 @@ class TestAABB {
     fun `Encloses`() {
         val aabbBig = AABB(Vector3(-1.5, 2.0, -2.5), Vector3(4.0, 5.0, 6.0))
 
-        val aabbSmall1 = AABB(Vector3(-1.5, 2.0, -2.5), Vector3(1.0, 1.0, 1.0))
+        checkMessage(aabbBig.encloses(aabbBig)){
+            "encloses() with itself should return the expected result."
+        }
+
+
+        var aabbSmall1 = AABB(Vector3(-1.5, 2.0, -2.5), Vector3(1.0, 1.0, 1.0))
         checkMessage(aabbBig.encloses(aabbSmall1)) { "encloses() with fully contained AABB (touching the edge) should return the expected result." }
+
+        aabbSmall1 = AABB(Vector3(1.5, 6, 2.5), Vector3(1, 1, 1));
+        checkMessage(aabbBig.encloses(aabbSmall1)){
+            "encloses() with fully contained AABB (touching the edge) should return the expected result."
+        }
+
 
         val aabbSmall2 = AABB(Vector3(0.5, 1.5, -2.0), Vector3(1.0, 1.0, 1.0))
         checkMessage(!aabbBig.encloses(aabbSmall2)) { "encloses() with partially contained AABB (overflowing on Y axis) should return the expected result." }
