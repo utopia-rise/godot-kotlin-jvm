@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.util.PI
 import org.junit.Test
 
 class TestTransform3D {
@@ -69,6 +70,39 @@ class TestTransform3D {
         checkFalseMessage(Transform3D(x, infiniteVec).isFinite()) { "Transform3D with one component infinite should not be finite." }
         checkFalseMessage(Transform3D(infiniteBasis, y).isFinite()) { "Transform3D with one component infinite should not be finite." }
         checkFalseMessage(Transform3D(infiniteBasis, infiniteVec).isFinite()) { "Transform3D with two components infinite should not be finite." }
+    }
+
+    @Test
+    fun `Rotate around global origin`() {
+        // Start with the default orientation, but not centered on the origin.
+        // Rotating should rotate both our basis and the origin.
+        val transform = Transform3D()
+        transform._origin = Vector3(0, 0, 1)
+
+        val expected = Transform3D()
+        expected._origin = Vector3(0, 0, -1)
+        expected._basis[0] = Vector3(-1, 0, 0)
+        expected._basis[2] = Vector3(0, 0, -1)
+
+        val rotatedTransform = transform.rotated(Vector3(0, 1, 0), PI)
+        checkMessage(rotatedTransform.isEqualApprox(expected)) { "The rotated transform should have a new orientation and basis." }
+    }
+
+
+    @Test
+    fun `Rotate in-place (local rotation`() {
+        // Start with the default orientation.
+        // Local rotation should not change the origin, only the basis.
+        val transform = Transform3D()
+        transform._origin = Vector3(1, 2, 3)
+
+        val expected = Transform3D()
+        expected._origin = Vector3(1, 2, 3)
+        expected._basis[0] = Vector3(-1, 0, 0)
+        expected._basis[2] = Vector3(0, 0, -1)
+
+        val rotatedTransform = Transform3D(transform.rotatedLocal(Vector3(0, 1, 0), PI))
+        checkMessage(rotatedTransform.isEqualApprox(expected)) { "The rotated transform should have a new orientation but still be based on the same origin." }
     }
 }
 

@@ -194,26 +194,35 @@ class Basis() : CoreType {
         )
     }
 
-    constructor(axis: Vector3, phi: RealT) : this() {
+    constructor(axis: Vector3, angle: RealT) : this() {
         // Rotation matrix from axis and angle, see https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle
-        val axisq = Vector3(axis.x * axis.x, axis.y * axis.y, axis.z * axis.z)
-
-        val cosine: RealT = cos(phi)
-        val sine: RealT = sin(phi)
-
-        apply {
-            _x.x = axisq.x + cosine * (1.0 - axisq.x)
-            _x.y = axis.x * axis.y * (1.0 - cosine) - axis.z * sine
-            _x.z = axis.z * axis.x * (1.0 - cosine) + axis.y * sine
-
-            _y.x = axis.x * axis.y * (1.0 - cosine) + axis.z * sine
-            _y.y = axisq.y + cosine * (1.0 - axisq.y)
-            _y.z = axis.y * axis.z * (1.0 - cosine) - axis.x * sine
-
-            _z.x = axis.z * axis.x * (1.0 - cosine) - axis.y * sine
-            _z.y = axis.y * axis.z * (1.0 - cosine) + axis.x * sine
-            _z.z = axisq.z + cosine * (1.0 - axisq.z)
+        if (GodotJvmBuildConfig.DEBUG) {
+            require(axis.isNormalized()) { "The axis Vector3 $axis must be normalized."}
         }
+
+        val axiSq = Vector3(axis.x * axis.x, axis.y * axis.y, axis.z * axis.z)
+        val cosine: RealT = cos(angle)
+        _x.x = axiSq.x + cosine * (1.0f - axiSq.x)
+        _y.y = axiSq.y + cosine * (1.0f - axiSq.y)
+        _z.z = axiSq.z + cosine * (1.0f - axiSq.z)
+
+        val sine: RealT = sin(angle)
+        val t = 1.0 - cosine
+
+        var xyzt = axis.x * axis.y * t
+        var zyxs = axis.z * sine
+        _x.y = xyzt - zyxs
+        _y.x = xyzt + zyxs
+
+        xyzt = axis.x * axis.z * t
+        zyxs = axis.y * sine
+        _x.z = xyzt + zyxs
+        _z.x = xyzt - zyxs
+
+        xyzt = axis.y * axis.z * t
+        zyxs = axis.x * sine
+        _y.z = xyzt - zyxs
+        _z.y = xyzt + zyxs
     }
 
     //API

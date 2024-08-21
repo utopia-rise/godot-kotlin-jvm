@@ -199,9 +199,9 @@ class Transform3D(
      * This method is an optimized version of multiplying the given transform X with a corresponding rotation transform R from the left, i.e., R * X.
      * This can be seen as transforming with respect to the global/parent frame.
      */
-    fun rotated(axis: Vector3, phi: RealT): Transform3D {
-        val basis = Basis(axis, phi)
-        return Transform3D(basis * this._basis, basis.xform(this._origin))
+    fun rotated(axis: Vector3, angle: RealT): Transform3D {
+        val basis = Basis(axis, angle)
+        return Transform3D(basis * _basis, basis.xform(_origin))
     }
 
     /**
@@ -210,9 +210,9 @@ class Transform3D(
      * This method is an optimized version of multiplying the given transform X with a corresponding rotation transform R from the right, i.e., X * R.
      * This can be seen as transforming with respect to the local frame.
      */
-    fun rotatedLocal(axis: Vector3, phi: RealT): Transform3D {
-        val basis = Basis(axis, phi)
-        return Transform3D(this._basis * basis, this._origin)
+    fun rotatedLocal(axis: Vector3, angle: RealT): Transform3D {
+        val basis = Basis(axis, angle)
+        return Transform3D(_basis * basis, _origin)
     }
 
     internal fun scale(scale: Vector3) {
