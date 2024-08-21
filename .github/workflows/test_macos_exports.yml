@@ -82,8 +82,8 @@ jobs:
       - name: Export tests project
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          chmod +x ../../../../godot.macos.editor.${{ matrix.target }}.universal
-          ../../../../godot.macos.editor.${{ matrix.target }}.universal  --headless --export-release tests_macos
+          chmod +x ../../../../bin/godot.macos.editor.${{ matrix.target }}.universal
+          ../../../../bin/godot.macos.editor.${{ matrix.target }}.universal  --headless --export-release tests_macos
 
       - name: Extract app from dmg
         run: |
