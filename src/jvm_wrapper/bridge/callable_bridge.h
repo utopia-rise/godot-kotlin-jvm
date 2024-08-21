@@ -4,14 +4,14 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
-    JVM_SINGLETON_WRAPPER(CallableBridge, "godot.core.Callable$Bridge") {
+    JVM_SINGLETON_WRAPPER(CallableBridge, "godot.core.NativeCallable$Bridge") {
         SINGLETON_CLASS(CallableBridge)
 
         // clang-format off
         INIT_JNI_BINDINGS(
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", CallableBridge::engine_call_constructor)
             INIT_NATIVE_METHOD("engine_call_constructor_object_string_name", "()J", CallableBridge::engine_call_constructor_object_string_name)
-            //INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/KtCustomCallable;)J", CallableBridge::engine_call_constructor_kt_custom_callable)
+            INIT_NATIVE_METHOD("engine_call_constructor_kt_custom_callable", "(Lgodot/core/callable/KtCallable;II)J", CallableBridge::engine_call_constructor_kt_custom_callable)
             INIT_NATIVE_METHOD("engine_call_copy_constructor", "()J", CallableBridge::engine_call_copy_constructor)
             INIT_NATIVE_METHOD("engine_call_bind", "(J)V", CallableBridge::engine_call_bind)
             INIT_NATIVE_METHOD("engine_call_bindv", "(J)V", CallableBridge::engine_call_bindv)
@@ -39,8 +39,7 @@ namespace bridges {
 
         static uintptr_t engine_call_constructor_object_string_name(JNIEnv* p_raw_env, jobject p_instance);
 
-        //TODO: Enable that code again when KtCustomCallable is back
-        //static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance);
+        static uintptr_t engine_call_constructor_kt_custom_callable(JNIEnv* p_raw_env, jobject p_instance, jobject p_kt_custom_callable_instance, jint p_variant_type_ordinal, jint p_hash_code);
 
         static uintptr_t engine_call_copy_constructor(JNIEnv* p_raw_env, jobject p_instance);
 

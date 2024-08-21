@@ -1,12 +1,33 @@
 package godot.codegen.services.impl
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ANY
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LONG
+import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.MemberName
+import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.UNIT
+import com.squareup.kotlinpoet.asClassName
 import godot.codegen.constants.VOID_PTR
 import godot.codegen.constants.jvmReservedMethods
 import godot.codegen.exceptions.ClassGenerationException
-import godot.codegen.extensions.*
 import godot.codegen.extensions.applyJvmNameIfNecessary
+import godot.codegen.extensions.getDefaultValueKotlinString
+import godot.codegen.extensions.getTypeClassName
+import godot.codegen.extensions.isBitField
+import godot.codegen.extensions.isCoreTypeReimplementedInKotlin
+import godot.codegen.extensions.isEnum
+import godot.codegen.extensions.jvmVariantTypeValue
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.models.enriched.EnrichedClass
 import godot.codegen.models.enriched.EnrichedConstant
@@ -25,8 +46,10 @@ import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
-import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
+import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
+import godot.tools.common.constants.CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
+import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.GodotKotlinJvmTypes
@@ -38,7 +61,6 @@ import godot.tools.common.constants.VARIANT_TYPE_ANY
 import godot.tools.common.constants.VARIANT_TYPE_LONG
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.signalPackage
 import java.util.*
 
@@ -682,8 +704,6 @@ class GenerationService(
         .build()
 
     private fun TypeSpec.Builder.generateTypesafeRpc() {
-        val camelToSnakeCaseUtilFunction = MemberName(godotUtilPackage, "camelToSnakeCase")
-        val asStringNameUtilFunction = MemberName(godotCorePackage, "asStringName")
         for (i in 0..10) {
             val kFunctionTypeParameters = mutableListOf<TypeVariableName>()
             if (i != 0) {
@@ -721,7 +741,7 @@ class GenerationService(
                     templateString += ", $argParamName"
                 }
                 templateString += ")"
-                rpcFunSpec.addStatement(templateString, camelToSnakeCaseUtilFunction, asStringNameUtilFunction)
+                rpcFunSpec.addStatement(templateString, CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION, AS_STRING_NAME_UTIL_FUNCTION)
 
                 rpcFunSpec.addTypeVariable(TypeVariableName.invoke("FUNCTION", kFunctionClassName).copy(reified = true))
                 addFunction(rpcFunSpec.build())
@@ -794,13 +814,13 @@ class GenerationService(
                 val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
                     enumService.findEnumValue(
                         argumentTypeClassName,
-                        defaultValueKotlinCode.toLong()
+                        defaultValueKotlinCode.first.toLong()
                     ).name
                 } else {
-                    defaultValueKotlinCode
+                    defaultValueKotlinCode?.first
                 }
                 if (appliedDefault != null) {
-                    parameterBuilder.defaultValue(appliedDefault)
+                    parameterBuilder.defaultValue(appliedDefault, *defaultValueKotlinCode!!.second)
 
                     // add @JvmOverloads annotation for java support if not already present
                     val jvmOverloadAnnotationSpec = AnnotationSpec.builder(JvmOverloads::class.asClassName()).build()

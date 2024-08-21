@@ -28,6 +28,7 @@ private:
 
     ClassLoader* bootstrap_class_loader {nullptr};
     Bootstrap* bootstrap {nullptr};
+    Object* callable_middleman; //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
 
     void fetch_user_configuration();
     void set_jvm_options();
@@ -63,6 +64,9 @@ public:
     void init();
     void load_user_code();
     void finish();
+
+    //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved
+    Object* get_callable_middleman() const;
 
 #ifdef DEBUG_ENABLED
     void validate_state();

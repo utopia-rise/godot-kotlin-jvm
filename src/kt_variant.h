@@ -232,6 +232,17 @@ namespace ktvariant {
         return Variant(*to_native_core_type<T>(byte_buffer));
     }
 
+    static Variant from_kvariant_tKCallableValue(SharedBuffer* byte_buffer) {
+        bool is_custom {static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(BOOL_SIZE);
+
+        if (is_custom) {
+            return Callable(to_native_core_type<CallableCustom>(byte_buffer));
+        }
+
+        return from_kvariant_tokVariantNativeCoreTypeValue<Callable>(byte_buffer);
+    }
+
     static Variant from_kvariant_toKObjectValue(SharedBuffer* byte_buffer) {
         return Variant(to_godot_object(byte_buffer));
     }
@@ -258,7 +269,7 @@ namespace ktvariant {
         to_gd_array[Variant::TRANSFORM3D] = from_kvariant_to_kVariantCoreTypeValue<Transform3D>;
         to_gd_array[Variant::PROJECTION] = from_kvariant_to_kVariantCoreTypeValue<Projection>;
         to_gd_array[Variant::COLOR] = from_kvariant_to_kVariantCoreTypeValue<Color>;
-        to_gd_array[Variant::CALLABLE] = from_kvariant_tokVariantNativeCoreTypeValue<Callable>;
+        to_gd_array[Variant::CALLABLE] = from_kvariant_tKCallableValue;
         to_gd_array[Variant::SIGNAL] = from_kvariant_toKSignalValue;
         to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantNativeCoreTypeValue<Dictionary>;
         to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<Array>;

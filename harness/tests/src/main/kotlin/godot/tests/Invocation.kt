@@ -42,6 +42,7 @@ import godot.core.dictionaryOf
 import godot.core.variantArrayOf
 import godot.extensions.getNodeAs
 import godot.registration.Range
+import godot.signals.connect
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
@@ -406,6 +407,10 @@ class Invocation : Node3D() {
 		noParam.connect(invocation, OtherScript::hookNoParam)
 		oneParam.connect(invocation, OtherScript::hookOneParam)
 		twoParam.connect(invocation, OtherScript::hookTwoParam)
+
+		noParam.connect { println("noParam signal emitted") }
+		oneParam.connect { b -> println("oneParam signal emitted with $b") }
+		twoParam.connect { p0, p1 -> println("twoParam signal emitted with $p0 and $p1") }
 
 		signalWithMultipleTargets.connect(this, Invocation::targetFunctionOne)
 		signalWithMultipleTargets.connect(this, Invocation::targetFunctionTwo)

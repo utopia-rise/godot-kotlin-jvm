@@ -7,6 +7,7 @@ object GodotKotlinJvmTypes{
     const val stringName = "StringName"
     const val array = "VariantArray"
     const val callable = "Callable"
+    const val callableBase = "Callable"
     const val dictionary = "Dictionary"
     const val error = "GodotError"
     const val nodePath = "NodePath"
@@ -109,6 +110,7 @@ object GodotTypes {
     const val vector4 = "Vector4"
     const val vector4i = "Vector4i"
     const val projection = "Projection"
+    const val ktCallable = "KtCallable"
     const val callable = "Callable"
     const val signal = "Signal"
     const val variant = "Variant"
@@ -198,6 +200,7 @@ object GodotTypes {
 val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
+val GODOT_CALLABLE_BASE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callableBase)
 val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotKotlinJvmTypes.dictionary)
 val GODOT_OBJECT = ClassName(godotApiPackage, GodotKotlinJvmTypes.obj)
 val KT_OBJECT = ClassName(godotCorePackage, GodotKotlinJvmTypes.ktObject)
@@ -223,6 +226,7 @@ val VARIANT_TYPE_PACKED_STRING_ARRAY = ClassName(variantTypePackage, "PACKED_STR
 val VARIANT_TYPE_PACKED_VECTOR2_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR2_ARRAY")
 val VARIANT_TYPE_PACKED_VECTOR3_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR3_ARRAY")
 val VARIANT_TYPE_PACKED_COLOR_ARRAY = ClassName(variantTypePackage, "PACKED_COLOR_ARRAY")
+val VARIANT_TYPE_PACKED_CALLABLE = ClassName(variantTypePackage, "CALLABLE")
 val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
 val VARIANT_TYPE_JVM_INT = ClassName(variantTypePackage, "JVM_INT")
 val VARIANT_TYPE_JVM_FLOAT = ClassName(variantTypePackage, "JVM_FLOAT")
