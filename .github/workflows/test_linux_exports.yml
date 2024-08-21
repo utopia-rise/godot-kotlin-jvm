@@ -81,9 +81,8 @@ jobs:
       - name: Export tests project
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          ls ../../../..
-          chmod +x ../../../../godot.linuxbsd.editor.x86_64
-          ../../../../godot.linuxbsd.editor.x86_64  --headless --export-release tests_linux
+          chmod +x ../../../../bin/godot.linuxbsd.editor.x86_64
+          ../../../../bin/godot.linuxbsd.editor.x86_64  --headless --export-release tests_linux
 
       - name: Run Tests
         run: |
