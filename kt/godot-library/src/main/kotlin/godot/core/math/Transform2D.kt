@@ -126,7 +126,7 @@ class Transform2D(
      * Returns the inverse of the matrix.
      */
     fun affineInverse(): Transform2D {
-        val inv = Transform2D(this._x, this._y, this._origin)
+        val inv = Transform2D(this)
         inv.affineInvert()
         return inv
     }
@@ -139,18 +139,19 @@ class Transform2D(
         if (GodotJvmBuildConfig.DEBUG) {
             require(!det.isEqualApprox(0.0)) { "Determinant is 0!" }
         }
-        val idet = -1.0 / det
+        val idet = 1.0 / det
+
         val copy = _x.x
         _x.x = _y.y
         _y.y = copy
-        this._x *= Vector2(idet, -idet)
-        this._y *= Vector2(-idet, idet)
+        _x *= Vector2(idet, -idet)
+        _y *= Vector2(-idet, idet)
 
-        this._origin = basisXform(-this._origin)
+        _origin = basisXform(-_origin)
     }
 
     private fun determinant(): RealT {
-        return this._x.x * this._y.y - this._x.y * this._y.x
+        return _x.x * _y.y - _x.y * _y.x
     }
 
     /**
@@ -161,7 +162,7 @@ class Transform2D(
     /**
      * Inverse-transforms the given vector by this transform’s basis (no translation).
      */
-    fun basisXformInv(v: Vector2) = Vector2(this._x.dot(v), this._y.dot(v))
+    fun basisXformInv(v: Vector2) = Vector2(_x.dot(v), _y.dot(v))
 
     /**
      * Returns the transform’s rotation (in radians).
@@ -175,7 +176,7 @@ class Transform2D(
      */
     fun getScale(): Vector2 {
         val detSign: RealT = if (determinant() > 0.0) 1.0 else -1.0
-        return detSign * Vector2(this._x.length(), this._y.length())
+        return detSign * Vector2(_x.length(), _y.length())
     }
 
     /**
@@ -202,7 +203,7 @@ class Transform2D(
      * Returns the inverse of the transform, under the assumption that the transformation is composed of rotation and translation (no scaling, use affine_inverse for transforms with scaling).
      */
     fun inverse(): Transform2D {
-        val inv = Transform2D(this._x, this._y, this._origin)
+        val inv = Transform2D(_x, _y, _origin)
         inv.invert()
         return inv
     }
@@ -235,9 +236,9 @@ class Transform2D(
      * Returns true if this transform and transform are approximately equal, by calling is_equal_approx on each component.
      */
     fun isEqualApprox(transform: Transform2D): Boolean {
-        return transform._x.isEqualApprox(this._x)
-            && transform._y.isEqualApprox(this._y)
-            && transform._origin.isEqualApprox(this._origin)
+        return transform._x.isEqualApprox(_x)
+            && transform._y.isEqualApprox(_y)
+            && transform._origin.isEqualApprox(_origin)
     }
 
     /**
@@ -249,21 +250,21 @@ class Transform2D(
      * Returns the transform with the basis orthogonal (90 degrees), and normalized axis vectors.
      */
     fun orthonormalized(): Transform2D {
-        val on = Transform2D(this._x, this._y, this._origin)
+        val on = Transform2D(_x, _y, _origin)
         on.orthonormalize()
         return on
     }
 
     internal fun orthonormalize() {
-        val x = this._x
-        var y = this._y
+        val x = _x
+        var y = _y
 
         x.normalize()
         y = (y - x * (x.dot(y)))
         y.normalize()
 
-        this._x = x
-        this._y = y
+        _x = x
+        _y = y
     }
 
     /**
@@ -291,20 +292,20 @@ class Transform2D(
      * This can be seen as transforming with respect to the global/parent frame.
      */
     fun scaled(scale: Vector2): Transform2D {
-        val copy = Transform2D(this._x, this._y, this._origin)
+        val copy = Transform2D(this)
         copy.scale(scale)
         return copy
     }
 
     internal fun scale(scale: Vector2) {
         scaleBasis(scale)
-        this._origin *= scale
+        _origin *= scale
     }
 
     private fun scaleBasis(scale: Vector2) {
         _x.x *= scale.x
         _x.y *= scale.y
-        this._y[0] *= scale.x
+        _y[0] *= scale.x
         _y.y *= scale.y
     }
 
@@ -314,7 +315,12 @@ class Transform2D(
      * This can be seen as transforming with respect to the local frame.
      */
     fun scaledLocal(scale: Vector2): Transform2D {
-        return Transform2D(this._x * scale.x, this._y * scale.y, this._origin)
+        return Transform2D(_x * scale.x, _y * scale.y, _origin)
+    }
+
+    internal fun setSkew(angle: RealT) {
+        val det = determinant();
+        _y = det.sign * _x.rotated((PI * 0.5f + angle)).normalized() * _y.length();
     }
 
     /**
@@ -323,7 +329,7 @@ class Transform2D(
      * This can be seen as transforming with respect to the global/parent frame.
      */
     fun translated(offset: Vector2): Transform2D {
-        return Transform2D(this._x, this._y, this._origin + offset)
+        return Transform2D(_x, _y, _origin + offset)
     }
 
     /**
@@ -332,23 +338,23 @@ class Transform2D(
      * This can be seen as transforming with respect to the local frame.
      */
     fun translatedLocal(offset: Vector2): Transform2D {
-        return Transform2D(this._x, this._y, this._origin + basisXform(offset))
+        return Transform2D(_x, _y, _origin + basisXform(offset))
     }
 
 
     /**
      * Transforms the given Vector2 by this transform.
      */
-    private fun xform(v: Vector2): Vector2 {
-        return Vector2(tdotx(v), tdoty(v)) + this._origin
+    internal fun xform(v: Vector2): Vector2 {
+        return Vector2(tdotx(v), tdoty(v)) + _origin
     }
 
     /**
      * Transforms the given Rect2 by this transform.
      */
     private fun xform(rect: Rect2): Rect2 {
-        val x = this._x * rect._size.x
-        val y = this._y * rect._size.y
+        val x = _x * rect._size.x
+        val y = _y * rect._size.y
         val pos = xform(rect._position)
 
         val newRect = Rect2()
@@ -363,8 +369,8 @@ class Transform2D(
      * Inverse-transforms the given Vector2 by this transform.
      */
     private fun xformInv(vec: Vector2): Vector2 {
-        val v = vec - this._origin
-        return Vector2(this._x.dot(v), this._y.dot(v))
+        val v = vec - _origin
+        return Vector2(_x.dot(v), _y.dot(v))
     }
 
     /**
@@ -387,13 +393,11 @@ class Transform2D(
         return newRect
     }
 
-    private fun tdotx(v: Vector2): RealT {
-        return _x.x * v.x + _y.x * v.y
-    }
+    @Suppress("NOTHING_TO_INLINE")
+    internal inline fun tdotx(v: Vector2) = _x.x * v.x + _y.x * v.y
 
-    private fun tdoty(v: Vector2): RealT {
-        return _x.y * v.x + _y.y * v.y
-    }
+    @Suppress("NOTHING_TO_INLINE")
+    internal inline fun tdoty(v: Vector2) = _x.y * v.x + _y.y * v.y
 
     operator fun times(other: Transform2D): Transform2D {
         val origin = xform(other._origin)
@@ -406,11 +410,11 @@ class Transform2D(
     }
 
     override fun toString(): String {
-        return "${this._x}, ${this._y}, ${this._origin}"
+        return "${_x}, ${_y}, ${_origin}"
     }
 
     override fun equals(other: Any?): Boolean = when (other) {
-        is Transform2D -> this._x == other._x && this._y == other._y && this._origin == other._origin
+        is Transform2D -> _x == other._x && _y == other._y && _origin == other._origin
         else -> false
     }
 
