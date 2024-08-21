@@ -13,6 +13,7 @@
 const int MAX_CONSTRUCTOR_SIZE = MAX_CONSTRUCTOR_ARG_COUNT + 1;
 
 JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
+    JVM_CLASS(KtClass)
 
     // clang-format off
     JNI_METHOD(GET_REGISTERED_NAME)

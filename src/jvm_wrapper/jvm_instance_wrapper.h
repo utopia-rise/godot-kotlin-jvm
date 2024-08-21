@@ -8,6 +8,10 @@
     inline constexpr char NAME##QualifiedName[] = FQNAME; \
     class NAME : public JvmInstanceWrapper<NAME, NAME##QualifiedName>
 
+#define JVM_CLASS(NAME) \
+    friend class JvmInstanceWrapper<NAME, NAME##QualifiedName>; \
+    static inline constexpr const char* fq_name = NAME##QualifiedName;
+
 #define JNI_METHOD(var_name) inline static jni::MethodId var_name {nullptr};
 
 #define INIT_JNI_METHOD(var_name, name, signature) var_name = clazz.get_method_id(p_env, name, signature);
@@ -22,9 +26,9 @@ public:                                                                         
         Vector<jni::JNativeMethod> methods;                                          \
         jni::JClass clazz;                                                           \
         if (class_loader) {                                                          \
-            clazz = class_loader->load_class(p_env, get_fully_qualified_name());     \
+            clazz = class_loader->load_class(p_env, fq_name);                        \
         } else {                                                                     \
-            clazz = p_env.find_class(get_fully_qualified_name());                    \
+            clazz = p_env.find_class(fq_name);                                       \
         }                                                                            \
                                                                                      \
         __VA_ARGS__                                                                  \
@@ -32,25 +36,6 @@ public:                                                                         
         clazz.delete_local_ref(p_env);                                               \
     }                                                                                \
                                                                                      \
-private:
-
-#define INIT_JNI_BINDINGS_TEMPLATE(...)                                                       \
-                                                                                              \
-public:                                                                                       \
-    static void initialize_jni_binding(jni::Env& p_env, ClassLoader* class_loader) {          \
-        Vector<jni::JNativeMethod> methods;                                                   \
-        jni::JClass clazz;                                                                    \
-        if (class_loader) {                                                                   \
-            clazz = class_loader->load_class(p_env, fq_name);                                 \
-        } else {                                                                              \
-            clazz = p_env.find_class(fq_name);                                                \
-        }                                                                                     \
-                                                                                              \
-        __VA_ARGS__                                                                           \
-        if (methods.size() > 0) { clazz.register_natives(p_env, methods); }                   \
-        clazz.delete_local_ref(p_env);                                                        \
-    }                                                                                         \
-                                                                                              \
 private:
 
 /**
@@ -78,8 +63,6 @@ public:
     void swap_to_strong_unsafe(jni::Env& p_env);
 
     void swap_to_weak_unsafe(jni::Env& p_env);
-
-    static constexpr const char* get_fully_qualified_name();
 
     static Derived* create_instance(jni::Env& p_env, ClassLoader* class_loader);
 };
@@ -135,11 +118,6 @@ void JvmInstanceWrapper<Derived, FqName>::swap_to_weak_unsafe(jni::Env& p_env) {
     wrapped.delete_global_ref(p_env);
     wrapped = new_ref;
     is_weak = true;
-}
-
-template<class Derived, const char* FqName>
-constexpr const char* JvmInstanceWrapper<Derived, FqName>::get_fully_qualified_name() {
-    return FqName;
 }
 
 template<class Derived, const char* FqName>

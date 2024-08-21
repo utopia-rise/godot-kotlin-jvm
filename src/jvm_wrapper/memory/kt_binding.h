@@ -5,6 +5,7 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 
 JVM_INSTANCE_WRAPPER(KtBinding, "godot.core.memory.GodotBinding") {
+    JVM_CLASS(KtBinding)
 public:
     explicit KtBinding(jni::Env& p_env, jni::JObject p_wrapped);
     ~KtBinding();

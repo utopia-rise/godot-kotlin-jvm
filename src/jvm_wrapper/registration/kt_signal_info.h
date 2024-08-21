@@ -6,6 +6,7 @@
 #include "kt_property.h"
 
 JVM_INSTANCE_WRAPPER(KtSignalInfo, "godot.core.KtSignalInfo") {
+    JVM_CLASS(KtSignalInfo)
 
     // clang-format off
     JNI_METHOD(GET_NAME)

@@ -9,7 +9,7 @@ namespace bridges {
         PACKED_ARRAY_BRIDGE_CLASS(PackedByteArrayBridge, uint8_t)
 
         // clang-format off
-        INIT_JNI_BINDINGS_TEMPLATE(
+        INIT_JNI_BINDINGS(
             PackedArrayBridge<PackedByteArrayBridge, uint8_t, PackedByteArrayBridgeQualifiedName>::initialize_jni_binding(p_env, class_loader);
 
             INIT_NATIVE_METHOD("engine_call_compress", "(J)V", PackedByteArrayBridge::engine_call_compress)

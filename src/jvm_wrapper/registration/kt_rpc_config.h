@@ -7,6 +7,7 @@
 #include "scene/main/multiplayer_api.h"
 
 JVM_INSTANCE_WRAPPER(KtRpcConfig, "godot.core.KtRpcConfig") {
+    JVM_CLASS(KtRpcConfig)
 
     // clang-format off
     JNI_METHOD(GET_RPC_MODE_ID)

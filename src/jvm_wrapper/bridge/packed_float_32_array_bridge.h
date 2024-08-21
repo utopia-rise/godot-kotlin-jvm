@@ -8,7 +8,7 @@ namespace bridges {
         PACKED_ARRAY_BRIDGE_CLASS(PackedFloat32ArrayBridge, float)
 
         // clang-format off
-        INIT_JNI_BINDINGS_TEMPLATE(
+        INIT_JNI_BINDINGS(
             PackedArrayBridge<PackedFloat32ArrayBridge, float, PackedFloat32ArrayBridgeQualifiedName>::initialize_jni_binding(p_env, class_loader);
             INIT_NATIVE_METHOD("engine_convert_to_godot", "([F)J", PackedFloat32ArrayBridge::engine_convert_to_godot)
             INIT_NATIVE_METHOD("engine_convert_to_jvm", "(J)[F", PackedFloat32ArrayBridge::engine_convert_to_jvm)

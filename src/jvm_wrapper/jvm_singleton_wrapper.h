@@ -9,6 +9,7 @@
 
 #define SINGLETON_CLASS(NAME)                                             \
     friend class JvmSingletonWrapper<NAME, NAME##QualifiedName>;          \
+    JVM_CLASS(NAME)                                                       \
                                                                           \
 public:                                                                   \
     NAME(const NAME&) = delete;                                           \

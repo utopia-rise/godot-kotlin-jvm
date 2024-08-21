@@ -7,6 +7,7 @@
 #include "kt_rpc_config.h"
 
 JVM_INSTANCE_WRAPPER(KtFunctionInfo, "godot.core.KtFunctionInfo") {
+    JVM_CLASS(KtFunctionInfo)
 
     // clang-format off
     JNI_METHOD(GET_NAME)
@@ -35,6 +36,7 @@ public:
 };
 
 JVM_INSTANCE_WRAPPER(KtFunction, "godot.core.KtFunction") {
+    JVM_CLASS(KtFunction)
 
     // clang-format off
     JNI_METHOD(GET_FUNCTION_INFO)

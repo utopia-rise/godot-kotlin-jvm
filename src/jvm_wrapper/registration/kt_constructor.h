@@ -5,6 +5,8 @@
 #include "kt_object.h"
 
 JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
+    JVM_CLASS(KtConstructor)
+
     // clang-format off
     JNI_METHOD(GET_PARAMETER_COUNT)
     JNI_METHOD(CONSTRUCT)

@@ -9,7 +9,7 @@ namespace bridges {
         PACKED_ARRAY_BRIDGE_CLASS(PackedInt64ArrayBridge, int64_t)
 
         // clang-format off
-        INIT_JNI_BINDINGS_TEMPLATE(
+        INIT_JNI_BINDINGS(
             PackedArrayBridge<PackedInt64ArrayBridge, int64_t, PackedInt64ArrayBridgeQualifiedName>::initialize_jni_binding(p_env, class_loader);
 
             INIT_NATIVE_METHOD("engine_convert_to_godot", "([J)J", PackedInt64ArrayBridge::engine_convert_to_godot)

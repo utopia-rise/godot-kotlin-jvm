@@ -12,7 +12,7 @@
 #define PACKED_ARRAY_BRIDGE_CLASS(NAME, ELEMENT_TYPE) \
     friend class PackedArrayBridge<NAME, ELEMENT_TYPE, NAME##QualifiedName>;            \
     friend class JvmSingletonWrapper<NAME, NAME##QualifiedName>;                        \
-    static inline constexpr const char* fq_name = NAME##QualifiedName;                  \
+    JVM_CLASS(NAME)                                                                     \
                                                                                         \
 public:                                                                                 \
     NAME(const NAME&) = delete;                                                         \
@@ -43,7 +43,7 @@ namespace bridges {
         ~PackedArrayBridge() = default;
 
         // clang-format off
-        INIT_JNI_BINDINGS_TEMPLATE(
+        INIT_JNI_BINDINGS(
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", (PackedArrayBridge<Derived, T, fq_name>::engine_call_constructor))
             INIT_NATIVE_METHOD("engine_call_constructor_packed_array", "()J", (PackedArrayBridge<Derived, T, fq_name>::engine_call_constructor_packed_array))
             INIT_NATIVE_METHOD("engine_call_constructor_array", "()J", (PackedArrayBridge<Derived, T, fq_name>::engine_call_constructor_array))
