@@ -81,7 +81,7 @@ jobs:
       - name: Export tests project
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          ../../../../editor_${{ matrix.target }}_windows_x86_64  --headless --export-release tests_windows
+          ../../../../godot.windows.editor.x86_64.exe  --headless --export-release tests_windows
 
       - name: Run Tests
         run: |
