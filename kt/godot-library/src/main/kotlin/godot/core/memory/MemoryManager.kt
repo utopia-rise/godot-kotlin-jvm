@@ -15,7 +15,6 @@ import java.lang.ref.ReferenceQueue
 import java.time.Duration
 import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.math.min
 
 internal object MemoryManager {
     /** Number of references to check each loop.*/
@@ -30,24 +29,15 @@ internal object MemoryManager {
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
-    /** Queue of objects that need to be bound to native objects*/
-    private val bindingQueue = ArrayDeque<GodotBinding>()
-
-    /**
-     * Queue of objects which will to be bound to native objects in a given iteration.
-     *
-     * At the start of a garbage collection iteration. The objects from the [bindingQueue] are copied into this list in order to spend as little time as possible in a `synchonized` block. Later we loop through this list to actually bind the objects.
-     */
-    private val bindingList = ArrayList<GodotBinding>(CHECK_NUMBER)
-
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
+
+    /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
+    private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
     /** List of element to remove from ObjectDB*/
     private val deleteList = ArrayList<GodotNativeEntry>(CHECK_NUMBER)
 
-    /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
-    private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
     // Not private because accessed by engine.
     @Suppress("MemberVisibilityCanBePrivate")
@@ -95,7 +85,6 @@ internal object MemoryManager {
                 GodotBinding().also {
                     it.wrapper = instance
                     ObjectDB[id.index] = GodotNativeEntry.create(it, refReferenceQueue)
-                    bindingQueue.addLast(it)
                 }
             } else {
                 binding.wrapper = instance
@@ -112,7 +101,6 @@ internal object MemoryManager {
                 GodotBinding().also {
                     it.scriptInstance = instance
                     ObjectDB[id.index] = GodotNativeEntry.create(it, refReferenceQueue)
-                    bindingQueue.addLast(it)
                 }
             } else {
                 binding.scriptInstance = instance
@@ -151,33 +139,8 @@ internal object MemoryManager {
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
 
-    private fun manageMemory() = bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
+    private fun manageMemory() = removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
 
-    /**
-     * Binding a newly created KtObject by setting itself in the c++ binding.
-     * @return True if a binding has been set.
-     */
-    private fun bindNewObjects(): Boolean {
-        var isActive = false
-        var counter = 0
-
-        //Objects in that list don't have a binding yet,so we call c++ code to set it
-        synchronized(ObjectDB) {
-            //In a synchronized block to copy the content into another list, so we spend as little time as possible blocking access to `ObjectDB`.
-            val size = min(bindingQueue.size, CHECK_NUMBER)
-            while (counter < size) {
-                bindingList.add(bindingQueue.removeFirst())
-                counter++
-            }
-        }
-
-        for (ref in bindingList) {
-            bindInstance(ref.value!!.id.id, ref)
-            isActive = true
-        }
-        bindingList.clear()
-        return isActive
-    }
 
     /**
      * Remove the [KtObject] references that have died.
@@ -276,8 +239,6 @@ internal object MemoryManager {
     }
 
     private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-    private external fun bindInstance(instanceId: Long, obj: GodotBinding)
-    private external fun unbindInstance(instanceId: Long)
     private external fun decrementRefCounter(instanceId: Long)
     private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
 }

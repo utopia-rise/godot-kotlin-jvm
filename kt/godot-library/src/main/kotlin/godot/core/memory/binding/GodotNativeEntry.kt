@@ -13,7 +13,7 @@ internal interface GodotNativeEntry {
 
     companion object {
         fun create(binding: GodotBinding, queue: ReferenceQueue<GodotBinding>) : GodotNativeEntry {
-            val id = binding.value.id
+            val id = binding.value!!.id
             if(id.isReference){
                 return GodotRefCountedEntry(binding, queue, id)
             } else {
@@ -48,7 +48,7 @@ internal class GodotObjectEntry(
 ) : GodotNativeEntry {
 
     override val objectID: ObjectID
-        get() = binding.value.id
+        get() = binding.value!!.id
 }
 
 
