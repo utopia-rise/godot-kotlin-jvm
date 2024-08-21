@@ -96,3 +96,14 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
+  test-linux-exports:
+    name: 🐧 Test Linux Exports
+    uses: ./.github/workflows/test_linux_exports.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-linux
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
