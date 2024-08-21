@@ -18,6 +18,8 @@ import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.ceil
 import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.round
 import kotlin.math.sign
 import kotlin.math.sqrt
@@ -156,6 +158,12 @@ class Vector3(
         y.coerceIn(min.y, max.y),
         z.coerceIn(min.z, max.z)
     )
+
+    /**
+     * Returns a new vector with all components clamped between the min and max, by running
+     * @GlobalScope.clamp on each component.
+     */
+    fun clampf(min: RealT, max: RealT) = Vector3(x.coerceIn(min, max), y.coerceIn(min, max), z.coerceIn(min, max))
 
     /**
      * Returns the cross product with b.
@@ -337,6 +345,11 @@ class Vector3(
     }
 
     /**
+     * Returns the component-wise maximum of this and with.
+     */
+    fun max(with: Vector3) = Vector3(max(x, with.x), max(y, with.y), max(z, with.z))
+
+    /**
      * Returns the axis of the vector's highest value. See AXIS_* constants.
      * If all components are equal, this method returns Axis.X.
      */
@@ -355,6 +368,16 @@ class Vector3(
     }
 
     /**
+     * Returns the component-wise maximum of this and with, equivalent to `Vector3(maxf(x, with.x), maxf(y, with.y), maxf(z, with.z)).`.
+     */
+    fun maxf(with: RealT) = Vector3(max(x, with), max(y, with), max(z, with))
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to `Vector3(maxf(x, with), maxf(y, with), maxf(z, with))`.
+     */
+    fun min(with: Vector3) = Vector3(min(x, with.x), min(y, with.y), min(z, with.z))
+
+    /**
      * Returns the axis of the vector’s smallest value. See AXIS_* constants.
      */
     fun minAxis() = if (x < y) {
@@ -370,6 +393,11 @@ class Vector3(
             Axis.Z
         }
     }
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to `Vector3(minf(x, with.x), minf(y, with.y), minf(z, with.z))`.
+     */
+    fun minf(with: RealT) = Vector3(min(x, with), min(y, with), min(z, with))
 
     /**
      * Moves the vector toward to by the fixed delta amount.
@@ -609,6 +637,12 @@ class Vector3(
         y = snapped(y, by.y)
         z = snapped(z, by.z)
     }
+
+    /**
+     * Returns a new vector with each component snapped to the nearest multiple of step.
+     * This can also be used to round the components to an arbitrary number of decimals.
+     */
+    fun snappedf(step: RealT) = Vector3(snapped(x, step), snapped(y, step), snapped(z, step))
 
     fun toVector3i() = Vector3i(this)
 

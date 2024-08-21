@@ -6,7 +6,6 @@ import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import godot.util.RealT
 import kotlincompile.definitions.GodotJvmBuildConfig
-import kotlin.math.min
 
 class AABB(
     position: Vector3,
@@ -85,14 +84,7 @@ class AABB(
      * Returns an AABB with equivalent position and size, modified so that the most-negative corner is the origin and
      * the size is positive.
      */
-    fun abs() = AABB(
-        Vector3(
-            position.x + min(size.x, 0.0),
-            position.y + min(size.y, 0.0),
-            position.z + min(size.z, 0.0)
-        ),
-        size.abs()
-    )
+    fun abs() = AABB(position + size.min(Vector3()), size.abs())
 
     /**
      * Returns true if this AABB completely encloses another one.

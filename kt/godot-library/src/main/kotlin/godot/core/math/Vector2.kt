@@ -19,6 +19,8 @@ import kotlin.math.atan2
 import kotlin.math.ceil
 import kotlin.math.cos
 import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.round
 import kotlin.math.sign
 import kotlin.math.sin
@@ -157,6 +159,12 @@ class Vector2(
      * @GlobalScope.clamp on each component.
      */
     fun clamp(min: Vector2, max: Vector2) = Vector2(x.coerceIn(min.x, max.x), y.coerceIn(min.y, max.y))
+
+    /**
+     * Returns a new vector with all components clamped between the min and max, by running
+     * @GlobalScope.clamp on each component.
+     */
+    fun clampf(min: RealT, max: RealT) = Vector2(x.coerceIn(min, max), y.coerceIn(min, max))
 
     /**
      * Returns the 2 dimensional analog of the cross product with the given vector.
@@ -326,16 +334,36 @@ class Vector2(
     }
 
     /**
+     * Returns the component-wise maximum of this and with, equivalent to `Vector2(maxf(x, with.x), maxf(y, with.y))`.
+     */
+    fun max(with: Vector2) = Vector2(max(x, with.x), max(y, with.y))
+
+    /**
      * Returns the axis of the vector's highest value. See AXIS_* constants. If all components are equal,
      * this method returns AXIS_X.
      */
     fun maxAxisIndex() = if (x < y) Axis.Y else Axis.X
 
     /**
+     * Returns the component-wise maximum of this and with, equivalent to `Vector2(maxf(x, with), maxf(y, with))`.
+     */
+    fun maxf(with: RealT) = Vector2(max(x, with), max(y, with))
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to `Vector2(minf(x, with.x), minf(y, with.y))`.
+     */
+    fun min(with: Vector2) = Vector2(min(x, with.x), min(y, with.y))
+
+    /**
      * Returns the axis of the vector's lowest value. See AXIS_* constants. If all components are equal,
      * this method returns AXIS_Y.
      */
     fun minAxisIndex() = if (x < y) Axis.X else Axis.Y
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to `Vector2(minf(x, with), minf(y, with))`.
+     */
+    fun minf(with: RealT) = Vector2(min(x, with), min(y, with))
 
     /**
      * Moves the vector toward to by the fixed delta amount.
@@ -505,16 +533,23 @@ class Vector2(
     /**
      * Returns a new vector with each component snapped to the closest multiple of the corresponding component in [step].
      */
-    fun snapped(by: Vector2): Vector2 {
+    fun snapped(step: Vector2): Vector2 {
         val v = Vector2(this)
-        v.snap(by)
+        v.snap(step)
         return v
     }
+
 
     internal fun snap(by: Vector2) {
         x = snapped(x, by.x)
         y = snapped(y, by.y)
     }
+
+    /**
+     * Returns a new vector with each component snapped to the nearest multiple of step.
+     * This can also be used to round the components to an arbitrary number of decimals.
+     */
+    fun snappedf(step: RealT) = Vector2(snapped(x, step), snapped(y, step))
 
     operator fun get(idx: Int): RealT = when (idx) {
         0 -> x

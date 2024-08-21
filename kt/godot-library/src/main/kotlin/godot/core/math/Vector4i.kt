@@ -4,6 +4,8 @@ package godot.core
 
 import godot.util.snapped
 import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sign
 import kotlin.math.sqrt
 
@@ -73,6 +75,12 @@ class Vector4i(
     )
 
     /**
+     * Returns a new vector with all components clamped between the min and max, by running
+     * @GlobalScope.clamp on each component.
+     */
+    fun clampi(min: Int, max: Int) = Vector4i(x.coerceIn(min, max), y.coerceIn(min, max), z.coerceIn(min, max), w.coerceIn(min, max))
+
+    /**
      * Returns the vector’s length.
      */
     fun length(): Double {
@@ -84,6 +92,11 @@ class Vector4i(
      * Prefer this function over length if you need to sort vectors or need the squared length for some formula.
      */
     fun lengthSquared() = x * (x) + y * (y) + z * (z) + w * (w)
+
+    /**
+     * Returns the component-wise maximum of this and with.
+     */
+    fun max(with: Vector4i) = Vector4i(max(x, with.x), max(y, with.y), max(z, with.z), max(w, with.w))
 
     /**
      * Returns the axis of the vector's highest value. See AXIS_* constants.
@@ -104,6 +117,16 @@ class Vector4i(
     }
 
     /**
+     * Returns the component-wise maximum of this and with.
+     */
+    fun maxi(with: Int) = Vector4i(max(x, with), max(y, with), max(z, with), max(w, with))
+
+    /**
+     * Returns the component-wise minimum of this and with.
+     */
+    fun min(with: Vector4i) = Vector4i(min(x, with.x), min(y, with.y), min(z, with.z), min(w, with.w))
+
+    /**
      * Returns the axis of the vector’s smallest value. See AXIS_* constants.
      */
     fun minAxis(): Axis {
@@ -119,6 +142,11 @@ class Vector4i(
         }
         return Axis.from(minIndex.toLong())
     }
+
+    /**
+     * Returns the component-wise minimum of this and with.
+     */
+    fun mini(with: Int) = Vector3i(min(x, with), min(y, with), min(z, with))
 
     /**
      * Returns the vector with each component set to one or negative one, depending on the signs of the components.
@@ -142,6 +170,11 @@ class Vector4i(
         z = snapped(z, by.z)
         w = snapped(w, by.w)
     }
+
+    /**
+     * Returns a new vector with each component snapped to the closest multiple of step.
+     */
+    fun snappedi(step: Int) = Vector4i(snapped(x, step), snapped(y, step), snapped(z, step), snapped(w, step))
 
     fun toVector4() = Vector4(this)
 

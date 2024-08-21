@@ -124,13 +124,7 @@ class Rect2(
      *Returns a Rect2 with equivalent position and area, modified so that
      * the top-left corner is the origin and width and height are positive.
      */
-    fun abs() = Rect2(
-        Point2(
-            _position.x + min(_size.x, 0.0),
-            _position.y + min(_size.y, 0.0)
-        ),
-        _size.abs()
-    )
+    fun abs() = Rect2(position + size.min(Point2()), size.abs())
 
     /**
      * Returns true if this Rect2 completely encloses another one.
