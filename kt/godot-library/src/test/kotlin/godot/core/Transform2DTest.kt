@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.util.SQRT12
 import godot.util.TAU
 import godot.util.isEqualApprox
 import org.junit.Test
@@ -96,6 +97,39 @@ class TestTransform2D {
         checkFalse(Transform2D(infinite, x, infinite).isFinite())
         checkFalse(Transform2D(x, infinite, infinite).isFinite())
         checkFalse(Transform2D(infinite, infinite, infinite).isFinite())
+    }
+
+
+    @Test
+    fun `Is conformal checks`() {
+        checkMessage(
+            Transform2D().isConformal()
+        )
+        { "Identity Transform2D should be conformal." }
+
+        checkMessage(
+            Transform2D(1.2, Vector2()).isConformal()
+        ) { "Transform2D with only rotation should be conformal." }
+
+        checkMessage(
+            Transform2D(Vector2(1, 0), Vector2(0, -1), Vector2()).isConformal()
+        ) { "Transform2D with only a flip should be conformal." }
+
+        checkMessage(
+            Transform2D(Vector2(1.2, 0), Vector2(0, 1.2), Vector2()).isConformal()
+        ) { "Transform2D with only uniform scale should be conformal." }
+
+        checkMessage(
+            Transform2D(Vector2(1.2, 3.4), Vector2(3.4, -1.2), Vector2()).isConformal()
+        ) { "Transform2D with a flip, rotation, and uniform scale should be conformal." }
+
+        checkFalseMessage(
+            Transform2D(Vector2(1.2, 0), Vector2(0, 3.4), Vector2()).isConformal()
+        ) { "Transform2D with non-uniform scale should not be conformal." }
+
+        checkFalseMessage(
+            Transform2D(Vector2(SQRT12, SQRT12), Vector2(0, 1), Vector2()).isConformal()
+        ) { "Transform2D with the X axis skewed 45 degrees should not be conformal." }
     }
 }
 

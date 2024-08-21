@@ -215,6 +215,23 @@ class Transform2D(
     }
 
     /**
+     * Returns true if this transform's basis is conformal.
+     * A conformal basis is both orthogonal (the axes are perpendicular to each other) and uniform (the axes share the same length).
+     * This method can be especially useful during physics calculations.
+     */
+    fun isConformal(): Boolean {
+        // Non-flipped case.
+        if (_x.x.isEqualApprox(_y.y) && _x.y.isEqualApprox(-_y.x)) {
+            return true;
+        }
+        // Flipped case.
+        if (_x.x.isEqualApprox(-_y.y) && _x.y.isEqualApprox(_y.x)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Returns true if this transform and transform are approximately equal, by calling is_equal_approx on each component.
      */
     fun isEqualApprox(transform: Transform2D): Boolean {

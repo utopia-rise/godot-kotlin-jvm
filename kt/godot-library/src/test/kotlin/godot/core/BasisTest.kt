@@ -3,8 +3,6 @@ package godot.core
 import godot.EulerOrder
 import godot.util.PI
 import godot.util.SQRT12
-import godot.util.isEqualApprox
-import godot.util.isZeroApprox
 import org.junit.Test
 
 class TestBasis {
@@ -26,15 +24,6 @@ class TestBasis {
             EulerOrder.EULER_ORDER_ZYX -> "ZYX"
             else -> "[Not supported]"
         }
-    }
-
-    private fun Basis.isConformal(): Boolean {
-        val xLenSq = x.lengthSquared()
-        return xLenSq.isEqualApprox(y.lengthSquared())
-            && xLenSq.isEqualApprox(z.lengthSquared())
-            && x.dot(y).isZeroApprox()
-            && x.dot(z).isZeroApprox()
-            && y.dot(z).isZeroApprox()
     }
 
     private fun testRotation(degOriginalEuler: Vector3, rotOrder: EulerOrder) {
@@ -233,5 +222,78 @@ class TestBasis {
                 Vector3(0.0, 0.0, 1.0)
             ).isConformal()
         ) { "Basis with the X axis skewed 45 degrees should not be conformal." }
+
+
+        checkMessage(
+            Basis(0, 0, 0, 0, 0, 0, 0, 0, 0).isConformal()
+        )
+        { "Edge case: Basis with all zeroes should return true for is_conformal (because a 0 scale is uniform)." }
+    }
+
+    @Test
+    fun `Is orthogonal checks`() {
+        checkMessage(
+            Basis().isOrthogonal()
+        ) { "Identity Basis should be orthogonal." }
+
+        checkMessage(
+            Basis.fromEuler(Vector3(1.2, 3.4, 5.6)).isOrthogonal()
+        ) { "Basis with only rotation should be orthogonal." }
+
+        checkMessage(
+            Basis.fromEuler(Vector3(-1, -1, -1)).isOrthogonal()
+        )
+        { "Basis with only a flip should be orthogonal." }
+
+        checkMessage(
+            Basis.fromEuler(Vector3(1.2, 3.4, 5.6)).isOrthogonal()
+        )
+        { "Basis with only scale should be orthogonal." }
+
+        checkMessage(
+            Basis(Vector3(3, 4, 0), Vector3(4, -3, 0), Vector3(0, 0, 5)).isOrthogonal()
+        )
+        { "Basis with a flip, rotation, and uniform scale should be orthogonal." }
+
+        checkFalseMessage(
+            Basis(Vector3(SQRT12, SQRT12, 0), Vector3(0, 1, 0), Vector3(0, 0, 1)).isOrthogonal()
+        )
+        { "Basis with the X axis skewed 45 degrees should not be orthogonal." }
+
+        checkMessage(
+            Basis(0, 0, 0, 0, 0, 0, 0, 0, 0).isOrthogonal()
+        )
+        { "Edge case: Basis with all zeroes should return true for is_orthogonal, since zero vectors are orthogonal to all vectors." }
+    }
+
+    @Test
+    fun `Is rotation checks`() {
+        checkMessage(
+            Basis().isRotation()
+        ) { "Identity Basis should be a rotation (a rotation of zero)." }
+
+        checkMessage(
+            Basis.fromEuler(Vector3(1.2, 3.4, 5.6)).isRotation()
+        ) { "Basis with only rotation should be a rotation." }
+
+        checkFalseMessage(
+            Basis.fromScale(Vector3(-1, -1, -1)).isRotation()
+        ) { "Basis with only a flip should not be a rotation." }
+
+        checkFalseMessage(
+            Basis.fromScale(Vector3(1.2, 3.4, 5.6)).isRotation()
+        ) { "Basis with only scale should not be a rotation." }
+
+        checkFalseMessage(
+            Basis(Vector3(2, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 1)).isRotation()
+        ) { "Basis with a squeeze should not be a rotation." }
+
+        checkFalseMessage(
+            Basis(Vector3(SQRT12, SQRT12, 0), Vector3(0, 1, 0), Vector3(0, 0, 1)).isRotation()
+        ) { "Basis with the X axis skewed 45 degrees should not be a rotation." }
+
+        checkFalseMessage(
+            Basis(0, 0, 0, 0, 0, 0, 0, 0, 0).isRotation()
+        ) { "Edge case: Basis with all zeroes should return false for is_rotation, because it is not just a rotation (has a scale of 0)." }
     }
 }
