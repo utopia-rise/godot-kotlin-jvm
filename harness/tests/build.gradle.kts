@@ -104,53 +104,84 @@ tasks {
             ?.absolutePath
             ?: throw Exception("Could not find editor executable")
 
-        var didAllTestsPass = false
-        var isJvmClosed = false
-        val testOutputFile = File("$projectDir/test_output.txt")
-        standardOutput = testOutputFile.outputStream()
-        errorOutput = testOutputFile.outputStream()
+        setupTestExecution(editorExecutable)
+    }
+    register<Exec>("runExportedGutTests") {
+        group = "verification"
 
-        doLast {
-            val testOutput = testOutputFile.readText()
-            val outputLines = testOutput.split("\n")
+        dependsOn(importResources)
 
-            outputLines.forEach { line ->
-                when {
-                    line.contains("All tests passed") -> {
-                        didAllTestsPass = true
-                    }
-
-                    line.contains("JVM Memory cleaned") -> {
-                        isJvmClosed = true
-                    }
+        val testExecutable: String = projectDir
+            .resolve("export")
+            .listFiles()
+            ?.also {
+                println("Test executables: [${it.joinToString()}]")
+            }
+            ?.firstOrNull { file ->
+                listOf("exe", "x64_64", "app")
+                    .any { executableExtensions -> file.name.contains(executableExtensions) }
+            }
+            ?.let { executable ->
+                if (executable.name.contains("app")) {
+                    executable.resolve("Contents/MacOS").listFiles().firstOrNull()
+                } else {
+                    executable
                 }
             }
+            ?.absolutePath
+            ?: throw Exception("Could not find test executable")
 
-            val error = when {
-                !didAllTestsPass -> Exception("ERROR: Some assertions failed")
-                !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
-                else -> null
+        setupTestExecution(testExecutable)
+    }
+}
+
+fun Exec.setupTestExecution(editorExecutable: String) {
+    var didAllTestsPass = false
+    var isJvmClosed = false
+    val testOutputFile = File("${projectDir}/test_output.txt")
+    this.standardOutput = testOutputFile.outputStream()
+    this.errorOutput = testOutputFile.outputStream()
+
+    this.doLast {
+        val testOutput = testOutputFile.readText()
+        val outputLines = testOutput.split("\n")
+
+        outputLines.forEach { line ->
+            when {
+                line.contains("All tests passed") -> {
+                    didAllTestsPass = true
+                }
+
+                line.contains("JVM Memory cleaned") -> {
+                    isJvmClosed = true
+                }
             }
-
-            println(testOutput)
-
-            error?.let { throw it }
         }
 
-        isIgnoreExitValue = true
-
-        if (HostManager.hostIsMingw) {
-            commandLine(
-                "cmd",
-                "/c",
-                "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
-            )
-        } else {
-            commandLine(
-                "bash",
-                "-c",
-                "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
-            )
+        val error = when {
+            !didAllTestsPass -> Exception("ERROR: Some assertions failed")
+            !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
+            else -> null
         }
+
+        println(testOutput)
+
+        error?.let { throw it }
+    }
+
+    this.isIgnoreExitValue = true
+
+    if (HostManager.hostIsMingw) {
+        this.commandLine(
+            "cmd",
+            "/c",
+            "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+        )
+    } else {
+        this.commandLine(
+            "bash",
+            "-c",
+            "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+        )
     }
 }
