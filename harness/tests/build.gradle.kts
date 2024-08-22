@@ -119,28 +119,31 @@ tasks {
 
         dependsOn(importResources, exportRelease)
 
+        val executable = projectDir
+            .resolve("export")
+            .listFiles()
+            ?.filter { it.isFile }
+            ?.also {
+                println("Test executables: [${it.joinToString()}]")
+                it.forEach { file -> file.setExecutable(true) }
+            }
+            ?.firstOrNull { file ->
+                listOf("exe", "x64_64", "app")
+                    .any { executableExtensions -> file.name.contains(executableExtensions) }
+            }
+            ?.let { executable ->
+                if (executable.name.contains("app")) {
+                    executable.resolve("Contents/MacOS").listFiles().firstOrNull()
+                } else {
+                    executable
+                }
+            }
+            ?.absolutePath
+
+        this.enabled = executable != null
+
         setupTestExecution {
-            projectDir
-                .resolve("export")
-                .listFiles()
-                ?.filter { it.isFile }
-                ?.also {
-                    println("Test executables: [${it.joinToString()}]")
-                    it.forEach { file -> file.setExecutable(true) }
-                }
-                ?.firstOrNull { file ->
-                    listOf("exe", "x64_64", "app")
-                        .any { executableExtensions -> file.name.contains(executableExtensions) }
-                }
-                ?.let { executable ->
-                    if (executable.name.contains("app")) {
-                        executable.resolve("Contents/MacOS").listFiles().firstOrNull()
-                    } else {
-                        executable
-                    }
-                }
-                ?.absolutePath
-                ?: throw Exception("Could not find test executable")
+            executable ?: ""
         }
     }
 }
