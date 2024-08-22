@@ -65,15 +65,7 @@ tasks {
 
         isIgnoreExitValue = true
 
-        val editorExecutable: String = projectDir
-            .resolve("../../../../bin")
-            .listFiles()
-            ?.also {
-                println("[${it.joinToString()}]")
-            }
-            ?.firstOrNull { it.name.startsWith("godot.") }
-            ?.absolutePath
-            ?: throw Exception("Could not find editor executable")
+        val editorExecutable: String = provideEditorExecutable().absolutePath
 
         if (HostManager.hostIsMingw) {
             commandLine(
@@ -89,33 +81,52 @@ tasks {
             )
         }
     }
+    val exportRelease by registering(Exec::class) {
+        description = "Exports the tests for the current host OS in release mode"
+        dependsOn(importResources, build)
+
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
+        val target = when {
+            HostManager.hostIsLinux -> "tests_linux"
+            HostManager.hostIsMac -> "tests_macos"
+            HostManager.hostIsMingw -> "tests_windows"
+            else -> throw IllegalStateException("Unsupported OS for exporting")
+        }
+
+        doFirst {
+            projectDir.resolve("export").mkdirs()
+
+            commandLine(
+                provideEditorExecutable().absolutePath,
+                "--headless",
+                "--export-release",
+                target,
+            )
+        }
+    }
     register<Exec>("runGutTests") {
         group = "verification"
 
         dependsOn(importResources)
 
-        val editorExecutable: String = projectDir
-            .resolve("../../../../bin")
-            .listFiles()
-            ?.also {
-                println("[${it.joinToString()}]")
-            }
-            ?.firstOrNull { it.name.startsWith("godot.") }
-            ?.absolutePath
-            ?: throw Exception("Could not find editor executable")
+        val editorExecutable: String = provideEditorExecutable().absolutePath
 
         setupTestExecution(editorExecutable)
     }
     register<Exec>("runExportedGutTests") {
         group = "verification"
 
-        dependsOn(importResources)
+        dependsOn(importResources, exportRelease)
 
         val testExecutable: String = projectDir
             .resolve("export")
             .listFiles()
+            ?.filter { it.isFile }
             ?.also {
                 println("Test executables: [${it.joinToString()}]")
+                it.forEach { file -> file.setExecutable(true) }
             }
             ?.firstOrNull { file ->
                 listOf("exe", "x64_64", "app")
@@ -185,3 +196,12 @@ fun Exec.setupTestExecution(editorExecutable: String) {
         )
     }
 }
+
+fun provideEditorExecutable(): File = (projectDir
+    .resolve("../../../../bin")
+    .listFiles()
+    ?.also {
+        println("[${it.joinToString()}]")
+    }
+    ?.firstOrNull { it.name.startsWith("godot.") }
+    ?: throw Exception("Could not find editor executable"))

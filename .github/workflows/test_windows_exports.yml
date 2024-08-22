@@ -78,11 +78,6 @@ jobs:
         run: |
           jlink --add-modules java.base,java.logging --output jre-amd64-windows
 
-      - name: Export tests project
-        run: |
-          cd modules/kotlin_jvm/harness/tests/
-          ../../../../bin/godot.windows.editor.x86_64.exe  --headless --export-release tests_windows
-
       - name: Run Tests
         run: |
           cd modules/kotlin_jvm/harness/tests/
