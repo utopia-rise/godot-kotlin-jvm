@@ -111,42 +111,42 @@ tasks {
 
         dependsOn(importResources)
 
-        val editorExecutable: String = provideEditorExecutable().absolutePath
-
-        setupTestExecution(editorExecutable)
+        setupTestExecution {
+            provideEditorExecutable().absolutePath
+        }
     }
     register<Exec>("runExportedGutTests") {
         group = "verification"
 
         dependsOn(importResources, exportRelease)
 
-        val testExecutable: String = projectDir
-            .resolve("export")
-            .listFiles()
-            ?.filter { it.isFile }
-            ?.also {
-                println("Test executables: [${it.joinToString()}]")
-                it.forEach { file -> file.setExecutable(true) }
-            }
-            ?.firstOrNull { file ->
-                listOf("exe", "x64_64", "app")
-                    .any { executableExtensions -> file.name.contains(executableExtensions) }
-            }
-            ?.let { executable ->
-                if (executable.name.contains("app")) {
-                    executable.resolve("Contents/MacOS").listFiles().firstOrNull()
-                } else {
-                    executable
+        setupTestExecution {
+            projectDir
+                .resolve("export")
+                .listFiles()
+                ?.filter { it.isFile }
+                ?.also {
+                    println("Test executables: [${it.joinToString()}]")
+                    it.forEach { file -> file.setExecutable(true) }
                 }
-            }
-            ?.absolutePath
-            ?: throw Exception("Could not find test executable")
-
-        setupTestExecution(testExecutable)
+                ?.firstOrNull { file ->
+                    listOf("exe", "x64_64", "app")
+                        .any { executableExtensions -> file.name.contains(executableExtensions) }
+                }
+                ?.let { executable ->
+                    if (executable.name.contains("app")) {
+                        executable.resolve("Contents/MacOS").listFiles().firstOrNull()
+                    } else {
+                        executable
+                    }
+                }
+                ?.absolutePath
+                ?: throw Exception("Could not find test executable")
+        }
     }
 }
 
-fun Exec.setupTestExecution(editorExecutable: String) {
+fun Exec.setupTestExecution(executableProvider: () -> String) {
     var didAllTestsPass = false
     var isJvmClosed = false
     val testOutputFile = File("${projectDir}/test_output.txt")
@@ -186,13 +186,13 @@ fun Exec.setupTestExecution(editorExecutable: String) {
         this.commandLine(
             "cmd",
             "/c",
-            "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
         )
     } else {
         this.commandLine(
             "bash",
             "-c",
-            "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
         )
     }
 }
