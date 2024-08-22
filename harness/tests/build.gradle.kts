@@ -95,7 +95,7 @@ tasks {
             else -> throw IllegalStateException("Unsupported OS for exporting")
         }
 
-        doFirst {
+        doLast {
             projectDir.resolve("export").mkdirs()
 
             commandLine(
@@ -182,18 +182,20 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
 
     this.isIgnoreExitValue = true
 
-    if (HostManager.hostIsMingw) {
-        this.commandLine(
-            "cmd",
-            "/c",
-            "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
-        )
-    } else {
-        this.commandLine(
-            "bash",
-            "-c",
-            "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
-        )
+    doFirst {
+        if (HostManager.hostIsMingw) {
+            this@setupTestExecution.commandLine(
+                "cmd",
+                "/c",
+                "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            )
+        } else {
+            this@setupTestExecution.commandLine(
+                "bash",
+                "-c",
+                "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+            )
+        }
     }
 }
 
