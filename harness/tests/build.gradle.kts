@@ -65,6 +65,9 @@ tasks {
 
         isIgnoreExitValue = true
 
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
         val editorExecutable: String = provideEditorExecutable().absolutePath
 
         if (HostManager.hostIsMingw) {
@@ -95,16 +98,14 @@ tasks {
             else -> throw IllegalStateException("Unsupported OS for exporting")
         }
 
-        doLast {
-            projectDir.resolve("export").mkdirs()
+        projectDir.resolve("export").mkdirs()
 
-            commandLine(
-                provideEditorExecutable().absolutePath,
-                "--headless",
-                "--export-release",
-                target,
-            )
-        }
+        commandLine(
+            provideEditorExecutable().absolutePath,
+            "--headless",
+            "--export-release",
+            target,
+        )
     }
     register<Exec>("runGutTests") {
         group = "verification"
