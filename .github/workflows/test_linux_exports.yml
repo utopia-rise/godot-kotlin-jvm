@@ -78,6 +78,12 @@ jobs:
         run: |
           jlink --add-modules java.base,java.logging --output jre-amd64-linux
 
+      - name: Export tests
+        run: |
+          cd modules/kotlin_jvm/harness/tests/
+          ./gradlew exportRelease
+        timeout-minutes: 30
+
       - name: Run Tests
         run: |
           cd modules/kotlin_jvm/harness/tests/
