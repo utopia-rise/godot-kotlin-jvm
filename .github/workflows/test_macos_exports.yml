@@ -67,6 +67,7 @@ jobs:
 
       - name: Prepare export
         run: |
+          chmod +x bin/godot.*
           mkdir -p modules/kotlin_jvm/harness/tests/export
           mv export_template_all_macos.zip modules/kotlin_jvm/harness/tests/export/export_template_all_macos.zip
 
