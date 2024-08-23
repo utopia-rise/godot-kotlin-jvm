@@ -1,7 +1,7 @@
 [versions]
 
 godotKotlinJvm = "0.9.1"
-kotlin = "2.0.10" # https://kotlinlang.org/docs/releases.html#release-details
+kotlin = "2.0.20" # https://kotlinlang.org/docs/releases.html#release-details
 godot = "4.3.0"
 
 shadowJar = "8.3.0" # https://github.com/johnrengelman/shadow/releases
@@ -9,7 +9,7 @@ shadowJar = "8.3.0" # https://github.com/johnrengelman/shadow/releases
 #kotlinPoet = "1.18.0" # https://github.com/square/kotlinpoet/releases
 kotlinPoet = "1.12.0" # https://github.com/square/kotlinpoet/releases
 
-ksp = "2.0.10-1.0.24" # https://github.com/google/ksp/releases
+ksp = "2.0.20-1.0.24" # https://github.com/google/ksp/releases
 
 jacksonDataBind = "2.17.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 jacksonDataFormatXml = "2.17.2" # https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
