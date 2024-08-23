@@ -67,6 +67,7 @@ jobs:
 
       - name: Prepare export
         run: |
+          chmod +x bin/godot.*
           mkdir -p modules/kotlin_jvm/harness/tests/export
           mv godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64 modules/kotlin_jvm/harness/tests/export/godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64
 
