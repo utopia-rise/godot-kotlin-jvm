@@ -138,9 +138,20 @@ internal object MemoryManager {
 
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
+    private fun syncMemory(freedObjects: LongArray) {
+        synchronized(ObjectDB) {
+            for(id in freedObjects) {
+                val objectID = ObjectID(id)
+                val index = objectID.index
+                val ref = ObjectDB[objectID.index]
+                if (ref != null && ref.objectID.id == objectID.id) {
+                    ObjectDB[index] = null
+                }
+            }
+        }
 
-    private fun manageMemory() = removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
-
+        removeNativeCoreTypes()
+    }
 
     /**
      * Remove the [KtObject] references that have died.
@@ -215,7 +226,7 @@ internal object MemoryManager {
         while (nativeCoreTypeMap.isNotEmpty()) {
 
             System.gc()
-            if (manageMemory()) {
+            if (removeObjectsAndDecrementCounter() || removeNativeCoreTypes()) {
                 begin = Instant.now()
             }
 

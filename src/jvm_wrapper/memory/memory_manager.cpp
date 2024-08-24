@@ -2,20 +2,11 @@
 
 #include "binding/kotlin_binding_manager.h"
 
+
+
 bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
-}
-
-void MemoryManager::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
-    ObjectID id {static_cast<uint64_t>(instance_id)};
-    jni::JObject j_object {p_object};
-    KotlinBindingManager::bind_object(id, j_object);
-}
-
-void MemoryManager::unbind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
-    ObjectID id {static_cast<uint64_t>(instance_id)};
-    KotlinBindingManager::unbind_object(id);
 }
 
 void MemoryManager::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
@@ -102,8 +93,17 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
     return has_free;
 }
 
-void MemoryManager::manageMemory(jni::Env& p_env) {
-    wrapped.call_boolean_method(p_env, MANAGE_MEMORY);
+void MemoryManager::syncMemory(jni::Env& p_env) {
+    // Read the list of dead objects and copy them to the JVM.
+    mutex.lock();
+    jint size = static_cast<jsize>(deadObjects.size());
+    jni::JLongArray arr {p_env, size};
+    arr.set_array_elements(p_env, reinterpret_cast<const jlong*>(deadObjects.ptr()), size);
+    deadObjects.clear();
+    mutex.unlock();
+
+    jvalue args[1] = {jni::to_jni_arg(arr)};
+    wrapped.call_void_method(p_env, MANAGE_MEMORY, args);
 }
 
 void MemoryManager::setDisplayLeaks(jni::Env& p_env, bool b) {
@@ -113,6 +113,12 @@ void MemoryManager::setDisplayLeaks(jni::Env& p_env, bool b) {
 
 void MemoryManager::clean_up(jni::Env& p_env) {
     wrapped.call_void_method(p_env, CLEAN_UP);
+}
+
+void MemoryManager::registerDeadObject(Object* obj) {
+    mutex.lock();
+    deadObjects.push_back(obj->get_instance_id());
+    mutex.unlock();
 }
 
 MemoryManager::~MemoryManager() = default;
