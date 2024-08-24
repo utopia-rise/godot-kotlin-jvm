@@ -166,7 +166,7 @@
     ]
   },
   {
-    "name" : "godot.core.Callable$Bridge",
+    "name" : "godot.core.NativeCallable$Bridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
@@ -174,6 +174,7 @@
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_constructor_object_string_name", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.callable.KtCallable", "int", "int"] },
       { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_bind", "parameterTypes" : ["long"] },
@@ -194,6 +195,15 @@
       { "name" : "engine_call_rpc", "parameterTypes" : ["long"] },
       { "name" : "engine_call_rpc_id", "parameterTypes" : ["long"] },
       { "name" : "engine_call_unbind", "parameterTypes" : ["long"] }
+    ]
+  },
+  {
+    "name" : "godot.core.callable.KtCallable$Bridge",
+    "fields" : [
+      { "name" : "INSTANCE" }
+    ],
+    "methods" : [
+      { "name" : "wrap_in_custom_callable", "parameterTypes" : ["godot.core.callable.KtCallable", "int", "int"] }
     ]
   },
   {
@@ -620,6 +630,40 @@
     ]
   },
   {
+    "name" : "godot.core.PackedVector4Array$Bridge",
+    "fields" : [
+      { "name" : "INSTANCE" }
+    ],
+    "methods" : [
+      { "name" : "engine_call_constructor", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_packed_array", "parameterTypes" : [] },
+      { "name" : "engine_call_constructor_array", "parameterTypes" : [] },
+
+      { "name" : "engine_call_append", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_appendArray", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_bsearch", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_clear", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_count", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_duplicate", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_fill", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_find", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_get", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_has", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_is_empty", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_insert", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_reverse", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_pushback", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_remove_at", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_resize", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_rfind", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_set", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_size", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_slice", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_sort", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_to_byte_array", "parameterTypes" : ["long"] }
+    ]
+  },
+  {
     "name" : "godot.core.Vector3",
     "allPublicConstructors" : true,
     "allPublicMethods" : true,
@@ -693,14 +737,19 @@
     "name":"godot.core.callable.KtCallable",
     "methods":[
       {"name":"getParameterCount","parameterTypes":[] },
-      {"name":"invoke","parameterTypes":["godot.core.KtObject"] },
-      {"name":"invokeWithReturn","parameterTypes":["godot.core.KtObject"] }
+      {"name":"invokeNoReturn","parameterTypes":[] },
+      {"name":"invokeWithReturn","parameterTypes":[] },
+      {"name":"getReturnVariantType","parameterTypes":[] },
+      {"name":"hashCode","parameterTypes":[] }
     ]
   },
   {
     "name":"godot.core.KtFunction",
     "methods":[
-      {"name":"getFunctionInfo","parameterTypes":[] }
+      {"name":"getFunctionInfo","parameterTypes":[] },
+      {"name":"getParameterCount","parameterTypes":[] },
+      {"name":"invoke","parameterTypes":["godot.core.KtObject"] },
+      {"name":"invokeWithReturn","parameterTypes":["godot.core.KtObject"] }
     ]
   },
   {
