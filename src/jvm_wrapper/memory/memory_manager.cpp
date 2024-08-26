@@ -2,6 +2,8 @@
 
 #include "binding/kotlin_binding_manager.h"
 
+#include <core/os/os.h>
+
 bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
@@ -90,10 +92,13 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
     return has_free;
 }
 
-void MemoryManager::sync_memory(jni::Env& p_env) {
+bool MemoryManager::sync_memory(jni::Env& p_env) {
+    bool active = false;
+
     // Read the list of references to demote, we do it at the end of a frame instead of the constant pingpong happening each call.
     to_demote_mutex.lock();
-    for (JvmInstance* script_instance: to_demote_objects) {
+    if (to_demote_objects.size() > 0) { active = true; }
+    for (JvmInstance* script_instance : to_demote_objects) {
         script_instance->demote_reference();
     }
     to_demote_objects.clear();
@@ -102,6 +107,7 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
     // Read the list of dead objects and copy them to the JVM.
     dead_objects_mutex.lock();
     jint size = static_cast<jsize>(dead_objects.size());
+    if (size > 0) { active = true; }
     jni::JLongArray arr {p_env, size};
     arr.set_array_elements(p_env, reinterpret_cast<const jlong*>(dead_objects.ptr()), size);
     dead_objects.clear();
@@ -109,22 +115,36 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
 
     // Call the JVM side sending all the list of all dead objects and receiving the list of references to decrement
     jvalue args[1] = {jni::to_jni_arg(arr)};
-    jni::JLongArray refs_to_decrement{wrapped.call_object_method(p_env, MANAGE_MEMORY, args)};
+    jni::JLongArray refs_to_decrement {wrapped.call_object_method(p_env, MANAGE_MEMORY, args)};
 
     Vector<uint64_t> vec;
     size = arr.length(p_env);
+    if (size > 0) { active = true; }
     vec.resize(size);
     arr.get_array_elements(p_env, reinterpret_cast<jlong*>(vec.ptrw()), size);
     refs_to_decrement.delete_local_ref(p_env);
 
-    for (uint64_t id: vec) {
+    for (uint64_t id : vec) {
         Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(id));
         KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
     }
+
+    return active;
 }
 
 void MemoryManager::clean_up(jni::Env& p_env) {
-    wrapped.call_void_method(p_env, CLEAN_UP);
+    LOG_VERBOSE("Cleaning JVM Memory...")
+
+    wrapped.call_void_method(p_env, PRE_CLEAN_UP);
+
+    uint64_t start = OS::get_singleton()->get_ticks_msec();
+    while (!wrapped.call_boolean_method(p_env, CHECK_CLEAN_UP)) {
+        if (sync_memory(p_env)) { start = OS::get_singleton()->get_ticks_msec(); }
+        // Wait 5s at most.
+        if (OS::get_singleton()->get_ticks_msec() - start > 5000) { break; }
+    }
+
+    wrapped.call_void_method(p_env, POST_CLEAN_UP);
 }
 
 void MemoryManager::queue_dead_object(Object* obj) {

@@ -1,10 +1,13 @@
 @file:JvmName("ObjectUtils")
+
 package godot.extensions
 
 import godot.Object
+import godot.RefCounted
 import godot.core.Callable
 import godot.core.VariantArray
 import godot.core.asStringName
+import godot.core.memory.MemoryManager
 import godot.signals.Signal
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KFunction
@@ -129,3 +132,25 @@ inline fun <reified T : KFunction<*>> Object.disconnectRawName(
     target: Object,
     function: T
 ) = disconnect(signal.name, Callable(target, function.name.asStringName()))
+
+
+/**
+ * Instance will be automatically freed when the engine closes.
+ */
+fun <T : Object?> T.asStatic(): T {
+    if (this == null) {
+        return this
+    }
+    MemoryManager.registerCallback {
+        if (!MemoryManager.isInstanceValid(this)) {
+            return@registerCallback
+        }
+        if (this is RefCounted) {
+            MemoryManager.decrementRefCounter(id.id)
+        } else {
+            free()
+        }
+    }
+    return this
+}
+

@@ -76,6 +76,7 @@ nav:
     - Supported platforms: user-guide/supported-platforms.md
     - Advanced:
       - Abstract classes: user-guide/advanced/abstract-classes.md
+      - Cleanup operations: user-guide/advanced/cleanup-operations.md
       - Custom source directories: user-guide/advanced/custom-src-dirs.md
       - Custom Gradle wrapper path: user-guide/advanced/custom-gradle-wrapper-path.md
       - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md

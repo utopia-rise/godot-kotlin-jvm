@@ -227,7 +227,6 @@ void GDKotlin::finish() {
     if (state >= State::CORE_LIBRARY_INITIALIZED) {
         jni::Env env {jni::Jvm::current_env()};
         if (!user_configuration.disable_gc) {
-            LOG_VERBOSE("Cleaning JVM Memory...");
             MemoryManager::get_instance().clean_up(env);
         }
         JvmManager::destroy_jni_classes();

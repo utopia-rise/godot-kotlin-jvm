@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package godot.core.memory
 
 import godot.core.KtObject
@@ -12,13 +14,14 @@ import godot.core.memory.binding.GodotRefCountedEntry
 import godot.util.VoidPtr
 import sun.swing.MenuItemLayoutHelper.max
 import java.lang.ref.ReferenceQueue
+import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap
 
 internal object MemoryManager {
-    /** Number of references to decrement each loop at most (Doesn't have priority of the ratio)*/
+    /** Number of references to decrement each loop at most (Doesn't have priority over the ratio).*/
     private const val MAX_GC_NUMBER = 64
 
-    /** The fraction of references to check each loop at least (chosen so everything is freed after 1 second at most, assuming a 60 fps game)*/
+    /** The fraction of references to check each loop at least (chosen so everything is freed after 1 second at most, assuming a 60 fps game).*/
     private const val MIN_GC_RATIO = 1f / 60f
 
     /** Maximum size of the objectDB, Godot shouldn't provide index higher than this.*/
@@ -36,8 +39,11 @@ internal object MemoryManager {
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
-    /** List of references to decrement*/
+    /** List of references to decrement.*/
     private var decrementList = mutableListOf<VoidPtr>(256)
+
+    /** List of cleanup callbacks. When the game closes, they will be called.*/
+    private var cleanupCallbacks = mutableListOf<() -> Unit>()
 
     // A basic LRU cache.
     private class LRUCache<K, V>(private val capacity: Int) : LinkedHashMap<K, V>(capacity, 0.75f, true) {
@@ -71,6 +77,10 @@ internal object MemoryManager {
 
     fun getOrCreateNodePath(key: StringName): NodePath {
         return getOrCreateNodePath(key.toString())
+    }
+
+    fun registerCallback(callback: () -> Unit) {
+        cleanupCallbacks.add(callback)
     }
 
     fun registerWrapper(instance: KtObject): GodotBinding {
@@ -189,20 +199,44 @@ internal object MemoryManager {
         return isActive
     }
 
-    @Suppress("unused")
-    fun cleanUp() {
-        // Get through all remaining [RefCounted] instance and decrement their pointers.
-        for (ref in ObjectDB.filterNotNull()) {
-            if (ref.objectID.isReference) {
-                decrementRefCounter(ref.objectID.id)
+    fun preCleanup() {
+        for (callback in cleanupCallbacks) {
+            callback.invoke()
+        }
+
+        // Get through all remaining [Object] and remove them from the ObjectDB. It will remove all singletons.
+        for (ref in ObjectDB.filterNotNull().filter{!it.objectID.isReference}) {
+            ObjectDB[ref.objectID.index] = null
+        }
+    }
+
+    fun checkCleanUp(): Boolean {
+        if (ObjectDB.any { it != null } && nativeCoreTypeMap.isNotEmpty()) {
+            // Still work to do so we force the gc
+            var any: Any? = Any()
+            val wkRef = WeakReference(any)
+            @Suppress("UNUSED_VALUE")
+            any = null
+            while (wkRef.get() != null) {
+                System.gc()
             }
+            return false
+        }
+
+        return true
+    }
+
+    fun postCleanup() {
+        // Get through all remaining [RefCounted] instances and decrement their pointers.
+        for (ref in ObjectDB.filterNotNull().filter{it.objectID.isReference}) {
+                decrementRefCounter(ref.objectID.id)
         }
         ObjectDB.fill(null)
         stringNameCache.clear()
         nodePathCache.clear()
     }
 
-    private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-    private external fun decrementRefCounter(instanceId: Long)
-    private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    internal external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
+    internal external fun decrementRefCounter(instanceId: Long)
+    internal external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
 }
