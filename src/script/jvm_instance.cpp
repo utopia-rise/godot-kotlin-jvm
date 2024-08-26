@@ -7,8 +7,18 @@ JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object
   kt_object(p_kt_object),
   kt_class(p_script->kotlin_class),
   script(p_script),
+  to_demote_flag(false),
   delete_flag(true) {
-    kt_object->swap_to_weak_unsafe(p_env);
+    if (!owner->is_ref_counted()) { return; }
+
+    RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
+    int refcount = ref->get_reference_count();
+
+    if (refcount == 1 && !kt_object->is_ref_weak()) {
+        // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
+        // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
+        kt_object->swap_to_weak_unsafe(p_env);
+    }
 }
 
 JvmInstance::~JvmInstance() {
@@ -25,12 +35,12 @@ bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
     jni::LocalFrame localFrame(1000);
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtProperty* ktProperty {kt_class->get_property(p_name)}) {
+    if (KtProperty * ktProperty {kt_class->get_property(p_name)}) {
         ktProperty->call_set(env, kt_object, p_value);
         return true;
     }
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_set"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_set"))}) {
         Variant ret;
         const int arg_count = 2;
         Variant name = p_name;
@@ -58,7 +68,7 @@ bool JvmInstance::get(const StringName& p_name, Variant& r_ret) const {
         return true;
     }
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_get"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_get"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
@@ -88,7 +98,7 @@ void JvmInstance::get_property_list(List<PropertyInfo>* p_properties) const {
     kt_class->get_property_list(p_properties);
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_get_property_list"))}) {
         Variant ret_var;
         function->invoke(env, kt_object, {}, 0, ret_var);
         Array ret_array = ret_var;
@@ -137,7 +147,7 @@ void JvmInstance::notification(int p_notification, bool p_reversed) {
 void JvmInstance::validate_property(PropertyInfo& p_property) const {
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_validate_property"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_validate_property"))}) {
         Variant ret_var;
         Variant property_arg = (Dictionary) p_property;
         const int arg_count {1};
@@ -152,37 +162,51 @@ String JvmInstance::to_string(bool* r_valid) {
 }
 
 void JvmInstance::refcount_incremented() {
-    // The reference has not been set yet.
-    if (!kt_binding) { return; }
-
     // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
-    if (refcount > 1 && kt_binding->is_ref_weak()) {
+    if (refcount == 2) {
         // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well.
         // The reference is changed to a strong one so the JVM instance is not collected if it is not referenced anymore on the JVM side.
-        jni::Env env {jni::Jvm::current_env()};
-        kt_binding->swap_to_strong_unsafe(env);
+        MemoryManager::get_instance().try_promotion(this);
     }
 }
 
 bool JvmInstance::refcount_decremented() {
-    // The reference has not been set, we delay the destruction of the object until the GC does the job.
-    if (!kt_binding) { return false; }
-
     // This function should only be called when we know the object is a RefCounted. We directly reinterpret the pointer to it
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
-    if (refcount == 1 && !kt_binding->is_ref_weak()) {
+    if (refcount == 1) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
         // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
-        jni::Env env {jni::Jvm::current_env()};
-        kt_binding->swap_to_weak_unsafe(env);
+        if(!to_demote_flag.is_set()){
+            MemoryManager::get_instance().queue_demotion(this);
+            to_demote_flag.set();
+        }
     }
     // Return true when the counter is 0, it means that the JVM and the native side are no longer using the reference, so it can be safely deleted.
     return refcount == 0;
+}
+
+void JvmInstance::demote_reference() {
+    RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
+    int refcount = ref->get_reference_count();
+
+    if (refcount == 1 && !kt_object->is_ref_weak()) {
+        jni::Env env {jni::Jvm::current_env()};
+        kt_object->swap_to_weak_unsafe(env);
+    }
+
+    to_demote_flag.clear();
+}
+
+void JvmInstance::promote_reference() {
+    if (kt_object->is_ref_weak()) {
+        jni::Env env {jni::Jvm::current_env()};
+        kt_object->swap_to_strong_unsafe(env);
+    }
 }
 
 Ref<Script> JvmInstance::get_script() const {
@@ -212,7 +236,7 @@ ScriptLanguage* JvmInstance::get_language() {
 bool JvmInstance::property_can_revert(const StringName& p_name) const {
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_property_can_revert"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_property_can_revert"))}) {
         const int arg_count = 1;
         Variant ret;
         Variant name = p_name;
@@ -227,7 +251,7 @@ bool JvmInstance::property_can_revert(const StringName& p_name) const {
 bool JvmInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction* function {kt_class->get_method(SNAME("_property_get_revert"))}) {
+    if (KtFunction * function {kt_class->get_method(SNAME("_property_get_revert"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};

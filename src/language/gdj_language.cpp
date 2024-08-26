@@ -39,7 +39,7 @@ void GdjLanguage::init() {
 void GdjLanguage::frame() {
     if (!GDKotlin::get_instance().user_configuration.disable_gc) {
         jni::Env env {jni::Jvm::current_env()};
-        MemoryManager::get_instance().syncMemory(env);
+        MemoryManager::get_instance().sync_memory(env);
     }
 }
 

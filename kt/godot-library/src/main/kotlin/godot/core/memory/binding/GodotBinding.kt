@@ -7,5 +7,5 @@ internal class GodotBinding {
     internal var scriptInstance: KtObject? = null
 
     inline val value: KtObject?
-        get() = scriptInstance?: wrapper
+        get() = scriptInstance ?: wrapper
 }

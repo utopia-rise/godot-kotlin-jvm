@@ -12,9 +12,9 @@ internal interface GodotNativeEntry {
     fun promote() {}
 
     companion object {
-        fun create(binding: GodotBinding, queue: ReferenceQueue<GodotBinding>) : GodotNativeEntry {
+        fun create(binding: GodotBinding, queue: ReferenceQueue<GodotBinding>): GodotNativeEntry {
             val id = binding.value!!.id
-            if(id.isReference){
+            if (id.isReference) {
                 return GodotRefCountedEntry(binding, queue, id)
             } else {
                 return GodotObjectEntry(binding)
@@ -27,7 +27,7 @@ internal class GodotRefCountedEntry(
     binding: GodotBinding,
     queue: ReferenceQueue<GodotBinding>,
     override val objectID: ObjectID
-) : WeakReference<GodotBinding>(binding, queue), GodotNativeEntry  {
+) : WeakReference<GodotBinding>(binding, queue), GodotNativeEntry {
 
     override val binding
         get() = get()

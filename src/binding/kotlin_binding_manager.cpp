@@ -29,7 +29,7 @@ void KotlinBindingManager::_instance_binding_free_callback(void* p_token, void* 
     memdelete(reinterpret_cast<KotlinBinding*>(p_binding));
 
     Object* object = reinterpret_cast<Object*>(p_instance);
-    if (!object->is_ref_counted()) { MemoryManager::get_instance().registerDeadObject(object); }
+    if (!object->is_ref_counted()) { MemoryManager::get_instance().queue_dead_object(object); }
 }
 
 KotlinBinding* KotlinBindingManager::set_instance_binding(Object* p_object) {

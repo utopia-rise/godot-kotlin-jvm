@@ -2,8 +2,6 @@
 
 #include "binding/kotlin_binding_manager.h"
 
-
-
 bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
@@ -92,14 +90,22 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
     return has_free;
 }
 
-void MemoryManager::syncMemory(jni::Env& p_env) {
+void MemoryManager::sync_memory(jni::Env& p_env) {
+    // Read the list of references to demote, we do it at the end of a frame instead of the constant pingpong happening each call.
+    to_demote_mutex.lock();
+    for (JvmInstance* script_instance: to_demote_objects) {
+        script_instance->demote_reference();
+    }
+    to_demote_objects.clear();
+    to_demote_mutex.unlock();
+
     // Read the list of dead objects and copy them to the JVM.
-    mutex.lock();
-    jint size = static_cast<jsize>(deadObjects.size());
+    dead_objects_mutex.lock();
+    jint size = static_cast<jsize>(dead_objects.size());
     jni::JLongArray arr {p_env, size};
-    arr.set_array_elements(p_env, reinterpret_cast<const jlong*>(deadObjects.ptr()), size);
-    deadObjects.clear();
-    mutex.unlock();
+    arr.set_array_elements(p_env, reinterpret_cast<const jlong*>(dead_objects.ptr()), size);
+    dead_objects.clear();
+    dead_objects_mutex.unlock();
 
     // Call the JVM side sending all the list of all dead objects and receiving the list of references to decrement
     jvalue args[1] = {jni::to_jni_arg(arr)};
@@ -126,10 +132,22 @@ void MemoryManager::clean_up(jni::Env& p_env) {
     wrapped.call_void_method(p_env, CLEAN_UP);
 }
 
-void MemoryManager::registerDeadObject(Object* obj) {
-    mutex.lock();
-    deadObjects.push_back(obj->get_instance_id());
-    mutex.unlock();
+void MemoryManager::queue_dead_object(Object* obj) {
+    dead_objects_mutex.lock();
+    dead_objects.push_back(obj->get_instance_id());
+    dead_objects_mutex.unlock();
+}
+
+void MemoryManager::queue_demotion(JvmInstance* script_instance) {
+    to_demote_mutex.lock();
+    to_demote_objects.push_back(script_instance);
+    to_demote_mutex.unlock();
+}
+
+void MemoryManager::try_promotion(JvmInstance* script_instance) {
+    to_demote_mutex.lock();
+    script_instance->promote_reference();
+    to_demote_mutex.unlock();
 }
 
 MemoryManager::~MemoryManager() = default;

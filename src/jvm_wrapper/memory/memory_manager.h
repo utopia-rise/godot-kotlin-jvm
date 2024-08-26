@@ -3,6 +3,8 @@
 
 #include "jni/types.h"
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
+#include "jvm_wrapper/registration/kt_object.h"
+#include "script/jvm_instance.h"
 
 #include <jni.h>
 
@@ -23,8 +25,10 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
         INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryManager::unref_native_core_type)
       )
 
-    Mutex mutex;
-    LocalVector<ObjectID> deadObjects;
+    Mutex dead_objects_mutex;
+    LocalVector<ObjectID> dead_objects;
+    Mutex to_demote_mutex;
+    LocalVector<JvmInstance*> to_demote_objects;
 
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
 
@@ -33,8 +37,10 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
 
 public:
-    void registerDeadObject(Object* obj);
-    void syncMemory(jni::Env& p_env);
+    void queue_dead_object(Object* obj);
+    void queue_demotion(JvmInstance* script_instance);
+    void try_promotion(JvmInstance* script_instance);
+    void sync_memory(jni::Env& p_env);
     void setDisplayLeaks(jni::Env& p_env, bool b);
     void clean_up(jni::Env& p_env);
 };
