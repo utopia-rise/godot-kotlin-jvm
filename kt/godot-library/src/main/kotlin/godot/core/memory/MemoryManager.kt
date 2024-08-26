@@ -12,10 +12,10 @@ import godot.core.memory.binding.GodotBinding
 import godot.core.memory.binding.GodotNativeEntry
 import godot.core.memory.binding.GodotRefCountedEntry
 import godot.util.VoidPtr
-import sun.swing.MenuItemLayoutHelper.max
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.math.max
 
 internal object MemoryManager {
     /** Number of references to decrement each loop at most (Doesn't have priority over the ratio).*/
@@ -158,7 +158,7 @@ internal object MemoryManager {
             }
         }
 
-        // Pool all dead references first so we can know the amount of work to do.
+        // Pool all dead references first, so we can know the amount of work to do.
         while (true) {
             val ref = ((refReferenceQueue.poll() ?: break) as GodotRefCountedEntry)
             decrementList.add(ref.objectID.id)

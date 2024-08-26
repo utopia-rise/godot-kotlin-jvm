@@ -77,8 +77,7 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
     if (isCreator) {
         KotlinBindingManager::set_instance_binding(p_this);
     } else {
-        bool created = false;
-        KotlinBindingManager::get_instance_binding(p_this, &created);
+        KotlinBindingManager::get_instance_binding(p_this);
     }
 
 #ifdef DEBUG_ENABLED

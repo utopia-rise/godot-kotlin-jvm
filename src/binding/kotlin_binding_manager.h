@@ -19,8 +19,6 @@ class KotlinBindingManager {
 
     static void _instance_binding_free_callback(void* p_token, void* p_instance, void* p_binding);
 
-    static GDExtensionBool _instance_binding_reference_callback(void* p_token, void* p_binding, GDExtensionBool p_reference);
-
 public:
     KotlinBindingManager(KotlinBindingManager const& other) = delete;
 
