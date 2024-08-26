@@ -78,6 +78,14 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
         return ResourceLoader.loadAs(path, typeHint, cacheMode)
     }
 
+    /**
+     * The MemoryManager runs automatically at the end of each frame, but it can happen that the engine freeze for a long period of time (a loading screen).
+     * You can use that method to manually trigger it if you want memory to be quickly freed.
+     * */
+    fun syncMemory() {
+        MemoryManager.manageMemory()
+    }
+
 
     /**
      * If some cleanups operations are needed when the game closes, you can register callbacks for it.

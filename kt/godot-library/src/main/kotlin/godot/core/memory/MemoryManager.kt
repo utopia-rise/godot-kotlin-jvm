@@ -30,17 +30,20 @@ internal object MemoryManager {
     /** Pointers to Godot objects.*/
     private val ObjectDB = Array<GodotNativeEntry?>(OBJECTDB_SIZE) { null }
 
-    /** Pointers to NativeCoreType.*/
-    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(256)
-
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
+
+    /** List of references to decrement.*/
+    private var deadReferences = mutableListOf<VoidPtr>()
+
+    /** Pointers to NativeCoreType.*/
+    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(256)
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
     /** List of references to decrement.*/
-    private var decrementList = mutableListOf<VoidPtr>(256)
+    private var deadNativeCores = mutableListOf<NativeCoreWeakReference>()
 
     /** List of cleanup callbacks. When the game closes, they will be called.*/
     private var cleanupCallbacks = mutableListOf<() -> Unit>()
@@ -144,29 +147,41 @@ internal object MemoryManager {
 
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
+
     private fun syncMemory(freedObjects: LongArray): LongArray {
         removeNativeCoreTypes()
+        removeDeadObjects(freedObjects)
+        return getDeadReferences()
+    }
 
-        synchronized(ObjectDB) {
-            for (id in freedObjects) {
-                val objectID = ObjectID(id)
-                val index = objectID.index
-                val ref = ObjectDB[objectID.index]
-                if (ref != null && ref.objectID.id == objectID.id) {
-                    ObjectDB[index] = null
-                }
+    /**
+     * Remove the now dead native Object from the JVM ObjectDB.
+     */
+    private fun removeDeadObjects(freedObjects: LongArray) = synchronized(ObjectDB) {
+        for (id in freedObjects) {
+            val objectID = ObjectID(id)
+            val index = objectID.index
+            val ref = ObjectDB[objectID.index]
+            if (ref != null && ref.objectID.id == objectID.id) {
+                ObjectDB[index] = null
             }
         }
+    }
 
+    /**
+     * Get a LongArray containing a collection of dead references that have to be decremented on the native side.
+     * The GC happening in waves, not everything is obtained at once, we process the dead references over several frames when necessary.
+     */
+    private fun getDeadReferences(): LongArray {
         // Pool all dead references first, so we can know the amount of work to do.
         while (true) {
             val ref = ((refReferenceQueue.poll() ?: break) as GodotRefCountedEntry)
-            decrementList.add(ref.objectID.id)
+            deadReferences.add(ref.objectID.id)
         }
-        val numberToDecrement = max(MAX_GC_NUMBER, (MIN_GC_RATIO * decrementList.size).toInt())
+        val numberToDecrement = max(MAX_GC_NUMBER, (MIN_GC_RATIO * deadReferences.size).toInt())
 
         return synchronized(ObjectDB) {
-            decrementList
+            deadReferences
                 .take(numberToDecrement)
                 .filter {
                     val index = ObjectID(it).index
@@ -178,25 +193,30 @@ internal object MemoryManager {
         }
             .toLongArray()
             .also {
-                decrementList = decrementList.drop(it.size).toMutableList()
+                deadReferences = deadReferences.drop(it.size).toMutableList()
             }
     }
 
-
-    private fun removeNativeCoreTypes(): Boolean {
-        var isActive = false
-        var counter = 0
-
-        // Same as before for NativeCoreTypes
-        while (counter < MAX_GC_NUMBER) {
-            val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
-            if (unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
-                nativeCoreTypeMap.remove(ref.ptr)
-                isActive = true
-            }
-            counter++
+    /**
+     * Remove dead [NativeCoreType] from native memory.
+     * The GC happening in waves, not everything is obtained at once, we process the dead native cores over several frames when necessary.
+     */
+    private fun removeNativeCoreTypes() {
+        // Pool all dead native cores first, so we can know the amount of work to do.
+        while (true) {
+            val ref = ((nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference)
+            deadNativeCores.add(ref)
         }
-        return isActive
+        val numberToDecrement = max(MAX_GC_NUMBER, (MIN_GC_RATIO * deadReferences.size).toInt())
+
+        deadNativeCores
+            .take(numberToDecrement)
+            .onEach {
+                if (unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)) {
+                    nativeCoreTypeMap.remove(it.ptr)
+                }
+            }
+        deadNativeCores = deadNativeCores.drop(numberToDecrement).toMutableList()
     }
 
     fun preCleanup() {
@@ -205,12 +225,12 @@ internal object MemoryManager {
         }
 
         // Get through all remaining [Object] and remove them from the ObjectDB. It will remove all singletons.
-        for (ref in ObjectDB.filterNotNull().filter{!it.objectID.isReference}) {
+        for (ref in ObjectDB.filterNotNull().filter { !it.objectID.isReference }) {
             ObjectDB[ref.objectID.index] = null
         }
     }
 
-    fun checkCleanUp(): Boolean {
+    fun checkCleanup(): Boolean {
         if (ObjectDB.any { it != null } && nativeCoreTypeMap.isNotEmpty()) {
             // Still work to do so we force the gc
             var any: Any? = Any()
@@ -228,15 +248,16 @@ internal object MemoryManager {
 
     fun postCleanup() {
         // Get through all remaining [RefCounted] instances and decrement their pointers.
-        for (ref in ObjectDB.filterNotNull().filter{it.objectID.isReference}) {
-                decrementRefCounter(ref.objectID.id)
+        for (ref in ObjectDB.filterNotNull().filter { it.objectID.isReference }) {
+            decrementRefCounter(ref.objectID.id)
         }
         ObjectDB.fill(null)
         stringNameCache.clear()
         nodePathCache.clear()
     }
 
-    internal external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
+    private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     internal external fun decrementRefCounter(instanceId: Long)
-    internal external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    internal external fun manageMemory()
 }
