@@ -19,10 +19,10 @@ import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract scene data object, exists for the duration of rendering a single viewport.
@@ -30,9 +30,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RENDERSCENEDATA, scriptIndex)
-    return true
   }
 
   /**

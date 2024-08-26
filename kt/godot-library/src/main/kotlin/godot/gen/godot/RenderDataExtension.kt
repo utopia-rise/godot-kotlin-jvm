@@ -10,19 +10,18 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TypeManager
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This class allows for a RenderData implementation to be made in GDExtension.
  */
 @GodotBaseType
 public open class RenderDataExtension : RenderData() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RENDERDATAEXTENSION, scriptIndex)
-    return true
   }
 
   /**

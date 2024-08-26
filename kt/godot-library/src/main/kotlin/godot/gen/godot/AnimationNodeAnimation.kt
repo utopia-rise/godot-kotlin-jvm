@@ -21,6 +21,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. Only has one output port using the [animation]
@@ -136,9 +137,8 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEANIMATION, scriptIndex)
-    return true
   }
 
   public enum class PlayMode(

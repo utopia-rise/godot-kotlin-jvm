@@ -15,11 +15,11 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This object is the base of all XR trackers.
@@ -77,9 +77,8 @@ public open class XRTracker internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRTRACKER, scriptIndex)
-    return true
   }
 
   public companion object

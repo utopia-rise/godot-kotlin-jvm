@@ -15,9 +15,9 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
@@ -59,9 +59,8 @@ public open class XRFaceModifier3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTargetPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRFACEMODIFIER3D, scriptIndex)
-    return true
   }
 
   public companion object

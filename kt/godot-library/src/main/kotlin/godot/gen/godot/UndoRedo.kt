@@ -153,9 +153,8 @@ public open class UndoRedo : Object() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxStepsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_UNDOREDO, scriptIndex)
-    return true
   }
 
   /**

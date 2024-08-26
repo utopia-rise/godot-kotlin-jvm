@@ -21,7 +21,6 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -89,9 +88,8 @@ public open class GLTFMesh : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInstanceMaterialsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFMESH, scriptIndex)
-    return true
   }
 
   /**

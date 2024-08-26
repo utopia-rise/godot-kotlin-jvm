@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
@@ -96,9 +97,8 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYER, scriptIndex)
-    return true
   }
 
   /**

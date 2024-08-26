@@ -19,6 +19,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
@@ -74,9 +75,8 @@ public open class PanoramaSkyMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
-    return true
   }
 
   public companion object

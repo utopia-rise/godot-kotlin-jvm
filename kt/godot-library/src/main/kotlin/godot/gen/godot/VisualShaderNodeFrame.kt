@@ -106,9 +106,8 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAttachedNodesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFRAME, scriptIndex)
-    return true
   }
 
   /**

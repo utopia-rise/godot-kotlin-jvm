@@ -221,9 +221,8 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONIK3D, scriptIndex)
-    return true
   }
 
   /**

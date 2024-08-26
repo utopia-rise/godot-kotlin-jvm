@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * GLTFBufferView is a data structure representing GLTF a `bufferView` that would be found in the
@@ -124,9 +125,8 @@ public open class GLTFBufferView : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVertexAttributesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFBUFFERVIEW, scriptIndex)
-    return true
   }
 
   /**

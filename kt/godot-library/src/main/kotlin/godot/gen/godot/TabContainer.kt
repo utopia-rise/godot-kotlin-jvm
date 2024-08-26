@@ -236,9 +236,8 @@ public open class TabContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TABCONTAINER, scriptIndex)
-    return true
   }
 
   /**

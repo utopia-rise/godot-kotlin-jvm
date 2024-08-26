@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class StatusIndicator : Node() {
@@ -92,9 +93,8 @@ public open class StatusIndicator : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_STATUSINDICATOR, scriptIndex)
-    return true
   }
 
   /**

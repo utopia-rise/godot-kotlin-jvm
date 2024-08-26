@@ -107,9 +107,8 @@ public open class OptionButton : Button() {
       TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPTIONBUTTON, scriptIndex)
-    return true
   }
 
   /**

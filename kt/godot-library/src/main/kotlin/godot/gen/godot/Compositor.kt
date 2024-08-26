@@ -13,9 +13,9 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The compositor resource stores attributes used to customize how a [Viewport] is rendered.
@@ -37,9 +37,8 @@ public open class Compositor : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCompositorEffectsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPOSITOR, scriptIndex)
-    return true
   }
 
   public companion object

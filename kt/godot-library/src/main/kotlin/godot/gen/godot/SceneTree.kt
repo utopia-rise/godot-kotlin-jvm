@@ -276,9 +276,8 @@ public open class SceneTree : MainLoop() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCENETREE, scriptIndex)
-    return true
   }
 
   /**

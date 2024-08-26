@@ -132,9 +132,8 @@ public open class Animation : Resource() {
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATION, scriptIndex)
-    return true
   }
 
   /**

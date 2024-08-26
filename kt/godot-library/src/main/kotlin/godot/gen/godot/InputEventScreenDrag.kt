@@ -178,9 +178,8 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
       TransferContext.callMethod(rawPtr, MethodBindings.setScreenVelocityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENDRAG, scriptIndex)
-    return true
   }
 
   /**

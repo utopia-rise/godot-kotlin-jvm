@@ -13,6 +13,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress

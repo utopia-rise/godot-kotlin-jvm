@@ -87,9 +87,8 @@ public open class XRNode3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRNODE3D, scriptIndex)
-    return true
   }
 
   /**

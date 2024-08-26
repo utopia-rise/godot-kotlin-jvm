@@ -13,20 +13,19 @@ import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.Vector3
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This class allows for a RenderSceneData implementation to be made in GDExtension.
  */
 @GodotBaseType
 public open class RenderSceneDataExtension : RenderSceneData() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RENDERSCENEDATAEXTENSION, scriptIndex)
-    return true
   }
 
   /**

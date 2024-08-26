@@ -67,9 +67,8 @@ public open class AudioStreamInteractive : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setClipCountPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMINTERACTIVE, scriptIndex)
-    return true
   }
 
   /**

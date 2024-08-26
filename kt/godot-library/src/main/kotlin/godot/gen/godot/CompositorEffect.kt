@@ -152,9 +152,8 @@ public open class CompositorEffect : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setNeedsSeparateSpecularPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPOSITOREFFECT, scriptIndex)
-    return true
   }
 
   /**

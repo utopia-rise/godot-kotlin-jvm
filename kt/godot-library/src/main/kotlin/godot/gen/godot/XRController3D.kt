@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is a helper spatial node that is linked to the tracking of controllers. It also offers
@@ -69,9 +70,8 @@ public open class XRController3D : XRNode3D() {
    */
   public val profileChanged: Signal1<String> by signal("role")
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRCONTROLLER3D, scriptIndex)
-    return true
   }
 
   /**
