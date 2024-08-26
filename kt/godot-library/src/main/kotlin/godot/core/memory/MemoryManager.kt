@@ -11,14 +11,18 @@ import godot.core.memory.binding.GodotNativeEntry
 import godot.core.memory.binding.GodotRefCountedEntry
 import godot.util.VoidPtr
 import godot.util.warning
+import sun.swing.MenuItemLayoutHelper.max
 import java.lang.ref.ReferenceQueue
 import java.time.Duration
 import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 
 internal object MemoryManager {
-    /** Number of references to check each loop.*/
-    private const val CHECK_NUMBER = 256
+    /** Number of references to decrement each loop at most (Doesn't have priority of the ratio)*/
+    private const val MAX_GC_NUMBER = 64
+
+    /** The fraction of references to check each loop at least (chosen so everything is freed after 1 second at most, assuming a 60 fps game)*/
+    private const val MIN_GC_RATIO = 1f / 60f
 
     /** Maximum size of the objectDB, Godot shouldn't provide index higher than this.*/
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
@@ -27,7 +31,7 @@ internal object MemoryManager {
     private val ObjectDB = Array<GodotNativeEntry?>(OBJECTDB_SIZE) { null }
 
     /** Pointers to NativeCoreType.*/
-    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
+    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(256)
 
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
@@ -35,8 +39,8 @@ internal object MemoryManager {
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
-    /** List of element to remove from ObjectDB*/
-    private val deleteList = ArrayList<GodotNativeEntry>(CHECK_NUMBER)
+    /** List of references to decrement*/
+    private var decrementList = mutableListOf<VoidPtr>(256)
 
 
     // Not private because accessed by engine.
@@ -77,7 +81,7 @@ internal object MemoryManager {
         return getOrCreateNodePath(key.toString())
     }
 
-    fun registerObject(instance: KtObject): GodotBinding {
+    fun registerWrapper(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
             val id = instance.id
             val binding = getBinding(id.id)
@@ -138,9 +142,11 @@ internal object MemoryManager {
 
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
-    private fun syncMemory(freedObjects: LongArray) {
+    private fun syncMemory(freedObjects: LongArray): LongArray {
+        removeNativeCoreTypes()
+
         synchronized(ObjectDB) {
-            for(id in freedObjects) {
+            for (id in freedObjects) {
                 val objectID = ObjectID(id)
                 val index = objectID.index
                 val ref = ObjectDB[objectID.index]
@@ -150,55 +156,37 @@ internal object MemoryManager {
             }
         }
 
-        removeNativeCoreTypes()
-    }
+        // Pool all dead references first so we can know the amount of work to do.
+        while (true) {
+            val ref = ((refReferenceQueue.poll() ?: break) as GodotRefCountedEntry)
+            decrementList.add(ref.objectID.id)
+        }
+        val numberToDecrement = max(MAX_GC_NUMBER, (MIN_GC_RATIO * decrementList.size).toInt())
 
-    /**
-     * Remove the [KtObject] references that have died.
-     * Decrement counter of [RefCounted] in the process.
-     * @return True if something has been removed.
-     */
-    private fun removeObjectsAndDecrementCounter(): Boolean {
-        var isActive = false
-        var counter = 0
-
-        //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
-        synchronized(ObjectDB) {
-            while (counter < CHECK_NUMBER) {
-                val ref = ((refReferenceQueue.poll() ?: break) as GodotRefCountedEntry)
-                val index = ref.objectID.index
-                val otherRef = ObjectDB[index]
-                //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
-                if (otherRef === ref) {
-                    ObjectDB[index] = null
+        return synchronized(ObjectDB) {
+            decrementList
+                .take(numberToDecrement)
+                .filter {
+                    val index = ObjectID(it).index
+                    val otherRef = ObjectDB[index]!!
+                    //Check if the RefCounted instance has been sent back to the JVM. We don't decrement in this case.
+                    otherRef.binding == null || it != otherRef.objectID.id
                 }
-                deleteList.add(ref)
-                isActive = true
-                counter++
-            }
+                .onEach { ObjectDB[ObjectID(it).index] = null }
         }
-
-        // We let cpp destroy the references in `deleteList`
-        for (ref in deleteList) {
-            if (ref.objectID.isReference) {
-                decrementRefCounter(ref.objectID.id)
+            .toLongArray()
+            .also {
+                decrementList = decrementList.drop(it.size).toMutableList()
             }
-        }
-
-        deleteList.clear()
-        return isActive
     }
 
-    /**
-     * Remove dead [NativeCoreType] from memory
-     * @return True if something has been removed.
-     */
+
     private fun removeNativeCoreTypes(): Boolean {
         var isActive = false
         var counter = 0
 
         // Same as before for NativeCoreTypes
-        while (counter < CHECK_NUMBER) {
+        while (counter < MAX_GC_NUMBER) {
             val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
             if (unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
                 nativeCoreTypeMap.remove(ref.ptr)
@@ -211,10 +199,9 @@ internal object MemoryManager {
 
     @Suppress("unused")
     fun cleanUp() {
-
         // Get through all remaining [RefCounted] instance and decrement their pointers.
         for (ref in ObjectDB.filterNotNull()) {
-            if(ref.objectID.isReference) {
+            if (ref.objectID.isReference) {
                 decrementRefCounter(ref.objectID.id)
             }
         }
@@ -226,7 +213,7 @@ internal object MemoryManager {
         while (nativeCoreTypeMap.isNotEmpty()) {
 
             System.gc()
-            if (removeObjectsAndDecrementCounter() || removeNativeCoreTypes()) {
+            if (removeNativeCoreTypes()) {
                 begin = Instant.now()
             }
 

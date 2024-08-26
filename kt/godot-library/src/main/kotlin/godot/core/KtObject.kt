@@ -70,7 +70,7 @@ abstract class KtObject {
         binding = if (scriptIndex != -1) {
             MemoryManager.registerScriptInstance(this)
         } else {
-            MemoryManager.registerObject(this)
+            MemoryManager.registerWrapper(this)
         }
     }
 

@@ -11,8 +11,7 @@ bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong 
 
 void MemoryManager::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
-    RefCounted* ref = reinterpret_cast<RefCounted*>(obj);
-    if (ref && ref->unreference()) { memdelete(ref); }
+    KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
 }
 
 bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
@@ -102,8 +101,20 @@ void MemoryManager::syncMemory(jni::Env& p_env) {
     deadObjects.clear();
     mutex.unlock();
 
+    // Call the JVM side sending all the list of all dead objects and receiving the list of references to decrement
     jvalue args[1] = {jni::to_jni_arg(arr)};
-    wrapped.call_void_method(p_env, MANAGE_MEMORY, args);
+    jni::JLongArray refs_to_decrement{wrapped.call_object_method(p_env, MANAGE_MEMORY, args)};
+
+    Vector<uint64_t> vec;
+    size = arr.length(p_env);
+    vec.resize(size);
+    arr.get_array_elements(p_env, reinterpret_cast<jlong*>(vec.ptrw()), size);
+    refs_to_decrement.delete_local_ref(p_env);
+
+    for (uint64_t id: vec) {
+        Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(id));
+        KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
+    }
 }
 
 void MemoryManager::setDisplayLeaks(jni::Env& p_env, bool b) {
