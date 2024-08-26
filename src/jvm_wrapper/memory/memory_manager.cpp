@@ -95,7 +95,7 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
 bool MemoryManager::sync_memory(jni::Env& p_env) {
     bool active = false;
 
-    // Read the list of references to demote, we do it at the end of a frame instead of the constant pingpong happening each call.
+    // Read the list of references to demote, we do it at the end of a frame instead of the constant ping-pong happening each call.
     to_demote_mutex.lock();
     if (to_demote_objects.size() > 0) { active = true; }
     for (JvmInstance* script_instance : to_demote_objects) {
@@ -145,6 +145,7 @@ void MemoryManager::clean_up(jni::Env& p_env) {
     }
 
     wrapped.call_void_method(p_env, POST_CLEAN_UP);
+    LOG_VERBOSE("JVM Memory cleaned")
 }
 
 void MemoryManager::queue_dead_object(Object* obj) {

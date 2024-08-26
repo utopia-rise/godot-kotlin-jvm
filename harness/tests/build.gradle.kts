@@ -120,7 +120,7 @@ tasks {
                         didAllTestsPass = true
                     }
 
-                    line.contains("JVM GC thread was closed") -> {
+                    line.contains("JVM Memory cleaned") -> {
                         isJvmClosed = true
                     }
                 }
