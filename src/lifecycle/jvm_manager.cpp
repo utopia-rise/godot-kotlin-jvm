@@ -96,8 +96,6 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     return true;
 }
 
-inline static constexpr const char packed_color_array_fqdn[] = "godot.core.PackedColorArray$Bridge";
-
 bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader) {
     Bootstrap::initialize_jni_binding(p_env, class_loader);
     KtObject::initialize_jni_binding(p_env, class_loader);
