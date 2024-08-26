@@ -123,11 +123,6 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
     }
 }
 
-void MemoryManager::setDisplayLeaks(jni::Env& p_env, bool b) {
-    jvalue args[1] = {jni::to_jni_arg(b)};
-    wrapped.call_void_method(p_env, SET_DISPLAY, args);
-}
-
 void MemoryManager::clean_up(jni::Env& p_env) {
     wrapped.call_void_method(p_env, CLEAN_UP);
 }

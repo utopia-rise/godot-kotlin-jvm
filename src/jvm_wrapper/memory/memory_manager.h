@@ -18,7 +18,6 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(MANAGE_MEMORY, "syncMemory", "([J)[J")
-        INIT_JNI_METHOD(SET_DISPLAY, "setShouldDisplayLeakInstancesOnClose", "(Z)V")
         INIT_JNI_METHOD(CLEAN_UP, "cleanUp", "()V")
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryManager::decrement_ref_counter)
@@ -41,7 +40,6 @@ public:
     void queue_demotion(JvmInstance* script_instance);
     void try_promotion(JvmInstance* script_instance);
     void sync_memory(jni::Env& p_env);
-    void setDisplayLeaks(jni::Env& p_env, bool b);
     void clean_up(jni::Env& p_env);
 };
 // clang-format on

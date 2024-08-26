@@ -114,19 +114,6 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         }
         json_dict.erase(DISABLE_GC_JSON_IDENTIFIER);
     }
-    if (json_dict.has(DISABLE_LEAK_WARNING_JSON_IDENTIFIER)) {
-        String boolean = json_dict[DISABLE_LEAK_WARNING_JSON_IDENTIFIER];
-        LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", DISABLE_LEAK_WARNING_JSON_IDENTIFIER, boolean));
-        if (boolean == TRUE_STRING) {
-            json_config.disable_leak_warning_on_close = true;
-        } else if (boolean == FALSE_STRING) {
-            json_config.disable_leak_warning_on_close = false;
-        } else {
-            is_invalid = true;
-            LOG_WARNING(vformat("Invalid Disable Leak Warning value in configuration file: %s. It will be ignored", boolean));
-        }
-        json_dict.erase(DISABLE_LEAK_WARNING_JSON_IDENTIFIER);
-    }
     if (json_dict.has(JVM_ARGUMENTS_JSON_IDENTIFIER)) {
         json_config.jvm_args = json_dict[JVM_ARGUMENTS_JSON_IDENTIFIER];
         LOG_DEV_VERBOSE(vformat("Value for json argument: %s -> %s", JVM_ARGUMENTS_JSON_IDENTIFIER, json_config.jvm_args))
@@ -192,7 +179,6 @@ String JvmUserConfiguration::export_configuration_to_json(const JvmUserConfigura
     json[MAX_STRING_SIZE_JSON_IDENTIFIER] = configuration.max_string_size;
 
     json[DISABLE_GC_JSON_IDENTIFIER] = configuration.disable_gc;
-    json[DISABLE_LEAK_WARNING_JSON_IDENTIFIER] = configuration.disable_leak_warning_on_close;
 
     json[JVM_ARGUMENTS_JSON_IDENTIFIER] = configuration.jvm_args;
 
@@ -287,8 +273,6 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             }
         } else if (identifier == DISABLE_GC_CMD_IDENTIFIER) {
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
-        } else if (identifier == DISABLE_LEAK_WARNING_CMD_IDENTIFIER) {
-            configuration_map[DISABLE_LEAK_WARNING_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
         }
 
         for (const auto& map_element : configuration_map) {
@@ -319,7 +303,6 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
     replace_json_value_by_cmd_value(cmd_map, json_config.jvm_jmx_port, JMX_PORT_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.max_string_size, MAX_STRING_SIZE_CMD_IDENTIFIER);
     replace_json_value_by_cmd_value(cmd_map, json_config.disable_gc, DISABLE_GC_CMD_IDENTIFIER);
-    replace_json_value_by_cmd_value(cmd_map, json_config.disable_leak_warning_on_close, DISABLE_LEAK_WARNING_CMD_IDENTIFIER);
 }
 
 void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {

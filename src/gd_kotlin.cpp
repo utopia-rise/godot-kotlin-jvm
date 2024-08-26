@@ -160,8 +160,6 @@ bool GDKotlin::initialize_core_library() {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
     }
 
-    if (user_configuration.disable_leak_warning_on_close) { MemoryManager::get_instance().setDisplayLeaks(env, false); }
-
     bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
     return true;
 }

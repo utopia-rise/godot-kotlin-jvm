@@ -10,11 +10,8 @@ import godot.core.memory.binding.GodotBinding
 import godot.core.memory.binding.GodotNativeEntry
 import godot.core.memory.binding.GodotRefCountedEntry
 import godot.util.VoidPtr
-import godot.util.warning
 import sun.swing.MenuItemLayoutHelper.max
 import java.lang.ref.ReferenceQueue
-import java.time.Duration
-import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
 
 internal object MemoryManager {
@@ -41,11 +38,6 @@ internal object MemoryManager {
 
     /** List of references to decrement*/
     private var decrementList = mutableListOf<VoidPtr>(256)
-
-
-    // Not private because accessed by engine.
-    @Suppress("MemberVisibilityCanBePrivate")
-    var shouldDisplayLeakInstancesOnClose = true
 
     // A basic LRU cache.
     private class LRUCache<K, V>(private val capacity: Int) : LinkedHashMap<K, V>(capacity, 0.75f, true) {
@@ -208,32 +200,6 @@ internal object MemoryManager {
         ObjectDB.fill(null)
         stringNameCache.clear()
         nodePathCache.clear()
-
-        var begin = Instant.now()
-        while (nativeCoreTypeMap.isNotEmpty()) {
-
-            System.gc()
-            if (removeNativeCoreTypes()) {
-                begin = Instant.now()
-            }
-
-            val finish = Instant.now()
-            if (Duration.between(begin, finish).toMillis() > 5000) {
-                warning(
-                    buildString {
-                        appendLine("Some JVM godot instances are leaked.")
-                        if (shouldDisplayLeakInstancesOnClose) {
-                            appendLine("${nativeCoreTypeMap.size} Leaked native core types:")
-                            for (entry in nativeCoreTypeMap) {
-                                append("    ${entry.key}: ${entry.value.get()}")
-                                append(System.lineSeparator())
-                            }
-                        }
-                    }
-                )
-                break
-            }
-        }
     }
 
     private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
