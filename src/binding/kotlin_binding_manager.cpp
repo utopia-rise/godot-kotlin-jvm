@@ -12,11 +12,12 @@ GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_call
 };
 
 void* KotlinBindingManager::_instance_binding_create_callback(void* p_token, void* p_instance) {
-    Object* object = reinterpret_cast<RefCounted*>(p_instance);
-    if (object->is_ref_counted()) { reinterpret_cast<RefCounted*>(object)->reference(); }
+    Object* object = reinterpret_cast<Object*>(p_instance);
 
     KotlinBinding* binding = memnew(KotlinBinding);
     binding->init(object);
+
+    if (object->is_ref_counted()) { reinterpret_cast<RefCounted*>(object)->reference(); }
 
     return binding;
 }
@@ -39,8 +40,8 @@ KotlinBinding* KotlinBindingManager::set_instance_binding(Object* p_object) {
     KotlinBinding* binding = memnew(KotlinBinding);
     binding->init(p_object);
 
-    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->init_ref(); }
     p_object->set_instance_binding(&GDKotlin::get_instance(), binding, &_instance_binding_callbacks);
+    if (p_object->is_ref_counted()) { reinterpret_cast<RefCounted*>(p_object)->init_ref(); }
 
     return binding;
 }

@@ -123,6 +123,7 @@ bool MemoryManager::sync_memory(jni::Env& p_env) {
     // Call the JVM side sending all the list of all dead objects and receiving the list of references to decrement
     jvalue args[1] = {jni::to_jni_arg(arr)};
     jni::JLongArray refs_to_decrement {wrapped.call_object_method(p_env, MANAGE_MEMORY, args)};
+    arr.delete_local_ref(p_env);
 
     Vector<uint64_t> vec;
     size = refs_to_decrement.length(p_env);
