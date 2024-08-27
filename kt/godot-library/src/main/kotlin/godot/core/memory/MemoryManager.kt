@@ -190,9 +190,11 @@ internal object MemoryManager {
                     val index = ObjectID(it).index
                     val otherRef = ObjectDB[index]!!
                     //Check if the RefCounted instance has been sent back to the JVM. We don't decrement in this case.
-                    otherRef.binding == null || it != otherRef.objectID.id
+                    //We don't need to check if it's the same ObjectID, we didn't decrement yet, so it's impossible for it to have been replaced.
+                    otherRef.binding == null
+                }.onEach {
+                    ObjectDB[ObjectID(it).index] = null
                 }
-                .onEach { ObjectDB[ObjectID(it).index] = null }
         }
             .toLongArray()
             .also {
