@@ -10,6 +10,9 @@ import kotlin.math.sign
 //Taken from core/math/math_defs.h
 const val CMP_EPSILON: RealT = 0.00001
 
+//This epsilon is for values related to a unit size (scalar or vector len)
+const val UNIT_EPSILON = 0.001
+
 const val SQRT12 = 0.7071067811865475244008443621048490
 const val SQRT2 = 1.4142135623730950488016887242
 const val LN2 = 0.6931471805599453094172321215

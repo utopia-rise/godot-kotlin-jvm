@@ -11,6 +11,8 @@ import godot.util.toRealT
 import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.round
 import kotlin.math.sign
 import kotlin.math.sqrt
@@ -88,6 +90,12 @@ class Vector4(
         z.coerceIn(min.z, max.z),
         w.coerceIn(min.w, max.w)
     )
+
+    /**
+     * Returns a new vector with all components clamped between the min and max, by running
+     * @GlobalScope.clamp on each component.
+     */
+    fun clampf(min: RealT, max: RealT) = Vector4(x.coerceIn(min, max), y.coerceIn(min, max), z.coerceIn(min, max), w.coerceIn(min, max))
 
     /**
      * Performs a cubic interpolation between vectors pre_a, a, b, post_b (a is current), by the given amount t.
@@ -249,6 +257,12 @@ class Vector4(
         w + (weight * (to.w - w))
     )
 
+
+    /**
+     * Returns the component-wise maximum of this and with.
+     */
+    fun max(with: Vector4) = Vector4(max(x, with.x), max(y, with.y), max(z, with.z), max(w, with.w))
+
     /**
      * Returns the axis of the vector's highest value. See AXIS_* constants.
      * If all components are equal, this method returns AXIS_X.
@@ -268,6 +282,16 @@ class Vector4(
     }
 
     /**
+     * Returns the component-wise maximum of this and with.
+     */
+    fun maxf(with: RealT) = Vector4(max(x, with), max(y, with), max(z, with), max(w, with))
+
+    /**
+     * Returns the component-wise minimum of this and with.
+     */
+    fun min(with: Vector4) = Vector4(min(x, with.x), min(y, with.y), min(z, with.z), max(w, with.w))
+
+    /**
      * Returns the axis of the vector’s smallest value. See AXIS_* constants.
      */
     fun minAxis(): Axis {
@@ -283,6 +307,11 @@ class Vector4(
         }
         return Axis.from(minIndex.toLong())
     }
+
+    /**
+     * Returns the component-wise minimum of this and with.
+     */
+    fun minf(with: RealT) = Vector4(min(x, with), min(y, with), min(z, with), min(w, with))
 
     /**
      * Returns the vector scaled to unit length. Equivalent to v / v.length().
@@ -347,6 +376,13 @@ class Vector4(
         z = snapped(z, by.z)
         w = snapped(w, by.w)
     }
+
+
+    /**
+     * Returns a new vector with each component snapped to the nearest multiple of step.
+     * This can also be used to round the components to an arbitrary number of decimals.
+     */
+    fun snappedf(step: RealT) = Vector4(snapped(x, step), snapped(y, step), snapped(z, step), snapped(w, step))
 
     internal fun snap(vecal: RealT) {
         if (vecal.isEqualApprox(0.0)) {

@@ -168,43 +168,94 @@ class TestAABB {
             aabbBig.intersectsSegment(
                 Vector3(1.0, 3.0, 0.0),
                 Vector3(0.0, 3.0, 0.0)
-            )
+            ) != null
         ) { "intersects_segment() should return the expected result." }
 
         checkMessage(
             aabbBig.intersectsSegment(
                 Vector3(0.0, 3.0, 0.0),
                 Vector3(0.0, -300.0, 0.0)
-            )
+            ) != null
         ) { "intersects_segment() should return the expected result." }
 
         checkMessage(
             aabbBig.intersectsSegment(
                 Vector3(-50.0, 3.0, -50.0),
                 Vector3(50.0, 3.0, 50.0)
-            )
+            ) != null
         ) { "intersects_segment() should return the expected result." }
 
         checkMessage(
-            !aabbBig.intersectsSegment(
+            aabbBig.intersectsSegment(
                 Vector3(-50.0, 25.0, -50.0),
                 Vector3(50.0, 25.0, 50.0)
-            )
+            ) == null
         ) { "intersects_segment() should return the expected result." }
 
         checkMessage(
             aabbBig.intersectsSegment(
                 Vector3(0.0, 3.0, 0.0),
                 Vector3(0.0, 3.0, 0.0)
-            )
+            ) != null
         ) { "intersects_segment() should return the expected result with a segment of length 0." }
 
         checkMessage(
-            !aabbBig.intersectsSegment(
+            aabbBig.intersectsSegment(
                 Vector3(0.0, 300.0, 0.0),
                 Vector3(0.0, 300.0, 0.0)
-            )
+            ) == null
         ) { "intersects_segment() should return the expected result with a segment of length 0." }
+
+        // Simple ray intersection test.
+        checkMessage(aabbBig.intersectsRay(Vector3(-100, 3, 0), Vector3(1, 0, 0)) != null)
+        { "intersectsRay() should return true when ray points directly to AABB from outside." }
+        // Ray parallel to an edge.
+        checkMessage(aabbBig.intersectsRay(Vector3(10, 10, 0), Vector3(0, 1, 0)) == null)
+        { "intersectsRay() should return false for ray parallel and outside of AABB." }
+        // Ray origin inside aabb.
+        checkMessage(aabbBig.intersectsRay(Vector3(1, 1, 1), Vector3(0, 1, 0)) != null)
+        { "intersectsRay() should return true for rays originating inside the AABB." }
+        // Ray pointing away from aabb.
+        checkMessage(aabbBig.intersectsRay(Vector3(-10, 0, 0), Vector3(-1, 0, 0)) == null)
+        { "intersectsRay() should return false when ray points away from AABB." }
+        // Ray along a diagonal of aabb.
+        checkMessage(aabbBig.intersectsRay(Vector3(0, 0, 0), Vector3(1, 1, 1)) != null)
+        { "intersectsRay() should return true for rays along the AABB diagonal." }
+        // Ray originating at aabb edge.
+        checkMessage(aabbBig.intersectsRay(aabbBig.position, Vector3(-1, 0, 0)) != null)
+        { "intersectsRay() should return true for rays starting on AABB's edge." }
+        // Ray with zero direction inside.
+        checkMessage(aabbBig.intersectsRay(Vector3(-1, 3, -2), Vector3(0, 0, 0)) != null)
+        { "intersectsRay() should return true because its inside." }
+        // Ray with zero direction outside.
+        checkMessage(aabbBig.intersectsRay(Vector3(-1000, 3, -2), Vector3(0, 0, 0)) == null)
+        { "intersectsRay() should return false for being outside." }
+
+        // Finding ray intersections.
+        val aabbSimple = AABB(Vector3(), Vector3(1, 1, 1))
+
+        // Borders.
+        var intersectionPoint = aabbSimple.intersectsRay(Vector3(0.5, 0, 0.5), Vector3(0, 1, 0))!!
+        checkMessage(intersectionPoint.isEqualApprox(Vector3(0.5, 0, 0.5))) { "find_intersectsRay() border intersection point incorrect." }
+
+        intersectionPoint = aabbSimple.intersectsRay(Vector3(0.5, 1, 0.5), Vector3(0, -1, 0))!!
+        checkMessage(intersectionPoint.isEqualApprox(Vector3(0.5, 1, 0.5))) { "find_intersectsRay() border intersection point incorrect." }
+
+        // Inside.
+        intersectionPoint = aabbSimple.intersectsRay(Vector3(0.5, 0, 0.5), Vector3(0, 1, 0))!!
+        checkMessage(intersectionPoint.isEqualApprox(Vector3(0.5, 0, 0.5))) { "find_intersectsRay() inside backtracking intersection point incorrect." }
+
+        // Zero sized AABB.
+        val aabbZero = AABB(Vector3(), Vector3(1, 0, 1));
+
+        intersectionPoint = aabbZero.intersectsRay(Vector3(0.5, 0, 0.5), Vector3(0, 1, 0))!!
+        checkMessage(intersectionPoint.isEqualApprox(Vector3(0.5, 0, 0.5))) { "find_intersectsRay() border intersection point incorrect for zero sized AABB." }
+
+        intersectionPoint = aabbZero.intersectsRay(Vector3(0.5, 0, 0.5), Vector3(0, -1, 0))!!
+        checkMessage(intersectionPoint.isEqualApprox(Vector3(0.5, 0, 0.5))) { "find_intersectsRay() border intersection point incorrect for zero sized AABB." }
+
+        intersectionPoint = aabbZero.intersectsRay(Vector3(0.5, -1, 0.5), Vector3(0, 1, 0))!!
+        checkMessage(intersectionPoint.isEqualApprox(Vector3(0.5, 0, 0.5))) { "find_intersectsRay() border intersection point incorrect for zero sized AABB." }
     }
 
     @Test
@@ -234,8 +285,19 @@ class TestAABB {
     fun `Encloses`() {
         val aabbBig = AABB(Vector3(-1.5, 2.0, -2.5), Vector3(4.0, 5.0, 6.0))
 
-        val aabbSmall1 = AABB(Vector3(-1.5, 2.0, -2.5), Vector3(1.0, 1.0, 1.0))
+        checkMessage(aabbBig.encloses(aabbBig)) {
+            "encloses() with itself should return the expected result."
+        }
+
+
+        var aabbSmall1 = AABB(Vector3(-1.5, 2.0, -2.5), Vector3(1.0, 1.0, 1.0))
         checkMessage(aabbBig.encloses(aabbSmall1)) { "encloses() with fully contained AABB (touching the edge) should return the expected result." }
+
+        aabbSmall1 = AABB(Vector3(1.5, 6, 2.5), Vector3(1, 1, 1));
+        checkMessage(aabbBig.encloses(aabbSmall1)) {
+            "encloses() with fully contained AABB (touching the edge) should return the expected result."
+        }
+
 
         val aabbSmall2 = AABB(Vector3(0.5, 1.5, -2.0), Vector3(1.0, 1.0, 1.0))
         checkMessage(!aabbBig.encloses(aabbSmall2)) { "encloses() with partially contained AABB (overflowing on Y axis) should return the expected result." }

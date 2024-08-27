@@ -4,6 +4,8 @@ package godot.core
 
 import godot.util.RealT
 import godot.util.snapped
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 class Vector3i(
@@ -75,6 +77,12 @@ class Vector3i(
     )
 
     /**
+     * Returns a new vector with all components clamped between the min and max, by running
+     * @GlobalScope.clamp on each component.
+     */
+    fun clampi(min: Int, max: Int) = Vector3i(x.coerceIn(min, max), y.coerceIn(min, max), z.coerceIn(min, max))
+
+    /**
      * Returns the vector’s length.
      */
     fun length(): RealT {
@@ -88,6 +96,11 @@ class Vector3i(
     fun lengthSquared(): RealT {
         return (x * x + y * y + z * z).toDouble()
     }
+
+    /**
+     * Returns the component-wise maximum of this and with, equivalent to `Vector3i(maxi(x, with.x), maxi(y, with.y), maxi(z, with.z))`.
+     */
+    fun max(with: Vector3i) = Vector3i(max(x, with.x), max(y, with.y), max(z, with.z))
 
     /**
      * Returns the axis of the vector's highest value. See AXIS_* constants.
@@ -108,6 +121,16 @@ class Vector3i(
     }
 
     /**
+     * Returns the component-wise maximum of this and with, equivalent to `Vector3i(maxi(x, with), maxi(y, with), maxi(z, with))`.
+     */
+    fun maxi(with: Int) = Vector3i(max(x, with), max(y, with), max(z, with))
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to `Vector3i(mini(x, with.x), mini(y, with.y), mini(z, with.z))`
+     */
+    fun min(with: Vector3i) = Vector3i(min(x, with.x), min(y, with.y), min(z, with.z))
+
+    /**
      * Returns the axis of the vector’s smallest value. See AXIS_* constants.
      */
     fun minAxis() = if (x < y) {
@@ -123,6 +146,11 @@ class Vector3i(
             Axis.Z
         }
     }
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to `ector3i(mini(x, with), mini(y, with), mini(z, with))`
+     */
+    fun mini(with: Int) = Vector3i(min(x, with), min(y, with), min(z, with))
 
     /**
      * Returns the vector with each component set to one or negative one, depending on the signs of the components.
@@ -145,6 +173,11 @@ class Vector3i(
         y = snapped(y, by.y)
         z = snapped(z, by.z)
     }
+
+    /**
+     * Returns a new vector with each component snapped to the closest multiple of step.
+     */
+    fun snappedi(step: Int) = Vector3i(snapped(x, step), snapped(y, step), snapped(z, step))
 
     /**
      * Gets the remainder of each component of the Vector3i with the components of the given Vector3i.

@@ -126,13 +126,7 @@ class Rect2i(
      * Returns a [Rect2i] with equivalent position and area, modified so that the top-left corner is the origin and
      * `width` and `height` are positive.
      */
-    fun abs() = Rect2i(
-        Point2i(
-            _position.x + min(_size.x, 0),
-            _position.y + min(_size.y, 0)
-        ),
-        _size.abs()
-    )
+    fun abs() = Rect2i(position + size.min(Point2i()), size.abs())
 
     /**
      * Returns `true` if this [Rect2i] completely encloses another one.

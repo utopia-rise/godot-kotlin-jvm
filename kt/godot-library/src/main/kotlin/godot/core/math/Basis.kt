@@ -7,11 +7,12 @@ import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import godot.util.CMP_EPSILON
 import godot.util.RealT
+import godot.util.UNIT_EPSILON
 import godot.util.isEqualApprox
+import godot.util.isZeroApprox
 import godot.util.toRealT
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.math.PI
-import kotlin.math.abs
 import kotlin.math.asin
 import kotlin.math.atan2
 import kotlin.math.cos
@@ -193,26 +194,35 @@ class Basis() : CoreType {
         )
     }
 
-    constructor(axis: Vector3, phi: RealT) : this() {
+    constructor(axis: Vector3, angle: RealT) : this() {
         // Rotation matrix from axis and angle, see https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle
-        val axisq = Vector3(axis.x * axis.x, axis.y * axis.y, axis.z * axis.z)
-
-        val cosine: RealT = cos(phi)
-        val sine: RealT = sin(phi)
-
-        apply {
-            _x.x = axisq.x + cosine * (1.0 - axisq.x)
-            _x.y = axis.x * axis.y * (1.0 - cosine) - axis.z * sine
-            _x.z = axis.z * axis.x * (1.0 - cosine) + axis.y * sine
-
-            _y.x = axis.x * axis.y * (1.0 - cosine) + axis.z * sine
-            _y.y = axisq.y + cosine * (1.0 - axisq.y)
-            _y.z = axis.y * axis.z * (1.0 - cosine) - axis.x * sine
-
-            _z.x = axis.z * axis.x * (1.0 - cosine) - axis.y * sine
-            _z.y = axis.y * axis.z * (1.0 - cosine) + axis.x * sine
-            _z.z = axisq.z + cosine * (1.0 - axisq.z)
+        if (GodotJvmBuildConfig.DEBUG) {
+            require(axis.isNormalized()) { "The axis Vector3 $axis must be normalized."}
         }
+
+        val axiSq = Vector3(axis.x * axis.x, axis.y * axis.y, axis.z * axis.z)
+        val cosine: RealT = cos(angle)
+        _x.x = axiSq.x + cosine * (1.0f - axiSq.x)
+        _y.y = axiSq.y + cosine * (1.0f - axiSq.y)
+        _z.z = axiSq.z + cosine * (1.0f - axiSq.z)
+
+        val sine: RealT = sin(angle)
+        val t = 1.0 - cosine
+
+        var xyzt = axis.x * axis.y * t
+        var zyxs = axis.z * sine
+        _x.y = xyzt - zyxs
+        _y.x = xyzt + zyxs
+
+        xyzt = axis.x * axis.z * t
+        zyxs = axis.y * sine
+        _x.z = xyzt + zyxs
+        _z.x = xyzt - zyxs
+
+        xyzt = axis.y * axis.z * t
+        zyxs = axis.x * sine
+        _y.z = xyzt - zyxs
+        _z.y = xyzt + zyxs
     }
 
     //API
@@ -452,14 +462,41 @@ class Basis() : CoreType {
         return euler
     }
 
-    private fun isOrthogonal(): Boolean {
-        val id = Basis()
-        val m = this.transposed().times(this)
-        return m.isEqualApprox(id)
+    /**
+     *Returns true if this basis is conformal.
+     * A conformal basis is both orthogonal (the axes are perpendicular to each other) and uniform (the axes share the same length).
+     * This method can be especially useful during physics calculations.
+     */
+    fun isConformal(): Boolean {
+        val x = getColumn(0);
+        val y = getColumn(1);
+        val z = getColumn(2);
+        val xLenSq = x.lengthSquared()
+        return xLenSq.isEqualApprox(y.lengthSquared())
+            && xLenSq.isEqualApprox(z.lengthSquared())
+            && x.dot(y).isZeroApprox()
+            && x.dot(z).isZeroApprox()
+            && y.dot(z).isZeroApprox()
     }
 
-    private fun isRotation(): Boolean =
-        abs(determinant() - 1) < CMP_EPSILON && isOrthogonal()
+    /**
+     * Returns true if the basis vectors are orthogonal (perpendicular), so it has no skew or shear, and can be decomposed into rotation and scale.
+     * See https://en.wikipedia.org/wiki/Orthogonal_basis
+     */
+    internal fun isOrthogonal(): Boolean {
+        val x = getColumn(0);
+        val y = getColumn(1);
+        val z = getColumn(2);
+        return x.dot(y).isZeroApprox()
+            && x.dot(z).isZeroApprox()
+            && y.dot(z).isZeroApprox()
+    }
+
+    /**
+     * Returns true if the basis is a pure rotation matrix, so it has no scale, skew, shear, or flip.
+     */
+    internal fun isRotation(): Boolean =
+        isConformal() && determinant().isEqualApprox(1.0, UNIT_EPSILON)
 
     /**
      * This function considers a discretization of rotations into 24 points on unit sphere,

@@ -3,6 +3,8 @@
 package godot.core
 
 import godot.util.snapped
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -79,6 +81,13 @@ class Vector2i(
     fun clamp(min: Vector2i, max: Vector2i) = Vector2i(x.coerceIn(min.x, max.x), y.coerceIn(min.y, max.y))
 
     /**
+     * Returns a new vector with all components clamped between the min and max, by running
+     * @GlobalScope.clamp on each component.
+     */
+    fun clampi(min: Int, max: Int) = Vector2i(x.coerceIn(min, max), y.coerceIn(min, max))
+
+
+    /**
      * Returns the vector’s length.
      */
     fun length() = sqrt(lengthSquared().toDouble())
@@ -89,6 +98,12 @@ class Vector2i(
      */
     fun lengthSquared() = x * x + y * y
 
+
+    /**
+     * Returns the component-wise maximum of this and with, equivalent to `Vector2i(maxi(x, with.x), maxi(y, with.y))`.
+     */
+    fun max(with: Vector2i) = Vector2i(max(x, with.x), max(y, with.y))
+
     /**
      * Returns the axis of the vector's highest value. See AXIS_* constants. If all components are equal,
      * this method returns AXIS_X.
@@ -96,10 +111,25 @@ class Vector2i(
     fun maxAxis() = if (x < y) Axis.Y else Axis.X
 
     /**
+     * Returns the component-wise maximum of this and with, equivalent to ``Vector2(maxi(x, with), maxi(y, with))``.
+     */
+    fun maxi(with: Int) = Vector2i(max(x, with), max(y, with))
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to ``Vector2i(mini(x, with.x), mini(y, with.y)).``
+     */
+    fun min(with: Vector2i) = Vector2i(min(x, with.x), min(y, with.y))
+
+    /**
      * Returns the axis of the vector's lowest value. See AXIS_* constants. If all components are equal,
      * this method returns AXIS_Y.
      */
     fun minAxis() = if (x < y) Axis.X else Axis.Y
+
+    /**
+     * Returns the component-wise minimum of this and with, equivalent to ``Vector2i(mini(x, with), mini(y, with)).``
+     */
+    fun mini(with: Int) = Vector2i(min(x, with), min(y, with))
 
     /**
      * Returns the vector with each component set to one or negative one, depending on the signs of the components.
@@ -121,7 +151,12 @@ class Vector2i(
     }
 
     /**
-     * Gets the remainder of each component of the Vector2i with the components of the given Vector2i.
+     * Returns a new vector with each component snapped to the closest multiple of step.
+     */
+    fun snappedi(step: Int) = Vector2i(snapped(x, step), snapped(y, step))
+
+    /**
+     * Gets the remainder of each component of the [Vector2i] with the components of the given [Vector2i].
      * This operation uses truncated division, which is often not desired as it does not work well with negative numbers.
      * Consider using @GlobalScope.posmod instead if you want to handle negative numbers.
      */
@@ -131,7 +166,7 @@ class Vector2i(
     )
 
     /**
-     * Gets the remainder of each component of the Vector2i with the given int.
+     * Gets the remainder of each component of the [Vector2i] with the given int.
      * This operation uses truncated division, which is often not desired as it does not work well with negative numbers.
      * Consider using @GlobalScope.posmod instead if you want to handle negative numbers.
      */

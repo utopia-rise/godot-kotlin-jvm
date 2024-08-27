@@ -6,7 +6,6 @@ import godot.annotation.CoreTypeHelper
 import godot.annotation.CoreTypeLocalCopy
 import godot.util.RealT
 import kotlincompile.definitions.GodotJvmBuildConfig
-import kotlin.math.min
 
 class AABB(
     position: Vector3,
@@ -85,14 +84,7 @@ class AABB(
      * Returns an AABB with equivalent position and size, modified so that the most-negative corner is the origin and
      * the size is positive.
      */
-    fun abs() = AABB(
-        Vector3(
-            position.x + min(size.x, 0.0),
-            position.y + min(size.y, 0.0),
-            position.z + min(size.z, 0.0)
-        ),
-        size.abs()
-    )
+    fun abs() = AABB(position + size.min(Vector3()), size.abs())
 
     /**
      * Returns true if this AABB completely encloses another one.
@@ -103,11 +95,11 @@ class AABB(
         val dstMin = other._position
         val dstMax = other._position + other._size
         return ((srcMin.x <= dstMin.x) &&
-            (srcMax.x > dstMax.x) &&
+            (srcMax.x >= dstMax.x) &&
             (srcMin.y <= dstMin.y) &&
-            (srcMax.y > dstMax.y) &&
+            (srcMax.y >= dstMax.y) &&
             (srcMin.z <= dstMin.z) &&
-            (srcMax.z > dstMax.z))
+            (srcMax.z >= dstMax.z))
     }
 
     /**
@@ -423,54 +415,74 @@ class AABB(
         return under && over
     }
 
+
     /**
-     * Returns `true` if the given ray intersects with this [AABB]. Ray length is infinite.
+     * Returns the first point where this bounding box and the given ray intersect, as a [Vector3]. If no intersection occurs, returns null.
+     *
+     * The ray begin at from, faces dir and extends towards infinity.
      */
-    fun intersectsRay(from: Vector3, dir: Vector3): Boolean {
+    fun intersectsRay(from: Vector3, dir: Vector3): Vector3? {
         if (GodotJvmBuildConfig.DEBUG) {
             require(size.x >= 0 && size.y >= 0 && size.z >= 0) {
                 "AABB size is negative, this is not supported. Use AABB.abs() to get an AABB with a positive size."
             }
         }
 
-        var c1 = Vector3()
-        var c2 = Vector3()
         val end = position + size
-        var near = -1e20
-        var far = 1e20
+        var tmin = -1e20
+        var tmax = 1e20
+        var axis = 0
 
         for (i in 0..2) {
             if (dir[i] == 0.0) {
                 if (from[i] < position[i] || from[i] > end[i]) {
-                    return false
+                    return null
                 }
             } else { // ray not parallel to planes in this direction
-                c1[i] = (position[i] - from[i]) / dir[i]
-                c2[i] = (end[i] - from[i]) / dir[i]
-                if (c1[i] > c2[i]) {
-                    val aux = c1
-                    c1 = c2
-                    c2 = aux
+                var t1 = (position[i] - from[i]) / dir[i]
+                var t2 = (end[i] - from[i]) / dir[i]
+                if (t1 > t2) {
+                    val temp = t1
+                    t1 = t2
+                    t2 = temp
                 }
-                if (c1[i] > near) {
-                    near = c1[i]
+
+                if (t1 >= tmin) {
+                    tmin = t1
+                    axis = i;
                 }
-                if (c2[i] < far) {
-                    far = c2[i]
+
+                if (t2 < tmax) {
+                    if (t2 < 0) {
+                        return null;
+                    }
+                    tmax = t2;
                 }
-                if (near > far || far < 0) {
-                    return false
+                if (tmin > tmax) {
+                    return null
                 }
             }
         }
 
-        return true
+        val ret = from + dir * tmin;
+
+        // Prevent float error by making sure the point is exactly
+        // on the AABB border on the relevant axis.
+        ret[axis] = if (dir[axis] >= 0) {
+            position[axis]
+        } else {
+            end[axis]
+        }
+
+        return ret
     }
 
     /**
-     * Returns true if the AABB intersects the line segment between from and to.
+     * Returns the first point where this bounding box and the given segment intersect, as a [Vector3]. If no intersection occurs, returns null.
+     *
+     * The segment begins at from and ends at to.
      */
-    fun intersectsSegment(from: Vector3, to: Vector3): Boolean {
+    fun intersectsSegment(from: Vector3, to: Vector3): Vector3? {
         var min = 0.0
         var max = 1.0
 
@@ -484,14 +496,14 @@ class AABB(
 
             if (segFrom < segTo) {
                 if (segFrom > boxEnd || segTo < boxBegin) {
-                    return false
+                    return null
                 }
                 val length = segTo - segFrom
                 cmin = if (segFrom < boxBegin) ((boxBegin - segFrom) / length) else 0.0
                 cmax = if (segTo > boxEnd) ((boxEnd - segFrom) / length) else 1.0
             } else {
                 if (segTo > boxEnd || segFrom < boxBegin) {
-                    return false
+                    return null
                 }
                 val length = segTo - segFrom
                 cmin = if (segFrom > boxEnd) (boxEnd - segFrom) / length else 0.0
@@ -503,10 +515,10 @@ class AABB(
             if (cmax < max)
                 max = cmax
             if (max < min) {
-                return false
+                return null
             }
         }
-        return true
+        return from + (to - from) * min;
     }
 
     /**
