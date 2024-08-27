@@ -8,9 +8,6 @@ internal interface GodotNativeEntry {
     val objectID: ObjectID
     val binding: GodotBinding?
 
-    fun demote() {}
-    fun promote() {}
-
     companion object {
         fun create(binding: GodotBinding, queue: ReferenceQueue<GodotBinding>): GodotNativeEntry {
             val id = binding.value!!.id
@@ -31,16 +28,6 @@ internal class GodotRefCountedEntry(
 
     override val binding
         get() = get()
-
-    private var strongReference: GodotBinding? = null
-
-    override fun demote() {
-        strongReference = null
-    }
-
-    override fun promote() {
-        strongReference = get()
-    }
 }
 
 internal class GodotObjectEntry(
