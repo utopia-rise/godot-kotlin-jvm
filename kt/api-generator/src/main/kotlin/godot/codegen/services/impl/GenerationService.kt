@@ -754,6 +754,7 @@ class GenerationService(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
+                .returns(Unit::class)
                 .addStatement(
                     "callConstructor(%M, scriptIndex)",
                     MemberName(godotApiPackage, classIndexName),
@@ -767,6 +768,7 @@ class GenerationService(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
+                .returns(Unit::class)
                 .addStatement(
                     "getSingleton(%M)",
                     MemberName(godotApiPackage, classIndexName),

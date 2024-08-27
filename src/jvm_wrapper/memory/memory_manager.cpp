@@ -11,7 +11,9 @@ bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong 
 
 void MemoryManager::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
-    KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
+    if(obj){
+        KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
+    }
 }
 
 bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
@@ -92,6 +94,11 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
     return has_free;
 }
 
+void MemoryManager::manage_memory(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env {p_raw_env};
+    MemoryManager::get_instance().sync_memory(env);
+}
+
 bool MemoryManager::sync_memory(jni::Env& p_env) {
     bool active = false;
 
@@ -118,10 +125,10 @@ bool MemoryManager::sync_memory(jni::Env& p_env) {
     jni::JLongArray refs_to_decrement {wrapped.call_object_method(p_env, MANAGE_MEMORY, args)};
 
     Vector<uint64_t> vec;
-    size = arr.length(p_env);
+    size = refs_to_decrement.length(p_env);
     if (size > 0) { active = true; }
     vec.resize(size);
-    arr.get_array_elements(p_env, reinterpret_cast<jlong*>(vec.ptrw()), size);
+    refs_to_decrement.get_array_elements(p_env, reinterpret_cast<jlong*>(vec.ptrw()), size);
     refs_to_decrement.delete_local_ref(p_env);
 
     for (uint64_t id : vec) {

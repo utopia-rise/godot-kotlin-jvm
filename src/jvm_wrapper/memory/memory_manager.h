@@ -21,11 +21,12 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(MANAGE_MEMORY, "syncMemory", "([J)[J")
         INIT_JNI_METHOD(PRE_CLEAN_UP, "preCleanup", "()V")
-        INIT_JNI_METHOD(CHECK_CLEAN_UP, "checkCleanup", "()B")
+        INIT_JNI_METHOD(CHECK_CLEAN_UP, "checkCleanup", "()Z")
         INIT_JNI_METHOD(POST_CLEAN_UP, "postCleanup", "()V")
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryManager::decrement_ref_counter)
         INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryManager::unref_native_core_type)
+        INIT_NATIVE_METHOD("manageMemory", "()V", MemoryManager::manage_memory)
       )
 
     Mutex dead_objects_mutex;
@@ -38,6 +39,8 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     static void decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
 
     static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
+
+    static void manage_memory(JNIEnv* p_raw_env, jobject p_instance);
 
 public:
     void queue_dead_object(Object* obj);

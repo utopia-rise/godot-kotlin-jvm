@@ -18,6 +18,9 @@ import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
 
 internal object MemoryManager {
+    /** Base capacity for several containers within the manager.*/
+    private const val INITIAL_CAPACITY = 256
+
     /** Number of references to decrement each loop at most (Doesn't have priority over the ratio).*/
     private const val MAX_GC_NUMBER = 64
 
@@ -37,7 +40,7 @@ internal object MemoryManager {
     private var deadReferences = mutableListOf<VoidPtr>()
 
     /** Pointers to NativeCoreType.*/
-    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(256)
+    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(INITIAL_CAPACITY)
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
@@ -57,8 +60,8 @@ internal object MemoryManager {
 
     // Create an LRU cache for StringName and NodePath objects based on a String key.
     // TODO: Set the initial capacity from the command line.
-    private val stringNameCache = LRUCache<String, StringName>(256)
-    private val nodePathCache = LRUCache<String, NodePath>(256)
+    private val stringNameCache = LRUCache<String, StringName>(INITIAL_CAPACITY)
+    private val nodePathCache = LRUCache<String, NodePath>(INITIAL_CAPACITY)
 
     fun getOrCreateStringName(key: String): StringName {
         return synchronized(stringNameCache) {
@@ -256,8 +259,8 @@ internal object MemoryManager {
         nodePathCache.clear()
     }
 
-    private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-    internal external fun decrementRefCounter(instanceId: Long)
-    private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
-    internal external fun manageMemory()
+    external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
+    external fun decrementRefCounter(instanceId: Long)
+    external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    external fun manageMemory()
 }
