@@ -145,9 +145,7 @@ fun <T : Object?> T.asStatic(): T {
         if (!MemoryManager.isInstanceValid(this)) {
             return@registerCallback
         }
-        if (this is RefCounted) {
-            MemoryManager.decrementRefCounter(id.id)
-        } else {
+        if (this !is RefCounted) {
             free()
         }
     }
