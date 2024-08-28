@@ -18,3 +18,8 @@ void KotlinBinding::init(Object* p_object) {
 int KotlinBinding::get_constructor_id() const{
     return constructor_id;
 }
+
+bool KotlinBinding::test_and_set_incremented() {
+    // Set to true and return the previous value.
+    return is_incremented.test_and_set(std::memory_order_acq_rel);
+}
