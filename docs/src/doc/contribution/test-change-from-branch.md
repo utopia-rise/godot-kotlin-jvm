@@ -4,7 +4,7 @@ In order to test a change from a specific branch in your own project, you'll nee
     Before following these steps, make sure you've done a proper backup of your project! Things can and will break! So ensure you can easily rollback all changes applied to your project
 
 !!! info
-    The building the project from source, requires that you've setup your system to be able to build godot. [Follow the official documentation](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html) for the setup of your system! 
+    Building the project from source, requires that you've setup your system to be able to build godot. [Follow the official documentation](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html) for the setup of your system! 
 
 1. Check against which godot branch/tag the branch is built against. (the current master is for 4.3-stable)
 2. Check out godot: `git clone git@github.com:godotengine/godot.git --branch 4.3-stable --recursive`
@@ -16,7 +16,7 @@ In order to test a change from a specific branch in your own project, you'll nee
 8. Move back to the godot root: `cd ../../..`
 9. Build godot: `scons debug_symbols=yes dev_build=yes`
 10. Make sure you have `mavenLocal()` as a repository configured in your gradle build
-11. Add the following plugin resolution to your:
+11. Add the following plugin resolution to your project:
     ```kotlin
     pluginManagement {
         // ...
