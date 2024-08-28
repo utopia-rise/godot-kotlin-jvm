@@ -70,7 +70,7 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
 
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) { return; }
+    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) { return; }
 
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
