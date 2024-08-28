@@ -92,6 +92,7 @@ nav:
     - Setup: contribution/setup.md
     - Build with C# support: contribution/build-with-csharp-support.md
     - Support for other JVM-based languages: contribution/support-for-other-jvm-based-languages.md
+    - Test changes from branch: contribution/test-change-from-branch.md
     - Knowledge base:
         - Artifact differentiation: contribution/knowledge-base/artifact-differentiation.md
         - Entry generation: contribution/knowledge-base/entry-generation.md
