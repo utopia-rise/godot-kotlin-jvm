@@ -32,5 +32,5 @@ In order to test a change from a specific branch in your own project, you'll nee
     It should be something like: `0.9.1-4.3.0-d68f299-SNAPSHOT`
 14. Use that version in your project
 15. Build your project
-16. Run your project with the editor binary you've built in step 9
+16. Run your project with the editor binary you've built in step 10
     You can find that binary in the godot root in the `bin` folder, and it should look something like this: `godot.macos.editor.dev.arm64`
