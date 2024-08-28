@@ -257,8 +257,16 @@ internal object MemoryManager {
             decrementRefCounter(ref.objectID.id)
         }
         ObjectDB.fill(null)
-        stringNameCache.clear()
-        nodePathCache.clear()
+
+        stringNameCache.values.onEach {
+            unrefNativeCoreType(it._handle, VariantType.STRING_NAME.baseOrdinal)
+        }.clear()
+
+        nodePathCache.values.onEach {
+            unrefNativeCoreType(it._handle, VariantType.NODE_PATH.baseOrdinal)
+        }.clear()
+
+        nativeCoreTypeMap.clear()
     }
 
     external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
