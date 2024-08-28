@@ -7,7 +7,7 @@
 class KotlinBinding {
     int constructor_id = -1;
     // Using std directly because Godot SafeFlag doesn't provide the right methods (despite wrapping the same std atomic).
-    std::atomic_flag is_incremented;
+    std::atomic_flag is_incremented = ATOMIC_FLAG_INIT;
 public:
     KotlinBinding() = default;
     ~KotlinBinding() = default;

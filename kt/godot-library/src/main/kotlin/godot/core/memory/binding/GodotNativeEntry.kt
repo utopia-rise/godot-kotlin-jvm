@@ -14,7 +14,7 @@ internal interface GodotNativeEntry {
             if (id.isReference) {
                 return GodotRefCountedEntry(binding, queue, id)
             } else {
-                return GodotObjectEntry(binding)
+                return GodotObjectEntry(binding, id)
             }
         }
     }
@@ -31,11 +31,7 @@ internal class GodotRefCountedEntry(
 }
 
 internal class GodotObjectEntry(
-    override val binding: GodotBinding
-) : GodotNativeEntry {
-
+    override val binding: GodotBinding,
     override val objectID: ObjectID
-        get() = binding.value!!.id
-}
-
+) : GodotNativeEntry
 

@@ -166,6 +166,7 @@ internal object MemoryManager {
             val index = objectID.index
             val ref = ObjectDB[objectID.index]
             if (ref != null && ref.objectID.id == objectID.id) {
+                // The index could have been taken by a newly created object, we check before it was are about to remove the correct one.
                 ObjectDB[index] = null
             }
         }
@@ -190,7 +191,7 @@ internal object MemoryManager {
                     val index = ObjectID(it).index
                     val otherRef = ObjectDB[index]!!
                     //Check if the RefCounted instance has been sent back to the JVM. We don't decrement in this case.
-                    //We don't need to check if it's the same ObjectID, we didn't decrement yet, so it's impossible for it to have been replaced.
+                    //We don't need to check if it's the same ObjectID, we didn't decrement yet, so it's impossible for it to have been replaced by a new object.
                     otherRef.binding == null
                 }.onEach {
                     ObjectDB[ObjectID(it).index] = null
