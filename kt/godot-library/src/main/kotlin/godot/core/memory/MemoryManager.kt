@@ -199,7 +199,7 @@ internal object MemoryManager {
         }
             .toLongArray()
             .also {
-                deadReferences = deadReferences.drop(it.size).toMutableList()
+                deadReferences = deadReferences.drop(numberToDecrement).toMutableList()
             }
     }
 
