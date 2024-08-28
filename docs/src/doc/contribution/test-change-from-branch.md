@@ -10,7 +10,7 @@ In order to test a change from a specific branch in your own project, you'll nee
 2. Check out godot: `git clone git@github.com:godotengine/godot.git --branch 4.3-stable --recursive`
 3. Move into the godot root: `cd godot`
 4. Check out our module: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
-5. Move into the kotlin root of our module: `cd modules/kotlin_jvm`
+5. Move into the kotlin root of our module: `cd modules/kotlin_jvm/kt`
 6. Check out the branch you want: `git checkout <branch_name>`
 7. Locally deploy our module: `./gradlew :tools-common:publishToMavenLocal publishToMavenLocal && ./gradlew publishToMavenLocal -Prelease=true`
 8. Move back to the godot root: `cd ../../..`
