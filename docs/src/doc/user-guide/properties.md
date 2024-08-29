@@ -17,6 +17,10 @@ class RotatingCube: Node3D() {
 Property names should follow Kotlin's style which is `camelCase`. For consistency with Godot's style,
 your properties are actually registered as `snake_case`. So a property `someFlag` in Kotlin is usable in GDScript as `some_flag`.
 
+## Core type specifics
+
+Registered properties of core types like `Vector3` are not nullable in Godot. Hence, you cannot register properties of core types as `lateinit` or nullable!
+
 ## Exporting properties
 
 A registered property can be exported (a.k.a make it visible in the Godot editor) by annotating it with `@Export`.
