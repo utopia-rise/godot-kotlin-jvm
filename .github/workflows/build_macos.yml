@@ -80,7 +80,7 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./.github/actions/scons-cache
+        uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true

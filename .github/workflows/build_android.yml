@@ -39,7 +39,7 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
       - name: Setup Godot build cache
-        uses: ./.github/actions/scons-cache
+        uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         continue-on-error: true
 
       - name: Setup python and scons
