@@ -121,7 +121,7 @@ internal object MemoryManager {
         }
     }
 
-    fun unregisterScriptInstance(id: Long) {
+    fun removeScriptInstance(id: Long) {
         synchronized(ObjectDB) {
             getBinding(id)?.scriptInstance = null
         }
@@ -270,8 +270,11 @@ internal object MemoryManager {
         nativeCoreTypeMap.clear()
     }
 
+    external fun getSingleton(classIndex: Int)
+    external fun createNativeObject(classIndex: Int, instance: KtObject, scriptIndex: Int)
     external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     external fun decrementRefCounter(instanceId: Long)
+    external fun freeObject(rawPtr: VoidPtr)
     external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
     external fun manageMemory()
 }

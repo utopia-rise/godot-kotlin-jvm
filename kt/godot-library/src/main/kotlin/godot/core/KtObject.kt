@@ -78,13 +78,13 @@ abstract class KtObject {
 
     @Suppress("NOTHING_TO_INLINE")
     internal inline fun callConstructor(classIndex: Int, scriptIndex: Int): Unit {
-        TransferContext.createNativeObject(classIndex, this, scriptIndex)
+        MemoryManager.createNativeObject(classIndex, this, scriptIndex)
         TransferContext.initializeKtObject(this)
     }
 
     @Suppress("NOTHING_TO_INLINE")
     internal inline fun getSingleton(classIndex: Int) {
-        TransferContext.getSingleton(classIndex)
+        MemoryManager.getSingleton(classIndex)
         TransferContext.initializeKtObject(this)
     }
 
@@ -102,7 +102,7 @@ abstract class KtObject {
     open fun _onDestroy() = Unit
 
     fun free() {
-        TransferContext.freeObject(this)
+        MemoryManager.freeObject(rawPtr)
     }
 
     companion object {

@@ -89,17 +89,5 @@ internal object TransferContext {
         obj.id = ObjectID(buffer.long)
     }
 
-    fun removeScriptInstance(id: Long) {
-        MemoryManager.unregisterScriptInstance(id)
-    }
-
-    fun freeObject(obj: KtObject) {
-        freeObject(obj.rawPtr)
-    }
-
-    external fun createNativeObject(classIndex: Int, instance: KtObject, scriptIndex: Int)
-    external fun getSingleton(classIndex: Int)
-    external fun freeObject(rawPtr: VoidPtr)
-
     private external fun icall(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: Int)
 }

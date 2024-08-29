@@ -17,16 +17,21 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     JNI_METHOD(PRE_CLEAN_UP)
     JNI_METHOD(CHECK_CLEAN_UP)
     JNI_METHOD(POST_CLEAN_UP)
+    JNI_METHOD(REMOVE_SCRIPT)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(MANAGE_MEMORY, "syncMemory", "([J)[J")
         INIT_JNI_METHOD(PRE_CLEAN_UP, "preCleanup", "()V")
         INIT_JNI_METHOD(CHECK_CLEAN_UP, "checkCleanup", "()Z")
         INIT_JNI_METHOD(POST_CLEAN_UP, "postCleanup", "()V")
+        INIT_JNI_METHOD(REMOVE_SCRIPT, "removeScriptInstance", "(J)V")
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryManager::decrement_ref_counter)
         INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryManager::unref_native_core_type)
         INIT_NATIVE_METHOD("manageMemory", "()V", MemoryManager::manage_memory)
+        INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", MemoryManager::create_native_object)
+        INIT_NATIVE_METHOD("getSingleton", "(I)V", MemoryManager::get_singleton)
+        INIT_NATIVE_METHOD("freeObject", "(J)V", MemoryManager::free_object)
       )
 
     Mutex dead_objects_mutex;
@@ -35,19 +40,21 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     LocalVector<JvmInstance*> to_demote_objects;
 
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
-
     static void decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
-
     static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
-
     static void manage_memory(JNIEnv* p_raw_env, jobject p_instance);
+    static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jint p_script_index);
+    static void get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
+    static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
 public:
+    void remove_script_instance(jni::Env& p_env, uint64_t id);
     void queue_dead_object(Object* obj);
     void queue_demotion(JvmInstance* script_instance);
     void try_promotion(JvmInstance* script_instance);
     bool sync_memory(jni::Env& p_env);
     void clean_up(jni::Env& p_env);
 };
+
 // clang-format on
 #endif// GODOT_JVM_MEMORY_MANAGER_H

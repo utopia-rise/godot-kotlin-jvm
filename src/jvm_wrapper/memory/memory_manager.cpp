@@ -1,8 +1,10 @@
 #include "memory_manager.h"
 
 #include "binding/kotlin_binding_manager.h"
-
-#include <core/os/os.h>
+#include "script/jvm_script_manager.h"
+#include "shared_buffer.h"
+#include "transfer_context.h"
+#include "type_manager.h"
 
 bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
@@ -11,9 +13,7 @@ bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong 
 
 void MemoryManager::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
-    if(obj){
-        KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
-    }
+    if (obj) { KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj)); }
 }
 
 bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
@@ -99,6 +99,48 @@ void MemoryManager::manage_memory(JNIEnv* p_raw_env, jobject p_instance) {
     MemoryManager::get_instance().sync_memory(env);
 }
 
+void MemoryManager::create_native_object(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object, jint p_script_index) {
+    const StringName& class_name {TypeManager::get_instance().get_engine_type_for_index(static_cast<int>(p_class_index))};
+    Object* ptr = ClassDB::instantiate(class_name);
+
+    auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
+
+#ifdef DEBUG_ENABLED
+    JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
+#endif
+
+    jni::Env env {p_raw_env};
+
+    KotlinBindingManager::set_instance_binding(ptr);
+    int script_index {static_cast<int>(p_script_index)};
+    if (script_index != -1) {
+        KtObject* kt_object = memnew(KtObject(env, jni::JObject(p_object), ptr->is_ref_counted()));
+        Ref<JvmScript> kotlin_script {JvmScriptManager::get_instance().get_named_script_for_index(script_index)};
+        JvmInstance* script = memnew(JvmInstance(env, ptr, kt_object, kotlin_script.ptr()));
+        ptr->set_script_instance(script);
+    }
+
+    TransferContext::get_instance().write_object_data(env, raw_ptr, ptr->get_instance_id());
+}
+
+void MemoryManager::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
+    const String& singleton_name {TypeManager::get_instance().get_engine_singleton_name_for_index(static_cast<int>(p_class_index))};
+    Object* singleton {Engine::get_singleton()->get_singleton_object(singleton_name)};
+
+    jni::Env env {p_raw_env};
+    TransferContext::get_instance().write_object_data(env, reinterpret_cast<uintptr_t>(singleton), singleton->get_instance_id());
+}
+
+void MemoryManager::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
+
+#ifdef DEBUG_ENABLED
+    JVM_ERR_FAIL_COND_MSG(owner->is_ref_counted(), "Can't 'free' a RefCounted Object.");
+#endif
+
+    memdelete(owner);
+}
+
 bool MemoryManager::sync_memory(jni::Env& p_env) {
     bool active = false;
 
@@ -172,6 +214,11 @@ void MemoryManager::try_promotion(JvmInstance* script_instance) {
     to_demote_mutex.lock();
     script_instance->promote_reference();
     to_demote_mutex.unlock();
+}
+
+void MemoryManager::remove_script_instance(jni::Env& p_env, uint64_t id) {
+    jvalue args[1] = {jni::to_jni_arg(id)};
+    wrapped.call_object_method(p_env, REMOVE_SCRIPT, args);
 }
 
 MemoryManager::~MemoryManager() = default;

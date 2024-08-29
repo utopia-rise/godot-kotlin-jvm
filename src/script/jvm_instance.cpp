@@ -1,7 +1,5 @@
 #include "jvm_instance.h"
 
-#include "jvm_wrapper/memory/transfer_context.h"
-
 JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :
   owner(p_owner),
   kt_object(p_kt_object),
@@ -23,7 +21,7 @@ JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object
 
 JvmInstance::~JvmInstance() {
     jni::Env env {jni::Jvm::current_env()};
-    if (delete_flag) { TransferContext::get_instance().remove_script_instance(env, owner->get_instance_id()); }
+    if (delete_flag) { MemoryManager::get_instance().remove_script_instance(env, owner->get_instance_id()); }
     memdelete(kt_object);
 }
 
@@ -35,12 +33,12 @@ bool JvmInstance::set(const StringName& p_name, const Variant& p_value) {
     jni::LocalFrame localFrame(1000);
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtProperty * ktProperty {kt_class->get_property(p_name)}) {
+    if (KtProperty* ktProperty {kt_class->get_property(p_name)}) {
         ktProperty->call_set(env, kt_object, p_value);
         return true;
     }
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_set"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_set"))}) {
         Variant ret;
         const int arg_count = 2;
         Variant name = p_name;
@@ -68,7 +66,7 @@ bool JvmInstance::get(const StringName& p_name, Variant& r_ret) const {
         return true;
     }
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_get"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_get"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
@@ -98,7 +96,7 @@ void JvmInstance::get_property_list(List<PropertyInfo>* p_properties) const {
     kt_class->get_property_list(p_properties);
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_get_property_list"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_get_property_list"))}) {
         Variant ret_var;
         function->invoke(env, kt_object, {}, 0, ret_var);
         Array ret_array = ret_var;
@@ -147,7 +145,7 @@ void JvmInstance::notification(int p_notification, bool p_reversed) {
 void JvmInstance::validate_property(PropertyInfo& p_property) const {
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_validate_property"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_validate_property"))}) {
         Variant ret_var;
         Variant property_arg = (Dictionary) p_property;
         const int arg_count {1};
@@ -181,7 +179,7 @@ bool JvmInstance::refcount_decremented() {
     if (refcount == 1) {
         // The JVM holds a reference to that object already, if the counter is equal to 1, it means the JVM is the only side with a reference to the object.
         // The reference is changed to a weak one so the JVM instance can be collected if it is not referenced anymore on the JVM side.
-        if(!to_demote_flag.is_set()){
+        if (!to_demote_flag.is_set()) {
             MemoryManager::get_instance().queue_demotion(this);
             to_demote_flag.set();
         }
@@ -236,7 +234,7 @@ ScriptLanguage* JvmInstance::get_language() {
 bool JvmInstance::property_can_revert(const StringName& p_name) const {
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_property_can_revert"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_property_can_revert"))}) {
         const int arg_count = 1;
         Variant ret;
         Variant name = p_name;
@@ -251,7 +249,7 @@ bool JvmInstance::property_can_revert(const StringName& p_name) const {
 bool JvmInstance::property_get_revert(const StringName& p_name, Variant& r_ret) const {
     jni::Env env {jni::Jvm::current_env()};
 
-    if (KtFunction * function {kt_class->get_method(SNAME("_property_get_revert"))}) {
+    if (KtFunction* function {kt_class->get_method(SNAME("_property_get_revert"))}) {
         const int arg_count = 1;
         Variant name = p_name;
         const Variant* args[arg_count] = {&name};
