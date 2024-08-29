@@ -6,6 +6,7 @@
 #include "core/variant/callable.h"
 
 JVM_INSTANCE_WRAPPER(KtCallable, "godot.core.callable.KtCallable") {
+    JVM_CLASS(KtCallable)
     // clang-format off
 
     JNI_METHOD(INVOKE_NO_RETURN)

@@ -4,6 +4,7 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 
 JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
+    JVM_CLASS(Bootstrap)
 
     // clang-format off
     JNI_METHOD(INIT)

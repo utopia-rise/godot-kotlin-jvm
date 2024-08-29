@@ -8,6 +8,7 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 
 JVM_INSTANCE_WRAPPER(KtObject, "godot.core.KtObject") {
+    JVM_CLASS(KtObject)
 
     // clang-format off
     JNI_METHOD(ON_DESTROY)

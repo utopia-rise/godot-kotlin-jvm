@@ -7,6 +7,7 @@
 #include "kt_object.h"
 
 JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
+    JVM_CLASS(KtPropertyInfo)
 
     // clang-format off
     JNI_METHOD(GET_TYPE)
@@ -43,6 +44,7 @@ public:
 };
 
 JVM_INSTANCE_WRAPPER(KtProperty, "godot.core.KtProperty") {
+    JVM_CLASS(KtProperty)
 
     // clang-format off
     JNI_METHOD(GET_KT_PROPERTY_INFO)

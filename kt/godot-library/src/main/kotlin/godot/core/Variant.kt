@@ -1,99 +1,13 @@
 package godot.core
 
 import godot.Object
-import godot.core.VariantType.AABB
-import godot.core.VariantType.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BASIS
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_BYTE
-import godot.core.VariantType.JVM_FLOAT
-import godot.core.VariantType.JVM_INT
-import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_COLOR_ARRAY
-import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
-import godot.core.VariantType.PACKED_FLOAT_64_ARRAY
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_INT_64_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.PACKED_VECTOR3_ARRAY
-import godot.core.VariantType.PLANE
-import godot.core.VariantType.PROJECTION
-import godot.core.VariantType.QUATERNION
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.RECT2I
-import godot.core.VariantType.SIGNAL
-import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.TRANSFORM2D
-import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR2I
-import godot.core.VariantType.VECTOR3
-import godot.core.VariantType.VECTOR3I
-import godot.core.VariantType.VECTOR4
-import godot.core.VariantType.VECTOR4I
-import godot.core.VariantType._RID
 import godot.core.callable.KtCallable
 import godot.core.memory.MemoryManager
 import godot.signals.Signal
 import godot.util.toRealT
 import java.nio.ByteBuffer
-
-@PublishedApi
-internal val variantMapper = mutableMapOf(
-    Unit::class to NIL,
-    Any::class to ANY,
-    java.lang.Object::class to ANY,
-    Boolean::class to BOOL,
-    Int::class to JVM_INT,
-    Long::class to LONG,
-    Float::class to JVM_FLOAT,
-    Byte::class to JVM_BYTE,
-    Double::class to DOUBLE,
-    String::class to STRING,
-    godot.core.AABB::class to AABB,
-    Basis::class to BASIS,
-    Color::class to COLOR,
-    StringName::class to STRING_NAME,
-    Dictionary::class to DICTIONARY,
-    VariantArray::class to ARRAY,
-    Plane::class to PLANE,
-    NodePath::class to NODE_PATH,
-    Quaternion::class to QUATERNION,
-    Rect2::class to RECT2,
-    Rect2i::class to RECT2I,
-    RID::class to _RID,
-    Transform3D::class to TRANSFORM3D,
-    Transform2D::class to TRANSFORM2D,
-    Vector2::class to VECTOR2,
-    Vector2i::class to VECTOR2I,
-    Vector3::class to VECTOR3,
-    Vector3i::class to VECTOR3I,
-    Vector4::class to VECTOR4,
-    Vector4i::class to VECTOR4I,
-    Projection::class to PROJECTION,
-    NativeCallable::class to CALLABLE,
-    KtCallable::class to CALLABLE,
-    Signal::class to SIGNAL,
-    PackedByteArray::class to PACKED_BYTE_ARRAY,
-    PackedColorArray::class to PACKED_COLOR_ARRAY,
-    PackedInt32Array::class to PACKED_INT_32_ARRAY,
-    PackedInt64Array::class to PACKED_INT_64_ARRAY,
-    PackedFloat32Array::class to PACKED_FLOAT_32_ARRAY,
-    PackedFloat64Array::class to PACKED_FLOAT_64_ARRAY,
-    PackedStringArray::class to PACKED_STRING_ARRAY,
-    PackedVector2Array::class to PACKED_VECTOR2_ARRAY,
-    PackedVector3Array::class to PACKED_VECTOR3_ARRAY
-)
 
 private var ByteBuffer.bool: Boolean
     get() = int == 1
@@ -691,9 +605,19 @@ enum class VariantType(
             PACKED_COLOR_ARRAY.toGodotNativeCoreType<PackedColorArray>(buffer, any)
         }
     ),
+    PACKED_VECTOR4_ARRAY(
+        38,
+        { buffer: ByteBuffer, _: Int ->
+            val ptr = buffer.long
+            PackedVector4Array(ptr)
+        },
+        { buffer: ByteBuffer, any: Any ->
+            PACKED_VECTOR4_ARRAY.toGodotNativeCoreType<PackedVector4Array>(buffer, any)
+        }
+    ),
 
     VARIANT_MAX(
-        38,
+        39,
         { _: ByteBuffer, _: Int ->
             throw UnsupportedOperationException("Received VARIANT_MAX type, which should not happen.")
         },

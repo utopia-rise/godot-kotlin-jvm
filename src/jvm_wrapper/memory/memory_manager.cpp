@@ -84,6 +84,10 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
             memdelete(reinterpret_cast<PackedVector3Array*>(p_raw_ptr));
             has_free = true;
             break;
+        case Variant::PACKED_VECTOR4_ARRAY:
+            memdelete(reinterpret_cast<PackedVector4Array*>(p_raw_ptr));
+            has_free = true;
+            break;
         case Variant::PACKED_COLOR_ARRAY:
             memdelete(reinterpret_cast<PackedColorArray*>(p_raw_ptr));
             has_free = true;
