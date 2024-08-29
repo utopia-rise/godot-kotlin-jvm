@@ -27,6 +27,7 @@ import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.types.KotlinType
+import org.jetbrains.kotlin.types.isNullable
 import org.jetbrains.kotlin.types.typeUtil.isChar
 import org.jetbrains.kotlin.types.typeUtil.isEnum
 import org.jetbrains.kotlin.types.typeUtil.supertypes
@@ -46,6 +47,8 @@ class RegisterPropertiesAnnotator : Annotator {
                 checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
+                coreTypeNullCheck(element, holder)
+                lateinitChecks(element, holder)
             }
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)
@@ -101,8 +104,8 @@ class RegisterPropertiesAnnotator : Annotator {
         }
 
 
-
-        val isInheritingObject = ktProperty.type()?.supertypes()?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true
+        val isInheritingObject = ktProperty.type()?.supertypes()
+            ?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true
         val isCoreType = ktProperty.type()?.isCoreType() == true
         val isSupportedJvmType = ktProperty.type()?.isSupportedJvmType() == true
 
@@ -114,6 +117,30 @@ class RegisterPropertiesAnnotator : Annotator {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.export.triedToExportUnsupportedType"),
                 ktProperty.nameIdentifier ?: ktProperty.navigationElement
+            )
+        }
+    }
+
+    private fun lateinitChecks(ktProperty: KtProperty, holder: AnnotationHolder) {
+        if (
+            ktProperty.hasModifier(org.jetbrains.kotlin.lexer.KtTokens.LATEINIT_KEYWORD)
+            && ktProperty.type()?.isCoreType() == true
+        ) {
+            holder.registerProblem(
+                message = GodotPluginBundle.message("problem.property.lateinit.coreType"),
+                errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+            )
+        }
+    }
+
+    private fun coreTypeNullCheck(ktProperty: KtProperty, holder: AnnotationHolder) {
+        if (
+            ktProperty.type()?.isCoreType() == true
+            && ktProperty.type()?.isNullable() == true
+        ) {
+            holder.registerProblem(
+                message = GodotPluginBundle.message("problem.property.coreType.null"),
+                errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
             )
         }
     }
