@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Bunnymark"
 run/main_scene="res://Benchmarker.tscn"
-config/features=PackedStringArray("4.2")
+config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
 [display]

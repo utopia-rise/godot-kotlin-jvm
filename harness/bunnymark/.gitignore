@@ -493,3 +493,4 @@ build/
 .kotlin/
 
 graal/godot-kotlin-graal-jni-config.json
+/.godot/
