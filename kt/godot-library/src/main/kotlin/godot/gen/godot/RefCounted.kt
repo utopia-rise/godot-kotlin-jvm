@@ -43,6 +43,10 @@ public open class RefCounted : Object() {
     callConstructor(ENGINECLASS_REFCOUNTED, scriptIndex)
   }
 
+  public final override fun _onDestroy(): Unit {
+
+  }
+
   /**
    * Initializes the internal reference counter. Use this only if you really know what you are
    * doing.

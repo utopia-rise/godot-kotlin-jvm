@@ -1,8 +1,8 @@
 package godot.core
 
-import godot.core.memory.binding.GodotBinding
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
+import godot.core.memory.binding.GodotBinding
 import godot.util.VoidPtr
 import godot.util.nullObjectID
 import godot.util.nullptr
@@ -95,6 +95,10 @@ abstract class KtObject {
     protected fun <T : KtObject> T.godotNotification(block: T.(Int) -> Unit): GodotNotification = GodotNotification(block as Any.(Int) -> Unit)
 
     @Suppress("FunctionName")
+    /**
+     * Called automatically when the Object is destroyed. Not that this method is not available for RefCounted or any of its child class.
+     * By the time a RefCounted counter reaches 0, its JVM instance has already being GCed and can't be used anymore.
+     */
     open fun _onDestroy() = Unit
 
     fun free() {
