@@ -13,7 +13,6 @@ import godot.core.memory.binding.GodotNativeEntry
 import godot.core.memory.binding.GodotRefCountedEntry
 import godot.util.VoidPtr
 import java.lang.ref.ReferenceQueue
-import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
 
@@ -224,48 +223,23 @@ internal object MemoryManager {
         deadNativeCores = deadNativeCores.drop(numberToDecrement).toMutableList()
     }
 
-    fun preCleanup() {
+
+    fun cleanUp() {
         for (callback in cleanupCallbacks) {
             callback.invoke()
         }
 
-        // Get through all remaining [Object] and remove them from the ObjectDB. It will remove all singletons.
-        for (ref in ObjectDB.filterNotNull().filter { !it.objectID.isReference }) {
-            ObjectDB[ref.objectID.index] = null
-        }
-    }
-
-    fun checkCleanup(): Boolean {
-        if (ObjectDB.any { it != null } && nativeCoreTypeMap.isNotEmpty()) {
-            // Still work to do so we force the gc
-            var any: Any? = Any()
-            val wkRef = WeakReference(any)
-            @Suppress("UNUSED_VALUE")
-            any = null
-            while (wkRef.get() != null) {
-                System.gc()
-            }
-            return false
-        }
-
-        return true
-    }
-
-    fun postCleanup() {
         // Get through all remaining [RefCounted] instances and decrement their pointers.
         for (ref in ObjectDB.filterNotNull().filter { it.objectID.isReference }) {
             decrementRefCounter(ref.objectID.id)
         }
         ObjectDB.fill(null)
 
-        stringNameCache.values.onEach {
-            unrefNativeCoreType(it._handle, VariantType.STRING_NAME.baseOrdinal)
-        }.clear()
-
-        nodePathCache.values.onEach {
-            unrefNativeCoreType(it._handle, VariantType.NODE_PATH.baseOrdinal)
-        }.clear()
-
+        nativeCoreTypeMap.values.forEach {
+            unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)
+        }
+        stringNameCache.values.clear()
+        nodePathCache.values.clear()
         nativeCoreTypeMap.clear()
     }
 

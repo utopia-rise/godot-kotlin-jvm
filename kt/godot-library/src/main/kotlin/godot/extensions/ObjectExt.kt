@@ -138,16 +138,15 @@ inline fun <reified T : KFunction<*>> Object.disconnectRawName(
  * Instance will be automatically freed when the engine closes.
  */
 fun <T : Object?> T.asStatic(): T {
-    if (this == null) {
+    if (this == null || this is RefCounted) {
         return this
     }
     MemoryManager.registerCallback {
         if (!MemoryManager.isInstanceValid(this)) {
             return@registerCallback
         }
-        if (this !is RefCounted) {
-            free()
-        }
+        free()
+
     }
     return this
 }

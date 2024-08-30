@@ -184,17 +184,7 @@ bool MemoryManager::sync_memory(jni::Env& p_env) {
 
 void MemoryManager::clean_up(jni::Env& p_env) {
     LOG_VERBOSE("Cleaning JVM Memory...")
-
-    wrapped.call_void_method(p_env, PRE_CLEAN_UP);
-
-    uint64_t start = OS::get_singleton()->get_ticks_msec();
-    while (!wrapped.call_boolean_method(p_env, CHECK_CLEAN_UP)) {
-        if (sync_memory(p_env)) { start = OS::get_singleton()->get_ticks_msec(); }
-        // Wait 5s at most.
-        if (OS::get_singleton()->get_ticks_msec() - start > 5000) { break; }
-    }
-
-    wrapped.call_void_method(p_env, POST_CLEAN_UP);
+    wrapped.call_boolean_method(p_env, CLEAN_UP);
     LOG_VERBOSE("JVM Memory cleaned")
 }
 

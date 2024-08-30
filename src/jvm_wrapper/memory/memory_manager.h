@@ -14,16 +14,12 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
 
     JNI_METHOD(SYNC_MEMORY)
     JNI_METHOD(SET_DISPLAY)
-    JNI_METHOD(PRE_CLEAN_UP)
-    JNI_METHOD(CHECK_CLEAN_UP)
-    JNI_METHOD(POST_CLEAN_UP)
+    JNI_METHOD(CLEAN_UP)
     JNI_METHOD(REMOVE_SCRIPT)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(SYNC_MEMORY, "syncMemory", "([J)[J")
-        INIT_JNI_METHOD(PRE_CLEAN_UP, "preCleanup", "()V")
-        INIT_JNI_METHOD(CHECK_CLEAN_UP, "checkCleanup", "()Z")
-        INIT_JNI_METHOD(POST_CLEAN_UP, "postCleanup", "()V")
+        INIT_JNI_METHOD(CLEAN_UP, "cleanUp", "()V")
         INIT_JNI_METHOD(REMOVE_SCRIPT, "removeScriptInstance", "(J)V")
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryManager::decrement_ref_counter)
