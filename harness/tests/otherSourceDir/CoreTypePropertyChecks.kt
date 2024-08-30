@@ -26,17 +26,4 @@ class CoreTypePropertyChecks: Node() {
     // allowed
     @RegisterProperty
     var normalCoreType: Vector3 = Vector3.ZERO
-
-    // not allowed
-//    @Export
-//    @RegisterProperty
-//    var exportedNullableCoreType: Vector3? = null
-
-    // not allowed
-//    @RegisterProperty
-//    var normalNullableCoreType: Vector3? = Vector3.ZERO
-
-    // allowed
-    @RegisterProperty
-    var normalNonNullCoreType: Vector3 = Vector3.ZERO
 }
