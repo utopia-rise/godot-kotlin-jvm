@@ -1,6 +1,7 @@
 package godot.entrygenerator.checks
 
 import godot.entrygenerator.ext.isCoreType
+import godot.entrygenerator.ext.isGodotPrimitive
 import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.SourceFile
@@ -14,7 +15,7 @@ class LateinitPropertyCheck(logger: Logger, sourceFiles: List<SourceFile>): Base
             .flatMap { it.properties }
             .filter { registeredProperty -> registeredProperty.annotations.filterIsInstance<RegisterPropertyAnnotation>().isNotEmpty() }
             .forEach { exportedProperty ->
-                if (exportedProperty.type.isCoreType() && exportedProperty.isLateinit) {
+                if (exportedProperty.type.isCoreType() && (exportedProperty.isLateinit || exportedProperty.type.isGodotPrimitive())) {
                     hasIssue = true
                     logger.error(exportedProperty, "Registered property with godot core type cannot be lateinit. Assign a default value")
                 }

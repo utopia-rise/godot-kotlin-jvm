@@ -8,6 +8,7 @@ import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isCoreType
+import godot.intellij.plugin.extension.isGodotPrimitive
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.type
@@ -123,7 +124,7 @@ class RegisterPropertiesAnnotator : Annotator {
     private fun lateinitChecks(ktProperty: KtProperty, holder: AnnotationHolder) {
         if (
             ktProperty.hasModifier(org.jetbrains.kotlin.lexer.KtTokens.LATEINIT_KEYWORD)
-            && ktProperty.type()?.isCoreType() == true
+            && (ktProperty.type()?.isCoreType() == true || ktProperty.type()?.isGodotPrimitive() == true)
         ) {
             holder.registerProblem(
                 message = GodotPluginBundle.message("problem.property.lateinit.coreType"),
