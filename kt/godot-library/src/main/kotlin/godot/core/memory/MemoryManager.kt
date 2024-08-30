@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import java.lang.ref.ReferenceQueue
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
+import kotlin.math.min
 
 internal object MemoryManager {
     /** Base capacity for several containers within the manager.*/
@@ -36,7 +37,7 @@ internal object MemoryManager {
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
 
     /** List of references to decrement.*/
-    private var deadReferences = mutableListOf<VoidPtr>()
+    private val deadReferences = mutableListOf<GodotRefCountedEntry>()
 
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(INITIAL_CAPACITY)
@@ -45,7 +46,7 @@ internal object MemoryManager {
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
     /** List of references to decrement.*/
-    private var deadNativeCores = mutableListOf<NativeCoreWeakReference>()
+    private val deadNativeCores = mutableListOf<NativeCoreWeakReference>()
 
     /** List of cleanup callbacks. When the game closes, they will be called.*/
     private var cleanupCallbacks = mutableListOf<() -> Unit>()
@@ -172,38 +173,53 @@ internal object MemoryManager {
 
     /**
      * Get a LongArray containing a collection of dead references that have to be decremented on the native side.
-     * The GC happening in waves, not everything is obtained at once, we process the dead references over several frames when necessary.
+     * The GC happening in waves, not everything is processed at once, we process the dead references over several frames when necessary.
      */
     private fun getDeadReferences(): LongArray {
         // Pool all dead references first, so we can know the amount of work to do.
         while (true) {
             val ref = ((refReferenceQueue.poll() ?: break) as GodotRefCountedEntry)
-            deadReferences.add(ref.objectID.id)
+            deadReferences.add(ref)
         }
-        val numberToDecrement = max(MAX_GC_NUMBER, (MIN_GC_RATIO * deadReferences.size).toInt())
+
+        val size = deadReferences.size
+        val numberToDecrement = max(
+            min(MAX_GC_NUMBER, size),
+            (MIN_GC_RATIO * size).toInt()
+        )
+
+        val sublist = deadReferences.subList(0, numberToDecrement)
 
         return synchronized(ObjectDB) {
-            deadReferences
-                .take(numberToDecrement)
-                .filter {
-                    val index = ObjectID(it).index
-                    val otherRef = ObjectDB[index]!!
-                    //Check if the RefCounted instance has been sent back to the JVM. We don't decrement in this case.
-                    //We don't need to check if it's the same ObjectID, we didn't decrement yet, so it's impossible for it to have been replaced by a new object.
-                    otherRef.binding == null
-                }.onEach {
-                    ObjectDB[ObjectID(it).index] = null
+            deadReferences.filter {
+                val objectID = it.objectID
+                val index = objectID.index
+                val otherRef = ObjectDB[index]
+
+                /** This part requires caution. We have to make sure it's safe to decrement the counter of this instance.
+                - If the dead reference is the same (===) as the one in the ObjectDB, it means it hasn't been replaced yet and is safe to decrement.
+                - If the reference in the objectDB is null, it means it has been queued already, we don't need to queue it again.
+                 it can happen if 2 or more wrappers for the same RefCounted are created and GCed between 2 memory syncs.
+                 - If the reference in the objectDB is a different one but has the same object ID, it means the wrapper has been replaced, and we shouldn't queue it.
+                 It can happen if several wrappers have been created but GCed out of order in different phases (in the context of a script removal for example).
+                 **/
+                val decrement = it === otherRef || (otherRef != null && otherRef.objectID != objectID)
+                if (decrement) {
+                    ObjectDB[index] = null
                 }
+                decrement
+            }
         }
+            .map { it.objectID.id }
             .toLongArray()
             .also {
-                deadReferences = deadReferences.drop(numberToDecrement).toMutableList()
+                sublist.clear()
             }
     }
 
     /**
      * Remove dead [NativeCoreType] from native memory.
-     * The GC happening in waves, not everything is obtained at once, we process the dead native cores over several frames when necessary.
+     * The GC happening in waves, not everything is processed at once, we process the dead native cores over several frames when necessary.
      */
     private fun removeNativeCoreTypes() {
         // Pool all dead native cores first, so we can know the amount of work to do.
@@ -211,18 +227,19 @@ internal object MemoryManager {
             val ref = ((nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference)
             deadNativeCores.add(ref)
         }
-        val numberToDecrement = max(MAX_GC_NUMBER, (MIN_GC_RATIO * deadReferences.size).toInt())
 
-        deadNativeCores
-            .take(numberToDecrement)
-            .onEach {
-                if (unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)) {
-                    nativeCoreTypeMap.remove(it.ptr)
-                }
+        val size = deadNativeCores.size
+        val numberToDecrement = max(
+            min(MAX_GC_NUMBER, size),
+            (MIN_GC_RATIO * size).toInt()
+        )
+
+        deadNativeCores.subList(0, numberToDecrement).onEach {
+            if (unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)) {
+                nativeCoreTypeMap.remove(it.ptr)
             }
-        deadNativeCores = deadNativeCores.drop(numberToDecrement).toMutableList()
+        }.clear()
     }
-
 
     fun cleanUp() {
         for (callback in cleanupCallbacks) {
