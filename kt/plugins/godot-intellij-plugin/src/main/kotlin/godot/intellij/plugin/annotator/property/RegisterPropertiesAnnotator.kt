@@ -138,7 +138,7 @@ class RegisterPropertiesAnnotator : Annotator {
 
     private fun KotlinType.isSupportedJvmType(): Boolean {
         return KotlinBuiltIns.isPrimitiveTypeOrNullablePrimitiveType(this)
-            || KotlinBuiltIns.isString(this)
+            || KotlinBuiltIns.isStringOrNullableString(this)
             || this.isEnum()
             || KotlinBuiltIns.isCollectionOrNullableCollection(this)
             || KotlinBuiltIns.isString(this)

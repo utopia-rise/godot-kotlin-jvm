@@ -22,7 +22,7 @@ class LambdaCallableTest : Node() {
     val signalWithParams by signal<String, Long, Node>("str", "long", "node")
 
     @RegisterProperty
-    lateinit var signalString: String
+    var signalString: String = ""
 
     @RegisterProperty
     var signalLong: Long = Long.MIN_VALUE
@@ -34,7 +34,7 @@ class LambdaCallableTest : Node() {
     var ktCallable = { str: String -> ktCallableString = str }.asCallable()
 
     @RegisterProperty
-    lateinit var ktCallableString: String
+    var ktCallableString: String = ""
 
     @RegisterFunction
     override fun _ready() {

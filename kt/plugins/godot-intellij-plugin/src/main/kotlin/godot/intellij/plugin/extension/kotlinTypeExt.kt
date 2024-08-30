@@ -30,7 +30,7 @@ fun KotlinType.isCoreType(): Boolean = getKotlinTypeFqName(false)
     || supertypes().any { supertype -> supertype.isCoreType() }
 
 
-fun KotlinType.isGodotPrimitive(): Boolean = when (this.fqName?.asString()) {
+fun KotlinType.isGodotPrimitive(): Boolean = when (this.fqName?.asString()?.removeSuffix("?")) {
     Int::class.qualifiedName,
     "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}",
     Long::class.qualifiedName,
