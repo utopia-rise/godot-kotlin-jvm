@@ -230,7 +230,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ConnectionStatus = entries.single { it.id == `value` }
     }
   }
 
@@ -266,7 +266,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransferMode = entries.single { it.id == `value` }
     }
   }
 

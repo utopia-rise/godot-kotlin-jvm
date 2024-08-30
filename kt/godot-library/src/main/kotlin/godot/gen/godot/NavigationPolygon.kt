@@ -466,7 +466,7 @@ public open class NavigationPolygon : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParsedGeometryType = entries.single { it.id == `value` }
     }
   }
 
@@ -498,7 +498,7 @@ public open class NavigationPolygon : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SourceGeometryMode = entries.single { it.id == `value` }
     }
   }
 

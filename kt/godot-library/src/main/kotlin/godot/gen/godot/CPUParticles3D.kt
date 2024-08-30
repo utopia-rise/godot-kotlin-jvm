@@ -1331,7 +1331,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DrawOrder = entries.single { it.id == `value` }
     }
   }
 
@@ -1405,7 +1405,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Parameter = entries.single { it.id == `value` }
     }
   }
 
@@ -1436,7 +1436,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticleFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -1486,7 +1486,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EmissionShape = entries.single { it.id == `value` }
     }
   }
 

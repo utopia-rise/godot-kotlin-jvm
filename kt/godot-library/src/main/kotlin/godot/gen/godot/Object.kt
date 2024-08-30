@@ -1083,7 +1083,7 @@ public open class Object : KtObject() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ConnectFlags = entries.single { it.id == `value` }
     }
   }
 

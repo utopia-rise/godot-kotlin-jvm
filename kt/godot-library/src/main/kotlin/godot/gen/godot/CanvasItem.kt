@@ -1318,7 +1318,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -1353,7 +1353,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureRepeat = entries.single { it.id == `value` }
     }
   }
 
@@ -1386,7 +1386,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ClipChildrenMode = entries.single { it.id == `value` }
     }
   }
 

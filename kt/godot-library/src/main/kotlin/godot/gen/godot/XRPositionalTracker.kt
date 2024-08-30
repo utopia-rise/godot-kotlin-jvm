@@ -205,7 +205,7 @@ public open class XRPositionalTracker : XRTracker() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackerHand = entries.single { it.id == `value` }
     }
   }
 

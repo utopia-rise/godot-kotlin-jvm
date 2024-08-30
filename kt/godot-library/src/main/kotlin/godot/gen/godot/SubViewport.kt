@@ -189,7 +189,7 @@ public open class SubViewport : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ClearMode = entries.single { it.id == `value` }
     }
   }
 
@@ -224,7 +224,7 @@ public open class SubViewport : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
     }
   }
 

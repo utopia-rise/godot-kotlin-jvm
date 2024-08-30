@@ -110,7 +110,7 @@ public open class OpenXRAction : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ActionType = entries.single { it.id == `value` }
     }
   }
 

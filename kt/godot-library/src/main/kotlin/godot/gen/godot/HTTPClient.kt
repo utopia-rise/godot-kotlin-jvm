@@ -424,7 +424,7 @@ public open class HTTPClient : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Method = entries.single { it.id == `value` }
     }
   }
 
@@ -479,7 +479,7 @@ public open class HTTPClient : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Status = entries.single { it.id == `value` }
     }
   }
 
@@ -837,7 +837,7 @@ public open class HTTPClient : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ResponseCode = entries.single { it.id == `value` }
     }
   }
 

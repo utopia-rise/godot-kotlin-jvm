@@ -117,7 +117,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FFTSize = entries.single { it.id == `value` }
     }
   }
 

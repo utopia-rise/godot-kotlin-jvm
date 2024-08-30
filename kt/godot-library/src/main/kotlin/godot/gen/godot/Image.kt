@@ -1085,7 +1085,7 @@ public open class Image : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Format = entries.single { it.id == `value` }
     }
   }
 
@@ -1133,7 +1133,7 @@ public open class Image : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Interpolation = entries.single { it.id == `value` }
     }
   }
 
@@ -1160,7 +1160,7 @@ public open class Image : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlphaMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1199,7 +1199,7 @@ public open class Image : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1238,7 +1238,7 @@ public open class Image : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UsedChannels = entries.single { it.id == `value` }
     }
   }
 
@@ -1266,7 +1266,7 @@ public open class Image : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressSource = entries.single { it.id == `value` }
     }
   }
 
@@ -1289,7 +1289,7 @@ public open class Image : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ASTCFormat = entries.single { it.id == `value` }
     }
   }
 

@@ -939,7 +939,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TileShape = entries.single { it.id == `value` }
     }
   }
 
@@ -983,7 +983,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TileLayout = entries.single { it.id == `value` }
     }
   }
 
@@ -1006,7 +1006,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TileOffsetAxis = entries.single { it.id == `value` }
     }
   }
 
@@ -1085,7 +1085,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CellNeighbor = entries.single { it.id == `value` }
     }
   }
 
@@ -1112,7 +1112,7 @@ public open class TileSet : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TerrainMode = entries.single { it.id == `value` }
     }
   }
 

@@ -1534,7 +1534,7 @@ public object NavigationServer3D : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessInfo = entries.single { it.id == `value` }
     }
   }
 

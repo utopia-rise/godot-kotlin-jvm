@@ -1594,7 +1594,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
     }
   }
 
@@ -1661,7 +1661,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Flags = entries.single { it.id == `value` }
     }
   }
 
@@ -1690,7 +1690,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ContentScaleMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1730,7 +1730,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ContentScaleAspect = entries.single { it.id == `value` }
     }
   }
 
@@ -1755,7 +1755,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ContentScaleStretch = entries.single { it.id == `value` }
     }
   }
 
@@ -1786,7 +1786,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutDirection = entries.single { it.id == `value` }
     }
   }
 
@@ -1826,7 +1826,7 @@ public open class Window : Viewport() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowInitialPosition = entries.single { it.id == `value` }
     }
   }
 

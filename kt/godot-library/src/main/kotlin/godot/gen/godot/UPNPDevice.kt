@@ -216,7 +216,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): IGDStatus = entries.single { it.id == `value` }
     }
   }
 

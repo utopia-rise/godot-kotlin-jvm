@@ -395,7 +395,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
     }
   }
 
@@ -424,7 +424,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AmbientMode = entries.single { it.id == `value` }
     }
   }
 

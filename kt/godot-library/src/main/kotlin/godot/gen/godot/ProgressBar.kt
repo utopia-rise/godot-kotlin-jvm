@@ -118,7 +118,7 @@ public open class ProgressBar : Range() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FillMode = entries.single { it.id == `value` }
     }
   }
 

@@ -756,7 +756,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FreezeMode = entries.single { it.id == `value` }
     }
   }
 
@@ -781,7 +781,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CenterOfMassMode = entries.single { it.id == `value` }
     }
   }
 
@@ -805,7 +805,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DampMode = entries.single { it.id == `value` }
     }
   }
 
@@ -835,7 +835,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CCDMode = entries.single { it.id == `value` }
     }
   }
 

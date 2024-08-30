@@ -226,6 +226,6 @@ public enum class Error(
   }
 
   public companion object {
-    public fun from(`value`: Long) = entries.single { it.id == `value` }
+    public fun from(`value`: Long): Error = entries.single { it.id == `value` }
   }
 }

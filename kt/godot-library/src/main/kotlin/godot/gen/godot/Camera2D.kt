@@ -614,7 +614,7 @@ public open class Camera2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AnchorMode = entries.single { it.id == `value` }
     }
   }
 
@@ -637,7 +637,7 @@ public open class Camera2D : Node2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Camera2DProcessCallback = entries.single { it.id == `value` }
     }
   }
 

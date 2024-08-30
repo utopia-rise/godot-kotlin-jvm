@@ -399,7 +399,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FileMode = entries.single { it.id == `value` }
     }
   }
 
@@ -426,7 +426,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Access = entries.single { it.id == `value` }
     }
   }
 

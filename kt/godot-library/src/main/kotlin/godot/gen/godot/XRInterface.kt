@@ -418,7 +418,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Capabilities = entries.single { it.id == `value` }
     }
   }
 
@@ -455,7 +455,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackingStatus = entries.single { it.id == `value` }
     }
   }
 
@@ -493,7 +493,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlayAreaMode = entries.single { it.id == `value` }
     }
   }
 
@@ -523,7 +523,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentBlendMode = entries.single { it.id == `value` }
     }
   }
 

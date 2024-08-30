@@ -2409,7 +2409,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Parameter = entries.single { it.id == `value` }
     }
   }
 
@@ -2441,7 +2441,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticleFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -2491,7 +2491,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EmissionShape = entries.single { it.id == `value` }
     }
   }
 
@@ -2514,7 +2514,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SubEmitterMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2547,7 +2547,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CollisionMode = entries.single { it.id == `value` }
     }
   }
 

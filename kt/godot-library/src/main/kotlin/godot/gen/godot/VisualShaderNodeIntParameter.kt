@@ -145,7 +145,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Hint = entries.single { it.id == `value` }
     }
   }
 

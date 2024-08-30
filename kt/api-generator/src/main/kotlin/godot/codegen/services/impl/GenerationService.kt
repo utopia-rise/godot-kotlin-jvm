@@ -46,12 +46,14 @@ import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
+import godot.codegen.workarounds.sanitizeApiType
 import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
+import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KT_OBJECT
@@ -340,8 +342,9 @@ class GenerationService(
             val companion = TypeSpec.companionObjectBuilder()
                 .addFunction(
                     FunSpec.builder("from")
+                        .returns(ClassName("${godotApiPackage}.${containingClassName ?: ""}", enum.name))
                         .addParameter("value", Long::class)
-                        .addStatement("return entries.single { it.%N == %N }", "id", "value")
+                        .addStatement("return·entries.single·{·it.%N·==·%N·}", "id", "value")
                         .build()
                 )
                 .build()
@@ -715,9 +718,10 @@ class GenerationService(
             val kFunctionClassName = ClassName("kotlin.reflect", "KFunction$i")
                 .parameterizedBy(*kFunctionTypeParameters.toTypedArray(), TypeVariableName.invoke("*"))
 
-            RpcFunctionMode.values().forEach { rpcFunctionMode ->
+            RpcFunctionMode.entries.forEach { rpcFunctionMode ->
                 val rpcFunSpec = FunSpec
                     .builder(rpcFunctionMode.functionName)
+                    .returns(GODOT_ERROR)
                     .addModifiers(KModifier.INLINE)
 
                 if (rpcFunctionMode.hasId) {

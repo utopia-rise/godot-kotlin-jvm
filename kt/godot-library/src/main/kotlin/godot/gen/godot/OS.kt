@@ -1273,7 +1273,7 @@ public object OS : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderingDriver = entries.single { it.id == `value` }
     }
   }
 
@@ -1320,7 +1320,7 @@ public object OS : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SystemDir = entries.single { it.id == `value` }
     }
   }
 

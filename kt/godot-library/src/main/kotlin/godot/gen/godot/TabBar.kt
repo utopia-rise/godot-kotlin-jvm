@@ -583,7 +583,7 @@ public open class TabBar : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlignmentMode = entries.single { it.id == `value` }
     }
   }
 
@@ -614,7 +614,7 @@ public open class TabBar : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CloseButtonDisplayPolicy = entries.single { it.id == `value` }
     }
   }
 

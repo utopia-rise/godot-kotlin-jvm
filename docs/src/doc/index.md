@@ -43,7 +43,7 @@ The main language supported is Kotlin. We do however support Java experimentally
 
 This module relies on a Kotlin *compiler plugin* for registering your classes and members to Godot. As the compiler API from Kotlin is not stable yet, at the moment we can only support specific Kotlin version per release.
 
-The current latest release is compatible with Kotlin version `2.0.0`.
+The current latest release is compatible with Kotlin version `2.0.20`.
 
 !!! info
     It is possible to use this module with other Kotlin versions as well but we do not provide any guarantees for it. You find more infos in the [Gradle Plugin configuration](user-guide/advanced/gradle-plugin-configuration.md#disable-build-failure-on-kotlin-version-mismatch) section.

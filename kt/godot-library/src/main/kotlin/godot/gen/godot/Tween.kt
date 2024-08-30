@@ -661,7 +661,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TweenProcessMode = entries.single { it.id == `value` }
     }
   }
 
@@ -689,7 +689,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TweenPauseMode = entries.single { it.id == `value` }
     }
   }
 
@@ -752,7 +752,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransitionType = entries.single { it.id == `value` }
     }
   }
 
@@ -783,7 +783,7 @@ public open class Tween : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EaseType = entries.single { it.id == `value` }
     }
   }
 

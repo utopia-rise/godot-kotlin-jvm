@@ -2478,7 +2478,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MenuItems = entries.single { it.id == `value` }
     }
   }
 
@@ -2509,7 +2509,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EditAction = entries.single { it.id == `value` }
     }
   }
 
@@ -2536,7 +2536,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SearchFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -2559,7 +2559,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CaretType = entries.single { it.id == `value` }
     }
   }
 
@@ -2594,7 +2594,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SelectionMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2617,7 +2617,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LineWrappingMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2647,7 +2647,7 @@ public open class TextEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GutterType = entries.single { it.id == `value` }
     }
   }
 

@@ -95,7 +95,7 @@ public open class CurveTexture : Texture2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureMode = entries.single { it.id == `value` }
     }
   }
 

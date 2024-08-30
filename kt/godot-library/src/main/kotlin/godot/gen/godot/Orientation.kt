@@ -22,6 +22,6 @@ public enum class Orientation(
   }
 
   public companion object {
-    public fun from(`value`: Long) = entries.single { it.id == `value` }
+    public fun from(`value`: Long): Orientation = entries.single { it.id == `value` }
   }
 }

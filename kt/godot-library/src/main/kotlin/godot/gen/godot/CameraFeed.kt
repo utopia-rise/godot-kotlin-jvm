@@ -156,7 +156,7 @@ public open class CameraFeed : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FeedDataType = entries.single { it.id == `value` }
     }
   }
 
@@ -183,7 +183,7 @@ public open class CameraFeed : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FeedPosition = entries.single { it.id == `value` }
     }
   }
 

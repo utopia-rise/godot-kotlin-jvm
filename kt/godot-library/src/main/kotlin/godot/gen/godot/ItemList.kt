@@ -763,7 +763,7 @@ public open class ItemList : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): IconMode = entries.single { it.id == `value` }
     }
   }
 
@@ -786,7 +786,7 @@ public open class ItemList : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SelectMode = entries.single { it.id == `value` }
     }
   }
 

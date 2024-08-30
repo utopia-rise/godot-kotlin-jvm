@@ -131,7 +131,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureType = entries.single { it.id == `value` }
     }
   }
 
@@ -162,7 +162,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ColorDefault = entries.single { it.id == `value` }
     }
   }
 
@@ -239,7 +239,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -270,7 +270,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureRepeat = entries.single { it.id == `value` }
     }
   }
 
@@ -305,7 +305,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureSource = entries.single { it.id == `value` }
     }
   }
 

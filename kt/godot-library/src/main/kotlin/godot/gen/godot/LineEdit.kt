@@ -871,7 +871,7 @@ public open class LineEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MenuItems = entries.single { it.id == `value` }
     }
   }
 
@@ -921,7 +921,7 @@ public open class LineEdit : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.id == `value` }
     }
   }
 

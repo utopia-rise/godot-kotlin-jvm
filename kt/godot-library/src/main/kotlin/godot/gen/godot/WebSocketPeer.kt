@@ -343,7 +343,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WriteMode = entries.single { it.id == `value` }
     }
   }
 
@@ -375,7 +375,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): State = entries.single { it.id == `value` }
     }
   }
 

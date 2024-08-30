@@ -529,7 +529,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpaceOverride = entries.single { it.id == `value` }
     }
   }
 

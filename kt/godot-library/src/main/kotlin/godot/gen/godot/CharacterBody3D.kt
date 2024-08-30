@@ -579,7 +579,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MotionMode = entries.single { it.id == `value` }
     }
   }
 
@@ -608,7 +608,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlatformOnLeave = entries.single { it.id == `value` }
     }
   }
 

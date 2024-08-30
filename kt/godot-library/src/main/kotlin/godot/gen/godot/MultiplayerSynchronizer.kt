@@ -228,7 +228,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VisibilityUpdateMode = entries.single { it.id == `value` }
     }
   }
 

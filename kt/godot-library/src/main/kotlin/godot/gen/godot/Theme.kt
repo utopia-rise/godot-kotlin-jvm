@@ -847,7 +847,7 @@ public open class Theme : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DataType = entries.single { it.id == `value` }
     }
   }
 

@@ -2713,7 +2713,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Feature = entries.single { it.id == `value` }
     }
   }
 
@@ -2751,7 +2751,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MouseMode = entries.single { it.id == `value` }
     }
   }
 
@@ -2794,7 +2794,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ScreenOrientation = entries.single { it.id == `value` }
     }
   }
 
@@ -2844,7 +2844,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.id == `value` }
     }
   }
 
@@ -2954,7 +2954,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CursorShape = entries.single { it.id == `value` }
     }
   }
 
@@ -2990,7 +2990,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FileDialogMode = entries.single { it.id == `value` }
     }
   }
 
@@ -3051,7 +3051,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowMode = entries.single { it.id == `value` }
     }
   }
 
@@ -3117,7 +3117,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -3168,7 +3168,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowEvent = entries.single { it.id == `value` }
     }
   }
 
@@ -3211,7 +3211,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VSyncMode = entries.single { it.id == `value` }
     }
   }
 
@@ -3257,7 +3257,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandleType = entries.single { it.id == `value` }
     }
   }
 
@@ -3288,7 +3288,7 @@ public object DisplayServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TTSUtteranceEvent = entries.single { it.id == `value` }
     }
   }
 

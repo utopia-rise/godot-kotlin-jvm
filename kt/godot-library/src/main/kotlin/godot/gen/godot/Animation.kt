@@ -938,7 +938,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackType = entries.single { it.id == `value` }
     }
   }
 
@@ -977,7 +977,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InterpolationType = entries.single { it.id == `value` }
     }
   }
 
@@ -1006,7 +1006,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1034,7 +1034,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LoopMode = entries.single { it.id == `value` }
     }
   }
 
@@ -1063,7 +1063,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LoopedFlag = entries.single { it.id == `value` }
     }
   }
 
@@ -1090,7 +1090,7 @@ public open class Animation : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FindMode = entries.single { it.id == `value` }
     }
   }
 

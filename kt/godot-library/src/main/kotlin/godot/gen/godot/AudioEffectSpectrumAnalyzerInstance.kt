@@ -70,7 +70,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MagnitudeMode = entries.single { it.id == `value` }
     }
   }
 

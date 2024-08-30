@@ -236,7 +236,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Operation = entries.single { it.id == `value` }
     }
   }
 

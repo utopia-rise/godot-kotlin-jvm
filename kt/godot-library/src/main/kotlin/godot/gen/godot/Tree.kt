@@ -757,7 +757,7 @@ public open class Tree : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SelectMode = entries.single { it.id == `value` }
     }
   }
 
@@ -791,7 +791,7 @@ public open class Tree : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DropModeFlags = entries.single { it.id == `value` }
     }
   }
 

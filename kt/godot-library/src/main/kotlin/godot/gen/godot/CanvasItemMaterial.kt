@@ -157,7 +157,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendMode = entries.single { it.id == `value` }
     }
   }
 
@@ -184,7 +184,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightMode = entries.single { it.id == `value` }
     }
   }
 

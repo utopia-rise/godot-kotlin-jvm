@@ -601,7 +601,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ModeFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -637,7 +637,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressionMode = entries.single { it.id == `value` }
     }
   }
 
