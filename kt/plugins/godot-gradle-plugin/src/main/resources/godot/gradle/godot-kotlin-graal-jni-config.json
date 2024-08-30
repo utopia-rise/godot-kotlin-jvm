@@ -49,11 +49,8 @@
     ],
     "methods" : [
       { "name" : "icall", "parameterTypes" : ["long", "long", "int"] },
-      { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
-      { "name" : "getSingleton", "parameterTypes" : ["int"] },
-      { "name" : "freeObject", "parameterTypes" : ["long"] },
       { "name" : "getBuffer", "parameterTypes" : [] },
-      { "name" : "removeScriptInstance", "parameterTypes" : ["long"] }
+
     ]
   },
   {
@@ -79,26 +76,17 @@
     "name":"godot.core.memory.MemoryManager",
     "fields":[{"name":"INSTANCE"}],
     "methods":[
-      {"name":"cleanUp","parameterTypes":[] },
-      {"name": "setShouldDisplayLeakInstancesOnClose", "parameterTypes":["boolean"]},
-      {"name":"close","parameterTypes":[] },
-      {"name":"isClosed","parameterTypes":[] },
-      {"name":"start","parameterTypes":["boolean"] },
-      {"name" : "checkInstance", "parameterTypes" : ["long", "long"] },
-      {"name" : "bindInstance", "parameterTypes" : ["long", "godot.core.memory.GodotBinding"] },
-      {"name" : "unbindInstance", "parameterTypes" : ["long"] },
-      {"name" : "decrementRefCounter", "parameterTypes" : ["long"] },
-      {"name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
-      {"name" : "notifyLeak", "parameterTypes" : [] }
+      { "name" : "syncMemory","parameterTypes" : ["long[]"] },
+      { "name" : "cleanUp","parameterTypes" : [] },
+      { "name" : "removeScriptInstance", "parameterTypes" : ["long"] },
+      { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
+      { "name" : "decrementRefCounter", "parameterTypes" : ["long"] },
+      { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
+      { "name" : "querySync", "parameterTypes" : [] },
+      { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
+      { "name" : "getSingleton", "parameterTypes" : ["int"] },
+      { "name" : "freeObject", "parameterTypes" : ["long"] }
     ]
-  },
-  {
-    "name" : "godot.core.memory.GodotBinding",
-    "fields" : [
-      { "name" : "wrapper" },
-      { "name" : "scriptInstance" }
-    ],
-    "methods" : []
   },
   {
     "name" : "godot.global.GDPrint$Bridge",
