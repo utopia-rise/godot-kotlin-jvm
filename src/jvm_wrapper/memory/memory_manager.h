@@ -37,7 +37,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     Mutex dead_objects_mutex;
     LocalVector<ObjectID> dead_objects;
     Mutex to_demote_mutex;
-    LocalVector<JvmInstance*> to_demote_objects;
+    HashSet<JvmInstance*> to_demote_objects;
 
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
     static void decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
@@ -51,6 +51,7 @@ public:
     void remove_script_instance(jni::Env& p_env, uint64_t id);
     void queue_dead_object(Object* obj);
     void queue_demotion(JvmInstance* script_instance);
+    void cancel_demotion(JvmInstance* script_instance);
     void try_promotion(JvmInstance* script_instance);
     bool sync_memory(jni::Env& p_env);
     void clean_up(jni::Env& p_env);

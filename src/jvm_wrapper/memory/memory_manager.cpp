@@ -206,7 +206,13 @@ void MemoryManager::queue_dead_object(Object* obj) {
 
 void MemoryManager::queue_demotion(JvmInstance* script_instance) {
     to_demote_mutex.lock();
-    to_demote_objects.push_back(script_instance);
+    to_demote_objects.insert(script_instance);
+    to_demote_mutex.unlock();
+}
+
+void MemoryManager::cancel_demotion(JvmInstance* script_instance) {
+    to_demote_mutex.lock();
+    to_demote_objects.erase(script_instance);
     to_demote_mutex.unlock();
 }
 

@@ -22,6 +22,7 @@ JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object
 JvmInstance::~JvmInstance() {
     jni::Env env {jni::Jvm::current_env()};
     if (delete_flag) { MemoryManager::get_instance().remove_script_instance(env, owner->get_instance_id()); }
+    if (to_demote_flag.is_set()) { MemoryManager::get_instance().cancel_demotion(this); }
     memdelete(kt_object);
 }
 
