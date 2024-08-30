@@ -31,7 +31,7 @@ internal object MemoryManager {
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = Array<GodotNativeEntry?>(OBJECTDB_SIZE) { null }
+    private val ObjectDB = arrayOfNulls<GodotNativeEntry?>(OBJECTDB_SIZE)
 
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
