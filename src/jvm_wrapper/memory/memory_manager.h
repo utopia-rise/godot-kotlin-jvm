@@ -12,7 +12,7 @@
 JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     SINGLETON_CLASS(MemoryManager)
 
-    JNI_METHOD(MANAGE_MEMORY)
+    JNI_METHOD(SYNC_MEMORY)
     JNI_METHOD(SET_DISPLAY)
     JNI_METHOD(PRE_CLEAN_UP)
     JNI_METHOD(CHECK_CLEAN_UP)
@@ -20,7 +20,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     JNI_METHOD(REMOVE_SCRIPT)
 
     INIT_JNI_BINDINGS(
-        INIT_JNI_METHOD(MANAGE_MEMORY, "syncMemory", "([J)[J")
+        INIT_JNI_METHOD(SYNC_MEMORY, "syncMemory", "([J)[J")
         INIT_JNI_METHOD(PRE_CLEAN_UP, "preCleanup", "()V")
         INIT_JNI_METHOD(CHECK_CLEAN_UP, "checkCleanup", "()Z")
         INIT_JNI_METHOD(POST_CLEAN_UP, "postCleanup", "()V")
@@ -28,7 +28,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("decrementRefCounter", "(J)V", MemoryManager::decrement_ref_counter)
         INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryManager::unref_native_core_type)
-        INIT_NATIVE_METHOD("manageMemory", "()V", MemoryManager::manage_memory)
+        INIT_NATIVE_METHOD("querySync", "()V", MemoryManager::query_sync)
         INIT_NATIVE_METHOD("createNativeObject", "(ILgodot/core/KtObject;I)V", MemoryManager::create_native_object)
         INIT_NATIVE_METHOD("getSingleton", "(I)V", MemoryManager::get_singleton)
         INIT_NATIVE_METHOD("freeObject", "(J)V", MemoryManager::free_object)
@@ -42,7 +42,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
     static void decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
     static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
-    static void manage_memory(JNIEnv* p_raw_env, jobject p_instance);
+    static void query_sync(JNIEnv* p_raw_env, jobject p_instance);
     static void create_native_object(JNIEnv* p_raw_env, jobject instance, jint p_class_index, jobject p_object, jint p_script_index);
     static void get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
     static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

@@ -132,7 +132,6 @@ internal object MemoryManager {
         nativeCoreTypeMap[rawPtr] = NativeCoreWeakReference(nativeCoreType, nativeReferenceQueue, variantType)
     }
 
-
     fun getInstance(id: Long): KtObject? {
         synchronized(ObjectDB) {
             return getBinding(id)?.value
@@ -276,5 +275,5 @@ internal object MemoryManager {
     external fun decrementRefCounter(instanceId: Long)
     external fun freeObject(rawPtr: VoidPtr)
     external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
-    external fun manageMemory()
+    external fun querySync()
 }

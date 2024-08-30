@@ -96,7 +96,7 @@ abstract class KtObject {
 
     @Suppress("FunctionName")
     /**
-     * Called automatically when the Object is destroyed. Not that this method is not available for RefCounted or any of its child class.
+     * Called automatically when the Object is destroyed. Note that this method is not available for RefCounted or any of its child class.
      * By the time a RefCounted counter reaches 0, its JVM instance has already being GCed and can't be used anymore.
      */
     open fun _onDestroy() = Unit

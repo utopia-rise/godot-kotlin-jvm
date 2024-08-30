@@ -94,7 +94,7 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
     return has_free;
 }
 
-void MemoryManager::manage_memory(JNIEnv* p_raw_env, jobject p_instance) {
+void MemoryManager::query_sync(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     MemoryManager::get_instance().sync_memory(env);
 }
@@ -164,7 +164,7 @@ bool MemoryManager::sync_memory(jni::Env& p_env) {
 
     // Call the JVM side sending all the list of all dead objects and receiving the list of references to decrement
     jvalue args[1] = {jni::to_jni_arg(arr)};
-    jni::JLongArray refs_to_decrement {wrapped.call_object_method(p_env, MANAGE_MEMORY, args)};
+    jni::JLongArray refs_to_decrement {wrapped.call_object_method(p_env, SYNC_MEMORY, args)};
     arr.delete_local_ref(p_env);
 
     Vector<uint64_t> vec;
