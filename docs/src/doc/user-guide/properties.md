@@ -19,7 +19,7 @@ your properties are actually registered as `snake_case`. So a property `someFlag
 
 ## Core type specifics
 
-Registered properties of core types like `Vector3` are not nullable in Godot. Hence, you cannot register properties of core types as `lateinit` or nullable!
+Godot core type always need to have a value. Hence you cannot register properties of core types (like `Vector3`) with lateinit.
 
 ## Exporting properties
 

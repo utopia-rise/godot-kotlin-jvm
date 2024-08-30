@@ -100,10 +100,6 @@ node3D.rotationMutate {
 
 The snippet above is functionally equivalent to the previous one.
 
-### Core type property registration
-
-Registered properties of core types like `Vector3` are not nullable in Godot. Hence, you cannot register properties of core types as `lateinit` or nullable!
-
 ## Collection types
 
 While `VariantArray` and `Dictionary` are passed by reference, the value returned by the retrieval methods (`VariantArray.get(...)` and `Dictionary.get(...)`) are not.
