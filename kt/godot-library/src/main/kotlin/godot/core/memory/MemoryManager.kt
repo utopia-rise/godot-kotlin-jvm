@@ -197,13 +197,25 @@ internal object MemoryManager {
                 val otherRef = ObjectDB[index]
 
                 /** This part requires caution. We have to make sure it's safe to decrement the counter of this instance.
-                - If the dead reference is the same (===) as the one in the ObjectDB, it means it hasn't been replaced yet and is safe to decrement.
-                - If the reference in the objectDB is null, it means it has been queued already, we don't need to queue it again.
-                 it can happen if 2 or more wrappers for the same RefCounted are created and GCed between 2 memory syncs.
-                 - If the reference in the objectDB is a different one but has the same object ID, it means the wrapper has been replaced, and we shouldn't queue it.
-                 It can happen if several wrappers have been created but GCed out of order in different phases (in the context of a script removal for example).
+
+                Note that the state of the entry in the ObjectDB at this point in time can be several things:
+                - Not null with its weak reference still valid.
+                - Not null but its weak reference got GCed.
+                - Null
+
+                In the first 2 cases, the not null reference can belong to a different native object.
+
+                Here the different interpretations we can have:
+                - If the dead entry is the same (===) as the one in the ObjectDB, it means it hasn't been replaced yet and is safe to decrement.
+                - If the entry in the objectDB is null, it means it has been queued already, we don't need to queue it again.
+                it can happen if 2 or more wrappers for the same RefCounted are created and GCed between 2 memory syncs.
+                - If the entry in the objectDB is a different one but has the same object ID, it means the wrapper has been replaced (the previous one died, but Godot sent to the JVM again), we don't queue it.
+                - If the entry in the objectDB is a different one but hasn't the same object ID, it means the original objects has already been deleted, and we shouldn't queue it.
+                It can happen if several wrappers have been created but GCed out of order in different phases (in the context of a script removal for example).
+
+                Only the identity test is necessary because that the only case that allows for decrement, all others 3 possibilities don't pass.
                  **/
-                val decrement = it === otherRef || (otherRef != null && otherRef.objectID != objectID)
+                val decrement = it === otherRef
                 if (decrement) {
                     ObjectDB[index] = null
                 }

@@ -165,7 +165,7 @@ void JvmInstance::refcount_incremented() {
     RefCounted* ref = reinterpret_cast<RefCounted*>(owner);
     int refcount = ref->get_reference_count();
 
-    if (refcount == 2) {
+    if (refcount > 1 && kt_object->is_ref_weak()) {
         // The JVM holds a reference to that object already, if the counter is greater than 1, it means the native side holds a reference as well.
         // The reference is changed to a strong one so the JVM instance is not collected if it is not referenced anymore on the JVM side.
         MemoryManager::get_instance().try_promotion(this);
