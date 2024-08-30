@@ -2,7 +2,6 @@ package godot.entrygenerator
 
 import godot.entrygenerator.checks.ConstructorArgCountCheck
 import godot.entrygenerator.checks.ConstructorOverloadingCheck
-import godot.entrygenerator.checks.CoreTypeNullablePropertyCheck
 import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.ExportedMutablilityCheck
 import godot.entrygenerator.checks.FunctionArgCountCheck
@@ -114,7 +113,6 @@ object EntryGenerator {
             SignalTypeCheck(logger, sourceFiles).execute(),
 
             ExportedMutablilityCheck(logger, sourceFiles).execute(),
-            CoreTypeNullablePropertyCheck(logger, sourceFiles).execute(),
             LateinitPropertyCheck(logger, sourceFiles).execute(),
 
             RpcCheck(logger, sourceFiles).execute(),

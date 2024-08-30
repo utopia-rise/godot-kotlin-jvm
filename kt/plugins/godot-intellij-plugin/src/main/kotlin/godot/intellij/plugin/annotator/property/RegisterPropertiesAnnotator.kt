@@ -47,7 +47,6 @@ class RegisterPropertiesAnnotator : Annotator {
                 checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
-                coreTypeNullCheck(element, holder)
                 lateinitChecks(element, holder)
             }
             // outside to check if the property is also registered
@@ -128,18 +127,6 @@ class RegisterPropertiesAnnotator : Annotator {
         ) {
             holder.registerProblem(
                 message = GodotPluginBundle.message("problem.property.lateinit.coreType"),
-                errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
-            )
-        }
-    }
-
-    private fun coreTypeNullCheck(ktProperty: KtProperty, holder: AnnotationHolder) {
-        if (
-            ktProperty.type()?.isCoreType() == true
-            && ktProperty.type()?.isNullable() == true
-        ) {
-            holder.registerProblem(
-                message = GodotPluginBundle.message("problem.property.coreType.null"),
                 errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
             )
         }
