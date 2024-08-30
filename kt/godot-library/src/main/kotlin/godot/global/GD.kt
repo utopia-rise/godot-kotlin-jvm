@@ -83,7 +83,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
      * You can use that method to manually trigger it if you want memory to be quickly freed.
      * */
     fun syncMemory() {
-        MemoryManager.query_sync()
+        MemoryManager.querySync()
     }
 
 

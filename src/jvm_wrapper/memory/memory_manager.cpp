@@ -185,7 +185,7 @@ bool MemoryManager::sync_memory(jni::Env& p_env) {
 void MemoryManager::clean_up(jni::Env& p_env) {
     LOG_VERBOSE("Cleaning JVM Memory...")
     wrapped.call_boolean_method(p_env, CLEAN_UP);
-    LOG_VERBOSE("JVM Memory cleaned")
+    LOG_VERBOSE("JVM Memory cleaned!")
 }
 
 void MemoryManager::queue_dead_object(Object* obj) {
