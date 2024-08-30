@@ -5,7 +5,7 @@ To register a property annotate it with `@RegisterProperty`.
 @RegisterClass
 class RotatingCube: Node3D() {
     @RegisterProperty
-    lateinit var lateInitProperty: NodePath
+    var someString: String = "Hello there :-)"
 
     @RegisterProperty
     var propertyWithDefaultValue: Float = 2f
