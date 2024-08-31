@@ -134,7 +134,7 @@ tasks {
             }
             ?.let { executable ->
                 if (executable.name.contains("app")) {
-                    executable.resolve("Contents/MacOS").listFiles().firstOrNull()
+                    executable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
                 } else {
                     executable
                 }
