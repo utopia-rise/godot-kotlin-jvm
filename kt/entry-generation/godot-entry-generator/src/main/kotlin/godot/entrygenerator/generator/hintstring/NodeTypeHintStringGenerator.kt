@@ -8,6 +8,8 @@ class NodeTypeHintStringGenerator(
     registeredProperty: RegisteredProperty
 ) : PropertyHintStringGenerator<PropertyHintAnnotation>(registeredProperty) {
     override fun getHintString(): String {
-        return registeredProperty.type.baseGodotType()?.fqName?.substringAfterLast(".") ?: ""
+        // we first try to use the registered class name in case it's a user type extending a godot type
+        // if that is not the case (null) we get the simple name instead
+        return registeredProperty.type.registeredName() ?: registeredProperty.type.baseGodotType()?.fqName?.substringAfterLast(".") ?: ""
     }
 }
