@@ -73,10 +73,6 @@ public:
 
     void call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret);
     void call_set(jni::Env& p_env, KtObject* instance, const Variant& p_value);
-
-#ifdef TOOLS_ENABLED
-    void safe_call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret);
-#endif
 };
 
 #endif// GODOT_JVM_KT_PROPERTY_H
