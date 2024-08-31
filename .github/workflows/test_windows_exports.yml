@@ -68,7 +68,7 @@ jobs:
       - name: Prepare export
         run: |
           mkdir -p modules/kotlin_jvm/harness/tests/export
-          mv godot.windows.template_${{ matrix.bootstrap-target }}.x86_64 modules/kotlin_jvm/harness/tests/godot.windows.template_${{ matrix.bootstrap-target }}.x86_64
+          mv godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.exe modules/kotlin_jvm/harness/tests/godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.exe
 
       - name: Build tests project
         run: |
