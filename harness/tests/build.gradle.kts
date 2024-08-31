@@ -144,7 +144,6 @@ tasks {
         val executable = projectDir
             .resolve("export")
             .listFiles()
-            ?.filter { it.isFile }
             ?.also {
                 println("Test executables: [${it.joinToString()}]")
                 it.forEach { file -> file.setExecutable(true) }
