@@ -693,9 +693,8 @@ public open class TextEdit : Control() {
           NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTEDIT, scriptIndex)
-    return true
   }
 
   /**

@@ -156,9 +156,8 @@ public open class NavigationObstacle2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONOBSTACLE2D, scriptIndex)
-    return true
   }
 
   /**

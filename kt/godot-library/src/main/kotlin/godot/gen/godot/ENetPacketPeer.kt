@@ -37,9 +37,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ENETPACKETPEER, scriptIndex)
-    return true
   }
 
   /**

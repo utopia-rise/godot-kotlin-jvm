@@ -19,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Editor facility that helps you draw a 2D polygon used as resource for [LightOccluder2D].
@@ -68,9 +69,8 @@ public open class OccluderPolygon2D : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OCCLUDERPOLYGON2D, scriptIndex)
-    return true
   }
 
   public enum class CullMode(

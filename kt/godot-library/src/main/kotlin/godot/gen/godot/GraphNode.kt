@@ -84,9 +84,8 @@ public open class GraphNode : GraphElement() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreInvalidConnectionTypePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
-    return true
   }
 
   public open fun _drawPort(

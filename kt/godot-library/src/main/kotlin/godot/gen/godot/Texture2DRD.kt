@@ -13,9 +13,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a
@@ -37,9 +37,8 @@ public open class Texture2DRD : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTURE2DRD, scriptIndex)
-    return true
   }
 
   public companion object

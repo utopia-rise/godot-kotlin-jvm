@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class representing a cylindrical [PrimitiveMesh]. This class can be used to create cones by
@@ -137,9 +138,8 @@ public open class CylinderMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CYLINDERMESH, scriptIndex)
-    return true
   }
 
   public companion object

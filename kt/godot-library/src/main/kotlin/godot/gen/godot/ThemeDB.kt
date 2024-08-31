@@ -16,7 +16,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -38,9 +37,8 @@ public object ThemeDB : Object() {
    */
   public val fallbackChanged: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_THEMEDB)
-    return false
   }
 
   /**

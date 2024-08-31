@@ -83,8 +83,13 @@ func benchmark_finished(output):
 func write_result(output):
     print("written ", output)
     var file := FileAccess.open(output_path, FileAccess.READ)
+    var file_content = ""
+    if file != null:
+        file_content = file.get_as_text()
+        file.close()
+        
     var test_json_conv = JSON.new()
-    var error := test_json_conv.parse(file.get_as_text())
+    var error := test_json_conv.parse(file_content)
     var benchmark_file: Variant = null
     if error == 0:
         benchmark_file = test_json_conv.get_parsed_text()
@@ -92,7 +97,6 @@ func write_result(output):
         benchmark_file = {
             "benchmark_results": {}
         }
-    file.close()
     benchmark_file["benchmark_results"][benchmark + "_" + language] = output
     var dir := DirAccess.open("res://")
     dir.remove(output_path)

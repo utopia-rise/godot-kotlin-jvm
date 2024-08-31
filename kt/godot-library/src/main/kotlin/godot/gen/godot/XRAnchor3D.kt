@@ -14,9 +14,9 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The [XRAnchor3D] point is an [XRNode3D] that maps a real world location identified by the AR
@@ -32,9 +32,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class XRAnchor3D : XRNode3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRANCHOR3D, scriptIndex)
-    return true
   }
 
   /**

@@ -12,10 +12,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In
@@ -38,9 +38,8 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT, scriptIndex)
-    return true
   }
 
   public companion object

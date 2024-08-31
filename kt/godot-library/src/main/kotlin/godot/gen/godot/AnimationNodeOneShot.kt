@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. This animation node will execute a
@@ -223,9 +224,8 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartRandomDelayPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEONESHOT, scriptIndex)
-    return true
   }
 
   public enum class OneShotRequest(

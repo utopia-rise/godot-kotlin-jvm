@@ -14,10 +14,10 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also
@@ -69,9 +69,8 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTimeLeftPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCENETREETIMER, scriptIndex)
-    return true
   }
 
   public companion object

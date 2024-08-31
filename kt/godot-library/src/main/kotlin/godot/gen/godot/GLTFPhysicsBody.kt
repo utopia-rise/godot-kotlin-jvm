@@ -25,7 +25,6 @@ import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -174,9 +173,8 @@ public open class GLTFPhysicsBody : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInertiaTensorPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFPHYSICSBODY, scriptIndex)
-    return true
   }
 
   /**

@@ -124,9 +124,8 @@ public open class AcceptDialog : Window() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ACCEPTDIALOG, scriptIndex)
-    return true
   }
 
   /**

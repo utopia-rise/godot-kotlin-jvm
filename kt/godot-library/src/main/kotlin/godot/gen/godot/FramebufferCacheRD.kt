@@ -15,10 +15,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Framebuffer cache manager for Rendering Device based renderers. Provides a way to create a
@@ -27,9 +27,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class FramebufferCacheRD : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FRAMEBUFFERCACHERD, scriptIndex)
-    return true
   }
 
   public companion object {

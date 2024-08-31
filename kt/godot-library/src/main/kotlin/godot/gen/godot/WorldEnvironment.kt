@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.
@@ -70,9 +70,8 @@ public open class WorldEnvironment : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
-    return true
   }
 
   public companion object

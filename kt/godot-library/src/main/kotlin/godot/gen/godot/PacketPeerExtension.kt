@@ -9,16 +9,15 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TypeManager
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class PacketPeerExtension : PacketPeer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKETPEEREXTENSION, scriptIndex)
-    return true
   }
 
   public open fun _getAvailablePacketCount(): Int {

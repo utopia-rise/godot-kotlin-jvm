@@ -13,12 +13,12 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Stores information about joystick motions. One [InputEventJoypadMotion] represents one axis at a
@@ -55,9 +55,8 @@ public open class InputEventJoypadMotion : InputEvent() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAxisValuePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION, scriptIndex)
-    return true
   }
 
   public companion object

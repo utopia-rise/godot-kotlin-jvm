@@ -318,9 +318,8 @@ public open class HTTPRequest : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_HTTPREQUEST, scriptIndex)
-    return true
   }
 
   /**

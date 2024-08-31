@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This visual shader node has six input ports:
@@ -21,9 +21,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class VisualShaderNodeIf : VisualShaderNode() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEIF, scriptIndex)
-    return true
   }
 
   public companion object

@@ -22,6 +22,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies
@@ -89,9 +90,8 @@ public open class Joint2D internal constructor() : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_JOINT2D, scriptIndex)
-    return true
   }
 
   /**

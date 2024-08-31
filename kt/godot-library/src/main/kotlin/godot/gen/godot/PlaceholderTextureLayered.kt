@@ -16,7 +16,6 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -60,9 +59,8 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
       TransferContext.callMethod(rawPtr, MethodBindings.setLayersPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PLACEHOLDERTEXTURELAYERED, scriptIndex)
-    return true
   }
 
   /**

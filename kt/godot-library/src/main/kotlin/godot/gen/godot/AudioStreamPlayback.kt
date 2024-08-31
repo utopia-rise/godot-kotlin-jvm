@@ -27,9 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACK, scriptIndex)
-    return true
   }
 
   /**

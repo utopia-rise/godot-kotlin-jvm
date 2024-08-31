@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An instance of this object represents a controller that is tracked.
@@ -19,9 +19,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class XRControllerTracker : XRPositionalTracker() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRCONTROLLERTRACKER, scriptIndex)
-    return true
   }
 
   public companion object

@@ -1535,9 +1535,8 @@ public open class Environment : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentColorCorrectionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ENVIRONMENT, scriptIndex)
-    return true
   }
 
   /**

@@ -16,11 +16,11 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A button that represents a link. This type of button is primarily used for interactions that
@@ -147,9 +147,8 @@ public open class LinkButton : BaseButton() {
           NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LINKBUTTON, scriptIndex)
-    return true
   }
 
   public enum class UnderlineMode(

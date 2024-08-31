@@ -13,9 +13,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [PolygonOccluder3D] stores a polygon shape that can be used by the engine's occlusion culling
@@ -45,9 +45,8 @@ public open class PolygonOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_POLYGONOCCLUDER3D, scriptIndex)
-    return true
   }
 
   public companion object

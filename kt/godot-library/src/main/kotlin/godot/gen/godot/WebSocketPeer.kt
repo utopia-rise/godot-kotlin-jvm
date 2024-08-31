@@ -142,9 +142,8 @@ public open class WebSocketPeer : PacketPeer() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBSOCKETPEER, scriptIndex)
-    return true
   }
 
   /**

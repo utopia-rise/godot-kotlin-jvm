@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A cubemap array that is loaded from a `.ccubearray` file. This file format is internal to Godot;
@@ -31,9 +31,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class CompressedCubemapArray : CompressedTextureLayered() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDCUBEMAPARRAY, scriptIndex)
-    return true
   }
 
   public companion object

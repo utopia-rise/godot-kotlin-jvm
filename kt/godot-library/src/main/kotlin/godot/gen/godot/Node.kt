@@ -409,9 +409,8 @@ public open class Node : Object() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEditorDescriptionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NODE, scriptIndex)
-    return true
   }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION): GodotError =

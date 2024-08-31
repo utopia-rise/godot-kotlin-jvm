@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This class replaces a [Cubemap] or a [Cubemap]-derived class in 2 conditions:
@@ -21,9 +21,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PlaceholderCubemap : PlaceholderTextureLayered() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PLACEHOLDERCUBEMAP, scriptIndex)
-    return true
   }
 
   public companion object

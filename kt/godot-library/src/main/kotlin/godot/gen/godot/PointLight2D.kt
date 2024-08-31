@@ -17,7 +17,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -85,9 +84,8 @@ public open class PointLight2D : Light2D() {
       super.setHeight(value)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_POINTLIGHT2D, scriptIndex)
-    return true
   }
 
   /**

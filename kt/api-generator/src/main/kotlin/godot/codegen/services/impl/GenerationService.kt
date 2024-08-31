@@ -131,6 +131,9 @@ class GenerationService(
         if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
         }
+        if (name == GodotKotlinJvmTypes.refCounted) {
+            classTypeBuilder.preventOnDestroyUsage()
+        }
         if (name == GodotTypes.node) {
             classTypeBuilder.generateTypesafeRpc()
         }
@@ -601,7 +604,8 @@ class GenerationService(
                         appendLine()
                     }
 
-                    appendLine("""This is a helper function to make dealing with local copies easier. 
+                    appendLine(
+                        """This is a helper function to make dealing with local copies easier. 
                     |
                     |For more information, see our [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
                     |
@@ -706,6 +710,16 @@ class GenerationService(
         )
         .build()
 
+    private fun TypeSpec.Builder.preventOnDestroyUsage() {
+        addFunction(
+            FunSpec.builder("_onDestroy")
+                .addModifiers(KModifier.OVERRIDE, KModifier.FINAL)
+                .returns(Unit::class)
+                .addStatement("")
+                .build()
+        )
+    }
+
     private fun TypeSpec.Builder.generateTypesafeRpc() {
         for (i in 0..10) {
             val kFunctionTypeParameters = mutableListOf<TypeVariableName>()
@@ -758,13 +772,10 @@ class GenerationService(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
-                .returns(Boolean::class)
+                .returns(Unit::class)
                 .addStatement(
                     "callConstructor(%M, scriptIndex)",
                     MemberName(godotApiPackage, classIndexName),
-                )
-                .addStatement(
-                    "return true"
                 )
                 .build()
         )
@@ -775,13 +786,10 @@ class GenerationService(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
                 .addParameter("scriptIndex", Int::class)
-                .returns(Boolean::class)
+                .returns(Unit::class)
                 .addStatement(
                     "getSingleton(%M)",
                     MemberName(godotApiPackage, classIndexName),
-                )
-                .addStatement(
-                    "return false"
                 )
                 .build()
         )
@@ -917,7 +925,10 @@ class GenerationService(
                 val simpleNames = methodReturnType.className.simpleNames
                 addStatement(
                     "return·%T(%T.readReturnValue(%T)·as·%T)",
-                    ClassName("${methodReturnType.className.packageName}.${simpleNames.subList(0, simpleNames.size - 1).joinToString(".")}", "${callable.getTypeClassName().className.simpleName}Value"),
+                    ClassName(
+                        "${methodReturnType.className.packageName}.${simpleNames.subList(0, simpleNames.size - 1).joinToString(".")}",
+                        "${callable.getTypeClassName().className.simpleName}Value"
+                    ),
                     TRANSFER_CONTEXT,
                     VARIANT_TYPE_LONG,
                     LONG

@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Performs a lookup operation on the provided texture, with support for multiple texture sources to
@@ -37,9 +37,8 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE3D, scriptIndex)
-    return true
   }
 
   public companion object

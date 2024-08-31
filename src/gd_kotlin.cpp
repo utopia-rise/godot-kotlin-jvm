@@ -160,15 +160,6 @@ bool GDKotlin::initialize_core_library() {
         LongStringQueue::get_instance().set_string_max_size(env, user_configuration.max_string_size);
     }
 
-    if (!user_configuration.disable_gc) {
-        if (user_configuration.force_gc) { LOG_VERBOSE("Starting GC thread with force mode."); }
-
-        MemoryManager::get_instance().start(env, user_configuration.force_gc);
-        LOG_VERBOSE("GC thread started.");
-    }
-
-    if (user_configuration.disable_leak_warning_on_close) { MemoryManager::get_instance().setDisplayLeaks(env, false); }
-
     bootstrap = Bootstrap::create_instance(env, bootstrap_class_loader);
     return true;
 }
@@ -235,15 +226,7 @@ void GDKotlin::finish() {
 
     if (state >= State::CORE_LIBRARY_INITIALIZED) {
         jni::Env env {jni::Jvm::current_env()};
-        if (!user_configuration.disable_gc) {
-            MemoryManager::get_instance().close(env);
-
-            while (!MemoryManager::get_instance().is_closed(env)) {
-                OS::get_singleton()->delay_usec(600000);
-            }
-            LOG_VERBOSE("JVM GC thread was closed");
-            MemoryManager::get_instance().clean_up(env);
-        }
+        MemoryManager::get_instance().clean_up(env);
         JvmManager::destroy_jni_classes();
     }
 

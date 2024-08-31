@@ -146,9 +146,8 @@ public open class NavigationRegion2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONREGION2D, scriptIndex)
-    return true
   }
 
   /**

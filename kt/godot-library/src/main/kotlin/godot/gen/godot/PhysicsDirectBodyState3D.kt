@@ -204,9 +204,8 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE3D, scriptIndex)
-    return true
   }
 
   /**

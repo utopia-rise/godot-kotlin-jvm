@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The FBXDocument handles FBX documents. It provides methods to append data from buffers or files,
@@ -20,9 +20,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class FBXDocument : GLTFDocument() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FBXDOCUMENT, scriptIndex)
-    return true
   }
 
   public companion object

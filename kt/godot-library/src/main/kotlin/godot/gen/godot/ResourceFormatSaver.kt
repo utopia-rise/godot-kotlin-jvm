@@ -17,6 +17,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The engine can save resources when you do it from the editor, or when you use the [ResourceSaver]
@@ -30,9 +31,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RESOURCEFORMATSAVER, scriptIndex)
-    return true
   }
 
   /**

@@ -55,9 +55,8 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3PARAMETER, scriptIndex)
-    return true
   }
 
   /**

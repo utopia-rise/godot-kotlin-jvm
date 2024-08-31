@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This texture gives access to the camera texture provided by a [CameraFeed].
@@ -67,9 +68,8 @@ public open class CameraTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCameraActivePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERATEXTURE, scriptIndex)
-    return true
   }
 
   public companion object

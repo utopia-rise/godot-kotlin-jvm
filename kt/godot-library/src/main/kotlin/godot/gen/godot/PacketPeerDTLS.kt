@@ -15,7 +15,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -35,9 +34,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKETPEERDTLS, scriptIndex)
-    return true
   }
 
   /**

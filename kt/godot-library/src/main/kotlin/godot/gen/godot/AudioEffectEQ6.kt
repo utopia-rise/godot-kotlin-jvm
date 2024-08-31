@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Frequency bands:
@@ -23,9 +23,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class AudioEffectEQ6 : AudioEffectEQ() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTEQ6, scriptIndex)
-    return true
   }
 
   public companion object

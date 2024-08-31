@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -50,9 +49,8 @@ public open class XRFaceTracker : XRTracker() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRFACETRACKER, scriptIndex)
-    return true
   }
 
   /**

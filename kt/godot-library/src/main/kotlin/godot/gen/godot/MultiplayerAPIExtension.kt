@@ -14,7 +14,6 @@ import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -104,9 +103,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MultiplayerAPIExtension : MultiplayerAPI() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIPLAYERAPIEXTENSION, scriptIndex)
-    return true
   }
 
   /**

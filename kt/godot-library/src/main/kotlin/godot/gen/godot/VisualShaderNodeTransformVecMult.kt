@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A multiplication operation on a transform (4×4 matrix) and a vector, with support for different
@@ -37,9 +37,8 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT, scriptIndex)
-    return true
   }
 
   public enum class Operator(

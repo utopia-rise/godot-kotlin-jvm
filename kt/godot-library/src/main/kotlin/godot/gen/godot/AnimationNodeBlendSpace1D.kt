@@ -120,9 +120,8 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE1D, scriptIndex)
-    return true
   }
 
   /**

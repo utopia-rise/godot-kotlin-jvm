@@ -14,9 +14,9 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound
@@ -108,9 +108,8 @@ public open class World3D : Resource() {
       return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WORLD3D, scriptIndex)
-    return true
   }
 
   public companion object

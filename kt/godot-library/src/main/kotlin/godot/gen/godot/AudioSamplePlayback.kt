@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Meta class for playing back audio samples.
  */
 @GodotBaseType
 public open class AudioSamplePlayback : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSAMPLEPLAYBACK, scriptIndex)
-    return true
   }
 
   public companion object

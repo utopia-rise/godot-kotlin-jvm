@@ -108,9 +108,8 @@ public object DisplayServer : Object() {
    */
   public final const val INVALID_INDICATOR_ID: Long = -1
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_DISPLAYSERVER)
-    return false
   }
 
   /**

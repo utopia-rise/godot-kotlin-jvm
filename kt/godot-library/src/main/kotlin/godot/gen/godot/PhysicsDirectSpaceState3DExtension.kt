@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This class extends [PhysicsDirectSpaceState3D] by providing additional virtual methods that can
@@ -28,9 +29,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION, scriptIndex)
-    return true
   }
 
   public open fun _getClosestPointToObjectVolume(_object: RID, point: Vector3): Vector3 {

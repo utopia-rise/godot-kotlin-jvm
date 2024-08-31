@@ -19,6 +19,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node used as a child of a [VehicleBody3D] parent to simulate the behavior of one of its wheels.
@@ -255,9 +256,8 @@ public open class VehicleWheel3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDampingRelaxationPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VEHICLEWHEEL3D, scriptIndex)
-    return true
   }
 
   /**

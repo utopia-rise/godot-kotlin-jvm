@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is an abstract class. See the derived types for descriptions of the possible operations.
@@ -36,9 +36,8 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
       TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORBASE, scriptIndex)
-    return true
   }
 
   public enum class OpType(

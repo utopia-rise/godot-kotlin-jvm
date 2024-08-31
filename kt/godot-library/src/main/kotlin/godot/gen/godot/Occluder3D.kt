@@ -14,9 +14,9 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [Occluder3D] stores an occluder shape that can be used by the engine's occlusion culling system.
@@ -24,9 +24,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class Occluder3D internal constructor() : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OCCLUDER3D, scriptIndex)
-    return true
   }
 
   /**

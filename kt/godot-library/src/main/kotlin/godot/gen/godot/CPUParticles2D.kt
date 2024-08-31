@@ -991,9 +991,8 @@ public open class CPUParticles2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CPUPARTICLES2D, scriptIndex)
-    return true
   }
 
   /**

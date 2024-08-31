@@ -13,9 +13,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -82,9 +82,8 @@ public open class CurveXYZTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCurveZPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CURVEXYZTEXTURE, scriptIndex)
-    return true
   }
 
   public companion object

@@ -142,9 +142,8 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS2D, scriptIndex)
-    return true
   }
 
   /**

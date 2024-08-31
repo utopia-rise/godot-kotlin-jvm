@@ -100,9 +100,8 @@ public open class Theme : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDefaultFontSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_THEME, scriptIndex)
-    return true
   }
 
   /**

@@ -103,9 +103,8 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       TransferContext.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D, scriptIndex)
-    return true
   }
 
   /**

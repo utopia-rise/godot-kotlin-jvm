@@ -41,9 +41,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class RenderSceneBuffersRD : RenderSceneBuffers() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RENDERSCENEBUFFERSRD, scriptIndex)
-    return true
   }
 
   /**

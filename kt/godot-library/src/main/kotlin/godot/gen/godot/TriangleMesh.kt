@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Mesh type used internally for collision calculations.
  */
 @GodotBaseType
 public open class TriangleMesh : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TRIANGLEMESH, scriptIndex)
-    return true
   }
 
   public companion object

@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * InputEventShortcut is a special event that can be received in [Node.Input], [Node.ShortcutInput],
@@ -38,9 +38,8 @@ public open class InputEventShortcut : InputEvent() {
       TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTSHORTCUT, scriptIndex)
-    return true
   }
 
   public companion object

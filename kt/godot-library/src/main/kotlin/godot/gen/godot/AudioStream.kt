@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and
@@ -36,9 +37,8 @@ public open class AudioStream : Resource() {
    */
   public val parameterListChanged: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAM, scriptIndex)
-    return true
   }
 
   /**

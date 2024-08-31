@@ -79,28 +79,12 @@ namespace ktvariant {
 
         // Create a binding if it doesn't exist yet.
         KotlinBinding* binding = KotlinBindingManager::get_instance_binding(ptr);
-
-        // We only need to retrieve the constructor if the binding is not ready yet.
-        int constructorID = 0;
-        if (!binding->is_bound()) {
-            StringName class_name {ptr->get_class_name()};
-            do {
-                if (!TypeManager::get_instance().java_engine_type_constructor_for_type_exists(class_name)) {
-                    class_name = ClassDB::get_parent_class(class_name);
-                } else {
-                    break;
-                }
-            } while (class_name != StringName());
-            constructorID = TypeManager::get_instance().get_java_engine_type_constructor_index_for_type(class_name);
-        }
-
-        uint64_t id = ptr->get_instance_id();
+        int constructorID = binding->get_constructor_id();
 
         set_variant_type(des, Variant::Type::OBJECT);
-
-        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr), des->get_cursor()));
         des->increment_position(encode_uint32(constructorID, des->get_cursor()));
-        des->increment_position(encode_uint64(id, des->get_cursor()));
+        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr), des->get_cursor()));
+        des->increment_position(encode_uint64(ptr->get_instance_id(), des->get_cursor()));
     }
 
     static void to_kvariant_fromSIGNAL(SharedBuffer* des, const Variant& src) {

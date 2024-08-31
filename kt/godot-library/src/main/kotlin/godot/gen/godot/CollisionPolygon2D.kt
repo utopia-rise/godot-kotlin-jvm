@@ -22,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
@@ -109,9 +110,8 @@ public open class CollisionPolygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON2D, scriptIndex)
-    return true
   }
 
   public enum class BuildMode(

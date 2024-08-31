@@ -51,9 +51,8 @@ public open class AudioEffectCapture : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTCAPTURE, scriptIndex)
-    return true
   }
 
   /**

@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned
@@ -68,9 +69,8 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
       TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER, scriptIndex)
-    return true
   }
 
   public companion object

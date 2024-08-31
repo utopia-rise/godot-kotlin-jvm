@@ -192,9 +192,8 @@ public open class AudioStreamPlayer : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER, scriptIndex)
-    return true
   }
 
   /**

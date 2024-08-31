@@ -15,7 +15,6 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -54,9 +53,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_IMAGETEXTURE, scriptIndex)
-    return true
   }
 
   /**

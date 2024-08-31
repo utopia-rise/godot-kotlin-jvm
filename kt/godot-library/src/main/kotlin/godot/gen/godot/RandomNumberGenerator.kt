@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -93,9 +92,8 @@ public open class RandomNumberGenerator : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStatePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RANDOMNUMBERGENERATOR, scriptIndex)
-    return true
   }
 
   /**

@@ -13,11 +13,11 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
@@ -28,9 +28,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class X509Certificate : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_X509CERTIFICATE, scriptIndex)
-    return true
   }
 
   /**

@@ -306,9 +306,8 @@ public open class ItemList : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFixedIconSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ITEMLIST, scriptIndex)
-    return true
   }
 
   /**

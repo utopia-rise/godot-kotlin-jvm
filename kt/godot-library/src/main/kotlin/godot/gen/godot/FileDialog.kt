@@ -224,9 +224,8 @@ public open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPathPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FILEDIALOG, scriptIndex)
-    return true
   }
 
   /**

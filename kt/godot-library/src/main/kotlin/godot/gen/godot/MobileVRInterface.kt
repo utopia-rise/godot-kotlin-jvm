@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -190,9 +189,8 @@ public open class MobileVRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MOBILEVRINTERFACE, scriptIndex)
-    return true
   }
 
   /**

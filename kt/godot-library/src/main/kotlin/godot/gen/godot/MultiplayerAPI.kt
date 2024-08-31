@@ -95,9 +95,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPeerPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIPLAYERAPI, scriptIndex)
-    return true
   }
 
   /**

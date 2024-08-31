@@ -151,9 +151,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGSHAPE3D, scriptIndex)
-    return true
   }
 
   /**

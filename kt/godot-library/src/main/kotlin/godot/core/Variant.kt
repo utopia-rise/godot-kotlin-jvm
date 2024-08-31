@@ -86,8 +86,8 @@ private var ByteBuffer.stringName: Any
 
 private var ByteBuffer.obj: KtObject
     get() {
-        val ptr = long
         val constructorIndex = int
+        val ptr = long
         val id = long
 
         return MemoryManager.getInstance(id) ?: KtObject.instantiateWith(

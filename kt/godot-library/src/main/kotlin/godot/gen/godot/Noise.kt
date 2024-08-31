@@ -25,6 +25,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -37,9 +38,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NOISE, scriptIndex)
-    return true
   }
 
   /**

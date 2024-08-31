@@ -108,9 +108,8 @@ public open class SkeletonProfile : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBoneSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONPROFILE, scriptIndex)
-    return true
   }
 
   /**

@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The [GDExtension] resource type represents a
@@ -27,9 +28,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class GDExtension : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GDEXTENSION, scriptIndex)
-    return true
   }
 
   /**

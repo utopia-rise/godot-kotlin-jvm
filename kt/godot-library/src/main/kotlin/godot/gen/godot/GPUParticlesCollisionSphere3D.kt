@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
@@ -43,9 +43,8 @@ public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSPHERE3D, scriptIndex)
-    return true
   }
 
   public companion object

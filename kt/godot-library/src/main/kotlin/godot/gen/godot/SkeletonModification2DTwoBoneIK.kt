@@ -98,9 +98,8 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFlipBendDirectionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK, scriptIndex)
-    return true
   }
 
   /**

@@ -254,9 +254,8 @@ public open class Line2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LINE2D, scriptIndex)
-    return true
   }
 
   /**

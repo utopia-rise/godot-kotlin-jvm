@@ -20,9 +20,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RENDERSCENEBUFFERSEXTENSION, scriptIndex)
-    return true
   }
 
   /**

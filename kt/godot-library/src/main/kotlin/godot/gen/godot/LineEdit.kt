@@ -536,9 +536,8 @@ public open class LineEdit : Control() {
           NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LINEEDIT, scriptIndex)
-    return true
   }
 
   /**

@@ -63,9 +63,8 @@ public open class CameraFeed : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERAFEED, scriptIndex)
-    return true
   }
 
   /**

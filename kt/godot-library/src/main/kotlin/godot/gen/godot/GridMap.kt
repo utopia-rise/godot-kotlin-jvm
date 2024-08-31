@@ -245,9 +245,8 @@ public open class GridMap : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBakeNavigationPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GRIDMAP, scriptIndex)
-    return true
   }
 
   /**

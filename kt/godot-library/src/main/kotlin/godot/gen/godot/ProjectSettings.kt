@@ -56,9 +56,8 @@ public object ProjectSettings : Object() {
    */
   public val settingsChanged: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_PROJECTSETTINGS)
-    return false
   }
 
   /**

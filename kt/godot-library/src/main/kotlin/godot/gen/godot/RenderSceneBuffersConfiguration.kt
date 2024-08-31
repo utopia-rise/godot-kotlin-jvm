@@ -19,7 +19,6 @@ import godot.core.VariantType._RID
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -162,9 +161,8 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION, scriptIndex)
-    return true
   }
 
   /**

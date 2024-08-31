@@ -152,9 +152,8 @@ public open class MultiplayerSynchronizer : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityPublicPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIPLAYERSYNCHRONIZER, scriptIndex)
-    return true
   }
 
   /**

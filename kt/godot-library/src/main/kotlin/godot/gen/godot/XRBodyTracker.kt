@@ -58,9 +58,8 @@ public open class XRBodyTracker : XRPositionalTracker() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRBODYTRACKER, scriptIndex)
-    return true
   }
 
   /**

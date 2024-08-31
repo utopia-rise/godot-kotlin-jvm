@@ -14,10 +14,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it
@@ -70,9 +70,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class HMACContext : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_HMACCONTEXT, scriptIndex)
-    return true
   }
 
   /**

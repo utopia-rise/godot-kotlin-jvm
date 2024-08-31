@@ -17,7 +17,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -40,9 +39,8 @@ public open class Container : Control() {
    */
   public val sortChildren: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONTAINER, scriptIndex)
-    return true
   }
 
   /**

@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -64,9 +65,8 @@ public open class InputEventJoypadButton : InputEvent() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADBUTTON, scriptIndex)
-    return true
   }
 
   public companion object

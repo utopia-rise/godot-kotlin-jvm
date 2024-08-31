@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
@@ -144,9 +145,8 @@ public open class AudioStreamWAV : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStereoPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMWAV, scriptIndex)
-    return true
   }
 
   /**

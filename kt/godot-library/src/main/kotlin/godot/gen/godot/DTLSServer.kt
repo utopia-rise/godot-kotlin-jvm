@@ -13,10 +13,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This class is used to store the state of a DTLS server. Upon [setup] it converts connected
@@ -174,9 +174,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_DTLSSERVER, scriptIndex)
-    return true
   }
 
   /**

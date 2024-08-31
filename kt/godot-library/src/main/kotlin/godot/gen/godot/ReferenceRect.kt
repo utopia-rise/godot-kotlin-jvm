@@ -75,9 +75,8 @@ public open class ReferenceRect : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_REFERENCERECT, scriptIndex)
-    return true
   }
 
   /**

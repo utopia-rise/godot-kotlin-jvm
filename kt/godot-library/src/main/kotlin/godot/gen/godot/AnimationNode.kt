@@ -95,9 +95,8 @@ public open class AnimationNode : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFilterEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODE, scriptIndex)
-    return true
   }
 
   /**

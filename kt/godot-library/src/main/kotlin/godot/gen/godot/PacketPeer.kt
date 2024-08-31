@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -53,9 +54,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKETPEER, scriptIndex)
-    return true
   }
 
   /**

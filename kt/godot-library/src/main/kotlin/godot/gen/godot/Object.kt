@@ -97,9 +97,8 @@ public open class Object : KtObject() {
    */
   public val propertyListChanged: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OBJECT, scriptIndex)
-    return true
   }
 
   /**

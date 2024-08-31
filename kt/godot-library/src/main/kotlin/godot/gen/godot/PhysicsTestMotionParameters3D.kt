@@ -161,9 +161,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRecoveryAsCollisionEnabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D, scriptIndex)
-    return true
   }
 
   /**

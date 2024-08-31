@@ -13,10 +13,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits
@@ -73,9 +73,8 @@ public open class Sky : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKY, scriptIndex)
-    return true
   }
 
   public enum class RadianceSize(

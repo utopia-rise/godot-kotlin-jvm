@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * InputEventFromWindow represents events specifically received by windows. This includes mouse
@@ -37,9 +37,8 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
       TransferContext.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTFROMWINDOW, scriptIndex)
-    return true
   }
 
   public companion object

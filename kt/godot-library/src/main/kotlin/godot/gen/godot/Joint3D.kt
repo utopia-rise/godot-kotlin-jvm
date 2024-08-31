@@ -21,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies
@@ -90,9 +91,8 @@ public open class Joint3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_JOINT3D, scriptIndex)
-    return true
   }
 
   /**

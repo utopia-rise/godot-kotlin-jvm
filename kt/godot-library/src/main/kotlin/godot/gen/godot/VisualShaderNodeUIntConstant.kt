@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translated to `uint` in the shader language.
@@ -36,9 +36,8 @@ public open class VisualShaderNodeUIntConstant : VisualShaderNodeConstant() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUINTCONSTANT, scriptIndex)
-    return true
   }
 
   public companion object

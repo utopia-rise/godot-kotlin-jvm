@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translated to `uniform sampler3D` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeTexture3DParameter : VisualShaderNodeTextureParameter() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE3DPARAMETER, scriptIndex)
-    return true
   }
 
   public companion object

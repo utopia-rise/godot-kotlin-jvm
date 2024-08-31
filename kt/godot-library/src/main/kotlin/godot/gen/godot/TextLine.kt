@@ -173,9 +173,8 @@ public open class TextLine : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTLINE, scriptIndex)
-    return true
   }
 
   /**

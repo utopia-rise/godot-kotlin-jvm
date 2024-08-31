@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
@@ -42,9 +42,8 @@ public open class AudioStreamPolyphonic : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPolyphonyPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPOLYPHONIC, scriptIndex)
-    return true
   }
 
   public companion object

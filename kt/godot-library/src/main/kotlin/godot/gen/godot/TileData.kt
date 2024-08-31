@@ -209,9 +209,8 @@ public open class TileData : Object() {
       TransferContext.callMethod(rawPtr, MethodBindings.setProbabilityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TILEDATA, scriptIndex)
-    return true
   }
 
   /**

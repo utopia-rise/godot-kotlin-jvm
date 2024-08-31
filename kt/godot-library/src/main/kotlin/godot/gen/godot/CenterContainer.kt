@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [CenterContainer] is a container that keeps all of its child controls in its center at their
@@ -36,9 +37,8 @@ public open class CenterContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUseTopLeftPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CENTERCONTAINER, scriptIndex)
-    return true
   }
 
   public companion object

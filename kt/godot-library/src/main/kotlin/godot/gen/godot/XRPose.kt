@@ -132,9 +132,8 @@ public open class XRPose : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTrackingConfidencePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRPOSE, scriptIndex)
-    return true
   }
 
   /**

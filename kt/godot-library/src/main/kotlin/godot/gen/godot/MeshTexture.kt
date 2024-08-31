@@ -16,7 +16,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -70,9 +69,8 @@ public open class MeshTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MESHTEXTURE, scriptIndex)
-    return true
   }
 
   /**

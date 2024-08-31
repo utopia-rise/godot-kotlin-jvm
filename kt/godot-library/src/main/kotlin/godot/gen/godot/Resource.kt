@@ -133,9 +133,8 @@ public open class Resource : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RESOURCE, scriptIndex)
-    return true
   }
 
   /**

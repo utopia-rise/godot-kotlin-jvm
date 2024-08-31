@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A directional light is a type of [Light3D] node that models an infinite number of parallel rays
@@ -71,9 +72,8 @@ public open class DirectionalLight3D : Light3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_DIRECTIONALLIGHT3D, scriptIndex)
-    return true
   }
 
   public enum class ShadowMode(

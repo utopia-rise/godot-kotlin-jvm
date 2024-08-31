@@ -162,8 +162,8 @@ void JvmManager::destroy_jni_classes() {
 }
 
 void JvmManager::close_jvm() {
-    LOG_VERBOSE("Shutting down JVM ...");
 #if defined DYNAMIC_JVM || defined STATIC_JVM
+    LOG_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif
 }

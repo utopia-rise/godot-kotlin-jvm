@@ -22,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is
@@ -126,9 +127,8 @@ public open class RDPipelineMultisampleState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSampleMasksPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDPIPELINEMULTISAMPLESTATE, scriptIndex)
-    return true
   }
 
   public companion object

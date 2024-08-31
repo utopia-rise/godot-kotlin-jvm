@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class representing a spherical [PrimitiveMesh].
@@ -97,9 +98,8 @@ public open class SphereMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIsHemispherePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPHEREMESH, scriptIndex)
-    return true
   }
 
   public companion object

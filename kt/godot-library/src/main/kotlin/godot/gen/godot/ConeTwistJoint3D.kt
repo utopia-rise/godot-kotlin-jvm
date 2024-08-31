@@ -13,12 +13,12 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket
@@ -104,9 +104,8 @@ public open class ConeTwistJoint3D : Joint3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONETWISTJOINT3D, scriptIndex)
-    return true
   }
 
   public enum class Param(

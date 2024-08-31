@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Godot loads resources in the editor or in exported games using ResourceFormatLoaders. They are
@@ -37,9 +38,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class ResourceFormatLoader : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RESOURCEFORMATLOADER, scriptIndex)
-    return true
   }
 
   /**

@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Utility class which holds a reference to the internal identifier of an [Object] instance, as
@@ -41,9 +41,8 @@ public open class EncodedObjectAsID : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ENCODEDOBJECTASID, scriptIndex)
-    return true
   }
 
   public companion object

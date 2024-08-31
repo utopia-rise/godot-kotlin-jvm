@@ -41,9 +41,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object Engine : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_ENGINE)
-    return false
   }
 
   public fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Int): Unit {

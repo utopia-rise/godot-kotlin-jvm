@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -71,9 +70,8 @@ public open class VisualShaderNode internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODE, scriptIndex)
-    return true
   }
 
   /**

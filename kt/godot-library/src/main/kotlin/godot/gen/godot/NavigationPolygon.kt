@@ -236,9 +236,8 @@ public open class NavigationPolygon : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectOffsetPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONPOLYGON, scriptIndex)
-    return true
   }
 
   /**

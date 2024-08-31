@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for
@@ -176,9 +177,8 @@ public open class TouchScreenButton : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TOUCHSCREENBUTTON, scriptIndex)
-    return true
   }
 
   /**

@@ -254,9 +254,8 @@ public open class StyleBoxTexture : StyleBox() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_STYLEBOXTEXTURE, scriptIndex)
-    return true
   }
 
   /**

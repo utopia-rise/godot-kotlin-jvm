@@ -54,9 +54,8 @@ public open class CollisionShape3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLLISIONSHAPE3D, scriptIndex)
-    return true
   }
 
   /**

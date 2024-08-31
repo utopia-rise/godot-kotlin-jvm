@@ -14,10 +14,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [VisibleOnScreenEnabler3D] contains a box-shaped region of 3D space and a target node. The target
@@ -64,9 +64,8 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER3D, scriptIndex)
-    return true
   }
 
   public enum class EnableMode(

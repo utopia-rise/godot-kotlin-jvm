@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The FBXState handles the state data imported from FBX files.
@@ -36,9 +37,8 @@ public open class FBXState : GLTFState() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FBXSTATE, scriptIndex)
-    return true
   }
 
   public companion object

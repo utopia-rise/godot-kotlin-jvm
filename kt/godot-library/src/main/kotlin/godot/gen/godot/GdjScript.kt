@@ -7,15 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class GdjScript : JvmScript() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GDJSCRIPT, scriptIndex)
-    return true
   }
 
   public companion object

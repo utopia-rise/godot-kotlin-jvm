@@ -13,7 +13,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -28,9 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SLIDERJOINT3D, scriptIndex)
-    return true
   }
 
   /**

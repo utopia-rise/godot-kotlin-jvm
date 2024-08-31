@@ -109,9 +109,8 @@ public open class StyleBox : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_STYLEBOX, scriptIndex)
-    return true
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {

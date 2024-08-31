@@ -15,7 +15,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,9 +41,8 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
       TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTGESTURE, scriptIndex)
-    return true
   }
 
   /**

@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Particle emitter nodes can be used in "start" step of particle shaders and they define the
@@ -37,9 +38,8 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
       TransferContext.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, scriptIndex)
-    return true
   }
 
   public companion object

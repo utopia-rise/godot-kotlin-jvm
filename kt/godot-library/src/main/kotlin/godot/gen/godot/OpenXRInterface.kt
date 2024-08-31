@@ -183,9 +183,8 @@ public open class OpenXRInterface : XRInterface() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRINTERFACE, scriptIndex)
-    return true
   }
 
   /**

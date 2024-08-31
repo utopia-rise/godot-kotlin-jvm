@@ -14,10 +14,10 @@ import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A *specialization constant* is a way to create additional variants of shaders without actually
@@ -58,9 +58,8 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConstantIdPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT, scriptIndex)
-    return true
   }
 
   public companion object

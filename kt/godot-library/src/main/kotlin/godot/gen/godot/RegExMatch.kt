@@ -18,11 +18,11 @@ import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -64,9 +64,8 @@ public open class RegExMatch : RefCounted() {
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_REGEXMATCH, scriptIndex)
-    return true
   }
 
   /**

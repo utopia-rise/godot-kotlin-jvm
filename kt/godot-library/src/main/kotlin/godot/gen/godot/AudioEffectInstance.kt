@@ -13,6 +13,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An audio effect instance manipulates the audio it receives for a given effect. This instance is
@@ -22,9 +23,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTINSTANCE, scriptIndex)
-    return true
   }
 
   /**

@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and
@@ -87,9 +88,8 @@ public open class CollisionPolygon3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON3D, scriptIndex)
-    return true
   }
 
   public companion object

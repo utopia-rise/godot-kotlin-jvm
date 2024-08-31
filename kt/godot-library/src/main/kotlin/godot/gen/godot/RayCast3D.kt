@@ -196,9 +196,8 @@ public open class RayCast3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDebugShapeThicknessPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RAYCAST3D, scriptIndex)
-    return true
   }
 
   /**

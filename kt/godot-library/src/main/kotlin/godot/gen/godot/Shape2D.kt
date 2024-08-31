@@ -57,9 +57,8 @@ public open class Shape2D internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHAPE2D, scriptIndex)
-    return true
   }
 
   /**

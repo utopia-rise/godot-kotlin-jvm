@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translates to `mix(a, b, weight)` in the shader language.
@@ -36,9 +36,8 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEMIX, scriptIndex)
-    return true
   }
 
   public enum class OpType(

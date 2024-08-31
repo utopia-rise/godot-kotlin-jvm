@@ -29,9 +29,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICALBONESIMULATOR3D, scriptIndex)
-    return true
   }
 
   /**

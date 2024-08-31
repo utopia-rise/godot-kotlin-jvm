@@ -11,10 +11,10 @@ import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Automatically adapts its port type to the type of the incoming connection and ensures valid
@@ -29,9 +29,8 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
       return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEREROUTE, scriptIndex)
-    return true
   }
 
   public companion object

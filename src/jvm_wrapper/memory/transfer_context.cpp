@@ -28,11 +28,6 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
     return &shared_buffer;
 }
 
-void TransferContext::remove_script_instance(jni::Env& p_env, uint64_t id) {
-    jvalue args[1] = {jni::to_jni_arg(id)};
-    wrapped.call_object_method(p_env, REMOVE_SCRIPT, args);
-}
-
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     ktvariant::get_variant_from_buffer(buffer, r_ret);
@@ -57,6 +52,12 @@ uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
 
 void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
     ktvariant::send_variant_to_buffer(variant, get_and_rewind_buffer(p_env));
+}
+
+void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, ObjectID id) {
+    SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
+    buffer->increment_position(encode_uint64(ptr, buffer->get_cursor()));
+    buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong j_method_ptr, jint expectedReturnType) {
@@ -114,54 +115,4 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(r_error.error != Callable::CallError::CALL_OK, vformat("Call to method %s failed.", method_bind->get_name()));
 #endif
-}
-
-void TransferContext::create_native_object(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object, jint p_script_index) {
-    const StringName& class_name {TypeManager::get_instance().get_engine_type_for_index(static_cast<int>(p_class_index))};
-    Object* ptr = ClassDB::instantiate(class_name);
-
-    auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
-    uint64_t id;
-
-#ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
-#endif
-
-    jni::Env env {p_raw_env};
-
-    KotlinBindingManager::set_instance_binding(ptr);
-    int script_index {static_cast<int>(p_script_index)};
-    if (script_index != -1) {
-        KtObject* kt_object = memnew(KtObject(env, jni::JObject(p_object), ptr->is_ref_counted()));
-        Ref<JvmScript> kotlin_script {JvmScriptManager::get_instance().get_named_script_for_index(script_index)};
-        JvmInstance* script = memnew(JvmInstance(env, ptr, kt_object, kotlin_script.ptr()));
-        ptr->set_script_instance(script);
-    }
-
-    id = ptr->get_instance_id();
-
-    SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
-    buffer->increment_position(encode_uint64(raw_ptr, buffer->get_cursor()));
-    buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
-}
-
-void TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
-    Object* singleton {Engine::get_singleton()->get_singleton_object(
-      TypeManager::get_instance().get_engine_singleton_name_for_index(static_cast<int>(p_class_index))
-    )};
-    jni::Env env {p_raw_env};
-
-    SharedBuffer* buffer {get_instance().get_and_rewind_buffer(env)};
-    buffer->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(singleton), buffer->get_cursor()));
-    buffer->increment_position(encode_uint64(singleton->get_instance_id(), buffer->get_cursor()));
-}
-
-void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
-
-#ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(owner->is_ref_counted(), "Can't 'free' a reference.");
-#endif
-
-    memdelete(owner);
 }

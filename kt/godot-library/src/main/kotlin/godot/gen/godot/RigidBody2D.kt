@@ -507,9 +507,8 @@ public open class RigidBody2D : PhysicsBody2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RIGIDBODY2D, scriptIndex)
-    return true
   }
 
   /**

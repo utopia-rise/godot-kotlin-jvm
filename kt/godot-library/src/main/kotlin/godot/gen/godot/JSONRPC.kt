@@ -36,9 +36,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class JSONRPC : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_JSONRPC, scriptIndex)
-    return true
   }
 
   public fun setScope(scope: String, target: Object): Unit {

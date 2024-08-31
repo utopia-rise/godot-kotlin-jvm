@@ -72,9 +72,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object NativeMenu : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_NATIVEMENU)
-    return false
   }
 
   /**

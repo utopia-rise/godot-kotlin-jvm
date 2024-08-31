@@ -14,10 +14,10 @@ import godot.core.VariantType.LONG
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [PackedDataContainer] can be used to efficiently store data from untyped containers. The data is
@@ -47,9 +47,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKEDDATACONTAINER, scriptIndex)
-    return true
   }
 
   /**

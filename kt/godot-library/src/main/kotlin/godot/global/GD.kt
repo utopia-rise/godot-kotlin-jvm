@@ -4,19 +4,22 @@ import godot.Object
 import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
-import godot.core.*
-import godot.extensions.godotStatic
-import godot.core.Dictionary
+import godot.core.NodePath
+import godot.core.PackedByteArray
+import godot.core.PackedColorArray
+import godot.core.PackedFloat64Array
+import godot.core.PackedInt32Array
+import godot.core.PackedStringArray
+import godot.core.PackedVector2Array
+import godot.core.PackedVector3Array
 import godot.core.memory.MemoryManager
+import godot.extensions.asStatic
 import godot.extensions.loadAs
-
 import godot.util.nullptr
 
 
 object GD : GDMath, GDCore, GDRandom, GDPrint {
-    override var rng: RandomNumberGenerator by godotStatic {
-        RandomNumberGenerator()
-    }
+    override var rng = RandomNumberGenerator().asStatic()
 
     /** Asserts that the condition is true.
     If the condition is false, an error is generated and the program is halted until you resume it.
@@ -73,5 +76,22 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
         cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
     ): T? {
         return ResourceLoader.loadAs(path, typeHint, cacheMode)
+    }
+
+    /**
+     * The MemoryManager runs automatically at the end of each frame, but it can happen that the engine freeze for a long period of time (a loading screen).
+     * You can use that method to manually trigger it if you want memory to be quickly freed.
+     * */
+    fun syncMemory() {
+        MemoryManager.querySync()
+    }
+
+
+    /**
+     * If some cleanups operations are needed when the game closes, you can register callbacks for it.
+     * Useful when you have to free third party resources or terminate non-daemon threads.
+     * */
+    fun callWhenClosing(callback: () -> Unit) {
+        MemoryManager.registerCallback(callback)
     }
 }

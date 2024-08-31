@@ -178,9 +178,8 @@ public open class NinePatchRect : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NINEPATCHRECT, scriptIndex)
-    return true
   }
 
   /**

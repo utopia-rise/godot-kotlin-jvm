@@ -12,9 +12,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Can have [PathFollow2D] child nodes moving along the [Curve2D]. See [PathFollow2D] for more
@@ -38,9 +38,8 @@ public open class Path2D : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PATH2D, scriptIndex)
-    return true
   }
 
   public companion object

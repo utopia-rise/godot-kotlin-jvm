@@ -96,9 +96,8 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDoubleTapPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENTOUCH, scriptIndex)
-    return true
   }
 
   /**

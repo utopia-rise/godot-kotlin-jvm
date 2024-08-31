@@ -14,11 +14,11 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract base class for scrollbars, typically used to navigate through content that extends
@@ -46,9 +46,8 @@ public open class ScrollBar internal constructor() : Range() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCROLLBAR, scriptIndex)
-    return true
   }
 
   public companion object

@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely
@@ -111,9 +112,8 @@ public open class PinJoint2D : Joint2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMotorTargetVelocityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PINJOINT2D, scriptIndex)
-    return true
   }
 
   public companion object

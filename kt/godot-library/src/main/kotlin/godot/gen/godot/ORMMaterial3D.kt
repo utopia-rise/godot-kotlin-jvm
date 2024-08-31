@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * ORMMaterial3D's properties are inherited from [BaseMaterial3D]. Unlike [StandardMaterial3D],
@@ -18,9 +18,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class ORMMaterial3D : BaseMaterial3D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ORMMATERIAL3D, scriptIndex)
-    return true
   }
 
   public companion object

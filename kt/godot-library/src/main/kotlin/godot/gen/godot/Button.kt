@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [Button] is the standard themed button. It can contain text and an icon, and it will display them
@@ -239,9 +240,8 @@ public open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BUTTON, scriptIndex)
-    return true
   }
 
   public companion object

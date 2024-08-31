@@ -31,6 +31,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -39,9 +40,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object Geometry2D : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_GEOMETRY2D)
-    return false
   }
 
   /**

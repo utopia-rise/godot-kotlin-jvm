@@ -69,9 +69,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D, scriptIndex)
-    return true
   }
 
   /**

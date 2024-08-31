@@ -1,27 +1,19 @@
 #include "memory_manager.h"
 
 #include "binding/kotlin_binding_manager.h"
+#include "script/jvm_script_manager.h"
+#include "shared_buffer.h"
+#include "transfer_context.h"
+#include "type_manager.h"
 
 bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance {reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
 }
 
-void MemoryManager::bind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id, jobject p_object) {
-    ObjectID id {static_cast<uint64_t>(instance_id)};
-    jni::JObject j_object {p_object};
-    KotlinBindingManager::bind_object(id, j_object);
-}
-
-void MemoryManager::unbind_instance(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
-    ObjectID id {static_cast<uint64_t>(instance_id)};
-    KotlinBindingManager::unbind_object(id);
-}
-
 void MemoryManager::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
-    RefCounted* ref = reinterpret_cast<RefCounted*>(obj);
-    if (ref && ref->unreference()) { memdelete(ref); }
+    KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
 }
 
 bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
@@ -102,32 +94,127 @@ bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance
     return has_free;
 }
 
-void MemoryManager::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
+void MemoryManager::query_sync(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env {p_raw_env};
+    MemoryManager::get_instance().sync_memory(env);
+}
+
+void MemoryManager::create_native_object(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index, jobject p_object, jint p_script_index) {
+    const StringName& class_name {TypeManager::get_instance().get_engine_type_for_index(static_cast<int>(p_class_index))};
+    Object* ptr = ClassDB::instantiate(class_name);
+
+    auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
+
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_NOW_MSG("JVM instances are leaking.");
+    JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
 #endif
+
+    jni::Env env {p_raw_env};
+
+    KotlinBindingManager::set_instance_binding(ptr);
+    int script_index {static_cast<int>(p_script_index)};
+    if (script_index != -1) {
+        KtObject* kt_object = memnew(KtObject(env, jni::JObject(p_object), ptr->is_ref_counted()));
+        Ref<JvmScript> kotlin_script {JvmScriptManager::get_instance().get_named_script_for_index(script_index)};
+        JvmInstance* script = memnew(JvmInstance(env, ptr, kt_object, kotlin_script.ptr()));
+        ptr->set_script_instance(script);
+    }
+
+    TransferContext::get_instance().write_object_data(env, raw_ptr, ptr->get_instance_id());
 }
 
-void MemoryManager::start(jni::Env& p_env, bool force_gc) {
-    jvalue start_args[1] = {jni::to_jni_arg(force_gc)};
-    wrapped.call_void_method(p_env, START, start_args);
+void MemoryManager::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
+    const String& singleton_name {TypeManager::get_instance().get_engine_singleton_name_for_index(static_cast<int>(p_class_index))};
+    Object* singleton {Engine::get_singleton()->get_singleton_object(singleton_name)};
+
+    jni::Env env {p_raw_env};
+    TransferContext::get_instance().write_object_data(env, reinterpret_cast<uintptr_t>(singleton), singleton->get_instance_id());
 }
 
-void MemoryManager::setDisplayLeaks(jni::Env& p_env, bool b) {
-    jvalue args[1] = {jni::to_jni_arg(b)};
-    wrapped.call_void_method(p_env, SET_DISPLAY, args);
+void MemoryManager::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
+
+#ifdef DEBUG_ENABLED
+    JVM_ERR_FAIL_COND_MSG(owner->is_ref_counted(), "Can't 'free' a RefCounted Object.");
+#endif
+
+    memdelete(owner);
+}
+
+bool MemoryManager::sync_memory(jni::Env& p_env) {
+    bool active = false;
+
+    // Read the list of references to demote, we do it at the end of a frame instead of the constant ping-pong happening each call.
+    to_demote_mutex.lock();
+    if (to_demote_objects.size() > 0) { active = true; }
+    for (JvmInstance* script_instance : to_demote_objects) {
+        script_instance->demote_reference();
+    }
+    to_demote_objects.clear();
+    to_demote_mutex.unlock();
+
+    // Read the list of dead objects and copy them to the JVM.
+    dead_objects_mutex.lock();
+    jint size = static_cast<jsize>(dead_objects.size());
+    if (size > 0) { active = true; }
+    jni::JLongArray arr {p_env, size};
+    arr.set_array_elements(p_env, reinterpret_cast<const jlong*>(dead_objects.ptr()), size);
+    dead_objects.clear();
+    dead_objects_mutex.unlock();
+
+    // Call the JVM side sending all the list of all dead objects and receiving the list of references to decrement
+    jvalue args[1] = {jni::to_jni_arg(arr)};
+    jni::JLongArray refs_to_decrement {wrapped.call_object_method(p_env, SYNC_MEMORY, args)};
+    arr.delete_local_ref(p_env);
+
+    Vector<uint64_t> vec;
+    size = refs_to_decrement.length(p_env);
+    if (size > 0) { active = true; }
+    vec.resize(size);
+    refs_to_decrement.get_array_elements(p_env, reinterpret_cast<jlong*>(vec.ptrw()), size);
+    refs_to_decrement.delete_local_ref(p_env);
+
+    for (uint64_t id : vec) {
+        Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(id));
+        KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
+    }
+
+    return active;
 }
 
 void MemoryManager::clean_up(jni::Env& p_env) {
-    wrapped.call_void_method(p_env, CLEAN_UP);
+    LOG_VERBOSE("Cleaning JVM Memory...")
+    wrapped.call_boolean_method(p_env, CLEAN_UP);
+    LOG_VERBOSE("JVM Memory cleaned!")
 }
 
-bool MemoryManager::is_closed(jni::Env& p_env) {
-    return wrapped.call_boolean_method(p_env, IS_CLOSED);
+void MemoryManager::queue_dead_object(Object* obj) {
+    dead_objects_mutex.lock();
+    dead_objects.push_back(obj->get_instance_id());
+    dead_objects_mutex.unlock();
 }
 
-void MemoryManager::close(jni::Env& p_env) {
-    wrapped.call_void_method(p_env, CLOSE);
+void MemoryManager::queue_demotion(JvmInstance* script_instance) {
+    to_demote_mutex.lock();
+    to_demote_objects.insert(script_instance);
+    to_demote_mutex.unlock();
+}
+
+void MemoryManager::cancel_demotion(JvmInstance* script_instance) {
+    to_demote_mutex.lock();
+    to_demote_objects.erase(script_instance);
+    to_demote_mutex.unlock();
+}
+
+void MemoryManager::try_promotion(JvmInstance* script_instance) {
+    to_demote_mutex.lock();
+    script_instance->promote_reference();
+    to_demote_mutex.unlock();
+}
+
+void MemoryManager::remove_script_instance(jni::Env& p_env, uint64_t id) {
+    jvalue args[1] = {jni::to_jni_arg(id)};
+    wrapped.call_object_method(p_env, REMOVE_SCRIPT, args);
 }
 
 MemoryManager::~MemoryManager() = default;

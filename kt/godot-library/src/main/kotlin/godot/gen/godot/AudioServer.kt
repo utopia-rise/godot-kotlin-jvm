@@ -50,9 +50,8 @@ public object AudioServer : Object() {
   public val busRenamed: Signal3<Long, StringName, StringName> by signal("busIndex", "oldName",
       "newName")
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_AUDIOSERVER)
-    return false
   }
 
   public fun setBusCount(amount: Int): Unit {

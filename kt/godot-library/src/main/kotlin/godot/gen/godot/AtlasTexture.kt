@@ -95,9 +95,8 @@ public open class AtlasTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFilterClipPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ATLASTEXTURE, scriptIndex)
-    return true
   }
 
   /**

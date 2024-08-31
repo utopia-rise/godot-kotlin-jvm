@@ -115,9 +115,8 @@ public open class AnimatedTexture : Texture2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATEDTEXTURE, scriptIndex)
-    return true
   }
 
   /**

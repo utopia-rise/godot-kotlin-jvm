@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package godot.core.memory
 
 import godot.core.KtObject
@@ -6,68 +8,48 @@ import godot.core.NodePath
 import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.VariantType
+import godot.core.memory.binding.GodotBinding
+import godot.core.memory.binding.GodotNativeEntry
+import godot.core.memory.binding.GodotRefCountedEntry
 import godot.util.VoidPtr
-import godot.util.info
-import godot.util.warning
 import java.lang.ref.ReferenceQueue
-import java.lang.ref.WeakReference
-import java.time.Duration
-import java.time.Instant
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
+import kotlin.math.max
 import kotlin.math.min
 
 internal object MemoryManager {
-    /** The delay between 2 iterations of the memory manager. Set to 60fps.*/
-    private const val DELAY = 1000L / 60L
+    /** Base capacity for several containers within the manager.*/
+    private const val INITIAL_CAPACITY = 256
 
-    /** Number of references to check each loop.*/
-    private const val CHECK_NUMBER = 256
+    /** Number of references to decrement each loop at most (Doesn't have priority over the ratio).*/
+    private const val MAX_GC_NUMBER = 64
+
+    /** The fraction of references to check each loop at least (chosen so everything is freed after 1 second at most, assuming a 60 fps game).*/
+    private const val MIN_GC_RATIO = 1f / 60f
 
     /** Maximum size of the objectDB, Godot shouldn't provide index higher than this.*/
     private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = Array<GodotWeakReference?>(OBJECTDB_SIZE) { null }
-
-    /** Indexes of singletons in [ObjectDB] */
-    private val singletonIndexes = mutableListOf<Int>()
-
-    /** Pointers to NativeCoreType.*/
-    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
-
-    /** Queue of objects that need to be bound to native objects*/
-    private val bindingQueue = ArrayDeque<GodotBinding>()
-
-    /**
-     * Queue of objects which will to be bound to native objects in a given iteration.
-     *
-     * At the start of a garbage collection iteration. The objects from the [bindingQueue] are copied into this list in order to spend as little time as possible in a `synchonized` block. Later we loop through this list to actually bind the objects.
-     */
-    private val bindingList = ArrayList<GodotBinding>(CHECK_NUMBER)
+    private val ObjectDB = arrayOfNulls<GodotNativeEntry?>(OBJECTDB_SIZE)
 
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<GodotBinding>()
 
-    /** List of element to remove from ObjectDB*/
-    private val deleteList = ArrayList<GodotWeakReference>(CHECK_NUMBER)
+    /** List of references to decrement.*/
+    private val deadReferences = mutableListOf<GodotRefCountedEntry>()
+
+    /** Pointers to NativeCoreType.*/
+    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(INITIAL_CAPACITY)
 
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
 
-    /** Holds the instances to clean up when the JVM stops.*/
-    private var staticInstances = mutableSetOf<GodotStatic>()
+    /** List of references to decrement.*/
+    private val deadNativeCores = mutableListOf<NativeCoreWeakReference>()
 
-    private val executor = Executors.newSingleThreadScheduledExecutor()
-
-    private var forceJvmGarbageCollector = false
-
-    // Not private because accessed by engine.
-    @Suppress("MemberVisibilityCanBePrivate")
-    var shouldDisplayLeakInstancesOnClose = true
-
-    private var gcState = GCState.NONE
+    /** List of cleanup callbacks. When the game closes, they will be called.*/
+    private var cleanupCallbacks = mutableListOf<() -> Unit>()
 
     // A basic LRU cache.
     private class LRUCache<K, V>(private val capacity: Int) : LinkedHashMap<K, V>(capacity, 0.75f, true) {
@@ -78,8 +60,8 @@ internal object MemoryManager {
 
     // Create an LRU cache for StringName and NodePath objects based on a String key.
     // TODO: Set the initial capacity from the command line.
-    private val stringNameCache = LRUCache<String, StringName>(256)
-    private val nodePathCache = LRUCache<String, NodePath>(256)
+    private val stringNameCache = LRUCache<String, StringName>(INITIAL_CAPACITY)
+    private val nodePathCache = LRUCache<String, NodePath>(INITIAL_CAPACITY)
 
     fun getOrCreateStringName(key: String): StringName {
         return synchronized(stringNameCache) {
@@ -103,19 +85,18 @@ internal object MemoryManager {
         return getOrCreateNodePath(key.toString())
     }
 
-    @Suppress("unused")
-    val isClosed: Boolean
-        get() = gcState == GCState.CLOSED
+    fun registerCallback(callback: () -> Unit) {
+        cleanupCallbacks.add(callback)
+    }
 
-    fun registerObject(instance: KtObject): GodotBinding {
+    fun registerWrapper(instance: KtObject): GodotBinding {
         synchronized(ObjectDB) {
             val id = instance.id
             val binding = getBinding(id.id)
             return if (binding == null) {
                 GodotBinding().also {
                     it.wrapper = instance
-                    ObjectDB[id.index] = GodotWeakReference(it, refReferenceQueue, instance.id)
-                    bindingQueue.addLast(it)
+                    ObjectDB[id.index] = GodotNativeEntry.create(it, refReferenceQueue)
                 }
             } else {
                 binding.wrapper = instance
@@ -131,8 +112,7 @@ internal object MemoryManager {
             return if (binding == null) {
                 GodotBinding().also {
                     it.scriptInstance = instance
-                    ObjectDB[id.index] = GodotWeakReference(it, refReferenceQueue, instance.id)
-                    bindingQueue.addLast(it)
+                    ObjectDB[id.index] = GodotNativeEntry.create(it, refReferenceQueue)
                 }
             } else {
                 binding.scriptInstance = instance
@@ -141,31 +121,15 @@ internal object MemoryManager {
         }
     }
 
-    fun unregisterScriptInstance(id: Long) {
+    fun removeScriptInstance(id: Long) {
         synchronized(ObjectDB) {
             getBinding(id)?.scriptInstance = null
-        }
-    }
-
-    fun registerSingleton(instance: KtObject): GodotBinding {
-        synchronized(ObjectDB) {
-            val index = instance.id.index
-            return GodotBinding().also {
-                it.wrapper = instance
-                ObjectDB[index] = GodotWeakReference(it, refReferenceQueue, instance.id)
-                singletonIndexes.add(index)
-                bindingQueue.addLast(it)
-            }
         }
     }
 
     fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantType) {
         val rawPtr = nativeCoreType._handle
         nativeCoreTypeMap[rawPtr] = NativeCoreWeakReference(nativeCoreType, nativeReferenceQueue, variantType)
-    }
-
-    fun registerStatic(instance: GodotStatic) {
-        staticInstances.add(instance)
     }
 
     fun getInstance(id: Long): KtObject? {
@@ -177,211 +141,142 @@ internal object MemoryManager {
     private fun getBinding(id: Long): GodotBinding? {
         val objectID = ObjectID(id)
         val ref = ObjectDB[objectID.index]
-        if (ref != null && ref.id.id == objectID.id) {
-            return ref.get()
+        if (ref != null && ref.objectID.id == objectID.id) {
+            return ref.binding
         }
         return null
     }
 
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.id.id)
 
-    fun start(forceJvmGarbageCollector: Boolean) {
-        MemoryManager.forceJvmGarbageCollector = forceJvmGarbageCollector
-        gcState = GCState.STARTED
-        info("Starting GC thread")
-        executor.schedule(MemoryManager::run, 0, TimeUnit.MILLISECONDS)
-    }
 
-    private fun run() {
-        while (gcState == GCState.STARTED) {
-            if (forceJvmGarbageCollector) {
-                forceJvmGc()
-            }
-
-            var active = true
-            while (active) {
-                active = manageMemory()
-            }
-
-            Thread.sleep(DELAY)
-        }
-        gcState = GCState.CLOSED
-    }
-
-    private fun manageMemory() = bindNewObjects() || removeObjectsAndDecrementCounter() || removeNativeCoreTypes()
-
-
-    /**
-     * Binding a newly created KtObject by setting itself in the c++ binding.
-     * @return True if a binding has been set.
-     */
-    private fun bindNewObjects(): Boolean {
-        var isActive = false
-        var counter = 0
-
-        //Objects in that list don't have a binding yet,so we call c++ code to set it
-        synchronized(ObjectDB) {
-            //In a synchronized block to copy the content into another list, so we spend as little time as possible blocking access to `ObjectDB`.
-            val size = min(bindingQueue.size, CHECK_NUMBER)
-            while (counter < size) {
-                bindingList.add(bindingQueue.removeFirst())
-                counter++
-            }
-        }
-
-        for (ref in bindingList) {
-            bindInstance(ref.value!!.id.id, ref)
-            isActive = true
-        }
-        bindingList.clear()
-        return isActive
+    private fun syncMemory(freedObjects: LongArray): LongArray {
+        removeNativeCoreTypes()
+        removeDeadObjects(freedObjects)
+        return getDeadReferences()
     }
 
     /**
-     * Remove the [KtObject] references that have died.
-     * Decrement counter of [RefCounted] in the process.
-     * @return True if something has been removed.
+     * Remove the now dead native Object from the JVM ObjectDB.
      */
-    private fun removeObjectsAndDecrementCounter(): Boolean {
-        var isActive = false
-        var counter = 0
+    private fun removeDeadObjects(freedObjects: LongArray) = synchronized(ObjectDB) {
+        for (id in freedObjects) {
+            val objectID = ObjectID(id)
+            val index = objectID.index
+            val ref = ObjectDB[objectID.index]
+            if (ref != null && ref.objectID.id == objectID.id) {
+                // The index could have been taken by a newly created object, we check before it was are about to remove the correct one.
+                ObjectDB[index] = null
+            }
+        }
+    }
 
-        //We poll the reference that have been clear by the GC and then call c++ code to destroy the native object.
-        synchronized(ObjectDB) {
-            while (counter < CHECK_NUMBER) {
-                val ref = ((refReferenceQueue.poll() ?: break) as GodotWeakReference)
-                val index = ref.id.index
+    /**
+     * Get a LongArray containing a collection of dead references that have to be decremented on the native side.
+     * The GC happening in waves, not everything is processed at once, we process the dead references over several frames when necessary.
+     */
+    private fun getDeadReferences(): LongArray {
+        // Pool all dead references first, so we can know the amount of work to do.
+        while (true) {
+            val ref = ((refReferenceQueue.poll() ?: break) as GodotRefCountedEntry)
+            deadReferences.add(ref)
+        }
+
+        val size = deadReferences.size
+        val numberToDecrement = max(
+            min(MAX_GC_NUMBER, size),
+            (MIN_GC_RATIO * size).toInt()
+        )
+
+        val sublist = deadReferences.subList(0, numberToDecrement)
+
+        return synchronized(ObjectDB) {
+            deadReferences.filter {
+                val objectID = it.objectID
+                val index = objectID.index
                 val otherRef = ObjectDB[index]
-                //Check if the ref in the DB hasn't been replaced by a new object before the GC could remove it.
-                if (otherRef === ref) {
+
+                /** This part requires caution. We have to make sure it's safe to decrement the counter of this instance.
+
+                Note that the state of the entry in the ObjectDB at this point in time can be several things:
+                - Not null with its weak reference still valid.
+                - Not null but its weak reference got GCed.
+                - Null
+
+                In the first 2 cases, the not null reference can belong to a different native object.
+
+                Here the different interpretations we can have:
+                - If the dead entry is the same (===) as the one in the ObjectDB, it means it hasn't been replaced yet and is safe to decrement.
+                - If the entry in the objectDB is null, it means it has been queued already, we don't need to queue it again.
+                it can happen if 2 or more wrappers for the same RefCounted are created and GCed between 2 memory syncs.
+                - If the entry in the objectDB is a different one but has the same object ID, it means the wrapper has been replaced (the previous one died, but Godot sent to the JVM again), we don't queue it.
+                - If the entry in the objectDB is a different one but hasn't the same object ID, it means the original objects has already been deleted, and we shouldn't queue it.
+                It can happen if several wrappers have been created but GCed out of order in different phases (in the context of a script removal for example).
+
+                Only the identity test is necessary because that the only case that allows for decrement, all others 3 possibilities don't pass.
+                 **/
+                val decrement = it === otherRef
+                if (decrement) {
                     ObjectDB[index] = null
                 }
-                deleteList.add(ref)
-                isActive = true
-                counter++
+                decrement
             }
         }
-
-        // We let cpp destroy the references in `deleteList`
-        for (ref in deleteList) {
-            if (ref.id.isReference) {
-                decrementRefCounter(ref.id.id)
+            .map { it.objectID.id }
+            .toLongArray()
+            .also {
+                sublist.clear()
             }
-        }
-
-        deleteList.clear()
-        return isActive
     }
 
     /**
-     * Remove dead [NativeCoreType] from memory
-     * @return True if something has been removed.
+     * Remove dead [NativeCoreType] from native memory.
+     * The GC happening in waves, not everything is processed at once, we process the dead native cores over several frames when necessary.
      */
-    private fun removeNativeCoreTypes(): Boolean {
-        var isActive = false
-        var counter = 0
-
-        // Same as before for NativeCoreTypes
-        while (counter < CHECK_NUMBER) {
-            val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
-            if (unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
-                nativeCoreTypeMap.remove(ref.ptr)
-                isActive = true
-            }
-            counter++
+    private fun removeNativeCoreTypes() {
+        // Pool all dead native cores first, so we can know the amount of work to do.
+        while (true) {
+            val ref = ((nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference)
+            deadNativeCores.add(ref)
         }
-        return isActive
+
+        val size = deadNativeCores.size
+        val numberToDecrement = max(
+            min(MAX_GC_NUMBER, size),
+            (MIN_GC_RATIO * size).toInt()
+        )
+
+        deadNativeCores.subList(0, numberToDecrement).onEach {
+            if (unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)) {
+                nativeCoreTypeMap.remove(it.ptr)
+            }
+        }.clear()
     }
 
-    fun close() {
-        info("Closing GC thread")
-        gcState = GCState.CLOSING
-        executor.shutdown()
-        executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
-    }
-
-    @Suppress("unused")
     fun cleanUp() {
-        for (singletonIndex in singletonIndexes) {
-            val id = ObjectDB[singletonIndex]!!.id
-            unbindInstance(id.id)
-            ObjectDB[singletonIndex] = null
+        for (callback in cleanupCallbacks) {
+            callback.invoke()
         }
 
-        while (staticInstances.size > 0) {
-            val iterator = staticInstances.iterator()
-            staticInstances = mutableSetOf()
-            for (instance in iterator) {
-                instance.collect()
-            }
+        // Get through all remaining [RefCounted] instances and decrement their pointers.
+        for (ref in ObjectDB.filterNotNull().filter { it.objectID.isReference }) {
+            decrementRefCounter(ref.objectID.id)
         }
+        ObjectDB.fill(null)
 
-        // Clear any cached StringName or NodePath objects.
-        stringNameCache.clear()
-        nodePathCache.clear()
-
-        var begin = Instant.now()
-        while (ObjectDB.any { it != null } || nativeCoreTypeMap.isNotEmpty()) {
-
-            forceJvmGc()
-            if (manageMemory()) {
-                begin = Instant.now()
-            }
-
-            val finish = Instant.now()
-            if (Duration.between(begin, finish).toMillis() > 5000) {
-                warning(
-                    buildString {
-                        appendLine("Some JVM godot instances are leaked.")
-                        if (shouldDisplayLeakInstancesOnClose) {
-                            val leakedObjects = ObjectDB.filterNotNull()
-                            appendLine("${leakedObjects.size} Objects:")
-                            for (entry in leakedObjects) {
-                                val obj = entry.get()!!.value!!
-                                append("    ${obj::class.simpleName} ${entry.id.id} ")
-                                append("C++ instance alive: ${checkInstance(obj.rawPtr, obj.id.id)}")
-                                append(System.lineSeparator())
-                            }
-                            appendLine("${nativeCoreTypeMap.size} Leaked native core types:")
-                            for (entry in nativeCoreTypeMap) {
-                                append("    ${entry.key}: ${entry.value.get()}")
-                                append(System.lineSeparator())
-                            }
-                        }
-                    }
-                )
-                notifyLeak()
-                break
-            }
+        nativeCoreTypeMap.values.forEach {
+            unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)
         }
+        stringNameCache.values.clear()
+        nodePathCache.values.clear()
+        nativeCoreTypeMap.clear()
     }
 
-    /**
-     * Force JVM garbage collector to run
-     */
-    private fun forceJvmGc() {
-        var any: Any? = Any()
-        val wkRef = WeakReference(any)
-        @Suppress("UNUSED_VALUE")
-        any = null
-        while (wkRef.get() != null) {
-            System.gc()
-        }
-    }
-
-    private external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-    private external fun bindInstance(instanceId: Long, obj: GodotBinding)
-    private external fun unbindInstance(instanceId: Long)
-    private external fun decrementRefCounter(instanceId: Long)
-    private external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
-    private external fun notifyLeak()
-
-
-    private enum class GCState {
-        NONE,
-        STARTED,
-        CLOSING,
-        CLOSED
-    }
-
+    external fun getSingleton(classIndex: Int)
+    external fun createNativeObject(classIndex: Int, instance: KtObject, scriptIndex: Int)
+    external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
+    external fun decrementRefCounter(instanceId: Long)
+    external fun freeObject(rawPtr: VoidPtr)
+    external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    external fun querySync()
 }

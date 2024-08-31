@@ -20,7 +20,6 @@ import godot.core.VariantType.PACKED_INT_64_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -90,9 +89,8 @@ public open class NavigationPathQueryResult2D : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D, scriptIndex)
-    return true
   }
 
   /**

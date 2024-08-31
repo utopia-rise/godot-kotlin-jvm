@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -98,9 +99,8 @@ public open class InputEventMouseButton : InputEventMouse() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDoubleClickPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON, scriptIndex)
-    return true
   }
 
   public companion object

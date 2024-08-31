@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A control used for visual representation of a percentage. Shows fill percentage from right to
@@ -82,9 +83,8 @@ public open class ProgressBar : Range() {
       TransferContext.callMethod(rawPtr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PROGRESSBAR, scriptIndex)
-    return true
   }
 
   public enum class FillMode(

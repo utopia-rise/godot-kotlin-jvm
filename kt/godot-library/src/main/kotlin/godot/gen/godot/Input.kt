@@ -55,9 +55,8 @@ public object Input : Object() {
    */
   public val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_INPUT)
-    return false
   }
 
   /**

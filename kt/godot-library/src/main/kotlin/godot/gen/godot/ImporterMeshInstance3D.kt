@@ -16,12 +16,12 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 public open class ImporterMeshInstance3D : Node3D() {
@@ -135,9 +135,8 @@ public open class ImporterMeshInstance3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_IMPORTERMESHINSTANCE3D, scriptIndex)
-    return true
   }
 
   public companion object

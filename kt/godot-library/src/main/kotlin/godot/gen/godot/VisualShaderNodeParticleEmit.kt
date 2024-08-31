@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node internally calls `emit_subparticle` shader method. It will emit a particle from the
@@ -38,9 +38,8 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT, scriptIndex)
-    return true
   }
 
   public enum class EmitFlags(

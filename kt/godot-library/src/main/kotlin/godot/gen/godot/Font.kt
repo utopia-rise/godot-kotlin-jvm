@@ -62,9 +62,8 @@ public open class Font internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFallbacksPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FONT, scriptIndex)
-    return true
   }
 
   /**

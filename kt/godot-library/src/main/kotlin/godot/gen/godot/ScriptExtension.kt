@@ -23,9 +23,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class ScriptExtension : Script() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCRIPTEXTENSION, scriptIndex)
-    return true
   }
 
   public open fun _editorCanReloadFromFile(): Boolean {

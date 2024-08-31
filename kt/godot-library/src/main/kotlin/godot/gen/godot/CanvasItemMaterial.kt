@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.
@@ -121,9 +122,8 @@ public open class CanvasItemMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CANVASITEMMATERIAL, scriptIndex)
-    return true
   }
 
   public enum class BlendMode(

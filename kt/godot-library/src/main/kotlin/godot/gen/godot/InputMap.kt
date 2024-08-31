@@ -33,9 +33,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object InputMap : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_INPUTMAP)
-    return false
   }
 
   /**

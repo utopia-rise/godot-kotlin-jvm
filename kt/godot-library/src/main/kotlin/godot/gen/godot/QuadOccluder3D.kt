@@ -15,7 +15,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,9 +41,8 @@ public open class QuadOccluder3D : Occluder3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_QUADOCCLUDER3D, scriptIndex)
-    return true
   }
 
   /**

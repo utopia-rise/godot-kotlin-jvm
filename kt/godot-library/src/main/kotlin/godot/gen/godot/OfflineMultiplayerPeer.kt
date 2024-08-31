@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This is the default [MultiplayerAPI.multiplayerPeer] for the [Node.multiplayer]. It mimics the
@@ -20,9 +20,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class OfflineMultiplayerPeer : MultiplayerPeer() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OFFLINEMULTIPLAYERPEER, scriptIndex)
-    return true
   }
 
   public companion object

@@ -205,9 +205,8 @@ public open class PhysicalSkyMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setNightSkyPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICALSKYMATERIAL, scriptIndex)
-    return true
   }
 
   /**

@@ -13,11 +13,11 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is
@@ -48,9 +48,8 @@ public open class CompressedTexture2D : Texture2D() {
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2D, scriptIndex)
-    return true
   }
 
   /**

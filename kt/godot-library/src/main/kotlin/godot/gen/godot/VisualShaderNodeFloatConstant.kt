@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Translated to [code skip-lint]float[/code] in the shader language.
@@ -37,9 +37,8 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT, scriptIndex)
-    return true
   }
 
   public companion object

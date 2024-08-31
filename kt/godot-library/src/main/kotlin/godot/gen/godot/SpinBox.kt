@@ -160,9 +160,8 @@ public open class SpinBox : Range() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPINBOX, scriptIndex)
-    return true
   }
 
   /**

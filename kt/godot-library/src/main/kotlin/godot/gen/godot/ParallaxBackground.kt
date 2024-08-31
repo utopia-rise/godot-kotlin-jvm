@@ -125,9 +125,8 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PARALLAXBACKGROUND, scriptIndex)
-    return true
   }
 
   /**

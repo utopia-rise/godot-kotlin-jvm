@@ -88,9 +88,8 @@ public open class RDPipelineColorBlendState : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAttachmentsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDPIPELINECOLORBLENDSTATE, scriptIndex)
-    return true
   }
 
   /**

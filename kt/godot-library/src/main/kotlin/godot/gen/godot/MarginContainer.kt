@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [MarginContainer] adds an adjustable margin on each side of its child controls. The margins are
@@ -39,9 +39,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class MarginContainer : Container() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MARGINCONTAINER, scriptIndex)
-    return true
   }
 
   public companion object

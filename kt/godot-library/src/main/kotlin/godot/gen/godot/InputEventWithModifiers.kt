@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Stores information about mouse, keyboard, and touch gesture input events. This includes
@@ -98,9 +99,8 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
       TransferContext.callMethod(rawPtr, MethodBindings.setMetaPressedPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
-    return true
   }
 
   /**

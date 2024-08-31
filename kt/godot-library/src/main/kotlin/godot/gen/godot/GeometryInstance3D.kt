@@ -299,9 +299,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GEOMETRYINSTANCE3D, scriptIndex)
-    return true
   }
 
   /**

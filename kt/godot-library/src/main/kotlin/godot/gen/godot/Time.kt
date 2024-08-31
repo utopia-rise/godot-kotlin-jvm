@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -46,9 +47,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public object Time : Object() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_TIME)
-    return false
   }
 
   /**

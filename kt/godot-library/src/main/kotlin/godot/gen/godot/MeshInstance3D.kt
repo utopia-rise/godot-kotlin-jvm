@@ -79,9 +79,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPathPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MESHINSTANCE3D, scriptIndex)
-    return true
   }
 
   /**

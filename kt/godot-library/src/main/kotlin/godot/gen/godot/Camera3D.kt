@@ -290,9 +290,8 @@ public open class Camera3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFarPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERA3D, scriptIndex)
-    return true
   }
 
   /**

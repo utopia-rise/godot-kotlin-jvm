@@ -170,9 +170,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCaptureInputOnDragPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLLISIONOBJECT3D, scriptIndex)
-    return true
   }
 
   /**

@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file
@@ -109,9 +110,8 @@ public open class AudioStreamOggVorbis : AudioStream() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMOGGVORBIS, scriptIndex)
-    return true
   }
 
   public companion object {

@@ -1696,9 +1696,8 @@ public open class ParticleProcessMaterial : Material() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSubEmitterKeepVelocityPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PARTICLEPROCESSMATERIAL, scriptIndex)
-    return true
   }
 
   /**

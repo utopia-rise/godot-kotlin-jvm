@@ -1,41 +1,20 @@
 #ifndef GODOT_JVM_KOTLIN_BINDING_H
 #define GODOT_JVM_KOTLIN_BINDING_H
 
-#include "jvm_wrapper/memory/kt_binding.h"
 #include "jvm_wrapper/registration/kt_object.h"
-
-// forward declaration
-class KotlinBindingManager;
+#include <atomic>
 
 class KotlinBinding {
-    friend class KotlinBindingManager;
-    friend class JvmInstance;
-
-    enum class BindingStatus {
-        CREATED,
-        READY,
-        BOUND
-    };
-
-    KtBinding* kt_binding;
-    Object* owner;
-    BindingStatus status = BindingStatus::CREATED;
-
-    KotlinBinding();
-
-    void set_ready();
-    void set_kt_binding(jni::JObject j_object);
-    void unset_kt_binding();
-
+    int constructor_id = -1;
+    // Using std directly because Godot SafeFlag doesn't provide the right methods (despite wrapping the same std atomic).
+    std::atomic_flag is_incremented = ATOMIC_FLAG_INIT;
 public:
-    ~KotlinBinding();
+    KotlinBinding() = default;
+    ~KotlinBinding() = default;
 
-    void refcount_incremented_unsafe();
-
-    bool refcount_decremented_unsafe();
-
-    bool is_ready();
-    bool is_bound();
+    void init(Object* obj);
+    int get_constructor_id() const;
+    bool test_and_set_incremented();
 };
 
 #endif// GODOT_JVM_KOTLIN_BINDING_H

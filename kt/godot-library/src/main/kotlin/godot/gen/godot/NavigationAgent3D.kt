@@ -582,9 +582,8 @@ public open class NavigationAgent3D : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomPointSizePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
-    return true
   }
 
   /**

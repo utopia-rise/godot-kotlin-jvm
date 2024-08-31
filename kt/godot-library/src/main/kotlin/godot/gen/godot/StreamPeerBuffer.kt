@@ -15,7 +15,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -45,9 +44,8 @@ public open class StreamPeerBuffer : StreamPeer() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDataArrayPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_STREAMPEERBUFFER, scriptIndex)
-    return true
   }
 
   /**

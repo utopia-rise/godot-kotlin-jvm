@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Performs a lookup operation on the texture provided as a uniform for the shader.
@@ -94,9 +94,8 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
       TransferContext.callMethod(rawPtr, MethodBindings.setTextureSourcePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER, scriptIndex)
-    return true
   }
 
   public enum class TextureType(

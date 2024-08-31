@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -52,9 +53,8 @@ public open class InputEvent internal constructor() : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENT, scriptIndex)
-    return true
   }
 
   /**

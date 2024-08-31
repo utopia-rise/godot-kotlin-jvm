@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A container that arranges its child controls horizontally or vertically and wraps them around at
@@ -88,9 +89,8 @@ public open class FlowContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setReverseFillPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FLOWCONTAINER, scriptIndex)
-    return true
   }
 
   /**

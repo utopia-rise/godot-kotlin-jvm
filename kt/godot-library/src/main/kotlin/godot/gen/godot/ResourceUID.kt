@@ -35,9 +35,8 @@ public object ResourceUID : Object() {
    */
   public final const val INVALID_ID: Long = -1
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_RESOURCEUID)
-    return false
   }
 
   /**

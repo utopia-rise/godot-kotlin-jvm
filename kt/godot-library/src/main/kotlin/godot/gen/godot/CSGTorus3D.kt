@@ -21,6 +21,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node allows you to create a torus for use with the CSG system.
@@ -116,9 +117,8 @@ public open class CSGTorus3D : CSGPrimitive3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGTORUS3D, scriptIndex)
-    return true
   }
 
   public companion object

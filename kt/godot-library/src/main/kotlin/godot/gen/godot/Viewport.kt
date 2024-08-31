@@ -859,9 +859,8 @@ public open class Viewport internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCanvasCullMaskPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VIEWPORT, scriptIndex)
-    return true
   }
 
   /**

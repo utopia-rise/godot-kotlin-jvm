@@ -14,10 +14,10 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Gives access to input variables (built-ins) available for the shader. See the shading reference
@@ -45,9 +45,8 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
       TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINPUT, scriptIndex)
-    return true
   }
 
   /**

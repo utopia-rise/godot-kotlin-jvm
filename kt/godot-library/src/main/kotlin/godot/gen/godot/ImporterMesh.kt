@@ -24,7 +24,6 @@ import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -45,9 +44,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class ImporterMesh : Resource() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_IMPORTERMESH, scriptIndex)
-    return true
   }
 
   /**

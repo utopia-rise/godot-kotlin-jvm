@@ -11,7 +11,6 @@ import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -20,9 +19,8 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED, scriptIndex)
-    return true
   }
 
   public open fun _getStreamSamplingRate(): Float {

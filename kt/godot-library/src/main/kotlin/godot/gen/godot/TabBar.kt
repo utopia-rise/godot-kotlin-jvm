@@ -262,9 +262,8 @@ public open class TabBar : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TABBAR, scriptIndex)
-    return true
   }
 
   /**

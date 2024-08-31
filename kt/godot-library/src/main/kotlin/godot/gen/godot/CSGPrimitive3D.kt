@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Parent class for various CSG primitives. It contains code and functionality that is common
@@ -42,9 +43,8 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGPRIMITIVE3D, scriptIndex)
-    return true
   }
 
   public companion object

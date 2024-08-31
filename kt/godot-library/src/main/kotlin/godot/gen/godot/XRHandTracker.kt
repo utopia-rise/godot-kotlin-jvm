@@ -63,9 +63,8 @@ public open class XRHandTracker : XRPositionalTracker() {
       TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackingSourcePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRHANDTRACKER, scriptIndex)
-    return true
   }
 
   /**

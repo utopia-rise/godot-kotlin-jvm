@@ -91,9 +91,8 @@ public open class SplitContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPLITCONTAINER, scriptIndex)
-    return true
   }
 
   /**

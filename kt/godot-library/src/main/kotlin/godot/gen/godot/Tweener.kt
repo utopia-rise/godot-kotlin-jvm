@@ -9,9 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.signals.Signal0
 import godot.signals.signal
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Tweeners are objects that perform a specific animating task, e.g. interpolating a property or
@@ -25,9 +25,8 @@ public open class Tweener internal constructor() : RefCounted() {
    */
   public val finished: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TWEENER, scriptIndex)
-    return true
   }
 
   public companion object

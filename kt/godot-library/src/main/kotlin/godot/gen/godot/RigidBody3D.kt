@@ -512,9 +512,8 @@ public open class RigidBody3D : PhysicsBody3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RIGIDBODY3D, scriptIndex)
-    return true
   }
 
   /**

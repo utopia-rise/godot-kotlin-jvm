@@ -109,9 +109,8 @@ public open class SubViewport : Viewport() {
       TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SUBVIEWPORT, scriptIndex)
-    return true
   }
 
   /**

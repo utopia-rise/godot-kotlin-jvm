@@ -14,10 +14,10 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This node enables OpenXR's hand tracking functionality. The node should be a child node of an
@@ -104,9 +104,8 @@ public open class OpenXRHand : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRHAND, scriptIndex)
-    return true
   }
 
   public enum class Hands(

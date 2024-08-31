@@ -146,9 +146,8 @@ public open class Skeleton3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAnimatePhysicalBonesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETON3D, scriptIndex)
-    return true
   }
 
   /**

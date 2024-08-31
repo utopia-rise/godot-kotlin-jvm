@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.RECT2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -63,9 +62,8 @@ public open class BackBufferCopy : Node2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BACKBUFFERCOPY, scriptIndex)
-    return true
   }
 
   /**

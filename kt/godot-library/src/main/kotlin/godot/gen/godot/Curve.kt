@@ -17,7 +17,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
@@ -95,9 +94,8 @@ public open class Curve : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CURVE, scriptIndex)
-    return true
   }
 
   /**

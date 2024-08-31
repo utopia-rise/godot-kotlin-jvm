@@ -145,9 +145,8 @@ public open class NavigationRegion3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONREGION3D, scriptIndex)
-    return true
   }
 
   /**

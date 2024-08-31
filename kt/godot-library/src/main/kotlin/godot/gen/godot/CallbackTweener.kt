@@ -12,10 +12,10 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [CallbackTweener] is used to call a method in a tweening sequence. See [Tween.tweenCallback] for
@@ -26,9 +26,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CALLBACKTWEENER, scriptIndex)
-    return true
   }
 
   /**

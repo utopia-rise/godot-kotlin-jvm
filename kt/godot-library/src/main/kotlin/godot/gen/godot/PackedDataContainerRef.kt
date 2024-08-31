@@ -11,10 +11,10 @@ import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * When packing nested containers using [PackedDataContainer], they are recursively packed into
@@ -44,9 +44,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKEDDATACONTAINERREF, scriptIndex)
-    return true
   }
 
   /**

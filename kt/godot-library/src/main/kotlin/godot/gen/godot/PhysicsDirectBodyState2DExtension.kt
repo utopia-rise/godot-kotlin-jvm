@@ -28,9 +28,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION, scriptIndex)
-    return true
   }
 
   /**

@@ -12,10 +12,10 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An Omnidirectional light is a type of [Light3D] that emits light in all directions. The light is
@@ -47,9 +47,8 @@ public open class OmniLight3D : Light3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OMNILIGHT3D, scriptIndex)
-    return true
   }
 
   public enum class ShadowMode(

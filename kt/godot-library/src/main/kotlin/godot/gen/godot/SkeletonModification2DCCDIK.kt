@@ -84,9 +84,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCcdikDataChainLengthPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DCCDIK, scriptIndex)
-    return true
   }
 
   /**

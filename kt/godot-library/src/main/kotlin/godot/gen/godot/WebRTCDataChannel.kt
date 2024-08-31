@@ -38,9 +38,8 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
       TransferContext.callMethod(rawPtr, MethodBindings.setWriteModePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBRTCDATACHANNEL, scriptIndex)
-    return true
   }
 
   /**

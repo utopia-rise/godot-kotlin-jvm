@@ -136,9 +136,8 @@ public open class Timer : Node() {
       return (TransferContext.readReturnValue(DOUBLE, false) as Double)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TIMER, scriptIndex)
-    return true
   }
 
   /**

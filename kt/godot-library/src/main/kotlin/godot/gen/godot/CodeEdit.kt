@@ -358,9 +358,8 @@ public open class CodeEdit : TextEdit() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAutoBraceCompletionPairsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CODEEDIT, scriptIndex)
-    return true
   }
 
   /**

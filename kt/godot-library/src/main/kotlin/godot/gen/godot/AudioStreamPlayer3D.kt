@@ -358,9 +358,8 @@ public open class AudioStreamPlayer3D : Node3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setDopplerTrackingPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER3D, scriptIndex)
-    return true
   }
 
   /**

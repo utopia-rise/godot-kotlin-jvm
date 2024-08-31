@@ -245,9 +245,8 @@ public open class AnimationMixer internal constructor() : Node() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeDiscretePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONMIXER, scriptIndex)
-    return true
   }
 
   /**

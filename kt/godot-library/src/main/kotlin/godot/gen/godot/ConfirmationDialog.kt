@@ -13,10 +13,10 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing
@@ -49,9 +49,8 @@ public open class ConfirmationDialog : AcceptDialog() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONFIRMATIONDIALOG, scriptIndex)
-    return true
   }
 
   /**

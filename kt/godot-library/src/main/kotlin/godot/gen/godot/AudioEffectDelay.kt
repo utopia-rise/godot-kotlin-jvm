@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Plays input signal back after a period of time. The delayed signal may be played back multiple
@@ -210,9 +211,8 @@ public open class AudioEffectDelay : AudioEffect() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackLowpassPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTDELAY, scriptIndex)
-    return true
   }
 
   public companion object

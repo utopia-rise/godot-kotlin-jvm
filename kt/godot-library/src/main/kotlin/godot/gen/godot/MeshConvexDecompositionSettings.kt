@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Parameters to be used with a [Mesh] convex decomposition operation.
@@ -210,9 +211,8 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setProjectHullVerticesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS, scriptIndex)
-    return true
   }
 
   public enum class Mode(

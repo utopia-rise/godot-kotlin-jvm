@@ -13,11 +13,11 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for [CompressedTexture2DArray] and [CompressedTexture3D]. Cannot be used directly, but
@@ -36,9 +36,8 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
       return (TransferContext.readReturnValue(STRING, false) as String)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDTEXTURELAYERED, scriptIndex)
-    return true
   }
 
   /**

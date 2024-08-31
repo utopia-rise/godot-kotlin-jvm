@@ -37,9 +37,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ENETCONNECTION, scriptIndex)
-    return true
   }
 
   /**

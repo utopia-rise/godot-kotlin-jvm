@@ -139,9 +139,8 @@ public open class CodeHighlighter : SyntaxHighlighter() {
       TransferContext.callMethod(rawPtr, MethodBindings.setColorRegionsPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CODEHIGHLIGHTER, scriptIndex)
-    return true
   }
 
   /**

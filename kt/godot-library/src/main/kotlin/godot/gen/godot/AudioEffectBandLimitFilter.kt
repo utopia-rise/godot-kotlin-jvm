@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Limits the frequencies in a range around the [AudioEffectFilter.cutoffHz] and allows frequencies
@@ -17,9 +17,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class AudioEffectBandLimitFilter : AudioEffectFilter() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER, scriptIndex)
-    return true
   }
 
   public companion object

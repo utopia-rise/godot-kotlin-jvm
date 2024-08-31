@@ -14,12 +14,12 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is
@@ -118,9 +118,8 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RIBBONTRAILMESH, scriptIndex)
-    return true
   }
 
   public enum class Shape(

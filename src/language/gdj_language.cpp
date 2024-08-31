@@ -1,6 +1,7 @@
 #include "gdj_language.h"
 
 #include "gd_kotlin.h"
+#include "jvm_wrapper/memory/memory_manager.h"
 #include "lifecycle/paths.h"
 #include "names.h"
 #include "script/jvm_script_manager.h"
@@ -33,6 +34,12 @@ void GdjLanguage::init() {
 #ifdef DEBUG_ENABLED
     GDKotlin::get_instance().validate_state();
 #endif
+}
+
+void GdjLanguage::frame() {
+    if (unlikely(GDKotlin::get_instance().user_configuration.disable_gc)) { return; }
+    jni::Env env {jni::Jvm::current_env()};
+    MemoryManager::get_instance().sync_memory(env);
 }
 
 void GdjLanguage::thread_enter() {

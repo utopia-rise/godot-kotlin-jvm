@@ -183,9 +183,8 @@ public object RenderingServer : Object() {
    */
   public val framePostDraw: Signal0 by signal()
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_RENDERINGSERVER)
-    return false
   }
 
   /**

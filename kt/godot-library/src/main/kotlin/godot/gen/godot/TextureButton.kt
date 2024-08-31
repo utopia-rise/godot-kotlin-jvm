@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
@@ -178,9 +179,8 @@ public open class TextureButton : BaseButton() {
       TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTUREBUTTON, scriptIndex)
-    return true
   }
 
   public enum class StretchMode(

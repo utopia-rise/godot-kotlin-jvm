@@ -200,9 +200,8 @@ public open class VideoStreamPlayer : Control() {
       TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VIDEOSTREAMPLAYER, scriptIndex)
-    return true
   }
 
   /**

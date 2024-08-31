@@ -15,7 +15,6 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -40,9 +39,8 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
       TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT, scriptIndex)
-    return true
   }
 
   /**

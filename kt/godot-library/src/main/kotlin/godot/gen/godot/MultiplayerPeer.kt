@@ -95,9 +95,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
       TransferContext.callMethod(rawPtr, MethodBindings.setTransferChannelPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIPLAYERPEER, scriptIndex)
-    return true
   }
 
   /**

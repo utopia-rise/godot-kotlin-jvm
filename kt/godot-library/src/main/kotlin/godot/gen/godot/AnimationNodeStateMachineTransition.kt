@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes
@@ -190,9 +191,8 @@ public open class AnimationNodeStateMachineTransition : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION, scriptIndex)
-    return true
   }
 
   public enum class SwitchMode(

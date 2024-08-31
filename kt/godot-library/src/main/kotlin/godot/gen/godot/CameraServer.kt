@@ -17,7 +17,6 @@ import godot.core.memory.TransferContext
 import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -44,9 +43,8 @@ public object CameraServer : Object() {
    */
   public val cameraFeedRemoved: Signal1<Long> by signal("id")
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_CAMERASERVER)
-    return false
   }
 
   /**

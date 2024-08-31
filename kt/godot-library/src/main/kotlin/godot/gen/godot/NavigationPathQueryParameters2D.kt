@@ -168,9 +168,8 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D, scriptIndex)
-    return true
   }
 
   /**

@@ -13,11 +13,11 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Shader source code in text form.
@@ -111,9 +111,8 @@ public open class RDShaderSource : RefCounted() {
       TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDSHADERSOURCE, scriptIndex)
-    return true
   }
 
   public companion object

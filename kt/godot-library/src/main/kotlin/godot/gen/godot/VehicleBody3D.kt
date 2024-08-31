@@ -12,11 +12,11 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * This physics body implements all the physics logic needed to simulate a car. It is based on the
@@ -89,9 +89,8 @@ public open class VehicleBody3D : RigidBody3D() {
       TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VEHICLEBODY3D, scriptIndex)
-    return true
   }
 
   public companion object

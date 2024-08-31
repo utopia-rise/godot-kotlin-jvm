@@ -207,9 +207,8 @@ public open class ColorPicker : VBoxContainer() {
       TransferContext.callMethod(rawPtr, MethodBindings.setPresetsVisiblePtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLORPICKER, scriptIndex)
-    return true
   }
 
   /**

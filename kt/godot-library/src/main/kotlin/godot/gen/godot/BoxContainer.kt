@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A container that arranges its child controls horizontally or vertically, rearranging them
@@ -55,9 +56,8 @@ public open class BoxContainer : Container() {
       TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BOXCONTAINER, scriptIndex)
-    return true
   }
 
   /**

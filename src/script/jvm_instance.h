@@ -4,14 +4,20 @@
 #include "core/object/script_language.h"
 #include "jvm_script.h"
 #include "jvm_wrapper/registration/kt_class.h"
+#include "jvm_wrapper/memory/memory_manager.h"
 
 class JvmInstance : public ScriptInstance {
+    friend class MemoryManager;
 private:
     Object* owner;
     KtObject* kt_object;
     KtClass* kt_class;
     Ref<JvmScript> script;
+    SafeFlag to_demote_flag;
     bool delete_flag;
+
+    void demote_reference();
+    void promote_reference();
 
 public:
     JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, JvmScript* p_script);

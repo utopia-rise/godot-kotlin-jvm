@@ -7,9 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [CheckButton] is a toggle button displayed as a check field. It's similar to [CheckBox] in
@@ -21,9 +21,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 public open class CheckButton : Button() {
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CHECKBUTTON, scriptIndex)
-    return true
   }
 
   public companion object

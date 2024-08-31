@@ -372,9 +372,8 @@ public open class FontFile : Font() {
       TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeatureOverridesPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FONTFILE, scriptIndex)
-    return true
   }
 
   /**

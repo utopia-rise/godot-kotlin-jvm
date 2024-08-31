@@ -15,10 +15,10 @@ import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
-import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
@@ -175,9 +175,8 @@ public open class RDShaderSPIRV : Resource() {
       TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
     }
 
-  public override fun new(scriptIndex: Int): Boolean {
+  public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDSHADERSPIRV, scriptIndex)
-    return true
   }
 
   public companion object
