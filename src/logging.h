@@ -9,6 +9,9 @@
 #define LOG_INFO(message) print_line(vformat("Godot-JVM: %s", message))
 #define LOG_WARNING(message) WARN_PRINT(vformat("Godot-JVM: %s", message))
 #define LOG_ERROR(message) ERR_PRINT(vformat("Godot-JVM: %s", message))
+#define LOG_ERROR_WITH_ALERT(message)                   \
+    OS::get_singleton()->alert(message, "Fatal error"); \
+    ERR_PRINT(vformat("Godot-JVM: %s", message))
 
 #define JVM_ERR_FAIL_MSG(message) ERR_FAIL_EDMSG(vformat("Godot-JVM: %s", message))
 #define JVM_ERR_FAIL_V_MSG(ret_var, message) ERR_FAIL_V_EDMSG(ret_var, vformat("Godot-JVM: %s", message))
