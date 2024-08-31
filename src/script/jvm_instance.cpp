@@ -85,7 +85,7 @@ bool JvmInstance::get_or_default(const StringName& p_name, Variant& r_ret) const
 
     KtProperty* ktProperty {kt_class->get_property(p_name)};
     if (ktProperty) {
-        ktProperty->safe_call_get(env, kt_object, r_ret);
+        ktProperty->call_get(env, kt_object, r_ret);
         return true;
     } else {
         return false;
