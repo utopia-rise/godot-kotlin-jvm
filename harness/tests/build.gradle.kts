@@ -141,14 +141,6 @@ tasks {
     register<Exec>("runExportedGutTests") {
         group = "verification"
 
-        val exportTask = if (project.property("target") == "debug") {
-            exportDebug
-        } else {
-            exportRelease
-        }
-
-        dependsOn(importResources, exportTask)
-
         val executable = projectDir
             .resolve("export")
             .listFiles()
