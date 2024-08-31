@@ -163,13 +163,13 @@ tasks {
             }
             ?.absolutePath
 
-        setupTestExecution {
+        setupTestExecution(useFilePath = false) {
             executable ?: "no_test_executable_found"
         }
     }
 }
 
-fun Exec.setupTestExecution(executableProvider: () -> String) {
+fun Exec.setupTestExecution(useFilePath: Boolean = true, executableProvider: () -> String) {
     var didAllTestsPass = false
     var isJvmClosed = false
     val testOutputFile = File("${projectDir}/test_output.txt")
@@ -205,18 +205,24 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
 
     this.isIgnoreExitValue = true
 
+    val args = if (useFilePath) {
+        "-s --headless --path $projectDir addons/gut/gut_cmdln.gd"
+    } else {
+        "--headless"
+    }
+
     doFirst {
         if (HostManager.hostIsMingw) {
             this@setupTestExecution.commandLine(
                 "cmd",
                 "/c",
-                "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider()} $args",
             )
         } else {
             this@setupTestExecution.commandLine(
                 "bash",
                 "-c",
-                "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider()} $args",
             )
         }
     }
