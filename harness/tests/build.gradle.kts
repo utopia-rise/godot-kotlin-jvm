@@ -150,7 +150,7 @@ tasks {
                 it.forEach { file -> file.setExecutable(true) }
             }
             ?.firstOrNull { file ->
-                listOf("exe", "x64_64", "app")
+                listOf("exe", "x86_64", "app")
                     .any { executableExtensions -> file.name.contains(executableExtensions) }
             }
             ?.let { executable ->
@@ -162,10 +162,8 @@ tasks {
             }
             ?.absolutePath
 
-        this.enabled = executable != null
-
         setupTestExecution {
-            executable ?: ""
+            executable ?: "no_test_executable_found"
         }
     }
 }
