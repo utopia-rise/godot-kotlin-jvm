@@ -83,6 +83,7 @@ jobs:
       - name: Export tests
         run: |
           cd modules/kotlin_jvm/harness/tests/
+          ls -lua
           ./gradlew exportRelease
         timeout-minutes: 30
 
