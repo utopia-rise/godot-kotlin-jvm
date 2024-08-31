@@ -1,17 +1,15 @@
 package godot.codegen.models.enriched
 
-import com.squareup.kotlinpoet.ANY
-import godot.tools.common.constants.GodotTypes
-import godot.tools.common.extensions.convertToCamelCase
-import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isObjectSubClass
-import godot.codegen.workarounds.sanitizeApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Property
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.CastableTrait
 import godot.codegen.traits.IDocumented
 import godot.codegen.traits.NullableTrait
+import godot.codegen.workarounds.sanitizeApiType
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.extensions.convertToCamelCase
 
 class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait, IDocumented {
     val name = internal.name.replace("/", "_").convertToCamelCase()
@@ -38,7 +36,7 @@ class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait, I
         get() = getterMethod?.type ?: internal.type
 
     override val type: String
-        get() = if (internal.type.indexOf(",") != -1) {
+        get() = if (internalType.indexOf(",") != -1) {
             // There are property with multiple types, and it's all Materials, so
             // Godot's developer should make more strict API
             "Material"

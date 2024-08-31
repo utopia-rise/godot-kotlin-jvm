@@ -614,7 +614,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CellShape = entries.single { it.id == `value` }
     }
   }
 

@@ -1334,7 +1334,7 @@ public open class RichTextLabel : Control() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MetaUnderline = entries.single { it.id == `value` }
     }
   }
 

@@ -477,7 +477,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Joint = entries.single { it.id == `value` }
     }
   }
 

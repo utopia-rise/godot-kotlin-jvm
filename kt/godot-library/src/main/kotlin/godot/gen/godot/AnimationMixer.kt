@@ -687,7 +687,8 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AnimationCallbackModeDiscrete =
+          entries.single { it.id == `value` }
     }
   }
 

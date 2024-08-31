@@ -652,11 +652,11 @@ public open class ParticleProcessMaterial : Material() {
    * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
    * instead.
    */
-  public var orbitVelocityCurve: Material?
+  public var orbitVelocityCurve: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, MethodBindings.getParamTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 2L, OBJECT to value)
@@ -1033,11 +1033,11 @@ public open class ParticleProcessMaterial : Material() {
    * Each particle's scale will vary along this [CurveTexture] over its lifetime. If a
    * [CurveXYZTexture] is supplied instead, the scale will be separated per-axis.
    */
-  public var scaleCurve: Material?
+  public var scaleCurve: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, MethodBindings.getParamTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 8L, OBJECT to value)
@@ -1091,11 +1091,11 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Either a [CurveTexture] or a [CurveXYZTexture] that scales each particle based on its velocity.
    */
-  public var scaleOverVelocityCurve: Material?
+  public var scaleOverVelocityCurve: Texture2D?
     get() {
       TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr, MethodBindings.getParamTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to 17L, OBJECT to value)

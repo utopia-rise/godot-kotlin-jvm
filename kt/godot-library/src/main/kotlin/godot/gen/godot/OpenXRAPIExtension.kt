@@ -244,7 +244,8 @@ public open class OpenXRAPIExtension : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): OpenXRAlphaBlendModeSupport =
+          entries.single { it.id == `value` }
     }
   }
 

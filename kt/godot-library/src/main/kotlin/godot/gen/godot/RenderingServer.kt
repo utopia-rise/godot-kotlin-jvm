@@ -7310,7 +7310,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportVRSUpdateMode = entries.single { it.id == `value` }
     }
   }
 
@@ -7392,7 +7392,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompositorEffectFlags = entries.single { it.id == `value` }
     }
   }
 
@@ -7432,7 +7432,8 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompositorEffectCallbackType =
+          entries.single { it.id == `value` }
     }
   }
 
@@ -7599,7 +7600,7 @@ public object RenderingServer : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentFogMode = entries.single { it.id == `value` }
     }
   }
 

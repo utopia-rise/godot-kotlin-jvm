@@ -1524,11 +1524,11 @@ public open class Environment : Resource() {
    * grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more
    * complex LUT. Effective only if [adjustmentEnabled] is `true`.
    */
-  public var adjustmentColorCorrection: Material?
+  public var adjustmentColorCorrection: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentColorCorrectionPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+      return (TransferContext.readReturnValue(OBJECT, true) as Texture?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
@@ -1915,7 +1915,7 @@ public open class Environment : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FogMode = entries.single { it.id == `value` }
     }
   }
 

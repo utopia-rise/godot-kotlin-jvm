@@ -104,11 +104,11 @@ public open class Camera3D : Node3D() {
   /**
    * The [CameraAttributes] to use for this camera.
    */
-  public var attributes: Material?
+  public var attributes: CameraAttributes?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, MethodBindings.getAttributesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+      return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

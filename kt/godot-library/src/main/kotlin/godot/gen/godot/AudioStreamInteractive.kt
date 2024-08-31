@@ -288,7 +288,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransitionFromTime = entries.single { it.id == `value` }
     }
   }
 
@@ -312,7 +312,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransitionToTime = entries.single { it.id == `value` }
     }
   }
 
@@ -349,7 +349,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FadeMode = entries.single { it.id == `value` }
     }
   }
 
@@ -377,7 +377,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AutoAdvanceMode = entries.single { it.id == `value` }
     }
   }
 

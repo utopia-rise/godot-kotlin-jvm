@@ -322,11 +322,11 @@ public open class LightmapGI : VisualInstance3D() {
    * range present when baking. If exposure is too high, the [LightmapGI] will have banding artifacts
    * or may have over-exposure artifacts.
    */
-  public var cameraAttributes: Material?
+  public var cameraAttributes: CameraAttributes?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+      return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

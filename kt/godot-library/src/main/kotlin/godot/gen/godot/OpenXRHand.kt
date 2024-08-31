@@ -185,7 +185,7 @@ public open class OpenXRHand : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SkeletonRig = entries.single { it.id == `value` }
     }
   }
 
@@ -213,7 +213,7 @@ public open class OpenXRHand : Node3D() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BoneUpdate = entries.single { it.id == `value` }
     }
   }
 
