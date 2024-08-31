@@ -76,6 +76,7 @@ jobs:
 
       - name: Create JRE
         run: |
+          cd modules/kotlin_jvm/harness/tests/
           jlink --add-modules java.base,java.logging --output jre-amd64-windows
 
       - name: Export tests
