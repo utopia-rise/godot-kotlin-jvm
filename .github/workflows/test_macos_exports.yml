@@ -69,7 +69,7 @@ jobs:
         run: |
           chmod +x bin/godot.*
           mkdir -p modules/kotlin_jvm/harness/tests/export
-          mv export_template_all_macos.zip modules/kotlin_jvm/harness/tests/export/export_template_all_macos.zip
+          mv export_template_all_macos.zip modules/kotlin_jvm/harness/tests/export_template_all_macos.zip
 
       - name: Build tests project
         run: |
