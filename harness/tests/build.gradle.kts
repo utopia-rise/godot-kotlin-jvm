@@ -142,7 +142,7 @@ tasks {
     register<Exec>("runExportedGutTests") {
         group = "verification"
 
-        val exportTask = if (getProperty("target") == "debug") {
+        val exportTask = if (project.property("target") == "debug") {
             exportDebug
         } else {
             exportRelease
