@@ -99,8 +99,8 @@ jobs:
         run: |
           cd modules/kotlin_jvm/harness/tests/export
           hdiutil attach tests.dmg
-          cp -a /Volumes/tests/Godot\ Kotlin\ Tests.app Godot\ Kotlin\ Tests.app
-          hdiutil detach /Volumes/tests
+          cp -a /Volumes/Godot\ Kotlin\ Tests/Godot\ Kotlin\ Tests.app Godot\ Kotlin\ Tests.app
+          hdiutil detach /Volumes/Godot\ Kotlin\ Tests
 
       - name: Run Tests
         run: |
