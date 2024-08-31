@@ -57,8 +57,6 @@ KotlinBinding* KotlinBindingManager::get_instance_binding(Object* p_object) {
     return binding;
 }
 
-void KotlinBindingManager::decrement_counter(RefCounted* p_ref) {
+void KotlinBindingManager::free_binding(Object* p_ref) {
     p_ref->free_instance_binding(&GDKotlin::get_instance());
-
-    if (p_ref->unreference()) { memdelete(p_ref); }
 }

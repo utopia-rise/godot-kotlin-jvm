@@ -30,7 +30,7 @@ public:
     // Doesn't set the KtObject as it doesn't exist yet, bind_object has be used later.
     static KotlinBinding* get_instance_binding(Object* p_object);
 
-    static void decrement_counter(RefCounted* p_ref);
+    static void free_binding(Object* p_ref);
 };
 
 #endif// GODOT_JVM_KOTLIN_BINDING_MANAGER_H

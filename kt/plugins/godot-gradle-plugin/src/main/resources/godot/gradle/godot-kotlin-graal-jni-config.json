@@ -49,7 +49,7 @@
     ],
     "methods" : [
       { "name" : "icall", "parameterTypes" : ["long", "long", "int"] },
-      { "name" : "getBuffer", "parameterTypes" : [] },
+      { "name" : "getBuffer", "parameterTypes" : [] }
 
     ]
   },
@@ -80,7 +80,7 @@
       { "name" : "cleanUp","parameterTypes" : [] },
       { "name" : "removeScriptInstance", "parameterTypes" : ["long"] },
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
-      { "name" : "decrementRefCounter", "parameterTypes" : ["long"] },
+      { "name" : "releaseBinding", "parameterTypes" : ["long"] },
       { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
       { "name" : "querySync", "parameterTypes" : [] },
       { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
