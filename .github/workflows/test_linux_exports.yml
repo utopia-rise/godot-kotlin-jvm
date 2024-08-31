@@ -80,10 +80,17 @@ jobs:
           cd modules/kotlin_jvm/harness/tests/
           jlink --add-modules java.base,java.logging --output jre-amd64-linux
 
-      - name: Export tests
+      - name: Export tests debug
+        if: ${{ matrix.bootstrap-target == 'debug' }}
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          ls -lua
+          ./gradlew exportDebug
+        timeout-minutes: 30
+
+      - name: Export tests release
+        if: ${{ matrix.bootstrap-target == 'release' }}
+        run: |
+          cd modules/kotlin_jvm/harness/tests/
           ./gradlew exportRelease
         timeout-minutes: 30
 

@@ -84,6 +84,29 @@ tasks {
             )
         }
     }
+    val exportDebug by registering(Exec::class) {
+        description = "Exports the tests for the current host OS in debug mode"
+        dependsOn(importResources, build)
+
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
+        val target = when {
+            HostManager.hostIsLinux -> "tests_linux"
+            HostManager.hostIsMac -> "tests_macos"
+            HostManager.hostIsMingw -> "tests_windows"
+            else -> throw IllegalStateException("Unsupported OS for exporting")
+        }
+
+        projectDir.resolve("export").mkdirs()
+
+        commandLine(
+            provideEditorExecutable().absolutePath,
+            "--headless",
+            "--export-debug",
+            target,
+        )
+    }
     val exportRelease by registering(Exec::class) {
         description = "Exports the tests for the current host OS in release mode"
         dependsOn(importResources, build)
@@ -119,7 +142,13 @@ tasks {
     register<Exec>("runExportedGutTests") {
         group = "verification"
 
-        dependsOn(importResources, exportRelease)
+        val exportTask = if (getProperty("target") == "debug") {
+            exportDebug
+        } else {
+            exportRelease
+        }
+
+        dependsOn(importResources, exportTask)
 
         val executable = projectDir
             .resolve("export")

@@ -81,7 +81,15 @@ jobs:
           jlink --add-modules java.base,java.logging --output jre-arm64-macos
           mkdir jre-amd64-macos #create a fake jre dir for amd64 so the export is happy. The test will run on arm anyways
 
-      - name: Export tests
+      - name: Export tests debug
+        if: ${{ matrix.bootstrap-target == 'debug' }}
+        run: |
+          cd modules/kotlin_jvm/harness/tests/
+          ./gradlew exportDebug
+        timeout-minutes: 30
+
+      - name: Export tests release
+        if: ${{ matrix.bootstrap-target == 'release' }}
         run: |
           cd modules/kotlin_jvm/harness/tests/
           ./gradlew exportRelease
