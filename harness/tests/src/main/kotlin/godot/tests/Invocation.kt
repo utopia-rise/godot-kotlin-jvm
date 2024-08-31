@@ -78,7 +78,7 @@ class Invocation : Node3D() {
 
 	@Export
 	@RegisterProperty
-	var lateinitString: String? = "null"
+	var lateinitString: String? = null
 
 	@RegisterProperty
 	lateinit var registerObject: OtherScript
