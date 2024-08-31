@@ -12,7 +12,7 @@ namespace bridges {
         JNI_METHOD(PRINT_STACKTRACE)
 
         INIT_JNI_BINDINGS(
-            INIT_JNI_METHOD(PRINT_STACKTRACE, "getStacktrace", "()[Ljava/lang/String;")
+            INIT_JNI_METHOD(PRINT_STACKTRACE, "getStacktrace", "()Ljava/lang/String;")
             INIT_NATIVE_METHOD("print", "()V", GDPrintBridge::print)
             INIT_NATIVE_METHOD("printRich", "()V", GDPrintBridge::print_rich)
             INIT_NATIVE_METHOD("printVerbose", "()V", GDPrintBridge::print_verbose2)
