@@ -11,6 +11,20 @@ void GDPrintBridge::print(JNIEnv* p_raw_env, jobject p_instance) {
     print_line(args[0].operator String());
 }
 
+void GDPrintBridge::print_rich(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext::get_instance().read_args(env, args);
+    print_line_rich(args[0].operator String());
+}
+
+void GDPrintBridge::print_verbose2(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext::get_instance().read_args(env, args);
+    print_verbose(args[0].operator String());
+}
+
 void GDPrintBridge::print_err(JNIEnv* p_raw_env, jobject p_instance) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
@@ -23,6 +37,27 @@ void GDPrintBridge::print_raw(JNIEnv* p_raw_env, jobject p_instance) {
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
     OS::get_singleton()->print("%s", (args[0].operator String()).utf8().get_data());
+}
+
+void GDPrintBridge::push_error(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext::get_instance().read_args(env, args);
+    ERR_PRINT(args[0].operator String());
+}
+
+void GDPrintBridge::push_warning(JNIEnv* p_raw_env, jobject p_instance) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext::get_instance().read_args(env, args);
+    WARN_PRINT(args[0].operator String());
+}
+
+String GDPrintBridge::get_jvm_stacktrace(jni::Env& p_env) {
+    jni::JString str {wrapped.call_object_method(p_env, PRINT_STACKTRACE)};
+    String ret {p_env.from_jstring(str)};
+    str.delete_local_ref(p_env);
+    return ret;
 }
 
 GDPrintBridge::~GDPrintBridge() = default;

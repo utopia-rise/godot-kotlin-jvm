@@ -13,7 +13,6 @@ import godot.util.isEqualApprox
 import godot.util.isZeroApprox
 import godot.util.toRealT
 import kotlin.math.pow
-import kotlin.math.abs
 import kotlin.math.sign
 
 //Necessary for stepDecimal function
@@ -209,7 +208,7 @@ internal interface GDMath {
 
     /** Returns the floating-point modulus of a/b that wraps equally in positive and negative. */
     fun fposmod(a: Double, b: Double): Double {
-        return a.toRealT().fposmod(b.toRealT()).toDouble()
+        return a.toRealT().fposmod(b.toRealT())
     }
 
     /** Returns a normalized value considering the given range. This is the opposite of lerp. */
@@ -384,10 +383,10 @@ internal interface GDMath {
     }
 
     /** Converts a 2D point expressed in the polar coordinate system (a distance from the origin r and an angle th) to the cartesian coordinate system (X and Y axis). */
-    fun polar2cartesian(r: Float, th: Float) = polar2cartesian(r.toDouble(), th.toDouble())
+    fun polarToCartesian(r: Float, th: Float) = polarToCartesian(r.toDouble(), th.toDouble())
 
     /** Converts a 2D point expressed in the polar coordinate system (a distance from the origin r and an angle th) to the cartesian coordinate system (X and Y axis). */
-    fun polar2cartesian(r: Double, th: Double) = Vector2(r * kotlin.math.sin(th), r * kotlin.math.cos(th))
+    fun polarToCartesian(r: Double, th: Double) = Vector2(r * kotlin.math.sin(th), r * kotlin.math.cos(th))
 
 
     /** Returns the floating-point modulus of a/b that wraps equally in positive and negative. */
@@ -423,12 +422,20 @@ internal interface GDMath {
     fun radToDeg(rad: Double) = rad * 360 / TAU
 
 
-    /** Maps a value from range [istart, istop] to [ostart, ostop]. */
-    fun rangeLerp(value: Float, istart: Float, istop: Float, ostart: Float, ostop: Float) =
+    /** Maps a value from range [istart, istop] to [ostart, ostop]. See also lerp and inverse_lerp.
+     * If value is outside [istart, istop], then the resulting value will also be outside [ostart, ostop].
+     * If this is not desired, use clamp on the result of this function.
+     * For complex use cases where multiple ranges are needed, consider using Curve or Gradient instead.
+     * Note: If istart == istop, the return value is undefined (most likely NaN, INF, or -INF).*/
+    fun remap(value: Float, istart: Float, istop: Float, ostart: Float, ostop: Float) =
         lerp(ostart, ostop, inverseLerp(istart, istop, value))
 
-    /** Maps a value from range [istart, istop] to [ostart, ostop]. */
-    fun rangeLerp(value: Double, istart: Double, istop: Double, ostart: Double, ostop: Double) =
+    /** Maps a value from range [istart, istop] to [ostart, ostop]. See also lerp and inverse_lerp.
+     * If value is outside [istart, istop], then the resulting value will also be outside [ostart, ostop].
+     * If this is not desired, use clamp on the result of this function.
+     * For complex use cases where multiple ranges are needed, consider using Curve or Gradient instead.
+     * Note: If istart == istop, the return value is undefined (most likely NaN, INF, or -INF).*/
+    fun remap(value: Double, istart: Double, istop: Double, ostart: Double, ostop: Double) =
         lerp(ostart, ostop, inverseLerp(istart, istop, value))
 
     /** Returns the integral value that is nearest to s, with halfway cases rounded away from zero. */
