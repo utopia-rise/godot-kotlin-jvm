@@ -1796,7 +1796,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VRSUpdateMode = entries.single { it.id == `value` }
     }
   }
 

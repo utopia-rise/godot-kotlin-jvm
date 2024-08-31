@@ -438,7 +438,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandTrackedSource = entries.single { it.id == `value` }
     }
   }
 

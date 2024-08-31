@@ -55,11 +55,11 @@ public open class World3D : Resource() {
   /**
    * The default [CameraAttributes] resource to use if none set on the [Camera3D].
    */
-  public var cameraAttributes: Material?
+  public var cameraAttributes: CameraAttributes?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+      return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)

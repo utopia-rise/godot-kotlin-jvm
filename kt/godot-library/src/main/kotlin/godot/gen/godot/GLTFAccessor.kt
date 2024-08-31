@@ -300,7 +300,7 @@ public open class GLTFAccessor : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GLTFAccessorType = entries.single { it.id == `value` }
     }
   }
 

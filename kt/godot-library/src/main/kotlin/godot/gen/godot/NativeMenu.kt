@@ -995,7 +995,7 @@ public object NativeMenu : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Feature = entries.single { it.id == `value` }
     }
   }
 
@@ -1036,7 +1036,7 @@ public object NativeMenu : Object() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SystemMenus = entries.single { it.id == `value` }
     }
   }
 

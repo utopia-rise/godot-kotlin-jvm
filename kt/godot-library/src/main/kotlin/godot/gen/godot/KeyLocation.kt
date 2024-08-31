@@ -29,6 +29,6 @@ public enum class KeyLocation(
   }
 
   public companion object {
-    public fun from(`value`: Long) = entries.single { it.id == `value` }
+    public fun from(`value`: Long): KeyLocation = entries.single { it.id == `value` }
   }
 }

@@ -183,7 +183,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandTrackingSource = entries.single { it.id == `value` }
     }
   }
 
@@ -306,7 +306,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandJoint = entries.single { it.id == `value` }
     }
   }
 

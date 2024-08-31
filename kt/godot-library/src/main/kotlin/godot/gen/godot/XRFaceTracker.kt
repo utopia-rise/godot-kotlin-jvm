@@ -659,7 +659,7 @@ public open class XRFaceTracker : XRTracker() {
     }
 
     public companion object {
-      public fun from(`value`: Long) = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendShapeEntry = entries.single { it.id == `value` }
     }
   }
 
