@@ -5,7 +5,7 @@ To register a property annotate it with `@RegisterProperty`.
 @RegisterClass
 class RotatingCube: Node3D() {
     @RegisterProperty
-    lateinit var lateInitProperty: NodePath
+    var someString: String = "Hello there :-)"
 
     @RegisterProperty
     var propertyWithDefaultValue: Float = 2f
@@ -16,6 +16,10 @@ class RotatingCube: Node3D() {
 
 Property names should follow Kotlin's style which is `camelCase`. For consistency with Godot's style,
 your properties are actually registered as `snake_case`. So a property `someFlag` in Kotlin is usable in GDScript as `some_flag`.
+
+## Core type specifics
+
+Godot core type always need to have a value. Hence you cannot register properties of core types (like `Vector3`) with lateinit.
 
 ## Exporting properties
 

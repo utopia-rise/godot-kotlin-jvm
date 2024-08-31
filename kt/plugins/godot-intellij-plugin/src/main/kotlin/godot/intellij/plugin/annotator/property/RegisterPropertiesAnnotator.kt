@@ -8,6 +8,7 @@ import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isCoreType
+import godot.intellij.plugin.extension.isGodotPrimitive
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.type
@@ -27,6 +28,7 @@ import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.types.KotlinType
+import org.jetbrains.kotlin.types.isNullable
 import org.jetbrains.kotlin.types.typeUtil.isChar
 import org.jetbrains.kotlin.types.typeUtil.isEnum
 import org.jetbrains.kotlin.types.typeUtil.supertypes
@@ -46,6 +48,7 @@ class RegisterPropertiesAnnotator : Annotator {
                 checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
+                lateinitChecks(element, holder)
             }
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)
@@ -101,8 +104,8 @@ class RegisterPropertiesAnnotator : Annotator {
         }
 
 
-
-        val isInheritingObject = ktProperty.type()?.supertypes()?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true
+        val isInheritingObject = ktProperty.type()?.supertypes()
+            ?.any { it.getKotlinTypeFqName(false) == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true
         val isCoreType = ktProperty.type()?.isCoreType() == true
         val isSupportedJvmType = ktProperty.type()?.isSupportedJvmType() == true
 
@@ -118,12 +121,24 @@ class RegisterPropertiesAnnotator : Annotator {
         }
     }
 
+    private fun lateinitChecks(ktProperty: KtProperty, holder: AnnotationHolder) {
+        if (
+            ktProperty.hasModifier(org.jetbrains.kotlin.lexer.KtTokens.LATEINIT_KEYWORD)
+            && (ktProperty.type()?.isCoreType() == true || ktProperty.type()?.isGodotPrimitive() == true)
+        ) {
+            holder.registerProblem(
+                message = GodotPluginBundle.message("problem.property.lateinit.coreType"),
+                errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+            )
+        }
+    }
+
     private fun getInitializerProblemLocation(ktProperty: KtProperty) =
         ktProperty.initializer?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
 
     private fun KotlinType.isSupportedJvmType(): Boolean {
         return KotlinBuiltIns.isPrimitiveTypeOrNullablePrimitiveType(this)
-            || KotlinBuiltIns.isString(this)
+            || KotlinBuiltIns.isStringOrNullableString(this)
             || this.isEnum()
             || KotlinBuiltIns.isCollectionOrNullableCollection(this)
             || KotlinBuiltIns.isString(this)
