@@ -17,8 +17,8 @@ godot {
 
     //uncomment to test android
 //    isAndroidExportEnabled.set(true)
-//    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/d8"))
-//    androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30"))
+//    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/35.0.0/d8"))
+//    androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-35"))
 
 //    uncomment to test graal vm native image
 //    isGraalNativeImageExportEnabled.set(true)

@@ -2,3 +2,7 @@ When updating this project version, here the list of strings to changes:
 - kt/gradle/libs.versions.toml: godotKotlinJvm, kotlin and godot variables.
 - docs/src/index.md: kotlin version in "Supported kotlin version" block.
 - docs/src/user-guide/versioning.md: Full version, Module Version and Supported Godot Version fields.
+
+If you've updated the kotlin version, ensure to check if the R8 version is compatible with the chosen kotlin version! Then update the required minimum build tool versions by doing a search and replace on the following strings:
+- `android-35`
+- `35.0.0`

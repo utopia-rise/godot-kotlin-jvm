@@ -64,18 +64,21 @@ In order to build for Android, set the `isAndroidExportEnabled` flag to `true` i
 On Android, we do not embed a JVM, we use the existing VM provided by the OS. In order for your game to load the necessary JAR files,
 they need to be converted into `.dex` format. Our Gradle plugin will handle this for you, but you need to fulfill the following requirements:
 
-- Android SDK installed.
+!!! warning
+    Ensure you have the build tools version 35 or newer installed!
+
+- Android SDK installed (currently build-tools 35 is required!).
 - `d8` tool resolvable by setting the `d8ToolPath` to the file path of `d8`:
     ```kt
     godot {
-        d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/31.0.0/d8")
+        d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/35.0.0/d8")
     }
     ```
 
 - Setting the `androidCompileSdkDir` to your target SDK version (most of the time, you want to set it to the newest version available):
     ```kt
     godot {
-        androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30")
+        androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-35")
     }
     ```
 

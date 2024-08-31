@@ -66,8 +66,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             private var artifact = "game"
             private var version = "0.0.1-SNAPSHOT"
             private var isAndroidEnabled = false
-            private var d8Path = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8"
-            private var androidCompileSdkDir = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30"
+            private var d8Path = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8"
+            private var androidCompileSdkDir = "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35"
 
             private var isGraalNativeImageEnabled = false
             private var graalVmDirectory = "\${System.getenv(\"GRAALVM_HOME\")}"
@@ -211,8 +211,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             GodotBuildProperties.assembledGodotKotlinJvmVersion
                         )
                         .replace("ANDROID_ENABLED", wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false")
-                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
-                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30")
+                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8")
+                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35")
                         .replace("IS_GRAAL_VM_ENABLED", wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false")
                         .replace("GRAAL_VM_DIR", wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}")
                         .replace("WINDOWS_DEVELOPER_VS_VARS_PATH", wizardContext.getUserData(windowsDeveloperVCVarsPathKey) ?: "\${System.getenv(\"VC_VARS_PATH\")}")
@@ -247,8 +247,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     outFile
                         .readText()
                         .replace("ANDROID_ENABLED", wizardContext.getUserData(isAndroidEnabledKey)?.toString() ?: "false")
-                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
-                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30")
+                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/35.0.0/d8")
+                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-35")
                         .replace("IS_GRAAL_VM_ENABLED", wizardContext.getUserData(isGraalNativeImageEnabledDirKey)?.toString() ?: "false")
                         .replace("GRAAL_VM_DIR", wizardContext.getUserData(graalVmDirectoryKey) ?: "\${System.getenv(\"GRAALVM_HOME\")}")
                         .replace("WINDOWS_DEVELOPER_VS_VARS_PATH", wizardContext.getUserData(windowsDeveloperVCVarsPathKey) ?: "\${System.getenv(\"VC_VARS_PATH\")}")
