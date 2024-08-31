@@ -208,13 +208,13 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
             this@setupTestExecution.commandLine(
                 "cmd",
                 "/c",
-                "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         } else {
             this@setupTestExecution.commandLine(
                 "bash",
                 "-c",
-                "${executableProvider()} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         }
     }
