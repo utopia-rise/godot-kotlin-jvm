@@ -231,10 +231,12 @@ void JvmScript::update_script() {
     get_script_exported_property_list(&exported_properties);
 
     for (auto& exported_property : exported_properties) {
-        if(exported_property.type == Variant::OBJECT) { continue;}
         Variant default_value;
         const String& property_name {exported_property.name};
-        kotlin_script_instance->get_or_default(property_name, default_value);
+
+        if(exported_property.type != Variant::OBJECT) {
+            kotlin_script_instance->get_or_default(property_name, default_value);
+        }
         exported_members_default_value_cache[property_name] = default_value;
     }
 
