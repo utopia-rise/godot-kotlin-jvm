@@ -11,9 +11,15 @@ bool MemoryManager::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong 
     return instance == ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
 }
 
-void MemoryManager::decrement_ref_counter(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
+void MemoryManager::release_binding(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id) {
     Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(static_cast<uint64_t>(instance_id)));
-    KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
+    if (obj == nullptr) { return; }
+
+    KotlinBindingManager::free_binding(obj);
+    if (obj->is_ref_counted()) {
+        RefCounted* ref = reinterpret_cast<RefCounted*>(obj);
+        if (ref->unreference()) { memdelete(ref); }
+    }
 }
 
 bool MemoryManager::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
@@ -175,8 +181,9 @@ bool MemoryManager::sync_memory(jni::Env& p_env) {
     refs_to_decrement.delete_local_ref(p_env);
 
     for (uint64_t id : vec) {
-        Object* obj = ObjectDB::get_instance(static_cast<ObjectID>(id));
-        KotlinBindingManager::decrement_counter(reinterpret_cast<RefCounted*>(obj));
+        RefCounted* ref = reinterpret_cast<RefCounted*>(ObjectDB::get_instance(static_cast<ObjectID>(id)));
+        KotlinBindingManager::free_binding(ref);
+        if (ref->unreference()) { memdelete(ref); }
     }
 
     return active;

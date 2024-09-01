@@ -258,9 +258,9 @@ internal object MemoryManager {
             callback.invoke()
         }
 
-        // Get through all remaining [RefCounted] instances and decrement their pointers.
-        for (ref in ObjectDB.filterNotNull().filter { it.objectID.isReference }) {
-            decrementRefCounter(ref.objectID.id)
+        // Get through all remaining [Objects] instances and remove their bindings
+        for (ref in ObjectDB.filterNotNull()) {
+            releaseBinding(ref.objectID.id)
         }
         ObjectDB.fill(null)
 
@@ -275,7 +275,7 @@ internal object MemoryManager {
     external fun getSingleton(classIndex: Int)
     external fun createNativeObject(classIndex: Int, instance: KtObject, scriptIndex: Int)
     external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-    external fun decrementRefCounter(instanceId: Long)
+    external fun releaseBinding(instanceId: Long)
     external fun freeObject(rawPtr: VoidPtr)
     external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
     external fun querySync()
