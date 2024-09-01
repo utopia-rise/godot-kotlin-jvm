@@ -90,11 +90,7 @@ private var ByteBuffer.obj: KtObject
         val ptr = long
         val id = long
 
-        return MemoryManager.getInstance(id) ?: KtObject.instantiateWith(
-            ptr,
-            id,
-            TypeManager.engineTypesConstructors[constructorIndex],
-        )
+        return MemoryManager.getInstanceOrCreate(ptr, id, constructorIndex)
     }
     set(value) {
         putLong(value.rawPtr)

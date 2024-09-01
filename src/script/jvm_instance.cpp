@@ -1,5 +1,7 @@
 #include "jvm_instance.h"
 
+#include "binding/kotlin_binding_manager.h"
+
 JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object, JvmScript* p_script) :
   owner(p_owner),
   kt_object(p_kt_object),
@@ -21,7 +23,13 @@ JvmInstance::JvmInstance(jni::Env& p_env, Object* p_owner, KtObject* p_kt_object
 
 JvmInstance::~JvmInstance() {
     jni::Env env {jni::Jvm::current_env()};
-    if (delete_flag) { MemoryManager::get_instance().remove_script_instance(env, owner->get_instance_id()); }
+    if (delete_flag) {
+        MemoryManager::get_instance().script_instance_removed(
+          env,
+          owner->get_instance_id(),
+          KotlinBindingManager::get_instance_binding(owner)->get_constructor_id()
+        );
+    }
     if (to_demote_flag.is_set()) { MemoryManager::get_instance().cancel_demotion(this); }
     memdelete(kt_object);
 }

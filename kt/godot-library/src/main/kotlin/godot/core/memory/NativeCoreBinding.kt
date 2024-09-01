@@ -5,11 +5,14 @@ import godot.core.VariantType
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 
-internal class NativeCoreWeakReference(
+internal class NativeCoreBinding(
     ref: NativeCoreType,
-    queue: ReferenceQueue<NativeCoreType>,
     val variantType: VariantType
-) :
-    WeakReference<NativeCoreType>(ref, queue) {
+) : WeakReference<NativeCoreType>(ref, queue) {
     val ptr = ref._handle
+
+    companion object {
+        /** Queue to be notified when the GC runs on NativeCoreTypes.*/
+        val queue = ReferenceQueue<NativeCoreType>()
+    }
 }

@@ -86,7 +86,7 @@ internal object TransferContext {
     fun initializeKtObject(obj: KtObject) {
         buffer.rewind()
         obj.rawPtr = buffer.long
-        obj.id = ObjectID(buffer.long)
+        obj.objectID = ObjectID(buffer.long)
     }
 
     private external fun icall(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: Int)

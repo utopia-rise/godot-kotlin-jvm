@@ -20,7 +20,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(SYNC_MEMORY, "syncMemory", "([J)[J")
         INIT_JNI_METHOD(CLEAN_UP, "cleanUp", "()V")
-        INIT_JNI_METHOD(REMOVE_SCRIPT, "removeScriptInstance", "(J)V")
+        INIT_JNI_METHOD(REMOVE_SCRIPT, "removeScript", "(JI)V")
         INIT_NATIVE_METHOD("checkInstance", "(JJ)Z", MemoryManager::check_instance)
         INIT_NATIVE_METHOD("unrefNativeCoreType", "(JI)Z", MemoryManager::unref_native_core_type)
         INIT_NATIVE_METHOD("querySync", "()V", MemoryManager::query_sync)
@@ -44,7 +44,7 @@ JVM_SINGLETON_WRAPPER(MemoryManager, "godot.core.memory.MemoryManager") {
     static void release_binding(JNIEnv* p_raw_env, jobject p_instance, jlong instance_id);
 
 public:
-    void remove_script_instance(jni::Env& p_env, uint64_t id);
+    void script_instance_removed(jni::Env& p_env, uint64_t id, uint32_t constructor_index);
     void queue_dead_object(Object* obj);
     void queue_demotion(JvmInstance* script_instance);
     void cancel_demotion(JvmInstance* script_instance);

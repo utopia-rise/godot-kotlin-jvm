@@ -2,7 +2,6 @@ package godot.core
 
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.core.memory.binding.GodotBinding
 import godot.util.VoidPtr
 import godot.util.nullObjectID
 import godot.util.nullptr
@@ -16,15 +15,13 @@ abstract class KtObject {
 
     /** Used to prevent the new method to be executed when called from instantiateWith
      * Instead we use the values set in that class  */
-    private class InitConfiguration {
-        var shouldOverride = false
+    internal class InitConfiguration {
         var ptr: VoidPtr = nullptr
-        var id: ObjectID = ObjectID(-1)
+        var objectID: ObjectID = ObjectID(-1)
 
         fun reset() {
-            shouldOverride = false
             ptr = nullptr
-            id = ObjectID(-1)
+            objectID = ObjectID(-1)
         }
     }
 
@@ -38,7 +35,7 @@ abstract class KtObject {
             field = value
         }
 
-    var id: ObjectID = nullObjectID
+    var objectID: ObjectID = nullObjectID
         set(value) {
             if (GodotJvmBuildConfig.DEBUG) {
                 require(field == nullObjectID) {
@@ -48,29 +45,22 @@ abstract class KtObject {
             field = value
         }
 
-    private var binding: GodotBinding
+    internal var twin: KtObject? = null
 
     init {
         val config = initConfig.get()
 
-        val scriptIndex = TypeManager.userTypeToId[this::class] ?: -1
-
-        if (config.shouldOverride) {
-            //Native object already exists, so we know the id and ptr without going back to the other side.
+        if (config.ptr != nullptr) {
+            // Native object already exists, so we know the id and ptr without going back to the other side.
             rawPtr = config.ptr
-            id = config.id
-            //Singletons are never initialized here as we force their initialization on JVM side at engine start
+            objectID = config.objectID
             config.reset()
+            // We don't need to register the instance to the MemoryManager, it is the responsibility of the caller.
         } else {
-            //Native object doesn't exist yet, we have to create it.
-            //If the class is a script, the ScriptInstance is going to be created at the same time as the native object.
-            new(scriptIndex)
-        }
-
-        binding = if (scriptIndex != -1) {
-            MemoryManager.registerScriptInstance(this)
-        } else {
-            MemoryManager.registerWrapper(this)
+            // Branch used when created directly from user code. The native object is going to be created here.
+            // If the class is a script, the ScriptInstance is going to be created at the same time.
+            new(TypeManager.userTypeToId[this::class] ?: -1)
+            MemoryManager.registerNewInstance(this)
         }
     }
 
@@ -105,15 +95,15 @@ abstract class KtObject {
         MemoryManager.freeObject(rawPtr)
     }
 
-    companion object {
+    internal companion object {
         private val initConfig = ThreadLocal.withInitial { InitConfiguration() }
 
-        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, id: Long, constructor: () -> T): T {
-            val config = initConfig.get()
-            config.ptr = rawPtr
-            config.id = ObjectID(id)
-            config.shouldOverride = true
-            return constructor()
+        /** When using this constructor, the newly created instances doesn't register itself to the MemoryManager, the caller must do it.*/
+        inline operator fun <T : KtObject> invoke(rawPtr: VoidPtr, id: Long, constructor: () -> T) = initConfig.get().run {
+            ptr = rawPtr
+            objectID = ObjectID(id)
+            constructor()
         }
+
     }
 }
