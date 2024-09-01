@@ -21,9 +21,19 @@ jobs:
           - name: dev tests
             target: dev
             bootstrap-target: debug
+            jvm: jvm
           - name: release tests
             target: release
             bootstrap-target: release
+            jvm: jvm
+          - name: dev tests graal native image
+            target: dev
+            bootstrap-target: debug
+            jvm: native-image
+          - name: release tests graal native image
+            target: release
+            bootstrap-target: release
+            jvm: native-image
 
     steps:
       - name: Clone Godot Engine
@@ -38,9 +48,17 @@ jobs:
           path: modules/kotlin_jvm
 
       - uses: actions/setup-java@v4
+        if: matrix.jvm  == 'jvm'
         with:
           distribution: adopt-hotspot
           java-version: ${{ inputs.jvm-version }}
+
+      - uses: graalvm/setup-graalvm@v1
+        if: matrix.jvm  == 'native-image'
+        with:
+          java-version: '21'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
@@ -65,6 +83,16 @@ jobs:
           name: export_template_${{ matrix.bootstrap-target }}_linux_x86_64
           path: "./"
 
+      - name: Set build parameters
+        if: matrix.jvm  == 'jvm'
+        run: |
+          buildParams = ""
+
+      - name: Set build parameters
+        if: matrix.jvm  == 'native-image'
+        run: |
+          buildParams = "-PgraalExport=true"
+
       - name: Prepare export
         run: |
           chmod +x bin/godot.*
@@ -73,7 +101,7 @@ jobs:
 
       - name: Build tests project
         run: |
-          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.bootstrap-target }}
+          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.bootstrap-target }} $buildParams
 
       - name: Create JRE
         run: |
@@ -84,14 +112,14 @@ jobs:
         if: ${{ matrix.bootstrap-target == 'debug' }}
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          ./gradlew exportDebug
+          ./gradlew exportDebug $buildParams
         timeout-minutes: 30
 
       - name: Export tests release
         if: ${{ matrix.bootstrap-target == 'release' }}
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          ./gradlew exportRelease
+          ./gradlew exportRelease $buildParams
         timeout-minutes: 30
 
       - name: Run Tests
