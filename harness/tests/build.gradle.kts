@@ -14,28 +14,27 @@ godot {
     registrationFileBaseDir.set(projectDir.resolve("scripts").also { it.mkdirs() })
     isRegistrationFileHierarchyEnabled.set(true)
 
-    //uncomment to test android
-//    isAndroidExportEnabled.set(true)
-//    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/35.0.0/d8"))
-//    androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-35"))
+    isAndroidExportEnabled.set(isPropertyEnabled("androidExport"))
+    d8ToolPath.set(File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/35.0.0/d8"))
+    androidCompileSdkDir.set(File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-35"))
 
-//    uncomment to test graal vm native image
-//    isGraalNativeImageExportEnabled.set(true)
-//    graalVmDirectory.set(File(System.getenv("JAVA_HOME")))
-//    additionalGraalResourceConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
-//         )
-//    )
-//    additionalGraalReflectionConfigurationFiles.set(
-//        arrayOf(
-//            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
-//        )
-//    )
-//    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
+    isGraalNativeImageExportEnabled.set(isPropertyEnabled("graalExport"))
+    graalVmDirectory.set(File(System.getenv("JAVA_HOME") ?: System.getProperty("java.home")))
+    additionalGraalResourceConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("resource-config.json").absolutePath,
+        )
+    )
+    additionalGraalReflectionConfigurationFiles.set(
+        arrayOf(
+            projectDir.resolve("graal").resolve("reflect-config.json").absolutePath,
+        )
+    )
+    System.getenv("VC_VARS_PATH")?.let { vcVarsPath ->
+        windowsDeveloperVCVarsPath.set(File(vcVarsPath))
+    }
 
-    // uncomment to test ios
-//    isIOSExportEnabled.set(true)
+    isIOSExportEnabled.set(isPropertyEnabled("iosExport"))
 }
 
 dependencies {
@@ -228,3 +227,8 @@ fun provideEditorExecutable(): File = (projectDir
     }
     ?.firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") }
     ?: throw Exception("Could not find editor executable"))
+
+
+fun Project.isPropertyEnabled(property: String): Boolean {
+    return this.hasProperty(property) && this.property(property).toString().toBoolean()
+}
