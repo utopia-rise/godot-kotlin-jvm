@@ -89,21 +89,23 @@ internal object MemoryManager {
     /**
      * Create a script on top of an existing native object. We need additional checks to find if a twin wrapper exists.
      */
-    inline fun <T : KtObject> createScript(ptr: VoidPtr, id: Long, constructor: () -> T) = lock.write {
+    inline fun <T : KtObject> createScript(ptr: VoidPtr, id: Long, constructor: () -> T): T {
         val instance = KtObject(ptr, id, constructor)
 
         val objectId = ObjectID(id)
         val index = objectId.index
 
-        val binding = ObjectDB[index]
-        ObjectDB[index] = GodotBinding.create(instance)
+        return lock.write {
+            val binding = ObjectDB[index]
+            ObjectDB[index] = GodotBinding.create(instance)
 
-        if (binding != null && binding.objectID == instance.objectID) {
-            val wrapper = binding.instance
-            wrapper?.twin = instance
-            instance.twin = wrapper
+            if (binding != null && binding.objectID == instance.objectID) {
+                val wrapper = binding.instance
+                wrapper?.twin = instance
+                instance.twin = wrapper
+            }
+            instance
         }
-        instance
     }
 
     /**
@@ -139,25 +141,26 @@ internal object MemoryManager {
         val objectID = ObjectID(id)
         val index = objectID.index
 
-        val binding = lock.read {
-            ObjectDB[index]
+        val instance = lock.read {
+            ObjectDB[index]?.instance
         }
 
-        if (binding != null && binding.objectID == objectID) {
-            binding.instance?.let { return it }
+        if (instance != null && instance.objectID == objectID) {
+            return instance
         }
 
         // We didn't find a matching instance, we create it then.
         return lock.write {
-            // We check a second time in a write lock in case it got create after the read lock.
-            ObjectDB[index]?.instance ?: (KtObject(
-                ptr,
-                id,
-                TypeManager.engineTypesConstructors[constructorIndex]
-            ).also {
-                // We know it's a wrapper. If it was a Script, it would already exist in the ObjectDB.
-                ObjectDB[index] = GodotBinding.create(it)
-            })
+            // We check a second time in a write lock in case it got create after the read lock by another thread
+            val newInstance = ObjectDB[index]?.instance
+            if (newInstance != null && newInstance.objectID == objectID) {
+                newInstance
+            } else {
+                val constructor = TypeManager.engineTypesConstructors[constructorIndex]
+                KtObject(ptr, id, constructor).also {
+                    ObjectDB[index] = GodotBinding.create(it)
+                }
+            }
         }
     }
 
@@ -182,7 +185,7 @@ internal object MemoryManager {
             val objectID = ObjectID(id)
             val index = objectID.index
             val ref = ObjectDB[objectID.index]
-            if (ref != null && ref.objectID.id == objectID.id) {
+            if (ref != null && ref.objectID == objectID) {
                 // The index could have been taken by a newly created object, we check before it was are about to remove the correct one.
                 ObjectDB[index] = null
             }
