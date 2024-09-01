@@ -94,7 +94,7 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "getStacktrace", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "getStacktrace", "parameterTypes" : [] },
       { "name" : "print", "parameterTypes" : [] },
       { "name" : "printRich", "parameterTypes" : [] },
       { "name" : "printVerbose", "parameterTypes" : [] },
