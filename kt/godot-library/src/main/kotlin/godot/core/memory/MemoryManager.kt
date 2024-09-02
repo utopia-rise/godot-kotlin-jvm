@@ -267,11 +267,17 @@ internal object MemoryManager {
             (MIN_GC_RATIO * size).toInt()
         )
 
-        deadNativeCores.subList(0, numberToDecrement).onEach {
-            if (unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)) {
-                nativeCoreTypeMap.remove(it.ptr)
-            }
-        }.clear()
+        val pointerArray = LongArray(numberToDecrement)
+        val variantTypeArray = IntArray(numberToDecrement)
+
+        deadNativeCores
+            .subList(0, numberToDecrement)
+            .onEachIndexed { index, binding ->
+                pointerArray[index] = binding.ptr
+                variantTypeArray[index] = binding.variantType.baseOrdinal
+            }.clear()
+
+        unrefNativeCoreTypes(pointerArray, variantTypeArray)
     }
 
     fun cleanUp() {
@@ -285,9 +291,20 @@ internal object MemoryManager {
         }
         ObjectDB.fill(null)
 
-        nativeCoreTypeMap.values.forEach {
-            unrefNativeCoreType(it.ptr, it.variantType.baseOrdinal)
+        val size = nativeCoreTypeMap.size
+        if (size > 0) {
+            val pointerArray = LongArray(size)
+            val variantTypeArray = IntArray(size)
+
+            deadNativeCores
+                .onEachIndexed { index, binding ->
+                    pointerArray[index] = binding.ptr
+                    variantTypeArray[index] = binding.variantType.baseOrdinal
+                }.clear()
+
+            unrefNativeCoreTypes(pointerArray, variantTypeArray)
         }
+
         stringNameCache.values.clear()
         nodePathCache.values.clear()
         nativeCoreTypeMap.clear()
@@ -298,6 +315,6 @@ internal object MemoryManager {
     external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
     external fun releaseBinding(instanceId: Long)
     external fun freeObject(rawPtr: VoidPtr)
-    external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+    external fun unrefNativeCoreTypes(pointerArray: LongArray, variantTypeArray: IntArray)
     external fun querySync()
 }
