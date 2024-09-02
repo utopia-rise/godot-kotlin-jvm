@@ -6,6 +6,7 @@
 #include "transfer_context.h"
 #include "type_manager.h"
 
+static LocalVector<uint64_t> ids;
 static LocalVector<uintptr_t> pointers;
 static LocalVector<uint32_t> variant_types;
 
@@ -38,7 +39,7 @@ void MemoryManager::unref_native_core_types(JNIEnv* p_raw_env, jobject p_instanc
     var_type_array.get_array_elements(env, reinterpret_cast<jint*>(variant_types.ptr()), size);
 
     for(int i = 0; i < size; i++){
-        uint32_t p_raw_ptr = pointers[i];
+        uintptr_t p_raw_ptr = pointers[i];
         uint32_t var_type = variant_types[i];
 
         Variant::Type variant_type {static_cast<Variant::Type>(var_type)};
@@ -171,17 +172,17 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
     arr.delete_local_ref(p_env);
 
     size = refs_to_decrement.length(p_env);
-    pointers.resize(size);
-    refs_to_decrement.get_array_elements(p_env, reinterpret_cast<jlong*>(pointers.ptr()), size);
+    ids.resize(size);
+    refs_to_decrement.get_array_elements(p_env, reinterpret_cast<jlong*>(ids.ptr()), size);
     refs_to_decrement.delete_local_ref(p_env);
 
-    for (uint64_t id : pointers) {
+    for (uint64_t id : ids) {
         RefCounted* ref = reinterpret_cast<RefCounted*>(ObjectDB::get_instance(static_cast<ObjectID>(id)));
         KotlinBindingManager::free_binding(ref);
         if (ref->unreference()) { memdelete(ref); }
     }
 
-    pointers.clear();
+    ids.clear();
 }
 
 void MemoryManager::clean_up(jni::Env& p_env) {

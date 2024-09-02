@@ -202,8 +202,8 @@ internal object MemoryManager {
 
         val sublist = deadReferences.subList(0, numberToDecrement)
 
-        return lock.write {
-            deadReferences.filter {
+        val deadArray = lock.write {
+            sublist.filter {
                 val objectID = it.objectID
                 val otherRef = ObjectDB[objectID]
 
@@ -219,7 +219,7 @@ internal object MemoryManager {
                 - If the dead binding is the same (===) as the one in the ObjectDB, it means it hasn't been replaced yet and is safe to decrement.
                 - If the binding is not in the objectDB, it means it has been queued already, we don't need to queue it again.
                 it can happen if 2 or more wrappers for the same RefCounted are created and GCed between 2 memory syncs.
-                - If the binding in the objectDB is a different one but has the same object ID, it means the wrapper has been replaced (the previous one died, but Godot sent to the JVM again), we don't queue it.
+                - If the binding in the objectDB is a different one, it means the wrapper has been replaced (the previous one died, but Godot sent to the JVM again), we don't queue it.
 
                 Only the identity test is necessary because that the only case that allows for decrement, all others possibilities don't pass.
                  **/
@@ -232,9 +232,9 @@ internal object MemoryManager {
         }
             .map { it.objectID.id }
             .toLongArray()
-            .also {
-                sublist.clear()
-            }
+
+        sublist.clear()
+        return deadArray
     }
 
     /**
@@ -262,6 +262,7 @@ internal object MemoryManager {
             .onEachIndexed { index, binding ->
                 pointerArray[index] = binding.ptr
                 variantTypeArray[index] = binding.variantType.baseOrdinal
+                nativeCoreTypeMap.remove(binding.ptr)
             }.clear()
 
         unrefNativeCoreTypes(pointerArray, variantTypeArray)
@@ -283,7 +284,8 @@ internal object MemoryManager {
             val pointerArray = LongArray(size)
             val variantTypeArray = IntArray(size)
 
-            deadNativeCores
+            nativeCoreTypeMap
+                .values
                 .onEachIndexed { index, binding ->
                     pointerArray[index] = binding.ptr
                     variantTypeArray[index] = binding.variantType.baseOrdinal
