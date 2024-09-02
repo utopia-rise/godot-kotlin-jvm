@@ -19,8 +19,11 @@ import kotlin.math.max
 import kotlin.math.min
 
 internal object MemoryManager {
-    /** Base capacity for several containers within the manager.*/
-    private const val INITIAL_CAPACITY = 256
+    /** Base capacity for caches.*/
+    private const val CACHE_INITIAL_CAPACITY = 256
+
+    /** Base capacity for several binding containers.*/
+    private const val BINDING_INITIAL_CAPACITY = 4096
 
     /** Number of references to decrement each loop at most (Doesn't have priority over the ratio).*/
     private const val MAX_GC_NUMBER = 64
@@ -28,19 +31,16 @@ internal object MemoryManager {
     /** The fraction of references to check each loop at least (chosen so everything is freed after 1 second at most, assuming a 60 fps game).*/
     private const val MIN_GC_RATIO = 1f / 60f
 
-    /** Maximum size of the objectDB, Godot shouldn't provide index higher than this.*/
-    private const val OBJECTDB_SIZE = 1 shl ObjectID.OBJECTDB_SLOT_MAX_COUNT_BITS
-
     private val lock = ReentrantReadWriteLock()
 
     /** Pointers to Godot objects.*/
-    private val ObjectDB = arrayOfNulls<GodotBinding?>(OBJECTDB_SIZE)
+    private val ObjectDB = HashMap<ObjectID, GodotBinding>(BINDING_INITIAL_CAPACITY)
 
     /** List of references to decrement.*/
     private val deadReferences = mutableListOf<RefCountedBinding>()
 
     /** Pointers to NativeCoreType.*/
-    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreBinding>(INITIAL_CAPACITY)
+    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreBinding>(BINDING_INITIAL_CAPACITY)
 
     /** List of references to decrement.*/
     private val deadNativeCores = mutableListOf<NativeCoreBinding>()
@@ -50,8 +50,8 @@ internal object MemoryManager {
 
     // Create an LRU cache for StringName and NodePath objects based on a String key.
     // TODO: Set the initial capacity from the command line.
-    private val stringNameCache = LRUCache<String, StringName>(INITIAL_CAPACITY)
-    private val nodePathCache = LRUCache<String, NodePath>(INITIAL_CAPACITY)
+    private val stringNameCache = LRUCache<String, StringName>(CACHE_INITIAL_CAPACITY)
+    private val nodePathCache = LRUCache<String, NodePath>(CACHE_INITIAL_CAPACITY)
 
     fun getOrCreateStringName(key: String): StringName {
         return synchronized(stringNameCache) {
@@ -83,7 +83,7 @@ internal object MemoryManager {
      * The godot object has just been created. We can directly add it to ObjectDB because we know the slot is free.
      */
     fun registerNewInstance(instance: KtObject) = lock.write {
-        ObjectDB[instance.objectID.index] = GodotBinding.create(instance)
+        ObjectDB[instance.objectID] = GodotBinding.create(instance)
     }
 
     /**
@@ -93,13 +93,11 @@ internal object MemoryManager {
         val instance = KtObject(ptr, id, constructor)
 
         val objectId = ObjectID(id)
-        val index = objectId.index
 
         return lock.write {
-            val binding = ObjectDB[index]
-            ObjectDB[index] = GodotBinding.create(instance)
+            val binding = ObjectDB.put(objectId, GodotBinding.create(instance))
 
-            if (binding != null && binding.objectID == instance.objectID) {
+            if (binding != null) {
                 val wrapper = binding.instance
                 wrapper?.twin = instance
                 instance.twin = wrapper
@@ -113,12 +111,11 @@ internal object MemoryManager {
      */
     fun removeScript(id: Long, constructorIndex: Int) = lock.write {
         val objectID = ObjectID(id)
-        val index = objectID.index
-        val scriptInstance = ObjectDB[index]!!.instance!!
+        val scriptInstance = ObjectDB[objectID]!!.instance!!
 
         val twin = scriptInstance.twin
         if (twin != null) {
-            ObjectDB[index] = GodotBinding.create(twin)
+            ObjectDB[objectID] = GodotBinding.create(twin)
             return //The script had previously a wrapper, we can reuse it.
         }
 
@@ -129,7 +126,7 @@ internal object MemoryManager {
             TypeManager.engineTypesConstructors[constructorIndex],
         )
 
-        ObjectDB[index] = GodotBinding.create(wrapper)
+        ObjectDB[objectID] = GodotBinding.create(wrapper)
 
         // Still set the twin as a security if users keep a reference of the scriptInstance somewhere (even if they shouldn't, but it's valid from a JVM point of view).
         // It will prevent segfault in such case.
@@ -139,26 +136,25 @@ internal object MemoryManager {
 
     fun getInstanceOrCreate(ptr: VoidPtr, id: Long, constructorIndex: Int): KtObject {
         val objectID = ObjectID(id)
-        val index = objectID.index
 
         val instance = lock.read {
-            ObjectDB[index]?.instance
+            ObjectDB[objectID]?.instance
         }
 
-        if (instance != null && instance.objectID == objectID) {
+        if (instance != null) {
             return instance
         }
 
         // We didn't find a matching instance, we create it then.
         return lock.write {
-            // We check a second time in a write lock in case it got create after the read lock by another thread
-            val newInstance = ObjectDB[index]?.instance
-            if (newInstance != null && newInstance.objectID == objectID) {
+            // We check a second time in a write lock in case it got created after the read lock by another thread
+            val newInstance = ObjectDB[objectID]?.instance
+            if (newInstance != null) {
                 newInstance
             } else {
                 val constructor = TypeManager.engineTypesConstructors[constructorIndex]
                 KtObject(ptr, id, constructor).also {
-                    ObjectDB[index] = GodotBinding.create(it)
+                    ObjectDB[objectID] = GodotBinding.create(it)
                 }
             }
         }
@@ -183,12 +179,7 @@ internal object MemoryManager {
     private fun removeDeadObjects(freedObjects: LongArray) = lock.write {
         for (id in freedObjects) {
             val objectID = ObjectID(id)
-            val index = objectID.index
-            val ref = ObjectDB[objectID.index]
-            if (ref != null && ref.objectID == objectID) {
-                // The index could have been taken by a newly created object, we check before it was are about to remove the correct one.
-                ObjectDB[index] = null
-            }
+            ObjectDB.remove(objectID)
         }
     }
 
@@ -214,31 +205,27 @@ internal object MemoryManager {
         return lock.write {
             deadReferences.filter {
                 val objectID = it.objectID
-                val index = objectID.index
-                val otherRef = ObjectDB[index]
+                val otherRef = ObjectDB[objectID]
 
                 /** This part requires caution. We have to make sure it's safe to decrement the counter of this instance.
+                 * Everything is under the assumption that all objects during the execution of the engine have a unique ObjectID, which is an assumption Godot uses as well.
 
                 Note that the state of the binding in the ObjectDB at this point in time can be several things:
-                - Not null with its weak reference still valid.
-                - Not null but its weak reference got GCed.
-                - Null
-
-                In the first 2 cases, the not null reference can belong to a different native object.
+                - Present with its weak reference still valid.
+                - Present but its weak reference got GCed.
+                - Not present
 
                 Here the different interpretations we can have:
                 - If the dead binding is the same (===) as the one in the ObjectDB, it means it hasn't been replaced yet and is safe to decrement.
-                - If the binding in the objectDB is null, it means it has been queued already, we don't need to queue it again.
+                - If the binding is not in the objectDB, it means it has been queued already, we don't need to queue it again.
                 it can happen if 2 or more wrappers for the same RefCounted are created and GCed between 2 memory syncs.
                 - If the binding in the objectDB is a different one but has the same object ID, it means the wrapper has been replaced (the previous one died, but Godot sent to the JVM again), we don't queue it.
-                - If the binding in the objectDB is a different one but hasn't the same object ID, it means the original objects has already been deleted, and we shouldn't queue it.
-                It can happen if several wrappers have been created but GCed out of order in different phases (in the context of a script removal for example).
 
-                Only the identity test is necessary because that the only case that allows for decrement, all others 3 possibilities don't pass.
+                Only the identity test is necessary because that the only case that allows for decrement, all others possibilities don't pass.
                  **/
                 val decrement = it === otherRef
                 if (decrement) {
-                    ObjectDB[index] = null
+                    ObjectDB.remove(objectID)
                 }
                 decrement
             }
@@ -286,10 +273,10 @@ internal object MemoryManager {
         }
 
         // Get through all remaining [Objects] instances and remove their bindings
-        for (ref in ObjectDB.filterNotNull()) {
-            releaseBinding(ref.objectID.id)
+        for (obj in ObjectDB.values) {
+            releaseBinding(obj.objectID.id)
         }
-        ObjectDB.fill(null)
+        ObjectDB.clear()
 
         val size = nativeCoreTypeMap.size
         if (size > 0) {
