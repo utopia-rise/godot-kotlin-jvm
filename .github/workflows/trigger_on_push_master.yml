@@ -72,3 +72,60 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  assemble-macos:
+    name: 🍎 Assemble macos
+    uses: ./.github/workflows/assemble_macos.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-macos
+    with:
+      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  assemble-ios:
+    name: 🍏 Assemble ios
+    uses: ./.github/workflows/assemble_ios.yml
+    needs:
+      - setup-build-variables
+      - build-ios
+    with:
+      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  assemble-linux:
+    name: 🐧 Assemble linux
+    uses: ./.github/workflows/assemble_linux.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-linux
+    with:
+      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  assemble-windows:
+    name: 🪟 Assemble windows
+    uses: ./.github/workflows/assemble_windows.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-windows
+    with:
+      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+
+  assemble-export-templates:
+    name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
+    uses: ./.github/workflows/assemble_export_templates.yml
+    needs:
+      - setup-build-variables
+      - build-android # uploads finished export template directly
+      - assemble-ios # export templates need to be packed into xcode project
+      - build-linux # uploads finished export template directly
+      - assemble-macos # export templates need to be packed into app
+      - build-windows # uploads finished export template directly
+    with:
+      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
