@@ -242,12 +242,11 @@ void JvmScript::update_script() {
 
     for (PlaceHolderScriptInstance* placeholder : placeholders) {
         placeholder->update(exported_properties, exported_members_default_value_cache);
-        if(Node* node = cast_to<Node>(placeholder->get_owner())){
-            node->update_configuration_warnings();
-        }
+        if (Node* node = cast_to<Node>(placeholder->get_owner())) { node->update_configuration_warnings(); }
     }
 
-    memdelete(tmp_object);
+    jni::Env env = jni::Jvm::current_env();
+    MemoryManager::get_instance().direct_object_deletion(env, tmp_object);
 }
 
 void JvmScript::_placeholder_erased(PlaceHolderScriptInstance* p_placeholder) {

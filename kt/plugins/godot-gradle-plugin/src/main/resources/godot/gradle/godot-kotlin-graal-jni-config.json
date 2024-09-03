@@ -78,6 +78,7 @@
     "methods":[
       { "name" : "syncMemory","parameterTypes" : ["long[]"] },
       { "name" : "cleanUp","parameterTypes" : [] },
+      { "name" : "deleteObject", "parameterTypes" : ["long"] },
       { "name" : "removeScript", "parameterTypes" : ["long", "int"] },
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
       { "name" : "releaseBinding", "parameterTypes" : ["long"] },

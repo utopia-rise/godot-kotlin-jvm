@@ -163,6 +163,13 @@ internal object MemoryManager {
         scriptInstance.twin = scriptInstance
     }
 
+    /**
+     * Directly remove the object from the ObjectDB, the caller has now the responsibility of deleting the object itself.
+     */
+    fun deleteObject(id: Long): Unit = lock.write {
+        ObjectDB.remove(ObjectID(id))
+    }
+
     fun getInstanceOrCreate(ptr: VoidPtr, id: Long, constructorIndex: Int): KtObject {
         val objectID = ObjectID(id)
 
@@ -241,7 +248,7 @@ internal object MemoryManager {
 
                 Here the different interpretations we can have:
                 - If the dead binding is the same (===) as the one in the ObjectDB, it means it hasn't been replaced yet and is safe to decrement.
-                - If the binding is not in the objectDB, it means it has been queued already, we don't need to queue it again.
+                - If the binding is not in the objectDB, it means it has been queued or deleted already, we don't need to queue it again.
                 it can happen if 2 or more wrappers for the same RefCounted are created and GCed between 2 memory syncs.
                 - If the binding in the objectDB is a different one, it means the wrapper has been replaced (the previous one died, but Godot sent to the JVM again), we don't queue it.
 
@@ -293,8 +300,8 @@ internal object MemoryManager {
         }
 
         // Get through all remaining [Objects] instances and remove their bindings
-        for (obj in ObjectDB.values) {
-            releaseBinding(obj.objectID.id)
+        for (objectID in ObjectDB.keys) {
+            releaseBinding(objectID.id)
         }
         ObjectDB.clear()
 
