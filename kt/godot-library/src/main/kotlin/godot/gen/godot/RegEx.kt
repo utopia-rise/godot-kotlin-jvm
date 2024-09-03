@@ -129,7 +129,7 @@ public open class RegEx : RefCounted() {
   ): RegExMatch? {
     TransferContext.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.searchPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as RegExMatch?)
+    return (TransferContext.readReturnValue(OBJECT) as RegExMatch?)
   }
 
   /**
@@ -149,7 +149,7 @@ public open class RegEx : RefCounted() {
   ): VariantArray<RegExMatch> {
     TransferContext.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.searchAllPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RegExMatch>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RegExMatch>)
   }
 
   /**
@@ -172,7 +172,7 @@ public open class RegEx : RefCounted() {
   ): String {
     TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset.toLong(), LONG to end.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.subPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -181,7 +181,7 @@ public open class RegEx : RefCounted() {
   public final fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -190,7 +190,7 @@ public open class RegEx : RefCounted() {
   public final fun getPattern(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPatternPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -199,7 +199,7 @@ public open class RegEx : RefCounted() {
   public final fun getGroupCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -209,7 +209,7 @@ public open class RegEx : RefCounted() {
   public final fun getNames(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public companion object {
@@ -219,7 +219,7 @@ public open class RegEx : RefCounted() {
     public final fun createFromString(pattern: String): RegEx? {
       TransferContext.writeArguments(STRING to pattern)
       TransferContext.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as RegEx?)
+      return (TransferContext.readReturnValue(OBJECT) as RegEx?)
     }
   }
 

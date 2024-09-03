@@ -38,7 +38,7 @@ internal object TransferContext {
         }
     }
 
-    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false): Any? {
+    fun readSingleArgument(variantType: VariantType): Any? {
         buffer.rewind()
         val argsSize = buffer.int
         if (GodotJvmBuildConfig.DEBUG) {
@@ -46,10 +46,10 @@ internal object TransferContext {
                 "Expecting 1 parameter, but got $argsSize instead."
             }
         }
-        return variantType.toKotlin(buffer, isNullable)
+        return variantType.toKotlin(buffer)
     }
 
-    fun readArguments(variantTypes: Array<VariantType>, areNullable: Array<Boolean>, returnArray: Array<Any?>) {
+    fun readArguments(variantTypes: Array<VariantType>, returnArray: Array<Any?>) {
         buffer.rewind()
         val argsSize = buffer.int
         val argumentCount = variantTypes.size
@@ -61,7 +61,7 @@ internal object TransferContext {
 
         // Assume that variantTypes and areNullable have the same size and that returnArray is big enough
         for (i in 0 until argsSize) {
-            returnArray[i] = variantTypes[i].toKotlin(buffer, areNullable[i])
+            returnArray[i] = variantTypes[i].toKotlin(buffer)
         }
     }
 
@@ -70,9 +70,9 @@ internal object TransferContext {
         type.toGodot(buffer, value)
     }
 
-    fun readReturnValue(type: VariantType, isNullable: Boolean = false): Any? {
+    fun readReturnValue(type: VariantType): Any? {
         buffer.rewind()
-        return type.toKotlin(buffer, isNullable)
+        return type.toKotlin(buffer)
     }
 
     fun callMethod(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: VariantType) {

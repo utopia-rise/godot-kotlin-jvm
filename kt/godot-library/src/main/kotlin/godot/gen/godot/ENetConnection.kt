@@ -107,7 +107,7 @@ public open class ENetConnection : RefCounted() {
   ): ENetPacketPeer? {
     TransferContext.writeArguments(STRING to address, LONG to port.toLong(), LONG to channels.toLong(), LONG to data.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?)
+    return (TransferContext.readReturnValue(OBJECT) as ENetPacketPeer?)
   }
 
   /**
@@ -124,7 +124,7 @@ public open class ENetConnection : RefCounted() {
   public final fun service(timeout: Int = 0): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to timeout.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.servicePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -222,7 +222,7 @@ public open class ENetConnection : RefCounted() {
   public final fun popStatistic(statistic: HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, MethodBindings.popStatisticPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -231,7 +231,7 @@ public open class ENetConnection : RefCounted() {
   public final fun getMaxChannels(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxChannelsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -240,7 +240,7 @@ public open class ENetConnection : RefCounted() {
   public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -251,7 +251,7 @@ public open class ENetConnection : RefCounted() {
   public final fun getPeers(): VariantArray<ENetPacketPeer> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<ENetPacketPeer>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<ENetPacketPeer>)
   }
 
   /**

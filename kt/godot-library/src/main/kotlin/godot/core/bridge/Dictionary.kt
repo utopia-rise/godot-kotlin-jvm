@@ -200,7 +200,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         TransferContext.writeArguments(valueVariantType to value)
         Bridge.engine_call_find_key(_handle)
         @Suppress("UNCHECKED_CAST")
-        return TransferContext.readReturnValue(keyVariantType, false) as K
+        return TransferContext.readReturnValue(keyVariantType) as K
     }
 
     /**
@@ -211,7 +211,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         TransferContext.writeArguments(keyVariantType to key, valueVariantType to default)
         Bridge.engine_call_get(_handle)
         @Suppress("UNCHECKED_CAST")
-        return TransferContext.readReturnValue(valueVariantType, true) as V
+        return TransferContext.readReturnValue(valueVariantType) as V?
     }
 
     /**
@@ -248,7 +248,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      */
     fun isReadOnly(): Boolean {
         Bridge.engine_call_is_read_only(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL, false) as Boolean
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
     /**
@@ -314,7 +314,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         TransferContext.writeArguments(keyVariantType to key)
         Bridge.engine_call_operator_get(_handle)
         @Suppress("UNCHECKED_CAST")
-        return TransferContext.readReturnValue(valueVariantType, true) as V
+        return TransferContext.readReturnValue(valueVariantType) as V
     }
 
     @CoreTypeHelper

@@ -66,7 +66,7 @@ public object JavaScriptBridge : Object() {
   public final fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
     TransferContext.callMethod(rawPtr, MethodBindings.evalPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -77,7 +77,7 @@ public object JavaScriptBridge : Object() {
   public final fun getInterface(_interface: String): JavaScriptObject? {
     TransferContext.writeArguments(STRING to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
+    return (TransferContext.readReturnValue(OBJECT) as JavaScriptObject?)
   }
 
   /**
@@ -88,7 +88,7 @@ public object JavaScriptBridge : Object() {
   public final fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.createCallbackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
+    return (TransferContext.readReturnValue(OBJECT) as JavaScriptObject?)
   }
 
   /**
@@ -98,7 +98,7 @@ public object JavaScriptBridge : Object() {
   public final fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, MethodBindings.createObjectPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -128,7 +128,7 @@ public object JavaScriptBridge : Object() {
   public final fun pwaNeedsUpdate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pwaNeedsUpdatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

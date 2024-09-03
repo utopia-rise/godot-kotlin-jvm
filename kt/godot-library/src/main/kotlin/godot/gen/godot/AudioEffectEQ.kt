@@ -46,7 +46,7 @@ public open class AudioEffectEQ : AudioEffect() {
   public final fun getBandGainDb(bandIdx: Int): Float {
     TransferContext.writeArguments(LONG to bandIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBandGainDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -55,7 +55,7 @@ public open class AudioEffectEQ : AudioEffect() {
   public final fun getBandCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBandCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

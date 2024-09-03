@@ -368,9 +368,9 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     /**
      * Returns the first element of the array, or null if the array is empty.
      */
-    fun front(): T {
+    fun front(): T? {
         Bridge.engine_call_front(_handle)
-        return TransferContext.readReturnValue(variantType, true) as T
+        return TransferContext.readReturnValue(variantType) as T?
     }
 
     /**
@@ -430,44 +430,44 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns the maximum value contained in the array if all elements are of comparable types.
      * If the elements can't be compared, null is returned.
      */
-    fun max(): T {
+    fun max(): T? {
         Bridge.engine_call_max(_handle)
-        return TransferContext.readReturnValue(variantType, true) as T
+        return TransferContext.readReturnValue(variantType) as T?
     }
 
     /**
      * Returns the minimum value contained in the array if all elements are of comparable types.
      * If the elements can't be compared, null is returned.
      */
-    fun min(): T {
+    fun min(): T? {
         Bridge.engine_call_min(_handle)
-        return TransferContext.readReturnValue(variantType, true) as T
+        return TransferContext.readReturnValue(variantType) as T?
     }
 
     /**
      * Returns a random value from the target array.
      */
-    fun pickRandom(): T {
+    fun pickRandom(): T? {
         Bridge.engine_call_pickRandom(_handle)
-        return TransferContext.readReturnValue(variantType, true) as T
+        return TransferContext.readReturnValue(variantType) as T?
     }
 
     /**
      * Removes and returns the last element of the array.
      * Returns null if the array is empty.
      */
-    fun popBack(): T {
+    fun popBack(): T? {
         Bridge.engine_call_popBack(_handle)
-        return TransferContext.readReturnValue(variantType, true) as T
+        return TransferContext.readReturnValue(variantType) as T?
     }
 
     /**
      * Removes and returns the first element of the array.
      * Returns null if the array is empty.
      */
-    fun popFront(): T {
+    fun popFront(): T? {
         Bridge.engine_call_popFront(_handle)
-        return TransferContext.readReturnValue(variantType, true) as T
+        return TransferContext.readReturnValue(variantType) as T?
     }
 
     /**
@@ -489,7 +489,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     fun reduce(callable: Callable, accum: Any?): Any? {
         TransferContext.writeArguments(VariantType.CALLABLE to callable, VariantType.ANY to accum)
         Bridge.engine_call_reduce(_handle)
-        return TransferContext.readReturnValue(VariantType.ANY, true)
+        return TransferContext.readReturnValue(VariantType.ANY)
     }
 
     /**
@@ -543,7 +543,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     operator fun get(idx: Int): T {
         TransferContext.writeArguments(VariantType.JVM_INT to idx)
         Bridge.engine_call_operator_get(_handle)
-        return TransferContext.readReturnValue(variantType, true) as T
+        return TransferContext.readReturnValue(variantType) as T
     }
 
     operator fun plus(other: T) {

@@ -48,7 +48,7 @@ public object ThemeDB : Object() {
   public final fun getDefaultTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultThemePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
+    return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
 
   /**
@@ -59,7 +59,7 @@ public object ThemeDB : Object() {
   public final fun getProjectTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectThemePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
+    return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
 
   public final fun setFallbackBaseScale(baseScale: Float): Unit {
@@ -70,7 +70,7 @@ public object ThemeDB : Object() {
   public final fun getFallbackBaseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackBaseScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFallbackFont(font: Font?): Unit {
@@ -81,7 +81,7 @@ public object ThemeDB : Object() {
   public final fun getFallbackFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+    return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setFallbackFontSize(fontSize: Int): Unit {
@@ -92,7 +92,7 @@ public object ThemeDB : Object() {
   public final fun getFallbackFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFallbackIcon(icon: Texture2D?): Unit {
@@ -103,7 +103,7 @@ public object ThemeDB : Object() {
   public final fun getFallbackIcon(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setFallbackStylebox(stylebox: StyleBox?): Unit {
@@ -114,7 +114,7 @@ public object ThemeDB : Object() {
   public final fun getFallbackStylebox(): StyleBox? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackStyleboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StyleBox?)
+    return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
   }
 
   internal object MethodBindings {

@@ -1,11 +1,11 @@
 package godot.core
 
 import godot.Object
-import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.callable.KtCallable
 import godot.core.memory.MemoryManager
 import godot.signals.Signal
+import godot.util.nullptr
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
@@ -84,16 +84,20 @@ private var ByteBuffer.stringName: Any
         STRING_NAME.toGodotNativeCoreType<StringName>(this, value)
     }
 
-private var ByteBuffer.obj: KtObject
+private var ByteBuffer.obj: KtObject?
     get() {
         val constructorIndex = int
         val ptr = long
         val id = long
 
+        if (ptr == nullptr) {
+            return null
+        }
+
         return MemoryManager.getInstanceOrCreate(ptr, id, constructorIndex)
     }
     set(value) {
-        putLong(value.rawPtr)
+        putLong(value!!.rawPtr)
     }
 
 private var ByteBuffer.variantType: Int
@@ -107,13 +111,13 @@ inline fun <reified T> Any.asObject(): T = this as T
 @Suppress("EnumEntryName")
 enum class VariantType(
     val id: Long,
-    private val toKotlinWithoutNullCheck: (ByteBuffer, expectedType: Int) -> Any,
+    private val toKotlinWithoutTypeCheck: (ByteBuffer, expectedType: Int) -> Any?,
     private val toGodotWithoutNullCheck: (ByteBuffer, any: Any) -> Unit,
 ) {
     NIL(
         0,
         { _: ByteBuffer, _: Int ->
-            Unit
+            null
         },
         { buffer: ByteBuffer, _: Any ->
             buffer.variantType = NIL.ordinal
@@ -183,7 +187,6 @@ enum class VariantType(
             require(any is String)
             buffer.variantType = STRING.ordinal
             val stringBytes = any.encodeToByteArray()
-            //TODO: Think of a way to reuse the encoded String
             if (stringBytes.size > LongStringQueue.stringMaxSize) {
                 buffer.bool = true
                 LongStringQueue.sendStringToCPP(any)
@@ -649,7 +652,7 @@ enum class VariantType(
     ANY(
         ANY_VARIANT_TYPE,
         { buffer: ByteBuffer, expectedType: Int ->
-            entries[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
+            entries[expectedType].toKotlinWithoutTypeCheck(buffer, expectedType)
         },
         { buffer: ByteBuffer, any: Any ->
             val type = variantMapper[any::class] ?: throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
@@ -661,12 +664,12 @@ enum class VariantType(
 
     constructor(
         originalVariantType: VariantType,
-        toKotlinConverter: (Any) -> Any,
+        toKotlinConverter: (Any?) -> Any,
         toGodotConverter: (Any) -> Any
     ) : this(
         originalVariantType.id,
         { buffer: ByteBuffer, expectedType: Int ->
-            toKotlinConverter(originalVariantType.toKotlinWithoutNullCheck(buffer, expectedType))
+            toKotlinConverter(originalVariantType.toKotlinWithoutTypeCheck(buffer, expectedType))
         },
         { buffer: ByteBuffer, any: Any -> originalVariantType.toGodotWithoutNullCheck(buffer, toGodotConverter(any)) }
     ) {
@@ -682,36 +685,21 @@ enum class VariantType(
         }
     }
 
-    internal val toKotlin = this.getToKotlinLambdaToExecute(toKotlinWithoutNullCheck)
+    internal val toKotlin = this.getToKotlinLambdaToExecute(toKotlinWithoutTypeCheck)
 
     companion object {
         fun from(value: Long) = entries[value.toInt()]
     }
 }
 
-internal fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?): (ByteBuffer, Boolean) -> Any? {
-    return if (this.id == ANY_VARIANT_TYPE) {
-        { buffer: ByteBuffer, isNullable: Boolean ->
-            val variantType = buffer.variantType
-            if (variantType == NIL.ordinal) {
-                if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
-                null
-            } else defaultLambda(buffer, variantType)
-        }
-    } else {
-        { buffer: ByteBuffer, isNullable: Boolean ->
-            when (val variantType = buffer.variantType) {
-                baseOrdinal -> {
-                    defaultLambda(buffer, variantType)
-                }
-
-                NIL.ordinal -> {
-                    if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
-                    null
-                }
-
-                else -> throw TypeCastException("Cannot match $variantType to ${this.baseOrdinal}")
+internal fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?): (ByteBuffer) -> Any? {
+    return { buffer: ByteBuffer ->
+        when (val variantType = buffer.variantType) {
+            baseOrdinal -> {
+                defaultLambda(buffer, variantType)
             }
+
+            else -> throw TypeCastException("Cannot match $variantType to ${this.baseOrdinal}")
         }
     }
 }

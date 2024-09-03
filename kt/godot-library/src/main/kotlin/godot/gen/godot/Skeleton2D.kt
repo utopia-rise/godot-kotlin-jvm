@@ -53,7 +53,7 @@ public open class Skeleton2D : Node2D() {
   public final fun getBoneCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -64,7 +64,7 @@ public open class Skeleton2D : Node2D() {
   public final fun getBone(idx: Int): Bone2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBonePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Bone2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Bone2D?)
   }
 
   /**
@@ -73,7 +73,7 @@ public open class Skeleton2D : Node2D() {
   public final fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -90,7 +90,7 @@ public open class Skeleton2D : Node2D() {
   public final fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
+    return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 
   /**
@@ -125,7 +125,7 @@ public open class Skeleton2D : Node2D() {
   public final fun getBoneLocalPoseOverride(boneIdx: Int): Transform2D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneLocalPoseOverridePtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public companion object

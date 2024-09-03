@@ -53,7 +53,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.intersectPointPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -71,7 +71,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public final fun intersectRay(parameters: PhysicsRayQueryParameters2D?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr, MethodBindings.intersectRayPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -90,7 +90,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.intersectShapePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -106,7 +106,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public final fun castMotion(parameters: PhysicsShapeQueryParameters2D?): PackedFloat32Array {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr, MethodBindings.castMotionPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
@@ -123,7 +123,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
       VariantArray<Vector2> {
     TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.collideShapePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2>)
   }
 
   /**
@@ -143,7 +143,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public final fun getRestInfo(parameters: PhysicsShapeQueryParameters2D?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)
     TransferContext.callMethod(rawPtr, MethodBindings.getRestInfoPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public companion object

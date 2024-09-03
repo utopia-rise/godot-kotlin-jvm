@@ -74,7 +74,7 @@ public open class SyntaxHighlighter : Resource() {
   public final fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLineSyntaxHighlightingPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -102,7 +102,7 @@ public open class SyntaxHighlighter : Resource() {
   public final fun getTextEdit(): TextEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextEditPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TextEdit?)
+    return (TransferContext.readReturnValue(OBJECT) as TextEdit?)
   }
 
   public companion object

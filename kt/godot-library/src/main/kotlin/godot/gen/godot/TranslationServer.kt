@@ -54,7 +54,7 @@ public object TranslationServer : Object() {
   public final fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -64,7 +64,7 @@ public object TranslationServer : Object() {
   public final fun getToolLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getToolLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -74,7 +74,7 @@ public object TranslationServer : Object() {
   public final fun compareLocales(localeA: String, localeB: String): Int {
     TransferContext.writeArguments(STRING to localeA, STRING to localeB)
     TransferContext.callMethod(rawPtr, MethodBindings.compareLocalesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -84,7 +84,7 @@ public object TranslationServer : Object() {
   public final fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.standardizeLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -93,7 +93,7 @@ public object TranslationServer : Object() {
   public final fun getAllLanguages(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllLanguagesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -102,7 +102,7 @@ public object TranslationServer : Object() {
   public final fun getLanguageName(language: String): String {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguageNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -111,7 +111,7 @@ public object TranslationServer : Object() {
   public final fun getAllScripts(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllScriptsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -120,7 +120,7 @@ public object TranslationServer : Object() {
   public final fun getScriptName(script: String): String {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -129,7 +129,7 @@ public object TranslationServer : Object() {
   public final fun getAllCountries(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllCountriesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -138,7 +138,7 @@ public object TranslationServer : Object() {
   public final fun getCountryName(country: String): String {
     TransferContext.writeArguments(STRING to country)
     TransferContext.callMethod(rawPtr, MethodBindings.getCountryNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -148,7 +148,7 @@ public object TranslationServer : Object() {
   public final fun getLocaleName(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.getLocaleNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -159,7 +159,7 @@ public object TranslationServer : Object() {
       StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, MethodBindings.translatePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -177,7 +177,7 @@ public object TranslationServer : Object() {
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n.toLong(), STRING_NAME to context)
     TransferContext.callMethod(rawPtr, MethodBindings.translatePluralPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -203,7 +203,7 @@ public object TranslationServer : Object() {
   public final fun getTranslationObject(locale: String): Translation? {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.getTranslationObjectPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Translation?)
+    return (TransferContext.readReturnValue(OBJECT) as Translation?)
   }
 
   /**
@@ -220,13 +220,13 @@ public object TranslationServer : Object() {
   public final fun getLoadedLocales(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun isPseudolocalizationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPseudolocalizationEnabled(enabled: Boolean): Unit {
@@ -248,7 +248,7 @@ public object TranslationServer : Object() {
   public final fun pseudolocalize(message: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to message)
     TransferContext.callMethod(rawPtr, MethodBindings.pseudolocalizePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   internal object MethodBindings {

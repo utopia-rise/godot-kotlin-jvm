@@ -128,7 +128,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getFormat(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -137,7 +137,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -146,7 +146,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getEdgeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEdgeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -155,7 +155,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getFaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFaceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -172,7 +172,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertex(idx: Int): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -189,7 +189,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexNormal(idx: Int): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -206,7 +206,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexTangent(idx: Int): Plane {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexTangentPtr, PLANE)
-    return (TransferContext.readReturnValue(PLANE, false) as Plane)
+    return (TransferContext.readReturnValue(PLANE) as Plane)
   }
 
   /**
@@ -223,7 +223,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexUv(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexUvPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -240,7 +240,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexUv2(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexUv2Ptr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -257,7 +257,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -274,7 +274,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexBones(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexBonesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -291,7 +291,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexWeights(idx: Int): PackedFloat32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexWeightsPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
@@ -308,7 +308,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexMeta(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexMetaPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -317,7 +317,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexEdges(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexEdgesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -326,7 +326,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getVertexFaces(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexFacesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -336,7 +336,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getEdgeVertex(idx: Int, vertex: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to vertex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getEdgeVertexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -345,7 +345,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getEdgeFaces(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getEdgeFacesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -362,7 +362,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getEdgeMeta(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMetaPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -388,7 +388,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getFaceVertex(idx: Int, vertex: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to vertex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFaceVertexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -398,7 +398,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getFaceEdge(idx: Int, edge: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to edge.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFaceEdgePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -415,7 +415,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getFaceMeta(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFaceMetaPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -424,7 +424,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getFaceNormal(idx: Int): Vector3 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFaceNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -441,7 +441,7 @@ public open class MeshDataTool : RefCounted() {
   public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public companion object

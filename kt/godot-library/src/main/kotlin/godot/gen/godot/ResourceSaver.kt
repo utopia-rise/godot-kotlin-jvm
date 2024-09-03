@@ -65,7 +65,7 @@ public object ResourceSaver : Object() {
     TransferContext.writeArguments(OBJECT to type)
     TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr,
         PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**

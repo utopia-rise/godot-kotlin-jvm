@@ -2,7 +2,6 @@ package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.BOOLEAN
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
@@ -15,7 +14,6 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import com.squareup.kotlinpoet.asClassName
 import godot.codegen.services.IKtCallableGenerationService
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
@@ -95,13 +93,6 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         .build()
                 )
 
-            val variantTypeToBooleanTypeName = Pair::class
-                .asClassName()
-                .parameterizedBy(
-                    variantTypeClassName,
-                    BOOLEAN
-                )
-
             for (arg in argumentRange) {
                 val typeProperty = "p${arg}Type"
 
@@ -111,7 +102,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                             PropertySpec
                                 .builder(
                                     typeProperty,
-                                    variantTypeToBooleanTypeName,
+                                    variantTypeClassName,
                                     KModifier.PRIVATE
                                 )
                                 .initializer(typeProperty)
@@ -124,7 +115,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         ParameterSpec
                             .builder(
                                 typeProperty,
-                                variantTypeToBooleanTypeName
+                                variantTypeClassName
                             )
                             .build()
                     )
@@ -296,7 +287,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                                 append("return·$KT_CALLABLE_NAME$argCount(")
                                 append("%M.getOrDefault(%T::class,·%T),·")
                                 for (typeParameter in typeVariableNames) {
-                                    append("%M[%T::class]!!·to·%L,·")
+                                    append("%M[%T::class]!!,·")
                                 }
                                 append(FUNCTION_PARAMETER_NAME)
                                 append(')')
@@ -306,7 +297,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                             VARIANT_TYPE_NIL,
                             *typeVariableNames
                                 .flatMap {
-                                    listOf(variantMapperMember, it, true)
+                                    listOf(variantMapperMember, it)
                                 }
                                 .toTypedArray()
                         )

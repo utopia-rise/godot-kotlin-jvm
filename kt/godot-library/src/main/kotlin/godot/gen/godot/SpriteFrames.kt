@@ -52,7 +52,7 @@ public open class SpriteFrames : Resource() {
   public final fun hasAnimation(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -78,7 +78,7 @@ public open class SpriteFrames : Resource() {
   public final fun getAnimationNames(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationNamesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -95,7 +95,7 @@ public open class SpriteFrames : Resource() {
   public final fun getAnimationSpeed(anim: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -114,7 +114,7 @@ public open class SpriteFrames : Resource() {
   public final fun getAnimationLoop(anim: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -162,7 +162,7 @@ public open class SpriteFrames : Resource() {
   public final fun getFrameCount(anim: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -171,7 +171,7 @@ public open class SpriteFrames : Resource() {
   public final fun getFrameTexture(anim: StringName, idx: Int): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -188,7 +188,7 @@ public open class SpriteFrames : Resource() {
   public final fun getFrameDuration(anim: StringName, idx: Int): Float {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameDurationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**

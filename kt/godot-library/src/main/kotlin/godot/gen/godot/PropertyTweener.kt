@@ -46,7 +46,7 @@ public open class PropertyTweener : Tweener() {
   public final fun from(`value`: Any?): PropertyTweener? {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.fromPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -61,7 +61,7 @@ public open class PropertyTweener : Tweener() {
   public final fun fromCurrent(): PropertyTweener? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.fromCurrentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -76,7 +76,7 @@ public open class PropertyTweener : Tweener() {
   public final fun asRelative(): PropertyTweener? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asRelativePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -86,7 +86,7 @@ public open class PropertyTweener : Tweener() {
   public final fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -96,7 +96,7 @@ public open class PropertyTweener : Tweener() {
   public final fun setEase(ease: Tween.EaseType): PropertyTweener? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -122,7 +122,7 @@ public open class PropertyTweener : Tweener() {
   public final fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener? {
     TransferContext.writeArguments(CALLABLE to interpolatorMethod)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomInterpolatorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -132,7 +132,7 @@ public open class PropertyTweener : Tweener() {
   public final fun setDelay(delay: Double): PropertyTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   public companion object

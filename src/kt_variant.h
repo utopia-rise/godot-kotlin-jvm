@@ -71,9 +71,10 @@ namespace ktvariant {
     }
 
     static void append_object(SharedBuffer* des, Object* ptr) {
-        // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
-        if (!ptr) {
-            to_kvariant_fromNIL(des, ptr);
+        if (ptr == nullptr) {
+            des->increment_position(encode_uint32(0, des->get_cursor()));
+            des->increment_position(encode_uint64(0, des->get_cursor()));
+            des->increment_position(encode_uint64(0, des->get_cursor()));
             return;
         }
 
@@ -81,7 +82,6 @@ namespace ktvariant {
         KotlinBinding* binding = KotlinBindingManager::get_instance_binding(ptr);
         int constructorID = binding->get_constructor_id();
 
-        set_variant_type(des, Variant::Type::OBJECT);
         des->increment_position(encode_uint32(constructorID, des->get_cursor()));
         des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr), des->get_cursor()));
         des->increment_position(encode_uint64(ptr->get_instance_id(), des->get_cursor()));
@@ -95,6 +95,7 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::OBJECT);
         append_object(des, src);
     }
 

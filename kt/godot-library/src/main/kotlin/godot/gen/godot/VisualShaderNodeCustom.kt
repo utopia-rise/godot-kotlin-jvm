@@ -263,7 +263,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   public final fun getOptionIndex(option: Int): Int {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOptionIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

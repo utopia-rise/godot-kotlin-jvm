@@ -89,7 +89,7 @@ public object NavigationServer3D : Object() {
   public final fun getMaps(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMapsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -98,7 +98,7 @@ public object NavigationServer3D : Object() {
   public final fun mapCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mapCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -115,7 +115,7 @@ public object NavigationServer3D : Object() {
   public final fun mapIsActive(map: RID): Boolean {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapIsActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -132,7 +132,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetUp(map: RID): Vector3 {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetUpPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -150,7 +150,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetCellSize(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetCellSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -168,7 +168,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetCellHeight(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetCellHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -185,7 +185,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetMergeRasterizerCellScale(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetMergeRasterizerCellScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -206,7 +206,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetUseEdgeConnections(map: RID): Boolean {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetUseEdgeConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -224,7 +224,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetEdgeConnectionMargin(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetEdgeConnectionMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -242,7 +242,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetLinkConnectionRadius(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetLinkConnectionRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -259,7 +259,7 @@ public object NavigationServer3D : Object() {
   ): PackedVector3Array {
     TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetPathPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -274,7 +274,7 @@ public object NavigationServer3D : Object() {
   ): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointToSegmentPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -283,7 +283,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetClosestPoint(map: RID, toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -292,7 +292,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetClosestPointNormal(map: RID, toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -301,7 +301,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetClosestPointOwner(map: RID, toPoint: Vector3): RID {
     TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointOwnerPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -311,7 +311,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetLinks(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetLinksPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -321,7 +321,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetRegions(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetRegionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -331,7 +331,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetAgents(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetAgentsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -341,7 +341,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetObstacles(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetObstaclesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -379,7 +379,7 @@ public object NavigationServer3D : Object() {
   public final fun mapGetIterationId(map: RID): Long {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetIterationIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -395,7 +395,7 @@ public object NavigationServer3D : Object() {
   ): Vector3 {
     TransferContext.writeArguments(_RID to map, LONG to navigationLayers, BOOL to uniformly)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetRandomPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -416,7 +416,7 @@ public object NavigationServer3D : Object() {
   public final fun regionCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.regionCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -433,7 +433,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetEnabled(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -452,7 +452,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetUseEdgeConnections(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetUseEdgeConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -469,7 +469,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetEnterCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnterCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -486,7 +486,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetTravelCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetTravelCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -503,7 +503,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetOwnerId(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetOwnerIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -521,7 +521,7 @@ public object NavigationServer3D : Object() {
   public final fun regionOwnsPoint(region: RID, point: Vector3): Boolean {
     TransferContext.writeArguments(_RID to region, VECTOR3 to point)
     TransferContext.callMethod(rawPtr, MethodBindings.regionOwnsPointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -538,7 +538,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetMap(region: RID): RID {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -556,7 +556,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetNavigationLayers(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -573,7 +573,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetTransform(region: RID): Transform3D {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -599,7 +599,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetConnectionsCount(region: RID): Int {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionsCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -609,7 +609,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetConnectionPathwayStart(region: RID, connection: Int): Vector3 {
     TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayStartPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -619,7 +619,7 @@ public object NavigationServer3D : Object() {
   public final fun regionGetConnectionPathwayEnd(region: RID, connection: Int): Vector3 {
     TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayEndPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -635,7 +635,7 @@ public object NavigationServer3D : Object() {
   ): Vector3 {
     TransferContext.writeArguments(_RID to region, LONG to navigationLayers, BOOL to uniformly)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetRandomPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -644,7 +644,7 @@ public object NavigationServer3D : Object() {
   public final fun linkCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.linkCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -661,7 +661,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetMap(link: RID): RID {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -678,7 +678,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetEnabled(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -695,7 +695,7 @@ public object NavigationServer3D : Object() {
   public final fun linkIsBidirectional(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkIsBidirectionalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -713,7 +713,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetNavigationLayers(link: RID): Long {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -730,7 +730,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetStartPosition(link: RID): Vector3 {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetStartPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -747,7 +747,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetEndPosition(link: RID): Vector3 {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetEndPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -764,7 +764,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetEnterCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnterCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -781,7 +781,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetTravelCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetTravelCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -798,7 +798,7 @@ public object NavigationServer3D : Object() {
   public final fun linkGetOwnerId(link: RID): Long {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetOwnerIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -807,7 +807,7 @@ public object NavigationServer3D : Object() {
   public final fun agentCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.agentCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -824,7 +824,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetAvoidanceEnabled(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -852,7 +852,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetUse3dAvoidance(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetUse3dAvoidancePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -869,7 +869,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetMap(agent: RID): RID {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -887,7 +887,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetPaused(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -907,7 +907,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetNeighborDistance(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetNeighborDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -927,7 +927,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetMaxNeighbors(agent: RID): Int {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetMaxNeighborsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -948,7 +948,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetTimeHorizonAgents(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonAgentsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -970,7 +970,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetTimeHorizonObstacles(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonObstaclesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -987,7 +987,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetRadius(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1004,7 +1004,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetHeight(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1021,7 +1021,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetMaxSpeed(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetMaxSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1051,7 +1051,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetVelocity(agent: RID): Vector3 {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1068,7 +1068,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetPosition(agent: RID): Vector3 {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1077,7 +1077,7 @@ public object NavigationServer3D : Object() {
   public final fun agentIsMapChanged(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentIsMapChangedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1099,7 +1099,7 @@ public object NavigationServer3D : Object() {
   public final fun agentHasAvoidanceCallback(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentHasAvoidanceCallbackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1116,7 +1116,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetAvoidanceLayers(agent: RID): Long {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1133,7 +1133,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetAvoidanceMask(agent: RID): Long {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1154,7 +1154,7 @@ public object NavigationServer3D : Object() {
   public final fun agentGetAvoidancePriority(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidancePriorityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1163,7 +1163,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1180,7 +1180,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetAvoidanceEnabled(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1198,7 +1198,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetUse3dAvoidance(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetUse3dAvoidancePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1215,7 +1215,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetMap(obstacle: RID): RID {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1233,7 +1233,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetPaused(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1250,7 +1250,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetRadius(obstacle: RID): Float {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1268,7 +1268,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetHeight(obstacle: RID): Float {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1286,7 +1286,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetVelocity(obstacle: RID): Vector3 {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1303,7 +1303,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetPosition(obstacle: RID): Vector3 {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1321,7 +1321,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetVertices(obstacle: RID): PackedVector3Array {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetVerticesPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -1338,7 +1338,7 @@ public object NavigationServer3D : Object() {
   public final fun obstacleGetAvoidanceLayers(obstacle: RID): Long {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1399,7 +1399,7 @@ public object NavigationServer3D : Object() {
   public final fun isBakingNavigationMesh(navigationMesh: NavigationMesh?): Boolean {
     TransferContext.writeArguments(OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationMeshPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1410,7 +1410,7 @@ public object NavigationServer3D : Object() {
   public final fun sourceGeometryParserCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.sourceGeometryParserCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1438,7 +1438,7 @@ public object NavigationServer3D : Object() {
   public final fun simplifyPath(path: PackedVector3Array, epsilon: Float): PackedVector3Array {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to path, DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.simplifyPathPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -1471,7 +1471,7 @@ public object NavigationServer3D : Object() {
   public final fun getDebugEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1481,7 +1481,7 @@ public object NavigationServer3D : Object() {
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
     TransferContext.writeArguments(LONG to processInfo.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessInfoPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class ProcessInfo(

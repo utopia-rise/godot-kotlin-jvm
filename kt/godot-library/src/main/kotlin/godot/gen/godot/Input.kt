@@ -66,7 +66,7 @@ public object Input : Object() {
   public final fun isAnythingPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAnythingPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -84,7 +84,7 @@ public object Input : Object() {
   public final fun isKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isKeyPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -102,7 +102,7 @@ public object Input : Object() {
   public final fun isPhysicalKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isPhysicalKeyPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -112,7 +112,7 @@ public object Input : Object() {
   public final fun isKeyLabelPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isKeyLabelPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -121,7 +121,7 @@ public object Input : Object() {
   public final fun isMouseButtonPressed(button: MouseButton): Boolean {
     TransferContext.writeArguments(LONG to button.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isMouseButtonPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -130,7 +130,7 @@ public object Input : Object() {
   public final fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to button.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isJoyButtonPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -146,7 +146,7 @@ public object Input : Object() {
   public final fun isActionPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -170,7 +170,7 @@ public object Input : Object() {
   public final fun isActionJustPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionJustPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -187,7 +187,7 @@ public object Input : Object() {
   public final fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionJustReleasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -202,7 +202,7 @@ public object Input : Object() {
   public final fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -215,7 +215,7 @@ public object Input : Object() {
   public final fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.getActionRawStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -226,7 +226,7 @@ public object Input : Object() {
   public final fun getAxis(negativeAction: StringName, positiveAction: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to negativeAction, STRING_NAME to positiveAction)
     TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -247,7 +247,7 @@ public object Input : Object() {
   ): Vector2 {
     TransferContext.writeArguments(STRING_NAME to negativeX, STRING_NAME to positiveX, STRING_NAME to negativeY, STRING_NAME to positiveY, DOUBLE to deadzone.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.getVectorPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -276,7 +276,7 @@ public object Input : Object() {
   public final fun isJoyKnown(device: Int): Boolean {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isJoyKnownPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -285,7 +285,7 @@ public object Input : Object() {
   public final fun getJoyAxis(device: Int, axis: JoyAxis): Float {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to axis.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyAxisPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -296,7 +296,7 @@ public object Input : Object() {
   public final fun getJoyName(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -308,7 +308,7 @@ public object Input : Object() {
   public final fun getJoyGuid(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyGuidPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -327,7 +327,7 @@ public object Input : Object() {
   public final fun getJoyInfo(device: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyInfoPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -341,7 +341,7 @@ public object Input : Object() {
   public final fun shouldIgnoreDevice(vendorId: Int, productId: Int): Boolean {
     TransferContext.writeArguments(LONG to vendorId.toLong(), LONG to productId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.shouldIgnoreDevicePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -350,7 +350,7 @@ public object Input : Object() {
   public final fun getConnectedJoypads(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectedJoypadsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
   /**
@@ -360,7 +360,7 @@ public object Input : Object() {
   public final fun getJoyVibrationStrength(device: Int): Vector2 {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyVibrationStrengthPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -369,7 +369,7 @@ public object Input : Object() {
   public final fun getJoyVibrationDuration(device: Int): Float {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyVibrationDurationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -429,7 +429,7 @@ public object Input : Object() {
   public final fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -444,7 +444,7 @@ public object Input : Object() {
   public final fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccelerometerPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -456,7 +456,7 @@ public object Input : Object() {
   public final fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMagnetometerPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -468,7 +468,7 @@ public object Input : Object() {
   public final fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGyroscopePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -522,7 +522,7 @@ public object Input : Object() {
   public final fun getLastMouseVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLastMouseVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -533,7 +533,7 @@ public object Input : Object() {
   public final fun getLastMouseScreenVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLastMouseScreenVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -678,7 +678,7 @@ public object Input : Object() {
   public final fun isUsingAccumulatedInput(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingAccumulatedInputPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -702,7 +702,7 @@ public object Input : Object() {
   public final fun isEmulatingMouseFromTouch(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmulatingMouseFromTouchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEmulateTouchFromMouse(enable: Boolean): Unit {
@@ -713,7 +713,7 @@ public object Input : Object() {
   public final fun isEmulatingTouchFromMouse(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmulatingTouchFromMousePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class MouseMode(

@@ -64,7 +64,7 @@ public open class AudioEffectRecord : AudioEffect() {
   public final fun isRecordingActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecordingActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFormat(format: AudioStreamWAV.Format): Unit {
@@ -84,7 +84,7 @@ public open class AudioEffectRecord : AudioEffect() {
   public final fun getRecording(): AudioStreamWAV? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRecordingPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamWAV?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
   }
 
   public companion object

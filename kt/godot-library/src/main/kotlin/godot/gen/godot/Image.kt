@@ -58,7 +58,7 @@ public open class Image : Resource() {
   public final fun getWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -67,7 +67,7 @@ public open class Image : Resource() {
   public final fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -76,7 +76,7 @@ public open class Image : Resource() {
   public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -85,7 +85,7 @@ public open class Image : Resource() {
   public final fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -103,7 +103,7 @@ public open class Image : Resource() {
   public final fun getData(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -112,7 +112,7 @@ public open class Image : Resource() {
   public final fun getDataSize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -131,7 +131,7 @@ public open class Image : Resource() {
   public final fun getMipmapCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMipmapCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -141,7 +141,7 @@ public open class Image : Resource() {
   public final fun getMipmapOffset(mipmap: Int): Long {
     TransferContext.writeArguments(LONG to mipmap.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getMipmapOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -249,7 +249,7 @@ public open class Image : Resource() {
   public final fun isEmpty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -282,7 +282,7 @@ public open class Image : Resource() {
   public final fun savePngToBuffer(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.savePngToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -312,7 +312,7 @@ public open class Image : Resource() {
   public final fun saveJpgToBuffer(quality: Float = 0.75f): PackedByteArray {
     TransferContext.writeArguments(DOUBLE to quality.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.saveJpgToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -340,7 +340,7 @@ public open class Image : Resource() {
   public final fun saveExrToBuffer(grayscale: Boolean = false): PackedByteArray {
     TransferContext.writeArguments(BOOL to grayscale)
     TransferContext.callMethod(rawPtr, MethodBindings.saveExrToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -373,7 +373,7 @@ public open class Image : Resource() {
       PackedByteArray {
     TransferContext.writeArguments(BOOL to lossy, DOUBLE to quality.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.saveWebpToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -394,7 +394,7 @@ public open class Image : Resource() {
   public final fun isInvisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInvisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -464,7 +464,7 @@ public open class Image : Resource() {
   public final fun isCompressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCompressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -525,7 +525,7 @@ public open class Image : Resource() {
   public final fun rgbeToSrgb(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.rgbeToSrgbPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -546,7 +546,7 @@ public open class Image : Resource() {
       Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to comparedImage, BOOL to useLuma)
     TransferContext.callMethod(rawPtr, MethodBindings.computeImageMetricsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -635,7 +635,7 @@ public open class Image : Resource() {
   public final fun getUsedRect(): Rect2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedRectPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -644,7 +644,7 @@ public open class Image : Resource() {
   public final fun getRegion(region: Rect2i): Image? {
     TransferContext.writeArguments(RECT2I to region)
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -663,7 +663,7 @@ public open class Image : Resource() {
   public final fun getPixelv(point: Vector2i): Color {
     TransferContext.writeArguments(VECTOR2I to point)
     TransferContext.callMethod(rawPtr, MethodBindings.getPixelvPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -674,7 +674,7 @@ public open class Image : Resource() {
   public final fun getPixel(x: Int, y: Int): Color {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPixelPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1317,7 +1317,7 @@ public open class Image : Resource() {
     ): Image? {
       TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
       TransferContext.callMethod(0, MethodBindings.createPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+      return (TransferContext.readReturnValue(OBJECT) as Image?)
     }
 
     /**
@@ -1332,7 +1332,7 @@ public open class Image : Resource() {
     ): Image? {
       TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
       TransferContext.callMethod(0, MethodBindings.createEmptyPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+      return (TransferContext.readReturnValue(OBJECT) as Image?)
     }
 
     /**
@@ -1349,7 +1349,7 @@ public open class Image : Resource() {
     ): Image? {
       TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
       TransferContext.callMethod(0, MethodBindings.createFromDataPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+      return (TransferContext.readReturnValue(OBJECT) as Image?)
     }
 
     /**
@@ -1358,7 +1358,7 @@ public open class Image : Resource() {
     public final fun loadFromFile(path: String): Image? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+      return (TransferContext.readReturnValue(OBJECT) as Image?)
     }
   }
 

@@ -17,8 +17,8 @@ internal open class ParametersReader {
         paramsArray.fill(null)
     }
 
-    internal inline fun withParameters(types: Array<VariantType>, isNullables: Array<Boolean>, code: () -> Unit) {
-        TransferContext.readArguments(types, isNullables, paramsArray)
+    internal inline fun withParameters(types: Array<VariantType>, code: () -> Unit) {
+        TransferContext.readArguments(types, paramsArray)
         try {
             code()
         } catch (t: Throwable) {
@@ -29,11 +29,10 @@ internal open class ParametersReader {
 
     internal inline fun <R> withParametersReturn(
         types: Array<VariantType>,
-        isNullables: Array<Boolean>,
         variantType: VariantType,
         code: () -> R
     ): Any? {
-        TransferContext.readArguments(types, isNullables, paramsArray)
+        TransferContext.readArguments(types, paramsArray)
 
         var ret: Any? = Unit
         try {

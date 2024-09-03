@@ -44,7 +44,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   public final fun getHeldModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeldModificationStackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
+    return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 
   public companion object

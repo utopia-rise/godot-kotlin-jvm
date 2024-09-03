@@ -36,7 +36,7 @@ class StringName : NativeCoreType {
     override fun toString(): String {
         TransferContext.writeArguments()
         Bridge.engine_call_operator_string(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING, false) as String
+        return TransferContext.readReturnValue(VariantType.STRING) as String
     }
 
     /**

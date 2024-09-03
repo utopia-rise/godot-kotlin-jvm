@@ -3,11 +3,7 @@
 package godot.core
 
 import godot.core.callable.ParametersReader
-import godot.core.memory.TransferContext
-import godot.global.GD
-import godot.tools.common.constants.Constraints
 import godot.util.camelToSnakeCase
-import godot.util.threadLocal
 
 enum class PropertyHint {
     NONE, ///< no hint provided.
@@ -71,18 +67,16 @@ abstract class KtFunction<T : KtObject, R : Any?>(
     val functionInfo: KtFunctionInfo,
     val parameterCount: Int,
     private val variantType: VariantType,
-    vararg parameterTypes: Pair<VariantType, Boolean>
+    vararg parameterTypes: VariantType
 ) {
-    private val types: Array<VariantType> = parameterTypes.map { it.first }.toTypedArray()
-    private val isNullables: Array<Boolean> = parameterTypes.map { it.second }.toTypedArray()
-
+    private val types: Array<VariantType> = parameterTypes.toList().toTypedArray()
     val registrationName = functionInfo.name.camelToSnakeCase()
 
-    fun invoke(instance: T): Unit = withParameters(types, isNullables) {
+    fun invoke(instance: T): Unit = withParameters(types) {
         invokeKt(instance)
     }
 
-    fun invokeWithReturn(instance: T): Any? = withParametersReturn(types, isNullables, variantType) {
+    fun invokeWithReturn(instance: T): Any? = withParametersReturn(types, variantType) {
         invokeKt(instance)
     }
 
@@ -103,7 +97,7 @@ class KtFunction1<T : KtObject, P0 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>
+    p0Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 1, variantType, p0Type) {
     override fun invokeKt(instance: T): R {
         return function(
@@ -117,8 +111,8 @@ class KtFunction2<T : KtObject, P0 : Any?, P1 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType
 ) : KtFunction<T, R>(
     functionInfo,
     2,
@@ -137,9 +131,9 @@ class KtFunction3<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
 ) : KtFunction<T, R>(
     functionInfo,
     3,
@@ -160,10 +154,10 @@ class KtFunction4<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, R : 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
 ) : KtFunction<T, R>(
     functionInfo,
     4,
@@ -186,11 +180,11 @@ class KtFunction5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
 ) : KtFunction<T, R>(
     functionInfo,
     5,
@@ -215,12 +209,12 @@ class KtFunction6<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
 ) : KtFunction<T, R>(
     functionInfo,
     6,
@@ -247,13 +241,13 @@ class KtFunction7<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
 ) : KtFunction<T, R>(
     functionInfo,
     7,
@@ -282,14 +276,14 @@ class KtFunction8<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
 ) : KtFunction<T, R>(
     functionInfo,
     8,
@@ -320,15 +314,15 @@ class KtFunction9<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 9, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -348,16 +342,16 @@ class KtFunction10<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>,
-    p9Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType,
+    p9Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 10, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -378,17 +372,17 @@ class KtFunction11<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>,
-    p9Type: Pair<VariantType, Boolean>,
-    p10Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType,
+    p9Type: VariantType,
+    p10Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 11, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -410,18 +404,18 @@ class KtFunction12<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>,
-    p9Type: Pair<VariantType, Boolean>,
-    p10Type: Pair<VariantType, Boolean>,
-    p11Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType,
+    p9Type: VariantType,
+    p10Type: VariantType,
+    p11Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 12, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -444,19 +438,19 @@ class KtFunction13<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>,
-    p9Type: Pair<VariantType, Boolean>,
-    p10Type: Pair<VariantType, Boolean>,
-    p11Type: Pair<VariantType, Boolean>,
-    p12Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType,
+    p9Type: VariantType,
+    p10Type: VariantType,
+    p11Type: VariantType,
+    p12Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 13, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -480,20 +474,20 @@ class KtFunction14<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>,
-    p9Type: Pair<VariantType, Boolean>,
-    p10Type: Pair<VariantType, Boolean>,
-    p11Type: Pair<VariantType, Boolean>,
-    p12Type: Pair<VariantType, Boolean>,
-    p13Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType,
+    p9Type: VariantType,
+    p10Type: VariantType,
+    p11Type: VariantType,
+    p12Type: VariantType,
+    p13Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 14, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -518,21 +512,21 @@ class KtFunction15<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>,
-    p9Type: Pair<VariantType, Boolean>,
-    p10Type: Pair<VariantType, Boolean>,
-    p11Type: Pair<VariantType, Boolean>,
-    p12Type: Pair<VariantType, Boolean>,
-    p13Type: Pair<VariantType, Boolean>,
-    p14Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType,
+    p9Type: VariantType,
+    p10Type: VariantType,
+    p11Type: VariantType,
+    p12Type: VariantType,
+    p13Type: VariantType,
+    p14Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 15, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -558,22 +552,22 @@ class KtFunction16<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15) -> R,
     variantType: VariantType,
-    p0Type: Pair<VariantType, Boolean>,
-    p1Type: Pair<VariantType, Boolean>,
-    p2Type: Pair<VariantType, Boolean>,
-    p3Type: Pair<VariantType, Boolean>,
-    p4Type: Pair<VariantType, Boolean>,
-    p5Type: Pair<VariantType, Boolean>,
-    p6Type: Pair<VariantType, Boolean>,
-    p7Type: Pair<VariantType, Boolean>,
-    p8Type: Pair<VariantType, Boolean>,
-    p9Type: Pair<VariantType, Boolean>,
-    p10Type: Pair<VariantType, Boolean>,
-    p11Type: Pair<VariantType, Boolean>,
-    p12Type: Pair<VariantType, Boolean>,
-    p13Type: Pair<VariantType, Boolean>,
-    p14Type: Pair<VariantType, Boolean>,
-    p15Type: Pair<VariantType, Boolean>
+    p0Type: VariantType,
+    p1Type: VariantType,
+    p2Type: VariantType,
+    p3Type: VariantType,
+    p4Type: VariantType,
+    p5Type: VariantType,
+    p6Type: VariantType,
+    p7Type: VariantType,
+    p8Type: VariantType,
+    p9Type: VariantType,
+    p10Type: VariantType,
+    p11Type: VariantType,
+    p12Type: VariantType,
+    p13Type: VariantType,
+    p14Type: VariantType,
+    p15Type: VariantType
 ) : KtFunction<T, R>(functionInfo, 16, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, p15Type) {
     override fun invokeKt(instance: T): R = function(
         instance,

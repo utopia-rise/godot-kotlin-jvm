@@ -2,25 +2,24 @@
 
 package godot.core.callable
 
-import godot.core.VariantType
 import godot.core.Callable
+import godot.core.VariantType
 import godot.util.VoidPtr
 
 abstract class KtCallable<R : Any?>(
     internal val variantType: VariantType,
-    vararg parameterTypes: Pair<VariantType, Boolean>
+    vararg parameterTypes: VariantType
 ) : Callable {
-    private val types: Array<VariantType> = parameterTypes.map { it.first }.toTypedArray()
-    private val isNullables: Array<Boolean> = parameterTypes.map { it.second }.toTypedArray()
+    private val types: Array<VariantType> = parameterTypes.toList().toTypedArray()
 
     val returnVariantType: Int
         get() = variantType.ordinal
 
-    fun invokeNoReturn(): Unit = withParameters(types, isNullables) {
+    fun invokeNoReturn(): Unit = withParameters(types) {
         invokeKt()
     }
 
-    fun invokeWithReturn(): Any? = withParametersReturn(types, isNullables, variantType) {
+    fun invokeWithReturn(): Any? = withParametersReturn(types, variantType) {
         invokeKt()
     }
 

@@ -108,7 +108,7 @@ public open class AudioStream : Resource() {
   public final fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -118,7 +118,7 @@ public open class AudioStream : Resource() {
   public final fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMonophonicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -130,7 +130,7 @@ public open class AudioStream : Resource() {
   public final fun instantiatePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.instantiatePlaybackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
 
   /**
@@ -140,7 +140,7 @@ public open class AudioStream : Resource() {
   public final fun canBeSampled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canBeSampledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -149,7 +149,7 @@ public open class AudioStream : Resource() {
   public final fun generateSample(): AudioSample? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateSamplePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioSample?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioSample?)
   }
 
   /**
@@ -158,7 +158,7 @@ public open class AudioStream : Resource() {
   public final fun isMetaStream(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMetaStreamPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

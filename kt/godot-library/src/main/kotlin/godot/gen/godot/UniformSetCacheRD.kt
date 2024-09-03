@@ -42,7 +42,7 @@ public open class UniformSetCacheRD : Object() {
     ): RID {
       TransferContext.writeArguments(_RID to shader, LONG to set, ARRAY to uniforms)
       TransferContext.callMethod(0, MethodBindings.getCachePtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
+      return (TransferContext.readReturnValue(_RID) as RID)
     }
   }
 

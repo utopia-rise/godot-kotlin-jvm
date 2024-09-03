@@ -81,7 +81,7 @@ public object GDExtensionManager : Object() {
   public final fun isExtensionLoaded(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isExtensionLoadedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -90,7 +90,7 @@ public object GDExtensionManager : Object() {
   public final fun getLoadedExtensions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -100,7 +100,7 @@ public object GDExtensionManager : Object() {
   public final fun getExtension(path: String): GDExtension? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.getExtensionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as GDExtension?)
+    return (TransferContext.readReturnValue(OBJECT) as GDExtension?)
   }
 
   public enum class LoadStatus(

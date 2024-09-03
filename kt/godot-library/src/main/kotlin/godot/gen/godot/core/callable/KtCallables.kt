@@ -6,8 +6,6 @@ import godot.core.VariantType
 import godot.core.VariantType.NIL
 import godot.core.variantMapper
 import kotlin.Any
-import kotlin.Boolean
-import kotlin.Pair
 import kotlin.Suppress
 
 public class KtCallable0<R>(
@@ -28,7 +26,7 @@ public inline fun <reified R> (() -> R).asCallable() = callable(this)
 
 public class KtCallable1<P0, R>(
   variantType: VariantType,
-  p0Type: Pair<VariantType, Boolean>,
+  p0Type: VariantType,
   private val function: (p0: P0) -> R,
 ) : KtCallable<R>(variantType, p0Type) {
   public override fun invokeKt(): R = function(paramsArray[0] as P0)
@@ -41,14 +39,14 @@ public class KtCallable1<P0, R>(
 }
 
 public inline fun <reified P0, reified R> callable(noinline function: (p0: P0) -> R) =
-    KtCallable1(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, function)
+    KtCallable1(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, function)
 
 public inline fun <reified P0, reified R> ((p0: P0) -> R).asCallable() = callable(this)
 
 public class KtCallable2<P0, P1, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  p1Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  p1Type: VariantType,
   private val function: (p0: P0, p1: P1) -> R,
 ) : KtCallable<R>(variantType, p0Type, p1Type) {
   public override fun invokeKt(): R = function(paramsArray[0] as P0, paramsArray[1] as P1)
@@ -64,16 +62,16 @@ public class KtCallable2<P0, P1, R>(
 
 public inline fun <reified P0, reified P1, reified R> callable(noinline function: (p0: P0,
     p1: P1) -> R) =
-    KtCallable2(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, function)
+    KtCallable2(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified R> ((p0: P0, p1: P1) -> R).asCallable() =
     callable(this)
 
 public class KtCallable3<P0, P1, P2, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  p2Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  p2Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -110,7 +108,7 @@ public inline fun <reified P0, reified P1, reified P2, reified R> callable(noinl
   p1: P1,
   p2: P2,
 ) -> R) =
-    KtCallable3(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, function)
+    KtCallable3(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified R> ((
   p0: P0,
@@ -120,10 +118,10 @@ public inline fun <reified P0, reified P1, reified P2, reified R> ((
 
 public class KtCallable4<P0, P1, P2, P3, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  p3Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  p3Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -171,7 +169,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ca
   p2: P2,
   p3: P3,
 ) -> R) =
-    KtCallable4(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, function)
+    KtCallable4(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
   p0: P0,
@@ -182,11 +180,11 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> ((
 
 public class KtCallable5<P0, P1, P2, P3, P4, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  p4Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  p4Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -245,7 +243,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p3: P3,
   p4: P4,
 ) -> R) =
-    KtCallable5(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, function)
+    KtCallable5(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified R> ((
   p0: P0,
@@ -257,12 +255,12 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable6<P0, P1, P2, P3, P4, P5, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  p5Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  p5Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -335,7 +333,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
 ) -> R) =
-    KtCallable6(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, function)
+    KtCallable6(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     R> ((
@@ -349,13 +347,13 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable7<P0, P1, P2, P3, P4, P5, P6, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  p6Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  p6Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -442,7 +440,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
 ) -> R) =
-    KtCallable7(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, function)
+    KtCallable7(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified R> ((
@@ -457,14 +455,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  p7Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  p7Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -566,7 +564,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
 ) -> R) =
-    KtCallable8(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, function)
+    KtCallable8(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified R> ((
@@ -582,15 +580,15 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  p8Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  p8Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -709,7 +707,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
 ) -> R) =
-    KtCallable9(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, function)
+    KtCallable9(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified R> ((
@@ -726,16 +724,16 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  private val p8Type: Pair<VariantType, Boolean>,
-  p9Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  private val p8Type: VariantType,
+  p9Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -872,7 +870,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
 ) -> R) =
-    KtCallable10(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, variantMapper[P9::class]!! to true, function)
+    KtCallable10(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified R> ((
@@ -890,17 +888,17 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  private val p8Type: Pair<VariantType, Boolean>,
-  private val p9Type: Pair<VariantType, Boolean>,
-  p10Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  private val p8Type: VariantType,
+  private val p9Type: VariantType,
+  p10Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -1055,7 +1053,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
 ) -> R) =
-    KtCallable11(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, variantMapper[P9::class]!! to true, variantMapper[P10::class]!! to true, function)
+    KtCallable11(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified R> ((
@@ -1074,18 +1072,18 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  private val p8Type: Pair<VariantType, Boolean>,
-  private val p9Type: Pair<VariantType, Boolean>,
-  private val p10Type: Pair<VariantType, Boolean>,
-  p11Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  private val p8Type: VariantType,
+  private val p9Type: VariantType,
+  private val p10Type: VariantType,
+  p11Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -1260,7 +1258,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
 ) -> R) =
-    KtCallable12(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, variantMapper[P9::class]!! to true, variantMapper[P10::class]!! to true, variantMapper[P11::class]!! to true, function)
+    KtCallable12(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified R> ((
@@ -1280,19 +1278,19 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  private val p8Type: Pair<VariantType, Boolean>,
-  private val p9Type: Pair<VariantType, Boolean>,
-  private val p10Type: Pair<VariantType, Boolean>,
-  private val p11Type: Pair<VariantType, Boolean>,
-  p12Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  private val p8Type: VariantType,
+  private val p9Type: VariantType,
+  private val p10Type: VariantType,
+  private val p11Type: VariantType,
+  p12Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -1488,7 +1486,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
 ) -> R) =
-    KtCallable13(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, variantMapper[P9::class]!! to true, variantMapper[P10::class]!! to true, variantMapper[P11::class]!! to true, variantMapper[P12::class]!! to true, function)
+    KtCallable13(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified R> ((
@@ -1509,20 +1507,20 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  private val p8Type: Pair<VariantType, Boolean>,
-  private val p9Type: Pair<VariantType, Boolean>,
-  private val p10Type: Pair<VariantType, Boolean>,
-  private val p11Type: Pair<VariantType, Boolean>,
-  private val p12Type: Pair<VariantType, Boolean>,
-  p13Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  private val p8Type: VariantType,
+  private val p9Type: VariantType,
+  private val p10Type: VariantType,
+  private val p11Type: VariantType,
+  private val p12Type: VariantType,
+  p13Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -1739,7 +1737,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
 ) -> R) =
-    KtCallable14(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, variantMapper[P9::class]!! to true, variantMapper[P10::class]!! to true, variantMapper[P11::class]!! to true, variantMapper[P12::class]!! to true, variantMapper[P13::class]!! to true, function)
+    KtCallable14(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
@@ -1762,21 +1760,21 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  private val p8Type: Pair<VariantType, Boolean>,
-  private val p9Type: Pair<VariantType, Boolean>,
-  private val p10Type: Pair<VariantType, Boolean>,
-  private val p11Type: Pair<VariantType, Boolean>,
-  private val p12Type: Pair<VariantType, Boolean>,
-  private val p13Type: Pair<VariantType, Boolean>,
-  p14Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  private val p8Type: VariantType,
+  private val p9Type: VariantType,
+  private val p10Type: VariantType,
+  private val p11Type: VariantType,
+  private val p12Type: VariantType,
+  private val p13Type: VariantType,
+  p14Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -2015,7 +2013,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
 ) -> R) =
-    KtCallable15(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, variantMapper[P9::class]!! to true, variantMapper[P10::class]!! to true, variantMapper[P11::class]!! to true, variantMapper[P12::class]!! to true, variantMapper[P13::class]!! to true, variantMapper[P14::class]!! to true, function)
+    KtCallable15(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
@@ -2039,22 +2037,22 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
 
 public class KtCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R>(
   variantType: VariantType,
-  private val p0Type: Pair<VariantType, Boolean>,
-  private val p1Type: Pair<VariantType, Boolean>,
-  private val p2Type: Pair<VariantType, Boolean>,
-  private val p3Type: Pair<VariantType, Boolean>,
-  private val p4Type: Pair<VariantType, Boolean>,
-  private val p5Type: Pair<VariantType, Boolean>,
-  private val p6Type: Pair<VariantType, Boolean>,
-  private val p7Type: Pair<VariantType, Boolean>,
-  private val p8Type: Pair<VariantType, Boolean>,
-  private val p9Type: Pair<VariantType, Boolean>,
-  private val p10Type: Pair<VariantType, Boolean>,
-  private val p11Type: Pair<VariantType, Boolean>,
-  private val p12Type: Pair<VariantType, Boolean>,
-  private val p13Type: Pair<VariantType, Boolean>,
-  private val p14Type: Pair<VariantType, Boolean>,
-  p15Type: Pair<VariantType, Boolean>,
+  private val p0Type: VariantType,
+  private val p1Type: VariantType,
+  private val p2Type: VariantType,
+  private val p3Type: VariantType,
+  private val p4Type: VariantType,
+  private val p5Type: VariantType,
+  private val p6Type: VariantType,
+  private val p7Type: VariantType,
+  private val p8Type: VariantType,
+  private val p9Type: VariantType,
+  private val p10Type: VariantType,
+  private val p11Type: VariantType,
+  private val p12Type: VariantType,
+  private val p13Type: VariantType,
+  private val p14Type: VariantType,
+  p15Type: VariantType,
   private val function: (
     p0: P0,
     p1: P1,
@@ -2316,7 +2314,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p14: P14,
   p15: P15,
 ) -> R) =
-    KtCallable16(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!! to true, variantMapper[P1::class]!! to true, variantMapper[P2::class]!! to true, variantMapper[P3::class]!! to true, variantMapper[P4::class]!! to true, variantMapper[P5::class]!! to true, variantMapper[P6::class]!! to true, variantMapper[P7::class]!! to true, variantMapper[P8::class]!! to true, variantMapper[P9::class]!! to true, variantMapper[P10::class]!! to true, variantMapper[P11::class]!! to true, variantMapper[P12::class]!! to true, variantMapper[P13::class]!! to true, variantMapper[P14::class]!! to true, variantMapper[P15::class]!! to true, function)
+    KtCallable16(variantMapper.getOrDefault(R::class, NIL), variantMapper[P0::class]!!, variantMapper[P1::class]!!, variantMapper[P2::class]!!, variantMapper[P3::class]!!, variantMapper[P4::class]!!, variantMapper[P5::class]!!, variantMapper[P6::class]!!, variantMapper[P7::class]!!, variantMapper[P8::class]!!, variantMapper[P9::class]!!, variantMapper[P10::class]!!, variantMapper[P11::class]!!, variantMapper[P12::class]!!, variantMapper[P13::class]!!, variantMapper[P14::class]!!, variantMapper[P15::class]!!, function)
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
     P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,

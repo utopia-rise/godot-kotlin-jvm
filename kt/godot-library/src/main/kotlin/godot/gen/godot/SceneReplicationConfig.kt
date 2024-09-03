@@ -36,7 +36,7 @@ public open class SceneReplicationConfig : Resource() {
   public final fun getProperties(): VariantArray<NodePath> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPropertiesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<NodePath>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
 
   /**
@@ -57,7 +57,7 @@ public open class SceneReplicationConfig : Resource() {
   public final fun hasProperty(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPropertyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -74,7 +74,7 @@ public open class SceneReplicationConfig : Resource() {
   public final fun propertyGetIndex(path: NodePath): Int {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -84,7 +84,7 @@ public open class SceneReplicationConfig : Resource() {
   public final fun propertyGetSpawn(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetSpawnPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -122,7 +122,7 @@ public open class SceneReplicationConfig : Resource() {
   public final fun propertyGetSync(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetSyncPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -141,7 +141,7 @@ public open class SceneReplicationConfig : Resource() {
   public final fun propertyGetWatch(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.propertyGetWatchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

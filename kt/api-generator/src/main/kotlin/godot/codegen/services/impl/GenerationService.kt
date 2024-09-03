@@ -881,10 +881,9 @@ class GenerationService(
                 )
             } else {
                 addStatement(
-                    "return·(%T.readReturnValue(%T, %L)·as·%T)${callable.getFromBufferCastingMethod()}",
+                    "return·(%T.readReturnValue(%T)·as·%T)${callable.getFromBufferCastingMethod()}",
                     TRANSFER_CONTEXT,
                     returnTypeVariantTypeClass,
-                    callable.nullable,
                     methodReturnType.typeName
                 )
             }

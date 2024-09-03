@@ -91,7 +91,7 @@ public open class AnimationLibrary : Resource() {
   public final fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -101,7 +101,7 @@ public open class AnimationLibrary : Resource() {
   public final fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Animation?)
+    return (TransferContext.readReturnValue(OBJECT) as Animation?)
   }
 
   /**
@@ -110,7 +110,7 @@ public open class AnimationLibrary : Resource() {
   public final fun getAnimationList(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   public companion object

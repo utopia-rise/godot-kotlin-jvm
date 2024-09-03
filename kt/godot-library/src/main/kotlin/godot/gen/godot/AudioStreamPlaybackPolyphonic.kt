@@ -59,7 +59,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   ): Long {
     TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset.toDouble(), DOUBLE to volumeDb.toDouble(), DOUBLE to pitchScale.toDouble(), LONG to playbackType.id, STRING_NAME to bus)
     TransferContext.callMethod(rawPtr, MethodBindings.playStreamPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -86,7 +86,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   public final fun isStreamPlaying(stream: Long): Boolean {
     TransferContext.writeArguments(LONG to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.isStreamPlayingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

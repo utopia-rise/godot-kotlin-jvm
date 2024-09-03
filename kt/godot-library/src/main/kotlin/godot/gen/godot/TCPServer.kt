@@ -60,7 +60,7 @@ public open class TCPServer : RefCounted() {
   public final fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -69,7 +69,7 @@ public open class TCPServer : RefCounted() {
   public final fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -78,7 +78,7 @@ public open class TCPServer : RefCounted() {
   public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -87,7 +87,7 @@ public open class TCPServer : RefCounted() {
   public final fun takeConnection(): StreamPeerTCP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?)
+    return (TransferContext.readReturnValue(OBJECT) as StreamPeerTCP?)
   }
 
   /**

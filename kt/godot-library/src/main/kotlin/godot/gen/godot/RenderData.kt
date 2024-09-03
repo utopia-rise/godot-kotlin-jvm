@@ -33,7 +33,7 @@ public open class RenderData internal constructor() : Object() {
   public final fun getRenderSceneBuffers(): RenderSceneBuffers? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as RenderSceneBuffers?)
+    return (TransferContext.readReturnValue(OBJECT) as RenderSceneBuffers?)
   }
 
   /**
@@ -42,7 +42,7 @@ public open class RenderData internal constructor() : Object() {
   public final fun getRenderSceneData(): RenderSceneData? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as RenderSceneData?)
+    return (TransferContext.readReturnValue(OBJECT) as RenderSceneData?)
   }
 
   /**
@@ -52,7 +52,7 @@ public open class RenderData internal constructor() : Object() {
   public final fun getEnvironment(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -62,7 +62,7 @@ public open class RenderData internal constructor() : Object() {
   public final fun getCameraAttributes(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public companion object

@@ -112,7 +112,7 @@ public open class AudioStreamPlayback : RefCounted() {
   public final fun getSamplePlayback(): AudioSamplePlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSamplePlaybackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioSamplePlayback?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioSamplePlayback?)
   }
 
   public companion object

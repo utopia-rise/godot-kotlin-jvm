@@ -37,7 +37,7 @@ public open class Skin : Resource() {
   public final fun getBindCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBindCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun addBind(bone: Int, pose: Transform3D): Unit {
@@ -58,7 +58,7 @@ public open class Skin : Resource() {
   public final fun getBindPose(bindIndex: Int): Transform3D {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBindPosePtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setBindName(bindIndex: Int, name: StringName): Unit {
@@ -69,7 +69,7 @@ public open class Skin : Resource() {
   public final fun getBindName(bindIndex: Int): StringName {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBindNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setBindBone(bindIndex: Int, bone: Int): Unit {
@@ -80,7 +80,7 @@ public open class Skin : Resource() {
   public final fun getBindBone(bindIndex: Int): Int {
     TransferContext.writeArguments(LONG to bindIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBindBonePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun clearBinds(): Unit {
