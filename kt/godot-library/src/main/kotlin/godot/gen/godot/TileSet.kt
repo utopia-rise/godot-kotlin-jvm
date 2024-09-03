@@ -118,7 +118,7 @@ public open class TileSet : Resource() {
    * The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing
    * rectangle of the tile shape. This is thus the minimal cell size required in an atlas.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

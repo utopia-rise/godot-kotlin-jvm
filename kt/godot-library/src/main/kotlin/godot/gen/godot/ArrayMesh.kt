@@ -138,7 +138,7 @@ public open class ArrayMesh : Mesh() {
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
    * to avoid unexpected culling when using a shader to offset vertices.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

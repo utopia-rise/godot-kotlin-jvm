@@ -291,7 +291,7 @@ public open class Decal : VisualInstance3D() {
    * [lowerFade] to `0.0` and set the Y component of the [size] as low as possible. This will reduce
    * the decals' AABB size without affecting their appearance.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -318,7 +318,7 @@ public open class Decal : VisualInstance3D() {
    * color. See also [emissionEnergy] and [albedoMix] to change the emission and albedo intensity
    * independently of each other.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

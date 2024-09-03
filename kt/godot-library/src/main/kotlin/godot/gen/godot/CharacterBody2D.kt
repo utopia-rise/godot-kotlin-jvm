@@ -253,7 +253,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * be equal to [Vector2.ZERO], if you want all collisions to be reported as walls, consider using
    * [MOTION_MODE_FLOATING] as [motionMode].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -277,7 +277,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

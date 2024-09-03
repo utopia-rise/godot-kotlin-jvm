@@ -10,6 +10,7 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
+import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -19,8 +20,7 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -141,7 +141,7 @@ public open class Sprite3D : SpriteBase3D() {
    * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
    * property. [hframes] or [vframes] must be greater than 1.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -165,7 +165,7 @@ public open class Sprite3D : SpriteBase3D() {
   /**
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

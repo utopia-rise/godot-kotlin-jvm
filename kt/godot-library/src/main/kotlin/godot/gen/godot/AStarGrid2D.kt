@@ -194,7 +194,7 @@ public open class AStarGrid2D : RefCounted() {
    * The region of grid cells available for pathfinding. If changed, [update] needs to be called
    * before finding the next path.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -219,7 +219,7 @@ public open class AStarGrid2D : RefCounted() {
    * The size of the grid (number of cells of size [cellSize] on each axis). If changed, [update]
    * needs to be called before finding the next path.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -244,7 +244,7 @@ public open class AStarGrid2D : RefCounted() {
    * The offset of the grid which will be applied to calculate the resulting point position returned
    * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -269,7 +269,7 @@ public open class AStarGrid2D : RefCounted() {
    * The size of the point cell which will be applied to calculate the resulting point position
    * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

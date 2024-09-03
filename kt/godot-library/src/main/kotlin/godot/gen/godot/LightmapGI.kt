@@ -320,7 +320,7 @@ public open class LightmapGI : VisualInstance3D() {
    * The color to use for environment lighting. Only effective if [environmentMode] is
    * [ENVIRONMENT_MODE_CUSTOM_COLOR].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

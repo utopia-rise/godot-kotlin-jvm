@@ -9,6 +9,9 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
+import godot.core.Signal1
+import godot.core.Signal2
+import godot.core.Signal3
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantType.DICTIONARY
@@ -18,10 +21,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.signals.Signal1
-import godot.signals.Signal2
-import godot.signals.Signal3
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int

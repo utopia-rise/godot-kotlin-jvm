@@ -11,6 +11,8 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
+import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -28,9 +30,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -722,7 +722,7 @@ public open class Viewport internal constructor() : Node() {
    * The canvas transform of the viewport, useful for changing the on-screen positions of all child
    * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -747,7 +747,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

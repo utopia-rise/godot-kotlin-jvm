@@ -220,7 +220,7 @@ public open class CharFXTransform : RefCounted() {
    * position and rotation from a curve). You can also alter the existing value to apply transforms on
    * top of other effects.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -245,7 +245,7 @@ public open class CharFXTransform : RefCounted() {
    * Absolute character range in the string, corresponding to the glyph. Setting this property won't
    * affect drawing.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -269,7 +269,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The position offset the character will be drawn with (in pixels).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -293,7 +293,7 @@ public open class CharFXTransform : RefCounted() {
   /**
    * The color the character will be drawn with.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

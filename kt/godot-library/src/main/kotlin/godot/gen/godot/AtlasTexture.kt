@@ -92,7 +92,7 @@ public open class AtlasTexture : Texture2D() {
    * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
    * from [atlas] size will be used for that axis instead.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -118,7 +118,7 @@ public open class AtlasTexture : Texture2D() {
    * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
    * margin.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

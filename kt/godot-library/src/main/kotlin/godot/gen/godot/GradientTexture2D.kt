@@ -139,7 +139,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The initial offset used to fill the texture specified in UV coordinates.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -163,7 +163,7 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The final offset used to fill the texture specified in UV coordinates.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -220,7 +220,7 @@ public open class Line2D : Node2D() {
   /**
    * The color of the polyline. Will not be used if a gradient is set.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -14,6 +14,7 @@ import godot.core.PackedColorArray
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
+import godot.core.Signal0
 import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -31,8 +32,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -292,7 +292,7 @@ public open class CanvasItem internal constructor() : Node() {
    * The color applied to this [CanvasItem]. This property does affect child [CanvasItem]s, unlike
    * [selfModulate] which only affects the node itself.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -320,7 +320,7 @@ public open class CanvasItem internal constructor() : Node() {
    * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
    * similar methods).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

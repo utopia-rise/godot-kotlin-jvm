@@ -63,7 +63,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
   /**
    * The size of each texture layer (in pixels).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

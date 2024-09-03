@@ -60,7 +60,7 @@ public open class Bone2D : Node2D() {
    * Rest transform of the bone. You can reset the node's transforms to this value using
    * [applyRest].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

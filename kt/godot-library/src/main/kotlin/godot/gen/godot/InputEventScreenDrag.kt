@@ -161,7 +161,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
    * for both axes.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -185,7 +185,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position in the viewport the node is in, using the coordinate system of this viewport.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -213,7 +213,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
    * this, use [screenRelative] instead.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -240,7 +240,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
    * the project's stretch mode.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -268,7 +268,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
    * this, use [screenVelocity] instead.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -294,7 +294,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
    * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

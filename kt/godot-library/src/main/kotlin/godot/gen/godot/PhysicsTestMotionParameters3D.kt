@@ -146,7 +146,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * Transform in global space where the motion should start. Usually set to
    * [Node3D.globalTransform] for the current body's transform.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -170,7 +170,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Motion vector to define the length and direction of the motion to test.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -137,7 +137,7 @@ public open class GLTFPhysicsShape : Resource() {
    * The size of the shape, in meters. This is only used when the shape type is "box", and it
    * represents the "diameter" of the box. This value should not be negative.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

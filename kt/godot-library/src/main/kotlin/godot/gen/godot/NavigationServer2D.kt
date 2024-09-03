@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.PackedVector2Array
 import godot.core.RID
+import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -26,9 +28,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double

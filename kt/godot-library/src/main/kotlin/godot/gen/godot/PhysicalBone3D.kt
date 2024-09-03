@@ -248,7 +248,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's transform.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -273,7 +273,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the joint's rotation in radians.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -297,7 +297,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Sets the body's transform.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -323,7 +323,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * every frame**, because physics may run in another thread and runs at a different granularity. Use
    * [_integrateForces] as your process loop for precise control of the body state.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -347,7 +347,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The PhysicalBone3D's rotational velocity in *radians* per second.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

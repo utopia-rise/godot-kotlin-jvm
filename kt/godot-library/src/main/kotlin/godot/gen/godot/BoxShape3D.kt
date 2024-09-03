@@ -47,7 +47,7 @@ public open class BoxShape3D : Shape3D() {
   /**
    * The box's width, height and depth.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

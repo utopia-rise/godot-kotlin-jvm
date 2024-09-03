@@ -267,7 +267,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * 20000)`. To disable all forms of culling (including occlusion culling), call
    * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

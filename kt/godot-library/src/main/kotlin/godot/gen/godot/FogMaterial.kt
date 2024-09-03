@@ -122,7 +122,7 @@ public open class FogMaterial : Material() {
    * single-scattering, which is additively blended with other [FogVolume]s and the
    * [Environment.volumetricFogAlbedo].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -148,7 +148,7 @@ public open class FogMaterial : Material() {
    * shadows on other objects, but can be useful for modulating the [Color] of the [FogVolume]
    * independently from light sources.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

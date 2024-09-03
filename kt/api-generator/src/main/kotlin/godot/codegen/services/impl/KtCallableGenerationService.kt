@@ -18,16 +18,15 @@ import godot.codegen.services.IKtCallableGenerationService
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_TYPE_NIL
-import godot.tools.common.constants.callablePackage
 import godot.tools.common.constants.godotCorePackage
 
 class KtCallableGenerationService : IKtCallableGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
-        val callableFileSpec = FileSpec.builder(callablePackage, "KtCallables")
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "KtCallables")
 
         for (argCount in 0 .. maxArgumentCount) {
             val classBuilder = TypeSpec
-                .classBuilder(ClassName(callablePackage, "$KT_CALLABLE_NAME$argCount"))
+                .classBuilder(ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount"))
                 .superclass(
                     KT_CALLABLE_CLASS_NAME
                         .parameterizedBy(returnTypeParameter)
@@ -218,7 +217,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
             var removedTypeVariables = 0
             while (typeVariables.isNotEmpty()) {
                 val bindReturnType =
-                    ClassName(callablePackage, "$KT_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
+                    ClassName(godotCorePackage, "$KT_CALLABLE_NAME${typeVariableNames.size - typeVariables.size}")
                 classBuilder.addFunction(
                     FunSpec.builder("bind")
                         .addParameters(
@@ -332,7 +331,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
         const val KT_CALLABLE_NAME = "KtCallable"
         const val CALLABLE_FUNCTION_NAME = "callable"
         const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
-        val KT_CALLABLE_CLASS_NAME = ClassName(callablePackage, KT_CALLABLE_NAME)
+        val KT_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, KT_CALLABLE_NAME)
         val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
     }
 }

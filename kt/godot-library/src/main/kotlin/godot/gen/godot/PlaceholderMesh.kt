@@ -48,7 +48,7 @@ public open class PlaceholderMesh : Mesh() {
   /**
    * The smallest [AABB] enclosing this mesh in local space.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

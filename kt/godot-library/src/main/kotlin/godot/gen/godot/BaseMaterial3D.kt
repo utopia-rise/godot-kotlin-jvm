@@ -1575,7 +1575,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * will *not* modulate the detail texture. This can be used to color partial areas of a material by
    * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1599,7 +1599,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The emitted light's color. See [emissionEnabled].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1624,7 +1624,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The color to multiply the subsurface scattering transmittance effect with. Ignored if
    * [subsurfScatterSkinMode] is `true`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1649,7 +1649,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The color used by the backlight effect. Represents the light passing through an object.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1674,7 +1674,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * How much to scale the `UV` coordinates. This is multiplied by `UV` in the vertex function. The
    * Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1700,7 +1700,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * function. This can be used to offset a texture. The Z component is used when [uv1Triplanar] is
    * enabled, but it is not used anywhere else.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1725,7 +1725,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * How much to scale the `UV2` coordinates. This is multiplied by `UV2` in the vertex function.
    * The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1751,7 +1751,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * function. This can be used to offset a texture. The Z component is used when [uv2Triplanar] is
    * enabled, but it is not used anywhere else.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

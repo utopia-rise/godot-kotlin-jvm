@@ -13,6 +13,8 @@ import godot.core.Callable
 import godot.core.Color
 import godot.core.NodePath
 import godot.core.Rect2
+import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -32,9 +34,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -695,7 +695,7 @@ public open class Control : CanvasItem() {
    * contents, like text, textures, or style boxes. The actual minimum size is the maximum value of
    * this property and the internal minimum size (see [getCombinedMinimumSize]).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -735,7 +735,7 @@ public open class Control : CanvasItem() {
    * `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated,
    * wait for one frame using `await get_tree().process_frame` then set its [scale] property.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -761,7 +761,7 @@ public open class Control : CanvasItem() {
    * it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the
    * Control's center.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -255,7 +255,7 @@ public open class Camera3D : Node3D() {
    * effects such as [url=https://zdoom.org/wiki/Y-shearing]Y-shearing[/url].
    * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

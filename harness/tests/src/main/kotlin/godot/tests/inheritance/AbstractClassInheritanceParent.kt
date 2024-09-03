@@ -5,7 +5,7 @@ import godot.annotation.Export
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.signals.signal
+import godot.core.signal
 
 // register class annotation is optional for abstract classes
 abstract class AbstractClassInheritanceParent: Node() {

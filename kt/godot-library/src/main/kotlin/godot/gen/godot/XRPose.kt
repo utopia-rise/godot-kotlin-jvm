@@ -122,7 +122,7 @@ public open class XRPose : RefCounted() {
   /**
    * The transform containing the original and transform as reported by the XR runtime.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -146,7 +146,7 @@ public open class XRPose : RefCounted() {
   /**
    * The linear velocity of this pose.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -170,7 +170,7 @@ public open class XRPose : RefCounted() {
   /**
    * The angular velocity for this pose.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

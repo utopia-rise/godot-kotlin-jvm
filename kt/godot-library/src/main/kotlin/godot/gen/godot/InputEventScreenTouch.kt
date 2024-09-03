@@ -95,7 +95,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
    * The touch position in the viewport the node is in, using the coordinate system of this
    * viewport.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

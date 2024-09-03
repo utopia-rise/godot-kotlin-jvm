@@ -351,7 +351,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The background color of the stylebox.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -382,7 +382,7 @@ public open class StyleBoxFlat : StyleBox() {
    * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
    * margin does not increase the size of the clickable area for [Control]s.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -406,7 +406,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the color of the border.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -430,7 +430,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -454,7 +454,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

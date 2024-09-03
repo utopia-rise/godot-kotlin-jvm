@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
+import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -19,8 +20,7 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int

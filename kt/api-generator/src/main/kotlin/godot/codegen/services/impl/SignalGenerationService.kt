@@ -1,17 +1,36 @@
 package godot.codegen.services.impl
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LambdaTypeName
+import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.STRING
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.TypeVariableName
+import com.squareup.kotlinpoet.UNIT
+import com.squareup.kotlinpoet.asClassName
 import godot.codegen.services.ISignalGenerationService
-import godot.tools.common.constants.*
+import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
+import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
+import godot.tools.common.constants.CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION
+import godot.tools.common.constants.GODOT_CALLABLE
+import godot.tools.common.constants.GODOT_ERROR
+import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.godotCorePackage
 import kotlin.reflect.KCallable
 
 class SignalGenerationService : ISignalGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
-        val signalFileSpec = FileSpec.builder(signalPackage, "Signals")
+        val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")
 
         val signalProviderObject = TypeSpec
-            .objectBuilder(ClassName(godotSignalsPackage, "SignalProvider"))
+            .objectBuilder(ClassName(godotCorePackage, "SignalProvider"))
 
         val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
         val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, INT)
@@ -26,11 +45,11 @@ class SignalGenerationService : ISignalGenerationService {
                     TypeVariableName("P$it")
                 }
 
-            val signalClassName = ClassName(signalPackage, "$SIGNAL_CLASS_NAME$argCount")
+            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
             val signalTypeSpec = TypeSpec
                 .classBuilder(signalClassName)
                 .addTypeVariables(typeVariableNames)
-                .superclass(ClassName(signalPackage, SIGNAL_CLASS_NAME))
+                .superclass(ClassName(godotCorePackage, SIGNAL_CLASS_NAME))
 
             signalTypeSpec
                 .primaryConstructor(
@@ -241,7 +260,7 @@ class SignalGenerationService : ISignalGenerationService {
         private const val DISCONNECT_METHOD_NAME = "disconnect"
         private const val SIGNAL_FUNCTION_NAME = "signal"
 
-        private val signalDelegateProviderClassName = ClassName(signalPackage, "SignalDelegateProvider")
+        private val signalDelegateProviderClassName = ClassName(godotCorePackage, "SignalDelegateProvider")
 
         private fun generateConnectionCodeBlock(isDisconnect: Boolean = false): CodeBlock {
             val methodName = if (isDisconnect) DISCONNECT_METHOD_NAME else CONNECT_METHOD_NAME

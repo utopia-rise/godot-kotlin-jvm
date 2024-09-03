@@ -73,7 +73,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Allow overriding the texture size (for 2D only).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

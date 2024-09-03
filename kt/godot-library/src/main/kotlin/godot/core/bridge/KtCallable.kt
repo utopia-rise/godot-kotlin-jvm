@@ -1,6 +1,6 @@
-@file:Suppress("UNCHECKED_CAST")
+@file:Suppress("UNCHECKED_CAST", "PackageDirectoryMismatch")
 
-package godot.core.callable
+package godot.core
 
 import godot.core.Callable
 import godot.core.VariantConverter

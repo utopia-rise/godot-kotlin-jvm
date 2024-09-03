@@ -12,6 +12,7 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.KtObject
 import godot.core.NodePath
+import godot.core.Signal0
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -25,8 +26,7 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean

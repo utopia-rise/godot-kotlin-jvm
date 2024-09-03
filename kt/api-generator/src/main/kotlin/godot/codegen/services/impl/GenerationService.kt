@@ -60,7 +60,6 @@ import godot.tools.common.constants.VARIANT_TYPE_ANY
 import godot.tools.common.constants.VARIANT_TYPE_LONG
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.signalPackage
 import java.util.*
 
 private const val methodBindingsInnerClassName = "MethodBindings"
@@ -401,7 +400,7 @@ class GenerationService(
         if (arguments.isEmpty()) {
             builder.delegate(
                 "%M()",
-                MemberName(signalPackage, "signal")
+                MemberName(godotCorePackage, "signal")
             )
         } else {
             builder.delegate("%M(${
@@ -409,7 +408,7 @@ class GenerationService(
                     .map { "\"${it.name}\"" + if (it != arguments.last()) ", " else "" }
                     .reduce { acc, s -> acc + s }
             })",
-                MemberName(signalPackage, "signal")
+                MemberName(godotCorePackage, "signal")
             )
         }
         return builder.build()

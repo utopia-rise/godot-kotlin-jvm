@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
 import godot.core.Rect2
+import godot.core.Signal0
 import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -26,8 +27,7 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -392,7 +392,7 @@ public open class GPUParticles2D : Node2D() {
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

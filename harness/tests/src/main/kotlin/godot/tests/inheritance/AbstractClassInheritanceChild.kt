@@ -4,7 +4,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.signals.signal
+import godot.core.signal
 
 @RegisterClass
 class AbstractClassInheritanceChild: AbstractClassInheritanceParent() {

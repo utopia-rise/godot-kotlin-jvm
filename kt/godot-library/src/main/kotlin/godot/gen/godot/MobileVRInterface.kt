@@ -168,7 +168,7 @@ public open class MobileVRInterface : XRInterface() {
    * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
    * rendering area on that axis.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

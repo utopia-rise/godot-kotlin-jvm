@@ -119,7 +119,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Margins, in pixels, to offset the origin of the grid in the texture.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -143,7 +143,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Separation, in pixels, between each tile texture region of the grid.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -168,7 +168,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * The base tile size in the texture (in pixel). This size must be bigger than the TileSet's
    * `tile_size` value.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

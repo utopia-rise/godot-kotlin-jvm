@@ -80,7 +80,7 @@ public open class StaticBody3D : PhysicsBody3D() {
    * The body's constant linear velocity. This does not move the body, but affects touching bodies,
    * as if it were moving.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -106,7 +106,7 @@ public open class StaticBody3D : PhysicsBody3D() {
    * The body's constant angular velocity. This does not rotate the body, but affects touching
    * bodies, as if it were rotating.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

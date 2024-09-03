@@ -129,7 +129,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * The starting point of the ray being queried for, in global coordinates.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -153,7 +153,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * The ending point of the ray being queried for, in global coordinates.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

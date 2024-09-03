@@ -2,7 +2,6 @@
 
 package godot.core
 
-import godot.core.callable.ParametersReader
 import godot.util.camelToSnakeCase
 
 data class KtFunctionInfo(

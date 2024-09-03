@@ -134,7 +134,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

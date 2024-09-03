@@ -67,7 +67,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * The line's normal, typically a unit vector. Its direction indicates the non-colliding
    * half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -149,7 +149,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
    * for both axes.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -179,7 +179,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * depending on resolution when using [relative] in a script that handles mouse aiming with the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenRelative] instead.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -209,7 +209,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * [InputEvent.xformedBy]. This should be preferred over [relative] for mouse aiming when using the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode, regardless of the project's stretch mode.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -237,7 +237,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * depending on resolution when using [velocity] in a script that handles mouse aiming with the
    * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenVelocity] instead.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -264,7 +264,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * preferred over [velocity] for mouse aiming when using the [Input.MOUSE_MODE_CAPTURED] mouse mode,
    * regardless of the project's stretch mode.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

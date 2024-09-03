@@ -13,6 +13,11 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedVector2Array
 import godot.core.Rect2
+import godot.core.Signal0
+import godot.core.Signal1
+import godot.core.Signal2
+import godot.core.Signal3
+import godot.core.Signal4
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -29,12 +34,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.Signal2
-import godot.signals.Signal3
-import godot.signals.Signal4
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -440,7 +440,7 @@ public open class GraphEdit : Control() {
   /**
    * The scroll offset.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -465,7 +465,7 @@ public open class GraphEdit : Control() {
    * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
    * scaled to fit this rectangle.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

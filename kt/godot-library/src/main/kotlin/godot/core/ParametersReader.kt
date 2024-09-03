@@ -1,4 +1,4 @@
-package godot.core.callable
+package godot.core
 
 import godot.core.VariantConverter
 import godot.core.VariantType
@@ -48,3 +48,4 @@ internal open class ParametersReader {
         return ret
     }
 }
+

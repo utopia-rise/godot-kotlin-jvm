@@ -6,7 +6,7 @@ import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.core.GodotNotification
 import godot.global.GD
-import godot.signals.signal
+import godot.core.signal
 
 @RegisterClass
 class ClassInheritanceChild : ClassInheritanceParent() {

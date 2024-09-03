@@ -103,7 +103,7 @@ public open class FogVolume : VisualInstance3D() {
    * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
    * you can scale the [FogVolume] node instead.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -44,8 +44,8 @@ import godot.coroutines.GodotCoroutine
 import godot.coroutines.await
 import godot.extensions.getNodeAs
 import godot.registration.Range
-import godot.signals.connect
-import godot.signals.signal
+import godot.core.connect
+import godot.core.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
 import org.joda.time.DateTime

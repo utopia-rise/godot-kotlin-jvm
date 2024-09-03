@@ -215,7 +215,7 @@ public open class NavigationPolygon : Resource() {
    * If the baking [Rect2] has an area the navigation mesh baking will be restricted to its
    * enclosing area.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -239,7 +239,7 @@ public open class NavigationPolygon : Resource() {
   /**
    * The position offset applied to the [bakingRect] [Rect2].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

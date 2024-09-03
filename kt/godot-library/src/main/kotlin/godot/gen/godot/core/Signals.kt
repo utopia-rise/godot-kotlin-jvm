@@ -1,12 +1,8 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package godot.signals
+package godot.core
 
 import godot.Object
-import godot.core.Callable
-import godot.core.GodotError
-import godot.core.asStringName
-import godot.core.callable.asCallable
 import godot.util.camelToSnakeCase
 import kotlin.Int
 import kotlin.String

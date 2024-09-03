@@ -1,8 +1,8 @@
 package godot.coroutines
 
 import godot.Object
-import godot.signals.Signal0
-import godot.signals.connect
+import godot.core.Signal0
+import godot.core.connect
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
