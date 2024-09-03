@@ -31,6 +31,7 @@ abstract class KtCallable<R : Any?>(
 
     @Suppress("FunctionName")
     private object Bridge {
-        external fun wrap_in_custom_callable(instance: KtCallable<*>,variantTypeOrdinal: Int, hashCode: Int): VoidPtr
+        external fun wrap_in_custom_callable(instance: KtCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
     }
 }
+
