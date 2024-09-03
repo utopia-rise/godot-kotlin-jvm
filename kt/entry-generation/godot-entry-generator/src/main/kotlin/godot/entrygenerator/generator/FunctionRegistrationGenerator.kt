@@ -80,7 +80,7 @@ object FunctionRegistrationGenerator {
 
         if (registeredFunction.parameters.isNotEmpty()) {
             registeredFunction.parameters.forEach { _ ->
-                append(",·%T·to·%L") //Variant type
+                append(",·%T") //Variant type
             }
             registeredFunction.parameters.forEach { _ ->
                 append(",·%T(%T,·%S,·%S)") //argument KtFunctionArgument
@@ -100,7 +100,6 @@ object FunctionRegistrationGenerator {
             if (registeredFunction.parameters.isNotEmpty()) {
                 registeredFunction.parameters.forEach { parameter ->
                     add(parameter.type.toKtVariantType())
-                    add(parameter.type.isNullable)
                 }
                 registeredFunction.parameters.forEach { valueParameter ->
                     add(ktFunctionArgumentClassName)

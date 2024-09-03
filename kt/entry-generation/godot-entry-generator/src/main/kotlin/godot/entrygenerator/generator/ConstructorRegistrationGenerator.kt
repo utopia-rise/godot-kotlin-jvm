@@ -36,7 +36,7 @@ object ConstructorRegistrationGenerator {
                             templateArgs.add(valueParameter.name)
                             templateArgs.add(
                                 valueParameter.type.toTypeName()
-                            ) //setting nullables explicitly to false in case of type parameters for generic types, setting nullablility later
+                            ) //setting nullables explicitly to false in case of type parameters for generic types, setting nullability later
 
                             if (valueParameter.typeArguments.isNotEmpty()) {
                                 append("<")
@@ -79,9 +79,8 @@ object ConstructorRegistrationGenerator {
                         append(")},·")
 
                         registeredConstructor.parameters.forEachIndexed { index, valueParameter ->
-                            append("%T·to·%L")
+                            append("%T")
                             templateArgs.add(valueParameter.type.toKtVariantType())
-                            templateArgs.add(valueParameter.type.isNullable)
 
                             if (index != registeredConstructor.parameters.size - 1) {
                                 append(",·")
