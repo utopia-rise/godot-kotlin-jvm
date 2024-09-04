@@ -7,6 +7,8 @@ import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
+import godot.util.isNullable
+import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
 
@@ -27,9 +29,16 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
     @PublishedApi
     internal constructor(parameterClazz: KClass<*>) {
-        val variantType = variantMapper[parameterClazz]
-        checkNotNull(variantType) {
-            "Can't create a VariantArray with generic ${parameterClazz}."
+        val variantType = variantMapper[T::class]
+
+        if (GodotJvmBuildConfig.DEBUG) {
+            checkNotNull(variantType) {
+                "Can't create a VariantArray with generic ${T::class}."
+            }
+
+            if(isNullable<T>() && T::class in notNullableVariantMapper){
+                error("Can't create a VariantArray with generic ${T::class} as nullable.")
+            }
         }
 
         this.variantType = variantType
@@ -637,7 +646,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         external fun engine_call_operator_get(_handle: VoidPtr)
     }
 
-    companion object {
+    companion object{
         inline operator fun <reified T> invoke() = VariantArray<T>(T::class)
     }
 }

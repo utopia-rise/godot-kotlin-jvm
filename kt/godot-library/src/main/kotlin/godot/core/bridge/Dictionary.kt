@@ -7,6 +7,8 @@ import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.MapIterator
 import godot.util.VoidPtr
+import godot.util.isNullable
+import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
 
@@ -27,20 +29,27 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
     @PublishedApi
     internal constructor(keyClass: KClass<*>, valueClass: KClass<*>) {
+        val keyVariantType = variantMapper[K::class]
+        val valVariantType = variantMapper[V::class]
 
-        val keyVariantType = variantMapper[keyClass]
-        checkNotNull(keyVariantType) {
-            "Can't create a Dictionary with generic key ${keyClass}."
-        }
-        val valueVariantType = variantMapper[valueClass]
-        checkNotNull(valueVariantType) {
-            "Can't create a Dictionary with generic value ${valueClass}."
-        }
+        if (GodotJvmBuildConfig.DEBUG) {
+            checkNotNull(keyVariantType) {
+                "Can't create a Dictionary with generic key ${K::class}."
+            }
 
-        this.keyVariantType = keyVariantType
-        this.valueVariantType = valueVariantType
-        _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
+            if(isNullable<K>() && K::class in notNullableVariantMapper){
+                error("Can't create a VariantArray with generic ${K::class} as nullable.")
+            }
+
+            checkNotNull(valVariantType) {
+                "Can't create a Dictionary with generic key ${K::class}."
+            }
+
+            if(isNullable<V>() && V::class in notNullableVariantMapper){
+                error("Can't create a VariantArray with generic ${V::class} as nullable.")
+            }
+        }
+        return Dictionary(keyVariantType!!, valVariantType!!)
     }
 
     //########################PUBLIC###############################
@@ -376,7 +385,6 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
     companion object {
         inline operator fun <reified K, reified V> invoke() = Dictionary<K, V>(K::class, V::class)
-
     }
 }
 
