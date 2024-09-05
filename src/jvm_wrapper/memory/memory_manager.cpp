@@ -38,7 +38,7 @@ void MemoryManager::unref_native_core_types(JNIEnv* p_raw_env, jobject p_instanc
     ptr_array.get_array_elements(env, reinterpret_cast<jlong*>(pointers.ptr()), size);
     var_type_array.get_array_elements(env, reinterpret_cast<jint*>(variant_types.ptr()), size);
 
-    for(int i = 0; i < size; i++){
+    for(int i = 0; i < size; ++i){
         uintptr_t p_raw_ptr = pointers[i];
         uint32_t var_type = variant_types[i];
 

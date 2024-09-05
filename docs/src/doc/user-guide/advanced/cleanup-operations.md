@@ -12,9 +12,9 @@ fun foo() {
 ```
 
 !!! warning
-    Be mindful that this operation happens when Godot has already been partially closed. 
-The SceneTree is no longer present and a part of the Godot API has been unregistered.
-The order of execution is not guaranteed. Make sure that those callbacks don't depend on each other.
+    Be mindful that this operation happens when Godot has already been partially closed.
+    The SceneTree is no longer present and a part of the Godot API has been unregistered.
+    The order of execution is not guaranteed. Make sure that those callbacks don't depend on each other.
 
 
 Sometimes you need to store some Godot objects or references in a Kotlin singleton.

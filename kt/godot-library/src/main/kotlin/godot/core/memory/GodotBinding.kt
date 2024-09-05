@@ -30,8 +30,8 @@ internal class RefCountedBinding(
     override val objectID: ObjectID
 ) : WeakReference<KtObject>(instance, queue), GodotBinding {
 
-    override val instance
-        get() = get()
+    override val instance: KtObject?
+        get() = this.get()
 }
 
 internal class ObjectBinding(
