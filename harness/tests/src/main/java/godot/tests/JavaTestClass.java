@@ -3,8 +3,10 @@ package godot.tests;
 import godot.Button;
 import godot.Node;
 import godot.annotation.*;
+import godot.core.Dictionary;
 import godot.core.NativeCallable;
 import godot.core.StringNameUtils;
+import godot.core.VariantArray;
 import godot.signals.Signal;
 import godot.signals.Signal2;
 import godot.signals.SignalProvider;
@@ -65,6 +67,12 @@ public class JavaTestClass extends Node {
 
     @RegisterProperty
     public boolean signalEmitted = false;
+
+    @RegisterConstructor
+    public JavaTestClass() {
+        VariantArray<Integer> arr = new VariantArray<>(Integer.class);
+        Dictionary<Float, String> dict = new Dictionary<>(Float.class, String.class);
+    }
 
     @RegisterFunction
     public void connectAndTriggerSignal() {
