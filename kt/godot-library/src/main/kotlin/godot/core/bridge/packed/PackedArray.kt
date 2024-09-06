@@ -16,7 +16,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
     val size: Int
         get() {
             bridge.engine_call_size(_handle)
-            return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+            return TransferContext.readReturnValue(VariantCaster.INT) as Int
         }
 
     //POOL ARRAY API SHARED
@@ -47,7 +47,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
     fun bsearch(value: T, before: Boolean = true): Int {
         TransferContext.writeArguments(bridge.elementVariantType to value, VariantType.BOOL to before)
         bridge.engine_call_bsearch(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
@@ -63,7 +63,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
     fun count(value: T): Int {
         TransferContext.writeArguments(bridge.elementVariantType to value)
         bridge.engine_call_count(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
@@ -91,7 +91,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
     fun find(value: T): Int {
         TransferContext.writeArguments(bridge.elementVariantType to value)
         bridge.engine_call_find(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
@@ -99,7 +99,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      */
     @Suppress("UNCHECKED_CAST")
     operator fun get(idx: Int): T {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantCaster.INT to idx)
         bridge.engine_call_get(_handle)
         return TransferContext.readReturnValue(bridge.elementVariantType) as T
     }
@@ -118,7 +118,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      * The position must be valid, or at the end of the array (idx == size()).
      */
     fun insert(idx: Int, data: T) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, bridge.elementVariantType to data)
+        TransferContext.writeArguments(VariantCaster.INT to idx, bridge.elementVariantType to data)
         bridge.engine_call_insert(_handle)
     }
 
@@ -142,7 +142,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      * Removes an element from the array by index.
      */
     fun removeAt(idx: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantCaster.INT to idx)
         bridge.engine_call_remove_at(_handle)
     }
 
@@ -151,7 +151,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      * If the array is shrunk, truncates the array to the new size.
      */
     fun resize(size: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to size)
+        TransferContext.writeArguments(VariantCaster.INT to size)
         bridge.engine_call_resize(_handle)
     }
 
@@ -167,16 +167,16 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      * is considered relative to the end of the array.
      */
     fun rfind(value: T, from: Int = -1): Int {
-        TransferContext.writeArguments(bridge.elementVariantType to value, VariantType.JVM_INT to from)
+        TransferContext.writeArguments(bridge.elementVariantType to value, VariantCaster.INT to from)
         bridge.engine_call_rfind(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
      * Changes the integer at the given index.
      */
     operator fun set(idx: Int, data: T) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, bridge.elementVariantType to data)
+        TransferContext.writeArguments(VariantCaster.INT to idx, bridge.elementVariantType to data)
         bridge.engine_call_set(_handle)
     }
 
@@ -191,7 +191,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      */
     @Suppress("UNCHECKED_CAST")
     fun slice(begin: Int, end: Int = Int.MAX_VALUE): Derived {
-        TransferContext.writeArguments(VariantType.JVM_INT to begin, VariantType.JVM_INT to end)
+        TransferContext.writeArguments(VariantCaster.INT to begin, VariantCaster.INT to end)
         bridge.engine_call_slice(_handle)
         return TransferContext.readReturnValue(bridge.packedArrayVariantType) as Derived
     }
@@ -221,8 +221,8 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
 
 @Suppress("FunctionName", "LocalVariableName")
 internal interface PackedArrayBridge {
-    val packedArrayVariantType: VariantType
-    val elementVariantType: VariantType
+    val packedArrayVariantType: VariantConverter
+    val elementVariantType: VariantConverter
 
     fun engine_call_constructor(): VoidPtr
     fun engine_call_constructor_packed_array(): VoidPtr

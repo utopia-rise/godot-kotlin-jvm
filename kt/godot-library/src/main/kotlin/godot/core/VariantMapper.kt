@@ -6,13 +6,13 @@ import godot.signals.Signal
 @PublishedApi
 internal val variantMapper = mutableMapOf(
     Unit::class to VariantType.NIL,
-    Any::class to VariantType.ANY,
-    java.lang.Object::class to VariantType.ANY,
+    Any::class to VariantCaster.ANY,
+    java.lang.Object::class to VariantCaster.ANY,
     Boolean::class to VariantType.BOOL,
-    Int::class to VariantType.JVM_INT,
+    Int::class to VariantCaster.INT,
     Long::class to VariantType.LONG,
-    Float::class to VariantType.JVM_FLOAT,
-    Byte::class to VariantType.JVM_BYTE,
+    Float::class to VariantCaster.FLOAT,
+    Byte::class to VariantCaster.BYTE,
     Double::class to VariantType.DOUBLE,
     String::class to VariantType.STRING,
     AABB::class to VariantType.AABB,

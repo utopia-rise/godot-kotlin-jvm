@@ -3,22 +3,49 @@ package godot.entrygenerator.ext
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
 import godot.entrygenerator.model.Type
-import godot.tools.common.constants.*
+import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.VARIANT_TYPE_AABB
+import godot.tools.common.constants.VARIANT_TYPE_ANY
+import godot.tools.common.constants.VARIANT_TYPE_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_BOOL
+import godot.tools.common.constants.VARIANT_TYPE_DOUBLE
+import godot.tools.common.constants.VARIANT_TYPE_LONG
+import godot.tools.common.constants.VARIANT_TYPE_NIL
+import godot.tools.common.constants.VARIANT_TYPE_NODE_PATH
+import godot.tools.common.constants.VARIANT_TYPE_OBJECT
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_BYTE_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_CALLABLE
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_COLOR_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_32_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_64_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_STRING_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR2_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.VARIANT_TYPE_STRING
+import godot.tools.common.constants.VARIANT_TYPE_STRING_NAME
+import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM2D
+import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM3D
+import godot.tools.common.constants.VARIANT_TYPE__RID
+import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotCallablePackage
+import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotUtilPackage
+import godot.tools.common.constants.variantTypePackage
 import godot.tools.common.extensions.convertToCamelCase
 import java.util.*
 
 //TODO: make compatible with other languages
 fun Type?.toKtVariantType(): ClassName = when {
     this == null || fqName == Unit::class.qualifiedName -> VARIANT_TYPE_NIL
-    fqName == Int::class.qualifiedName -> VARIANT_TYPE_JVM_INT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
         fqName == Long::class.qualifiedName -> VARIANT_TYPE_LONG
-    fqName == Float::class.qualifiedName -> VARIANT_TYPE_JVM_FLOAT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
         fqName == Double::class.qualifiedName -> VARIANT_TYPE_DOUBLE
     fqName == String::class.qualifiedName -> VARIANT_TYPE_STRING
     fqName == Boolean::class.qualifiedName -> VARIANT_TYPE_BOOL
-    fqName == Byte::class.qualifiedName -> VARIANT_TYPE_JVM_BYTE
     fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_TYPE_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.stringName}" -> VARIANT_TYPE_STRING_NAME
     fqName == "$godotCorePackage.${GodotTypes.rid}" -> VARIANT_TYPE__RID

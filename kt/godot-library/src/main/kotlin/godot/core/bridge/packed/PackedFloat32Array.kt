@@ -78,7 +78,7 @@ class PackedFloat32Array : PackedArray<PackedFloat32Array, Float> {
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
         override val packedArrayVariantType = VariantType.PACKED_FLOAT_32_ARRAY
-        override val elementVariantType = VariantType.JVM_FLOAT
+        override val elementVariantType = VariantCaster.FLOAT
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

@@ -12,7 +12,7 @@ import godot.core.PackedVector3Array
 import godot.core.Plane
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG

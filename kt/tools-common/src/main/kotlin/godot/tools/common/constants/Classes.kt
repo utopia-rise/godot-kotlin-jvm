@@ -21,7 +21,9 @@ object GodotKotlinJvmTypes{
     const val ktFunctionArgument = "KtFunctionArgument"
     const val ktRpcConfig = "KtRpcConfig"
 
+    const val variantConverter = "VariantConverter"
     const val variantType = "VariantType"
+    const val variantCaster = "VariantCaster"
     const val variantArray = "VariantArray"
     const val transferContext = "TransferContext"
     const val typeManager = "TypeManager"
@@ -228,10 +230,7 @@ val VARIANT_TYPE_PACKED_VECTOR3_ARRAY = ClassName(variantTypePackage, "PACKED_VE
 val VARIANT_TYPE_PACKED_COLOR_ARRAY = ClassName(variantTypePackage, "PACKED_COLOR_ARRAY")
 val VARIANT_TYPE_PACKED_CALLABLE = ClassName(variantTypePackage, "CALLABLE")
 val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
-val VARIANT_TYPE_JVM_INT = ClassName(variantTypePackage, "JVM_INT")
-val VARIANT_TYPE_JVM_FLOAT = ClassName(variantTypePackage, "JVM_FLOAT")
-val VARIANT_TYPE_JVM_BYTE = ClassName(variantTypePackage, "JVM_BYTE")
-val VARIANT_TYPE_ANY = ClassName(variantTypePackage, "ANY")
+val VARIANT_TYPE_ANY = ClassName(variantCasterPackage, "ANY")
 
 val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
 val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)

@@ -66,17 +66,17 @@ data class KtRpcConfig(
 abstract class KtFunction<T : KtObject, R : Any?>(
     val functionInfo: KtFunctionInfo,
     val parameterCount: Int,
-    private val variantType: VariantType,
-    vararg parameterTypes: VariantType
+    private val variantConverter: VariantConverter,
+    vararg parameterTypes: VariantConverter
 ) {
-    private val types: Array<VariantType> = parameterTypes.toList().toTypedArray()
+    private val types: Array<VariantConverter> = parameterTypes.toList().toTypedArray()
     val registrationName = functionInfo.name.camelToSnakeCase()
 
     fun invoke(instance: T): Unit = withParameters(types) {
         invokeKt(instance)
     }
 
-    fun invokeWithReturn(instance: T): Any? = withParametersReturn(types, variantType) {
+    fun invokeWithReturn(instance: T): Any? = withParametersReturn(types, variantConverter) {
         invokeKt(instance)
     }
 
@@ -88,7 +88,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
 class KtFunction0<T : KtObject, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T) -> R,
-    variantType: VariantType
+    variantType: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 0, variantType) {
     override fun invokeKt(instance: T) = function(instance)
 }
@@ -96,8 +96,8 @@ class KtFunction0<T : KtObject, R : Any?>(
 class KtFunction1<T : KtObject, P0 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0) -> R,
-    variantType: VariantType,
-    p0Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 1, variantType, p0Type) {
     override fun invokeKt(instance: T): R {
         return function(
@@ -110,9 +110,9 @@ class KtFunction1<T : KtObject, P0 : Any?, R : Any?>(
 class KtFunction2<T : KtObject, P0 : Any?, P1 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter
 ) : KtFunction<T, R>(
     functionInfo,
     2,
@@ -130,10 +130,10 @@ class KtFunction2<T : KtObject, P0 : Any?, P1 : Any?, R : Any?>(
 class KtFunction3<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
 ) : KtFunction<T, R>(
     functionInfo,
     3,
@@ -153,11 +153,11 @@ class KtFunction3<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, R : Any?>(
 class KtFunction4<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
 ) : KtFunction<T, R>(
     functionInfo,
     4,
@@ -179,12 +179,12 @@ class KtFunction4<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, R : 
 class KtFunction5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
 ) : KtFunction<T, R>(
     functionInfo,
     5,
@@ -208,13 +208,13 @@ class KtFunction5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
 class KtFunction6<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
 ) : KtFunction<T, R>(
     functionInfo,
     6,
@@ -240,14 +240,14 @@ class KtFunction6<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
 class KtFunction7<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
 ) : KtFunction<T, R>(
     functionInfo,
     7,
@@ -275,15 +275,15 @@ class KtFunction7<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
 class KtFunction8<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
 ) : KtFunction<T, R>(
     functionInfo,
     8,
@@ -313,16 +313,16 @@ class KtFunction8<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
 class KtFunction9<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 9, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -341,17 +341,17 @@ class KtFunction9<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
 class KtFunction10<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, P9 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType,
-    p9Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter,
+    p9Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 10, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -371,18 +371,18 @@ class KtFunction10<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
 class KtFunction11<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, P9 : Any?, P10 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType,
-    p9Type: VariantType,
-    p10Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter,
+    p9Type: VariantConverter,
+    p10Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 11, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -403,19 +403,19 @@ class KtFunction11<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
 class KtFunction12<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, P9 : Any?, P10 : Any?, P11 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType,
-    p9Type: VariantType,
-    p10Type: VariantType,
-    p11Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter,
+    p9Type: VariantConverter,
+    p10Type: VariantConverter,
+    p11Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 12, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -437,20 +437,20 @@ class KtFunction12<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
 class KtFunction13<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, P9 : Any?, P10 : Any?, P11 : Any?, P12 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType,
-    p9Type: VariantType,
-    p10Type: VariantType,
-    p11Type: VariantType,
-    p12Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter,
+    p9Type: VariantConverter,
+    p10Type: VariantConverter,
+    p11Type: VariantConverter,
+    p12Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 13, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -473,21 +473,21 @@ class KtFunction13<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
 class KtFunction14<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, P9 : Any?, P10 : Any?, P11 : Any?, P12 : Any?, P13 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType,
-    p9Type: VariantType,
-    p10Type: VariantType,
-    p11Type: VariantType,
-    p12Type: VariantType,
-    p13Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter,
+    p9Type: VariantConverter,
+    p10Type: VariantConverter,
+    p11Type: VariantConverter,
+    p12Type: VariantConverter,
+    p13Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 14, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -511,22 +511,22 @@ class KtFunction14<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
 class KtFunction15<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, P9 : Any?, P10 : Any?, P11 : Any?, P12 : Any?, P13 : Any?, P14 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType,
-    p9Type: VariantType,
-    p10Type: VariantType,
-    p11Type: VariantType,
-    p12Type: VariantType,
-    p13Type: VariantType,
-    p14Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter,
+    p9Type: VariantConverter,
+    p10Type: VariantConverter,
+    p11Type: VariantConverter,
+    p12Type: VariantConverter,
+    p13Type: VariantConverter,
+    p14Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 15, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type) {
     override fun invokeKt(instance: T): R = function(
         instance,
@@ -551,23 +551,23 @@ class KtFunction15<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
 class KtFunction16<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, P5 : Any?, P6 : Any?, P7 : Any?, P8 : Any?, P9 : Any?, P10 : Any?, P11 : Any?, P12 : Any?, P13 : Any?, P14 : Any?, P15 : Any?, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15) -> R,
-    variantType: VariantType,
-    p0Type: VariantType,
-    p1Type: VariantType,
-    p2Type: VariantType,
-    p3Type: VariantType,
-    p4Type: VariantType,
-    p5Type: VariantType,
-    p6Type: VariantType,
-    p7Type: VariantType,
-    p8Type: VariantType,
-    p9Type: VariantType,
-    p10Type: VariantType,
-    p11Type: VariantType,
-    p12Type: VariantType,
-    p13Type: VariantType,
-    p14Type: VariantType,
-    p15Type: VariantType
+    variantType: VariantConverter,
+    p0Type: VariantConverter,
+    p1Type: VariantConverter,
+    p2Type: VariantConverter,
+    p3Type: VariantConverter,
+    p4Type: VariantConverter,
+    p5Type: VariantConverter,
+    p6Type: VariantConverter,
+    p7Type: VariantConverter,
+    p8Type: VariantConverter,
+    p9Type: VariantConverter,
+    p10Type: VariantConverter,
+    p11Type: VariantConverter,
+    p12Type: VariantConverter,
+    p13Type: VariantConverter,
+    p14Type: VariantConverter,
+    p15Type: VariantConverter
 ) : KtFunction<T, R>(functionInfo, 16, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, p15Type) {
     override fun invokeKt(instance: T): R = function(
         instance,

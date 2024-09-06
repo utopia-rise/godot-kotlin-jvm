@@ -3,7 +3,7 @@ package godot.core.memory
 import godot.core.KtObject
 import godot.core.LongStringQueue
 import godot.core.ObjectID
-import godot.core.VariantType
+import godot.core.VariantConverter
 import godot.tools.common.constants.Constraints
 import godot.util.VoidPtr
 import godot.util.threadLocal
@@ -30,7 +30,7 @@ internal object TransferContext {
         buf
     }
 
-    fun writeArguments(vararg values: Pair<VariantType, Any?>) {
+    fun writeArguments(vararg values: Pair<VariantConverter, Any?>) {
         buffer.rewind()
         buffer.putInt(values.size)
         for (value in values) {
@@ -38,7 +38,7 @@ internal object TransferContext {
         }
     }
 
-    fun readSingleArgument(variantType: VariantType): Any? {
+    fun readSingleArgument(variantConverter: VariantConverter): Any? {
         buffer.rewind()
         val argsSize = buffer.int
         if (GodotJvmBuildConfig.DEBUG) {
@@ -46,13 +46,13 @@ internal object TransferContext {
                 "Expecting 1 parameter, but got $argsSize instead."
             }
         }
-        return variantType.toKotlin(buffer)
+        return variantConverter.toKotlin(buffer)
     }
 
-    fun readArguments(variantTypes: Array<VariantType>, returnArray: Array<Any?>) {
+    fun readArguments(variantConverters: Array<VariantConverter>, returnArray: Array<Any?>) {
         buffer.rewind()
         val argsSize = buffer.int
-        val argumentCount = variantTypes.size
+        val argumentCount = variantConverters.size
         if (GodotJvmBuildConfig.DEBUG) {
             require(argsSize == argumentCount) {
                 "Expecting $argumentCount parameter(s), but got $argsSize instead."
@@ -61,25 +61,25 @@ internal object TransferContext {
 
         // Assume that variantTypes and areNullable have the same size and that returnArray is big enough
         for (i in 0 until argsSize) {
-            returnArray[i] = variantTypes[i].toKotlin(buffer)
+            returnArray[i] = variantConverters[i].toKotlin(buffer)
         }
     }
 
-    fun writeReturnValue(value: Any?, type: VariantType) {
+    fun writeReturnValue(value: Any?, type: VariantConverter) {
         buffer.rewind()
         type.toGodot(buffer, value)
     }
 
-    fun readReturnValue(type: VariantType): Any? {
+    fun readReturnValue(type: VariantConverter): Any? {
         buffer.rewind()
         return type.toKotlin(buffer)
     }
 
-    fun callMethod(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: VariantType) {
+    fun callMethod(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: VariantConverter) {
         icall(
             ptr,
             methodPtr,
-            expectedReturnType.ordinal
+            expectedReturnType.id
         )
     }
 

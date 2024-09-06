@@ -14,13 +14,13 @@ import kotlin.reflect.KClass
 
 class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
-    internal var keyVariantType = VariantType.NIL
-    internal var valueVariantType = VariantType.NIL
+    internal var keyVariantType: VariantConverter = VariantType.NIL
+    internal var valueVariantType: VariantConverter = VariantType.NIL
 
     @PublishedApi
     internal constructor(handle: VoidPtr) {
-        keyVariantType = VariantType.ANY
-        valueVariantType = VariantType.ANY
+        keyVariantType = VariantCaster.ANY
+        valueVariantType = VariantCaster.ANY
         _handle = handle
         MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
@@ -28,7 +28,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     constructor(keyClass: Class<*>, valueClass: Class<*>) : this(Reflection.getOrCreateKotlinClass(keyClass), Reflection.getOrCreateKotlinClass(valueClass))
 
     @PublishedApi
-    internal constructor(keyClass: KClass<*>, valueClass: KClass<*>) {
+    internal constructor(keyVariantType: VariantType, valueVariantType: VariantType) {
         val keyVariantType = variantMapper[K::class]
         val valVariantType = variantMapper[V::class]
 
@@ -49,7 +49,12 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
                 error("Can't create a VariantArray with generic ${V::class} as nullable.")
             }
         }
-        return Dictionary(keyVariantType!!, valVariantType!!)
+
+
+        this.keyVariantType = keyVariantType
+        this.valueVariantType = valueVariantType
+        _handle = Bridge.engine_call_constructor()
+        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
     //########################PUBLIC###############################
@@ -57,7 +62,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     override val size: Int
         get() {
             Bridge.engine_call_size(_handle)
-            return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+            return TransferContext.readReturnValue(VariantCaster.INT) as Int
         }
 
     override val keys: MutableSet<K>
@@ -249,7 +254,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      */
     fun hash(): Int {
         Bridge.engine_call_hash(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
@@ -275,7 +280,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         Bridge.engine_call_keys(_handle)
         @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<K>).also {
-            it.variantType = keyVariantType
+            it.variantConverter = keyVariantType
         }
     }
 
@@ -313,7 +318,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         Bridge.engine_call_values(_handle)
         @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<V>).also {
-            it.variantType = valueVariantType
+            it.variantConverter = valueVariantType
         }
     }
 

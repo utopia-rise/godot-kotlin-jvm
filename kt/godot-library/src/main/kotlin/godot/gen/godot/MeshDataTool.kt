@@ -13,7 +13,7 @@ import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.Plane
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL

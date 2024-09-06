@@ -4,7 +4,7 @@ import godot.core.memory.TransferContext
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(
-    val _type: VariantType,
+    val _type: VariantConverter,
     val name: String,
     val className: String,
     val _hint: PropertyHint,
@@ -12,7 +12,7 @@ data class KtPropertyInfo(
     val visibleInEditor: Boolean,
 ) {
     val type: Int
-        get() = _type.ordinal
+        get() = _type.id
 
     val hint: Int
         get() = _hint.ordinal
@@ -21,11 +21,11 @@ data class KtPropertyInfo(
 open class KtProperty<T : KtObject, P : Any?>(
     val ktPropertyInfo: KtPropertyInfo,
     protected val kProperty: KMutableProperty1<T, P>,
-    protected val variantType: VariantType,
+    protected val variantConverter: VariantConverter,
     val isRef: Boolean
 ) {
     open fun callGet(instance: T) {
-        TransferContext.writeReturnValue(kProperty.get(instance), variantType)
+        TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
     }
 
     open fun callSet(instance: T) {
@@ -35,7 +35,7 @@ open class KtProperty<T : KtObject, P : Any?>(
 
     protected fun <P> extractSetterArgument(): P {
         //TODO: manage nullable argument of enum setter (only for objects)
-        val arg = TransferContext.readSingleArgument(variantType)
+        val arg = TransferContext.readSingleArgument(variantConverter)
         @Suppress("UNCHECKED_CAST")
         return arg as P
     }
@@ -49,11 +49,11 @@ class KtEnumProperty<T : KtObject, P : Any>(
 ) : KtProperty<T, P>(
     ktPropertyInfo,
     kProperty,
-    VariantType.JVM_INT,
+    VariantCaster.INT,
     false
 ) {
     override fun callGet(instance: T) {
-        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.JVM_INT)
+        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantCaster.INT)
     }
 
     override fun callSet(instance: T) {

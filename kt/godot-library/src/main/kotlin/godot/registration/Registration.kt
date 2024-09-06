@@ -1,38 +1,7 @@
 package godot.registration
 
-import godot.core.KtClass
-import godot.core.KtConstructor
-import godot.core.KtEnumListProperty
-import godot.core.KtEnumProperty
-import godot.core.KtFunction
-import godot.core.KtFunction0
-import godot.core.KtFunction1
-import godot.core.KtFunction10
-import godot.core.KtFunction11
-import godot.core.KtFunction12
-import godot.core.KtFunction13
-import godot.core.KtFunction14
-import godot.core.KtFunction15
-import godot.core.KtFunction16
-import godot.core.KtFunction2
-import godot.core.KtFunction3
-import godot.core.KtFunction4
-import godot.core.KtFunction5
-import godot.core.KtFunction6
-import godot.core.KtFunction7
-import godot.core.KtFunction8
-import godot.core.KtFunction9
-import godot.core.KtFunctionInfo
-import godot.core.KtObject
-import godot.core.KtProperty
-import godot.core.KtPropertyInfo
-import godot.core.KtRpcConfig
-import godot.core.KtSignalInfo
-import godot.core.PropertyHint
+import godot.core.*
 import godot.core.TypeManager
-import godot.core.VariantType
-import godot.core.toVariantArray
-import godot.core.variantArrayOf
 import godot.tools.common.constants.Constraints
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KClass
@@ -57,7 +26,7 @@ import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
 
 data class KtFunctionArgument(
-    val type: VariantType,
+    val type: VariantConverter,
     val className: String,
     val name: String = "" //empty for return type
 ) {
@@ -101,8 +70,8 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P : Any?> property(
         kProperty: KMutableProperty1<T, P>,
-        variantType: VariantType,
-        type: VariantType,
+        variantType: VariantConverter,
+        type: VariantConverter,
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
@@ -265,7 +234,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <R : Any?> function(
         func: KFunction1<T, R>,
-        variantType: VariantType,
+        variantType: VariantConverter,
         returnType: KtFunctionArgument,
         rpcConfig: KtRpcConfig
     ) {
@@ -292,8 +261,8 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, R : Any?> function(
         func: KFunction2<T, P0, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
         p0: KtFunctionArgument,
         returnType: KtFunctionArgument,
         rpcConfig: KtRpcConfig
@@ -317,9 +286,9 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, R : Any?> function(
         func: KFunction3<T, P0, P1, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         returnType: KtFunctionArgument,
@@ -346,10 +315,10 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, R : Any?> function(
         func: KFunction4<T, P0, P1, P2, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -379,11 +348,11 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, R : Any?> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -416,12 +385,12 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, R : Any?> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -457,13 +426,13 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, R : Any?> function(
         func: KFunction7<T, P0, P1, P2, P3, P4, P5, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -502,14 +471,14 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, R : Any?> function(
         func: KFunction8<T, P0, P1, P2, P3, P4, P5, P6, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -551,15 +520,15 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, R : Any?> function(
         func: KFunction9<T, P0, P1, P2, P3, P4, P5, P6, P7, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -604,16 +573,16 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, R : Any?> function(
         func: KFunction10<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -661,17 +630,17 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R : Any?> function(
         func: KFunction11<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
-        p9Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -722,18 +691,18 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R : Any?> function(
         func: KFunction12<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
-        p9Type: VariantType,
-        p10Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -787,19 +756,19 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R : Any?> function(
         func: KFunction13<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
-        p9Type: VariantType,
-        p10Type: VariantType,
-        p11Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -856,20 +825,20 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R : Any?> function(
         func: KFunction14<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
-        p9Type: VariantType,
-        p10Type: VariantType,
-        p11Type: VariantType,
-        p12Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -929,21 +898,21 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R : Any?> function(
         func: KFunction15<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
-        p9Type: VariantType,
-        p10Type: VariantType,
-        p11Type: VariantType,
-        p12Type: VariantType,
-        p13Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
+        p13Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -1006,22 +975,22 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R : Any?> function(
         func: KFunction16<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
-        p9Type: VariantType,
-        p10Type: VariantType,
-        p11Type: VariantType,
-        p12Type: VariantType,
-        p13Type: VariantType,
-        p14Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
+        p13Type: VariantConverter,
+        p14Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -1087,23 +1056,23 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R : Any?> function(
         func: KFunction17<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R>,
-        variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
-        p5Type: VariantType,
-        p6Type: VariantType,
-        p7Type: VariantType,
-        p8Type: VariantType,
-        p9Type: VariantType,
-        p10Type: VariantType,
-        p11Type: VariantType,
-        p12Type: VariantType,
-        p13Type: VariantType,
-        p14Type: VariantType,
-        p15Type: VariantType,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
+        p13Type: VariantConverter,
+        p14Type: VariantConverter,
+        p15Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,

@@ -11,7 +11,7 @@ import godot.core.Color
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE

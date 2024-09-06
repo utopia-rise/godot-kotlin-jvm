@@ -27,7 +27,7 @@ import godot.core.Transform2D
 import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL

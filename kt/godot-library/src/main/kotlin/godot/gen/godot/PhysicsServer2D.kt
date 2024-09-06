@@ -11,7 +11,7 @@ import godot.core.Callable
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE

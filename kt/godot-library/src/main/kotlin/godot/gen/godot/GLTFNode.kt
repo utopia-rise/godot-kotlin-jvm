@@ -14,7 +14,7 @@ import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PACKED_INT_32_ARRAY

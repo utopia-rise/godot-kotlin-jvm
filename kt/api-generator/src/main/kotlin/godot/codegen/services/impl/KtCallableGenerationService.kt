@@ -78,9 +78,9 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         .build()
                 )
 
-            val variantTypeClassName = ClassName(
+            val variantConverterClassName = ClassName(
                 godotCorePackage,
-                GodotKotlinJvmTypes.variantType
+                GodotKotlinJvmTypes.variantConverter
             )
 
             primaryConstructor
@@ -88,7 +88,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                     ParameterSpec
                         .builder(
                             VARIANT_TYPE_ARGUMENT_NAME,
-                            variantTypeClassName
+                            variantConverterClassName
                         )
                         .build()
                 )
@@ -102,7 +102,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                             PropertySpec
                                 .builder(
                                     typeProperty,
-                                    variantTypeClassName,
+                                    variantConverterClassName,
                                     KModifier.PRIVATE
                                 )
                                 .initializer(typeProperty)
@@ -115,7 +115,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         ParameterSpec
                             .builder(
                                 typeProperty,
-                                variantTypeClassName
+                                variantConverterClassName
                             )
                             .build()
                     )
@@ -331,7 +331,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
         const val FUNCTION_PARAMETER_NAME = "function"
         const val KT_CALLABLE_NAME = "KtCallable"
         const val CALLABLE_FUNCTION_NAME = "callable"
-        const val VARIANT_TYPE_ARGUMENT_NAME = "variantType"
+        const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
         val KT_CALLABLE_CLASS_NAME = ClassName(callablePackage, KT_CALLABLE_NAME)
         val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
     }

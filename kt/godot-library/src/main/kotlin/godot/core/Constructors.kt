@@ -12,7 +12,7 @@ abstract class KtConstructor<T : KtObject>(
     vararg argsTypes: VariantType
 ) {
     val parameterCount: Int = argsTypes.size
-    val parameterTypes: Array<VariantType> = argsTypes.toList().toTypedArray()
+    val parameterTypes: Array<VariantConverter> = argsTypes.toList().toTypedArray()
     abstract operator fun invoke(): T
 
     fun construct(rawPtr: VoidPtr, instanceId: Long) = MemoryManager.createScript(rawPtr, instanceId) {

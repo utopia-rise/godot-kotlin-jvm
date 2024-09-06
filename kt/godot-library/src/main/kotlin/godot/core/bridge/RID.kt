@@ -33,7 +33,7 @@ class RID : NativeCoreType, Comparable<RID> {
      */
     fun getID(): Int {
         Bridge.engine_call_getID(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
