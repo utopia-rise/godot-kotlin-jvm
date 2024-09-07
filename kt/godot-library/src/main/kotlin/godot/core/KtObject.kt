@@ -8,8 +8,7 @@ import godot.util.nullObjectID
 import godot.util.nullptr
 import kotlincompile.definitions.GodotJvmBuildConfig
 
-@JvmInline
-value class GodotNotification internal constructor(val block: Any.(Int) -> Unit)
+class GodotNotification internal constructor(val block: Any.(Int) -> Unit)
 
 @Suppress("LeakingThis")
 abstract class KtObject {
@@ -92,7 +91,11 @@ abstract class KtObject {
     open fun _notification(): GodotNotification = godotNotification {}
 
     @Suppress("UNCHECKED_CAST")
+    @JvmName("kotlinNotification")
     protected fun <T : KtObject> T.godotNotification(block: T.(Int) -> Unit): GodotNotification = GodotNotification(block as Any.(Int) -> Unit)
+
+    @JvmName("godotNotification")
+    protected fun <T : KtObject> javaGodotNotification(obj: T, block: T.(Int) -> Unit) = obj.godotNotification(block)
 
     @Suppress("FunctionName")
     /**
