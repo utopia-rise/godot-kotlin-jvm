@@ -44,7 +44,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         this.variantType = variantType
         _handle = if (variantType != VariantType.ANY) {
             TransferContext.writeArguments(
-                VariantType.LONG to variantConverter.id,
+                VariantCaster.INT to variantConverter.id,
                 VariantCaster.INT to (TypeManager.engineTypeToId[parameterClazz] ?: -1),
                 VariantCaster.INT to (TypeManager.userTypeToId[parameterClazz] ?: -1)
             )

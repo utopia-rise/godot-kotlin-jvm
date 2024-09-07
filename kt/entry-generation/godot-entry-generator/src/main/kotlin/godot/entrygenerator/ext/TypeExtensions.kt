@@ -5,6 +5,9 @@ import com.squareup.kotlinpoet.TypeName
 import godot.entrygenerator.model.Type
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.VARIANT_CASTER_BYTE
+import godot.tools.common.constants.VARIANT_CASTER_FLOAT
+import godot.tools.common.constants.VARIANT_CASTER_INT
 import godot.tools.common.constants.VARIANT_TYPE_AABB
 import godot.tools.common.constants.VARIANT_TYPE_ANY
 import godot.tools.common.constants.VARIANT_TYPE_ARRAY
@@ -40,8 +43,11 @@ import java.util.*
 //TODO: make compatible with other languages
 fun Type?.toKtVariantType(): ClassName = when {
     this == null || fqName == Unit::class.qualifiedName -> VARIANT_TYPE_NIL
+    fqName == Byte::class.qualifiedName -> VARIANT_CASTER_BYTE
+    fqName == Int::class.qualifiedName -> VARIANT_CASTER_INT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
         fqName == Long::class.qualifiedName -> VARIANT_TYPE_LONG
+    fqName == Float::class.qualifiedName -> VARIANT_CASTER_FLOAT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
         fqName == Double::class.qualifiedName -> VARIANT_TYPE_DOUBLE
     fqName == String::class.qualifiedName -> VARIANT_TYPE_STRING

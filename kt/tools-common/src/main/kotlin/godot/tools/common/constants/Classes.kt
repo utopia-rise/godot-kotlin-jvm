@@ -232,6 +232,12 @@ val VARIANT_TYPE_PACKED_CALLABLE = ClassName(variantTypePackage, "CALLABLE")
 val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
 val VARIANT_TYPE_ANY = ClassName(variantCasterPackage, "ANY")
 
+val VARIANT_CASTER_BYTE = ClassName(variantCasterPackage, "BYTE")
+val VARIANT_CASTER_INT = ClassName(variantCasterPackage, "INT")
+val VARIANT_CASTER_FLOAT = ClassName(variantCasterPackage, "FLOAT")
+val VARIANT_CASTER_ANY = ClassName(variantCasterPackage, "ANY")
+
+
 val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
 val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)
 val CORE_TYPE_LOCAL_COPY = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeLocalCopy)

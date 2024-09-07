@@ -114,7 +114,7 @@ sealed interface VariantConverter {
 
 enum class VariantType(override val id: Int) : VariantConverter {
     NIL(0) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer) = null
+        override fun toUnsafeKotlin(buffer: ByteBuffer) = Unit
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {}
     },
 
@@ -298,11 +298,9 @@ enum class VariantType(override val id: Int) : VariantConverter {
         }
 
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
-            require(any is Quaternion)
-            buffer.putFloat(any.x.toFloat())
-            buffer.putFloat(any.y.toFloat())
-            buffer.putFloat(any.z.toFloat())
-            buffer.putFloat(any.w.toFloat())
+            require(any is godot.core.AABB)
+            buffer.vector3 = any._position
+            buffer.vector3 = any._size
         }
     },
     BASIS(17) {
@@ -356,7 +354,7 @@ enum class VariantType(override val id: Int) : VariantConverter {
     STRING_NAME(21) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = buffer.stringName
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
-            require(any is String)
+            require(any is StringName)
             buffer.stringName = any
         }
     },
@@ -372,7 +370,7 @@ enum class VariantType(override val id: Int) : VariantConverter {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = buffer.obj
 
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
-            require(any is KtObject)
+            require(any is KtObject?)
             buffer.obj = any
         }
     },
@@ -413,7 +411,7 @@ enum class VariantType(override val id: Int) : VariantConverter {
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) =
             toGodotNativeCoreType<Dictionary<Any, Any?>>(buffer, any)
     },
-    ARRAY(29) {
+    ARRAY(28) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = VariantArray<Any?>(buffer.long)
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) =
             toGodotNativeCoreType<VariantArray<Any?>>(buffer, any)
@@ -467,7 +465,6 @@ enum class VariantType(override val id: Int) : VariantConverter {
             toGodotNativeCoreType<PackedVector4Array>(buffer, any)
     };
 
-
     override fun toKotlin(buffer: ByteBuffer): Any? {
         val idInBuffer = buffer.variantType
         if (idInBuffer != id) {
@@ -509,13 +506,15 @@ sealed class VariantCaster(val coreVariant: VariantType) : VariantConverter {
     }
 
     data object BYTE : VariantSimpleCaster(VariantType.LONG) {
-        override fun toKotlinCast(any: Any?) = (any as Long).toInt()
-        override fun toGodotCast(any: Any?) = (any as Int).toLong()
-    }
-    data object INT : VariantSimpleCaster(VariantType.LONG) {
         override fun toKotlinCast(any: Any?) = (any as Long).toByte()
         override fun toGodotCast(any: Any?) = (any as Byte).toLong()
     }
+
+    data object INT : VariantSimpleCaster(VariantType.LONG) {
+        override fun toKotlinCast(any: Any?) = (any as Long).toInt()
+        override fun toGodotCast(any: Any?) = (any as Int).toLong()
+    }
+
     data object FLOAT : VariantSimpleCaster(VariantType.DOUBLE) {
         override fun toKotlinCast(any: Any?) = (any as Double).toFloat()
         override fun toGodotCast(any: Any?) = (any as Float).toDouble()
@@ -527,12 +526,12 @@ sealed class VariantCaster(val coreVariant: VariantType) : VariantConverter {
     data object ANY : VariantCaster(VariantType.NIL) {
         override fun toKotlin(buffer: ByteBuffer): Any? {
             val expectedType = buffer.variantType
-            return VariantType.entries[expectedType].toKotlin(buffer)
+            return VariantType.entries[expectedType].toUnsafeKotlin(buffer)
         }
 
         override fun toGodot(buffer: ByteBuffer, any: Any?) {
-            if (any == null) {
-                VariantType.NIL.toGodot(buffer, any)
+            if (any === null) {
+                VariantType.NIL.toGodot(buffer, null)
             } else {
                 val type = variantMapper[any::class]
                     ?: throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
@@ -541,9 +540,6 @@ sealed class VariantCaster(val coreVariant: VariantType) : VariantConverter {
         }
     }
 }
-
-
-
 
 private inline fun <reified T : NativeCoreType> toGodotNativeCoreType(buffer: ByteBuffer, any: Any?) {
     require(any is T)
