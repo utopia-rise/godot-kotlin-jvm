@@ -99,23 +99,25 @@ public open class MenuButton : Button() {
   public companion object
 
   internal object MethodBindings {
-    public val getPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuButton", "get_popup")
+    public val getPopupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuButton", "get_popup", 229722558)
 
-    public val showPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuButton", "show_popup")
+    public val showPopupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MenuButton", "show_popup", 3218959716)
 
     public val setSwitchOnHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "set_switch_on_hover")
+        TypeManager.getMethodBindPtr("MenuButton", "set_switch_on_hover", 2586408642)
 
     public val isSwitchOnHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "is_switch_on_hover")
+        TypeManager.getMethodBindPtr("MenuButton", "is_switch_on_hover", 2240911060)
 
     public val setDisableShortcutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "set_disable_shortcuts")
+        TypeManager.getMethodBindPtr("MenuButton", "set_disable_shortcuts", 2586408642)
 
     public val setItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "set_item_count")
+        TypeManager.getMethodBindPtr("MenuButton", "set_item_count", 1286410249)
 
     public val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "get_item_count")
+        TypeManager.getMethodBindPtr("MenuButton", "get_item_count", 3905245786)
   }
 }

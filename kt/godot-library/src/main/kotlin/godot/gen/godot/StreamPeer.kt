@@ -371,77 +371,92 @@ public open class StreamPeer internal constructor() : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val putDataPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_data")
+    public val putDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_data", 680677267)
 
     public val putPartialDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_partial_data")
+        TypeManager.getMethodBindPtr("StreamPeer", "put_partial_data", 2934048347)
 
-    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_data")
+    public val getDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_data", 1171824711)
 
     public val getPartialDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_partial_data")
+        TypeManager.getMethodBindPtr("StreamPeer", "get_partial_data", 1171824711)
 
     public val getAvailableBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_available_bytes")
+        TypeManager.getMethodBindPtr("StreamPeer", "get_available_bytes", 3905245786)
 
     public val setBigEndianPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "set_big_endian")
+        TypeManager.getMethodBindPtr("StreamPeer", "set_big_endian", 2586408642)
 
     public val isBigEndianEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "is_big_endian_enabled")
+        TypeManager.getMethodBindPtr("StreamPeer", "is_big_endian_enabled", 36873697)
 
-    public val put8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_8")
+    public val put8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_8", 1286410249)
 
-    public val putU8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_u8")
+    public val putU8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_u8", 1286410249)
 
-    public val put16Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_16")
+    public val put16Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_16", 1286410249)
 
-    public val putU16Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_u16")
+    public val putU16Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_u16", 1286410249)
 
-    public val put32Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_32")
+    public val put32Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_32", 1286410249)
 
-    public val putU32Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_u32")
+    public val putU32Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_u32", 1286410249)
 
-    public val put64Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_64")
+    public val put64Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_64", 1286410249)
 
-    public val putU64Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_u64")
+    public val putU64Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_u64", 1286410249)
 
-    public val putFloatPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_float")
+    public val putFloatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_float", 373806689)
 
-    public val putDoublePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_double")
+    public val putDoublePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_double", 373806689)
 
-    public val putStringPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_string")
+    public val putStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_string", 83702148)
 
     public val putUtf8StringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_utf8_string")
+        TypeManager.getMethodBindPtr("StreamPeer", "put_utf8_string", 83702148)
 
-    public val putVarPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_var")
+    public val putVarPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_var", 738511890)
 
-    public val get8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_8")
+    public val get8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_8", 2455072627)
 
-    public val getU8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_u8")
+    public val getU8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_u8", 2455072627)
 
-    public val get16Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_16")
+    public val get16Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_16", 2455072627)
 
-    public val getU16Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_u16")
+    public val getU16Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_u16", 2455072627)
 
-    public val get32Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_32")
+    public val get32Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_32", 2455072627)
 
-    public val getU32Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_u32")
+    public val getU32Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_u32", 2455072627)
 
-    public val get64Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_64")
+    public val get64Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_64", 2455072627)
 
-    public val getU64Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_u64")
+    public val getU64Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_u64", 2455072627)
 
-    public val getFloatPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_float")
+    public val getFloatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_float", 191475506)
 
-    public val getDoublePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_double")
+    public val getDoublePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_double", 191475506)
 
-    public val getStringPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_string")
+    public val getStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_string", 2309358862)
 
     public val getUtf8StringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_utf8_string")
+        TypeManager.getMethodBindPtr("StreamPeer", "get_utf8_string", 2309358862)
 
-    public val getVarPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_var")
+    public val getVarPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_var", 3442865206)
   }
 }

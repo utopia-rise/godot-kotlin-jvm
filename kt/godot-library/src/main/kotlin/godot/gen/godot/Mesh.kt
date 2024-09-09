@@ -646,43 +646,44 @@ public open class Mesh : Resource() {
 
   internal object MethodBindings {
     public val setLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "set_lightmap_size_hint")
+        TypeManager.getMethodBindPtr("Mesh", "set_lightmap_size_hint", 1130785943)
 
     public val getLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "get_lightmap_size_hint")
+        TypeManager.getMethodBindPtr("Mesh", "get_lightmap_size_hint", 3690982128)
 
-    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_aabb")
+    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_aabb", 1068685055)
 
-    public val getFacesPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_faces")
+    public val getFacesPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_faces", 497664490)
 
     public val getSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "get_surface_count")
+        TypeManager.getMethodBindPtr("Mesh", "get_surface_count", 3905245786)
 
     public val surfaceGetArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_arrays")
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_arrays", 663333327)
 
     public val surfaceGetBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_blend_shape_arrays")
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_blend_shape_arrays", 663333327)
 
     public val surfaceSetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_set_material")
+        TypeManager.getMethodBindPtr("Mesh", "surface_set_material", 3671737478)
 
     public val surfaceGetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_material")
+        TypeManager.getMethodBindPtr("Mesh", "surface_get_material", 2897466400)
 
     public val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_placeholder")
+        TypeManager.getMethodBindPtr("Mesh", "create_placeholder", 121922552)
 
     public val createTrimeshShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_trimesh_shape")
+        TypeManager.getMethodBindPtr("Mesh", "create_trimesh_shape", 4160111210)
 
     public val createConvexShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_convex_shape")
+        TypeManager.getMethodBindPtr("Mesh", "create_convex_shape", 2529984628)
 
-    public val createOutlinePtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "create_outline")
+    public val createOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Mesh", "create_outline", 1208642001)
 
     public val generateTriangleMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh")
+        TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh", 3476533166)
   }
 }
 

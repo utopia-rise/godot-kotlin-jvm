@@ -514,129 +514,145 @@ public open class TileData : Object() {
   public companion object
 
   internal object MethodBindings {
-    public val setFlipHPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_flip_h")
+    public val setFlipHPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_flip_h", 2586408642)
 
-    public val getFlipHPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_flip_h")
+    public val getFlipHPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_flip_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_flip_v")
+    public val setFlipVPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_flip_v", 2586408642)
 
-    public val getFlipVPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_flip_v")
+    public val getFlipVPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_flip_v", 36873697)
 
-    public val setTransposePtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_transpose")
+    public val setTransposePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_transpose", 2586408642)
 
-    public val getTransposePtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_transpose")
+    public val getTransposePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_transpose", 36873697)
 
-    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_material")
+    public val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_material")
+    public val getMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_material", 5934680)
 
     public val setTextureOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_texture_origin")
+        TypeManager.getMethodBindPtr("TileData", "set_texture_origin", 1130785943)
 
     public val getTextureOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_texture_origin")
+        TypeManager.getMethodBindPtr("TileData", "get_texture_origin", 3690982128)
 
-    public val setModulatePtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_modulate")
+    public val setModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_modulate")
+    public val getModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_modulate", 3444240500)
 
-    public val setZIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_z_index")
+    public val setZIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_z_index", 1286410249)
 
-    public val getZIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_z_index")
+    public val getZIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_z_index", 3905245786)
 
     public val setYSortOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_y_sort_origin")
+        TypeManager.getMethodBindPtr("TileData", "set_y_sort_origin", 1286410249)
 
     public val getYSortOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_y_sort_origin")
+        TypeManager.getMethodBindPtr("TileData", "get_y_sort_origin", 3905245786)
 
-    public val setOccluderPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_occluder")
+    public val setOccluderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_occluder", 914399637)
 
-    public val getOccluderPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_occluder")
+    public val getOccluderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_occluder", 2377324099)
 
     public val setConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_constant_linear_velocity")
+        TypeManager.getMethodBindPtr("TileData", "set_constant_linear_velocity", 163021252)
 
     public val getConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_constant_linear_velocity")
+        TypeManager.getMethodBindPtr("TileData", "get_constant_linear_velocity", 2299179447)
 
     public val setConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_constant_angular_velocity")
+        TypeManager.getMethodBindPtr("TileData", "set_constant_angular_velocity", 1602489585)
 
     public val getConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_constant_angular_velocity")
+        TypeManager.getMethodBindPtr("TileData", "get_constant_angular_velocity", 2339986948)
 
     public val setCollisionPolygonsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygons_count")
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygons_count", 3937882851)
 
     public val getCollisionPolygonsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_collision_polygons_count")
+        TypeManager.getMethodBindPtr("TileData", "get_collision_polygons_count", 923996154)
 
     public val addCollisionPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "add_collision_polygon")
+        TypeManager.getMethodBindPtr("TileData", "add_collision_polygon", 1286410249)
 
     public val removeCollisionPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "remove_collision_polygon")
+        TypeManager.getMethodBindPtr("TileData", "remove_collision_polygon", 3937882851)
 
     public val setCollisionPolygonPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_points")
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_points", 3230546541)
 
     public val getCollisionPolygonPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_points")
+        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_points", 103942801)
 
     public val setCollisionPolygonOneWayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way")
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way", 1383440665)
 
     public val isCollisionPolygonOneWayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "is_collision_polygon_one_way")
+        TypeManager.getMethodBindPtr("TileData", "is_collision_polygon_one_way", 2522259332)
 
     public val setCollisionPolygonOneWayMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way_margin")
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way_margin", 3506521499)
 
     public val getCollisionPolygonOneWayMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_one_way_margin")
+        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_one_way_margin", 3085491603)
 
     public val setTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_terrain_set")
+        TypeManager.getMethodBindPtr("TileData", "set_terrain_set", 1286410249)
 
     public val getTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_terrain_set")
+        TypeManager.getMethodBindPtr("TileData", "get_terrain_set", 3905245786)
 
-    public val setTerrainPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "set_terrain")
+    public val setTerrainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "set_terrain", 1286410249)
 
-    public val getTerrainPtr: VoidPtr = TypeManager.getMethodBindPtr("TileData", "get_terrain")
+    public val getTerrainPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileData", "get_terrain", 3905245786)
 
     public val setTerrainPeeringBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_terrain_peering_bit")
+        TypeManager.getMethodBindPtr("TileData", "set_terrain_peering_bit", 1084452308)
 
     public val getTerrainPeeringBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_terrain_peering_bit")
+        TypeManager.getMethodBindPtr("TileData", "get_terrain_peering_bit", 3831796792)
 
     public val isValidTerrainPeeringBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "is_valid_terrain_peering_bit")
+        TypeManager.getMethodBindPtr("TileData", "is_valid_terrain_peering_bit", 845723972)
 
     public val setNavigationPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_navigation_polygon")
+        TypeManager.getMethodBindPtr("TileData", "set_navigation_polygon", 2224691167)
 
     public val getNavigationPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_navigation_polygon")
+        TypeManager.getMethodBindPtr("TileData", "get_navigation_polygon", 2907127272)
 
     public val setProbabilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_probability")
+        TypeManager.getMethodBindPtr("TileData", "set_probability", 373806689)
 
     public val getProbabilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_probability")
+        TypeManager.getMethodBindPtr("TileData", "get_probability", 1740695150)
 
     public val setCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_custom_data")
+        TypeManager.getMethodBindPtr("TileData", "set_custom_data", 402577236)
 
     public val getCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_custom_data")
+        TypeManager.getMethodBindPtr("TileData", "get_custom_data", 1868160156)
 
     public val setCustomDataByLayerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_custom_data_by_layer_id")
+        TypeManager.getMethodBindPtr("TileData", "set_custom_data_by_layer_id", 2152698145)
 
     public val getCustomDataByLayerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_custom_data_by_layer_id")
+        TypeManager.getMethodBindPtr("TileData", "get_custom_data_by_layer_id", 4227898402)
   }
 }

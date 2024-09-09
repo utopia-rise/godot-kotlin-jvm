@@ -117,33 +117,33 @@ public open class RDFramebufferPass : RefCounted() {
 
   internal object MethodBindings {
     public val setColorAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_color_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_color_attachments", 3614634198)
 
     public val getColorAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_color_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_color_attachments", 1930428628)
 
     public val setInputAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_input_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_input_attachments", 3614634198)
 
     public val getInputAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_input_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_input_attachments", 1930428628)
 
     public val setResolveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_resolve_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_resolve_attachments", 3614634198)
 
     public val getResolveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_resolve_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_resolve_attachments", 1930428628)
 
     public val setPreserveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_preserve_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_preserve_attachments", 3614634198)
 
     public val getPreserveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_preserve_attachments")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_preserve_attachments", 1930428628)
 
     public val setDepthAttachmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_depth_attachment")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_depth_attachment", 1286410249)
 
     public val getDepthAttachmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_depth_attachment")
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_depth_attachment", 3905245786)
   }
 }

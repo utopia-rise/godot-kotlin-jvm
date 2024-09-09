@@ -434,45 +434,53 @@ public open class UPNP : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val getDeviceCountPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "get_device_count")
+    public val getDeviceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "get_device_count", 3905245786)
 
-    public val getDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "get_device")
+    public val getDevicePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "get_device", 2193290270)
 
-    public val addDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "add_device")
+    public val addDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "add_device", 986715920)
 
-    public val setDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "set_device")
+    public val setDevicePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "set_device", 3015133723)
 
-    public val removeDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "remove_device")
+    public val removeDevicePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "remove_device", 1286410249)
 
-    public val clearDevicesPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "clear_devices")
+    public val clearDevicesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "clear_devices", 3218959716)
 
-    public val getGatewayPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "get_gateway")
+    public val getGatewayPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "get_gateway", 2276800779)
 
-    public val discoverPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "discover")
+    public val discoverPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "discover", 1575334765)
 
     public val queryExternalAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "query_external_address")
+        TypeManager.getMethodBindPtr("UPNP", "query_external_address", 201670096)
 
-    public val addPortMappingPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "add_port_mapping")
+    public val addPortMappingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "add_port_mapping", 818314583)
 
     public val deletePortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "delete_port_mapping")
+        TypeManager.getMethodBindPtr("UPNP", "delete_port_mapping", 3444187325)
 
     public val setDiscoverMulticastIfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "set_discover_multicast_if")
+        TypeManager.getMethodBindPtr("UPNP", "set_discover_multicast_if", 83702148)
 
     public val getDiscoverMulticastIfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "get_discover_multicast_if")
+        TypeManager.getMethodBindPtr("UPNP", "get_discover_multicast_if", 201670096)
 
     public val setDiscoverLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "set_discover_local_port")
+        TypeManager.getMethodBindPtr("UPNP", "set_discover_local_port", 1286410249)
 
     public val getDiscoverLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "get_discover_local_port")
+        TypeManager.getMethodBindPtr("UPNP", "get_discover_local_port", 3905245786)
 
     public val setDiscoverIpv6Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "set_discover_ipv6")
+        TypeManager.getMethodBindPtr("UPNP", "set_discover_ipv6", 2586408642)
 
-    public val isDiscoverIpv6Ptr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "is_discover_ipv6")
+    public val isDiscoverIpv6Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("UPNP", "is_discover_ipv6", 36873697)
   }
 }

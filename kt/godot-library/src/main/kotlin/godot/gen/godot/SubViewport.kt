@@ -230,32 +230,34 @@ public open class SubViewport : Viewport() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SubViewport", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "set_size", 1130785943)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SubViewport", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SubViewport", "get_size", 3690982128)
 
     public val setSize2dOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override")
+        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override", 1130785943)
 
     public val getSize2dOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_size_2d_override")
+        TypeManager.getMethodBindPtr("SubViewport", "get_size_2d_override", 3690982128)
 
     public val setSize2dOverrideStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch")
+        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch", 2586408642)
 
     public val isSize2dOverrideStretchEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled")
+        TypeManager.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled", 36873697)
 
     public val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_update_mode")
+        TypeManager.getMethodBindPtr("SubViewport", "set_update_mode", 1295690030)
 
     public val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_update_mode")
+        TypeManager.getMethodBindPtr("SubViewport", "get_update_mode", 2980171553)
 
     public val setClearModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_clear_mode")
+        TypeManager.getMethodBindPtr("SubViewport", "set_clear_mode", 2834454712)
 
     public val getClearModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_clear_mode")
+        TypeManager.getMethodBindPtr("SubViewport", "get_clear_mode", 331324495)
   }
 }

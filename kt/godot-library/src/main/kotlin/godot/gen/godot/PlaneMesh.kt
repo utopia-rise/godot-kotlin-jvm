@@ -189,32 +189,34 @@ public open class PlaneMesh : PrimitiveMesh() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PlaneMesh", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_size", 743155724)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PlaneMesh", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_size", 3341600327)
 
     public val setSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_width")
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_width", 1286410249)
 
     public val getSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_width")
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_width", 3905245786)
 
     public val setSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_depth")
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_depth", 1286410249)
 
     public val getSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_depth")
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_depth", 3905245786)
 
     public val setCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_center_offset")
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_center_offset", 3460891852)
 
     public val getCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_center_offset")
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_center_offset", 3360562783)
 
     public val setOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_orientation")
+        TypeManager.getMethodBindPtr("PlaneMesh", "set_orientation", 2751399687)
 
     public val getOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_orientation")
+        TypeManager.getMethodBindPtr("PlaneMesh", "get_orientation", 3227599250)
   }
 }

@@ -143,63 +143,63 @@ public open class ImporterMeshInstance3D : Node3D() {
 
   internal object MethodBindings {
     public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_mesh")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_mesh", 2255166972)
 
     public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_mesh")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_mesh", 3161779525)
 
     public val setSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skin", 3971435618)
 
     public val getSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skin", 2074563878)
 
     public val setSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skeleton_path")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skeleton_path", 1348162250)
 
     public val getSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skeleton_path")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skeleton_path", 4075236667)
 
     public val setLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_layer_mask")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_layer_mask", 1286410249)
 
     public val getLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_layer_mask")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_layer_mask", 3905245786)
 
     public val setCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_cast_shadows_setting")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_cast_shadows_setting", 856677339)
 
     public val getCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_cast_shadows_setting")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_cast_shadows_setting", 3383019359)
 
     public val setVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end_margin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end_margin", 373806689)
 
     public val getVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end_margin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end_margin", 1740695150)
 
     public val setVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end", 373806689)
 
     public val getVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end", 1740695150)
 
     public val setVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin_margin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin_margin", 373806689)
 
     public val getVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin_margin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin_margin", 1740695150)
 
     public val setVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin", 373806689)
 
     public val getVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin", 1740695150)
 
     public val setVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_fade_mode")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_fade_mode", 1440117808)
 
     public val getVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_fade_mode")
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_fade_mode", 2067221882)
   }
 }

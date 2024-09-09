@@ -78,9 +78,9 @@ public open class PlaceholderTexture3D : Texture3D() {
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "set_size")
+        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "set_size", 560364750)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "get_size")
+        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "get_size", 2785653706)
   }
 }

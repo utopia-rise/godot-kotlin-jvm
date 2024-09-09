@@ -534,173 +534,207 @@ public open class GLTFState : Resource() {
 
   internal object MethodBindings {
     public val addUsedExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "add_used_extension")
+        TypeManager.getMethodBindPtr("GLTFState", "add_used_extension", 2678287736)
 
     public val appendDataToBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "append_data_to_buffers")
+        TypeManager.getMethodBindPtr("GLTFState", "append_data_to_buffers", 1460416665)
 
-    public val getJsonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_json")
+    public val getJsonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_json", 2382534195)
 
-    public val setJsonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_json")
+    public val setJsonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_json", 4155329257)
 
     public val getMajorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_major_version")
+        TypeManager.getMethodBindPtr("GLTFState", "get_major_version", 2455072627)
 
     public val setMajorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_major_version")
+        TypeManager.getMethodBindPtr("GLTFState", "set_major_version", 1286410249)
 
     public val getMinorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_minor_version")
+        TypeManager.getMethodBindPtr("GLTFState", "get_minor_version", 2455072627)
 
     public val setMinorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_minor_version")
+        TypeManager.getMethodBindPtr("GLTFState", "set_minor_version", 1286410249)
 
-    public val getCopyrightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_copyright")
+    public val getCopyrightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_copyright", 201670096)
 
-    public val setCopyrightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_copyright")
+    public val setCopyrightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_copyright", 83702148)
 
-    public val getGlbDataPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_glb_data")
+    public val getGlbDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_glb_data", 2115431945)
 
-    public val setGlbDataPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_glb_data")
+    public val setGlbDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_glb_data", 2971499966)
 
     public val getUseNamedSkinBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_use_named_skin_binds")
+        TypeManager.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 2240911060)
 
     public val setUseNamedSkinBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_use_named_skin_binds")
+        TypeManager.getMethodBindPtr("GLTFState", "set_use_named_skin_binds", 2586408642)
 
-    public val getNodesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_nodes")
+    public val getNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_nodes", 2915620761)
 
-    public val setNodesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_nodes")
+    public val setNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_nodes", 381264803)
 
-    public val getBuffersPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_buffers")
+    public val getBuffersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_buffers", 2915620761)
 
-    public val setBuffersPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_buffers")
+    public val setBuffersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_buffers", 381264803)
 
     public val getBufferViewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_buffer_views")
+        TypeManager.getMethodBindPtr("GLTFState", "get_buffer_views", 2915620761)
 
     public val setBufferViewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_buffer_views")
+        TypeManager.getMethodBindPtr("GLTFState", "set_buffer_views", 381264803)
 
-    public val getAccessorsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_accessors")
+    public val getAccessorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_accessors", 2915620761)
 
-    public val setAccessorsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_accessors")
+    public val setAccessorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_accessors", 381264803)
 
-    public val getMeshesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_meshes")
+    public val getMeshesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_meshes", 2915620761)
 
-    public val setMeshesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_meshes")
+    public val setMeshesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_meshes", 381264803)
 
     public val getAnimationPlayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_players_count")
+        TypeManager.getMethodBindPtr("GLTFState", "get_animation_players_count", 3744713108)
 
     public val getAnimationPlayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_player")
+        TypeManager.getMethodBindPtr("GLTFState", "get_animation_player", 925043400)
 
-    public val getMaterialsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_materials")
+    public val getMaterialsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_materials", 2915620761)
 
-    public val setMaterialsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_materials")
+    public val setMaterialsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_materials", 381264803)
 
     public val getSceneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_name")
+        TypeManager.getMethodBindPtr("GLTFState", "get_scene_name", 2841200299)
 
     public val setSceneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_scene_name")
+        TypeManager.getMethodBindPtr("GLTFState", "set_scene_name", 83702148)
 
-    public val getBasePathPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_base_path")
+    public val getBasePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_base_path", 2841200299)
 
-    public val setBasePathPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_base_path")
+    public val setBasePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_base_path", 83702148)
 
-    public val getFilenamePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_filename")
+    public val getFilenamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_filename", 201670096)
 
-    public val setFilenamePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_filename")
+    public val setFilenamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_filename", 83702148)
 
     public val getRootNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes")
+        TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes", 969006518)
 
     public val setRootNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_root_nodes")
+        TypeManager.getMethodBindPtr("GLTFState", "set_root_nodes", 3614634198)
 
-    public val getTexturesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_textures")
+    public val getTexturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_textures", 2915620761)
 
-    public val setTexturesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_textures")
+    public val setTexturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_textures", 381264803)
 
     public val getTextureSamplersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_texture_samplers")
+        TypeManager.getMethodBindPtr("GLTFState", "get_texture_samplers", 2915620761)
 
     public val setTextureSamplersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_texture_samplers")
+        TypeManager.getMethodBindPtr("GLTFState", "set_texture_samplers", 381264803)
 
-    public val getImagesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_images")
+    public val getImagesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_images", 2915620761)
 
-    public val setImagesPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_images")
+    public val setImagesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_images", 381264803)
 
-    public val getSkinsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_skins")
+    public val getSkinsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_skins", 2915620761)
 
-    public val setSkinsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_skins")
+    public val setSkinsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_skins", 381264803)
 
-    public val getCamerasPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_cameras")
+    public val getCamerasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_cameras", 2915620761)
 
-    public val setCamerasPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_cameras")
+    public val setCamerasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_cameras", 381264803)
 
-    public val getLightsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_lights")
+    public val getLightsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_lights", 2915620761)
 
-    public val setLightsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_lights")
+    public val setLightsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_lights", 381264803)
 
     public val getUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_names")
+        TypeManager.getMethodBindPtr("GLTFState", "get_unique_names", 2915620761)
 
     public val setUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_unique_names")
+        TypeManager.getMethodBindPtr("GLTFState", "set_unique_names", 381264803)
 
     public val getUniqueAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_animation_names")
+        TypeManager.getMethodBindPtr("GLTFState", "get_unique_animation_names", 2915620761)
 
     public val setUniqueAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_unique_animation_names")
+        TypeManager.getMethodBindPtr("GLTFState", "set_unique_animation_names", 381264803)
 
-    public val getSkeletonsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_skeletons")
+    public val getSkeletonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_skeletons", 2915620761)
 
-    public val setSkeletonsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_skeletons")
+    public val setSkeletonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_skeletons", 381264803)
 
     public val getCreateAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_create_animations")
+        TypeManager.getMethodBindPtr("GLTFState", "get_create_animations", 2240911060)
 
     public val setCreateAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_create_animations")
+        TypeManager.getMethodBindPtr("GLTFState", "set_create_animations", 2586408642)
 
     public val getImportAsSkeletonBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones")
+        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 2240911060)
 
     public val setImportAsSkeletonBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones")
+        TypeManager.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones", 2586408642)
 
     public val getAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animations")
+        TypeManager.getMethodBindPtr("GLTFState", "get_animations", 2915620761)
 
     public val setAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_animations")
+        TypeManager.getMethodBindPtr("GLTFState", "set_animations", 381264803)
 
     public val getSceneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_node")
+        TypeManager.getMethodBindPtr("GLTFState", "get_scene_node", 4253421667)
 
     public val getNodeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_node_index")
+        TypeManager.getMethodBindPtr("GLTFState", "get_node_index", 1205807060)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_additional_data")
+        TypeManager.getMethodBindPtr("GLTFState", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_additional_data")
+        TypeManager.getMethodBindPtr("GLTFState", "set_additional_data", 3776071444)
 
     public val getHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image")
+        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image", 2455072627)
 
     public val setHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image")
+        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1286410249)
 
-    public val setBakeFpsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "set_bake_fps")
+    public val setBakeFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "set_bake_fps", 373806689)
 
-    public val getBakeFpsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFState", "get_bake_fps")
+    public val getBakeFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFState", "get_bake_fps", 1740695150)
   }
 }

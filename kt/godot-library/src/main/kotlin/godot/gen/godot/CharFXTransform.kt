@@ -356,71 +356,81 @@ public open class CharFXTransform : RefCounted() {
 
   internal object MethodBindings {
     public val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_transform")
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_transform", 3761352769)
 
     public val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_transform")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_transform", 2761652528)
 
-    public val getRangePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_range")
+    public val getRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_range", 2741790807)
 
-    public val setRangePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_range")
+    public val setRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_range", 1130785943)
 
     public val getElapsedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_elapsed_time")
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_elapsed_time", 191475506)
 
     public val setElapsedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_elapsed_time")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_elapsed_time", 373806689)
 
-    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "is_visible")
+    public val isVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "is_visible", 2240911060)
 
     public val setVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_visibility")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_visibility", 2586408642)
 
-    public val isOutlinePtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "is_outline")
+    public val isOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "is_outline", 2240911060)
 
     public val setOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_outline")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_outline", 2586408642)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_offset", 1497962370)
 
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_offset", 743155724)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_color", 3200896285)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_color", 2920490490)
 
     public val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_environment")
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_environment", 2382534195)
 
     public val setEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_environment")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_environment", 4155329257)
 
     public val getGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_index")
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_index", 3905245786)
 
     public val setGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_index")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_index", 1286410249)
 
     public val getRelativeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_relative_index")
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_relative_index", 3905245786)
 
     public val setRelativeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_relative_index")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_relative_index", 1286410249)
 
     public val getGlyphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_count")
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_count", 3905245786)
 
     public val setGlyphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_count")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_count", 1286410249)
 
     public val getGlyphFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_flags")
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_glyph_flags", 3905245786)
 
     public val setGlyphFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_flags")
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_glyph_flags", 1286410249)
 
-    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "get_font")
+    public val getFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "get_font", 2944877500)
 
-    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("CharFXTransform", "set_font")
+    public val setFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharFXTransform", "set_font", 2722037293)
   }
 }

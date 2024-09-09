@@ -185,34 +185,36 @@ public open class VisualShaderNode internal constructor() : Resource() {
 
   internal object MethodBindings {
     public val getDefaultInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_port")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_port", 1894493699)
 
     public val setOutputPortForPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "set_output_port_for_preview")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_output_port_for_preview", 1286410249)
 
     public val getOutputPortForPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_output_port_for_preview")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_output_port_for_preview", 3905245786)
 
     public val setInputPortDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "set_input_port_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_input_port_default_value", 150923387)
 
     public val getInputPortDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_input_port_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_input_port_default_value", 4227898402)
 
     public val removeInputPortDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "remove_input_port_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "remove_input_port_default_value", 1286410249)
 
     public val clearDefaultInputValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "clear_default_input_values")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "clear_default_input_values", 3218959716)
 
     public val setDefaultInputValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "set_default_input_values")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_default_input_values", 381264803)
 
     public val getDefaultInputValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_values")
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_default_input_values", 3995934104)
 
-    public val setFramePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShaderNode", "set_frame")
+    public val setFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShaderNode", "get_frame")
+    public val getFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShaderNode", "get_frame", 3905245786)
   }
 }

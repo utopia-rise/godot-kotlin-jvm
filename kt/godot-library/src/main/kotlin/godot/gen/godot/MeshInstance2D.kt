@@ -66,14 +66,16 @@ public open class MeshInstance2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance2D", "set_mesh")
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance2D", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance2D", "get_mesh")
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance2D", "get_mesh", 1808005922)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "set_texture")
+        TypeManager.getMethodBindPtr("MeshInstance2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "get_texture")
+        TypeManager.getMethodBindPtr("MeshInstance2D", "get_texture", 3635182373)
   }
 }

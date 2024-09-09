@@ -148,34 +148,40 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_size", 373806689)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_size", 1740695150)
 
     public val setSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_sections")
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_sections", 1286410249)
 
     public val getSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_sections")
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_sections", 3905245786)
 
     public val setSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_length")
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_length", 373806689)
 
     public val getSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_length")
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_length", 1740695150)
 
     public val setSectionSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_segments")
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_segments", 1286410249)
 
     public val getSectionSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_segments")
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_segments", 3905245786)
 
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_curve")
+    public val setCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_curve", 270443179)
 
-    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_curve")
+    public val getCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_curve", 2460114913)
 
-    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_shape")
+    public val setShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_shape", 1684440262)
 
-    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_shape")
+    public val getShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_shape", 1317484155)
   }
 }

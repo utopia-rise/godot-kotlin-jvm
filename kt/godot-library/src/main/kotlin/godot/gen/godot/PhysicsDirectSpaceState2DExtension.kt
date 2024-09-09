@@ -41,6 +41,6 @@ public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D
 
   internal object MethodBindings {
     public val isBodyExcludedFromQueryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2DExtension", "is_body_excluded_from_query")
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2DExtension", "is_body_excluded_from_query", 4155700596)
   }
 }

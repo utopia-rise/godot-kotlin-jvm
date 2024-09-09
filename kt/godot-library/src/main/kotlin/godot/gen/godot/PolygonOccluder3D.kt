@@ -53,9 +53,9 @@ public open class PolygonOccluder3D : Occluder3D() {
 
   internal object MethodBindings {
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonOccluder3D", "set_polygon")
+        TypeManager.getMethodBindPtr("PolygonOccluder3D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonOccluder3D", "get_polygon")
+        TypeManager.getMethodBindPtr("PolygonOccluder3D", "get_polygon", 2961356807)
   }
 }

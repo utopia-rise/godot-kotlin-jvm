@@ -91,12 +91,12 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_size")
+        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_size", 1130785943)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "get_size")
+        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "get_size", 3690982128)
 
     public val setLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_layers")
+        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_layers", 1286410249)
   }
 }

@@ -209,27 +209,27 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size", 3360562783)
 
     public val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution", 1009996517)
 
     public val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution", 1156065644)
 
     public val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode", 673680859)
 
     public val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode", 1998141380)
 
     public val setFollowCameraEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled", 2586408642)
 
     public val isFollowCameraEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled", 36873697)
   }
 }

@@ -191,54 +191,54 @@ public open class CameraAttributesPhysical : CameraAttributes() {
 
   internal object MethodBindings {
     public val setAperturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_aperture")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_aperture", 373806689)
 
     public val getAperturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_aperture")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_aperture", 1740695150)
 
     public val setShutterSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_shutter_speed")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_shutter_speed", 373806689)
 
     public val getShutterSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_shutter_speed")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_shutter_speed", 1740695150)
 
     public val setFocalLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_focal_length")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_focal_length", 373806689)
 
     public val getFocalLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_focal_length")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_focal_length", 1740695150)
 
     public val setFocusDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_focus_distance")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_focus_distance", 373806689)
 
     public val getFocusDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_focus_distance")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_focus_distance", 1740695150)
 
     public val setNearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_near")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_near", 373806689)
 
     public val getNearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_near")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_near", 1740695150)
 
     public val setFarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_far")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_far", 373806689)
 
     public val getFarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_far")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_far", 1740695150)
 
     public val getFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_fov")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_fov", 1740695150)
 
     public val setAutoExposureMaxExposureValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_auto_exposure_max_exposure_value")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_auto_exposure_max_exposure_value", 373806689)
 
     public val getAutoExposureMaxExposureValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_auto_exposure_max_exposure_value")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_auto_exposure_max_exposure_value", 1740695150)
 
     public val setAutoExposureMinExposureValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_auto_exposure_min_exposure_value")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "set_auto_exposure_min_exposure_value", 373806689)
 
     public val getAutoExposureMinExposureValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_auto_exposure_min_exposure_value")
+        TypeManager.getMethodBindPtr("CameraAttributesPhysical", "get_auto_exposure_min_exposure_value", 1740695150)
   }
 }

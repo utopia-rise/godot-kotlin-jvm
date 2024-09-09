@@ -74,9 +74,9 @@ public open class WorldBoundaryShape3D : Shape3D() {
 
   internal object MethodBindings {
     public val setPlanePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "set_plane")
+        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "set_plane", 3505987427)
 
     public val getPlanePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "get_plane")
+        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "get_plane", 2753500971)
   }
 }

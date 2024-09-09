@@ -218,51 +218,51 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
 
   internal object MethodBindings {
     public val getFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_from")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_from", 3229777777)
 
     public val setFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_from")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_from", 2952846383)
 
     public val getMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_motion")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_motion", 3360562783)
 
     public val setMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_motion")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_motion", 3460891852)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_margin")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_margin", 1740695150)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_margin")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_margin", 373806689)
 
     public val getMaxCollisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_max_collisions")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_max_collisions", 3905245786)
 
     public val setMaxCollisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_max_collisions")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_max_collisions", 1286410249)
 
     public val isCollideSeparationRayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_collide_separation_ray_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_collide_separation_ray_enabled", 36873697)
 
     public val setCollideSeparationRayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_collide_separation_ray_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_collide_separation_ray_enabled", 2586408642)
 
     public val getExcludeBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_bodies")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_bodies", 3995934104)
 
     public val setExcludeBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_bodies")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_bodies", 381264803)
 
     public val getExcludeObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_objects")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_objects", 3995934104)
 
     public val setExcludeObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_objects")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_objects", 381264803)
 
     public val isRecoveryAsCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_recovery_as_collision_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_recovery_as_collision_enabled", 36873697)
 
     public val setRecoveryAsCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_recovery_as_collision_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_recovery_as_collision_enabled", 2586408642)
   }
 }

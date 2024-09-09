@@ -145,33 +145,39 @@ public open class SpringArm3D : Node3D() {
 
   internal object MethodBindings {
     public val getHitLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "get_hit_length")
+        TypeManager.getMethodBindPtr("SpringArm3D", "get_hit_length", 191475506)
 
-    public val setLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("SpringArm3D", "set_length")
+    public val setLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringArm3D", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("SpringArm3D", "get_length")
+    public val getLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringArm3D", "get_length", 1740695150)
 
-    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("SpringArm3D", "set_shape")
+    public val setShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringArm3D", "set_shape", 1549710052)
 
-    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("SpringArm3D", "get_shape")
+    public val getShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringArm3D", "get_shape", 3214262478)
 
     public val addExcludedObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "add_excluded_object")
+        TypeManager.getMethodBindPtr("SpringArm3D", "add_excluded_object", 2722037293)
 
     public val removeExcludedObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "remove_excluded_object")
+        TypeManager.getMethodBindPtr("SpringArm3D", "remove_excluded_object", 3521089500)
 
     public val clearExcludedObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "clear_excluded_objects")
+        TypeManager.getMethodBindPtr("SpringArm3D", "clear_excluded_objects", 3218959716)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "set_collision_mask")
+        TypeManager.getMethodBindPtr("SpringArm3D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "get_collision_mask")
+        TypeManager.getMethodBindPtr("SpringArm3D", "get_collision_mask", 2455072627)
 
-    public val setMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("SpringArm3D", "set_margin")
+    public val setMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringArm3D", "set_margin", 373806689)
 
-    public val getMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("SpringArm3D", "get_margin")
+    public val getMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringArm3D", "get_margin", 191475506)
   }
 }

@@ -133,15 +133,15 @@ public open class AudioStreamGenerator : AudioStream() {
 
   internal object MethodBindings {
     public val setMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate")
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate", 373806689)
 
     public val getMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate")
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate", 1740695150)
 
     public val setBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length")
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length", 373806689)
 
     public val getBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length")
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length", 1740695150)
   }
 }

@@ -185,57 +185,57 @@ public open class CameraAttributesPractical : CameraAttributes() {
 
   internal object MethodBindings {
     public val setDofBlurFarEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_enabled")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_enabled", 2586408642)
 
     public val isDofBlurFarEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_far_enabled")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_far_enabled", 36873697)
 
     public val setDofBlurFarDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_distance")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_distance", 373806689)
 
     public val getDofBlurFarDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_distance")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_distance", 1740695150)
 
     public val setDofBlurFarTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_transition")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_transition", 373806689)
 
     public val getDofBlurFarTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_transition")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_transition", 1740695150)
 
     public val setDofBlurNearEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_enabled")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_enabled", 2586408642)
 
     public val isDofBlurNearEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_near_enabled")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_near_enabled", 36873697)
 
     public val setDofBlurNearDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_distance")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_distance", 373806689)
 
     public val getDofBlurNearDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_distance")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_distance", 1740695150)
 
     public val setDofBlurNearTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_transition")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_transition", 373806689)
 
     public val getDofBlurNearTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_transition")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_transition", 1740695150)
 
     public val setDofBlurAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_amount")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_amount", 373806689)
 
     public val getDofBlurAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_amount")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_amount", 1740695150)
 
     public val setAutoExposureMaxSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_max_sensitivity")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_max_sensitivity", 373806689)
 
     public val getAutoExposureMaxSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_max_sensitivity")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_max_sensitivity", 1740695150)
 
     public val setAutoExposureMinSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_min_sensitivity")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_min_sensitivity", 373806689)
 
     public val getAutoExposureMinSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_min_sensitivity")
+        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_min_sensitivity", 1740695150)
   }
 }

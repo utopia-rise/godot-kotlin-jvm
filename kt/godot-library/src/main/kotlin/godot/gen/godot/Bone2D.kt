@@ -173,30 +173,35 @@ public open class Bone2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_rest")
+    public val setRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_rest", 2761652528)
 
-    public val getRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_rest")
+    public val getRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_rest", 3814499831)
 
-    public val applyRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "apply_rest")
+    public val applyRestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "apply_rest", 3218959716)
 
     public val getSkeletonRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_skeleton_rest")
+        TypeManager.getMethodBindPtr("Bone2D", "get_skeleton_rest", 3814499831)
 
     public val getIndexInSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_index_in_skeleton")
+        TypeManager.getMethodBindPtr("Bone2D", "get_index_in_skeleton", 3905245786)
 
     public val setAutocalculateLengthAndAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle")
+        TypeManager.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle", 2586408642)
 
     public val getAutocalculateLengthAndAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle")
+        TypeManager.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle", 36873697)
 
-    public val setLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_length")
+    public val setLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_length")
+    public val getLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "get_length", 1740695150)
 
-    public val setBoneAnglePtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_bone_angle")
+    public val setBoneAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "set_bone_angle", 373806689)
 
-    public val getBoneAnglePtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_bone_angle")
+    public val getBoneAnglePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Bone2D", "get_bone_angle", 1740695150)
   }
 }

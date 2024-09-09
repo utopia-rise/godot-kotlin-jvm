@@ -62,15 +62,15 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
 
   internal object MethodBindings {
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "is_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "set_default_value", 1286410249)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "get_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntParameter", "get_default_value", 3905245786)
   }
 }

@@ -102,9 +102,9 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "set_aabb")
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "set_aabb", 259215842)
 
     public val isOnScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "is_on_screen")
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "is_on_screen", 36873697)
   }
 }

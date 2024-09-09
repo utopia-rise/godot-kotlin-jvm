@@ -3292,547 +3292,556 @@ public object DisplayServer : Object() {
   }
 
   internal object MethodBindings {
-    public val hasFeaturePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "has_feature")
+    public val hasFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "has_feature", 334065950)
 
-    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "get_name")
+    public val getNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "get_name", 201670096)
 
     public val helpSetSearchCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "help_set_search_callbacks")
+        TypeManager.getMethodBindPtr("DisplayServer", "help_set_search_callbacks", 1687350599)
 
     public val globalMenuSetPopupCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks", 3893727526)
 
     public val globalMenuAddSubmenuItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item", 2828985934)
 
     public val globalMenuAddItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_item", 3401266716)
 
     public val globalMenuAddCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_check_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_check_item", 3401266716)
 
     public val globalMenuAddIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item", 4245856523)
 
     public val globalMenuAddIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item", 4245856523)
 
     public val globalMenuAddRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item", 3401266716)
 
     public val globalMenuAddIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item", 4245856523)
 
     public val globalMenuAddMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item", 3431222859)
 
     public val globalMenuAddSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_separator")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_separator", 3214812433)
 
     public val globalMenuGetItemIndexFromTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_text")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_text", 2878152881)
 
     public val globalMenuGetItemIndexFromTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_tag")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_tag", 2941063483)
 
     public val globalMenuIsItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checked")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checked", 3511468594)
 
     public val globalMenuIsItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checkable")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checkable", 3511468594)
 
     public val globalMenuIsItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_radio_checkable")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_radio_checkable", 3511468594)
 
     public val globalMenuGetItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_callback", 748666903)
 
     public val globalMenuGetItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_key_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_key_callback", 748666903)
 
     public val globalMenuGetItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tag")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tag", 330672633)
 
     public val globalMenuGetItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_text")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_text", 591067909)
 
     public val globalMenuGetItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_submenu")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_submenu", 591067909)
 
     public val globalMenuGetItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_accelerator")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_accelerator", 936065394)
 
     public val globalMenuIsItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled", 3511468594)
 
     public val globalMenuIsItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden", 3511468594)
 
     public val globalMenuGetItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip", 591067909)
 
     public val globalMenuGetItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_state")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_state", 3422818498)
 
     public val globalMenuGetItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_max_states")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_max_states", 3422818498)
 
     public val globalMenuGetItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_icon")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_icon", 3591713183)
 
     public val globalMenuGetItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_indentation_level")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_indentation_level", 3422818498)
 
     public val globalMenuSetItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checked")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checked", 4108344793)
 
     public val globalMenuSetItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checkable")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checkable", 4108344793)
 
     public val globalMenuSetItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_radio_checkable")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_radio_checkable", 4108344793)
 
     public val globalMenuSetItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback", 3809915389)
 
     public val globalMenuSetItemHoverCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks", 3809915389)
 
     public val globalMenuSetItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback", 3809915389)
 
     public val globalMenuSetItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tag")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tag", 453659863)
 
     public val globalMenuSetItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_text")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_text", 965966136)
 
     public val globalMenuSetItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_submenu")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_submenu", 965966136)
 
     public val globalMenuSetItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_accelerator")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_accelerator", 566943293)
 
     public val globalMenuSetItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled", 4108344793)
 
     public val globalMenuSetItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden", 4108344793)
 
     public val globalMenuSetItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip", 965966136)
 
     public val globalMenuSetItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_state")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_state", 3474840532)
 
     public val globalMenuSetItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_max_states")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_max_states", 3474840532)
 
     public val globalMenuSetItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_icon")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_icon", 3201338066)
 
     public val globalMenuSetItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_indentation_level")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_indentation_level", 3474840532)
 
     public val globalMenuGetItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_count")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_count", 1321353865)
 
     public val globalMenuRemoveItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_remove_item")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_remove_item", 2956805083)
 
     public val globalMenuClearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_clear")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_clear", 83702148)
 
     public val globalMenuGetSystemMenuRootsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_system_menu_roots")
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_system_menu_roots", 3102165223)
 
     public val ttsIsSpeakingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_speaking")
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_speaking", 36873697)
 
     public val ttsIsPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_paused")
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_paused", 36873697)
 
     public val ttsGetVoicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices")
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices", 3995934104)
 
     public val ttsGetVoicesForLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices_for_language")
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices_for_language", 4291131558)
 
-    public val ttsSpeakPtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "tts_speak")
+    public val ttsSpeakPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_speak", 903992738)
 
-    public val ttsPausePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "tts_pause")
+    public val ttsPausePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_pause", 3218959716)
 
-    public val ttsResumePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "tts_resume")
+    public val ttsResumePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_resume", 3218959716)
 
-    public val ttsStopPtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "tts_stop")
+    public val ttsStopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_stop", 3218959716)
 
     public val ttsSetUtteranceCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_set_utterance_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_set_utterance_callback", 109679083)
 
     public val isDarkModeSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode_supported")
+        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode_supported", 36873697)
 
     public val isDarkModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode")
+        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode", 36873697)
 
     public val getAccentColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_accent_color")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_accent_color", 3444240500)
 
     public val getBaseColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_base_color")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_base_color", 3444240500)
 
     public val setSystemThemeChangeCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_system_theme_change_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "set_system_theme_change_callback", 1611583062)
 
     public val mouseSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_set_mode")
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_set_mode", 348288463)
 
     public val mouseGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_mode")
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_mode", 1353961651)
 
-    public val warpMousePtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "warp_mouse")
+    public val warpMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "warp_mouse", 1130785943)
 
     public val mouseGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_position")
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_position", 3690982128)
 
     public val mouseGetButtonStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_button_state")
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_button_state", 2512161324)
 
     public val clipboardSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set")
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set", 83702148)
 
     public val clipboardGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get")
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get", 201670096)
 
     public val clipboardGetImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_image")
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_image", 4190603485)
 
     public val clipboardHasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has")
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has", 36873697)
 
     public val clipboardHasImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has_image")
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has_image", 36873697)
 
     public val clipboardSetPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set_primary")
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set_primary", 83702148)
 
     public val clipboardGetPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_primary")
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_primary", 201670096)
 
     public val getDisplayCutoutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_display_cutouts")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_display_cutouts", 3995934104)
 
     public val getDisplaySafeAreaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_display_safe_area")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_display_safe_area", 410525958)
 
     public val getScreenCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_count")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_count", 3905245786)
 
     public val getPrimaryScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_primary_screen")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_primary_screen", 3905245786)
 
     public val getKeyboardFocusScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_keyboard_focus_screen")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_keyboard_focus_screen", 3905245786)
 
     public val getScreenFromRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_from_rect")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_from_rect", 741354659)
 
     public val screenGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_position")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_position", 1725937825)
 
     public val screenGetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_size", 1725937825)
 
     public val screenGetUsableRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_usable_rect")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_usable_rect", 2439012528)
 
     public val screenGetDpiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_dpi")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_dpi", 181039630)
 
     public val screenGetScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_scale")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_scale", 909105437)
 
     public val isTouchscreenAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_touchscreen_available")
+        TypeManager.getMethodBindPtr("DisplayServer", "is_touchscreen_available", 3323674545)
 
     public val screenGetMaxScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_max_scale")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_max_scale", 1740695150)
 
     public val screenGetRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_refresh_rate")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_refresh_rate", 909105437)
 
     public val screenGetPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_pixel")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_pixel", 1532707496)
 
     public val screenGetImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image", 3813388802)
 
     public val screenSetOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_orientation")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_orientation", 2211511631)
 
     public val screenGetOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_orientation")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_orientation", 133818562)
 
     public val screenSetKeepOnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_keep_on")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_keep_on", 2586408642)
 
     public val screenIsKeptOnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_is_kept_on")
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_is_kept_on", 36873697)
 
     public val getWindowListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_window_list")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_window_list", 1930428628)
 
     public val getWindowAtScreenPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_window_at_screen_position")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_window_at_screen_position", 2485466453)
 
     public val windowGetNativeHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_native_handle")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_native_handle", 1096425680)
 
     public val windowGetActivePopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_active_popup")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_active_popup", 3905245786)
 
     public val windowSetPopupSafeRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_popup_safe_rect")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_popup_safe_rect", 3317281434)
 
     public val windowGetPopupSafeRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_popup_safe_rect")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_popup_safe_rect", 2161169500)
 
     public val windowSetTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_title")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_title", 441246282)
 
     public val windowGetTitleSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_title_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_title_size", 2925301799)
 
     public val windowSetMousePassthroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough", 1993637420)
 
     public val windowGetCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_current_screen")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_current_screen", 1591665591)
 
     public val windowSetCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_current_screen")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_current_screen", 2230941749)
 
     public val windowGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position", 763922886)
 
     public val windowGetPositionWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position_with_decorations")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position_with_decorations", 763922886)
 
     public val windowSetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_position")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_position", 2019273902)
 
     public val windowGetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size", 763922886)
 
     public val windowSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_size", 2019273902)
 
     public val windowSetRectChangedCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_rect_changed_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_rect_changed_callback", 1091192925)
 
     public val windowSetWindowEventCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_event_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_event_callback", 1091192925)
 
     public val windowSetInputEventCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_event_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_event_callback", 1091192925)
 
     public val windowSetInputTextCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_text_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_text_callback", 1091192925)
 
     public val windowSetDropFilesCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_drop_files_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_drop_files_callback", 1091192925)
 
     public val windowGetAttachedInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_attached_instance_id")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_attached_instance_id", 1591665591)
 
     public val windowGetMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_max_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_max_size", 763922886)
 
     public val windowSetMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_max_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_max_size", 2019273902)
 
     public val windowGetMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_min_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_min_size", 763922886)
 
     public val windowSetMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_min_size")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_min_size", 2019273902)
 
     public val windowGetSizeWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size_with_decorations")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size_with_decorations", 763922886)
 
     public val windowGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_mode")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_mode", 2185728461)
 
     public val windowSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mode")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mode", 1319965401)
 
     public val windowSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_flag")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_flag", 254894155)
 
     public val windowGetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_flag")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_flag", 802816991)
 
     public val windowSetWindowButtonsOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_buttons_offset")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_buttons_offset", 2019273902)
 
     public val windowGetSafeTitleMarginsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_safe_title_margins")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_safe_title_margins", 2295066620)
 
     public val windowRequestAttentionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_request_attention")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_request_attention", 1995695955)
 
     public val windowMoveToForegroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_move_to_foreground")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_move_to_foreground", 1995695955)
 
     public val windowIsFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_is_focused")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_is_focused", 1051549951)
 
     public val windowCanDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_can_draw")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_can_draw", 1051549951)
 
     public val windowSetTransientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_transient")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_transient", 3937882851)
 
     public val windowSetExclusivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_exclusive")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_exclusive", 300928843)
 
     public val windowSetImeActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_active")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_active", 1661950165)
 
     public val windowSetImePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_position")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_position", 2019273902)
 
     public val windowSetVsyncModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_vsync_mode")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_vsync_mode", 2179333492)
 
     public val windowGetVsyncModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_vsync_mode")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_vsync_mode", 578873795)
 
     public val windowIsMaximizeAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_is_maximize_allowed")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_is_maximize_allowed", 1051549951)
 
     public val windowMaximizeOnTitleDblClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_maximize_on_title_dbl_click")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_maximize_on_title_dbl_click", 36873697)
 
     public val windowMinimizeOnTitleDblClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_minimize_on_title_dbl_click")
+        TypeManager.getMethodBindPtr("DisplayServer", "window_minimize_on_title_dbl_click", 36873697)
 
     public val imeGetSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_selection")
+        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_selection", 3690982128)
 
     public val imeGetTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_text")
+        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_text", 201670096)
 
     public val virtualKeyboardShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_show")
+        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_show", 3042891259)
 
     public val virtualKeyboardHidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_hide")
+        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_hide", 3218959716)
 
     public val virtualKeyboardGetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_get_height")
+        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_get_height", 3905245786)
 
     public val cursorSetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_shape")
+        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_shape", 2026291549)
 
     public val cursorGetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_get_shape")
+        TypeManager.getMethodBindPtr("DisplayServer", "cursor_get_shape", 1087724927)
 
     public val cursorSetCustomImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_custom_image")
+        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_custom_image", 1816663697)
 
     public val getSwapCancelOkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_swap_cancel_ok")
+        TypeManager.getMethodBindPtr("DisplayServer", "get_swap_cancel_ok", 2240911060)
 
     public val enableForStealingFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "enable_for_stealing_focus")
+        TypeManager.getMethodBindPtr("DisplayServer", "enable_for_stealing_focus", 1286410249)
 
-    public val dialogShowPtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "dialog_show")
+    public val dialogShowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "dialog_show", 4115553226)
 
     public val dialogInputTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text")
+        TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text", 3088703427)
 
     public val fileDialogShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show")
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show", 1531299078)
 
     public val fileDialogWithOptionsShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show")
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1305318754)
 
     public val keyboardGetLayoutCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count")
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count", 3905245786)
 
     public val keyboardGetCurrentLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_current_layout")
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_current_layout", 3905245786)
 
     public val keyboardSetCurrentLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_set_current_layout")
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_set_current_layout", 1286410249)
 
     public val keyboardGetLayoutLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_language")
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_language", 844755477)
 
     public val keyboardGetLayoutNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_name")
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_name", 844755477)
 
     public val keyboardGetKeycodeFromPhysicalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical")
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical", 3447613187)
 
     public val keyboardGetLabelFromPhysicalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical")
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical", 3447613187)
 
     public val processEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "process_events")
+        TypeManager.getMethodBindPtr("DisplayServer", "process_events", 3218959716)
 
     public val forceProcessAndDropEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "force_process_and_drop_events")
+        TypeManager.getMethodBindPtr("DisplayServer", "force_process_and_drop_events", 3218959716)
 
     public val setNativeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_native_icon")
+        TypeManager.getMethodBindPtr("DisplayServer", "set_native_icon", 83702148)
 
-    public val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("DisplayServer", "set_icon")
+    public val setIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "set_icon", 532598488)
 
     public val createStatusIndicatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "create_status_indicator")
+        TypeManager.getMethodBindPtr("DisplayServer", "create_status_indicator", 1904285171)
 
     public val statusIndicatorSetIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_icon")
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_icon", 666127730)
 
     public val statusIndicatorSetTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_tooltip")
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_tooltip", 501894301)
 
     public val statusIndicatorSetMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_menu")
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_menu", 4040184819)
 
     public val statusIndicatorSetCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_callback")
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_callback", 957362965)
 
     public val statusIndicatorGetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_get_rect")
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_get_rect", 3327874267)
 
     public val deleteStatusIndicatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "delete_status_indicator")
+        TypeManager.getMethodBindPtr("DisplayServer", "delete_status_indicator", 1286410249)
 
     public val tabletGetDriverCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_count")
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_count", 3905245786)
 
     public val tabletGetDriverNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_name")
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_name", 844755477)
 
     public val tabletGetCurrentDriverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_current_driver")
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_current_driver", 201670096)
 
     public val tabletSetCurrentDriverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_set_current_driver")
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_set_current_driver", 83702148)
 
     public val isWindowTransparencyAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_window_transparency_available")
+        TypeManager.getMethodBindPtr("DisplayServer", "is_window_transparency_available", 36873697)
 
     public val registerAdditionalOutputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "register_additional_output")
+        TypeManager.getMethodBindPtr("DisplayServer", "register_additional_output", 3975164845)
 
     public val unregisterAdditionalOutputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "unregister_additional_output")
+        TypeManager.getMethodBindPtr("DisplayServer", "unregister_additional_output", 3975164845)
 
     public val hasAdditionalOutputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "has_additional_outputs")
+        TypeManager.getMethodBindPtr("DisplayServer", "has_additional_outputs", 36873697)
   }
 }

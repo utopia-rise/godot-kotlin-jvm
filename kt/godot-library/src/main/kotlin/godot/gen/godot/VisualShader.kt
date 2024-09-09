@@ -458,64 +458,70 @@ public open class VisualShader : Shader() {
   }
 
   internal object MethodBindings {
-    public val setModePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "set_mode")
+    public val setModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "set_mode", 3978014962)
 
-    public val addNodePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "add_node")
+    public val addNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "add_node", 1560769431)
 
-    public val getNodePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "get_node")
+    public val getNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "get_node", 3784670312)
 
     public val setNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "set_node_position")
+        TypeManager.getMethodBindPtr("VisualShader", "set_node_position", 2726660721)
 
     public val getNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_node_position")
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_position", 2175036082)
 
     public val getNodeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_node_list")
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_list", 2370592410)
 
     public val getValidNodeIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_valid_node_id")
+        TypeManager.getMethodBindPtr("VisualShader", "get_valid_node_id", 629467342)
 
-    public val removeNodePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "remove_node")
+    public val removeNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "remove_node", 844050912)
 
     public val replaceNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "replace_node")
+        TypeManager.getMethodBindPtr("VisualShader", "replace_node", 3144735253)
 
     public val isNodeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "is_node_connection")
+        TypeManager.getMethodBindPtr("VisualShader", "is_node_connection", 3922381898)
 
     public val canConnectNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "can_connect_nodes")
+        TypeManager.getMethodBindPtr("VisualShader", "can_connect_nodes", 3922381898)
 
     public val connectNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes")
+        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes", 3081049573)
 
     public val disconnectNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "disconnect_nodes")
+        TypeManager.getMethodBindPtr("VisualShader", "disconnect_nodes", 2268060358)
 
     public val connectNodesForcedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes_forced")
+        TypeManager.getMethodBindPtr("VisualShader", "connect_nodes_forced", 2268060358)
 
     public val getNodeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_node_connections")
+        TypeManager.getMethodBindPtr("VisualShader", "get_node_connections", 1441964831)
 
     public val setGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "set_graph_offset")
+        TypeManager.getMethodBindPtr("VisualShader", "set_graph_offset", 743155724)
 
     public val getGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset")
+        TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset", 3341600327)
 
     public val attachNodeToFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "attach_node_to_frame")
+        TypeManager.getMethodBindPtr("VisualShader", "attach_node_to_frame", 2479945279)
 
     public val detachNodeFromFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "detach_node_from_frame")
+        TypeManager.getMethodBindPtr("VisualShader", "detach_node_from_frame", 844050912)
 
-    public val addVaryingPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "add_varying")
+    public val addVaryingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "add_varying", 2084110726)
 
     public val removeVaryingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "remove_varying")
+        TypeManager.getMethodBindPtr("VisualShader", "remove_varying", 83702148)
 
-    public val hasVaryingPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualShader", "has_varying")
+    public val hasVaryingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "has_varying", 3927539163)
   }
 }

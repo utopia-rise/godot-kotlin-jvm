@@ -217,58 +217,60 @@ public open class TouchScreenButton : Node2D() {
 
   internal object MethodBindings {
     public val setTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_normal")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_normal", 4051416890)
 
     public val getTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_normal")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_normal", 3635182373)
 
     public val setTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_pressed")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_pressed", 4051416890)
 
     public val getTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_pressed")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_pressed", 3635182373)
 
     public val setBitmaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_bitmask")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_bitmask", 698588216)
 
     public val getBitmaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_bitmask")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_bitmask", 2459671998)
 
-    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape")
+    public val setShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape", 771364740)
 
-    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("TouchScreenButton", "get_shape")
+    public val getShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_shape", 522005891)
 
     public val setShapeCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_centered")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_centered", 2586408642)
 
     public val isShapeCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_centered")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_centered", 36873697)
 
     public val setShapeVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_visible")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_visible", 2586408642)
 
     public val isShapeVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_visible")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_visible", 36873697)
 
     public val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_action")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_action", 83702148)
 
     public val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_action")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_action", 201670096)
 
     public val setVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_visibility_mode")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_visibility_mode", 3031128463)
 
     public val getVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_visibility_mode")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_visibility_mode", 2558996468)
 
     public val setPassbyPressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_passby_press")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_passby_press", 2586408642)
 
     public val isPassbyPressEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_passby_press_enabled")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_passby_press_enabled", 36873697)
 
     public val isPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_pressed")
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_pressed", 36873697)
   }
 }

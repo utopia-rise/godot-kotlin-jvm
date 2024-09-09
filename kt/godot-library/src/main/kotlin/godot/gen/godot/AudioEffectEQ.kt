@@ -62,12 +62,12 @@ public open class AudioEffectEQ : AudioEffect() {
 
   internal object MethodBindings {
     public val setBandGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "set_band_gain_db")
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "set_band_gain_db", 1602489585)
 
     public val getBandGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_gain_db")
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_gain_db", 2339986948)
 
     public val getBandCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_count")
+        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_count", 3905245786)
   }
 }

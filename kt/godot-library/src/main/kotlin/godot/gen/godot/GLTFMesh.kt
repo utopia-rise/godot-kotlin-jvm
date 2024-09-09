@@ -120,31 +120,33 @@ public open class GLTFMesh : Resource() {
 
   internal object MethodBindings {
     public val getOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_original_name")
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_original_name", 2841200299)
 
     public val setOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_original_name")
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_original_name", 83702148)
 
-    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFMesh", "get_mesh")
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_mesh", 3754628756)
 
-    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFMesh", "set_mesh")
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_mesh", 2255166972)
 
     public val getBlendWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_blend_weights")
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_blend_weights", 2445143706)
 
     public val setBlendWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_blend_weights")
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_blend_weights", 2899603908)
 
     public val getInstanceMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_instance_materials")
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_instance_materials", 2915620761)
 
     public val setInstanceMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_instance_materials")
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_instance_materials", 381264803)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_additional_data")
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_additional_data")
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_additional_data", 3776071444)
   }
 }

@@ -530,104 +530,114 @@ public object Engine : Object() {
 
   internal object MethodBindings {
     public val setPhysicsTicksPerSecondPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "set_physics_ticks_per_second")
+        TypeManager.getMethodBindPtr("Engine", "set_physics_ticks_per_second", 1286410249)
 
     public val getPhysicsTicksPerSecondPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_physics_ticks_per_second")
+        TypeManager.getMethodBindPtr("Engine", "get_physics_ticks_per_second", 3905245786)
 
     public val setMaxPhysicsStepsPerFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "set_max_physics_steps_per_frame")
+        TypeManager.getMethodBindPtr("Engine", "set_max_physics_steps_per_frame", 1286410249)
 
     public val getMaxPhysicsStepsPerFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_max_physics_steps_per_frame")
+        TypeManager.getMethodBindPtr("Engine", "get_max_physics_steps_per_frame", 3905245786)
 
     public val setPhysicsJitterFixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "set_physics_jitter_fix")
+        TypeManager.getMethodBindPtr("Engine", "set_physics_jitter_fix", 373806689)
 
     public val getPhysicsJitterFixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_physics_jitter_fix")
+        TypeManager.getMethodBindPtr("Engine", "get_physics_jitter_fix", 1740695150)
 
     public val getPhysicsInterpolationFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_physics_interpolation_fraction")
+        TypeManager.getMethodBindPtr("Engine", "get_physics_interpolation_fraction", 1740695150)
 
-    public val setMaxFpsPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "set_max_fps")
+    public val setMaxFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "set_max_fps", 1286410249)
 
-    public val getMaxFpsPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "get_max_fps")
+    public val getMaxFpsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "get_max_fps", 3905245786)
 
-    public val setTimeScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "set_time_scale")
+    public val setTimeScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "set_time_scale", 373806689)
 
-    public val getTimeScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "get_time_scale")
+    public val getTimeScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "get_time_scale", 191475506)
 
     public val getFramesDrawnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_frames_drawn")
+        TypeManager.getMethodBindPtr("Engine", "get_frames_drawn", 2455072627)
 
     public val getFramesPerSecondPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_frames_per_second")
+        TypeManager.getMethodBindPtr("Engine", "get_frames_per_second", 1740695150)
 
     public val getPhysicsFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_physics_frames")
+        TypeManager.getMethodBindPtr("Engine", "get_physics_frames", 3905245786)
 
     public val getProcessFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_process_frames")
+        TypeManager.getMethodBindPtr("Engine", "get_process_frames", 3905245786)
 
-    public val getMainLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "get_main_loop")
+    public val getMainLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "get_main_loop", 1016888095)
 
     public val getVersionInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_version_info")
+        TypeManager.getMethodBindPtr("Engine", "get_version_info", 3102165223)
 
-    public val getAuthorInfoPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "get_author_info")
+    public val getAuthorInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "get_author_info", 3102165223)
 
     public val getCopyrightInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_copyright_info")
+        TypeManager.getMethodBindPtr("Engine", "get_copyright_info", 3995934104)
 
-    public val getDonorInfoPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "get_donor_info")
+    public val getDonorInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "get_donor_info", 3102165223)
 
     public val getLicenseInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_license_info")
+        TypeManager.getMethodBindPtr("Engine", "get_license_info", 3102165223)
 
     public val getLicenseTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_license_text")
+        TypeManager.getMethodBindPtr("Engine", "get_license_text", 201670096)
 
     public val getArchitectureNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_architecture_name")
+        TypeManager.getMethodBindPtr("Engine", "get_architecture_name", 201670096)
 
     public val isInPhysicsFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "is_in_physics_frame")
+        TypeManager.getMethodBindPtr("Engine", "is_in_physics_frame", 36873697)
 
-    public val hasSingletonPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "has_singleton")
+    public val hasSingletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "has_singleton", 2619796661)
 
-    public val getSingletonPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "get_singleton")
+    public val getSingletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "get_singleton", 1371597918)
 
     public val registerSingletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "register_singleton")
+        TypeManager.getMethodBindPtr("Engine", "register_singleton", 965313290)
 
     public val unregisterSingletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "unregister_singleton")
+        TypeManager.getMethodBindPtr("Engine", "unregister_singleton", 3304788590)
 
     public val getSingletonListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_singleton_list")
+        TypeManager.getMethodBindPtr("Engine", "get_singleton_list", 1139954409)
 
     public val registerScriptLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "register_script_language")
+        TypeManager.getMethodBindPtr("Engine", "register_script_language", 1850254898)
 
     public val unregisterScriptLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "unregister_script_language")
+        TypeManager.getMethodBindPtr("Engine", "unregister_script_language", 1850254898)
 
     public val getScriptLanguageCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_script_language_count")
+        TypeManager.getMethodBindPtr("Engine", "get_script_language_count", 2455072627)
 
     public val getScriptLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_script_language")
+        TypeManager.getMethodBindPtr("Engine", "get_script_language", 2151255799)
 
-    public val isEditorHintPtr: VoidPtr = TypeManager.getMethodBindPtr("Engine", "is_editor_hint")
+    public val isEditorHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "is_editor_hint", 36873697)
 
     public val getWriteMoviePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "get_write_movie_path")
+        TypeManager.getMethodBindPtr("Engine", "get_write_movie_path", 201670096)
 
     public val setPrintErrorMessagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "set_print_error_messages")
+        TypeManager.getMethodBindPtr("Engine", "set_print_error_messages", 2586408642)
 
     public val isPrintingErrorMessagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Engine", "is_printing_error_messages")
+        TypeManager.getMethodBindPtr("Engine", "is_printing_error_messages", 36873697)
   }
 }

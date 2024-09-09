@@ -126,27 +126,27 @@ public open class ProgressBar : Range() {
 
   internal object MethodBindings {
     public val setFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_fill_mode")
+        TypeManager.getMethodBindPtr("ProgressBar", "set_fill_mode", 1286410249)
 
     public val getFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "get_fill_mode")
+        TypeManager.getMethodBindPtr("ProgressBar", "get_fill_mode", 2455072627)
 
     public val setShowPercentagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_show_percentage")
+        TypeManager.getMethodBindPtr("ProgressBar", "set_show_percentage", 2586408642)
 
     public val isPercentageShownPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_percentage_shown")
+        TypeManager.getMethodBindPtr("ProgressBar", "is_percentage_shown", 36873697)
 
     public val setIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_indeterminate")
+        TypeManager.getMethodBindPtr("ProgressBar", "set_indeterminate", 2586408642)
 
     public val isIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_indeterminate")
+        TypeManager.getMethodBindPtr("ProgressBar", "is_indeterminate", 36873697)
 
     public val setEditorPreviewIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_editor_preview_indeterminate")
+        TypeManager.getMethodBindPtr("ProgressBar", "set_editor_preview_indeterminate", 2586408642)
 
     public val isEditorPreviewIndeterminateEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_editor_preview_indeterminate_enabled")
+        TypeManager.getMethodBindPtr("ProgressBar", "is_editor_preview_indeterminate_enabled", 36873697)
   }
 }

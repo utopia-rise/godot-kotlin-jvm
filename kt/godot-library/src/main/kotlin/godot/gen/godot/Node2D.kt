@@ -473,83 +473,97 @@ public open class Node2D : CanvasItem() {
   public companion object
 
   internal object MethodBindings {
-    public val setPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_position")
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "set_position", 743155724)
 
-    public val setRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_rotation")
+    public val setRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "set_rotation", 373806689)
 
     public val setRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node2D", "set_rotation_degrees", 373806689)
 
-    public val setSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_skew")
+    public val setSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_skew", 373806689)
 
-    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_scale")
+    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_scale", 743155724)
 
-    public val getPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_position")
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "get_position", 3341600327)
 
-    public val getRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_rotation")
+    public val getRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "get_rotation", 1740695150)
 
     public val getRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node2D", "get_rotation_degrees", 1740695150)
 
-    public val getSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_skew")
+    public val getSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_skew", 1740695150)
 
-    public val getScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_scale")
+    public val getScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "get_scale", 3341600327)
 
-    public val rotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "rotate")
+    public val rotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "rotate", 373806689)
 
-    public val moveLocalXPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "move_local_x")
+    public val moveLocalXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "move_local_x", 2087892650)
 
-    public val moveLocalYPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "move_local_y")
+    public val moveLocalYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "move_local_y", 2087892650)
 
-    public val translatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "translate")
+    public val translatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "translate", 743155724)
 
     public val globalTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "global_translate")
+        TypeManager.getMethodBindPtr("Node2D", "global_translate", 743155724)
 
-    public val applyScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "apply_scale")
+    public val applyScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "apply_scale", 743155724)
 
     public val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_position")
+        TypeManager.getMethodBindPtr("Node2D", "set_global_position", 743155724)
 
     public val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_position")
+        TypeManager.getMethodBindPtr("Node2D", "get_global_position", 3341600327)
 
     public val setGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_rotation")
+        TypeManager.getMethodBindPtr("Node2D", "set_global_rotation", 373806689)
 
     public val setGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node2D", "set_global_rotation_degrees", 373806689)
 
     public val getGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_rotation")
+        TypeManager.getMethodBindPtr("Node2D", "get_global_rotation", 1740695150)
 
     public val getGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node2D", "get_global_rotation_degrees", 1740695150)
 
-    public val setGlobalSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_global_skew")
+    public val setGlobalSkewPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "set_global_skew", 373806689)
 
-    public val getGlobalSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_global_skew")
+    public val getGlobalSkewPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "get_global_skew", 1740695150)
 
     public val setGlobalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_scale")
+        TypeManager.getMethodBindPtr("Node2D", "set_global_scale", 743155724)
 
     public val getGlobalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_scale")
+        TypeManager.getMethodBindPtr("Node2D", "get_global_scale", 3341600327)
 
-    public val setTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_transform")
+    public val setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "set_transform", 2761652528)
 
     public val setGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_transform")
+        TypeManager.getMethodBindPtr("Node2D", "set_global_transform", 2761652528)
 
-    public val lookAtPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "look_at")
+    public val lookAtPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "look_at", 743155724)
 
-    public val getAngleToPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_angle_to")
+    public val getAngleToPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "get_angle_to", 2276447920)
 
-    public val toLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "to_local")
+    public val toLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "to_local", 2656412154)
 
-    public val toGlobalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "to_global")
+    public val toGlobalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node2D", "to_global", 2656412154)
 
     public val getRelativeTransformToParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_relative_transform_to_parent")
+        TypeManager.getMethodBindPtr("Node2D", "get_relative_transform_to_parent", 904556875)
   }
 }

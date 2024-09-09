@@ -72,8 +72,10 @@ public open class QuadOccluder3D : Occluder3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("QuadOccluder3D", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("QuadOccluder3D", "set_size", 743155724)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("QuadOccluder3D", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("QuadOccluder3D", "get_size", 3341600327)
   }
 }

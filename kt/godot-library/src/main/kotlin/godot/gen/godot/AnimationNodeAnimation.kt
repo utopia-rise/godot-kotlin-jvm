@@ -168,45 +168,45 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
   internal object MethodBindings {
     public val setAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_animation")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_animation", 3304788590)
 
     public val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_animation")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_animation", 2002593661)
 
     public val setPlayModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_play_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_play_mode", 3347718873)
 
     public val getPlayModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode", 2061244637)
 
     public val setUseCustomTimelinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_use_custom_timeline")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_use_custom_timeline", 2586408642)
 
     public val isUsingCustomTimelinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_using_custom_timeline")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_using_custom_timeline", 36873697)
 
     public val setTimelineLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_timeline_length")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_timeline_length", 373806689)
 
     public val getTimelineLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_timeline_length")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_timeline_length", 1740695150)
 
     public val setStretchTimeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_stretch_time_scale")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_stretch_time_scale", 2586408642)
 
     public val isStretchingTimeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_stretching_time_scale")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_stretching_time_scale", 36873697)
 
     public val setStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_start_offset")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_start_offset", 373806689)
 
     public val getStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_start_offset")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_start_offset", 1740695150)
 
     public val setLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_loop_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_loop_mode", 3155355575)
 
     public val getLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_loop_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_loop_mode", 1988889481)
   }
 }

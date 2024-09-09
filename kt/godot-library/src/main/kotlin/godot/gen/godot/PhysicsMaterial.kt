@@ -98,23 +98,27 @@ public open class PhysicsMaterial : Resource() {
 
   internal object MethodBindings {
     public val setFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_friction")
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_friction", 373806689)
 
     public val getFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "get_friction")
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "get_friction", 1740695150)
 
-    public val setRoughPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsMaterial", "set_rough")
+    public val setRoughPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_rough", 2586408642)
 
-    public val isRoughPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsMaterial", "is_rough")
+    public val isRoughPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "is_rough", 36873697)
 
-    public val setBouncePtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsMaterial", "set_bounce")
+    public val setBouncePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_bounce", 373806689)
 
-    public val getBouncePtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsMaterial", "get_bounce")
+    public val getBouncePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "get_bounce", 1740695150)
 
     public val setAbsorbentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_absorbent")
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_absorbent", 2586408642)
 
     public val isAbsorbentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "is_absorbent")
+        TypeManager.getMethodBindPtr("PhysicsMaterial", "is_absorbent", 36873697)
   }
 }

@@ -119,15 +119,15 @@ public open class RDShaderSource : RefCounted() {
 
   internal object MethodBindings {
     public val setStageSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "set_stage_source")
+        TypeManager.getMethodBindPtr("RDShaderSource", "set_stage_source", 620821314)
 
     public val getStageSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "get_stage_source")
+        TypeManager.getMethodBindPtr("RDShaderSource", "get_stage_source", 3354920045)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "set_language")
+        TypeManager.getMethodBindPtr("RDShaderSource", "set_language", 3422186742)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "get_language")
+        TypeManager.getMethodBindPtr("RDShaderSource", "get_language", 1063538261)
   }
 }

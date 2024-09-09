@@ -116,21 +116,21 @@ public open class StaticBody2D : PhysicsBody2D() {
 
   internal object MethodBindings {
     public val setConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity")
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity", 743155724)
 
     public val setConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity")
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity", 373806689)
 
     public val getConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity")
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity", 3341600327)
 
     public val getConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity")
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity", 1740695150)
 
     public val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_physics_material_override")
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_physics_material_override", 1784508650)
 
     public val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_physics_material_override")
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_physics_material_override", 2521850424)
   }
 }

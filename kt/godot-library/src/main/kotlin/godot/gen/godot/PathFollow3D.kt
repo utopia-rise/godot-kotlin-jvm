@@ -227,54 +227,60 @@ public open class PathFollow3D : Node3D() {
 
   internal object MethodBindings {
     public val setProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress")
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress", 373806689)
 
     public val getProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress")
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress", 1740695150)
 
-    public val setHOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "set_h_offset")
+    public val setHOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_h_offset", 373806689)
 
-    public val getHOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "get_h_offset")
+    public val getHOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_h_offset", 1740695150)
 
-    public val setVOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "set_v_offset")
+    public val setVOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_v_offset", 373806689)
 
-    public val getVOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "get_v_offset")
+    public val getVOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_v_offset", 1740695150)
 
     public val setProgressRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress_ratio")
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_progress_ratio", 373806689)
 
     public val getProgressRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress_ratio")
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_progress_ratio", 1740695150)
 
     public val setRotationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_rotation_mode")
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_rotation_mode", 1640311967)
 
     public val getRotationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_rotation_mode")
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_rotation_mode", 3814010545)
 
     public val setCubicInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_cubic_interpolation")
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_cubic_interpolation", 2586408642)
 
     public val getCubicInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "get_cubic_interpolation")
+        TypeManager.getMethodBindPtr("PathFollow3D", "get_cubic_interpolation", 36873697)
 
     public val setUseModelFrontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_use_model_front")
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_use_model_front", 2586408642)
 
     public val isUsingModelFrontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "is_using_model_front")
+        TypeManager.getMethodBindPtr("PathFollow3D", "is_using_model_front", 36873697)
 
-    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "set_loop")
+    public val setLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("PathFollow3D", "has_loop")
+    public val hasLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PathFollow3D", "has_loop", 36873697)
 
     public val setTiltEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "set_tilt_enabled")
+        TypeManager.getMethodBindPtr("PathFollow3D", "set_tilt_enabled", 2586408642)
 
     public val isTiltEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "is_tilt_enabled")
+        TypeManager.getMethodBindPtr("PathFollow3D", "is_tilt_enabled", 36873697)
 
     public val correctPosturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow3D", "correct_posture")
+        TypeManager.getMethodBindPtr("PathFollow3D", "correct_posture", 2686588690)
   }
 }

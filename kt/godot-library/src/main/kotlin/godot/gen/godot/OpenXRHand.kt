@@ -220,32 +220,34 @@ public open class OpenXRHand : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setHandPtr: VoidPtr = TypeManager.getMethodBindPtr("OpenXRHand", "set_hand")
+    public val setHandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand", 1849328560)
 
-    public val getHandPtr: VoidPtr = TypeManager.getMethodBindPtr("OpenXRHand", "get_hand")
+    public val getHandPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand", 2850644561)
 
     public val setHandSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand_skeleton")
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand_skeleton", 1348162250)
 
     public val getHandSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand_skeleton")
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand_skeleton", 4075236667)
 
     public val setMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_motion_range")
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_motion_range", 3326516003)
 
     public val getMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_motion_range")
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_motion_range", 2191822314)
 
     public val setSkeletonRigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_skeleton_rig")
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_skeleton_rig", 1528072213)
 
     public val getSkeletonRigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_skeleton_rig")
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_skeleton_rig", 968409338)
 
     public val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_bone_update")
+        TypeManager.getMethodBindPtr("OpenXRHand", "set_bone_update", 3144625444)
 
     public val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_bone_update")
+        TypeManager.getMethodBindPtr("OpenXRHand", "get_bone_update", 1310695248)
   }
 }

@@ -360,24 +360,25 @@ public object Performance : Object() {
   }
 
   internal object MethodBindings {
-    public val getMonitorPtr: VoidPtr = TypeManager.getMethodBindPtr("Performance", "get_monitor")
+    public val getMonitorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Performance", "get_monitor", 1943275655)
 
     public val addCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor")
+        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor", 4099036814)
 
     public val removeCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "remove_custom_monitor")
+        TypeManager.getMethodBindPtr("Performance", "remove_custom_monitor", 3304788590)
 
     public val hasCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "has_custom_monitor")
+        TypeManager.getMethodBindPtr("Performance", "has_custom_monitor", 2041966384)
 
     public val getCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor")
+        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor", 2138907829)
 
     public val getMonitorModificationTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_monitor_modification_time")
+        TypeManager.getMethodBindPtr("Performance", "get_monitor_modification_time", 2455072627)
 
     public val getCustomMonitorNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_names")
+        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_names", 2915620761)
   }
 }

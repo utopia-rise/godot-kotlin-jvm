@@ -77,21 +77,21 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
 
   internal object MethodBindings {
     public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh", 194775623)
 
     public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh", 1808005922)
 
     public val setUseAllSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces", 2586408642)
 
     public val isUseAllSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces", 36873697)
 
     public val setSurfaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index", 1286410249)
 
     public val getSurfaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index", 3905245786)
   }
 }

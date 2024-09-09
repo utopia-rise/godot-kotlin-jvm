@@ -242,81 +242,81 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
 
   internal object MethodBindings {
     public val setMaxConcavityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_concavity")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_concavity", 373806689)
 
     public val getMaxConcavityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_concavity")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_concavity", 1740695150)
 
     public val setSymmetryPlanesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_symmetry_planes_clipping_bias")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_symmetry_planes_clipping_bias", 373806689)
 
     public val getSymmetryPlanesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_symmetry_planes_clipping_bias")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_symmetry_planes_clipping_bias", 1740695150)
 
     public val setRevolutionAxesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_revolution_axes_clipping_bias")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_revolution_axes_clipping_bias", 373806689)
 
     public val getRevolutionAxesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_revolution_axes_clipping_bias")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_revolution_axes_clipping_bias", 1740695150)
 
     public val setMinVolumePerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_min_volume_per_convex_hull")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_min_volume_per_convex_hull", 373806689)
 
     public val getMinVolumePerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_min_volume_per_convex_hull")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_min_volume_per_convex_hull", 1740695150)
 
     public val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_resolution")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_resolution", 1286410249)
 
     public val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_resolution")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_resolution", 3905245786)
 
     public val setMaxNumVerticesPerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_num_vertices_per_convex_hull")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_num_vertices_per_convex_hull", 1286410249)
 
     public val getMaxNumVerticesPerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_num_vertices_per_convex_hull")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_num_vertices_per_convex_hull", 3905245786)
 
     public val setPlaneDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_plane_downsampling")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_plane_downsampling", 1286410249)
 
     public val getPlaneDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_plane_downsampling")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_plane_downsampling", 3905245786)
 
     public val setConvexHullDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_downsampling")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_downsampling", 1286410249)
 
     public val getConvexHullDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_downsampling")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_downsampling", 3905245786)
 
     public val setNormalizeMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_normalize_mesh")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_normalize_mesh", 2586408642)
 
     public val getNormalizeMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_normalize_mesh")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_normalize_mesh", 36873697)
 
     public val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_mode")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_mode", 1668072869)
 
     public val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_mode")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_mode", 23479454)
 
     public val setConvexHullApproximationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_approximation")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_approximation", 2586408642)
 
     public val getConvexHullApproximationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_approximation")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_approximation", 36873697)
 
     public val setMaxConvexHullsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_convex_hulls")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_convex_hulls", 1286410249)
 
     public val getMaxConvexHullsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_convex_hulls")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_convex_hulls", 3905245786)
 
     public val setProjectHullVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_project_hull_vertices")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_project_hull_vertices", 2586408642)
 
     public val getProjectHullVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_project_hull_vertices")
+        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_project_hull_vertices", 36873697)
   }
 }

@@ -807,216 +807,217 @@ public open class NavigationAgent2D : Node() {
   public companion object
 
   internal object MethodBindings {
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationAgent2D", "get_rid")
+    public val getRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_rid", 2944877500)
 
     public val setAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_enabled", 2586408642)
 
     public val getAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_enabled", 36873697)
 
     public val setPathDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_desired_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_desired_distance", 373806689)
 
     public val getPathDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_desired_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_desired_distance", 1740695150)
 
     public val setTargetDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_desired_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_desired_distance", 373806689)
 
     public val getTargetDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_desired_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_desired_distance", 1740695150)
 
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_radius")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_radius")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_radius", 1740695150)
 
     public val setNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_neighbor_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_neighbor_distance", 373806689)
 
     public val getNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_neighbor_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_neighbor_distance", 1740695150)
 
     public val setMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_neighbors")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_neighbors", 1286410249)
 
     public val getMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_neighbors")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_neighbors", 3905245786)
 
     public val setTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_agents")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_agents", 373806689)
 
     public val getTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_agents")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_agents", 1740695150)
 
     public val setTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_obstacles")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_obstacles", 373806689)
 
     public val getTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_obstacles")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_obstacles", 1740695150)
 
     public val setMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_speed")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_speed", 373806689)
 
     public val getMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_speed")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_speed", 1740695150)
 
     public val setPathMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_max_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_max_distance", 373806689)
 
     public val getPathMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_max_distance")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_max_distance", 191475506)
 
     public val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layers", 1286410249)
 
     public val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layers", 3905245786)
 
     public val setNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layer_value")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layer_value", 300928843)
 
     public val getNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layer_value")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layer_value", 1116898809)
 
     public val setPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_pathfinding_algorithm")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_pathfinding_algorithm", 2783519915)
 
     public val getPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_pathfinding_algorithm")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_pathfinding_algorithm", 3000421146)
 
     public val setPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_postprocessing")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_postprocessing", 2864409082)
 
     public val getPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_postprocessing")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_postprocessing", 3798118993)
 
     public val setPathMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_metadata_flags")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_metadata_flags", 24274129)
 
     public val getPathMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_metadata_flags")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_metadata_flags", 488152976)
 
     public val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_map")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_map", 2722037293)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_map")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_map", 2944877500)
 
     public val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_position")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_position", 743155724)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_position")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_position", 3341600327)
 
     public val setSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_simplify_path")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_simplify_path", 2586408642)
 
     public val getSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_simplify_path")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_simplify_path", 36873697)
 
     public val setSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_simplify_epsilon")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_simplify_epsilon", 373806689)
 
     public val getSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_simplify_epsilon")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_simplify_epsilon", 1740695150)
 
     public val getNextPathPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_next_path_position")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_next_path_position", 1497962370)
 
     public val setVelocityForcedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity_forced")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity_forced", 743155724)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity", 743155724)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_velocity")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_velocity", 1497962370)
 
     public val distanceToTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "distance_to_target")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "distance_to_target", 1740695150)
 
     public val getCurrentNavigationResultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_result")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_result", 166799483)
 
     public val getCurrentNavigationPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path", 2961356807)
 
     public val getCurrentNavigationPathIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path_index")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path_index", 3905245786)
 
     public val isTargetReachedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reached")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reached", 36873697)
 
     public val isTargetReachablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reachable")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reachable", 2240911060)
 
     public val isNavigationFinishedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_navigation_finished")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_navigation_finished", 2240911060)
 
     public val getFinalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_final_position")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_final_position", 1497962370)
 
     public val setAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layers", 1286410249)
 
     public val getAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layers", 3905245786)
 
     public val setAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask", 1286410249)
 
     public val getAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask", 3905245786)
 
     public val setAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layer_value")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layer_value", 300928843)
 
     public val getAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layer_value")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layer_value", 1116898809)
 
     public val setAvoidanceMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask_value")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask_value", 300928843)
 
     public val getAvoidanceMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask_value")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask_value", 1116898809)
 
     public val setAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_priority")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_priority", 373806689)
 
     public val getAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_priority")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_priority", 1740695150)
 
     public val setDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_enabled")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_enabled", 2586408642)
 
     public val getDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_enabled")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_enabled", 36873697)
 
     public val setDebugUseCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_use_custom")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_use_custom", 2586408642)
 
     public val getDebugUseCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_use_custom")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_use_custom", 36873697)
 
     public val setDebugPathCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_color")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_color", 2920490490)
 
     public val getDebugPathCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_color")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_color", 3444240500)
 
     public val setDebugPathCustomPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_point_size")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_point_size", 373806689)
 
     public val getDebugPathCustomPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_point_size")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_point_size", 1740695150)
 
     public val setDebugPathCustomLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_line_width")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_line_width", 373806689)
 
     public val getDebugPathCustomLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_line_width")
+        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_line_width", 1740695150)
   }
 }

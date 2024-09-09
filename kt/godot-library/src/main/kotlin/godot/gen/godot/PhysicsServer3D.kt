@@ -2609,508 +2609,510 @@ public object PhysicsServer3D : Object() {
 
   internal object MethodBindings {
     public val worldBoundaryShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "world_boundary_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "world_boundary_shape_create", 529393457)
 
     public val separationRayShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "separation_ray_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "separation_ray_shape_create", 529393457)
 
     public val sphereShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "sphere_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "sphere_shape_create", 529393457)
 
     public val boxShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "box_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "box_shape_create", 529393457)
 
     public val capsuleShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "capsule_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "capsule_shape_create", 529393457)
 
     public val cylinderShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "cylinder_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "cylinder_shape_create", 529393457)
 
     public val convexPolygonShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "convex_polygon_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "convex_polygon_shape_create", 529393457)
 
     public val concavePolygonShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "concave_polygon_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "concave_polygon_shape_create", 529393457)
 
     public val heightmapShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "heightmap_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "heightmap_shape_create", 529393457)
 
     public val customShapeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "custom_shape_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "custom_shape_create", 529393457)
 
     public val shapeSetDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_data")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_data", 3175752987)
 
     public val shapeSetMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_margin")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_set_margin", 1794382983)
 
     public val shapeGetTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_type")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_type", 3418923367)
 
     public val shapeGetDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_data")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_data", 4171304767)
 
     public val shapeGetMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_margin")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "shape_get_margin", 866169185)
 
     public val spaceCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_create", 529393457)
 
     public val spaceSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_active")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_active", 1265174801)
 
     public val spaceIsActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_is_active")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_is_active", 4155700596)
 
     public val spaceSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_set_param", 2406017470)
 
     public val spaceGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_param", 1523206731)
 
     public val spaceGetDirectStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_direct_state")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "space_get_direct_state", 2048616813)
 
     public val areaCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_create", 529393457)
 
     public val areaSetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_space")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_space", 395945892)
 
     public val areaGetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_space")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_space", 3814569979)
 
     public val areaAddShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_add_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_add_shape", 3711419014)
 
     public val areaSetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape", 2310537182)
 
     public val areaSetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_transform")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_transform", 675327471)
 
     public val areaSetShapeDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_disabled")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_shape_disabled", 2658558584)
 
     public val areaGetShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_count")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_count", 2198884583)
 
     public val areaGetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape", 1066463050)
 
     public val areaGetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_transform")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_shape_transform", 1050775521)
 
     public val areaRemoveShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_remove_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_remove_shape", 3411492887)
 
     public val areaClearShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_clear_shapes")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_clear_shapes", 2722037293)
 
     public val areaSetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_layer")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_layer", 3411492887)
 
     public val areaGetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_layer")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_layer", 2198884583)
 
     public val areaSetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_collision_mask", 3411492887)
 
     public val areaGetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_collision_mask", 2198884583)
 
     public val areaSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_param", 2980114638)
 
     public val areaSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_transform")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_transform", 3935195649)
 
     public val areaGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_param", 890056067)
 
     public val areaGetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_transform")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_transform", 1128465797)
 
     public val areaAttachObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_attach_object_instance_id")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_attach_object_instance_id", 3411492887)
 
     public val areaGetObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_object_instance_id")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_get_object_instance_id", 2198884583)
 
     public val areaSetMonitorCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitor_callback")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitor_callback", 3379118538)
 
     public val areaSetAreaMonitorCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_area_monitor_callback")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_area_monitor_callback", 3379118538)
 
     public val areaSetMonitorablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitorable")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_monitorable", 1265174801)
 
     public val areaSetRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_ray_pickable")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "area_set_ray_pickable", 1265174801)
 
     public val bodyCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_create", 529393457)
 
     public val bodySetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_space")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_space", 395945892)
 
     public val bodyGetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_space")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_space", 3814569979)
 
     public val bodySetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_mode")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_mode", 606803466)
 
     public val bodyGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_mode")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_mode", 2488819728)
 
     public val bodySetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_layer")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_layer", 3411492887)
 
     public val bodyGetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_layer")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_layer", 2198884583)
 
     public val bodySetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_mask", 3411492887)
 
     public val bodyGetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_mask", 2198884583)
 
     public val bodySetCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_priority")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_collision_priority", 1794382983)
 
     public val bodyGetCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_priority")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_collision_priority", 866169185)
 
     public val bodyAddShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_shape", 3711419014)
 
     public val bodySetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape", 2310537182)
 
     public val bodySetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_transform")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_transform", 675327471)
 
     public val bodySetShapeDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_disabled")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_shape_disabled", 2658558584)
 
     public val bodyGetShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_count")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_count", 2198884583)
 
     public val bodyGetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape", 1066463050)
 
     public val bodyGetShapeTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_transform")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_shape_transform", 1050775521)
 
     public val bodyRemoveShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_shape")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_shape", 3411492887)
 
     public val bodyClearShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_clear_shapes")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_clear_shapes", 2722037293)
 
     public val bodyAttachObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_attach_object_instance_id")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_attach_object_instance_id", 3411492887)
 
     public val bodyGetObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_object_instance_id")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_object_instance_id", 2198884583)
 
     public val bodySetEnableContinuousCollisionDetectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_enable_continuous_collision_detection")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_enable_continuous_collision_detection", 1265174801)
 
     public val bodyIsContinuousCollisionDetectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_continuous_collision_detection_enabled")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_continuous_collision_detection_enabled", 4155700596)
 
     public val bodySetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_param", 910941953)
 
     public val bodyGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_param", 3385027841)
 
     public val bodyResetMassPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_reset_mass_properties")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_reset_mass_properties", 2722037293)
 
     public val bodySetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state", 599977762)
 
     public val bodyGetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_state")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_state", 1850449534)
 
     public val bodyApplyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_impulse")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_impulse", 3227306858)
 
     public val bodyApplyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_impulse")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_impulse", 390416203)
 
     public val bodyApplyTorqueImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque_impulse")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque_impulse", 3227306858)
 
     public val bodyApplyCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_force")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_central_force", 3227306858)
 
     public val bodyApplyForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_force")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_force", 390416203)
 
     public val bodyApplyTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_apply_torque", 3227306858)
 
     public val bodyAddConstantCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_central_force")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_central_force", 3227306858)
 
     public val bodyAddConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_force")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_force", 390416203)
 
     public val bodyAddConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_torque")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_constant_torque", 3227306858)
 
     public val bodySetConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_force")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_force", 3227306858)
 
     public val bodyGetConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_force")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_force", 531438156)
 
     public val bodySetConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_torque")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_constant_torque", 3227306858)
 
     public val bodyGetConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_torque")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_constant_torque", 531438156)
 
     public val bodySetAxisVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_velocity")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_velocity", 3227306858)
 
     public val bodySetAxisLockPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_lock")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_axis_lock", 2020836892)
 
     public val bodyIsAxisLockedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_axis_locked")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_axis_locked", 587853580)
 
     public val bodyAddCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_collision_exception")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_add_collision_exception", 395945892)
 
     public val bodyRemoveCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_collision_exception")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_remove_collision_exception", 395945892)
 
     public val bodySetMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_max_contacts_reported")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_max_contacts_reported", 3411492887)
 
     public val bodyGetMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_max_contacts_reported")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_max_contacts_reported", 2198884583)
 
     public val bodySetOmitForceIntegrationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_omit_force_integration")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_omit_force_integration", 1265174801)
 
     public val bodyIsOmittingForceIntegrationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_omitting_force_integration")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_is_omitting_force_integration", 4155700596)
 
     public val bodySetStateSyncCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state_sync_callback")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_state_sync_callback", 3379118538)
 
     public val bodySetForceIntegrationCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_force_integration_callback")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_force_integration_callback", 3059434249)
 
     public val bodySetRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_ray_pickable")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_set_ray_pickable", 1265174801)
 
     public val bodyTestMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_test_motion")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_test_motion", 1944921792)
 
     public val bodyGetDirectStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_direct_state")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "body_get_direct_state", 3029727957)
 
     public val softBodyCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_create", 529393457)
 
     public val softBodyUpdateRenderingServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_update_rendering_server")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_update_rendering_server", 2218179753)
 
     public val softBodySetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_space")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_space", 395945892)
 
     public val softBodyGetSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_space")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_space", 3814569979)
 
     public val softBodySetMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_mesh")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_mesh", 395945892)
 
     public val softBodyGetBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_bounds")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_bounds", 974181306)
 
     public val softBodySetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_layer")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_layer", 3411492887)
 
     public val softBodyGetCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_layer")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_layer", 2198884583)
 
     public val softBodySetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_collision_mask", 3411492887)
 
     public val softBodyGetCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_collision_mask", 2198884583)
 
     public val softBodyAddCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_add_collision_exception")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_add_collision_exception", 395945892)
 
     public val softBodyRemoveCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_collision_exception")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_collision_exception", 395945892)
 
     public val softBodySetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_state")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_state", 599977762)
 
     public val softBodyGetStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_state")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_state", 1850449534)
 
     public val softBodySetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_transform")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_transform", 3935195649)
 
     public val softBodySetRayPickablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_ray_pickable")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_ray_pickable", 1265174801)
 
     public val softBodySetSimulationPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_simulation_precision")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_simulation_precision", 3411492887)
 
     public val softBodyGetSimulationPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_simulation_precision")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_simulation_precision", 2198884583)
 
     public val softBodySetTotalMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_total_mass")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_total_mass", 1794382983)
 
     public val softBodyGetTotalMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_total_mass")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_total_mass", 866169185)
 
     public val softBodySetLinearStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_linear_stiffness")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_linear_stiffness", 1794382983)
 
     public val softBodyGetLinearStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_linear_stiffness")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_linear_stiffness", 866169185)
 
     public val softBodySetPressureCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_pressure_coefficient")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_pressure_coefficient", 1794382983)
 
     public val softBodyGetPressureCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_pressure_coefficient")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_pressure_coefficient", 866169185)
 
     public val softBodySetDampingCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_damping_coefficient")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_damping_coefficient", 1794382983)
 
     public val softBodyGetDampingCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_damping_coefficient")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_damping_coefficient", 866169185)
 
     public val softBodySetDragCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_drag_coefficient")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_drag_coefficient", 1794382983)
 
     public val softBodyGetDragCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_drag_coefficient")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_drag_coefficient", 866169185)
 
     public val softBodyMovePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_move_point")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_move_point", 831953689)
 
     public val softBodyGetPointGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_point_global_position")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_point_global_position", 3440143363)
 
     public val softBodyRemoveAllPinnedPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_all_pinned_points")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_remove_all_pinned_points", 2722037293)
 
     public val softBodyPinPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_pin_point")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_pin_point", 2658558584)
 
     public val softBodyIsPointPinnedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_is_point_pinned")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_is_point_pinned", 3120086654)
 
     public val jointCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_create")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_create", 529393457)
 
     public val jointClearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_clear")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_clear", 2722037293)
 
     public val jointMakePinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_pin")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_pin", 4280171926)
 
     public val pinJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_param", 810685294)
 
     public val pinJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_param", 2817972347)
 
     public val pinJointSetLocalAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_a")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_a", 3227306858)
 
     public val pinJointGetLocalAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_a")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_a", 531438156)
 
     public val pinJointSetLocalBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_b")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_set_local_b", 3227306858)
 
     public val pinJointGetLocalBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_b")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "pin_joint_get_local_b", 531438156)
 
     public val jointMakeHingePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_hinge")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_hinge", 1684107643)
 
     public val hingeJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_param", 3165502333)
 
     public val hingeJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_param", 2129207581)
 
     public val hingeJointSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_flag")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_set_flag", 1601626188)
 
     public val hingeJointGetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_flag")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "hinge_joint_get_flag", 4165147865)
 
     public val jointMakeSliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_slider")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_slider", 1684107643)
 
     public val sliderJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_set_param", 2264833593)
 
     public val sliderJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "slider_joint_get_param", 3498644957)
 
     public val jointMakeConeTwistPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_cone_twist")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_cone_twist", 1684107643)
 
     public val coneTwistJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_set_param", 808587618)
 
     public val coneTwistJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "cone_twist_joint_get_param", 1134789658)
 
     public val jointGetTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_type")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_type", 4290791900)
 
     public val jointSetSolverPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_set_solver_priority")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_set_solver_priority", 3411492887)
 
     public val jointGetSolverPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_solver_priority")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_get_solver_priority", 2198884583)
 
     public val jointDisableCollisionsBetweenBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_disable_collisions_between_bodies")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_disable_collisions_between_bodies", 1265174801)
 
     public val jointIsDisabledCollisionsBetweenBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_is_disabled_collisions_between_bodies")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_is_disabled_collisions_between_bodies", 4155700596)
 
     public val jointMakeGeneric6dofPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_generic_6dof")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_make_generic_6dof", 1684107643)
 
     public val generic6dofJointSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_param", 2600081391)
 
     public val generic6dofJointGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_param")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_param", 467122058)
 
     public val generic6dofJointSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_flag")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_set_flag", 3570926903)
 
     public val generic6dofJointGetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_flag")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "generic_6dof_joint_get_flag", 4158090196)
 
-    public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsServer3D", "free_rid")
+    public val freeRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "free_rid", 2722037293)
 
-    public val setActivePtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicsServer3D", "set_active")
+    public val setActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "set_active", 2586408642)
 
     public val getProcessInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3D", "get_process_info")
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "get_process_info", 1332958745)
   }
 }

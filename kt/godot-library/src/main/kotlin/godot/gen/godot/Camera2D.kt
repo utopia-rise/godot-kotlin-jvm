@@ -643,140 +643,149 @@ public open class Camera2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "get_offset", 3341600327)
 
     public val setAnchorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_anchor_mode")
+        TypeManager.getMethodBindPtr("Camera2D", "set_anchor_mode", 2050398218)
 
     public val getAnchorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_anchor_mode")
+        TypeManager.getMethodBindPtr("Camera2D", "get_anchor_mode", 155978067)
 
     public val setIgnoreRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_ignore_rotation")
+        TypeManager.getMethodBindPtr("Camera2D", "set_ignore_rotation", 2586408642)
 
     public val isIgnoringRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_ignoring_rotation")
+        TypeManager.getMethodBindPtr("Camera2D", "is_ignoring_rotation", 36873697)
 
     public val setProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_process_callback")
+        TypeManager.getMethodBindPtr("Camera2D", "set_process_callback", 4201947462)
 
     public val getProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_process_callback")
+        TypeManager.getMethodBindPtr("Camera2D", "get_process_callback", 2325344499)
 
-    public val setEnabledPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "set_enabled")
+    public val setEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "set_enabled", 2586408642)
 
-    public val isEnabledPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "is_enabled")
+    public val isEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "is_enabled", 36873697)
 
-    public val makeCurrentPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "make_current")
+    public val makeCurrentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "make_current", 3218959716)
 
-    public val isCurrentPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "is_current")
+    public val isCurrentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "is_current", 36873697)
 
-    public val setLimitPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "set_limit")
+    public val setLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "set_limit", 437707142)
 
-    public val getLimitPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "get_limit")
+    public val getLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "get_limit", 1983885014)
 
     public val setLimitSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit_smoothing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_limit_smoothing_enabled", 2586408642)
 
     public val isLimitSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_limit_smoothing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_limit_smoothing_enabled", 36873697)
 
     public val setDragVerticalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_enabled", 2586408642)
 
     public val isDragVerticalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_drag_vertical_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_drag_vertical_enabled", 36873697)
 
     public val setDragHorizontalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_enabled", 2586408642)
 
     public val isDragHorizontalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_drag_horizontal_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_drag_horizontal_enabled", 36873697)
 
     public val setDragVerticalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_offset")
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_offset", 373806689)
 
     public val getDragVerticalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_vertical_offset")
+        TypeManager.getMethodBindPtr("Camera2D", "get_drag_vertical_offset", 1740695150)
 
     public val setDragHorizontalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_offset")
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_offset", 373806689)
 
     public val getDragHorizontalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_horizontal_offset")
+        TypeManager.getMethodBindPtr("Camera2D", "get_drag_horizontal_offset", 1740695150)
 
     public val setDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_margin")
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_margin", 4290182280)
 
     public val getDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_margin")
+        TypeManager.getMethodBindPtr("Camera2D", "get_drag_margin", 2869120046)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_target_position")
+        TypeManager.getMethodBindPtr("Camera2D", "get_target_position", 3341600327)
 
     public val getScreenCenterPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_screen_center_position")
+        TypeManager.getMethodBindPtr("Camera2D", "get_screen_center_position", 3341600327)
 
-    public val setZoomPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "set_zoom")
+    public val setZoomPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "set_zoom", 743155724)
 
-    public val getZoomPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "get_zoom")
+    public val getZoomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "get_zoom", 3341600327)
 
     public val setCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_custom_viewport")
+        TypeManager.getMethodBindPtr("Camera2D", "set_custom_viewport", 1078189570)
 
     public val getCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_custom_viewport")
+        TypeManager.getMethodBindPtr("Camera2D", "get_custom_viewport", 3160264692)
 
     public val setPositionSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_speed")
+        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_speed", 373806689)
 
     public val getPositionSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_position_smoothing_speed")
+        TypeManager.getMethodBindPtr("Camera2D", "get_position_smoothing_speed", 1740695150)
 
     public val setPositionSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_enabled", 2586408642)
 
     public val isPositionSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_position_smoothing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_position_smoothing_enabled", 36873697)
 
     public val setRotationSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_enabled", 2586408642)
 
     public val isRotationSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_rotation_smoothing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_rotation_smoothing_enabled", 36873697)
 
     public val setRotationSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_speed")
+        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_speed", 373806689)
 
     public val getRotationSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_rotation_smoothing_speed")
+        TypeManager.getMethodBindPtr("Camera2D", "get_rotation_smoothing_speed", 1740695150)
 
     public val forceUpdateScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "force_update_scroll")
+        TypeManager.getMethodBindPtr("Camera2D", "force_update_scroll", 3218959716)
 
     public val resetSmoothingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "reset_smoothing")
+        TypeManager.getMethodBindPtr("Camera2D", "reset_smoothing", 3218959716)
 
-    public val alignPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "align")
+    public val alignPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "align", 3218959716)
 
     public val setScreenDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_screen_drawing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_screen_drawing_enabled", 2586408642)
 
     public val isScreenDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_screen_drawing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_screen_drawing_enabled", 36873697)
 
     public val setLimitDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit_drawing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_limit_drawing_enabled", 2586408642)
 
     public val isLimitDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_limit_drawing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_limit_drawing_enabled", 36873697)
 
     public val setMarginDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_margin_drawing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "set_margin_drawing_enabled", 2586408642)
 
     public val isMarginDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_margin_drawing_enabled")
+        TypeManager.getMethodBindPtr("Camera2D", "is_margin_drawing_enabled", 36873697)
   }
 }

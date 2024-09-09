@@ -45,9 +45,9 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "set_constant")
+        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "set_constant", 2586408642)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "get_constant")
+        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "get_constant", 36873697)
   }
 }

@@ -2622,353 +2622,383 @@ public open class Control : CanvasItem() {
   }
 
   internal object MethodBindings {
-    public val acceptEventPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "accept_event")
+    public val acceptEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "accept_event", 3218959716)
 
     public val getMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_minimum_size")
+        TypeManager.getMethodBindPtr("Control", "get_minimum_size", 3341600327)
 
     public val getCombinedMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_combined_minimum_size")
+        TypeManager.getMethodBindPtr("Control", "get_combined_minimum_size", 3341600327)
 
     public val setAnchorsPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_anchors_preset")
+        TypeManager.getMethodBindPtr("Control", "set_anchors_preset", 509135270)
 
     public val setOffsetsPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_offsets_preset")
+        TypeManager.getMethodBindPtr("Control", "set_offsets_preset", 3724524307)
 
     public val setAnchorsAndOffsetsPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_anchors_and_offsets_preset")
+        TypeManager.getMethodBindPtr("Control", "set_anchors_and_offsets_preset", 3724524307)
 
-    public val setAnchorPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_anchor")
+    public val setAnchorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_anchor", 2302782885)
 
-    public val getAnchorPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_anchor")
+    public val getAnchorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_anchor", 2869120046)
 
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_offset", 4290182280)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_offset", 2869120046)
 
     public val setAnchorAndOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_anchor_and_offset")
+        TypeManager.getMethodBindPtr("Control", "set_anchor_and_offset", 4031722181)
 
-    public val setBeginPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_begin")
+    public val setBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_begin", 743155724)
 
-    public val setEndPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_end")
+    public val setEndPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_end", 743155724)
 
-    public val setPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_position")
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_position", 2436320129)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_size")
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_size", 2436320129)
 
-    public val resetSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "reset_size")
+    public val resetSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "reset_size", 3218959716)
 
     public val setCustomMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_custom_minimum_size")
+        TypeManager.getMethodBindPtr("Control", "set_custom_minimum_size", 743155724)
 
     public val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_global_position")
+        TypeManager.getMethodBindPtr("Control", "set_global_position", 2436320129)
 
-    public val setRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_rotation")
+    public val setRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_rotation", 373806689)
 
     public val setRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_rotation_degrees")
+        TypeManager.getMethodBindPtr("Control", "set_rotation_degrees", 373806689)
 
-    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_scale")
+    public val setScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_scale", 743155724)
 
     public val setPivotOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_pivot_offset")
+        TypeManager.getMethodBindPtr("Control", "set_pivot_offset", 743155724)
 
-    public val getBeginPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_begin")
+    public val getBeginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_begin", 3341600327)
 
-    public val getEndPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_end")
+    public val getEndPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_end", 3341600327)
 
-    public val getPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_position")
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_position", 3341600327)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_size")
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_size", 3341600327)
 
-    public val getRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_rotation")
+    public val getRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_rotation", 1740695150)
 
     public val getRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_rotation_degrees")
+        TypeManager.getMethodBindPtr("Control", "get_rotation_degrees", 1740695150)
 
-    public val getScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_scale")
+    public val getScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_scale", 3341600327)
 
     public val getPivotOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_pivot_offset")
+        TypeManager.getMethodBindPtr("Control", "get_pivot_offset", 3341600327)
 
     public val getCustomMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_custom_minimum_size")
+        TypeManager.getMethodBindPtr("Control", "get_custom_minimum_size", 3341600327)
 
     public val getParentAreaSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_parent_area_size")
+        TypeManager.getMethodBindPtr("Control", "get_parent_area_size", 3341600327)
 
     public val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_global_position")
+        TypeManager.getMethodBindPtr("Control", "get_global_position", 3341600327)
 
     public val getScreenPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_screen_position")
+        TypeManager.getMethodBindPtr("Control", "get_screen_position", 3341600327)
 
-    public val getRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_rect")
+    public val getRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_rect", 1639390495)
 
     public val getGlobalRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_global_rect")
+        TypeManager.getMethodBindPtr("Control", "get_global_rect", 1639390495)
 
-    public val setFocusModePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_focus_mode")
+    public val setFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_focus_mode", 3232914922)
 
-    public val getFocusModePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_focus_mode")
+    public val getFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_focus_mode", 2132829277)
 
-    public val hasFocusPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "has_focus")
+    public val hasFocusPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "has_focus", 36873697)
 
-    public val grabFocusPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "grab_focus")
+    public val grabFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "grab_focus", 3218959716)
 
-    public val releaseFocusPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "release_focus")
+    public val releaseFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "release_focus", 3218959716)
 
     public val findPrevValidFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "find_prev_valid_focus")
+        TypeManager.getMethodBindPtr("Control", "find_prev_valid_focus", 2783021301)
 
     public val findNextValidFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "find_next_valid_focus")
+        TypeManager.getMethodBindPtr("Control", "find_next_valid_focus", 2783021301)
 
     public val findValidFocusNeighborPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "find_valid_focus_neighbor")
+        TypeManager.getMethodBindPtr("Control", "find_valid_focus_neighbor", 1543910170)
 
     public val setHSizeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_h_size_flags")
+        TypeManager.getMethodBindPtr("Control", "set_h_size_flags", 394851643)
 
     public val getHSizeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_h_size_flags")
+        TypeManager.getMethodBindPtr("Control", "get_h_size_flags", 3781367401)
 
     public val setStretchRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_stretch_ratio")
+        TypeManager.getMethodBindPtr("Control", "set_stretch_ratio", 373806689)
 
     public val getStretchRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_stretch_ratio")
+        TypeManager.getMethodBindPtr("Control", "get_stretch_ratio", 1740695150)
 
     public val setVSizeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_v_size_flags")
+        TypeManager.getMethodBindPtr("Control", "set_v_size_flags", 394851643)
 
     public val getVSizeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_v_size_flags")
+        TypeManager.getMethodBindPtr("Control", "get_v_size_flags", 3781367401)
 
-    public val setThemePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_theme")
+    public val setThemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_theme", 2326690814)
 
-    public val getThemePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_theme")
+    public val getThemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_theme", 3846893731)
 
     public val setThemeTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_theme_type_variation")
+        TypeManager.getMethodBindPtr("Control", "set_theme_type_variation", 3304788590)
 
     public val getThemeTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_type_variation")
+        TypeManager.getMethodBindPtr("Control", "get_theme_type_variation", 2002593661)
 
     public val beginBulkThemeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "begin_bulk_theme_override")
+        TypeManager.getMethodBindPtr("Control", "begin_bulk_theme_override", 3218959716)
 
     public val endBulkThemeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "end_bulk_theme_override")
+        TypeManager.getMethodBindPtr("Control", "end_bulk_theme_override", 3218959716)
 
     public val addThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "add_theme_icon_override")
+        TypeManager.getMethodBindPtr("Control", "add_theme_icon_override", 1373065600)
 
     public val addThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "add_theme_stylebox_override")
+        TypeManager.getMethodBindPtr("Control", "add_theme_stylebox_override", 4188838905)
 
     public val addThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "add_theme_font_override")
+        TypeManager.getMethodBindPtr("Control", "add_theme_font_override", 3518018674)
 
     public val addThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "add_theme_font_size_override")
+        TypeManager.getMethodBindPtr("Control", "add_theme_font_size_override", 2415702435)
 
     public val addThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "add_theme_color_override")
+        TypeManager.getMethodBindPtr("Control", "add_theme_color_override", 4260178595)
 
     public val addThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "add_theme_constant_override")
+        TypeManager.getMethodBindPtr("Control", "add_theme_constant_override", 2415702435)
 
     public val removeThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "remove_theme_icon_override")
+        TypeManager.getMethodBindPtr("Control", "remove_theme_icon_override", 3304788590)
 
     public val removeThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "remove_theme_stylebox_override")
+        TypeManager.getMethodBindPtr("Control", "remove_theme_stylebox_override", 3304788590)
 
     public val removeThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "remove_theme_font_override")
+        TypeManager.getMethodBindPtr("Control", "remove_theme_font_override", 3304788590)
 
     public val removeThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "remove_theme_font_size_override")
+        TypeManager.getMethodBindPtr("Control", "remove_theme_font_size_override", 3304788590)
 
     public val removeThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "remove_theme_color_override")
+        TypeManager.getMethodBindPtr("Control", "remove_theme_color_override", 3304788590)
 
     public val removeThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "remove_theme_constant_override")
+        TypeManager.getMethodBindPtr("Control", "remove_theme_constant_override", 3304788590)
 
-    public val getThemeIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_theme_icon")
+    public val getThemeIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_theme_icon", 2336455395)
 
     public val getThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_stylebox")
+        TypeManager.getMethodBindPtr("Control", "get_theme_stylebox", 2759935355)
 
-    public val getThemeFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_theme_font")
+    public val getThemeFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_theme_font", 387378635)
 
     public val getThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_font_size")
+        TypeManager.getMethodBindPtr("Control", "get_theme_font_size", 229578101)
 
     public val getThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_color")
+        TypeManager.getMethodBindPtr("Control", "get_theme_color", 2377051548)
 
     public val getThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_constant")
+        TypeManager.getMethodBindPtr("Control", "get_theme_constant", 229578101)
 
     public val hasThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_icon_override")
+        TypeManager.getMethodBindPtr("Control", "has_theme_icon_override", 2619796661)
 
     public val hasThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_stylebox_override")
+        TypeManager.getMethodBindPtr("Control", "has_theme_stylebox_override", 2619796661)
 
     public val hasThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_font_override")
+        TypeManager.getMethodBindPtr("Control", "has_theme_font_override", 2619796661)
 
     public val hasThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_font_size_override")
+        TypeManager.getMethodBindPtr("Control", "has_theme_font_size_override", 2619796661)
 
     public val hasThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_color_override")
+        TypeManager.getMethodBindPtr("Control", "has_theme_color_override", 2619796661)
 
     public val hasThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_constant_override")
+        TypeManager.getMethodBindPtr("Control", "has_theme_constant_override", 2619796661)
 
-    public val hasThemeIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "has_theme_icon")
+    public val hasThemeIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "has_theme_icon", 1187511791)
 
     public val hasThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_stylebox")
+        TypeManager.getMethodBindPtr("Control", "has_theme_stylebox", 1187511791)
 
-    public val hasThemeFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "has_theme_font")
+    public val hasThemeFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "has_theme_font", 1187511791)
 
     public val hasThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_font_size")
+        TypeManager.getMethodBindPtr("Control", "has_theme_font_size", 1187511791)
 
     public val hasThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_color")
+        TypeManager.getMethodBindPtr("Control", "has_theme_color", 1187511791)
 
     public val hasThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "has_theme_constant")
+        TypeManager.getMethodBindPtr("Control", "has_theme_constant", 1187511791)
 
     public val getThemeDefaultBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_default_base_scale")
+        TypeManager.getMethodBindPtr("Control", "get_theme_default_base_scale", 1740695150)
 
     public val getThemeDefaultFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_default_font")
+        TypeManager.getMethodBindPtr("Control", "get_theme_default_font", 3229501585)
 
     public val getThemeDefaultFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_theme_default_font_size")
+        TypeManager.getMethodBindPtr("Control", "get_theme_default_font_size", 3905245786)
 
     public val getParentControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_parent_control")
+        TypeManager.getMethodBindPtr("Control", "get_parent_control", 2783021301)
 
     public val setHGrowDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_h_grow_direction")
+        TypeManager.getMethodBindPtr("Control", "set_h_grow_direction", 2022385301)
 
     public val getHGrowDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_h_grow_direction")
+        TypeManager.getMethodBindPtr("Control", "get_h_grow_direction", 3635610155)
 
     public val setVGrowDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_v_grow_direction")
+        TypeManager.getMethodBindPtr("Control", "set_v_grow_direction", 2022385301)
 
     public val getVGrowDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_v_grow_direction")
+        TypeManager.getMethodBindPtr("Control", "get_v_grow_direction", 3635610155)
 
     public val setTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_tooltip_text")
+        TypeManager.getMethodBindPtr("Control", "set_tooltip_text", 83702148)
 
     public val getTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_tooltip_text")
+        TypeManager.getMethodBindPtr("Control", "get_tooltip_text", 201670096)
 
-    public val getTooltipPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_tooltip")
+    public val getTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_tooltip", 2895288280)
 
     public val setDefaultCursorShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_default_cursor_shape")
+        TypeManager.getMethodBindPtr("Control", "set_default_cursor_shape", 217062046)
 
     public val getDefaultCursorShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_default_cursor_shape")
+        TypeManager.getMethodBindPtr("Control", "get_default_cursor_shape", 2359535750)
 
     public val getCursorShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_cursor_shape")
+        TypeManager.getMethodBindPtr("Control", "get_cursor_shape", 1395773853)
 
     public val setFocusNeighborPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_focus_neighbor")
+        TypeManager.getMethodBindPtr("Control", "set_focus_neighbor", 2024461774)
 
     public val getFocusNeighborPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_focus_neighbor")
+        TypeManager.getMethodBindPtr("Control", "get_focus_neighbor", 2757935761)
 
-    public val setFocusNextPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "set_focus_next")
+    public val setFocusNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_focus_next", 1348162250)
 
-    public val getFocusNextPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "get_focus_next")
+    public val getFocusNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_focus_next", 4075236667)
 
     public val setFocusPreviousPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_focus_previous")
+        TypeManager.getMethodBindPtr("Control", "set_focus_previous", 1348162250)
 
     public val getFocusPreviousPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_focus_previous")
+        TypeManager.getMethodBindPtr("Control", "get_focus_previous", 4075236667)
 
-    public val forceDragPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "force_drag")
+    public val forceDragPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "force_drag", 3191844692)
 
     public val setMouseFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_mouse_filter")
+        TypeManager.getMethodBindPtr("Control", "set_mouse_filter", 3891156122)
 
     public val getMouseFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_mouse_filter")
+        TypeManager.getMethodBindPtr("Control", "get_mouse_filter", 1572545674)
 
     public val setForcePassScrollEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_force_pass_scroll_events")
+        TypeManager.getMethodBindPtr("Control", "set_force_pass_scroll_events", 2586408642)
 
     public val isForcePassScrollEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "is_force_pass_scroll_events")
+        TypeManager.getMethodBindPtr("Control", "is_force_pass_scroll_events", 36873697)
 
     public val setClipContentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_clip_contents")
+        TypeManager.getMethodBindPtr("Control", "set_clip_contents", 2586408642)
 
     public val isClippingContentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "is_clipping_contents")
+        TypeManager.getMethodBindPtr("Control", "is_clipping_contents", 2240911060)
 
     public val grabClickFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "grab_click_focus")
+        TypeManager.getMethodBindPtr("Control", "grab_click_focus", 3218959716)
 
     public val setDragForwardingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_drag_forwarding")
+        TypeManager.getMethodBindPtr("Control", "set_drag_forwarding", 1076571380)
 
     public val setDragPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_drag_preview")
+        TypeManager.getMethodBindPtr("Control", "set_drag_preview", 1496901182)
 
     public val isDragSuccessfulPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "is_drag_successful")
+        TypeManager.getMethodBindPtr("Control", "is_drag_successful", 36873697)
 
-    public val warpMousePtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "warp_mouse")
+    public val warpMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "warp_mouse", 743155724)
 
     public val setShortcutContextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_shortcut_context")
+        TypeManager.getMethodBindPtr("Control", "set_shortcut_context", 1078189570)
 
     public val getShortcutContextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_shortcut_context")
+        TypeManager.getMethodBindPtr("Control", "get_shortcut_context", 3160264692)
 
     public val updateMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "update_minimum_size")
+        TypeManager.getMethodBindPtr("Control", "update_minimum_size", 3218959716)
 
     public val setLayoutDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_layout_direction")
+        TypeManager.getMethodBindPtr("Control", "set_layout_direction", 3310692370)
 
     public val getLayoutDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "get_layout_direction")
+        TypeManager.getMethodBindPtr("Control", "get_layout_direction", 1546772008)
 
-    public val isLayoutRtlPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "is_layout_rtl")
+    public val isLayoutRtlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "is_layout_rtl", 36873697)
 
     public val setAutoTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_auto_translate")
+        TypeManager.getMethodBindPtr("Control", "set_auto_translate", 2586408642)
 
     public val isAutoTranslatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "is_auto_translating")
+        TypeManager.getMethodBindPtr("Control", "is_auto_translating", 36873697)
 
     public val setLocalizeNumeralSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "set_localize_numeral_system")
+        TypeManager.getMethodBindPtr("Control", "set_localize_numeral_system", 2586408642)
 
     public val isLocalizingNumeralSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "is_localizing_numeral_system")
+        TypeManager.getMethodBindPtr("Control", "is_localizing_numeral_system", 36873697)
   }
 }
 

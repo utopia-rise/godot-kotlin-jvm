@@ -156,8 +156,10 @@ public open class ConeTwistJoint3D : Joint3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setParamPtr: VoidPtr = TypeManager.getMethodBindPtr("ConeTwistJoint3D", "set_param")
+    public val setParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "set_param", 1062470226)
 
-    public val getParamPtr: VoidPtr = TypeManager.getMethodBindPtr("ConeTwistJoint3D", "get_param")
+    public val getParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "get_param", 2928790850)
   }
 }

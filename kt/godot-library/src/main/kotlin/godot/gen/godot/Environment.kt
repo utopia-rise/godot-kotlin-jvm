@@ -1956,545 +1956,555 @@ public open class Environment : Resource() {
 
   internal object MethodBindings {
     public val setBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_background")
+        TypeManager.getMethodBindPtr("Environment", "set_background", 4071623990)
 
     public val getBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_background")
+        TypeManager.getMethodBindPtr("Environment", "get_background", 1843210413)
 
-    public val setSkyPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_sky")
+    public val setSkyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_sky", 3336722921)
 
-    public val getSkyPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_sky")
+    public val getSkyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_sky", 1177136966)
 
     public val setSkyCustomFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky_custom_fov")
+        TypeManager.getMethodBindPtr("Environment", "set_sky_custom_fov", 373806689)
 
     public val getSkyCustomFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky_custom_fov")
+        TypeManager.getMethodBindPtr("Environment", "get_sky_custom_fov", 1740695150)
 
     public val setSkyRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky_rotation")
+        TypeManager.getMethodBindPtr("Environment", "set_sky_rotation", 3460891852)
 
     public val getSkyRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky_rotation")
+        TypeManager.getMethodBindPtr("Environment", "get_sky_rotation", 3360562783)
 
-    public val setBgColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_bg_color")
+    public val setBgColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_bg_color", 2920490490)
 
-    public val getBgColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_bg_color")
+    public val getBgColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_bg_color", 3444240500)
 
     public val setBgEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_energy_multiplier")
+        TypeManager.getMethodBindPtr("Environment", "set_bg_energy_multiplier", 373806689)
 
     public val getBgEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_energy_multiplier")
+        TypeManager.getMethodBindPtr("Environment", "get_bg_energy_multiplier", 1740695150)
 
     public val setBgIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_intensity")
+        TypeManager.getMethodBindPtr("Environment", "set_bg_intensity", 373806689)
 
     public val getBgIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_intensity")
+        TypeManager.getMethodBindPtr("Environment", "get_bg_intensity", 1740695150)
 
     public val setCanvasMaxLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_canvas_max_layer")
+        TypeManager.getMethodBindPtr("Environment", "set_canvas_max_layer", 1286410249)
 
     public val getCanvasMaxLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_canvas_max_layer")
+        TypeManager.getMethodBindPtr("Environment", "get_canvas_max_layer", 3905245786)
 
     public val setCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_camera_feed_id")
+        TypeManager.getMethodBindPtr("Environment", "set_camera_feed_id", 1286410249)
 
     public val getCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_camera_feed_id")
+        TypeManager.getMethodBindPtr("Environment", "get_camera_feed_id", 3905245786)
 
     public val setAmbientLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_color")
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_color", 2920490490)
 
     public val getAmbientLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_color")
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_color", 3444240500)
 
     public val setAmbientSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_source")
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_source", 2607780160)
 
     public val getAmbientSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_source")
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_source", 67453933)
 
     public val setAmbientLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_energy")
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_energy", 373806689)
 
     public val getAmbientLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_energy")
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_energy", 1740695150)
 
     public val setAmbientLightSkyContributionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution")
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution", 373806689)
 
     public val getAmbientLightSkyContributionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution")
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution", 1740695150)
 
     public val setReflectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_reflection_source")
+        TypeManager.getMethodBindPtr("Environment", "set_reflection_source", 299673197)
 
     public val getReflectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_reflection_source")
+        TypeManager.getMethodBindPtr("Environment", "get_reflection_source", 777700713)
 
     public val setTonemapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemapper")
+        TypeManager.getMethodBindPtr("Environment", "set_tonemapper", 1509116664)
 
     public val getTonemapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemapper")
+        TypeManager.getMethodBindPtr("Environment", "get_tonemapper", 2908408137)
 
     public val setTonemapExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemap_exposure")
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_exposure", 373806689)
 
     public val getTonemapExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemap_exposure")
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_exposure", 1740695150)
 
     public val setTonemapWhitePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemap_white")
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_white", 373806689)
 
     public val getTonemapWhitePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemap_white")
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_white", 1740695150)
 
     public val setSsrEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_enabled", 2586408642)
 
     public val isSsrEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssr_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_ssr_enabled", 36873697)
 
     public val setSsrMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_max_steps")
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_max_steps", 1286410249)
 
     public val getSsrMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_max_steps")
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_max_steps", 3905245786)
 
     public val setSsrFadeInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_in")
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_in", 373806689)
 
     public val getSsrFadeInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_in")
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_in", 1740695150)
 
     public val setSsrFadeOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_out")
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_out", 373806689)
 
     public val getSsrFadeOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_out")
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_out", 1740695150)
 
     public val setSsrDepthTolerancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_depth_tolerance")
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_depth_tolerance", 373806689)
 
     public val getSsrDepthTolerancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_depth_tolerance")
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_depth_tolerance", 1740695150)
 
     public val setSsaoEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_enabled", 2586408642)
 
     public val isSsaoEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssao_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_ssao_enabled", 36873697)
 
     public val setSsaoRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_radius")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_radius", 373806689)
 
     public val getSsaoRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_radius")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_radius", 1740695150)
 
     public val setSsaoIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_intensity")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_intensity", 373806689)
 
     public val getSsaoIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_intensity")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_intensity", 1740695150)
 
     public val setSsaoPowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_power")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_power", 373806689)
 
     public val getSsaoPowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_power")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_power", 1740695150)
 
     public val setSsaoDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_detail")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_detail", 373806689)
 
     public val getSsaoDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_detail")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_detail", 1740695150)
 
     public val setSsaoHorizonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_horizon")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_horizon", 373806689)
 
     public val getSsaoHorizonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_horizon")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_horizon", 1740695150)
 
     public val setSsaoSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_sharpness")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_sharpness", 373806689)
 
     public val getSsaoSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_sharpness")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_sharpness", 1740695150)
 
     public val setSsaoDirectLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_direct_light_affect")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_direct_light_affect", 373806689)
 
     public val getSsaoDirectLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_direct_light_affect")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_direct_light_affect", 1740695150)
 
     public val setSsaoAoChannelAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect")
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect", 373806689)
 
     public val getSsaoAoChannelAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect")
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect", 1740695150)
 
     public val setSsilEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_enabled", 2586408642)
 
     public val isSsilEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssil_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_ssil_enabled", 36873697)
 
     public val setSsilRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_radius")
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_radius", 373806689)
 
     public val getSsilRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_radius")
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_radius", 1740695150)
 
     public val setSsilIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_intensity")
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_intensity", 373806689)
 
     public val getSsilIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_intensity")
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_intensity", 1740695150)
 
     public val setSsilSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_sharpness")
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_sharpness", 373806689)
 
     public val getSsilSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_sharpness")
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_sharpness", 1740695150)
 
     public val setSsilNormalRejectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_normal_rejection")
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_normal_rejection", 373806689)
 
     public val getSsilNormalRejectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_normal_rejection")
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_normal_rejection", 1740695150)
 
     public val setSdfgiEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_enabled", 2586408642)
 
     public val isSdfgiEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_enabled", 36873697)
 
     public val setSdfgiCascadesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascades")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascades", 1286410249)
 
     public val getSdfgiCascadesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascades")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascades", 3905245786)
 
     public val setSdfgiMinCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size", 373806689)
 
     public val getSdfgiMinCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size", 1740695150)
 
     public val setSdfgiMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_max_distance")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_max_distance", 373806689)
 
     public val getSdfgiMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_max_distance")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_max_distance", 1740695150)
 
     public val setSdfgiCascade0DistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance", 373806689)
 
     public val getSdfgiCascade0DistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance", 1740695150)
 
     public val setSdfgiYScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_y_scale")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_y_scale", 3608608372)
 
     public val getSdfgiYScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_y_scale")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_y_scale", 2568002245)
 
     public val setSdfgiUseOcclusionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion", 2586408642)
 
     public val isSdfgiUsingOcclusionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion")
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion", 36873697)
 
     public val setSdfgiBounceFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback", 373806689)
 
     public val getSdfgiBounceFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback", 1740695150)
 
     public val setSdfgiReadSkyLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light", 2586408642)
 
     public val isSdfgiReadingSkyLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light")
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light", 36873697)
 
     public val setSdfgiEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_energy")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_energy", 373806689)
 
     public val getSdfgiEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_energy")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_energy", 1740695150)
 
     public val setSdfgiNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_normal_bias")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_normal_bias", 373806689)
 
     public val getSdfgiNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_normal_bias")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_normal_bias", 1740695150)
 
     public val setSdfgiProbeBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_probe_bias")
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_probe_bias", 373806689)
 
     public val getSdfgiProbeBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_probe_bias")
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_probe_bias", 1740695150)
 
     public val setGlowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_enabled", 2586408642)
 
     public val isGlowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_glow_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_glow_enabled", 36873697)
 
     public val setGlowLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_level")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_level", 1602489585)
 
     public val getGlowLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_level")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_level", 2339986948)
 
     public val setGlowNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_normalized")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_normalized", 2586408642)
 
     public val isGlowNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_glow_normalized")
+        TypeManager.getMethodBindPtr("Environment", "is_glow_normalized", 36873697)
 
     public val setGlowIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_intensity")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_intensity", 373806689)
 
     public val getGlowIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_intensity")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_intensity", 1740695150)
 
     public val setGlowStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_strength")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_strength", 373806689)
 
     public val getGlowStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_strength")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_strength", 1740695150)
 
-    public val setGlowMixPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_glow_mix")
+    public val setGlowMixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_mix", 373806689)
 
-    public val getGlowMixPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_glow_mix")
+    public val getGlowMixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_mix", 1740695150)
 
     public val setGlowBloomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_bloom")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_bloom", 373806689)
 
     public val getGlowBloomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_bloom")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_bloom", 1740695150)
 
     public val setGlowBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_blend_mode")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_blend_mode", 2561587761)
 
     public val getGlowBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_blend_mode")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_blend_mode", 1529667332)
 
     public val setGlowHdrBleedThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold", 373806689)
 
     public val getGlowHdrBleedThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold", 1740695150)
 
     public val setGlowHdrBleedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale", 373806689)
 
     public val getGlowHdrBleedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale", 1740695150)
 
     public val setGlowHdrLuminanceCapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap", 373806689)
 
     public val getGlowHdrLuminanceCapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap", 1740695150)
 
     public val setGlowMapStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_map_strength")
+        TypeManager.getMethodBindPtr("Environment", "set_glow_map_strength", 373806689)
 
     public val getGlowMapStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_map_strength")
+        TypeManager.getMethodBindPtr("Environment", "get_glow_map_strength", 1740695150)
 
-    public val setGlowMapPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_glow_map")
+    public val setGlowMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_glow_map", 1790811099)
 
-    public val getGlowMapPtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_glow_map")
+    public val getGlowMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_glow_map", 4037048985)
 
     public val setFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_enabled", 2586408642)
 
     public val isFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_fog_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_fog_enabled", 36873697)
 
-    public val setFogModePtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "set_fog_mode")
+    public val setFogModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "set_fog_mode", 3059806579)
 
-    public val getFogModePtr: VoidPtr = TypeManager.getMethodBindPtr("Environment", "get_fog_mode")
+    public val getFogModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Environment", "get_fog_mode", 2456062483)
 
     public val setFogLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_light_color")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_light_color", 2920490490)
 
     public val getFogLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_light_color")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_light_color", 3444240500)
 
     public val setFogLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_light_energy")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_light_energy", 373806689)
 
     public val getFogLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_light_energy")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_light_energy", 1740695150)
 
     public val setFogSunScatterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_sun_scatter")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_sun_scatter", 373806689)
 
     public val getFogSunScatterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_sun_scatter")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_sun_scatter", 1740695150)
 
     public val setFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_density")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_density", 373806689)
 
     public val getFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_density")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_density", 1740695150)
 
     public val setFogHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_height")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_height", 373806689)
 
     public val getFogHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_height")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_height", 1740695150)
 
     public val setFogHeightDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_height_density")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_height_density", 373806689)
 
     public val getFogHeightDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_height_density")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_height_density", 1740695150)
 
     public val setFogAerialPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_aerial_perspective")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_aerial_perspective", 373806689)
 
     public val getFogAerialPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_aerial_perspective")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_aerial_perspective", 1740695150)
 
     public val setFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_sky_affect")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_sky_affect", 373806689)
 
     public val getFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_sky_affect")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_sky_affect", 1740695150)
 
     public val setFogDepthCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_curve")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_curve", 373806689)
 
     public val getFogDepthCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_curve")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_curve", 1740695150)
 
     public val setFogDepthBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_begin")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_begin", 373806689)
 
     public val getFogDepthBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_begin")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_begin", 1740695150)
 
     public val setFogDepthEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_end")
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_end", 373806689)
 
     public val getFogDepthEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_end")
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_end", 1740695150)
 
     public val setVolumetricFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_enabled", 2586408642)
 
     public val isVolumetricFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_enabled", 36873697)
 
     public val setVolumetricFogEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission", 2920490490)
 
     public val getVolumetricFogEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission", 3444240500)
 
     public val setVolumetricFogAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_albedo")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_albedo", 2920490490)
 
     public val getVolumetricFogAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_albedo")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_albedo", 3444240500)
 
     public val setVolumetricFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_density")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_density", 373806689)
 
     public val getVolumetricFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_density")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_density", 1740695150)
 
     public val setVolumetricFogEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy", 373806689)
 
     public val getVolumetricFogEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy", 1740695150)
 
     public val setVolumetricFogAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy", 373806689)
 
     public val getVolumetricFogAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy", 1740695150)
 
     public val setVolumetricFogLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_length")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_length", 373806689)
 
     public val getVolumetricFogLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_length")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_length", 1740695150)
 
     public val setVolumetricFogDetailSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread", 373806689)
 
     public val getVolumetricFogDetailSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread", 1740695150)
 
     public val setVolumetricFogGiInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject", 373806689)
 
     public val getVolumetricFogGiInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject", 1740695150)
 
     public val setVolumetricFogAmbientInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject", 373806689)
 
     public val getVolumetricFogAmbientInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject", 1740695150)
 
     public val setVolumetricFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect", 373806689)
 
     public val getVolumetricFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect", 1740695150)
 
     public val setVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled", 2586408642)
 
     public val isVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled", 36873697)
 
     public val setVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount")
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount", 373806689)
 
     public val getVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount")
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount", 1740695150)
 
     public val setAdjustmentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_enabled")
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_enabled", 2586408642)
 
     public val isAdjustmentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_adjustment_enabled")
+        TypeManager.getMethodBindPtr("Environment", "is_adjustment_enabled", 36873697)
 
     public val setAdjustmentBrightnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_brightness")
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_brightness", 373806689)
 
     public val getAdjustmentBrightnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_brightness")
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_brightness", 1740695150)
 
     public val setAdjustmentContrastPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_contrast")
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_contrast", 373806689)
 
     public val getAdjustmentContrastPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_contrast")
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_contrast", 1740695150)
 
     public val setAdjustmentSaturationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_saturation")
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_saturation", 373806689)
 
     public val getAdjustmentSaturationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_saturation")
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_saturation", 1740695150)
 
     public val setAdjustmentColorCorrectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_color_correction")
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_color_correction", 1790811099)
 
     public val getAdjustmentColorCorrectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_color_correction")
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_color_correction", 4037048985)
   }
 }

@@ -155,27 +155,28 @@ public object JavaScriptBridge : Object() {
   }
 
   internal object MethodBindings {
-    public val evalPtr: VoidPtr = TypeManager.getMethodBindPtr("JavaScriptBridge", "eval")
+    public val evalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "eval", 218087648)
 
     public val getInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "get_interface")
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "get_interface", 1355533281)
 
     public val createCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_callback")
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_callback", 422818440)
 
     public val createObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_object")
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_object", 3093893586)
 
     public val downloadBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "download_buffer")
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "download_buffer", 3352272093)
 
     public val pwaNeedsUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_needs_update")
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_needs_update", 36873697)
 
     public val pwaUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_update")
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_update", 166280745)
 
     public val forceFsSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "force_fs_sync")
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "force_fs_sync", 3218959716)
   }
 }

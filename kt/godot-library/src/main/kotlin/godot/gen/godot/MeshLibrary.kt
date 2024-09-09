@@ -237,67 +237,69 @@ public open class MeshLibrary : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val createItemPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshLibrary", "create_item")
+    public val createItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshLibrary", "create_item", 1286410249)
 
     public val setItemNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_name")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_name", 501894301)
 
     public val setItemMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh", 969122797)
 
     public val setItemMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh_transform")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh_transform", 3616898986)
 
     public val setItemNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh", 3483353960)
 
     public val setItemNavigationMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh_transform")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh_transform", 3616898986)
 
     public val setItemNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_layers")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_layers", 3937882851)
 
     public val setItemShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_shapes")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_shapes", 537221740)
 
     public val setItemPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_preview")
+        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_preview", 666127730)
 
     public val getItemNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_name")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_name", 844755477)
 
     public val getItemMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh", 1576363275)
 
     public val getItemMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh_transform")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh_transform", 1965739696)
 
     public val getItemNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh", 2729647406)
 
     public val getItemNavigationMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh_transform")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh_transform", 1965739696)
 
     public val getItemNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_layers")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_layers", 923996154)
 
     public val getItemShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_shapes")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_shapes", 663333327)
 
     public val getItemPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_preview")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_preview", 3536238170)
 
-    public val removeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshLibrary", "remove_item")
+    public val removeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshLibrary", "remove_item", 1286410249)
 
     public val findItemByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "find_item_by_name")
+        TypeManager.getMethodBindPtr("MeshLibrary", "find_item_by_name", 1321353865)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshLibrary", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshLibrary", "clear", 3218959716)
 
     public val getItemListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_list")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_list", 1930428628)
 
     public val getLastUnusedItemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_last_unused_item_id")
+        TypeManager.getMethodBindPtr("MeshLibrary", "get_last_unused_item_id", 3905245786)
   }
 }

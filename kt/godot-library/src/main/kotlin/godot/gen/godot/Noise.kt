@@ -169,24 +169,30 @@ public open class Noise internal constructor() : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getNoise1dPtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_noise_1d")
+    public val getNoise1dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Noise", "get_noise_1d", 3919130443)
 
-    public val getNoise2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_noise_2d")
+    public val getNoise2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Noise", "get_noise_2d", 2753205203)
 
-    public val getNoise2dvPtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_noise_2dv")
+    public val getNoise2dvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Noise", "get_noise_2dv", 2276447920)
 
-    public val getNoise3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_noise_3d")
+    public val getNoise3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Noise", "get_noise_3d", 973811851)
 
-    public val getNoise3dvPtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_noise_3dv")
+    public val getNoise3dvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Noise", "get_noise_3dv", 1109078154)
 
-    public val getImagePtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_image")
+    public val getImagePtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_image", 3180683109)
 
     public val getSeamlessImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_seamless_image")
+        TypeManager.getMethodBindPtr("Noise", "get_seamless_image", 2770743602)
 
-    public val getImage3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Noise", "get_image_3d")
+    public val getImage3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Noise", "get_image_3d", 3977814329)
 
     public val getSeamlessImage3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_seamless_image_3d")
+        TypeManager.getMethodBindPtr("Noise", "get_seamless_image_3d", 451006340)
   }
 }

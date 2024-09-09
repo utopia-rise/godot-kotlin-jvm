@@ -205,36 +205,36 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
 
   internal object MethodBindings {
     public val addNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "add_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "add_node", 1980270704)
 
     public val getNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node", 625644256)
 
     public val removeNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "remove_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "remove_node", 3304788590)
 
     public val renameNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "rename_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "rename_node", 3740211285)
 
     public val hasNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "has_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "has_node", 2619796661)
 
     public val connectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "connect_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "connect_node", 2168001410)
 
     public val disconnectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "disconnect_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "disconnect_node", 2415702435)
 
     public val setNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_node_position")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_node_position", 1999414630)
 
     public val getNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node_position")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node_position", 3100822709)
 
     public val setGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_graph_offset")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_graph_offset", 743155724)
 
     public val getGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_graph_offset")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_graph_offset", 3341600327)
   }
 }

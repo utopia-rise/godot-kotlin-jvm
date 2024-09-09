@@ -178,30 +178,30 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
   internal object MethodBindings {
     public val createFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "create_from_image")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "create_from_image", 3679243433)
 
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_format")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_format", 3847873762)
 
     public val getCompressionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_compression_mode")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_compression_mode", 3265612739)
 
     public val setSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_size_override")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_size_override", 743155724)
 
     public val getSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_size_override")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_size_override", 3341600327)
 
     public val setKeepCompressedBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_compressed_buffer")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_compressed_buffer", 2586408642)
 
     public val isKeepingCompressedBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_compressed_buffer")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_compressed_buffer", 36873697)
 
     public val setKeepAllCompressedBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_all_compressed_buffers")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_all_compressed_buffers", 2586408642)
 
     public val isKeepingAllCompressedBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_all_compressed_buffers")
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_all_compressed_buffers", 2240911060)
   }
 }

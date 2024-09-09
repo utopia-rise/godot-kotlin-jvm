@@ -114,36 +114,36 @@ public open class RemoteTransform3D : Node3D() {
 
   internal object MethodBindings {
     public val setRemoteNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_remote_node")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_remote_node", 1348162250)
 
     public val getRemoteNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_remote_node")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_remote_node", 4075236667)
 
     public val forceUpdateCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "force_update_cache")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "force_update_cache", 3218959716)
 
     public val setUseGlobalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_use_global_coordinates")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_use_global_coordinates", 2586408642)
 
     public val getUseGlobalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_use_global_coordinates")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_use_global_coordinates", 36873697)
 
     public val setUpdatePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_position")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_position", 2586408642)
 
     public val getUpdatePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_position")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_position", 36873697)
 
     public val setUpdateRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_rotation")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_rotation", 2586408642)
 
     public val getUpdateRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_rotation")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_rotation", 36873697)
 
     public val setUpdateScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_scale")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "set_update_scale", 2586408642)
 
     public val getUpdateScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_scale")
+        TypeManager.getMethodBindPtr("RemoteTransform3D", "get_update_scale", 36873697)
   }
 }

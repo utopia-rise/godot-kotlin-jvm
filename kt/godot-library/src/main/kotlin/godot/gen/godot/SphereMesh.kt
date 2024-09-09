@@ -105,28 +105,34 @@ public open class SphereMesh : PrimitiveMesh() {
   public companion object
 
   internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("SphereMesh", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SphereMesh", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("SphereMesh", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SphereMesh", "get_radius", 1740695150)
 
-    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("SphereMesh", "set_height")
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SphereMesh", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("SphereMesh", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SphereMesh", "get_height", 1740695150)
 
     public val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "set_radial_segments")
+        TypeManager.getMethodBindPtr("SphereMesh", "set_radial_segments", 1286410249)
 
     public val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "get_radial_segments")
+        TypeManager.getMethodBindPtr("SphereMesh", "get_radial_segments", 3905245786)
 
-    public val setRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("SphereMesh", "set_rings")
+    public val setRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SphereMesh", "set_rings", 1286410249)
 
-    public val getRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("SphereMesh", "get_rings")
+    public val getRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SphereMesh", "get_rings", 3905245786)
 
     public val setIsHemispherePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "set_is_hemisphere")
+        TypeManager.getMethodBindPtr("SphereMesh", "set_is_hemisphere", 2586408642)
 
     public val getIsHemispherePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "get_is_hemisphere")
+        TypeManager.getMethodBindPtr("SphereMesh", "get_is_hemisphere", 36873697)
   }
 }

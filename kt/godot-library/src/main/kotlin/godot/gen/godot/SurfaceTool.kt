@@ -519,82 +519,98 @@ public open class SurfaceTool : RefCounted() {
 
   internal object MethodBindings {
     public val setSkinWeightCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_skin_weight_count")
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_skin_weight_count", 618679515)
 
     public val getSkinWeightCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "get_skin_weight_count")
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_skin_weight_count", 1072401130)
 
     public val setCustomFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom_format")
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom_format", 4087759856)
 
     public val getCustomFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "get_custom_format")
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_custom_format", 839863283)
 
-    public val beginPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "begin")
+    public val beginPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "begin", 2230304113)
 
-    public val addVertexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "add_vertex")
+    public val addVertexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "add_vertex", 3460891852)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_color", 2920490490)
 
-    public val setNormalPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_normal")
+    public val setNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_normal", 3460891852)
 
-    public val setTangentPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_tangent")
+    public val setTangentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_tangent", 3505987427)
 
-    public val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_uv")
+    public val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_uv", 743155724)
 
-    public val setUv2Ptr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_uv2")
+    public val setUv2Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_uv2", 743155724)
 
-    public val setBonesPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_bones")
+    public val setBonesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_bones", 3614634198)
 
-    public val setWeightsPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_weights")
+    public val setWeightsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_weights", 2899603908)
 
-    public val setCustomPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_custom")
+    public val setCustomPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom", 2878471219)
 
     public val setSmoothGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_smooth_group")
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_smooth_group", 1286410249)
 
     public val addTriangleFanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "add_triangle_fan")
+        TypeManager.getMethodBindPtr("SurfaceTool", "add_triangle_fan", 2235017613)
 
-    public val addIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "add_index")
+    public val addIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "add_index", 1286410249)
 
-    public val indexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "index")
+    public val indexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "index", 3218959716)
 
-    public val deindexPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "deindex")
+    public val deindexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "deindex", 3218959716)
 
     public val generateNormalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "generate_normals")
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_normals", 107499316)
 
     public val generateTangentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "generate_tangents")
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_tangents", 3218959716)
 
     public val optimizeIndicesForCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "optimize_indices_for_cache")
+        TypeManager.getMethodBindPtr("SurfaceTool", "optimize_indices_for_cache", 3218959716)
 
-    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "get_aabb")
+    public val getAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_aabb", 1068685055)
 
-    public val generateLodPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "generate_lod")
+    public val generateLodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_lod", 1938056459)
 
-    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "set_material")
+    public val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_material", 2757459619)
 
     public val getPrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "get_primitive_type")
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_primitive_type", 768822145)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "clear", 3218959716)
 
-    public val createFromPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "create_from")
+    public val createFromPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from", 1767024570)
 
     public val createFromArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_arrays")
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_arrays", 1894639680)
 
     public val createFromBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_blend_shape")
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_blend_shape", 1306185582)
 
-    public val appendFromPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "append_from")
+    public val appendFromPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "append_from", 2217967155)
 
-    public val commitPtr: VoidPtr = TypeManager.getMethodBindPtr("SurfaceTool", "commit")
+    public val commitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SurfaceTool", "commit", 4107864055)
 
     public val commitToArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "commit_to_arrays")
+        TypeManager.getMethodBindPtr("SurfaceTool", "commit_to_arrays", 2915620761)
   }
 }

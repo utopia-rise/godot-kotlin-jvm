@@ -252,68 +252,73 @@ public object EngineDebugger : Object() {
   }
 
   internal object MethodBindings {
-    public val isActivePtr: VoidPtr = TypeManager.getMethodBindPtr("EngineDebugger", "is_active")
+    public val isActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_active", 2240911060)
 
     public val registerProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "register_profiler")
+        TypeManager.getMethodBindPtr("EngineDebugger", "register_profiler", 3651669560)
 
     public val unregisterProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_profiler")
+        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_profiler", 3304788590)
 
     public val isProfilingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_profiling")
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_profiling", 2041966384)
 
     public val hasProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "has_profiler")
+        TypeManager.getMethodBindPtr("EngineDebugger", "has_profiler", 2041966384)
 
     public val profilerAddFrameDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_add_frame_data")
+        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_add_frame_data", 1895267858)
 
     public val profilerEnablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_enable")
+        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_enable", 3192561009)
 
     public val registerMessageCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "register_message_capture")
+        TypeManager.getMethodBindPtr("EngineDebugger", "register_message_capture", 1874754934)
 
     public val unregisterMessageCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_message_capture")
+        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_message_capture", 3304788590)
 
     public val hasCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "has_capture")
+        TypeManager.getMethodBindPtr("EngineDebugger", "has_capture", 2041966384)
 
-    public val linePollPtr: VoidPtr = TypeManager.getMethodBindPtr("EngineDebugger", "line_poll")
+    public val linePollPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EngineDebugger", "line_poll", 3218959716)
 
     public val sendMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "send_message")
+        TypeManager.getMethodBindPtr("EngineDebugger", "send_message", 1209351045)
 
-    public val debugPtr: VoidPtr = TypeManager.getMethodBindPtr("EngineDebugger", "debug")
+    public val debugPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EngineDebugger", "debug", 2751962654)
 
     public val scriptDebugPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "script_debug")
+        TypeManager.getMethodBindPtr("EngineDebugger", "script_debug", 2442343672)
 
     public val setLinesLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "set_lines_left")
+        TypeManager.getMethodBindPtr("EngineDebugger", "set_lines_left", 1286410249)
 
     public val getLinesLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "get_lines_left")
+        TypeManager.getMethodBindPtr("EngineDebugger", "get_lines_left", 3905245786)
 
-    public val setDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("EngineDebugger", "set_depth")
+    public val setDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EngineDebugger", "set_depth", 1286410249)
 
-    public val getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("EngineDebugger", "get_depth")
+    public val getDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("EngineDebugger", "get_depth", 3905245786)
 
     public val isBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_breakpoint")
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_breakpoint", 921227809)
 
     public val isSkippingBreakpointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_skipping_breakpoints")
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_skipping_breakpoints", 36873697)
 
     public val insertBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "insert_breakpoint")
+        TypeManager.getMethodBindPtr("EngineDebugger", "insert_breakpoint", 3780747571)
 
     public val removeBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "remove_breakpoint")
+        TypeManager.getMethodBindPtr("EngineDebugger", "remove_breakpoint", 3780747571)
 
     public val clearBreakpointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "clear_breakpoints")
+        TypeManager.getMethodBindPtr("EngineDebugger", "clear_breakpoints", 3218959716)
   }
 }

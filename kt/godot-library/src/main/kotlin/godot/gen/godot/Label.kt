@@ -398,127 +398,136 @@ public open class Label : Control() {
 
   internal object MethodBindings {
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_horizontal_alignment")
+        TypeManager.getMethodBindPtr("Label", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_horizontal_alignment")
+        TypeManager.getMethodBindPtr("Label", "get_horizontal_alignment", 341400642)
 
     public val setVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_vertical_alignment")
+        TypeManager.getMethodBindPtr("Label", "set_vertical_alignment", 1796458609)
 
     public val getVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_vertical_alignment")
+        TypeManager.getMethodBindPtr("Label", "get_vertical_alignment", 3274884059)
 
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_text")
+    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_text")
+    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_text", 201670096)
 
     public val setLabelSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_label_settings")
+        TypeManager.getMethodBindPtr("Label", "set_label_settings", 1030653839)
 
     public val getLabelSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_label_settings")
+        TypeManager.getMethodBindPtr("Label", "get_label_settings", 826676056)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_text_direction")
+        TypeManager.getMethodBindPtr("Label", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_text_direction")
+        TypeManager.getMethodBindPtr("Label", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_language")
+    public val setLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_language")
+    public val getLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_language", 201670096)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_autowrap_mode")
+        TypeManager.getMethodBindPtr("Label", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_autowrap_mode")
+        TypeManager.getMethodBindPtr("Label", "get_autowrap_mode", 1549071663)
 
     public val setJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_justification_flags")
+        TypeManager.getMethodBindPtr("Label", "set_justification_flags", 2877345813)
 
     public val getJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_justification_flags")
+        TypeManager.getMethodBindPtr("Label", "get_justification_flags", 1583363614)
 
-    public val setClipTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_clip_text")
+    public val setClipTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_clip_text", 2586408642)
 
     public val isClippingTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "is_clipping_text")
+        TypeManager.getMethodBindPtr("Label", "is_clipping_text", 36873697)
 
-    public val setTabStopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_tab_stops")
+    public val setTabStopsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_tab_stops", 2899603908)
 
-    public val getTabStopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_tab_stops")
+    public val getTabStopsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_tab_stops", 675695659)
 
     public val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("Label", "set_text_overrun_behavior", 1008890932)
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("Label", "get_text_overrun_behavior", 3779142101)
 
     public val setEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_ellipsis_char")
+        TypeManager.getMethodBindPtr("Label", "set_ellipsis_char", 83702148)
 
     public val getEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_ellipsis_char")
+        TypeManager.getMethodBindPtr("Label", "get_ellipsis_char", 201670096)
 
-    public val setUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_uppercase")
+    public val setUppercasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_uppercase", 2586408642)
 
-    public val isUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "is_uppercase")
+    public val isUppercasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "is_uppercase", 36873697)
 
-    public val getLineHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_line_height")
+    public val getLineHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_line_height", 181039630)
 
-    public val getLineCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_line_count")
+    public val getLineCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_line_count", 3905245786)
 
     public val getVisibleLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_line_count")
+        TypeManager.getMethodBindPtr("Label", "get_visible_line_count", 3905245786)
 
     public val getTotalCharacterCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_total_character_count")
+        TypeManager.getMethodBindPtr("Label", "get_total_character_count", 3905245786)
 
     public val setVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_characters")
+        TypeManager.getMethodBindPtr("Label", "set_visible_characters", 1286410249)
 
     public val getVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_characters")
+        TypeManager.getMethodBindPtr("Label", "get_visible_characters", 3905245786)
 
     public val getVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_characters_behavior")
+        TypeManager.getMethodBindPtr("Label", "get_visible_characters_behavior", 258789322)
 
     public val setVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_characters_behavior")
+        TypeManager.getMethodBindPtr("Label", "set_visible_characters_behavior", 3383839701)
 
     public val setVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_ratio")
+        TypeManager.getMethodBindPtr("Label", "set_visible_ratio", 373806689)
 
     public val getVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_ratio")
+        TypeManager.getMethodBindPtr("Label", "get_visible_ratio", 1740695150)
 
     public val setLinesSkippedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_lines_skipped")
+        TypeManager.getMethodBindPtr("Label", "set_lines_skipped", 1286410249)
 
     public val getLinesSkippedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_lines_skipped")
+        TypeManager.getMethodBindPtr("Label", "get_lines_skipped", 3905245786)
 
     public val setMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_max_lines_visible")
+        TypeManager.getMethodBindPtr("Label", "set_max_lines_visible", 1286410249)
 
     public val getMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_max_lines_visible")
+        TypeManager.getMethodBindPtr("Label", "get_max_lines_visible", 3905245786)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override_options", 3995934104)
 
     public val getCharacterBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_character_bounds")
+        TypeManager.getMethodBindPtr("Label", "get_character_bounds", 3327874267)
   }
 }

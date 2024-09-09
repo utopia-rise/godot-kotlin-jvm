@@ -45,9 +45,9 @@ public open class CenterContainer : Container() {
 
   internal object MethodBindings {
     public val setUseTopLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CenterContainer", "set_use_top_left")
+        TypeManager.getMethodBindPtr("CenterContainer", "set_use_top_left", 2586408642)
 
     public val isUsingTopLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CenterContainer", "is_using_top_left")
+        TypeManager.getMethodBindPtr("CenterContainer", "is_using_top_left", 36873697)
   }
 }

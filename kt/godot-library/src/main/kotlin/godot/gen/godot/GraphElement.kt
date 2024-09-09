@@ -179,32 +179,33 @@ public open class GraphElement : Container() {
 
   internal object MethodBindings {
     public val setResizablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_resizable")
+        TypeManager.getMethodBindPtr("GraphElement", "set_resizable", 2586408642)
 
     public val isResizablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_resizable")
+        TypeManager.getMethodBindPtr("GraphElement", "is_resizable", 36873697)
 
     public val setDraggablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_draggable")
+        TypeManager.getMethodBindPtr("GraphElement", "set_draggable", 2586408642)
 
     public val isDraggablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_draggable")
+        TypeManager.getMethodBindPtr("GraphElement", "is_draggable", 2240911060)
 
     public val setSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_selectable")
+        TypeManager.getMethodBindPtr("GraphElement", "set_selectable", 2586408642)
 
     public val isSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_selectable")
+        TypeManager.getMethodBindPtr("GraphElement", "is_selectable", 2240911060)
 
     public val setSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_selected")
+        TypeManager.getMethodBindPtr("GraphElement", "set_selected", 2586408642)
 
-    public val isSelectedPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphElement", "is_selected")
+    public val isSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphElement", "is_selected", 2240911060)
 
     public val setPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_position_offset")
+        TypeManager.getMethodBindPtr("GraphElement", "set_position_offset", 743155724)
 
     public val getPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "get_position_offset")
+        TypeManager.getMethodBindPtr("GraphElement", "get_position_offset", 3341600327)
   }
 }

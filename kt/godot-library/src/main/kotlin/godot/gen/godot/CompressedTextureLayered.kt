@@ -52,9 +52,10 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   public companion object
 
   internal object MethodBindings {
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("CompressedTextureLayered", "load")
+    public val loadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CompressedTextureLayered", "load", 166001499)
 
     public val getLoadPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompressedTextureLayered", "get_load_path")
+        TypeManager.getMethodBindPtr("CompressedTextureLayered", "get_load_path", 201670096)
   }
 }

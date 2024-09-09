@@ -110,21 +110,21 @@ public open class CanvasGroup : Node2D() {
 
   internal object MethodBindings {
     public val setFitMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "set_fit_margin")
+        TypeManager.getMethodBindPtr("CanvasGroup", "set_fit_margin", 373806689)
 
     public val getFitMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "get_fit_margin")
+        TypeManager.getMethodBindPtr("CanvasGroup", "get_fit_margin", 1740695150)
 
     public val setClearMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "set_clear_margin")
+        TypeManager.getMethodBindPtr("CanvasGroup", "set_clear_margin", 373806689)
 
     public val getClearMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "get_clear_margin")
+        TypeManager.getMethodBindPtr("CanvasGroup", "get_clear_margin", 1740695150)
 
     public val setUseMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "set_use_mipmaps")
+        TypeManager.getMethodBindPtr("CanvasGroup", "set_use_mipmaps", 2586408642)
 
     public val isUsingMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "is_using_mipmaps")
+        TypeManager.getMethodBindPtr("CanvasGroup", "is_using_mipmaps", 36873697)
   }
 }

@@ -505,110 +505,111 @@ public open class NavigationPolygon : Resource() {
 
   internal object MethodBindings {
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_vertices")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_vertices", 1509147220)
 
     public val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_vertices")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_vertices", 2961356807)
 
     public val addPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "add_polygon")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "add_polygon", 3614634198)
 
     public val getPolygonCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon_count")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon_count", 3905245786)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon", 3668444399)
 
     public val clearPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_polygons")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_polygons", 3218959716)
 
     public val getNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_navigation_mesh", 330232164)
 
     public val addOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline", 1509147220)
 
     public val addOutlineAtIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline_at_index")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline_at_index", 1569738947)
 
     public val getOutlineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline_count")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline_count", 3905245786)
 
     public val setOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_outline")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_outline", 1201971903)
 
     public val getOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline", 3946907486)
 
     public val removeOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "remove_outline")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "remove_outline", 1286410249)
 
     public val clearOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_outlines")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_outlines", 3218959716)
 
     public val makePolygonsFromOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "make_polygons_from_outlines")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "make_polygons_from_outlines", 3218959716)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_cell_size")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_cell_size", 373806689)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_cell_size")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_cell_size", 1740695150)
 
     public val setBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_border_size")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_border_size", 373806689)
 
     public val getBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_border_size")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_border_size", 1740695150)
 
     public val setParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_geometry_type")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_geometry_type", 2507971764)
 
     public val getParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_geometry_type")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_geometry_type", 1073219508)
 
     public val setParsedCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask", 1286410249)
 
     public val getParsedCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask", 3905245786)
 
     public val setParsedCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask_value")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask_value", 300928843)
 
     public val getParsedCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask_value")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask_value", 1116898809)
 
     public val setSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_source_geometry_mode")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_source_geometry_mode", 4002316705)
 
     public val getSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_source_geometry_mode")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_source_geometry_mode", 459686762)
 
     public val setSourceGeometryGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_source_geometry_group_name")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_source_geometry_group_name", 3304788590)
 
     public val getSourceGeometryGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_source_geometry_group_name")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_source_geometry_group_name", 2002593661)
 
     public val setAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_agent_radius")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_agent_radius", 373806689)
 
     public val getAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_agent_radius")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_agent_radius", 1740695150)
 
     public val setBakingRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect", 2046264180)
 
     public val getBakingRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect", 1639390495)
 
     public val setBakingRectOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect_offset")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect_offset", 743155724)
 
     public val getBakingRectOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect_offset")
+        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect_offset", 3341600327)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationPolygon", "clear")
+    public val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPolygon", "clear", 3218959716)
   }
 }

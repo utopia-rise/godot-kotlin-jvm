@@ -221,32 +221,34 @@ public object IP : Object() {
   }
 
   internal object MethodBindings {
-    public val resolveHostnamePtr: VoidPtr = TypeManager.getMethodBindPtr("IP", "resolve_hostname")
+    public val resolveHostnamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("IP", "resolve_hostname", 4283295457)
 
     public val resolveHostnameAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname_addresses")
+        TypeManager.getMethodBindPtr("IP", "resolve_hostname_addresses", 773767525)
 
     public val resolveHostnameQueueItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname_queue_item")
+        TypeManager.getMethodBindPtr("IP", "resolve_hostname_queue_item", 1749894742)
 
     public val getResolveItemStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_status")
+        TypeManager.getMethodBindPtr("IP", "get_resolve_item_status", 3812250196)
 
     public val getResolveItemAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_address")
+        TypeManager.getMethodBindPtr("IP", "get_resolve_item_address", 844755477)
 
     public val getResolveItemAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_addresses")
+        TypeManager.getMethodBindPtr("IP", "get_resolve_item_addresses", 663333327)
 
     public val eraseResolveItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "erase_resolve_item")
+        TypeManager.getMethodBindPtr("IP", "erase_resolve_item", 1286410249)
 
     public val getLocalAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_local_addresses")
+        TypeManager.getMethodBindPtr("IP", "get_local_addresses", 1139954409)
 
     public val getLocalInterfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_local_interfaces")
+        TypeManager.getMethodBindPtr("IP", "get_local_interfaces", 3995934104)
 
-    public val clearCachePtr: VoidPtr = TypeManager.getMethodBindPtr("IP", "clear_cache")
+    public val clearCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("IP", "clear_cache", 3005725572)
   }
 }

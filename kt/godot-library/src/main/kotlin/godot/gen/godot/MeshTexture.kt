@@ -100,20 +100,22 @@ public open class MeshTexture : Texture2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshTexture", "set_mesh")
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshTexture", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshTexture", "get_mesh")
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshTexture", "get_mesh", 1808005922)
 
     public val setImageSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_image_size")
+        TypeManager.getMethodBindPtr("MeshTexture", "set_image_size", 743155724)
 
     public val getImageSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_image_size")
+        TypeManager.getMethodBindPtr("MeshTexture", "get_image_size", 3341600327)
 
     public val setBaseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_base_texture")
+        TypeManager.getMethodBindPtr("MeshTexture", "set_base_texture", 4051416890)
 
     public val getBaseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_base_texture")
+        TypeManager.getMethodBindPtr("MeshTexture", "get_base_texture", 3635182373)
   }
 }

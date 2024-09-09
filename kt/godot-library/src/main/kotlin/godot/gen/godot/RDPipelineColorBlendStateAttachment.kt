@@ -263,72 +263,72 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
 
   internal object MethodBindings {
     public val setAsMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_as_mix")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_as_mix", 3218959716)
 
     public val setEnableBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_enable_blend")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_enable_blend", 2586408642)
 
     public val getEnableBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_enable_blend")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_enable_blend", 36873697)
 
     public val setSrcColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_color_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_color_blend_factor", 2251019273)
 
     public val getSrcColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_color_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_color_blend_factor", 3691288359)
 
     public val setDstColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_color_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_color_blend_factor", 2251019273)
 
     public val getDstColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_color_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_color_blend_factor", 3691288359)
 
     public val setColorBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_color_blend_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_color_blend_op", 3073022720)
 
     public val getColorBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_color_blend_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_color_blend_op", 1385093561)
 
     public val setSrcAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_alpha_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_alpha_blend_factor", 2251019273)
 
     public val getSrcAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_alpha_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_alpha_blend_factor", 3691288359)
 
     public val setDstAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_alpha_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_alpha_blend_factor", 2251019273)
 
     public val getDstAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_alpha_blend_factor")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_alpha_blend_factor", 3691288359)
 
     public val setAlphaBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_alpha_blend_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_alpha_blend_op", 3073022720)
 
     public val getAlphaBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_alpha_blend_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_alpha_blend_op", 1385093561)
 
     public val setWriteRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_r")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_r", 2586408642)
 
     public val getWriteRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_r")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_r", 36873697)
 
     public val setWriteGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_g")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_g", 2586408642)
 
     public val getWriteGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_g")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_g", 36873697)
 
     public val setWriteBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_b")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_b", 2586408642)
 
     public val getWriteBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_b")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_b", 36873697)
 
     public val setWriteAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_a")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_a", 2586408642)
 
     public val getWriteAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_a")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_a", 36873697)
   }
 }

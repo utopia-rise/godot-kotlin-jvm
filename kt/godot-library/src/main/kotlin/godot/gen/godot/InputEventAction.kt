@@ -101,24 +101,24 @@ public open class InputEventAction : InputEvent() {
 
   internal object MethodBindings {
     public val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_action")
+        TypeManager.getMethodBindPtr("InputEventAction", "set_action", 3304788590)
 
     public val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_action")
+        TypeManager.getMethodBindPtr("InputEventAction", "get_action", 2002593661)
 
     public val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_pressed")
+        TypeManager.getMethodBindPtr("InputEventAction", "set_pressed", 2586408642)
 
     public val setStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_strength")
+        TypeManager.getMethodBindPtr("InputEventAction", "set_strength", 373806689)
 
     public val getStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_strength")
+        TypeManager.getMethodBindPtr("InputEventAction", "get_strength", 1740695150)
 
     public val setEventIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_event_index")
+        TypeManager.getMethodBindPtr("InputEventAction", "set_event_index", 1286410249)
 
     public val getEventIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_event_index")
+        TypeManager.getMethodBindPtr("InputEventAction", "get_event_index", 3905245786)
   }
 }

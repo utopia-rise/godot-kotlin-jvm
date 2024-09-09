@@ -52,8 +52,9 @@ public open class Path3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Path3D", "set_curve")
+    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Path3D", "set_curve", 408955118)
 
-    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Path3D", "get_curve")
+    public val getCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Path3D", "get_curve", 4244715212)
   }
 }

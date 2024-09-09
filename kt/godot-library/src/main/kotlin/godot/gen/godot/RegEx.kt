@@ -225,24 +225,27 @@ public open class RegEx : RefCounted() {
 
   internal object MethodBindings {
     public val createFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "create_from_string")
+        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 2150300909)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "clear", 3218959716)
 
-    public val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile")
+    public val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile", 166001499)
 
-    public val searchPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "search")
+    public val searchPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "search", 3365977994)
 
-    public val searchAllPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "search_all")
+    public val searchAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegEx", "search_all", 849021363)
 
-    public val subPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "sub")
+    public val subPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "sub", 54019702)
 
-    public val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "is_valid")
+    public val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "is_valid", 36873697)
 
-    public val getPatternPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "get_pattern")
+    public val getPatternPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegEx", "get_pattern", 201670096)
 
-    public val getGroupCountPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "get_group_count")
+    public val getGroupCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegEx", "get_group_count", 3905245786)
 
-    public val getNamesPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "get_names")
+    public val getNamesPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "get_names", 1139954409)
   }
 }

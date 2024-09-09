@@ -214,42 +214,46 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   public companion object
 
   internal object MethodBindings {
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("WebRTCDataChannel", "poll")
+    public val pollPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "poll", 166280745)
 
-    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("WebRTCDataChannel", "close")
+    public val closePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "close", 3218959716)
 
     public val wasStringPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "was_string_packet")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "was_string_packet", 36873697)
 
     public val setWriteModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "set_write_mode")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "set_write_mode", 1999768052)
 
     public val getWriteModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_write_mode")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_write_mode", 2848495172)
 
     public val getReadyStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_ready_state")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_ready_state", 3501143017)
 
-    public val getLabelPtr: VoidPtr = TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_label")
+    public val getLabelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_label", 201670096)
 
     public val isOrderedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_ordered")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_ordered", 36873697)
 
-    public val getIdPtr: VoidPtr = TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_id")
+    public val getIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_id", 3905245786)
 
     public val getMaxPacketLifeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_packet_life_time")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_packet_life_time", 3905245786)
 
     public val getMaxRetransmitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_retransmits")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_max_retransmits", 3905245786)
 
     public val getProtocolPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_protocol")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_protocol", 201670096)
 
     public val isNegotiatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_negotiated")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "is_negotiated", 36873697)
 
     public val getBufferedAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_buffered_amount")
+        TypeManager.getMethodBindPtr("WebRTCDataChannel", "get_buffered_amount", 3905245786)
   }
 }

@@ -116,33 +116,33 @@ public open class CameraAttributes : Resource() {
 
   internal object MethodBindings {
     public val setExposureMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_multiplier")
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_multiplier", 373806689)
 
     public val getExposureMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_multiplier")
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_multiplier", 1740695150)
 
     public val setExposureSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_sensitivity")
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_sensitivity", 373806689)
 
     public val getExposureSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_sensitivity")
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_sensitivity", 1740695150)
 
     public val setAutoExposureEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_enabled")
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_enabled", 2586408642)
 
     public val isAutoExposureEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "is_auto_exposure_enabled")
+        TypeManager.getMethodBindPtr("CameraAttributes", "is_auto_exposure_enabled", 36873697)
 
     public val setAutoExposureSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_speed")
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_speed", 373806689)
 
     public val getAutoExposureSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_speed")
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_speed", 1740695150)
 
     public val setAutoExposureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_scale")
+        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_scale", 373806689)
 
     public val getAutoExposureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_scale")
+        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_scale", 1740695150)
   }
 }

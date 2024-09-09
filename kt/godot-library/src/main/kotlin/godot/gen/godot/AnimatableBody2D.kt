@@ -51,9 +51,9 @@ public open class AnimatableBody2D : StaticBody2D() {
 
   internal object MethodBindings {
     public val setSyncToPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatableBody2D", "set_sync_to_physics")
+        TypeManager.getMethodBindPtr("AnimatableBody2D", "set_sync_to_physics", 2586408642)
 
     public val isSyncToPhysicsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatableBody2D", "is_sync_to_physics_enabled")
+        TypeManager.getMethodBindPtr("AnimatableBody2D", "is_sync_to_physics_enabled", 36873697)
   }
 }

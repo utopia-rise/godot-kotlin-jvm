@@ -61,8 +61,9 @@ public open class SkinReference internal constructor() : RefCounted() {
 
   internal object MethodBindings {
     public val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkinReference", "get_skeleton")
+        TypeManager.getMethodBindPtr("SkinReference", "get_skeleton", 2944877500)
 
-    public val getSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("SkinReference", "get_skin")
+    public val getSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkinReference", "get_skin", 2074563878)
   }
 }

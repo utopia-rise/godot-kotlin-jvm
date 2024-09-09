@@ -262,57 +262,57 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
 
   internal object MethodBindings {
     public val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape", 968641751)
 
     public val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape", 121922552)
 
     public val setShapeRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape_rid")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape_rid", 2722037293)
 
     public val getShapeRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape_rid")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape_rid", 2944877500)
 
     public val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_transform")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_transform", 2952846383)
 
     public val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_transform")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_transform", 3229777777)
 
     public val setMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_motion")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_motion", 3460891852)
 
     public val getMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_motion")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_motion", 3360562783)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_margin")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_margin", 373806689)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_margin")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_margin", 1740695150)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_collision_mask", 3905245786)
 
     public val setExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_exclude")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_exclude", 381264803)
 
     public val getExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_exclude")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_exclude", 3995934104)
 
     public val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_bodies")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_bodies", 2586408642)
 
     public val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_bodies_enabled")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
 
     public val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_areas")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_areas", 2586408642)
 
     public val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_areas_enabled")
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
   }
 }

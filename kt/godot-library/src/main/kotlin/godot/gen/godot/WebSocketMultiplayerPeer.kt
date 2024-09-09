@@ -190,54 +190,54 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
 
   internal object MethodBindings {
     public val createClientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_client")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_client", 1966198364)
 
     public val createServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_server")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "create_server", 2400822951)
 
     public val getPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer", 1381378851)
 
     public val getPeerAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_address")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_address", 844755477)
 
     public val getPeerPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_port")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_peer_port", 923996154)
 
     public val getSupportedProtocolsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_supported_protocols")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_supported_protocols", 1139954409)
 
     public val setSupportedProtocolsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_supported_protocols")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_supported_protocols", 4015028928)
 
     public val getHandshakeHeadersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_headers")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_headers", 1139954409)
 
     public val setHandshakeHeadersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_headers")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_headers", 4015028928)
 
     public val getInboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_inbound_buffer_size")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_inbound_buffer_size", 3905245786)
 
     public val setInboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_inbound_buffer_size")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_inbound_buffer_size", 1286410249)
 
     public val getOutboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_outbound_buffer_size")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_outbound_buffer_size", 3905245786)
 
     public val setOutboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_outbound_buffer_size")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_outbound_buffer_size", 1286410249)
 
     public val getHandshakeTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_timeout")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_handshake_timeout", 1740695150)
 
     public val setHandshakeTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_timeout")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_handshake_timeout", 373806689)
 
     public val setMaxQueuedPacketsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_max_queued_packets")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "set_max_queued_packets", 1286410249)
 
     public val getMaxQueuedPacketsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_max_queued_packets")
+        TypeManager.getMethodBindPtr("WebSocketMultiplayerPeer", "get_max_queued_packets", 3905245786)
   }
 }

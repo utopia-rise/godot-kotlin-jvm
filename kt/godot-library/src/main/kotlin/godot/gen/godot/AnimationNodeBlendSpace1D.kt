@@ -223,60 +223,60 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
 
   internal object MethodBindings {
     public val addBlendPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "add_blend_point")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "add_blend_point", 285050433)
 
     public val setBlendPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_position")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_position", 1602489585)
 
     public val getBlendPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_position")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_position", 2339986948)
 
     public val setBlendPointNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_node", 4240341528)
 
     public val getBlendPointNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_node")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_node", 665599029)
 
     public val removeBlendPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "remove_blend_point")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "remove_blend_point", 1286410249)
 
     public val getBlendPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_count")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_count", 3905245786)
 
     public val setMinSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_min_space")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_min_space", 373806689)
 
     public val getMinSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_min_space")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_min_space", 1740695150)
 
     public val setMaxSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_max_space")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_max_space", 373806689)
 
     public val getMaxSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_max_space")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_max_space", 1740695150)
 
     public val setSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_snap")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_snap", 373806689)
 
     public val getSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_snap")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_snap", 1740695150)
 
     public val setValueLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_value_label")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_value_label", 83702148)
 
     public val getValueLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_value_label")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_value_label", 201670096)
 
     public val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_mode", 2600869457)
 
     public val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_mode", 1547667849)
 
     public val setUseSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_use_sync")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_use_sync", 2586408642)
 
     public val isUsingSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "is_using_sync")
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "is_using_sync", 36873697)
   }
 }

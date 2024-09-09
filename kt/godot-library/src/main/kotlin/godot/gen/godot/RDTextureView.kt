@@ -101,33 +101,33 @@ public open class RDTextureView : RefCounted() {
 
   internal object MethodBindings {
     public val setFormatOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_format_override")
+        TypeManager.getMethodBindPtr("RDTextureView", "set_format_override", 565531219)
 
     public val getFormatOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_format_override")
+        TypeManager.getMethodBindPtr("RDTextureView", "get_format_override", 2235804183)
 
     public val setSwizzleRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_r")
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_r", 3833362581)
 
     public val getSwizzleRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_r")
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_r", 4150792614)
 
     public val setSwizzleGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_g")
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_g", 3833362581)
 
     public val getSwizzleGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_g")
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_g", 4150792614)
 
     public val setSwizzleBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_b")
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_b", 3833362581)
 
     public val getSwizzleBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_b")
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_b", 4150792614)
 
     public val setSwizzleAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_a")
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_a", 3833362581)
 
     public val getSwizzleAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_a")
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_a", 4150792614)
   }
 }

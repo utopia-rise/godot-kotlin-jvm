@@ -853,147 +853,164 @@ public object Input : Object() {
 
   internal object MethodBindings {
     public val isAnythingPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_anything_pressed")
+        TypeManager.getMethodBindPtr("Input", "is_anything_pressed", 36873697)
 
-    public val isKeyPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "is_key_pressed")
+    public val isKeyPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_key_pressed", 1938909964)
 
     public val isPhysicalKeyPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_physical_key_pressed")
+        TypeManager.getMethodBindPtr("Input", "is_physical_key_pressed", 1938909964)
 
     public val isKeyLabelPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_key_label_pressed")
+        TypeManager.getMethodBindPtr("Input", "is_key_label_pressed", 1938909964)
 
     public val isMouseButtonPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_mouse_button_pressed")
+        TypeManager.getMethodBindPtr("Input", "is_mouse_button_pressed", 1821097125)
 
     public val isJoyButtonPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_joy_button_pressed")
+        TypeManager.getMethodBindPtr("Input", "is_joy_button_pressed", 787208542)
 
     public val isActionPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_action_pressed")
+        TypeManager.getMethodBindPtr("Input", "is_action_pressed", 1558498928)
 
     public val isActionJustPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_action_just_pressed")
+        TypeManager.getMethodBindPtr("Input", "is_action_just_pressed", 1558498928)
 
     public val isActionJustReleasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_action_just_released")
+        TypeManager.getMethodBindPtr("Input", "is_action_just_released", 1558498928)
 
     public val getActionStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_action_strength")
+        TypeManager.getMethodBindPtr("Input", "get_action_strength", 801543509)
 
     public val getActionRawStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_action_raw_strength")
+        TypeManager.getMethodBindPtr("Input", "get_action_raw_strength", 801543509)
 
-    public val getAxisPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_axis")
+    public val getAxisPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_axis", 1958752504)
 
-    public val getVectorPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_vector")
+    public val getVectorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_vector", 2479607902)
 
-    public val addJoyMappingPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "add_joy_mapping")
+    public val addJoyMappingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "add_joy_mapping", 1168363258)
 
     public val removeJoyMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "remove_joy_mapping")
+        TypeManager.getMethodBindPtr("Input", "remove_joy_mapping", 83702148)
 
-    public val isJoyKnownPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "is_joy_known")
+    public val isJoyKnownPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_joy_known", 3067735520)
 
-    public val getJoyAxisPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_joy_axis")
+    public val getJoyAxisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_axis", 4063175957)
 
-    public val getJoyNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_joy_name")
+    public val getJoyNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_name", 990163283)
 
-    public val getJoyGuidPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_joy_guid")
+    public val getJoyGuidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_guid", 844755477)
 
-    public val getJoyInfoPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_joy_info")
+    public val getJoyInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_joy_info", 3485342025)
 
     public val shouldIgnoreDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "should_ignore_device")
+        TypeManager.getMethodBindPtr("Input", "should_ignore_device", 2522259332)
 
     public val getConnectedJoypadsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_connected_joypads")
+        TypeManager.getMethodBindPtr("Input", "get_connected_joypads", 2915620761)
 
     public val getJoyVibrationStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_joy_vibration_strength")
+        TypeManager.getMethodBindPtr("Input", "get_joy_vibration_strength", 3114997196)
 
     public val getJoyVibrationDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_joy_vibration_duration")
+        TypeManager.getMethodBindPtr("Input", "get_joy_vibration_duration", 4025615559)
 
     public val startJoyVibrationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "start_joy_vibration")
+        TypeManager.getMethodBindPtr("Input", "start_joy_vibration", 2576575033)
 
     public val stopJoyVibrationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "stop_joy_vibration")
+        TypeManager.getMethodBindPtr("Input", "stop_joy_vibration", 1286410249)
 
     public val vibrateHandheldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "vibrate_handheld")
+        TypeManager.getMethodBindPtr("Input", "vibrate_handheld", 544894297)
 
-    public val getGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_gravity")
+    public val getGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_gravity", 3360562783)
 
     public val getAccelerometerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_accelerometer")
+        TypeManager.getMethodBindPtr("Input", "get_accelerometer", 3360562783)
 
     public val getMagnetometerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_magnetometer")
+        TypeManager.getMethodBindPtr("Input", "get_magnetometer", 3360562783)
 
-    public val getGyroscopePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_gyroscope")
+    public val getGyroscopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_gyroscope", 3360562783)
 
-    public val setGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "set_gravity")
+    public val setGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_gravity", 3460891852)
 
     public val setAccelerometerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "set_accelerometer")
+        TypeManager.getMethodBindPtr("Input", "set_accelerometer", 3460891852)
 
     public val setMagnetometerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "set_magnetometer")
+        TypeManager.getMethodBindPtr("Input", "set_magnetometer", 3460891852)
 
-    public val setGyroscopePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "set_gyroscope")
+    public val setGyroscopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_gyroscope", 3460891852)
 
     public val getLastMouseVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_last_mouse_velocity")
+        TypeManager.getMethodBindPtr("Input", "get_last_mouse_velocity", 1497962370)
 
     public val getLastMouseScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_last_mouse_screen_velocity")
+        TypeManager.getMethodBindPtr("Input", "get_last_mouse_screen_velocity", 1497962370)
 
     public val getMouseButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_mouse_button_mask")
+        TypeManager.getMethodBindPtr("Input", "get_mouse_button_mask", 2512161324)
 
-    public val setMouseModePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "set_mouse_mode")
+    public val setMouseModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "set_mouse_mode", 2228490894)
 
-    public val getMouseModePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "get_mouse_mode")
+    public val getMouseModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "get_mouse_mode", 965286182)
 
-    public val warpMousePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "warp_mouse")
+    public val warpMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "warp_mouse", 743155724)
 
-    public val actionPressPtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "action_press")
+    public val actionPressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "action_press", 1713091165)
 
-    public val actionReleasePtr: VoidPtr = TypeManager.getMethodBindPtr("Input", "action_release")
+    public val actionReleasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "action_release", 3304788590)
 
     public val setDefaultCursorShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "set_default_cursor_shape")
+        TypeManager.getMethodBindPtr("Input", "set_default_cursor_shape", 2124816902)
 
     public val getCurrentCursorShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "get_current_cursor_shape")
+        TypeManager.getMethodBindPtr("Input", "get_current_cursor_shape", 3455658929)
 
     public val setCustomMouseCursorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "set_custom_mouse_cursor")
+        TypeManager.getMethodBindPtr("Input", "set_custom_mouse_cursor", 703945977)
 
     public val parseInputEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "parse_input_event")
+        TypeManager.getMethodBindPtr("Input", "parse_input_event", 3754044979)
 
     public val setUseAccumulatedInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "set_use_accumulated_input")
+        TypeManager.getMethodBindPtr("Input", "set_use_accumulated_input", 2586408642)
 
     public val isUsingAccumulatedInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_using_accumulated_input")
+        TypeManager.getMethodBindPtr("Input", "is_using_accumulated_input", 2240911060)
 
     public val flushBufferedEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "flush_buffered_events")
+        TypeManager.getMethodBindPtr("Input", "flush_buffered_events", 3218959716)
 
     public val setEmulateMouseFromTouchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "set_emulate_mouse_from_touch")
+        TypeManager.getMethodBindPtr("Input", "set_emulate_mouse_from_touch", 2586408642)
 
     public val isEmulatingMouseFromTouchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_emulating_mouse_from_touch")
+        TypeManager.getMethodBindPtr("Input", "is_emulating_mouse_from_touch", 36873697)
 
     public val setEmulateTouchFromMousePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "set_emulate_touch_from_mouse")
+        TypeManager.getMethodBindPtr("Input", "set_emulate_touch_from_mouse", 2586408642)
 
     public val isEmulatingTouchFromMousePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Input", "is_emulating_touch_from_mouse")
+        TypeManager.getMethodBindPtr("Input", "is_emulating_touch_from_mouse", 36873697)
   }
 }

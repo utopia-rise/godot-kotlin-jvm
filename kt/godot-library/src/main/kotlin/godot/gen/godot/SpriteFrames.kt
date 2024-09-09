@@ -211,50 +211,53 @@ public open class SpriteFrames : Resource() {
 
   internal object MethodBindings {
     public val addAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "add_animation")
+        TypeManager.getMethodBindPtr("SpriteFrames", "add_animation", 3304788590)
 
     public val hasAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "has_animation")
+        TypeManager.getMethodBindPtr("SpriteFrames", "has_animation", 2619796661)
 
     public val removeAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "remove_animation")
+        TypeManager.getMethodBindPtr("SpriteFrames", "remove_animation", 3304788590)
 
     public val renameAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "rename_animation")
+        TypeManager.getMethodBindPtr("SpriteFrames", "rename_animation", 3740211285)
 
     public val getAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_names")
+        TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_names", 1139954409)
 
     public val setAnimationSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "set_animation_speed")
+        TypeManager.getMethodBindPtr("SpriteFrames", "set_animation_speed", 4135858297)
 
     public val getAnimationSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_speed")
+        TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_speed", 2349060816)
 
     public val setAnimationLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "set_animation_loop")
+        TypeManager.getMethodBindPtr("SpriteFrames", "set_animation_loop", 2524380260)
 
     public val getAnimationLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_loop")
+        TypeManager.getMethodBindPtr("SpriteFrames", "get_animation_loop", 2619796661)
 
-    public val addFramePtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteFrames", "add_frame")
+    public val addFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteFrames", "add_frame", 1351332740)
 
-    public val setFramePtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteFrames", "set_frame")
+    public val setFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteFrames", "set_frame", 56804795)
 
     public val removeFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "remove_frame")
+        TypeManager.getMethodBindPtr("SpriteFrames", "remove_frame", 2415702435)
 
     public val getFrameCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "get_frame_count")
+        TypeManager.getMethodBindPtr("SpriteFrames", "get_frame_count", 2458036349)
 
     public val getFrameTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "get_frame_texture")
+        TypeManager.getMethodBindPtr("SpriteFrames", "get_frame_texture", 2900517879)
 
     public val getFrameDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteFrames", "get_frame_duration")
+        TypeManager.getMethodBindPtr("SpriteFrames", "get_frame_duration", 1129309260)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteFrames", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteFrames", "clear", 3304788590)
 
-    public val clearAllPtr: VoidPtr = TypeManager.getMethodBindPtr("SpriteFrames", "clear_all")
+    public val clearAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpriteFrames", "clear_all", 3218959716)
   }
 }

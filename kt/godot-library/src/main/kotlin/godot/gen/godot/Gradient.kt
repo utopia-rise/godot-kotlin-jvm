@@ -238,43 +238,53 @@ public open class Gradient : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val addPointPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "add_point")
+    public val addPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "add_point", 3629403827)
 
-    public val removePointPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "remove_point")
+    public val removePointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "remove_point", 1286410249)
 
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "set_offset", 1602489585)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "get_offset", 4025615559)
 
-    public val reversePtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "reverse")
+    public val reversePtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "reverse", 3218959716)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "set_color", 2878471219)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "get_color", 2624840992)
 
-    public val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "sample")
+    public val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "sample", 1250405064)
 
     public val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_point_count")
+        TypeManager.getMethodBindPtr("Gradient", "get_point_count", 3905245786)
 
-    public val setOffsetsPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "set_offsets")
+    public val setOffsetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "set_offsets", 2899603908)
 
-    public val getOffsetsPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "get_offsets")
+    public val getOffsetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "get_offsets", 675695659)
 
-    public val setColorsPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "set_colors")
+    public val setColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "set_colors", 3546319833)
 
-    public val getColorsPtr: VoidPtr = TypeManager.getMethodBindPtr("Gradient", "get_colors")
+    public val getColorsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Gradient", "get_colors", 1392750486)
 
     public val setInterpolationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_mode")
+        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_mode", 1971444490)
 
     public val getInterpolationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_mode")
+        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_mode", 3674172981)
 
     public val setInterpolationColorSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_color_space")
+        TypeManager.getMethodBindPtr("Gradient", "set_interpolation_color_space", 3685995981)
 
     public val getInterpolationColorSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_color_space")
+        TypeManager.getMethodBindPtr("Gradient", "get_interpolation_color_space", 1538296000)
   }
 }

@@ -376,94 +376,109 @@ public open class TextLine : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "clear", 3218959716)
 
-    public val setDirectionPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "set_direction")
+    public val setDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "set_direction", 1418190634)
 
-    public val getDirectionPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_direction")
+    public val getDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_direction", 2516697328)
 
     public val setOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "set_orientation")
+        TypeManager.getMethodBindPtr("TextLine", "set_orientation", 42823726)
 
     public val getOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_orientation")
+        TypeManager.getMethodBindPtr("TextLine", "get_orientation", 175768116)
 
     public val setPreserveInvalidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "set_preserve_invalid")
+        TypeManager.getMethodBindPtr("TextLine", "set_preserve_invalid", 2586408642)
 
     public val getPreserveInvalidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_preserve_invalid")
+        TypeManager.getMethodBindPtr("TextLine", "get_preserve_invalid", 36873697)
 
     public val setPreserveControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "set_preserve_control")
+        TypeManager.getMethodBindPtr("TextLine", "set_preserve_control", 2586408642)
 
     public val getPreserveControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_preserve_control")
+        TypeManager.getMethodBindPtr("TextLine", "get_preserve_control", 36873697)
 
     public val setBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "set_bidi_override")
+        TypeManager.getMethodBindPtr("TextLine", "set_bidi_override", 381264803)
 
-    public val addStringPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "add_string")
+    public val addStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "add_string", 621426851)
 
-    public val addObjectPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "add_object")
+    public val addObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "add_object", 1316529304)
 
-    public val resizeObjectPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "resize_object")
+    public val resizeObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "resize_object", 2095776372)
 
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "set_width")
+    public val setWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "set_width", 373806689)
 
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_width")
+    public val getWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_width", 1740695150)
 
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "set_horizontal_alignment")
+        TypeManager.getMethodBindPtr("TextLine", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_horizontal_alignment")
+        TypeManager.getMethodBindPtr("TextLine", "get_horizontal_alignment", 341400642)
 
-    public val tabAlignPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "tab_align")
+    public val tabAlignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "tab_align", 2899603908)
 
-    public val setFlagsPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "set_flags")
+    public val setFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "set_flags", 2877345813)
 
-    public val getFlagsPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_flags")
+    public val getFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_flags", 1583363614)
 
     public val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "set_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("TextLine", "set_text_overrun_behavior", 1008890932)
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("TextLine", "get_text_overrun_behavior", 3779142101)
 
     public val setEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "set_ellipsis_char")
+        TypeManager.getMethodBindPtr("TextLine", "set_ellipsis_char", 83702148)
 
     public val getEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_ellipsis_char")
+        TypeManager.getMethodBindPtr("TextLine", "get_ellipsis_char", 201670096)
 
-    public val getObjectsPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_objects")
+    public val getObjectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_objects", 3995934104)
 
     public val getObjectRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_object_rect")
+        TypeManager.getMethodBindPtr("TextLine", "get_object_rect", 1742700391)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_size", 3341600327)
 
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_rid")
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_rid", 2944877500)
 
     public val getLineAscentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_line_ascent")
+        TypeManager.getMethodBindPtr("TextLine", "get_line_ascent", 1740695150)
 
     public val getLineDescentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_line_descent")
+        TypeManager.getMethodBindPtr("TextLine", "get_line_descent", 1740695150)
 
-    public val getLineWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "get_line_width")
+    public val getLineWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_line_width", 1740695150)
 
     public val getLineUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_line_underline_position")
+        TypeManager.getMethodBindPtr("TextLine", "get_line_underline_position", 1740695150)
 
     public val getLineUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "get_line_underline_thickness")
+        TypeManager.getMethodBindPtr("TextLine", "get_line_underline_thickness", 1740695150)
 
-    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "draw")
+    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "draw", 856975658)
 
-    public val drawOutlinePtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "draw_outline")
+    public val drawOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "draw_outline", 1343401456)
 
-    public val hitTestPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "hit_test")
+    public val hitTestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "hit_test", 2401831903)
   }
 }

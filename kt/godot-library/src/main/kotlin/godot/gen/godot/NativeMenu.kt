@@ -1040,185 +1040,200 @@ public object NativeMenu : Object() {
   }
 
   internal object MethodBindings {
-    public val hasFeaturePtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "has_feature")
+    public val hasFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "has_feature", 1708975490)
 
     public val hasSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "has_system_menu")
+        TypeManager.getMethodBindPtr("NativeMenu", "has_system_menu", 718213027)
 
     public val getSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu", 469707506)
 
     public val getSystemMenuNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu_name")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu_name", 1281499290)
 
-    public val createMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "create_menu")
+    public val createMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "create_menu", 529393457)
 
-    public val hasMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "has_menu")
+    public val hasMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "has_menu", 4155700596)
 
-    public val freeMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "free_menu")
+    public val freeMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "free_menu", 2722037293)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "get_size", 2440833711)
 
-    public val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "popup")
+    public val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "popup", 2450610377)
 
     public val setInterfaceDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_interface_direction")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_interface_direction", 1265174801)
 
     public val setPopupOpenCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_open_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_open_callback", 3379118538)
 
     public val getPopupOpenCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_open_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_open_callback", 3170603026)
 
     public val setPopupCloseCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_close_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_close_callback", 3379118538)
 
     public val getPopupCloseCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_close_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_close_callback", 3170603026)
 
     public val setMinimumWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_minimum_width")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_minimum_width", 1794382983)
 
     public val getMinimumWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_minimum_width")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_minimum_width", 866169185)
 
-    public val isOpenedPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "is_opened")
+    public val isOpenedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "is_opened", 4155700596)
 
     public val addSubmenuItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_submenu_item")
+        TypeManager.getMethodBindPtr("NativeMenu", "add_submenu_item", 1002030223)
 
-    public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "add_item")
+    public val addItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "add_item", 2553375659)
 
     public val addCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_check_item")
+        TypeManager.getMethodBindPtr("NativeMenu", "add_check_item", 2553375659)
 
-    public val addIconItemPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "add_icon_item")
+    public val addIconItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_item", 2987595282)
 
     public val addIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_check_item")
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_check_item", 2987595282)
 
     public val addRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_radio_check_item")
+        TypeManager.getMethodBindPtr("NativeMenu", "add_radio_check_item", 2553375659)
 
     public val addIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_radio_check_item")
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_radio_check_item", 2987595282)
 
     public val addMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_multistate_item")
+        TypeManager.getMethodBindPtr("NativeMenu", "add_multistate_item", 1558592568)
 
     public val addSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_separator")
+        TypeManager.getMethodBindPtr("NativeMenu", "add_separator", 448810126)
 
     public val findItemIndexWithTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_text")
+        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_text", 1362438794)
 
     public val findItemIndexWithTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_tag")
+        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_tag", 1260085030)
 
     public val findItemIndexWithSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_submenu")
+        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_submenu", 893635918)
 
     public val isItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checked")
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checked", 3120086654)
 
     public val isItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checkable")
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checkable", 3120086654)
 
     public val isItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_radio_checkable")
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_radio_checkable", 3120086654)
 
     public val getItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_callback", 1639989698)
 
     public val getItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_key_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_key_callback", 1639989698)
 
-    public val getItemTagPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "get_item_tag")
+    public val getItemTagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_tag", 4069510997)
 
-    public val getItemTextPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "get_item_text")
+    public val getItemTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_text", 1464764419)
 
     public val getItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_submenu")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_submenu", 1066463050)
 
     public val getItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_accelerator")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_accelerator", 316800700)
 
     public val isItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_disabled")
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_disabled", 3120086654)
 
     public val isItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_hidden")
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_hidden", 3120086654)
 
     public val getItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_tooltip")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_tooltip", 1464764419)
 
     public val getItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_state")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_state", 1120910005)
 
     public val getItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_max_states")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_max_states", 1120910005)
 
-    public val getItemIconPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "get_item_icon")
+    public val getItemIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_icon", 3391850701)
 
     public val getItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_indentation_level")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_indentation_level", 1120910005)
 
     public val setItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checked")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checked", 2658558584)
 
     public val setItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checkable")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checkable", 2658558584)
 
     public val setItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_radio_checkable")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_radio_checkable", 2658558584)
 
     public val setItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_callback", 2779810226)
 
     public val setItemHoverCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hover_callbacks")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hover_callbacks", 2779810226)
 
     public val setItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_key_callback")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_key_callback", 2779810226)
 
-    public val setItemTagPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "set_item_tag")
+    public val setItemTagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_tag", 2706844827)
 
-    public val setItemTextPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "set_item_text")
+    public val setItemTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_text", 4153150897)
 
     public val setItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_submenu")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_submenu", 2310537182)
 
     public val setItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_accelerator")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_accelerator", 786300043)
 
     public val setItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_disabled")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_disabled", 2658558584)
 
     public val setItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hidden")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hidden", 2658558584)
 
     public val setItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_tooltip")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_tooltip", 4153150897)
 
     public val setItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_state")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_state", 4288446313)
 
     public val setItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_max_states")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_max_states", 4288446313)
 
-    public val setItemIconPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "set_item_icon")
+    public val setItemIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_icon", 1388763257)
 
     public val setItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_indentation_level")
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_indentation_level", 4288446313)
 
     public val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_count")
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_count", 2198884583)
 
     public val isSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_system_menu")
+        TypeManager.getMethodBindPtr("NativeMenu", "is_system_menu", 4155700596)
 
-    public val removeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "remove_item")
+    public val removeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "remove_item", 3411492887)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "clear", 2722037293)
   }
 }

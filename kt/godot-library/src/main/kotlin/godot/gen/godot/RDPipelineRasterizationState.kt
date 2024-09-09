@@ -196,69 +196,69 @@ public open class RDPipelineRasterizationState : RefCounted() {
 
   internal object MethodBindings {
     public val setEnableDepthClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_enable_depth_clamp")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_enable_depth_clamp", 2586408642)
 
     public val getEnableDepthClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_enable_depth_clamp")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_enable_depth_clamp", 36873697)
 
     public val setDiscardPrimitivesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_discard_primitives")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_discard_primitives", 2586408642)
 
     public val getDiscardPrimitivesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_discard_primitives")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_discard_primitives", 36873697)
 
     public val setWireframePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_wireframe")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_wireframe", 2586408642)
 
     public val getWireframePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_wireframe")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_wireframe", 36873697)
 
     public val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_cull_mode")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_cull_mode", 2662586502)
 
     public val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_cull_mode")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_cull_mode", 2192484313)
 
     public val setFrontFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_front_face")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_front_face", 2637251213)
 
     public val getFrontFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_front_face")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_front_face", 708793786)
 
     public val setDepthBiasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_enabled")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_enabled", 2586408642)
 
     public val getDepthBiasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_enabled")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_enabled", 36873697)
 
     public val setDepthBiasConstantFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_constant_factor")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_constant_factor", 373806689)
 
     public val getDepthBiasConstantFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_constant_factor")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_constant_factor", 1740695150)
 
     public val setDepthBiasClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_clamp")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_clamp", 373806689)
 
     public val getDepthBiasClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_clamp")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_clamp", 1740695150)
 
     public val setDepthBiasSlopeFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_slope_factor")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_slope_factor", 373806689)
 
     public val getDepthBiasSlopeFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_slope_factor")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_slope_factor", 1740695150)
 
     public val setLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_line_width")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_line_width", 373806689)
 
     public val getLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_line_width")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_line_width", 1740695150)
 
     public val setPatchControlPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_patch_control_points")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_patch_control_points", 1286410249)
 
     public val getPatchControlPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_patch_control_points")
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_patch_control_points", 3905245786)
   }
 }

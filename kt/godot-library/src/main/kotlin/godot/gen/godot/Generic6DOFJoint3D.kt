@@ -231,39 +231,39 @@ public open class Generic6DOFJoint3D : Joint3D() {
 
   internal object MethodBindings {
     public val setParamXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_x")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_x", 2018184242)
 
     public val getParamXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_x")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_x", 2599835054)
 
     public val setParamYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_y")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_y", 2018184242)
 
     public val getParamYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_y")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_y", 2599835054)
 
     public val setParamZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_z")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_param_z", 2018184242)
 
     public val getParamZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_z")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_param_z", 2599835054)
 
     public val setFlagXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_x")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_x", 2451594564)
 
     public val getFlagXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_x")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_x", 2122427807)
 
     public val setFlagYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_y")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_y", 2451594564)
 
     public val getFlagYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_y")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_y", 2122427807)
 
     public val setFlagZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_z")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "set_flag_z", 2451594564)
 
     public val getFlagZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_z")
+        TypeManager.getMethodBindPtr("Generic6DOFJoint3D", "get_flag_z", 2122427807)
   }
 }

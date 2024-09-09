@@ -144,40 +144,42 @@ public open class GLTFBufferView : Resource() {
 
   internal object MethodBindings {
     public val loadBufferViewDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data", 3945446907)
 
-    public val getBufferPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFBufferView", "get_buffer")
+    public val getBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_buffer", 3905245786)
 
-    public val setBufferPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFBufferView", "set_buffer")
+    public val setBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_buffer", 1286410249)
 
     public val getByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_offset", 3905245786)
 
     public val setByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_offset", 1286410249)
 
     public val getByteLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_length")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_length", 3905245786)
 
     public val setByteLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_length")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_length", 1286410249)
 
     public val getByteStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_stride")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_stride", 3905245786)
 
     public val setByteStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_stride")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_stride", 1286410249)
 
     public val getIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_indices")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_indices", 36873697)
 
     public val setIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_indices")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_indices", 2586408642)
 
     public val getVertexAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_vertex_attributes")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_vertex_attributes", 36873697)
 
     public val setVertexAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_vertex_attributes")
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_vertex_attributes", 2586408642)
   }
 }

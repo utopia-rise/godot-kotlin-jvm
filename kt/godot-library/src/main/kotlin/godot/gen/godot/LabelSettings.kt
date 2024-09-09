@@ -269,55 +269,57 @@ public open class LabelSettings : Resource() {
 
   internal object MethodBindings {
     public val setLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_line_spacing")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_line_spacing", 373806689)
 
     public val getLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_line_spacing")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_line_spacing", 1740695150)
 
-    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("LabelSettings", "set_font")
+    public val setFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_font", 1262170328)
 
-    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("LabelSettings", "get_font")
+    public val getFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_font", 3229501585)
 
     public val setFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font_size")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_font_size", 1286410249)
 
     public val getFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font_size")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_font_size", 3905245786)
 
     public val setFontColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font_color")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_font_color", 2920490490)
 
     public val getFontColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font_color")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_font_color", 3444240500)
 
     public val setOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_size")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_size", 1286410249)
 
     public val getOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_size")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_size", 3905245786)
 
     public val setOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_color")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_color", 2920490490)
 
     public val getOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_color")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_color", 3444240500)
 
     public val setShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_size")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_size", 1286410249)
 
     public val getShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_size")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_size", 3905245786)
 
     public val setShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_color")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_color", 2920490490)
 
     public val getShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_color")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_color", 3444240500)
 
     public val setShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_offset")
+        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_offset", 743155724)
 
     public val getShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_offset")
+        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_offset", 3341600327)
   }
 }

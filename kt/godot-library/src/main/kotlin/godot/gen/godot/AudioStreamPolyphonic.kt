@@ -50,9 +50,9 @@ public open class AudioStreamPolyphonic : AudioStream() {
 
   internal object MethodBindings {
     public val setPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "set_polyphony")
+        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "set_polyphony", 1286410249)
 
     public val getPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "get_polyphony")
+        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "get_polyphony", 3905245786)
   }
 }

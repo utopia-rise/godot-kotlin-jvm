@@ -157,17 +157,19 @@ public open class Thread : RefCounted() {
   }
 
   internal object MethodBindings {
-    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "start")
+    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "start", 1327203254)
 
-    public val getIdPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "get_id")
+    public val getIdPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "get_id", 201670096)
 
-    public val isStartedPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "is_started")
+    public val isStartedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Thread", "is_started", 36873697)
 
-    public val isAlivePtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "is_alive")
+    public val isAlivePtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "is_alive", 36873697)
 
-    public val waitToFinishPtr: VoidPtr = TypeManager.getMethodBindPtr("Thread", "wait_to_finish")
+    public val waitToFinishPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Thread", "wait_to_finish", 1460262497)
 
     public val setThreadSafetyChecksEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Thread", "set_thread_safety_checks_enabled")
+        TypeManager.getMethodBindPtr("Thread", "set_thread_safety_checks_enabled", 2586408642)
   }
 }

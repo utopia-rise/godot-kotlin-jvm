@@ -146,28 +146,29 @@ public open class TLSOptions internal constructor() : RefCounted() {
   }
 
   internal object MethodBindings {
-    public val clientPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "client")
+    public val clientPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "client", 3565000357)
 
     public val clientUnsafePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "client_unsafe")
+        TypeManager.getMethodBindPtr("TLSOptions", "client_unsafe", 2090251749)
 
-    public val serverPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "server")
+    public val serverPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "server", 36969539)
 
-    public val isServerPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "is_server")
+    public val isServerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "is_server", 36873697)
 
     public val isUnsafeClientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "is_unsafe_client")
+        TypeManager.getMethodBindPtr("TLSOptions", "is_unsafe_client", 36873697)
 
     public val getCommonNameOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_common_name_override")
+        TypeManager.getMethodBindPtr("TLSOptions", "get_common_name_override", 201670096)
 
     public val getTrustedCaChainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_trusted_ca_chain")
+        TypeManager.getMethodBindPtr("TLSOptions", "get_trusted_ca_chain", 1120709175)
 
     public val getPrivateKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_private_key")
+        TypeManager.getMethodBindPtr("TLSOptions", "get_private_key", 2119971811)
 
     public val getOwnCertificatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_own_certificate")
+        TypeManager.getMethodBindPtr("TLSOptions", "get_own_certificate", 1120709175)
   }
 }

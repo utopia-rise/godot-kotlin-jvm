@@ -365,63 +365,87 @@ public open class GLTFNode : Resource() {
 
   internal object MethodBindings {
     public val getOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_original_name")
+        TypeManager.getMethodBindPtr("GLTFNode", "get_original_name", 2841200299)
 
     public val setOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_original_name")
+        TypeManager.getMethodBindPtr("GLTFNode", "set_original_name", 83702148)
 
-    public val getParentPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_parent")
+    public val getParentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_parent", 2455072627)
 
-    public val setParentPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_parent")
+    public val setParentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_parent", 1286410249)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_height", 2455072627)
 
-    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_height")
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_height", 1286410249)
 
-    public val getXformPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_xform")
+    public val getXformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_xform", 4183770049)
 
-    public val setXformPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_xform")
+    public val setXformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_xform", 2952846383)
 
-    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_mesh")
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_mesh", 2455072627)
 
-    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_mesh")
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_mesh", 1286410249)
 
-    public val getCameraPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_camera")
+    public val getCameraPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_camera", 2455072627)
 
-    public val setCameraPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_camera")
+    public val setCameraPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_camera", 1286410249)
 
-    public val getSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_skin")
+    public val getSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_skin", 2455072627)
 
-    public val setSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_skin")
+    public val setSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_skin", 1286410249)
 
-    public val getSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_skeleton")
+    public val getSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_skeleton", 2455072627)
 
-    public val setSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_skeleton")
+    public val setSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_skeleton", 1286410249)
 
-    public val getPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_position")
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_position", 3783033775)
 
-    public val setPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_position")
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_position", 3460891852)
 
-    public val getRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_rotation")
+    public val getRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_rotation", 2916281908)
 
-    public val setRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_rotation")
+    public val setRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_rotation", 1727505552)
 
-    public val getScalePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_scale")
+    public val getScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_scale", 3783033775)
 
-    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_scale")
+    public val setScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_scale", 3460891852)
 
-    public val getChildrenPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_children")
+    public val getChildrenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_children", 969006518)
 
-    public val setChildrenPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_children")
+    public val setChildrenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_children", 3614634198)
 
-    public val getLightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "get_light")
+    public val getLightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_light", 2455072627)
 
-    public val setLightPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFNode", "set_light")
+    public val setLightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_light", 1286410249)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_additional_data")
+        TypeManager.getMethodBindPtr("GLTFNode", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_additional_data")
+        TypeManager.getMethodBindPtr("GLTFNode", "set_additional_data", 3776071444)
   }
 }

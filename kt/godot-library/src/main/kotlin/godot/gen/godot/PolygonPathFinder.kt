@@ -84,26 +84,28 @@ public open class PolygonPathFinder : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setupPtr: VoidPtr = TypeManager.getMethodBindPtr("PolygonPathFinder", "setup")
+    public val setupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "setup", 3251786936)
 
-    public val findPathPtr: VoidPtr = TypeManager.getMethodBindPtr("PolygonPathFinder", "find_path")
+    public val findPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "find_path", 1562168077)
 
     public val getIntersectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_intersections")
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_intersections", 3932192302)
 
     public val getClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_closest_point")
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_closest_point", 2656412154)
 
     public val isPointInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "is_point_inside")
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "is_point_inside", 556197845)
 
     public val setPointPenaltyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "set_point_penalty")
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "set_point_penalty", 1602489585)
 
     public val getPointPenaltyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_point_penalty")
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_point_penalty", 2339986948)
 
     public val getBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_bounds")
+        TypeManager.getMethodBindPtr("PolygonPathFinder", "get_bounds", 1639390495)
   }
 }

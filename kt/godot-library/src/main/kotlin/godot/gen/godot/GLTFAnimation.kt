@@ -84,19 +84,21 @@ public open class GLTFAnimation : Resource() {
 
   internal object MethodBindings {
     public val getOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "get_original_name")
+        TypeManager.getMethodBindPtr("GLTFAnimation", "get_original_name", 2841200299)
 
     public val setOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "set_original_name")
+        TypeManager.getMethodBindPtr("GLTFAnimation", "set_original_name", 83702148)
 
-    public val getLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAnimation", "get_loop")
+    public val getLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAnimation", "get_loop", 36873697)
 
-    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAnimation", "set_loop")
+    public val setLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAnimation", "set_loop", 2586408642)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "get_additional_data")
+        TypeManager.getMethodBindPtr("GLTFAnimation", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "set_additional_data")
+        TypeManager.getMethodBindPtr("GLTFAnimation", "set_additional_data", 3776071444)
   }
 }

@@ -141,21 +141,21 @@ public open class DirectionalLight3D : Light3D() {
 
   internal object MethodBindings {
     public val setShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_shadow_mode")
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_shadow_mode", 1261211726)
 
     public val getShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_shadow_mode")
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_shadow_mode", 2765228544)
 
     public val setBlendSplitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_blend_splits")
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_blend_splits", 2586408642)
 
     public val isBlendSplitsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "is_blend_splits_enabled")
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "is_blend_splits_enabled", 36873697)
 
     public val setSkyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_sky_mode")
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_sky_mode", 2691194817)
 
     public val getSkyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_sky_mode")
+        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_sky_mode", 3819982774)
   }
 }

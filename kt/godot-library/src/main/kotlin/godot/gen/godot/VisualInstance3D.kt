@@ -166,37 +166,40 @@ public open class VisualInstance3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setBasePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "set_base")
+    public val setBasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_base", 2722037293)
 
-    public val getBasePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "get_base")
+    public val getBasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_base", 2944877500)
 
     public val getInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_instance")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_instance", 2944877500)
 
     public val setLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask", 1286410249)
 
     public val getLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask", 3905245786)
 
     public val setLayerMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask_value")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask_value", 300928843)
 
     public val getLayerMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask_value")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask_value", 1116898809)
 
     public val setSortingOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_offset")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_offset", 373806689)
 
     public val getSortingOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_sorting_offset")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_sorting_offset", 1740695150)
 
     public val setSortingUseAabbCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_use_aabb_center")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_use_aabb_center", 2586408642)
 
     public val isSortingUseAabbCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "is_sorting_use_aabb_center")
+        TypeManager.getMethodBindPtr("VisualInstance3D", "is_sorting_use_aabb_center", 36873697)
 
-    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "get_aabb")
+    public val getAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_aabb", 1068685055)
   }
 }

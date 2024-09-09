@@ -645,91 +645,91 @@ public open class OpenXRInterface : XRInterface() {
 
   internal object MethodBindings {
     public val getDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_display_refresh_rate")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_display_refresh_rate", 1740695150)
 
     public val setDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_display_refresh_rate")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_display_refresh_rate", 373806689)
 
     public val getRenderTargetSizeMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_render_target_size_multiplier")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_render_target_size_multiplier", 1740695150)
 
     public val setRenderTargetSizeMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_render_target_size_multiplier")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_render_target_size_multiplier", 373806689)
 
     public val isFoveationSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_foveation_supported")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_foveation_supported", 36873697)
 
     public val getFoveationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_level")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_level", 3905245786)
 
     public val setFoveationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_level")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_level", 1286410249)
 
     public val getFoveationDynamicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_dynamic")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_dynamic", 36873697)
 
     public val setFoveationDynamicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_dynamic")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_dynamic", 2586408642)
 
     public val isActionSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_action_set_active")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_action_set_active", 3927539163)
 
     public val setActionSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_action_set_active")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_action_set_active", 2678287736)
 
     public val getActionSetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_action_sets")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_action_sets", 3995934104)
 
     public val getAvailableDisplayRefreshRatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_available_display_refresh_rates")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_available_display_refresh_rates", 3995934104)
 
     public val setMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_motion_range")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_motion_range", 855158159)
 
     public val getMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_motion_range")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_motion_range", 3955838114)
 
     public val getHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_tracking_source")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_tracking_source", 4092421202)
 
     public val getHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_flags")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_flags", 720567706)
 
     public val getHandJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_rotation")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_rotation", 1974618321)
 
     public val getHandJointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_position")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_position", 3529194242)
 
     public val getHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_radius")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_radius", 901522724)
 
     public val getHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_linear_velocity")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_linear_velocity", 3529194242)
 
     public val getHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_angular_velocity")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_angular_velocity", 3529194242)
 
     public val isHandTrackingSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_tracking_supported")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_tracking_supported", 2240911060)
 
     public val isHandInteractionSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_interaction_supported")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_interaction_supported", 36873697)
 
     public val isEyeGazeInteractionSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_eye_gaze_interaction_supported")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "is_eye_gaze_interaction_supported", 2240911060)
 
     public val getVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_min_radius")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_min_radius", 1740695150)
 
     public val setVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_min_radius")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_min_radius", 373806689)
 
     public val getVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_strength")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_strength", 1740695150)
 
     public val setVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_strength")
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_strength", 373806689)
   }
 }
 

@@ -43,9 +43,9 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
 
   internal object MethodBindings {
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCurveTexture", "set_texture")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCurveTexture", "set_texture", 181872837)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCurveTexture", "get_texture")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCurveTexture", "get_texture", 2800800579)
   }
 }

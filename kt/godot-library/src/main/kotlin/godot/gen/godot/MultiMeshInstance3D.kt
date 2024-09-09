@@ -47,9 +47,9 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
 
   internal object MethodBindings {
     public val setMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance3D", "set_multimesh")
+        TypeManager.getMethodBindPtr("MultiMeshInstance3D", "set_multimesh", 2246127404)
 
     public val getMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance3D", "get_multimesh")
+        TypeManager.getMethodBindPtr("MultiMeshInstance3D", "get_multimesh", 1385450523)
   }
 }

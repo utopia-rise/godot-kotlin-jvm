@@ -621,89 +621,99 @@ public open class AStarGrid2D : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val setRegionPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "set_region")
+    public val setRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_region", 1763793166)
 
-    public val getRegionPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "get_region")
+    public val getRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_region", 410525958)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_size", 1130785943)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_size", 3690982128)
 
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_offset", 3341600327)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_cell_size")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_cell_size", 743155724)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_size")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_size", 3341600327)
 
     public val setCellShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_cell_shape")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_cell_shape", 4130591146)
 
     public val getCellShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_shape")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_shape", 3293463634)
 
-    public val isInBoundsPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "is_in_bounds")
+    public val isInBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "is_in_bounds", 2522259332)
 
     public val isInBoundsvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_in_boundsv")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "is_in_boundsv", 3900751641)
 
-    public val isDirtyPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "is_dirty")
+    public val isDirtyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "is_dirty", 36873697)
 
-    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "update")
+    public val updatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "update", 3218959716)
 
     public val setJumpingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_jumping_enabled")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_jumping_enabled", 2586408642)
 
     public val isJumpingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_jumping_enabled")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "is_jumping_enabled", 36873697)
 
     public val setDiagonalModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_diagonal_mode")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_diagonal_mode", 1017829798)
 
     public val getDiagonalModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_diagonal_mode")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_diagonal_mode", 3129282674)
 
     public val setDefaultComputeHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_default_compute_heuristic")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_default_compute_heuristic", 1044375519)
 
     public val getDefaultComputeHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_default_compute_heuristic")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_default_compute_heuristic", 2074731422)
 
     public val setDefaultEstimateHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_default_estimate_heuristic")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_default_estimate_heuristic", 1044375519)
 
     public val getDefaultEstimateHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_default_estimate_heuristic")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_default_estimate_heuristic", 2074731422)
 
     public val setPointSolidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_point_solid")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_point_solid", 1765703753)
 
     public val isPointSolidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_point_solid")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "is_point_solid", 3900751641)
 
     public val setPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_point_weight_scale")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "set_point_weight_scale", 2262553149)
 
     public val getPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_weight_scale")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_weight_scale", 719993801)
 
     public val fillSolidRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_solid_region")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_solid_region", 2261970063)
 
     public val fillWeightScaleRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_weight_scale_region")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_weight_scale_region", 2793244083)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "clear", 3218959716)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_position")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_position", 108438297)
 
     public val getPointPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_path")
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_path", 1641925693)
 
-    public val getIdPathPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "get_id_path")
+    public val getIdPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStarGrid2D", "get_id_path", 1918132273)
   }
 }

@@ -69,21 +69,21 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
 
   internal object MethodBindings {
     public val setPanPulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout")
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout", 373806689)
 
     public val getPanPulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout")
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout", 1740695150)
 
     public val setTimePulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout")
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout", 373806689)
 
     public val getTimePulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout")
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout", 1740695150)
 
     public val setSurroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround")
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround", 373806689)
 
     public val getSurroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround")
+        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround", 1740695150)
   }
 }

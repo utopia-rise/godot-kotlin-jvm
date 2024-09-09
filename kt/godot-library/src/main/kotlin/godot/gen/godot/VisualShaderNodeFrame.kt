@@ -156,39 +156,39 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
 
   internal object MethodBindings {
     public val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_title")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_title", 83702148)
 
     public val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_title")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_title", 201670096)
 
     public val setTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color_enabled", 2586408642)
 
     public val isTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_tint_color_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_tint_color_enabled", 36873697)
 
     public val setTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color", 2920490490)
 
     public val getTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_tint_color")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_tint_color", 3444240500)
 
     public val setAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_autoshrink_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_autoshrink_enabled", 2586408642)
 
     public val isAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_autoshrink_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_autoshrink_enabled", 36873697)
 
     public val addAttachedNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "add_attached_node")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "add_attached_node", 1286410249)
 
     public val removeAttachedNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "remove_attached_node")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "remove_attached_node", 1286410249)
 
     public val setAttachedNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_attached_nodes")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_attached_nodes", 3614634198)
 
     public val getAttachedNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_attached_nodes")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_attached_nodes", 1930428628)
   }
 }

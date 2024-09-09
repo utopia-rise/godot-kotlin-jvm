@@ -665,15 +665,15 @@ public open class XRFaceTracker : XRTracker() {
 
   internal object MethodBindings {
     public val getBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shape")
+        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shape", 330010046)
 
     public val setBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shape")
+        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shape", 2352588791)
 
     public val getBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shapes")
+        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shapes", 675695659)
 
     public val setBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shapes")
+        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shapes", 2899603908)
   }
 }

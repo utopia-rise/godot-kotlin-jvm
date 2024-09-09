@@ -79,21 +79,21 @@ public open class MissingNode : Node() {
 
   internal object MethodBindings {
     public val setOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "set_original_class")
+        TypeManager.getMethodBindPtr("MissingNode", "set_original_class", 83702148)
 
     public val getOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "get_original_class")
+        TypeManager.getMethodBindPtr("MissingNode", "get_original_class", 201670096)
 
     public val setOriginalScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "set_original_scene")
+        TypeManager.getMethodBindPtr("MissingNode", "set_original_scene", 83702148)
 
     public val getOriginalScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "get_original_scene")
+        TypeManager.getMethodBindPtr("MissingNode", "get_original_scene", 201670096)
 
     public val setRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "set_recording_properties")
+        TypeManager.getMethodBindPtr("MissingNode", "set_recording_properties", 2586408642)
 
     public val isRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "is_recording_properties")
+        TypeManager.getMethodBindPtr("MissingNode", "is_recording_properties", 36873697)
   }
 }

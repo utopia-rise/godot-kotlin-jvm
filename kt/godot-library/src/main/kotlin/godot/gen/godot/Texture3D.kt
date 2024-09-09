@@ -146,19 +146,25 @@ public open class Texture3D : Texture() {
   public companion object
 
   internal object MethodBindings {
-    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "get_format")
+    public val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture3D", "get_format", 3847873762)
 
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "get_width")
+    public val getWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture3D", "get_width", 3905245786)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture3D", "get_height", 3905245786)
 
-    public val getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "get_depth")
+    public val getDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture3D", "get_depth", 3905245786)
 
-    public val hasMipmapsPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "has_mipmaps")
+    public val hasMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture3D", "has_mipmaps", 36873697)
 
-    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "get_data")
+    public val getDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture3D", "get_data", 3995934104)
 
     public val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "create_placeholder")
+        TypeManager.getMethodBindPtr("Texture3D", "create_placeholder", 121922552)
   }
 }

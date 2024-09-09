@@ -88,19 +88,22 @@ public open class RDUniform : RefCounted() {
 
   internal object MethodBindings {
     public val setUniformTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "set_uniform_type")
+        TypeManager.getMethodBindPtr("RDUniform", "set_uniform_type", 1664894931)
 
     public val getUniformTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "get_uniform_type")
+        TypeManager.getMethodBindPtr("RDUniform", "get_uniform_type", 475470040)
 
-    public val setBindingPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "set_binding")
+    public val setBindingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDUniform", "set_binding", 1286410249)
 
-    public val getBindingPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "get_binding")
+    public val getBindingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDUniform", "get_binding", 3905245786)
 
-    public val addIdPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "add_id")
+    public val addIdPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "add_id", 2722037293)
 
-    public val clearIdsPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "clear_ids")
+    public val clearIdsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDUniform", "clear_ids", 3218959716)
 
-    public val getIdsPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "get_ids")
+    public val getIdsPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "get_ids", 3995934104)
   }
 }

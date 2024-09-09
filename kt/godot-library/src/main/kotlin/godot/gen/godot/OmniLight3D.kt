@@ -79,9 +79,9 @@ public open class OmniLight3D : Light3D() {
 
   internal object MethodBindings {
     public val setShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OmniLight3D", "set_shadow_mode")
+        TypeManager.getMethodBindPtr("OmniLight3D", "set_shadow_mode", 121862228)
 
     public val getShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OmniLight3D", "get_shadow_mode")
+        TypeManager.getMethodBindPtr("OmniLight3D", "get_shadow_mode", 4181586331)
   }
 }

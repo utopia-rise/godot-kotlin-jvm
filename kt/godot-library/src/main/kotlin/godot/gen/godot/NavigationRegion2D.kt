@@ -230,63 +230,64 @@ public open class NavigationRegion2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationRegion2D", "get_rid")
+    public val getRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_rid", 2944877500)
 
     public val setNavigationPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_polygon")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_polygon", 1515040758)
 
     public val getNavigationPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_polygon")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_polygon", 1046532237)
 
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_enabled")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_enabled", 2586408642)
 
     public val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "is_enabled")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "is_enabled", 36873697)
 
     public val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_map")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_map", 2722037293)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_map")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_map", 2944877500)
 
     public val setUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_use_edge_connections")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_use_edge_connections", 2586408642)
 
     public val getUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_use_edge_connections")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_use_edge_connections", 36873697)
 
     public val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_layers", 1286410249)
 
     public val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_layers", 3905245786)
 
     public val setNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_layer_value")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_navigation_layer_value", 300928843)
 
     public val getNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_layer_value")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_navigation_layer_value", 1116898809)
 
     public val getRegionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_region_rid")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_region_rid", 2944877500)
 
     public val setEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_enter_cost", 373806689)
 
     public val getEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_enter_cost", 1740695150)
 
     public val setTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "set_travel_cost", 373806689)
 
     public val getTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "get_travel_cost", 1740695150)
 
     public val bakeNavigationPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "bake_navigation_polygon")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "bake_navigation_polygon", 3216645846)
 
     public val isBakingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationRegion2D", "is_baking")
+        TypeManager.getMethodBindPtr("NavigationRegion2D", "is_baking", 36873697)
   }
 }

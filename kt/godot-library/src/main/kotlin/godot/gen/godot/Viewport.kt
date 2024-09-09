@@ -1802,315 +1802,343 @@ public open class Viewport internal constructor() : Node() {
   public companion object
 
   internal object MethodBindings {
-    public val setWorld2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_world_2d")
+    public val setWorld2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_world_2d", 2736080068)
 
-    public val getWorld2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_world_2d")
+    public val getWorld2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_world_2d", 2339128592)
 
-    public val findWorld2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "find_world_2d")
+    public val findWorld2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "find_world_2d", 2339128592)
 
     public val setCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_transform")
+        TypeManager.getMethodBindPtr("Viewport", "set_canvas_transform", 2761652528)
 
     public val getCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_transform")
+        TypeManager.getMethodBindPtr("Viewport", "get_canvas_transform", 3814499831)
 
     public val setGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_global_canvas_transform")
+        TypeManager.getMethodBindPtr("Viewport", "set_global_canvas_transform", 2761652528)
 
     public val getGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_global_canvas_transform")
+        TypeManager.getMethodBindPtr("Viewport", "get_global_canvas_transform", 3814499831)
 
     public val getFinalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_final_transform")
+        TypeManager.getMethodBindPtr("Viewport", "get_final_transform", 3814499831)
 
     public val getScreenTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_transform")
+        TypeManager.getMethodBindPtr("Viewport", "get_screen_transform", 3814499831)
 
     public val getVisibleRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_visible_rect")
+        TypeManager.getMethodBindPtr("Viewport", "get_visible_rect", 1639390495)
 
     public val setTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_transparent_background")
+        TypeManager.getMethodBindPtr("Viewport", "set_transparent_background", 2586408642)
 
     public val hasTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "has_transparent_background")
+        TypeManager.getMethodBindPtr("Viewport", "has_transparent_background", 36873697)
 
-    public val setUseHdr2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_use_hdr_2d")
+    public val setUseHdr2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_use_hdr_2d", 2586408642)
 
     public val isUsingHdr2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_hdr_2d")
+        TypeManager.getMethodBindPtr("Viewport", "is_using_hdr_2d", 36873697)
 
-    public val setMsaa2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_msaa_2d")
+    public val setMsaa2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_msaa_2d", 3330258708)
 
-    public val getMsaa2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_msaa_2d")
+    public val getMsaa2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_msaa_2d", 2542055527)
 
-    public val setMsaa3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_msaa_3d")
+    public val setMsaa3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_msaa_3d", 3330258708)
 
-    public val getMsaa3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_msaa_3d")
+    public val getMsaa3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_msaa_3d", 2542055527)
 
     public val setScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_screen_space_aa")
+        TypeManager.getMethodBindPtr("Viewport", "set_screen_space_aa", 3544169389)
 
     public val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_space_aa")
+        TypeManager.getMethodBindPtr("Viewport", "get_screen_space_aa", 1390814124)
 
-    public val setUseTaaPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_use_taa")
+    public val setUseTaaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_use_taa", 2586408642)
 
-    public val isUsingTaaPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "is_using_taa")
+    public val isUsingTaaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "is_using_taa", 36873697)
 
     public val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_debanding")
+        TypeManager.getMethodBindPtr("Viewport", "set_use_debanding", 2586408642)
 
     public val isUsingDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_debanding")
+        TypeManager.getMethodBindPtr("Viewport", "is_using_debanding", 36873697)
 
     public val setUseOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_occlusion_culling")
+        TypeManager.getMethodBindPtr("Viewport", "set_use_occlusion_culling", 2586408642)
 
     public val isUsingOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_occlusion_culling")
+        TypeManager.getMethodBindPtr("Viewport", "is_using_occlusion_culling", 36873697)
 
-    public val setDebugDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_debug_draw")
+    public val setDebugDrawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_debug_draw", 1970246205)
 
-    public val getDebugDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_debug_draw")
+    public val getDebugDrawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_debug_draw", 579191299)
 
     public val getRenderInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_render_info")
+        TypeManager.getMethodBindPtr("Viewport", "get_render_info", 481977019)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_texture", 1746695840)
 
     public val setPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking")
+        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking", 2586408642)
 
     public val getPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking")
+        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking", 2240911060)
 
     public val setPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_sort")
+        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_sort", 2586408642)
 
     public val getPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_sort")
+        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_sort", 2240911060)
 
     public val setPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_first_only")
+        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_first_only", 2586408642)
 
     public val getPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_first_only")
+        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_first_only", 2240911060)
 
     public val getViewportRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_viewport_rid")
+        TypeManager.getMethodBindPtr("Viewport", "get_viewport_rid", 2944877500)
 
     public val pushTextInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_text_input")
+        TypeManager.getMethodBindPtr("Viewport", "push_text_input", 83702148)
 
-    public val pushInputPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "push_input")
+    public val pushInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "push_input", 3644664830)
 
     public val pushUnhandledInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input")
+        TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input", 3644664830)
 
     public val getMousePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mouse_position")
+        TypeManager.getMethodBindPtr("Viewport", "get_mouse_position", 3341600327)
 
-    public val warpMousePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "warp_mouse")
+    public val warpMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "warp_mouse", 743155724)
 
     public val updateMouseCursorStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "update_mouse_cursor_state")
+        TypeManager.getMethodBindPtr("Viewport", "update_mouse_cursor_state", 3218959716)
 
     public val guiGetDragDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data")
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data", 1214101251)
 
     public val guiIsDraggingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_dragging")
+        TypeManager.getMethodBindPtr("Viewport", "gui_is_dragging", 36873697)
 
     public val guiIsDragSuccessfulPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_drag_successful")
+        TypeManager.getMethodBindPtr("Viewport", "gui_is_drag_successful", 36873697)
 
     public val guiReleaseFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_release_focus")
+        TypeManager.getMethodBindPtr("Viewport", "gui_release_focus", 3218959716)
 
     public val guiGetFocusOwnerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_focus_owner")
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_focus_owner", 2783021301)
 
     public val guiGetHoveredControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_hovered_control")
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_hovered_control", 2783021301)
 
     public val setDisableInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_disable_input")
+        TypeManager.getMethodBindPtr("Viewport", "set_disable_input", 2586408642)
 
     public val isInputDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_disabled")
+        TypeManager.getMethodBindPtr("Viewport", "is_input_disabled", 36873697)
 
     public val setPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_size")
+        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_size", 1286410249)
 
     public val getPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_size")
+        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_size", 3905245786)
 
     public val setPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_16_bits")
+        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_16_bits", 2586408642)
 
     public val getPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_16_bits")
+        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_16_bits", 36873697)
 
     public val setSnapControlsToPixelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_controls_to_pixels")
+        TypeManager.getMethodBindPtr("Viewport", "set_snap_controls_to_pixels", 2586408642)
 
     public val isSnapControlsToPixelsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_controls_to_pixels_enabled")
+        TypeManager.getMethodBindPtr("Viewport", "is_snap_controls_to_pixels_enabled", 36873697)
 
     public val setSnap2dTransformsToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_transforms_to_pixel")
+        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_transforms_to_pixel", 2586408642)
 
     public val isSnap2dTransformsToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_transforms_to_pixel_enabled")
+        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_transforms_to_pixel_enabled", 36873697)
 
     public val setSnap2dVerticesToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_vertices_to_pixel")
+        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_vertices_to_pixel", 2586408642)
 
     public val isSnap2dVerticesToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_vertices_to_pixel_enabled")
+        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_vertices_to_pixel_enabled", 36873697)
 
     public val setPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_quadrant_subdiv")
+        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_quadrant_subdiv", 2596956071)
 
     public val getPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_quadrant_subdiv")
+        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_quadrant_subdiv", 2676778355)
 
     public val setInputAsHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_input_as_handled")
+        TypeManager.getMethodBindPtr("Viewport", "set_input_as_handled", 3218959716)
 
     public val isInputHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_handled")
+        TypeManager.getMethodBindPtr("Viewport", "is_input_handled", 36873697)
 
     public val setHandleInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_handle_input_locally")
+        TypeManager.getMethodBindPtr("Viewport", "set_handle_input_locally", 2586408642)
 
     public val isHandlingInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_handling_input_locally")
+        TypeManager.getMethodBindPtr("Viewport", "is_handling_input_locally", 36873697)
 
     public val setDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_filter")
+        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_filter", 2815160100)
 
     public val getDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_filter")
+        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_filter", 896601198)
 
     public val setEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_embedding_subwindows")
+        TypeManager.getMethodBindPtr("Viewport", "set_embedding_subwindows", 2586408642)
 
     public val isEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_embedding_subwindows")
+        TypeManager.getMethodBindPtr("Viewport", "is_embedding_subwindows", 36873697)
 
     public val getEmbeddedSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_embedded_subwindows")
+        TypeManager.getMethodBindPtr("Viewport", "get_embedded_subwindows", 3995934104)
 
     public val setCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask")
+        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask", 1286410249)
 
     public val getCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask")
+        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask", 3905245786)
 
     public val setCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask_bit")
+        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask_bit", 300928843)
 
     public val getCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask_bit")
+        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask_bit", 1116898809)
 
     public val setDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_repeat")
+        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_repeat", 1658513413)
 
     public val getDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_repeat")
+        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_repeat", 4049774160)
 
     public val setSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_sdf_oversize")
+        TypeManager.getMethodBindPtr("Viewport", "set_sdf_oversize", 2574159017)
 
     public val getSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_sdf_oversize")
+        TypeManager.getMethodBindPtr("Viewport", "get_sdf_oversize", 2631427510)
 
-    public val setSdfScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_sdf_scale")
+    public val setSdfScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_sdf_scale", 1402773951)
 
-    public val getSdfScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_sdf_scale")
+    public val getSdfScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_sdf_scale", 3162688184)
 
     public val setMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_mesh_lod_threshold")
+        TypeManager.getMethodBindPtr("Viewport", "set_mesh_lod_threshold", 373806689)
 
     public val getMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mesh_lod_threshold")
+        TypeManager.getMethodBindPtr("Viewport", "get_mesh_lod_threshold", 1740695150)
 
     public val setAsAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d")
+        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d", 2586408642)
 
     public val isAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d")
+        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d", 36873697)
 
-    public val getCamera2dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_camera_2d")
+    public val getCamera2dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_camera_2d", 3551466917)
 
-    public val setWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_world_3d")
+    public val setWorld3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_world_3d", 1400875337)
 
-    public val getWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_world_3d")
+    public val getWorld3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_world_3d", 317588385)
 
-    public val findWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "find_world_3d")
+    public val findWorld3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "find_world_3d", 317588385)
 
     public val setUseOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_own_world_3d")
+        TypeManager.getMethodBindPtr("Viewport", "set_use_own_world_3d", 2586408642)
 
     public val isUsingOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_own_world_3d")
+        TypeManager.getMethodBindPtr("Viewport", "is_using_own_world_3d", 36873697)
 
-    public val getCamera3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_camera_3d")
+    public val getCamera3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_camera_3d", 2285090890)
 
     public val setAsAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_3d")
+        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_3d", 2586408642)
 
     public val isAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_3d")
+        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_3d", 36873697)
 
-    public val setDisable3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_disable_3d")
+    public val setDisable3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_disable_3d", 2586408642)
 
-    public val is3dDisabledPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "is_3d_disabled")
+    public val is3dDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "is_3d_disabled", 36873697)
 
-    public val setUseXrPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_use_xr")
+    public val setUseXrPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_use_xr", 2586408642)
 
-    public val isUsingXrPtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "is_using_xr")
+    public val isUsingXrPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "is_using_xr", 2240911060)
 
     public val setScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_mode")
+        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_mode", 1531597597)
 
     public val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_mode")
+        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_mode", 2597660574)
 
     public val setScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_scale")
+        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_scale", 373806689)
 
     public val getScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_scale")
+        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_scale", 1740695150)
 
     public val setFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_fsr_sharpness")
+        TypeManager.getMethodBindPtr("Viewport", "set_fsr_sharpness", 373806689)
 
     public val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_fsr_sharpness")
+        TypeManager.getMethodBindPtr("Viewport", "get_fsr_sharpness", 1740695150)
 
     public val setTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_texture_mipmap_bias")
+        TypeManager.getMethodBindPtr("Viewport", "set_texture_mipmap_bias", 373806689)
 
     public val getTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_texture_mipmap_bias")
+        TypeManager.getMethodBindPtr("Viewport", "get_texture_mipmap_bias", 1740695150)
 
-    public val setVrsModePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode")
+    public val setVrsModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode", 2749867817)
 
-    public val getVrsModePtr: VoidPtr = TypeManager.getMethodBindPtr("Viewport", "get_vrs_mode")
+    public val getVrsModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_vrs_mode", 349660525)
 
     public val setVrsUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_update_mode")
+        TypeManager.getMethodBindPtr("Viewport", "set_vrs_update_mode", 3182412319)
 
     public val getVrsUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_update_mode")
+        TypeManager.getMethodBindPtr("Viewport", "get_vrs_update_mode", 2255951583)
 
     public val setVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_texture")
+        TypeManager.getMethodBindPtr("Viewport", "set_vrs_texture", 4051416890)
 
     public val getVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_texture")
+        TypeManager.getMethodBindPtr("Viewport", "get_vrs_texture", 3635182373)
   }
 }

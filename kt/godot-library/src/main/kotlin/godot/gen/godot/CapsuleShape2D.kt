@@ -61,12 +61,16 @@ public open class CapsuleShape2D : Shape2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape2D", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleShape2D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape2D", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleShape2D", "get_radius", 1740695150)
 
-    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape2D", "set_height")
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleShape2D", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CapsuleShape2D", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleShape2D", "get_height", 1740695150)
   }
 }

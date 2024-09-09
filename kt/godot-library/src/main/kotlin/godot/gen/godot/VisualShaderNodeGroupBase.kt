@@ -225,66 +225,66 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
 
   internal object MethodBindings {
     public val setInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_inputs")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_inputs", 83702148)
 
     public val getInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_inputs")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_inputs", 201670096)
 
     public val setOutputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_outputs")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_outputs", 83702148)
 
     public val getOutputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_outputs")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_outputs", 201670096)
 
     public val isValidPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "is_valid_port_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "is_valid_port_name", 3927539163)
 
     public val addInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_input_port")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_input_port", 2285447957)
 
     public val removeInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_input_port")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_input_port", 1286410249)
 
     public val getInputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_input_port_count")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_input_port_count", 3905245786)
 
     public val hasInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_input_port")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_input_port", 1116898809)
 
     public val clearInputPortsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_input_ports")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_input_ports", 3218959716)
 
     public val addOutputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_output_port")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_output_port", 2285447957)
 
     public val removeOutputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_output_port")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_output_port", 1286410249)
 
     public val getOutputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_output_port_count")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_output_port_count", 3905245786)
 
     public val hasOutputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_output_port")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_output_port", 1116898809)
 
     public val clearOutputPortsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_output_ports")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_output_ports", 3218959716)
 
     public val setInputPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_name", 501894301)
 
     public val setInputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_type", 3937882851)
 
     public val setOutputPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_name", 501894301)
 
     public val setOutputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_type", 3937882851)
 
     public val getFreeInputPortIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_input_port_id")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_input_port_id", 3905245786)
 
     public val getFreeOutputPortIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_output_port_id")
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_output_port_id", 3905245786)
   }
 }

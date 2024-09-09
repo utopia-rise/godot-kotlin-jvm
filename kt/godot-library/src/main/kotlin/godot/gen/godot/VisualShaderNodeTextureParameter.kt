@@ -312,33 +312,33 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   internal object MethodBindings {
     public val setTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_type", 2227296876)
 
     public val getTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_type", 367922070)
 
     public val setColorDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_color_default")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_color_default", 4217624432)
 
     public val getColorDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_color_default")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_color_default", 3837060134)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_filter")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_filter", 2147684752)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_filter")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_filter", 4184490817)
 
     public val setTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_repeat")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_repeat", 2036143070)
 
     public val getTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_repeat")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_repeat", 1690132794)
 
     public val setTextureSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_source")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_source", 1212687372)
 
     public val getTextureSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_source")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_source", 2039092262)
   }
 }

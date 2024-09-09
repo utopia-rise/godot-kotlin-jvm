@@ -79,21 +79,21 @@ public open class AudioEffectHardLimiter : AudioEffect() {
 
   internal object MethodBindings {
     public val setCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_ceiling_db")
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_ceiling_db", 373806689)
 
     public val getCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_ceiling_db")
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_ceiling_db", 1740695150)
 
     public val setPreGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_pre_gain_db")
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_pre_gain_db", 373806689)
 
     public val getPreGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_pre_gain_db")
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_pre_gain_db", 1740695150)
 
     public val setReleasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_release")
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_release", 373806689)
 
     public val getReleasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_release")
+        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_release", 1740695150)
   }
 }

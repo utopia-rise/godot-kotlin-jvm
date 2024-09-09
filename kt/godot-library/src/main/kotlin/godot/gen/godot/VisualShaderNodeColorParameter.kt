@@ -87,15 +87,15 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
 
   internal object MethodBindings {
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "is_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value", 2920490490)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "get_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "get_default_value", 3444240500)
   }
 }

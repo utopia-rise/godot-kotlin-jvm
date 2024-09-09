@@ -99,9 +99,9 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformOp", "set_operator")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformOp", "set_operator", 2287310733)
 
     public val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformOp", "get_operator")
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformOp", "get_operator", 1238663601)
   }
 }

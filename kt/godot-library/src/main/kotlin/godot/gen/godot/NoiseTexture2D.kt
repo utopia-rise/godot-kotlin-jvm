@@ -227,64 +227,70 @@ public open class NoiseTexture2D : Texture2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("NoiseTexture2D", "set_width")
+    public val setWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_width", 1286410249)
 
-    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("NoiseTexture2D", "set_height")
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_height", 1286410249)
 
-    public val setInvertPtr: VoidPtr = TypeManager.getMethodBindPtr("NoiseTexture2D", "set_invert")
+    public val setInvertPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_invert", 2586408642)
 
-    public val getInvertPtr: VoidPtr = TypeManager.getMethodBindPtr("NoiseTexture2D", "get_invert")
+    public val getInvertPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_invert", 36873697)
 
     public val setIn3dSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_in_3d_space")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_in_3d_space", 2586408642)
 
     public val isIn3dSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_in_3d_space")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_in_3d_space", 36873697)
 
     public val setGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_generate_mipmaps")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_generate_mipmaps", 2586408642)
 
     public val isGeneratingMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_generating_mipmaps")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_generating_mipmaps", 36873697)
 
     public val setSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless", 2586408642)
 
     public val getSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless", 2240911060)
 
     public val setSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless_blend_skirt")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless_blend_skirt", 373806689)
 
     public val getSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless_blend_skirt")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless_blend_skirt", 191475506)
 
     public val setAsNormalMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_as_normal_map")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_as_normal_map", 2586408642)
 
     public val isNormalMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_normal_map")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_normal_map", 2240911060)
 
     public val setBumpStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_bump_strength")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_bump_strength", 373806689)
 
     public val getBumpStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_bump_strength")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_bump_strength", 191475506)
 
     public val setNormalizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_normalize")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_normalize", 2586408642)
 
     public val isNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_normalized")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_normalized", 36873697)
 
     public val setColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_color_ramp")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_color_ramp", 2756054477)
 
     public val getColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_color_ramp")
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_color_ramp", 132272999)
 
-    public val setNoisePtr: VoidPtr = TypeManager.getMethodBindPtr("NoiseTexture2D", "set_noise")
+    public val setNoisePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_noise", 4135492439)
 
-    public val getNoisePtr: VoidPtr = TypeManager.getMethodBindPtr("NoiseTexture2D", "get_noise")
+    public val getNoisePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_noise", 185851837)
   }
 }

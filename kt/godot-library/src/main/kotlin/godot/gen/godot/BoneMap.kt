@@ -91,17 +91,19 @@ public open class BoneMap : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getProfilePtr: VoidPtr = TypeManager.getMethodBindPtr("BoneMap", "get_profile")
+    public val getProfilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneMap", "get_profile", 4291782652)
 
-    public val setProfilePtr: VoidPtr = TypeManager.getMethodBindPtr("BoneMap", "set_profile")
+    public val setProfilePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoneMap", "set_profile", 3870374136)
 
     public val getSkeletonBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "get_skeleton_bone_name")
+        TypeManager.getMethodBindPtr("BoneMap", "get_skeleton_bone_name", 1965194235)
 
     public val setSkeletonBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "set_skeleton_bone_name")
+        TypeManager.getMethodBindPtr("BoneMap", "set_skeleton_bone_name", 3740211285)
 
     public val findProfileBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "find_profile_bone_name")
+        TypeManager.getMethodBindPtr("BoneMap", "find_profile_bone_name", 1965194235)
   }
 }

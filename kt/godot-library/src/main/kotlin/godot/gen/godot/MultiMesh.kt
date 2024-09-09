@@ -312,74 +312,79 @@ public open class MultiMesh : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "set_mesh")
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "get_mesh")
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_mesh", 1808005922)
 
     public val setUseColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_use_colors")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_use_colors", 2586408642)
 
     public val isUsingColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "is_using_colors")
+        TypeManager.getMethodBindPtr("MultiMesh", "is_using_colors", 36873697)
 
     public val setUseCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_use_custom_data")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_use_custom_data", 2586408642)
 
     public val isUsingCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "is_using_custom_data")
+        TypeManager.getMethodBindPtr("MultiMesh", "is_using_custom_data", 36873697)
 
     public val setTransformFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_transform_format")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_transform_format", 2404750322)
 
     public val getTransformFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_transform_format")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_transform_format", 2444156481)
 
     public val setInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_count")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_count", 1286410249)
 
     public val getInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_count")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_count", 3905245786)
 
     public val setVisibleInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_visible_instance_count")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_visible_instance_count", 1286410249)
 
     public val getVisibleInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_visible_instance_count")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_visible_instance_count", 3905245786)
 
     public val setInstanceTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform", 3616898986)
 
     public val setInstanceTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform_2d")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform_2d", 30160968)
 
     public val getInstanceTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform", 1965739696)
 
     public val getInstanceTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform_2d")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform_2d", 3836996910)
 
     public val setInstanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_color")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_color", 2878471219)
 
     public val getInstanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_color")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_color", 3457211756)
 
     public val setInstanceCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_custom_data")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_custom_data", 2878471219)
 
     public val getInstanceCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data", 3457211756)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb")
+        TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_custom_aabb")
+        TypeManager.getMethodBindPtr("MultiMesh", "get_custom_aabb", 1068685055)
 
-    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "get_aabb")
+    public val getAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_aabb", 1068685055)
 
-    public val getBufferPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "get_buffer")
+    public val getBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "get_buffer", 675695659)
 
-    public val setBufferPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiMesh", "set_buffer")
+    public val setBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiMesh", "set_buffer", 2899603908)
   }
 }

@@ -167,20 +167,25 @@ public open class JSONRPC : Object() {
   public companion object
 
   internal object MethodBindings {
-    public val setScopePtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "set_scope")
+    public val setScopePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "set_scope", 2572618360)
 
-    public val processActionPtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "process_action")
+    public val processActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "process_action", 2963479484)
 
-    public val processStringPtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "process_string")
+    public val processStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "process_string", 1703090593)
 
-    public val makeRequestPtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "make_request")
+    public val makeRequestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "make_request", 3423508980)
 
-    public val makeResponsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSONRPC", "make_response")
+    public val makeResponsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "make_response", 5053918)
 
     public val makeNotificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "make_notification")
+        TypeManager.getMethodBindPtr("JSONRPC", "make_notification", 2949127017)
 
     public val makeResponseErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "make_response_error")
+        TypeManager.getMethodBindPtr("JSONRPC", "make_response_error", 928596297)
   }
 }

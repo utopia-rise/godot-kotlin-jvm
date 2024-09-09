@@ -166,42 +166,46 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   internal object MethodBindings {
-    public val setFramesPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedTexture", "set_frames")
+    public val setFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frames", 1286410249)
 
-    public val getFramesPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedTexture", "get_frames")
+    public val getFramesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frames", 3905245786)
 
     public val setCurrentFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_current_frame")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "set_current_frame", 1286410249)
 
     public val getCurrentFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_current_frame")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "get_current_frame", 3905245786)
 
-    public val setPausePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedTexture", "set_pause")
+    public val setPausePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedTexture", "set_pause", 2586408642)
 
-    public val getPausePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedTexture", "get_pause")
+    public val getPausePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedTexture", "get_pause", 36873697)
 
     public val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_one_shot")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "set_one_shot", 2586408642)
 
     public val getOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_one_shot")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "get_one_shot", 36873697)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_speed_scale")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "set_speed_scale", 373806689)
 
     public val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_speed_scale")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "get_speed_scale", 1740695150)
 
     public val setFrameTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frame_texture")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frame_texture", 666127730)
 
     public val getFrameTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frame_texture")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frame_texture", 3536238170)
 
     public val setFrameDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frame_duration")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frame_duration", 1602489585)
 
     public val getFrameDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frame_duration")
+        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frame_duration", 2339986948)
   }
 }

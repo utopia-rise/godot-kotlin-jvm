@@ -233,9 +233,9 @@ public open class OpenXRExtensionWrapperExtension : Object() {
 
   internal object MethodBindings {
     public val getOpenxrApiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "get_openxr_api")
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "get_openxr_api", 1637791613)
 
     public val registerExtensionWrapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "register_extension_wrapper")
+        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "register_extension_wrapper", 3218959716)
   }
 }

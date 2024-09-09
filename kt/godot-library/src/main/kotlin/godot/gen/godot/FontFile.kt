@@ -1097,282 +1097,309 @@ public open class FontFile : Font() {
 
   internal object MethodBindings {
     public val loadBitmapFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "load_bitmap_font")
+        TypeManager.getMethodBindPtr("FontFile", "load_bitmap_font", 166001499)
 
     public val loadDynamicFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "load_dynamic_font")
+        TypeManager.getMethodBindPtr("FontFile", "load_dynamic_font", 166001499)
 
-    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_data")
+    public val setDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_data", 2971499966)
 
-    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_data")
+    public val getDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_data", 2362200018)
 
-    public val setFontNamePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_font_name")
+    public val setFontNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_font_name", 83702148)
 
     public val setFontStyleNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_style_name")
+        TypeManager.getMethodBindPtr("FontFile", "set_font_style_name", 83702148)
 
-    public val setFontStylePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_font_style")
+    public val setFontStylePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_font_style", 918070724)
 
     public val setFontWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_weight")
+        TypeManager.getMethodBindPtr("FontFile", "set_font_weight", 1286410249)
 
     public val setFontStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_stretch")
+        TypeManager.getMethodBindPtr("FontFile", "set_font_stretch", 1286410249)
 
     public val setAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_antialiasing")
+        TypeManager.getMethodBindPtr("FontFile", "set_antialiasing", 1669900)
 
     public val getAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_antialiasing")
+        TypeManager.getMethodBindPtr("FontFile", "get_antialiasing", 4262718649)
 
     public val setDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_disable_embedded_bitmaps")
+        TypeManager.getMethodBindPtr("FontFile", "set_disable_embedded_bitmaps", 2586408642)
 
     public val getDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_disable_embedded_bitmaps")
+        TypeManager.getMethodBindPtr("FontFile", "get_disable_embedded_bitmaps", 36873697)
 
     public val setGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_generate_mipmaps")
+        TypeManager.getMethodBindPtr("FontFile", "set_generate_mipmaps", 2586408642)
 
     public val getGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_generate_mipmaps")
+        TypeManager.getMethodBindPtr("FontFile", "get_generate_mipmaps", 36873697)
 
     public val setMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_multichannel_signed_distance_field")
+        TypeManager.getMethodBindPtr("FontFile", "set_multichannel_signed_distance_field", 2586408642)
 
     public val isMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "is_multichannel_signed_distance_field")
+        TypeManager.getMethodBindPtr("FontFile", "is_multichannel_signed_distance_field", 36873697)
 
     public val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_msdf_pixel_range")
+        TypeManager.getMethodBindPtr("FontFile", "set_msdf_pixel_range", 1286410249)
 
     public val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_msdf_pixel_range")
+        TypeManager.getMethodBindPtr("FontFile", "get_msdf_pixel_range", 3905245786)
 
-    public val setMsdfSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_msdf_size")
+    public val setMsdfSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_msdf_size", 1286410249)
 
-    public val getMsdfSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_msdf_size")
+    public val getMsdfSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_msdf_size", 3905245786)
 
-    public val setFixedSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_fixed_size")
+    public val setFixedSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size", 1286410249)
 
-    public val getFixedSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_fixed_size")
+    public val getFixedSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size", 3905245786)
 
     public val setFixedSizeScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size_scale_mode")
+        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size_scale_mode", 1660989956)
 
     public val getFixedSizeScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size_scale_mode")
+        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size_scale_mode", 753873478)
 
     public val setAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_allow_system_fallback")
+        TypeManager.getMethodBindPtr("FontFile", "set_allow_system_fallback", 2586408642)
 
     public val isAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "is_allow_system_fallback")
+        TypeManager.getMethodBindPtr("FontFile", "is_allow_system_fallback", 36873697)
 
     public val setForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_force_autohinter")
+        TypeManager.getMethodBindPtr("FontFile", "set_force_autohinter", 2586408642)
 
     public val isForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "is_force_autohinter")
+        TypeManager.getMethodBindPtr("FontFile", "is_force_autohinter", 36873697)
 
-    public val setHintingPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_hinting")
+    public val setHintingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_hinting", 1827459492)
 
-    public val getHintingPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_hinting")
+    public val getHintingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_hinting", 3683214614)
 
     public val setSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_subpixel_positioning")
+        TypeManager.getMethodBindPtr("FontFile", "set_subpixel_positioning", 4225742182)
 
     public val getSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_subpixel_positioning")
+        TypeManager.getMethodBindPtr("FontFile", "get_subpixel_positioning", 1069238588)
 
     public val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_oversampling")
+        TypeManager.getMethodBindPtr("FontFile", "set_oversampling", 373806689)
 
     public val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_oversampling")
+        TypeManager.getMethodBindPtr("FontFile", "get_oversampling", 1740695150)
 
     public val getCacheCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_count")
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_count", 3905245786)
 
-    public val clearCachePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "clear_cache")
+    public val clearCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "clear_cache", 3218959716)
 
-    public val removeCachePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "remove_cache")
+    public val removeCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "remove_cache", 1286410249)
 
     public val getSizeCacheListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_size_cache_list")
+        TypeManager.getMethodBindPtr("FontFile", "get_size_cache_list", 663333327)
 
     public val clearSizeCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_size_cache")
+        TypeManager.getMethodBindPtr("FontFile", "clear_size_cache", 1286410249)
 
     public val removeSizeCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_size_cache")
+        TypeManager.getMethodBindPtr("FontFile", "remove_size_cache", 2311374912)
 
     public val setVariationCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_variation_coordinates")
+        TypeManager.getMethodBindPtr("FontFile", "set_variation_coordinates", 64545446)
 
     public val getVariationCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_variation_coordinates")
+        TypeManager.getMethodBindPtr("FontFile", "get_variation_coordinates", 3485342025)
 
-    public val setEmboldenPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_embolden")
+    public val setEmboldenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_embolden", 1602489585)
 
-    public val getEmboldenPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_embolden")
+    public val getEmboldenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_embolden", 2339986948)
 
-    public val setTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_transform")
+    public val setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_transform", 30160968)
 
-    public val getTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_transform")
+    public val getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_transform", 3836996910)
 
     public val setExtraSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_extra_spacing")
+        TypeManager.getMethodBindPtr("FontFile", "set_extra_spacing", 62942285)
 
     public val getExtraSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_extra_spacing")
+        TypeManager.getMethodBindPtr("FontFile", "get_extra_spacing", 1924257185)
 
     public val setExtraBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_extra_baseline_offset")
+        TypeManager.getMethodBindPtr("FontFile", "set_extra_baseline_offset", 1602489585)
 
     public val getExtraBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_extra_baseline_offset")
+        TypeManager.getMethodBindPtr("FontFile", "get_extra_baseline_offset", 2339986948)
 
-    public val setFaceIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_face_index")
+    public val setFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_face_index", 3937882851)
 
-    public val getFaceIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_face_index")
+    public val getFaceIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_face_index", 923996154)
 
     public val setCacheAscentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_ascent")
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_ascent", 3506521499)
 
     public val getCacheAscentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_ascent")
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_ascent", 3085491603)
 
     public val setCacheDescentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_descent")
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_descent", 3506521499)
 
     public val getCacheDescentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_descent")
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_descent", 3085491603)
 
     public val setCacheUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_position")
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_position", 3506521499)
 
     public val getCacheUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_position")
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_position", 3085491603)
 
     public val setCacheUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_thickness")
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_thickness", 3506521499)
 
     public val getCacheUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_thickness")
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_thickness", 3085491603)
 
     public val setCacheScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_scale")
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_scale", 3506521499)
 
     public val getCacheScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_scale")
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_scale", 3085491603)
 
     public val getTextureCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_texture_count")
+        TypeManager.getMethodBindPtr("FontFile", "get_texture_count", 1987661582)
 
     public val clearTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_textures")
+        TypeManager.getMethodBindPtr("FontFile", "clear_textures", 2311374912)
 
     public val removeTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_texture")
+        TypeManager.getMethodBindPtr("FontFile", "remove_texture", 2328951467)
 
     public val setTextureImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_texture_image")
+        TypeManager.getMethodBindPtr("FontFile", "set_texture_image", 4157974066)
 
     public val getTextureImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_texture_image")
+        TypeManager.getMethodBindPtr("FontFile", "get_texture_image", 3878418953)
 
     public val setTextureOffsetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_texture_offsets")
+        TypeManager.getMethodBindPtr("FontFile", "set_texture_offsets", 2849993437)
 
     public val getTextureOffsetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_texture_offsets")
+        TypeManager.getMethodBindPtr("FontFile", "get_texture_offsets", 3703444828)
 
-    public val getGlyphListPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_glyph_list")
+    public val getGlyphListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_list", 681709689)
 
-    public val clearGlyphsPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "clear_glyphs")
+    public val clearGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "clear_glyphs", 2311374912)
 
-    public val removeGlyphPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "remove_glyph")
+    public val removeGlyphPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "remove_glyph", 2328951467)
 
     public val setGlyphAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_advance")
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_advance", 947991729)
 
     public val getGlyphAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_advance")
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_advance", 1601573536)
 
     public val setGlyphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_offset")
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_offset", 921719850)
 
     public val getGlyphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_offset")
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_offset", 3205412300)
 
-    public val setGlyphSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_glyph_size")
+    public val setGlyphSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_size", 921719850)
 
-    public val getGlyphSizePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_glyph_size")
+    public val getGlyphSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_size", 3205412300)
 
     public val setGlyphUvRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_uv_rect")
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_uv_rect", 3821620992)
 
     public val getGlyphUvRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_uv_rect")
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_uv_rect", 3927917900)
 
     public val setGlyphTextureIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_texture_idx")
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_texture_idx", 355564111)
 
     public val getGlyphTextureIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_texture_idx")
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_texture_idx", 1629411054)
 
     public val getKerningListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_kerning_list")
+        TypeManager.getMethodBindPtr("FontFile", "get_kerning_list", 2345056839)
 
     public val clearKerningMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_kerning_map")
+        TypeManager.getMethodBindPtr("FontFile", "clear_kerning_map", 3937882851)
 
     public val removeKerningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_kerning")
+        TypeManager.getMethodBindPtr("FontFile", "remove_kerning", 3930204747)
 
-    public val setKerningPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "set_kerning")
+    public val setKerningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_kerning", 3182200918)
 
-    public val getKerningPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "get_kerning")
+    public val getKerningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "get_kerning", 1611912865)
 
-    public val renderRangePtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "render_range")
+    public val renderRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "render_range", 355564111)
 
-    public val renderGlyphPtr: VoidPtr = TypeManager.getMethodBindPtr("FontFile", "render_glyph")
+    public val renderGlyphPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "render_glyph", 2328951467)
 
     public val setLanguageSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_language_support_override")
+        TypeManager.getMethodBindPtr("FontFile", "set_language_support_override", 2678287736)
 
     public val getLanguageSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_language_support_override")
+        TypeManager.getMethodBindPtr("FontFile", "get_language_support_override", 3927539163)
 
     public val removeLanguageSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_language_support_override")
+        TypeManager.getMethodBindPtr("FontFile", "remove_language_support_override", 83702148)
 
     public val getLanguageSupportOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_language_support_overrides")
+        TypeManager.getMethodBindPtr("FontFile", "get_language_support_overrides", 1139954409)
 
     public val setScriptSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_script_support_override")
+        TypeManager.getMethodBindPtr("FontFile", "set_script_support_override", 2678287736)
 
     public val getScriptSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_script_support_override")
+        TypeManager.getMethodBindPtr("FontFile", "get_script_support_override", 3927539163)
 
     public val removeScriptSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_script_support_override")
+        TypeManager.getMethodBindPtr("FontFile", "remove_script_support_override", 83702148)
 
     public val getScriptSupportOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_script_support_overrides")
+        TypeManager.getMethodBindPtr("FontFile", "get_script_support_overrides", 1139954409)
 
     public val setOpentypeFeatureOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_opentype_feature_overrides")
+        TypeManager.getMethodBindPtr("FontFile", "set_opentype_feature_overrides", 4155329257)
 
     public val getOpentypeFeatureOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_opentype_feature_overrides")
+        TypeManager.getMethodBindPtr("FontFile", "get_opentype_feature_overrides", 3102165223)
 
     public val getGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_index")
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_index", 864943070)
 
     public val getCharFromGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_char_from_glyph_index")
+        TypeManager.getMethodBindPtr("FontFile", "get_char_from_glyph_index", 3175239445)
   }
 }

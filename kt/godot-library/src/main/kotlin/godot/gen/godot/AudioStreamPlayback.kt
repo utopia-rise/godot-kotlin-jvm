@@ -119,9 +119,9 @@ public open class AudioStreamPlayback : RefCounted() {
 
   internal object MethodBindings {
     public val setSamplePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayback", "set_sample_playback")
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "set_sample_playback", 3195455091)
 
     public val getSamplePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayback", "get_sample_playback")
+        TypeManager.getMethodBindPtr("AudioStreamPlayback", "get_sample_playback", 3482738536)
   }
 }

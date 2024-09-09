@@ -688,160 +688,176 @@ public open class Label3D : GeometryInstance3D() {
 
   internal object MethodBindings {
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_horizontal_alignment")
+        TypeManager.getMethodBindPtr("Label3D", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_horizontal_alignment")
+        TypeManager.getMethodBindPtr("Label3D", "get_horizontal_alignment", 341400642)
 
     public val setVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_vertical_alignment")
+        TypeManager.getMethodBindPtr("Label3D", "set_vertical_alignment", 1796458609)
 
     public val getVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_vertical_alignment")
+        TypeManager.getMethodBindPtr("Label3D", "get_vertical_alignment", 3274884059)
 
-    public val setModulatePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_modulate")
+    public val setModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_modulate")
+    public val getModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_modulate", 3444240500)
 
     public val setOutlineModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_outline_modulate")
+        TypeManager.getMethodBindPtr("Label3D", "set_outline_modulate", 2920490490)
 
     public val getOutlineModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_outline_modulate")
+        TypeManager.getMethodBindPtr("Label3D", "get_outline_modulate", 3444240500)
 
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_text")
+    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_text")
+    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_text", 201670096)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_text_direction")
+        TypeManager.getMethodBindPtr("Label3D", "set_text_direction", 1418190634)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_text_direction")
+        TypeManager.getMethodBindPtr("Label3D", "get_text_direction", 2516697328)
 
-    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_language")
+    public val setLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_language")
+    public val getLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_language", 201670096)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("Label3D", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("Label3D", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("Label3D", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("Label3D", "get_structured_text_bidi_override_options", 3995934104)
 
-    public val setUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_uppercase")
+    public val setUppercasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_uppercase", 2586408642)
 
-    public val isUppercasePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "is_uppercase")
+    public val isUppercasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "is_uppercase", 36873697)
 
     public val setRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_render_priority")
+        TypeManager.getMethodBindPtr("Label3D", "set_render_priority", 1286410249)
 
     public val getRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_render_priority")
+        TypeManager.getMethodBindPtr("Label3D", "get_render_priority", 3905245786)
 
     public val setOutlineRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_outline_render_priority")
+        TypeManager.getMethodBindPtr("Label3D", "set_outline_render_priority", 1286410249)
 
     public val getOutlineRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_outline_render_priority")
+        TypeManager.getMethodBindPtr("Label3D", "get_outline_render_priority", 3905245786)
 
-    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_font")
+    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_font", 1262170328)
 
-    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_font")
+    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_font", 3229501585)
 
-    public val setFontSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_font_size")
+    public val setFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_font_size", 1286410249)
 
-    public val getFontSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_font_size")
+    public val getFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_font_size", 3905245786)
 
     public val setOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_outline_size")
+        TypeManager.getMethodBindPtr("Label3D", "set_outline_size", 1286410249)
 
     public val getOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_outline_size")
+        TypeManager.getMethodBindPtr("Label3D", "get_outline_size", 3905245786)
 
     public val setLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_line_spacing")
+        TypeManager.getMethodBindPtr("Label3D", "set_line_spacing", 373806689)
 
     public val getLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_line_spacing")
+        TypeManager.getMethodBindPtr("Label3D", "get_line_spacing", 1740695150)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_autowrap_mode")
+        TypeManager.getMethodBindPtr("Label3D", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_autowrap_mode")
+        TypeManager.getMethodBindPtr("Label3D", "get_autowrap_mode", 1549071663)
 
     public val setJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_justification_flags")
+        TypeManager.getMethodBindPtr("Label3D", "set_justification_flags", 2877345813)
 
     public val getJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_justification_flags")
+        TypeManager.getMethodBindPtr("Label3D", "get_justification_flags", 1583363614)
 
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_width")
+    public val setWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_width", 373806689)
 
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_width")
+    public val getWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_width", 1740695150)
 
-    public val setPixelSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_pixel_size")
+    public val setPixelSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_pixel_size", 373806689)
 
-    public val getPixelSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_pixel_size")
+    public val getPixelSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_pixel_size", 1740695150)
 
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_offset", 3341600327)
 
-    public val setDrawFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_draw_flag")
+    public val setDrawFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_draw_flag", 1285833066)
 
-    public val getDrawFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_draw_flag")
+    public val getDrawFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_draw_flag", 259226453)
 
     public val setBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_billboard_mode")
+        TypeManager.getMethodBindPtr("Label3D", "set_billboard_mode", 4202036497)
 
     public val getBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_billboard_mode")
+        TypeManager.getMethodBindPtr("Label3D", "get_billboard_mode", 1283840139)
 
     public val setAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_cut_mode")
+        TypeManager.getMethodBindPtr("Label3D", "set_alpha_cut_mode", 2549142916)
 
     public val getAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_cut_mode")
+        TypeManager.getMethodBindPtr("Label3D", "get_alpha_cut_mode", 219468601)
 
     public val setAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_scissor_threshold")
+        TypeManager.getMethodBindPtr("Label3D", "set_alpha_scissor_threshold", 373806689)
 
     public val getAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_scissor_threshold")
+        TypeManager.getMethodBindPtr("Label3D", "get_alpha_scissor_threshold", 1740695150)
 
     public val setAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_hash_scale")
+        TypeManager.getMethodBindPtr("Label3D", "set_alpha_hash_scale", 373806689)
 
     public val getAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_hash_scale")
+        TypeManager.getMethodBindPtr("Label3D", "get_alpha_hash_scale", 1740695150)
 
     public val setAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_antialiasing")
+        TypeManager.getMethodBindPtr("Label3D", "set_alpha_antialiasing", 3212649852)
 
     public val getAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_antialiasing")
+        TypeManager.getMethodBindPtr("Label3D", "get_alpha_antialiasing", 2889939400)
 
     public val setAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_antialiasing_edge")
+        TypeManager.getMethodBindPtr("Label3D", "set_alpha_antialiasing_edge", 373806689)
 
     public val getAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_antialiasing_edge")
+        TypeManager.getMethodBindPtr("Label3D", "get_alpha_antialiasing_edge", 1740695150)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_texture_filter")
+        TypeManager.getMethodBindPtr("Label3D", "set_texture_filter", 22904437)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_texture_filter")
+        TypeManager.getMethodBindPtr("Label3D", "get_texture_filter", 3289213076)
 
     public val generateTriangleMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "generate_triangle_mesh")
+        TypeManager.getMethodBindPtr("Label3D", "generate_triangle_mesh", 3476533166)
   }
 }

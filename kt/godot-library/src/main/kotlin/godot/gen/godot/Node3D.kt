@@ -1065,181 +1065,205 @@ public open class Node3D : Node() {
   }
 
   internal object MethodBindings {
-    public val setTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_transform")
+    public val setTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_transform", 2952846383)
 
-    public val getTransformPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_transform")
+    public val getTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_transform", 3229777777)
 
-    public val setPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_position")
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_position", 3460891852)
 
-    public val getPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_position")
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_position", 3360562783)
 
-    public val setRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_rotation")
+    public val setRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation", 3460891852)
 
-    public val getRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_rotation")
+    public val getRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation", 3360562783)
 
     public val setRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation_degrees", 3460891852)
 
     public val getRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation_degrees", 3360562783)
 
     public val setRotationOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_order")
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation_order", 1820889989)
 
     public val getRotationOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_order")
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation_order", 916939469)
 
     public val setRotationEditModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_edit_mode")
+        TypeManager.getMethodBindPtr("Node3D", "set_rotation_edit_mode", 141483330)
 
     public val getRotationEditModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_edit_mode")
+        TypeManager.getMethodBindPtr("Node3D", "get_rotation_edit_mode", 1572188370)
 
-    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_scale")
+    public val setScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_scale", 3460891852)
 
-    public val getScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_scale")
+    public val getScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_scale", 3360562783)
 
-    public val setQuaternionPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_quaternion")
+    public val setQuaternionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_quaternion", 1727505552)
 
-    public val getQuaternionPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_quaternion")
+    public val getQuaternionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_quaternion", 1222331677)
 
-    public val setBasisPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_basis")
+    public val setBasisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_basis", 1055510324)
 
-    public val getBasisPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_basis")
+    public val getBasisPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_basis", 2716978435)
 
     public val setGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_transform")
+        TypeManager.getMethodBindPtr("Node3D", "set_global_transform", 2952846383)
 
     public val getGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_transform")
+        TypeManager.getMethodBindPtr("Node3D", "get_global_transform", 3229777777)
 
     public val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_position")
+        TypeManager.getMethodBindPtr("Node3D", "set_global_position", 3460891852)
 
     public val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_position")
+        TypeManager.getMethodBindPtr("Node3D", "get_global_position", 3360562783)
 
     public val setGlobalBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_basis")
+        TypeManager.getMethodBindPtr("Node3D", "set_global_basis", 1055510324)
 
     public val getGlobalBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_basis")
+        TypeManager.getMethodBindPtr("Node3D", "get_global_basis", 2716978435)
 
     public val setGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation")
+        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation", 3460891852)
 
     public val getGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation")
+        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation", 3360562783)
 
     public val setGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation_degrees", 3460891852)
 
     public val getGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation_degrees")
+        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation_degrees", 3360562783)
 
     public val getParentNode3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_parent_node_3d")
+        TypeManager.getMethodBindPtr("Node3D", "get_parent_node_3d", 151077316)
 
     public val setIgnoreTransformNotificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_ignore_transform_notification")
+        TypeManager.getMethodBindPtr("Node3D", "set_ignore_transform_notification", 2586408642)
 
     public val setAsTopLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_as_top_level")
+        TypeManager.getMethodBindPtr("Node3D", "set_as_top_level", 2586408642)
 
     public val isSetAsTopLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_set_as_top_level")
+        TypeManager.getMethodBindPtr("Node3D", "is_set_as_top_level", 36873697)
 
     public val setDisableScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_disable_scale")
+        TypeManager.getMethodBindPtr("Node3D", "set_disable_scale", 2586408642)
 
     public val isScaleDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_scale_disabled")
+        TypeManager.getMethodBindPtr("Node3D", "is_scale_disabled", 36873697)
 
-    public val getWorld3dPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_world_3d")
+    public val getWorld3dPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_world_3d", 317588385)
 
     public val forceUpdateTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "force_update_transform")
+        TypeManager.getMethodBindPtr("Node3D", "force_update_transform", 3218959716)
 
     public val setVisibilityParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_visibility_parent")
+        TypeManager.getMethodBindPtr("Node3D", "set_visibility_parent", 1348162250)
 
     public val getVisibilityParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_visibility_parent")
+        TypeManager.getMethodBindPtr("Node3D", "get_visibility_parent", 4075236667)
 
-    public val updateGizmosPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "update_gizmos")
+    public val updateGizmosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "update_gizmos", 3218959716)
 
-    public val addGizmoPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "add_gizmo")
+    public val addGizmoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "add_gizmo", 1544533845)
 
-    public val getGizmosPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "get_gizmos")
+    public val getGizmosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "get_gizmos", 3995934104)
 
-    public val clearGizmosPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "clear_gizmos")
+    public val clearGizmosPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "clear_gizmos", 3218959716)
 
     public val setSubgizmoSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_subgizmo_selection")
+        TypeManager.getMethodBindPtr("Node3D", "set_subgizmo_selection", 3317607635)
 
     public val clearSubgizmoSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "clear_subgizmo_selection")
+        TypeManager.getMethodBindPtr("Node3D", "clear_subgizmo_selection", 3218959716)
 
-    public val setVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_visible")
+    public val setVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "is_visible")
+    public val isVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "is_visible", 36873697)
 
     public val isVisibleInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_visible_in_tree")
+        TypeManager.getMethodBindPtr("Node3D", "is_visible_in_tree", 36873697)
 
-    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "show")
+    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "show", 3218959716)
 
-    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "hide")
+    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "hide", 3218959716)
 
     public val setNotifyLocalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_notify_local_transform")
+        TypeManager.getMethodBindPtr("Node3D", "set_notify_local_transform", 2586408642)
 
     public val isLocalTransformNotificationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_local_transform_notification_enabled")
+        TypeManager.getMethodBindPtr("Node3D", "is_local_transform_notification_enabled", 36873697)
 
     public val setNotifyTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_notify_transform")
+        TypeManager.getMethodBindPtr("Node3D", "set_notify_transform", 2586408642)
 
     public val isTransformNotificationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_transform_notification_enabled")
+        TypeManager.getMethodBindPtr("Node3D", "is_transform_notification_enabled", 36873697)
 
-    public val rotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate")
+    public val rotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate", 3436291937)
 
-    public val globalRotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "global_rotate")
+    public val globalRotatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "global_rotate", 3436291937)
 
-    public val globalScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "global_scale")
+    public val globalScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "global_scale", 3460891852)
 
     public val globalTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "global_translate")
+        TypeManager.getMethodBindPtr("Node3D", "global_translate", 3460891852)
 
     public val rotateObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "rotate_object_local")
+        TypeManager.getMethodBindPtr("Node3D", "rotate_object_local", 3436291937)
 
     public val scaleObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "scale_object_local")
+        TypeManager.getMethodBindPtr("Node3D", "scale_object_local", 3460891852)
 
     public val translateObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "translate_object_local")
+        TypeManager.getMethodBindPtr("Node3D", "translate_object_local", 3460891852)
 
-    public val rotateXPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_x")
+    public val rotateXPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_x", 373806689)
 
-    public val rotateYPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_y")
+    public val rotateYPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_y", 373806689)
 
-    public val rotateZPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_z")
+    public val rotateZPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_z", 373806689)
 
-    public val translatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "translate")
+    public val translatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "translate", 3460891852)
 
-    public val orthonormalizePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "orthonormalize")
+    public val orthonormalizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "orthonormalize", 3218959716)
 
-    public val setIdentityPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "set_identity")
+    public val setIdentityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node3D", "set_identity", 3218959716)
 
-    public val lookAtPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "look_at")
+    public val lookAtPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "look_at", 2882425029)
 
     public val lookAtFromPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "look_at_from_position")
+        TypeManager.getMethodBindPtr("Node3D", "look_at_from_position", 2086826090)
 
-    public val toLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "to_local")
+    public val toLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "to_local", 192990374)
 
-    public val toGlobalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "to_global")
+    public val toGlobalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "to_global", 192990374)
   }
 }

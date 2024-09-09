@@ -431,85 +431,87 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_intensity")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_intensity", 373806689)
 
     public val getIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_intensity")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_intensity", 1740695150)
 
     public val setAmbientModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_mode")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_mode", 1748981278)
 
     public val getAmbientModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_mode")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_mode", 1014607621)
 
     public val setAmbientColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color", 2920490490)
 
     public val getAmbientColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color", 3444240500)
 
     public val setAmbientColorEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color_energy")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color_energy", 373806689)
 
     public val getAmbientColorEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color_energy")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color_energy", 1740695150)
 
     public val setMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_max_distance")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_max_distance", 373806689)
 
     public val getMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_max_distance")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_max_distance", 1740695150)
 
     public val setMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_mesh_lod_threshold")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_mesh_lod_threshold", 373806689)
 
     public val getMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_mesh_lod_threshold")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_mesh_lod_threshold", 1740695150)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("ReflectionProbe", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("ReflectionProbe", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_size", 3360562783)
 
     public val setOriginOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_origin_offset")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_origin_offset", 3460891852)
 
     public val getOriginOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_origin_offset")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_origin_offset", 3360562783)
 
     public val setAsInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_as_interior")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_as_interior", 2586408642)
 
     public val isSetAsInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "is_set_as_interior")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "is_set_as_interior", 36873697)
 
     public val setEnableBoxProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_box_projection")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_box_projection", 2586408642)
 
     public val isBoxProjectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "is_box_projection_enabled")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "is_box_projection_enabled", 36873697)
 
     public val setEnableShadowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_shadows")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_shadows", 2586408642)
 
     public val areShadowsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "are_shadows_enabled")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "are_shadows_enabled", 36873697)
 
     public val setCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_cull_mask")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_cull_mask", 1286410249)
 
     public val getCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_cull_mask")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_cull_mask", 3905245786)
 
     public val setReflectionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_reflection_mask")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_reflection_mask", 1286410249)
 
     public val getReflectionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_reflection_mask")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_reflection_mask", 3905245786)
 
     public val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_update_mode")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "set_update_mode", 4090221187)
 
     public val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_update_mode")
+        TypeManager.getMethodBindPtr("ReflectionProbe", "get_update_mode", 2367550552)
   }
 }

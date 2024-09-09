@@ -620,146 +620,147 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   internal object MethodBindings {
     public val moveAndSlidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "move_and_slide")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "move_and_slide", 2240911060)
 
     public val applyFloorSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "apply_floor_snap")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "apply_floor_snap", 3218959716)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_velocity")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_velocity", 743155724)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_velocity")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_velocity", 3341600327)
 
     public val setSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_safe_margin")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_safe_margin", 373806689)
 
     public val getSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_safe_margin")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_safe_margin", 1740695150)
 
     public val isFloorStopOnSlopeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_stop_on_slope_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_stop_on_slope_enabled", 36873697)
 
     public val setFloorStopOnSlopeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_stop_on_slope_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_stop_on_slope_enabled", 2586408642)
 
     public val setFloorConstantSpeedEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_constant_speed_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_constant_speed_enabled", 2586408642)
 
     public val isFloorConstantSpeedEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_constant_speed_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_constant_speed_enabled", 36873697)
 
     public val setFloorBlockOnWallEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_block_on_wall_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_block_on_wall_enabled", 2586408642)
 
     public val isFloorBlockOnWallEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_block_on_wall_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_floor_block_on_wall_enabled", 36873697)
 
     public val setSlideOnCeilingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_slide_on_ceiling_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_slide_on_ceiling_enabled", 2586408642)
 
     public val isSlideOnCeilingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_slide_on_ceiling_enabled")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_slide_on_ceiling_enabled", 36873697)
 
     public val setPlatformFloorLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_floor_layers")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_floor_layers", 1286410249)
 
     public val getPlatformFloorLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_floor_layers")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_floor_layers", 3905245786)
 
     public val setPlatformWallLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_wall_layers")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_wall_layers", 1286410249)
 
     public val getPlatformWallLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_wall_layers")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_wall_layers", 3905245786)
 
     public val getMaxSlidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_max_slides")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_max_slides", 3905245786)
 
     public val setMaxSlidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_max_slides")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_max_slides", 1286410249)
 
     public val getFloorMaxAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_max_angle")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_max_angle", 1740695150)
 
     public val setFloorMaxAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_max_angle")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_max_angle", 373806689)
 
     public val getFloorSnapLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_snap_length")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_snap_length", 191475506)
 
     public val setFloorSnapLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_snap_length")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_floor_snap_length", 373806689)
 
     public val getWallMinSlideAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_min_slide_angle")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_min_slide_angle", 1740695150)
 
     public val setWallMinSlideAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_wall_min_slide_angle")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_wall_min_slide_angle", 373806689)
 
     public val getUpDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_up_direction")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_up_direction", 3341600327)
 
     public val setUpDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_up_direction")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_up_direction", 743155724)
 
     public val setMotionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_motion_mode")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_motion_mode", 1224392233)
 
     public val getMotionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_motion_mode")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_motion_mode", 1160151236)
 
     public val setPlatformOnLeavePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_on_leave")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "set_platform_on_leave", 2423324375)
 
     public val getPlatformOnLeavePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_on_leave")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_on_leave", 4054324341)
 
     public val isOnFloorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor", 36873697)
 
     public val isOnFloorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor_only")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_floor_only", 36873697)
 
     public val isOnCeilingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling", 36873697)
 
     public val isOnCeilingOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling_only")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_ceiling_only", 36873697)
 
-    public val isOnWallPtr: VoidPtr = TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall")
+    public val isOnWallPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall", 36873697)
 
     public val isOnWallOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall_only")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "is_on_wall_only", 36873697)
 
     public val getFloorNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_normal")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_normal", 3341600327)
 
     public val getWallNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_normal")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_wall_normal", 3341600327)
 
     public val getLastMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_motion")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_motion", 3341600327)
 
     public val getPositionDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_position_delta")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_position_delta", 3341600327)
 
     public val getRealVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_real_velocity")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_real_velocity", 3341600327)
 
     public val getFloorAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_angle")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_floor_angle", 2841063350)
 
     public val getPlatformVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_velocity")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_platform_velocity", 3341600327)
 
     public val getSlideCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision_count")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision_count", 3905245786)
 
     public val getSlideCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_slide_collision", 860659811)
 
     public val getLastSlideCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_slide_collision")
+        TypeManager.getMethodBindPtr("CharacterBody2D", "get_last_slide_collision", 2161834755)
   }
 }

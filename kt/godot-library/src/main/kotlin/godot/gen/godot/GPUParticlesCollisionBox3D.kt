@@ -77,9 +77,9 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionBox3D", "set_size")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionBox3D", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionBox3D", "get_size")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionBox3D", "get_size", 3360562783)
   }
 }

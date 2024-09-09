@@ -224,51 +224,51 @@ public open class UPNPDevice : RefCounted() {
 
   internal object MethodBindings {
     public val isValidGatewayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "is_valid_gateway")
+        TypeManager.getMethodBindPtr("UPNPDevice", "is_valid_gateway", 36873697)
 
     public val queryExternalAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "query_external_address")
+        TypeManager.getMethodBindPtr("UPNPDevice", "query_external_address", 201670096)
 
     public val addPortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "add_port_mapping")
+        TypeManager.getMethodBindPtr("UPNPDevice", "add_port_mapping", 818314583)
 
     public val deletePortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "delete_port_mapping")
+        TypeManager.getMethodBindPtr("UPNPDevice", "delete_port_mapping", 3444187325)
 
     public val setDescriptionUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_description_url")
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_description_url", 83702148)
 
     public val getDescriptionUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_description_url")
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_description_url", 201670096)
 
     public val setServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_service_type")
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_service_type", 83702148)
 
     public val getServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_service_type")
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_service_type", 201670096)
 
     public val setIgdControlUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_control_url")
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_control_url", 83702148)
 
     public val getIgdControlUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_control_url")
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_control_url", 201670096)
 
     public val setIgdServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_service_type")
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_service_type", 83702148)
 
     public val getIgdServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_service_type")
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_service_type", 201670096)
 
     public val setIgdOurAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_our_addr")
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_our_addr", 83702148)
 
     public val getIgdOurAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_our_addr")
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_our_addr", 201670096)
 
     public val setIgdStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_status")
+        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_status", 519504122)
 
     public val getIgdStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_status")
+        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_status", 180887011)
   }
 }

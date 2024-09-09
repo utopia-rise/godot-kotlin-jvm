@@ -171,41 +171,43 @@ public open class GraphFrame : GraphElement() {
   public companion object
 
   internal object MethodBindings {
-    public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphFrame", "set_title")
+    public val setTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphFrame", "set_title", 83702148)
 
-    public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphFrame", "get_title")
+    public val getTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphFrame", "get_title", 201670096)
 
     public val getTitlebarHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_titlebar_hbox")
+        TypeManager.getMethodBindPtr("GraphFrame", "get_titlebar_hbox", 3590609951)
 
     public val setAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_enabled")
+        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_enabled", 2586408642)
 
     public val isAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "is_autoshrink_enabled")
+        TypeManager.getMethodBindPtr("GraphFrame", "is_autoshrink_enabled", 36873697)
 
     public val setAutoshrinkMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_margin")
+        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_margin", 1286410249)
 
     public val getAutoshrinkMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_autoshrink_margin")
+        TypeManager.getMethodBindPtr("GraphFrame", "get_autoshrink_margin", 3905245786)
 
     public val setDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_drag_margin")
+        TypeManager.getMethodBindPtr("GraphFrame", "set_drag_margin", 1286410249)
 
     public val getDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_drag_margin")
+        TypeManager.getMethodBindPtr("GraphFrame", "get_drag_margin", 3905245786)
 
     public val setTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color_enabled")
+        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color_enabled", 2586408642)
 
     public val isTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "is_tint_color_enabled")
+        TypeManager.getMethodBindPtr("GraphFrame", "is_tint_color_enabled", 36873697)
 
     public val setTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color")
+        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color", 2920490490)
 
     public val getTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_tint_color")
+        TypeManager.getMethodBindPtr("GraphFrame", "get_tint_color", 3444240500)
   }
 }

@@ -254,55 +254,60 @@ public open class AnimatedSprite3D : SpriteBase3D() {
 
   internal object MethodBindings {
     public val setSpriteFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_sprite_frames")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_sprite_frames", 905781144)
 
     public val getSpriteFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_sprite_frames")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_sprite_frames", 3804851214)
 
     public val setAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_animation")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_animation", 3304788590)
 
     public val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_animation")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_animation", 2002593661)
 
     public val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_autoplay")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_autoplay", 83702148)
 
     public val getAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_autoplay")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_autoplay", 201670096)
 
     public val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "is_playing")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "is_playing", 36873697)
 
-    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedSprite3D", "play")
+    public val playPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play", 2372066587)
 
     public val playBackwardsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play_backwards")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 1421762485)
 
-    public val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedSprite3D", "pause")
+    public val pausePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "pause", 3218959716)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedSprite3D", "stop")
+    public val stopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "stop", 3218959716)
 
-    public val setFramePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame")
+    public val setFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame")
+    public val getFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame", 3905245786)
 
     public val setFrameProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_progress")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_progress", 373806689)
 
     public val getFrameProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame_progress")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame_progress", 1740695150)
 
     public val setFrameAndProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_and_progress")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_and_progress", 1602489585)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_speed_scale")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_speed_scale", 373806689)
 
     public val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_speed_scale")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_speed_scale", 1740695150)
 
     public val getPlayingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_playing_speed")
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_playing_speed", 1740695150)
   }
 }

@@ -666,75 +666,90 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_editor_only")
+        TypeManager.getMethodBindPtr("Light3D", "set_editor_only", 2586408642)
 
-    public val isEditorOnlyPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "is_editor_only")
+    public val isEditorOnlyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "is_editor_only", 36873697)
 
-    public val setParamPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "set_param")
+    public val setParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_param", 1722734213)
 
-    public val getParamPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "get_param")
+    public val getParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "get_param", 1844084987)
 
-    public val setShadowPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "set_shadow")
+    public val setShadowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_shadow", 2586408642)
 
-    public val hasShadowPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "has_shadow")
+    public val hasShadowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "has_shadow", 36873697)
 
-    public val setNegativePtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "set_negative")
+    public val setNegativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_negative", 2586408642)
 
-    public val isNegativePtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "is_negative")
+    public val isNegativePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "is_negative", 36873697)
 
-    public val setCullMaskPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "set_cull_mask")
+    public val setCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_cull_mask", 1286410249)
 
-    public val getCullMaskPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "get_cull_mask")
+    public val getCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "get_cull_mask", 3905245786)
 
     public val setEnableDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_enable_distance_fade")
+        TypeManager.getMethodBindPtr("Light3D", "set_enable_distance_fade", 2586408642)
 
     public val isDistanceFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "is_distance_fade_enabled")
+        TypeManager.getMethodBindPtr("Light3D", "is_distance_fade_enabled", 36873697)
 
     public val setDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_begin")
+        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_begin", 373806689)
 
     public val getDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_begin")
+        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_begin", 1740695150)
 
     public val setDistanceFadeShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_shadow")
+        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_shadow", 373806689)
 
     public val getDistanceFadeShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_shadow")
+        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_shadow", 1740695150)
 
     public val setDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_length")
+        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_length", 373806689)
 
     public val getDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_length")
+        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_length", 1740695150)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "get_color", 3444240500)
 
     public val setShadowReverseCullFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_shadow_reverse_cull_face")
+        TypeManager.getMethodBindPtr("Light3D", "set_shadow_reverse_cull_face", 2586408642)
 
     public val getShadowReverseCullFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_shadow_reverse_cull_face")
+        TypeManager.getMethodBindPtr("Light3D", "get_shadow_reverse_cull_face", 36873697)
 
-    public val setBakeModePtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "set_bake_mode")
+    public val setBakeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_bake_mode", 37739303)
 
-    public val getBakeModePtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "get_bake_mode")
+    public val getBakeModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "get_bake_mode", 371737608)
 
-    public val setProjectorPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "set_projector")
+    public val setProjectorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "set_projector", 4051416890)
 
-    public val getProjectorPtr: VoidPtr = TypeManager.getMethodBindPtr("Light3D", "get_projector")
+    public val getProjectorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Light3D", "get_projector", 3635182373)
 
     public val setTemperaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_temperature")
+        TypeManager.getMethodBindPtr("Light3D", "set_temperature", 373806689)
 
     public val getTemperaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_temperature")
+        TypeManager.getMethodBindPtr("Light3D", "get_temperature", 1740695150)
 
     public val getCorrelatedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_correlated_color")
+        TypeManager.getMethodBindPtr("Light3D", "get_correlated_color", 3444240500)
   }
 }

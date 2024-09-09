@@ -308,85 +308,93 @@ public open class GLTFAccessor : Resource() {
 
   internal object MethodBindings {
     public val getBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 2455072627)
 
     public val setBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_buffer_view")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_buffer_view", 1286410249)
 
     public val getByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 2455072627)
 
     public val setByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_byte_offset", 1286410249)
 
     public val getComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_component_type")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_component_type", 2455072627)
 
     public val setComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_component_type")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_component_type", 1286410249)
 
     public val getNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_normalized")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_normalized", 2240911060)
 
     public val setNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_normalized")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_normalized", 2586408642)
 
-    public val getCountPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "get_count")
+    public val getCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_count", 2455072627)
 
-    public val setCountPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "set_count")
+    public val setCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_count", 1286410249)
 
     public val getAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_accessor_type")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 679305214)
 
     public val setAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_accessor_type")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_accessor_type", 2347728198)
 
-    public val getTypePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "get_type")
+    public val getTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_type", 2455072627)
 
-    public val setTypePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "set_type")
+    public val setTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_type", 1286410249)
 
-    public val getMinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "get_min")
+    public val getMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_min", 148677866)
 
-    public val setMinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "set_min")
+    public val setMinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_min", 2576592201)
 
-    public val getMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "get_max")
+    public val getMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_max", 148677866)
 
-    public val setMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFAccessor", "set_max")
+    public val setMaxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_max", 2576592201)
 
     public val getSparseCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_count")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 2455072627)
 
     public val setSparseCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_count")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_count", 1286410249)
 
     public val getSparseIndicesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 2455072627)
 
     public val setSparseIndicesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view", 1286410249)
 
     public val getSparseIndicesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 2455072627)
 
     public val setSparseIndicesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset", 1286410249)
 
     public val getSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 2455072627)
 
     public val setSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1286410249)
 
     public val getSparseValuesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 2455072627)
 
     public val setSparseValuesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view", 1286410249)
 
     public val getSparseValuesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 2455072627)
 
     public val setSparseValuesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset")
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset", 1286410249)
   }
 }

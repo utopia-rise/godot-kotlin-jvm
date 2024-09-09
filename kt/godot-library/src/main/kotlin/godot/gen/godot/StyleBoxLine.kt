@@ -136,29 +136,34 @@ public open class StyleBoxLine : StyleBox() {
   public companion object
 
   internal object MethodBindings {
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_color", 3444240500)
 
     public val setThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_thickness")
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_thickness", 1286410249)
 
     public val getThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_thickness")
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_thickness", 3905245786)
 
     public val setGrowBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_begin")
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_begin", 373806689)
 
     public val getGrowBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_begin")
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_begin", 1740695150)
 
-    public val setGrowEndPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_end")
+    public val setGrowEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_end", 373806689)
 
-    public val getGrowEndPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_end")
+    public val getGrowEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_end", 1740695150)
 
     public val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_vertical")
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_vertical", 2586408642)
 
-    public val isVerticalPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBoxLine", "is_vertical")
+    public val isVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBoxLine", "is_vertical", 36873697)
   }
 }

@@ -186,24 +186,25 @@ public object WorkerThreadPool : Object() {
   }
 
   internal object MethodBindings {
-    public val addTaskPtr: VoidPtr = TypeManager.getMethodBindPtr("WorkerThreadPool", "add_task")
+    public val addTaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "add_task", 3745067146)
 
     public val isTaskCompletedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "is_task_completed")
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "is_task_completed", 1116898809)
 
     public val waitForTaskCompletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_task_completion")
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_task_completion", 844576869)
 
     public val addGroupTaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "add_group_task")
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "add_group_task", 1801953219)
 
     public val isGroupTaskCompletedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "is_group_task_completed")
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "is_group_task_completed", 1116898809)
 
     public val getGroupProcessedElementCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "get_group_processed_element_count")
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "get_group_processed_element_count", 923996154)
 
     public val waitForGroupTaskCompletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_group_task_completion")
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_group_task_completion", 1286410249)
   }
 }

@@ -286,57 +286,57 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   internal object MethodBindings {
     public val setFadeinTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time", 373806689)
 
     public val getFadeinTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time", 1740695150)
 
     public val setFadeinCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve", 270443179)
 
     public val getFadeinCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve", 2460114913)
 
     public val setFadeoutTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time", 373806689)
 
     public val getFadeoutTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time", 1740695150)
 
     public val setFadeoutCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve", 270443179)
 
     public val getFadeoutCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve", 2460114913)
 
     public val setBreakLoopAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end", 2586408642)
 
     public val isLoopBrokenAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end", 36873697)
 
     public val setAutorestartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart", 2586408642)
 
     public val hasAutorestartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart", 36873697)
 
     public val setAutorestartDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay", 373806689)
 
     public val getAutorestartDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay", 1740695150)
 
     public val setAutorestartRandomDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay", 373806689)
 
     public val getAutorestartRandomDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay", 1740695150)
 
     public val setMixModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode", 1018899799)
 
     public val getMixModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode", 3076550526)
   }
 }

@@ -157,42 +157,42 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
 
   internal object MethodBindings {
     public val getTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_travel")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_travel", 3341600327)
 
     public val getRemainderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_remainder")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_remainder", 3341600327)
 
     public val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_point")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_point", 3341600327)
 
     public val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_normal")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_normal", 3341600327)
 
     public val getColliderVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_velocity")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_velocity", 3341600327)
 
     public val getColliderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_id")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_id", 3905245786)
 
     public val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_rid")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_rid", 2944877500)
 
     public val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider", 1981248198)
 
     public val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_shape")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_shape", 3905245786)
 
     public val getCollisionLocalShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_local_shape")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_local_shape", 3905245786)
 
     public val getCollisionDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_depth")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_depth", 1740695150)
 
     public val getCollisionSafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_safe_fraction")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_safe_fraction", 1740695150)
 
     public val getCollisionUnsafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_unsafe_fraction")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_unsafe_fraction", 1740695150)
   }
 }

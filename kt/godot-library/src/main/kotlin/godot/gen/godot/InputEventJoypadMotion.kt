@@ -63,15 +63,15 @@ public open class InputEventJoypadMotion : InputEvent() {
 
   internal object MethodBindings {
     public val setAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis")
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis", 1332685170)
 
     public val getAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis")
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis", 4019121683)
 
     public val setAxisValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis_value")
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis_value", 373806689)
 
     public val getAxisValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis_value")
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis_value", 1740695150)
   }
 }

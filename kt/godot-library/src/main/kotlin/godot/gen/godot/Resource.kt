@@ -248,41 +248,44 @@ public open class Resource : RefCounted() {
   }
 
   internal object MethodBindings {
-    public val setPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_path")
+    public val setPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_path", 83702148)
 
-    public val takeOverPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "take_over_path")
+    public val takeOverPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "take_over_path", 83702148)
 
-    public val getPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_path")
+    public val getPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_path", 201670096)
 
-    public val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_name")
+    public val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_name", 83702148)
 
-    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_name")
+    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_name", 201670096)
 
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_rid")
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_rid", 2944877500)
 
     public val setLocalToScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "set_local_to_scene")
+        TypeManager.getMethodBindPtr("Resource", "set_local_to_scene", 2586408642)
 
     public val isLocalToScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "is_local_to_scene")
+        TypeManager.getMethodBindPtr("Resource", "is_local_to_scene", 36873697)
 
     public val getLocalScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "get_local_scene")
+        TypeManager.getMethodBindPtr("Resource", "get_local_scene", 3160264692)
 
     public val setupLocalToScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "setup_local_to_scene")
+        TypeManager.getMethodBindPtr("Resource", "setup_local_to_scene", 3218959716)
 
     public val generateSceneUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "generate_scene_unique_id")
+        TypeManager.getMethodBindPtr("Resource", "generate_scene_unique_id", 2841200299)
 
     public val setSceneUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "set_scene_unique_id")
+        TypeManager.getMethodBindPtr("Resource", "set_scene_unique_id", 83702148)
 
     public val getSceneUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "get_scene_unique_id")
+        TypeManager.getMethodBindPtr("Resource", "get_scene_unique_id", 201670096)
 
-    public val emitChangedPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "emit_changed")
+    public val emitChangedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "emit_changed", 3218959716)
 
-    public val duplicatePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "duplicate")
+    public val duplicatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "duplicate", 482882304)
   }
 }

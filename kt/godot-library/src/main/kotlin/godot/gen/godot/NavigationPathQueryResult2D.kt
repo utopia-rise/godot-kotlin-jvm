@@ -129,30 +129,30 @@ public open class NavigationPathQueryResult2D : RefCounted() {
 
   internal object MethodBindings {
     public val setPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path", 1509147220)
 
     public val getPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path", 2961356807)
 
     public val setPathTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_types")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_types", 3614634198)
 
     public val getPathTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_types")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_types", 1930428628)
 
     public val setPathRidsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_rids")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_rids", 381264803)
 
     public val getPathRidsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_rids")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_rids", 3995934104)
 
     public val setPathOwnerIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_owner_ids")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_owner_ids", 3709968205)
 
     public val getPathOwnerIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_owner_ids")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_owner_ids", 235988956)
 
     public val resetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "reset")
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "reset", 3218959716)
   }
 }

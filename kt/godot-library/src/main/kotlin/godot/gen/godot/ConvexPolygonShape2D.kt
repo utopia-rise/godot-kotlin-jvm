@@ -70,12 +70,12 @@ public open class ConvexPolygonShape2D : Shape2D() {
 
   internal object MethodBindings {
     public val setPointCloudPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "set_point_cloud")
+        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "set_point_cloud", 1509147220)
 
     public val setPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "set_points")
+        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "set_points", 1509147220)
 
     public val getPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "get_points")
+        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "get_points", 2961356807)
   }
 }

@@ -391,72 +391,72 @@ public open class AudioStreamInteractive : AudioStream() {
 
   internal object MethodBindings {
     public val setClipCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_count")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_count", 1286410249)
 
     public val getClipCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_count")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_count", 3905245786)
 
     public val setInitialClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_initial_clip")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_initial_clip", 1286410249)
 
     public val getInitialClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_initial_clip")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_initial_clip", 3905245786)
 
     public val setClipNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_name")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_name", 3780747571)
 
     public val getClipNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_name")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_name", 659327637)
 
     public val setClipStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_stream")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_stream", 111075094)
 
     public val getClipStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_stream")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_stream", 2739380747)
 
     public val setClipAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance", 57217598)
 
     public val getClipAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance", 1778634807)
 
     public val setClipAutoAdvanceNextClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance_next_clip")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "set_clip_auto_advance_next_clip", 3937882851)
 
     public val getClipAutoAdvanceNextClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance_next_clip")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_clip_auto_advance_next_clip", 923996154)
 
     public val addTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "add_transition")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "add_transition", 1630280552)
 
     public val hasTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "has_transition")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "has_transition", 2522259332)
 
     public val eraseTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "erase_transition")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "erase_transition", 3937882851)
 
     public val getTransitionListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_list")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_list", 1930428628)
 
     public val getTransitionFromTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_from_time")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_from_time", 3453338158)
 
     public val getTransitionToTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_to_time")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_to_time", 1369651373)
 
     public val getTransitionFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_mode")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_mode", 4065396087)
 
     public val getTransitionFadeBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_beats")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_fade_beats", 3085491603)
 
     public val isTransitionUsingFillerClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_using_filler_clip")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_using_filler_clip", 2522259332)
 
     public val getTransitionFillerClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_filler_clip")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "get_transition_filler_clip", 3175239445)
 
     public val isTransitionHoldingPreviousPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_holding_previous")
+        TypeManager.getMethodBindPtr("AudioStreamInteractive", "is_transition_holding_previous", 2522259332)
   }
 }

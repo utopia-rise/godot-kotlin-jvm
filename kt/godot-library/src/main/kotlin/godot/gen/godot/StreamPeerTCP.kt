@@ -158,28 +158,29 @@ public open class StreamPeerTCP : StreamPeer() {
   public companion object
 
   internal object MethodBindings {
-    public val bindPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "bind")
+    public val bindPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "bind", 3167955072)
 
     public val connectToHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "connect_to_host")
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "connect_to_host", 993915709)
 
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "poll")
+    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "poll", 166280745)
 
-    public val getStatusPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "get_status")
+    public val getStatusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_status", 859471121)
 
     public val getConnectedHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_host")
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_host", 201670096)
 
     public val getConnectedPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_port")
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_port", 3905245786)
 
     public val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_local_port")
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_local_port", 3905245786)
 
     public val disconnectFromHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host")
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host", 3218959716)
 
     public val setNoDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "set_no_delay")
+        TypeManager.getMethodBindPtr("StreamPeerTCP", "set_no_delay", 2586408642)
   }
 }

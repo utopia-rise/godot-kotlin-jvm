@@ -1146,294 +1146,333 @@ public open class TreeItem internal constructor() : Object() {
   public companion object
 
   internal object MethodBindings {
-    public val setCellModePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_cell_mode")
+    public val setCellModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_cell_mode", 289920701)
 
-    public val getCellModePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_cell_mode")
+    public val getCellModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_cell_mode", 3406114978)
 
     public val setEditMultilinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_edit_multiline")
+        TypeManager.getMethodBindPtr("TreeItem", "set_edit_multiline", 300928843)
 
     public val isEditMultilinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_edit_multiline")
+        TypeManager.getMethodBindPtr("TreeItem", "is_edit_multiline", 1116898809)
 
-    public val setCheckedPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_checked")
+    public val setCheckedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_checked", 300928843)
 
     public val setIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_indeterminate")
+        TypeManager.getMethodBindPtr("TreeItem", "set_indeterminate", 300928843)
 
-    public val isCheckedPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_checked")
+    public val isCheckedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_checked", 1116898809)
 
     public val isIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_indeterminate")
+        TypeManager.getMethodBindPtr("TreeItem", "is_indeterminate", 1116898809)
 
     public val propagateCheckPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "propagate_check")
+        TypeManager.getMethodBindPtr("TreeItem", "propagate_check", 972357352)
 
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_text")
+    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_text", 501894301)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_text")
+    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_text", 844755477)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_text_direction")
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_direction", 1707680378)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_text_direction")
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_direction", 4235602388)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_autowrap_mode")
+        TypeManager.getMethodBindPtr("TreeItem", "set_autowrap_mode", 3633006561)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_mode")
+        TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_mode", 2902757236)
 
     public val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_overrun_behavior", 1940772195)
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_overrun_behavior", 3782727860)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override", 868756907)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override", 3377823772)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override_options", 537221740)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override_options", 663333327)
 
-    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_language")
+    public val setLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_language", 501894301)
 
-    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_language")
+    public val getLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_language", 844755477)
 
-    public val setSuffixPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_suffix")
+    public val setSuffixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_suffix", 501894301)
 
-    public val getSuffixPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_suffix")
+    public val getSuffixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_suffix", 844755477)
 
-    public val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_icon")
+    public val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_icon", 666127730)
 
-    public val getIconPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_icon")
+    public val getIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon", 3536238170)
 
     public val setIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon_region")
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_region", 1356297692)
 
     public val getIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon_region")
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_region", 3327874267)
 
     public val setIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon_max_width")
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_max_width", 3937882851)
 
     public val getIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon_max_width")
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_max_width", 923996154)
 
     public val setIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon_modulate")
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_modulate", 2878471219)
 
     public val getIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon_modulate")
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_modulate", 3457211756)
 
-    public val setRangePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_range")
+    public val setRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_range", 1602489585)
 
-    public val getRangePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_range")
+    public val getRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_range", 2339986948)
 
     public val setRangeConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_range_config")
+        TypeManager.getMethodBindPtr("TreeItem", "set_range_config", 1547181014)
 
     public val getRangeConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_range_config")
+        TypeManager.getMethodBindPtr("TreeItem", "get_range_config", 3554694381)
 
-    public val setMetadataPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_metadata")
+    public val setMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_metadata", 2152698145)
 
-    public val getMetadataPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_metadata")
+    public val getMetadataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_metadata", 4227898402)
 
     public val setCustomDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw", 272420368)
 
     public val setCustomDrawCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw_callback")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw_callback", 957362965)
 
     public val getCustomDrawCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_draw_callback")
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_draw_callback", 1317077508)
 
-    public val setCollapsedPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_collapsed")
+    public val setCollapsedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_collapsed", 2586408642)
 
-    public val isCollapsedPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_collapsed")
+    public val isCollapsedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_collapsed", 2240911060)
 
     public val setCollapsedRecursivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_collapsed_recursive")
+        TypeManager.getMethodBindPtr("TreeItem", "set_collapsed_recursive", 2586408642)
 
     public val isAnyCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_any_collapsed")
+        TypeManager.getMethodBindPtr("TreeItem", "is_any_collapsed", 2595650253)
 
-    public val setVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_visible")
+    public val setVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_visible")
+    public val isVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_visible", 2240911060)
 
     public val isVisibleInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_visible_in_tree")
+        TypeManager.getMethodBindPtr("TreeItem", "is_visible_in_tree", 36873697)
 
     public val uncollapseTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "uncollapse_tree")
+        TypeManager.getMethodBindPtr("TreeItem", "uncollapse_tree", 3218959716)
 
     public val setCustomMinimumHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_minimum_height")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_minimum_height", 1286410249)
 
     public val getCustomMinimumHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_minimum_height")
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_minimum_height", 3905245786)
 
     public val setSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_selectable")
+        TypeManager.getMethodBindPtr("TreeItem", "set_selectable", 300928843)
 
-    public val isSelectablePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_selectable")
+    public val isSelectablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_selectable", 1116898809)
 
-    public val isSelectedPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_selected")
+    public val isSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_selected", 3067735520)
 
-    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "select")
+    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "select", 1286410249)
 
-    public val deselectPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "deselect")
+    public val deselectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "deselect", 1286410249)
 
-    public val setEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_editable")
+    public val setEditablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_editable", 300928843)
 
-    public val isEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "is_editable")
+    public val isEditablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "is_editable", 3067735520)
 
     public val setCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_color")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_color", 2878471219)
 
     public val getCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_color")
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_color", 3457211756)
 
     public val clearCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_color")
+        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_color", 1286410249)
 
     public val setCustomFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font", 2637609184)
 
     public val getCustomFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font")
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font", 4244553094)
 
     public val setCustomFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font_size")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font_size", 3937882851)
 
     public val getCustomFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font_size")
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font_size", 923996154)
 
     public val setCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_bg_color")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_bg_color", 894174518)
 
     public val clearCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_bg_color")
+        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_bg_color", 1286410249)
 
     public val getCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_bg_color")
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_bg_color", 3457211756)
 
     public val setCustomAsButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_as_button")
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_as_button", 300928843)
 
     public val isCustomSetAsButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_custom_set_as_button")
+        TypeManager.getMethodBindPtr("TreeItem", "is_custom_set_as_button", 1116898809)
 
-    public val addButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "add_button")
+    public val addButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "add_button", 1688223362)
 
     public val getButtonCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_count")
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_count", 923996154)
 
     public val getButtonTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_tooltip_text")
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_tooltip_text", 1391810591)
 
-    public val getButtonIdPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_button_id")
+    public val getButtonIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_id", 3175239445)
 
     public val getButtonByIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_by_id")
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_by_id", 3175239445)
 
     public val getButtonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_color")
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_color", 2165839948)
 
-    public val getButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_button")
+    public val getButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_button", 2584904275)
 
     public val setButtonTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_button_tooltip_text")
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_tooltip_text", 2285447957)
 
-    public val setButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "set_button")
+    public val setButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_button", 176101966)
 
-    public val eraseButtonPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "erase_button")
+    public val eraseButtonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "erase_button", 3937882851)
 
     public val setButtonDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_button_disabled")
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_disabled", 1383440665)
 
     public val setButtonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_button_color")
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_color", 3733378741)
 
     public val isButtonDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_button_disabled")
+        TypeManager.getMethodBindPtr("TreeItem", "is_button_disabled", 2522259332)
 
     public val setTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_tooltip_text")
+        TypeManager.getMethodBindPtr("TreeItem", "set_tooltip_text", 501894301)
 
     public val getTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_tooltip_text")
+        TypeManager.getMethodBindPtr("TreeItem", "get_tooltip_text", 844755477)
 
     public val setTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_text_alignment")
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_alignment", 3276431499)
 
     public val getTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_text_alignment")
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_alignment", 4171562184)
 
     public val setExpandRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_expand_right")
+        TypeManager.getMethodBindPtr("TreeItem", "set_expand_right", 300928843)
 
     public val getExpandRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_expand_right")
+        TypeManager.getMethodBindPtr("TreeItem", "get_expand_right", 1116898809)
 
     public val setDisableFoldingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_disable_folding")
+        TypeManager.getMethodBindPtr("TreeItem", "set_disable_folding", 2586408642)
 
     public val isFoldingDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_folding_disabled")
+        TypeManager.getMethodBindPtr("TreeItem", "is_folding_disabled", 36873697)
 
-    public val createChildPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "create_child")
+    public val createChildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "create_child", 954243986)
 
-    public val addChildPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "add_child")
+    public val addChildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "add_child", 1819951137)
 
-    public val removeChildPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "remove_child")
+    public val removeChildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "remove_child", 1819951137)
 
-    public val getTreePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_tree")
+    public val getTreePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_tree", 2243340556)
 
-    public val getNextPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_next")
+    public val getNextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_next", 1514277247)
 
-    public val getPrevPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_prev")
+    public val getPrevPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_prev", 2768121250)
 
-    public val getParentPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_parent")
+    public val getParentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_parent", 1514277247)
 
     public val getFirstChildPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_first_child")
+        TypeManager.getMethodBindPtr("TreeItem", "get_first_child", 1514277247)
 
     public val getNextInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_next_in_tree")
+        TypeManager.getMethodBindPtr("TreeItem", "get_next_in_tree", 1666920593)
 
     public val getPrevInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_prev_in_tree")
+        TypeManager.getMethodBindPtr("TreeItem", "get_prev_in_tree", 1666920593)
 
     public val getNextVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_next_visible")
+        TypeManager.getMethodBindPtr("TreeItem", "get_next_visible", 1666920593)
 
     public val getPrevVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_prev_visible")
+        TypeManager.getMethodBindPtr("TreeItem", "get_prev_visible", 1666920593)
 
-    public val getChildPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_child")
+    public val getChildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_child", 306700752)
 
     public val getChildCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_child_count")
+        TypeManager.getMethodBindPtr("TreeItem", "get_child_count", 2455072627)
 
-    public val getChildrenPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_children")
+    public val getChildrenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_children", 2915620761)
 
-    public val getIndexPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "get_index")
+    public val getIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_index", 2455072627)
 
-    public val moveBeforePtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "move_before")
+    public val moveBeforePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "move_before", 1819951137)
 
-    public val moveAfterPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "move_after")
+    public val moveAfterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "move_after", 1819951137)
 
     public val callRecursivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "call_recursive")
+        TypeManager.getMethodBindPtr("TreeItem", "call_recursive", 2866548813)
   }
 }

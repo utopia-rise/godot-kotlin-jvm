@@ -131,29 +131,34 @@ public open class TileMapPattern : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setCellPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMapPattern", "set_cell")
+    public val setCellPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapPattern", "set_cell", 2224802556)
 
-    public val hasCellPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMapPattern", "has_cell")
+    public val hasCellPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapPattern", "has_cell", 3900751641)
 
     public val removeCellPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "remove_cell")
+        TypeManager.getMethodBindPtr("TileMapPattern", "remove_cell", 4153096796)
 
     public val getCellSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_source_id")
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_source_id", 2485466453)
 
     public val getCellAtlasCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_atlas_coords")
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_atlas_coords", 3050897911)
 
     public val getCellAlternativeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_alternative_tile")
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_cell_alternative_tile", 2485466453)
 
     public val getUsedCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapPattern", "get_used_cells")
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_used_cells", 3995934104)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("TileMapPattern", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapPattern", "get_size", 3690982128)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("TileMapPattern", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapPattern", "set_size", 1130785943)
 
-    public val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMapPattern", "is_empty")
+    public val isEmptyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapPattern", "is_empty", 36873697)
   }
 }

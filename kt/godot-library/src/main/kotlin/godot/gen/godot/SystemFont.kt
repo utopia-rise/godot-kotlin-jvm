@@ -259,83 +259,87 @@ public open class SystemFont : Font() {
 
   internal object MethodBindings {
     public val setAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_antialiasing")
+        TypeManager.getMethodBindPtr("SystemFont", "set_antialiasing", 1669900)
 
     public val getAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_antialiasing")
+        TypeManager.getMethodBindPtr("SystemFont", "get_antialiasing", 4262718649)
 
     public val setDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps")
+        TypeManager.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps", 2586408642)
 
     public val getDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps")
+        TypeManager.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps", 36873697)
 
     public val setGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_generate_mipmaps")
+        TypeManager.getMethodBindPtr("SystemFont", "set_generate_mipmaps", 2586408642)
 
     public val getGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_generate_mipmaps")
+        TypeManager.getMethodBindPtr("SystemFont", "get_generate_mipmaps", 36873697)
 
     public val setAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_allow_system_fallback")
+        TypeManager.getMethodBindPtr("SystemFont", "set_allow_system_fallback", 2586408642)
 
     public val isAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_allow_system_fallback")
+        TypeManager.getMethodBindPtr("SystemFont", "is_allow_system_fallback", 36873697)
 
     public val setForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_force_autohinter")
+        TypeManager.getMethodBindPtr("SystemFont", "set_force_autohinter", 2586408642)
 
     public val isForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_force_autohinter")
+        TypeManager.getMethodBindPtr("SystemFont", "is_force_autohinter", 36873697)
 
-    public val setHintingPtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "set_hinting")
+    public val setHintingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_hinting", 1827459492)
 
-    public val getHintingPtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "get_hinting")
+    public val getHintingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_hinting", 3683214614)
 
     public val setSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_subpixel_positioning")
+        TypeManager.getMethodBindPtr("SystemFont", "set_subpixel_positioning", 4225742182)
 
     public val getSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_subpixel_positioning")
+        TypeManager.getMethodBindPtr("SystemFont", "get_subpixel_positioning", 1069238588)
 
     public val setMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field")
+        TypeManager.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field", 2586408642)
 
     public val isMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field")
+        TypeManager.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field", 36873697)
 
     public val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_pixel_range")
+        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_pixel_range", 1286410249)
 
     public val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_pixel_range")
+        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_pixel_range", 3905245786)
 
-    public val setMsdfSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "set_msdf_size")
+    public val setMsdfSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_size", 1286410249)
 
-    public val getMsdfSizePtr: VoidPtr = TypeManager.getMethodBindPtr("SystemFont", "get_msdf_size")
+    public val getMsdfSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_size", 3905245786)
 
     public val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_oversampling")
+        TypeManager.getMethodBindPtr("SystemFont", "set_oversampling", 373806689)
 
     public val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_oversampling")
+        TypeManager.getMethodBindPtr("SystemFont", "get_oversampling", 1740695150)
 
     public val getFontNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_font_names")
+        TypeManager.getMethodBindPtr("SystemFont", "get_font_names", 1139954409)
 
     public val setFontNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_names")
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_names", 4015028928)
 
     public val getFontItalicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_font_italic")
+        TypeManager.getMethodBindPtr("SystemFont", "get_font_italic", 36873697)
 
     public val setFontItalicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_italic")
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_italic", 2586408642)
 
     public val setFontWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_weight")
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_weight", 1286410249)
 
     public val setFontStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_stretch")
+        TypeManager.getMethodBindPtr("SystemFont", "set_font_stretch", 1286410249)
   }
 }

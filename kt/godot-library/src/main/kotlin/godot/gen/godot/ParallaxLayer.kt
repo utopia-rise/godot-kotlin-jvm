@@ -184,21 +184,21 @@ public open class ParallaxLayer : Node2D() {
 
   internal object MethodBindings {
     public val setMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_scale")
+        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_scale", 743155724)
 
     public val getMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_scale")
+        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_scale", 3341600327)
 
     public val setMotionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_offset")
+        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_offset", 743155724)
 
     public val getMotionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_offset")
+        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_offset", 3341600327)
 
     public val setMirroringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "set_mirroring")
+        TypeManager.getMethodBindPtr("ParallaxLayer", "set_mirroring", 743155724)
 
     public val getMirroringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "get_mirroring")
+        TypeManager.getMethodBindPtr("ParallaxLayer", "get_mirroring", 3341600327)
   }
 }

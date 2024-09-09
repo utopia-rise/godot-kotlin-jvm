@@ -132,30 +132,30 @@ public open class HeightMapShape3D : Shape3D() {
 
   internal object MethodBindings {
     public val setMapWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_width")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_width", 1286410249)
 
     public val getMapWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_width")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_width", 3905245786)
 
     public val setMapDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_depth")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_depth", 1286410249)
 
     public val getMapDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_depth")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_depth", 3905245786)
 
     public val setMapDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_data")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_data", 2899603908)
 
     public val getMapDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_data")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_data", 675695659)
 
     public val getMinHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_min_height")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_min_height", 1740695150)
 
     public val getMaxHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_max_height")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_max_height", 1740695150)
 
     public val updateMapDataFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "update_map_data_from_image")
+        TypeManager.getMethodBindPtr("HeightMapShape3D", "update_map_data_from_image", 2636652979)
   }
 }

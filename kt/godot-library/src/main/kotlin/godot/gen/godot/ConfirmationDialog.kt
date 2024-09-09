@@ -68,12 +68,12 @@ public open class ConfirmationDialog : AcceptDialog() {
 
   internal object MethodBindings {
     public val getCancelButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button")
+        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button", 1856205918)
 
     public val setCancelButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "set_cancel_button_text")
+        TypeManager.getMethodBindPtr("ConfirmationDialog", "set_cancel_button_text", 83702148)
 
     public val getCancelButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button_text")
+        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button_text", 201670096)
   }
 }

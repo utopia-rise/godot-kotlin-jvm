@@ -703,10 +703,11 @@ class GenerationService(
     private fun generateMethodVoidPtr(enrichedClass: EnrichedClass, method: EnrichedMethod) = PropertySpec
         .builder("${method.name}Ptr", VOID_PTR)
         .initializer(
-            "%T.getMethodBindPtr(%S,·%S)",
+            "%T.getMethodBindPtr(%S,·%S,·%L)",
             ClassName("godot.core", "TypeManager"),
             enrichedClass.internal.name,
-            method.internal.name
+            method.internal.name,
+            method.internal.hash
         )
         .build()
 

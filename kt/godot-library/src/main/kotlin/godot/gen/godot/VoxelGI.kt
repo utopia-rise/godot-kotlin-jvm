@@ -214,26 +214,31 @@ public open class VoxelGI : VisualInstance3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setProbeDataPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "set_probe_data")
+    public val setProbeDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGI", "set_probe_data", 1637849675)
 
-    public val getProbeDataPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "get_probe_data")
+    public val getProbeDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGI", "get_probe_data", 1730645405)
 
-    public val setSubdivPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "set_subdiv")
+    public val setSubdivPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGI", "set_subdiv", 2240898472)
 
-    public val getSubdivPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "get_subdiv")
+    public val getSubdivPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGI", "get_subdiv", 4261647950)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "set_size")
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "get_size")
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "get_size", 3360562783)
 
     public val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "set_camera_attributes")
+        TypeManager.getMethodBindPtr("VoxelGI", "set_camera_attributes", 2817810567)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "get_camera_attributes")
+        TypeManager.getMethodBindPtr("VoxelGI", "get_camera_attributes", 3921283215)
 
-    public val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "bake")
+    public val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "bake", 2781551026)
 
-    public val debugBakePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "debug_bake")
+    public val debugBakePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGI", "debug_bake", 3218959716)
   }
 }

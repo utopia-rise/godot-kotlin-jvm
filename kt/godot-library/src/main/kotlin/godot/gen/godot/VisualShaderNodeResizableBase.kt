@@ -71,9 +71,9 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "set_size")
+        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "set_size", 743155724)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "get_size")
+        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "get_size", 3341600327)
   }
 }

@@ -187,37 +187,39 @@ public open class PrimitiveMesh : Mesh() {
 
   internal object MethodBindings {
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_material")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_material")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_material", 5934680)
 
     public val getMeshArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_mesh_arrays")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_mesh_arrays", 3995934104)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_custom_aabb")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_custom_aabb")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_custom_aabb", 1068685055)
 
     public val setFlipFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_flip_faces")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_flip_faces", 2586408642)
 
     public val getFlipFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_flip_faces")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_flip_faces", 36873697)
 
-    public val setAddUv2Ptr: VoidPtr = TypeManager.getMethodBindPtr("PrimitiveMesh", "set_add_uv2")
+    public val setAddUv2Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_add_uv2", 2586408642)
 
-    public val getAddUv2Ptr: VoidPtr = TypeManager.getMethodBindPtr("PrimitiveMesh", "get_add_uv2")
+    public val getAddUv2Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_add_uv2", 36873697)
 
     public val setUv2PaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_uv2_padding")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_uv2_padding", 373806689)
 
     public val getUv2PaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_uv2_padding")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_uv2_padding", 1740695150)
 
     public val requestUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "request_update")
+        TypeManager.getMethodBindPtr("PrimitiveMesh", "request_update", 3218959716)
   }
 }

@@ -42,6 +42,7 @@ public object JavaClassWrapper : Object() {
   }
 
   internal object MethodBindings {
-    public val wrapPtr: VoidPtr = TypeManager.getMethodBindPtr("JavaClassWrapper", "wrap")
+    public val wrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JavaClassWrapper", "wrap", 1124367868)
   }
 }

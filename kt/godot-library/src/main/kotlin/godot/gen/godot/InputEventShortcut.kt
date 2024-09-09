@@ -46,9 +46,9 @@ public open class InputEventShortcut : InputEvent() {
 
   internal object MethodBindings {
     public val setShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventShortcut", "set_shortcut")
+        TypeManager.getMethodBindPtr("InputEventShortcut", "set_shortcut", 857163497)
 
     public val getShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventShortcut", "get_shortcut")
+        TypeManager.getMethodBindPtr("InputEventShortcut", "get_shortcut", 3766804753)
   }
 }

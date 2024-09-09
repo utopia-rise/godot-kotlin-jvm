@@ -158,46 +158,52 @@ public open class TubeTrailMesh : PrimitiveMesh() {
   public companion object
 
   internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radius", 1740695150)
 
     public val setRadialStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radial_steps")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radial_steps", 1286410249)
 
     public val getRadialStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radial_steps")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radial_steps", 3905245786)
 
     public val setSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_sections")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_sections", 1286410249)
 
     public val getSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_sections")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_sections", 3905245786)
 
     public val setSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_length")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_length", 373806689)
 
     public val getSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_length")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_length", 1740695150)
 
     public val setSectionRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_rings")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_rings", 1286410249)
 
     public val getSectionRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_rings")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_rings", 3905245786)
 
-    public val setCapTopPtr: VoidPtr = TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_top")
+    public val setCapTopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_top", 2586408642)
 
-    public val isCapTopPtr: VoidPtr = TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_top")
+    public val isCapTopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_top", 36873697)
 
     public val setCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_bottom")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_bottom", 2586408642)
 
     public val isCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_bottom")
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_bottom", 36873697)
 
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("TubeTrailMesh", "set_curve")
+    public val setCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_curve", 270443179)
 
-    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("TubeTrailMesh", "get_curve")
+    public val getCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_curve", 2460114913)
   }
 }

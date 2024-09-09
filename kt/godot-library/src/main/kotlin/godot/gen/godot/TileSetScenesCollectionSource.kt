@@ -167,36 +167,36 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
 
   internal object MethodBindings {
     public val getSceneTilesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tiles_count")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tiles_count", 2455072627)
 
     public val getSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_id")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_id", 3744713108)
 
     public val hasSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "has_scene_tile_id")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "has_scene_tile_id", 3067735520)
 
     public val createSceneTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "create_scene_tile")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "create_scene_tile", 1117465415)
 
     public val setSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_id")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_id", 3937882851)
 
     public val setSceneTileScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_scene")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_scene", 3435852839)
 
     public val getSceneTileScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_scene")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_scene", 511017218)
 
     public val setSceneTileDisplayPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_display_placeholder")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_display_placeholder", 300928843)
 
     public val getSceneTileDisplayPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_display_placeholder")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_display_placeholder", 1116898809)
 
     public val removeSceneTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "remove_scene_tile")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "remove_scene_tile", 1286410249)
 
     public val getNextSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_next_scene_tile_id")
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_next_scene_tile_id", 3905245786)
   }
 }

@@ -233,54 +233,54 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
   internal object MethodBindings {
     public val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create", 3110599579)
 
     public val setFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_from")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_from", 3460891852)
 
     public val getFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_from")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_from", 3360562783)
 
     public val setToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_to")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_to", 3460891852)
 
     public val getToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_to")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_to", 3360562783)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_collision_mask", 3905245786)
 
     public val setExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_exclude")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_exclude", 381264803)
 
     public val getExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_exclude")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_exclude", 3995934104)
 
     public val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_bodies")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_bodies", 2586408642)
 
     public val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_bodies_enabled")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
 
     public val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_areas")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_areas", 2586408642)
 
     public val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_areas_enabled")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
 
     public val setHitFromInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_from_inside")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_from_inside", 2586408642)
 
     public val isHitFromInsideEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_from_inside_enabled")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_from_inside_enabled", 36873697)
 
     public val setHitBackFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_back_faces")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_back_faces", 2586408642)
 
     public val isHitBackFacesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_back_faces_enabled")
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_back_faces_enabled", 36873697)
   }
 }

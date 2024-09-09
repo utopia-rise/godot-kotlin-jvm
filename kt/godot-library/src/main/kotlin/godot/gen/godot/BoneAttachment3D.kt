@@ -133,36 +133,36 @@ public open class BoneAttachment3D : Node3D() {
 
   internal object MethodBindings {
     public val setBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_bone_name")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_bone_name", 83702148)
 
     public val getBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_bone_name")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_bone_name", 201670096)
 
     public val setBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_bone_idx")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_bone_idx", 1286410249)
 
     public val getBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_bone_idx")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_bone_idx", 3905245786)
 
     public val onSkeletonUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "on_skeleton_update")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "on_skeleton_update", 3218959716)
 
     public val setOverridePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_override_pose")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_override_pose", 2586408642)
 
     public val getOverridePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_override_pose")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_override_pose", 36873697)
 
     public val setUseExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_use_external_skeleton")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_use_external_skeleton", 2586408642)
 
     public val getUseExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_use_external_skeleton")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_use_external_skeleton", 36873697)
 
     public val setExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_external_skeleton")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_external_skeleton", 1348162250)
 
     public val getExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_external_skeleton")
+        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_external_skeleton", 4075236667)
   }
 }

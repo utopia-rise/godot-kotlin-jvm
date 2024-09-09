@@ -133,31 +133,33 @@ public open class PrismMesh : PrimitiveMesh() {
 
   internal object MethodBindings {
     public val setLeftToRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_left_to_right")
+        TypeManager.getMethodBindPtr("PrismMesh", "set_left_to_right", 373806689)
 
     public val getLeftToRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_left_to_right")
+        TypeManager.getMethodBindPtr("PrismMesh", "get_left_to_right", 1740695150)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PrismMesh", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("PrismMesh", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PrismMesh", "get_size", 3360562783)
 
     public val setSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_width")
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_width", 1286410249)
 
     public val getSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_width")
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_width", 3905245786)
 
     public val setSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_height")
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_height", 1286410249)
 
     public val getSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_height")
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_height", 3905245786)
 
     public val setSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_depth")
+        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_depth", 1286410249)
 
     public val getSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_depth")
+        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_depth", 3905245786)
   }
 }

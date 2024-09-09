@@ -102,24 +102,24 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
 
   internal object MethodBindings {
     public val setPhysicalBoneChainLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_chain_length")
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_chain_length", 1286410249)
 
     public val getPhysicalBoneChainLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_chain_length")
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_chain_length", 2455072627)
 
     public val setPhysicalBoneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_node")
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_node", 2761262315)
 
     public val getPhysicalBoneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_node")
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_node", 408788394)
 
     public val fetchPhysicalBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "fetch_physical_bones")
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "fetch_physical_bones", 3218959716)
 
     public val startSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "start_simulation")
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "start_simulation", 2787316981)
 
     public val stopSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "stop_simulation")
+        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "stop_simulation", 2787316981)
   }
 }

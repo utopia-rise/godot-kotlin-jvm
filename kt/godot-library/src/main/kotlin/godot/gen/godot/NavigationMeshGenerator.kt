@@ -110,14 +110,16 @@ public object NavigationMeshGenerator : Object() {
   }
 
   internal object MethodBindings {
-    public val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake")
+    public val bakePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake", 1401173477)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationMeshGenerator", "clear")
+    public val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "clear", 2923361153)
 
     public val parseSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "parse_source_geometry_data")
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "parse_source_geometry_data", 685862123)
 
     public val bakeFromSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake_from_source_geometry_data")
+        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake_from_source_geometry_data", 2469318639)
   }
 }

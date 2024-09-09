@@ -143,6 +143,6 @@ public open class VideoStreamPlayback : Resource() {
 
   internal object MethodBindings {
     public val mixAudioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio")
+        TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93876830)
   }
 }

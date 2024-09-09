@@ -51,9 +51,9 @@ public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSphere3D", "set_radius")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSphere3D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSphere3D", "get_radius")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSphere3D", "get_radius", 1740695150)
   }
 }

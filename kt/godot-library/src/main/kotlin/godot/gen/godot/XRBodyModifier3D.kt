@@ -172,22 +172,22 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
 
   internal object MethodBindings {
     public val setBodyTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_tracker")
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_tracker", 3304788590)
 
     public val getBodyTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_tracker")
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_tracker", 2002593661)
 
     public val setBodyUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_update")
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_update", 2211199417)
 
     public val getBodyUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_update")
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_update", 2642335328)
 
     public val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_bone_update")
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_bone_update", 3356796943)
 
     public val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_bone_update")
+        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_bone_update", 1309305964)
   }
 }
 

@@ -97,19 +97,21 @@ public open class VehicleBody3D : RigidBody3D() {
 
   internal object MethodBindings {
     public val setEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "set_engine_force")
+        TypeManager.getMethodBindPtr("VehicleBody3D", "set_engine_force", 373806689)
 
     public val getEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "get_engine_force")
+        TypeManager.getMethodBindPtr("VehicleBody3D", "get_engine_force", 1740695150)
 
-    public val setBrakePtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleBody3D", "set_brake")
+    public val setBrakePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleBody3D", "set_brake", 373806689)
 
-    public val getBrakePtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleBody3D", "get_brake")
+    public val getBrakePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleBody3D", "get_brake", 1740695150)
 
     public val setSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "set_steering")
+        TypeManager.getMethodBindPtr("VehicleBody3D", "set_steering", 373806689)
 
     public val getSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "get_steering")
+        TypeManager.getMethodBindPtr("VehicleBody3D", "get_steering", 1740695150)
   }
 }

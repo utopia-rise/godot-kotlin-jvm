@@ -132,34 +132,40 @@ public open class AudioStreamMP3 : AudioStream() {
   public companion object
 
   internal object MethodBindings {
-    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamMP3", "set_data")
+    public val setDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_data", 2971499966)
 
-    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamMP3", "get_data")
+    public val getDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_data", 2362200018)
 
-    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop")
+    public val setLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamMP3", "has_loop")
+    public val hasLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "has_loop", 36873697)
 
     public val setLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop_offset")
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop_offset", 373806689)
 
     public val getLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_loop_offset")
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_loop_offset", 1740695150)
 
-    public val setBpmPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bpm")
+    public val setBpmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bpm", 373806689)
 
-    public val getBpmPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bpm")
+    public val getBpmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bpm", 1740695150)
 
     public val setBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_beat_count")
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_beat_count", 1286410249)
 
     public val getBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_beat_count")
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_beat_count", 3905245786)
 
     public val setBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bar_beats")
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bar_beats", 1286410249)
 
     public val getBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bar_beats")
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bar_beats", 3905245786)
   }
 }

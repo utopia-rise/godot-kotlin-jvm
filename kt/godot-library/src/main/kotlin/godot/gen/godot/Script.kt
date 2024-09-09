@@ -224,45 +224,52 @@ public open class Script internal constructor() : Resource() {
 
   internal object MethodBindings {
     public val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "can_instantiate")
+        TypeManager.getMethodBindPtr("Script", "can_instantiate", 36873697)
 
-    public val instanceHasPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "instance_has")
+    public val instanceHasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "instance_has", 397768994)
 
-    public val hasSourceCodePtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "has_source_code")
+    public val hasSourceCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "has_source_code", 36873697)
 
-    public val getSourceCodePtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "get_source_code")
+    public val getSourceCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "get_source_code", 201670096)
 
-    public val setSourceCodePtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "set_source_code")
+    public val setSourceCodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "set_source_code", 83702148)
 
-    public val reloadPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "reload")
+    public val reloadPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "reload", 1633102583)
 
-    public val getBaseScriptPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "get_base_script")
+    public val getBaseScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "get_base_script", 278624046)
 
     public val getInstanceBaseTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_instance_base_type")
+        TypeManager.getMethodBindPtr("Script", "get_instance_base_type", 2002593661)
 
-    public val getGlobalNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "get_global_name")
+    public val getGlobalNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "get_global_name", 2002593661)
 
     public val hasScriptSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "has_script_signal")
+        TypeManager.getMethodBindPtr("Script", "has_script_signal", 2619796661)
 
     public val getScriptPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_property_list")
+        TypeManager.getMethodBindPtr("Script", "get_script_property_list", 2915620761)
 
     public val getScriptMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_method_list")
+        TypeManager.getMethodBindPtr("Script", "get_script_method_list", 2915620761)
 
     public val getScriptSignalListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_signal_list")
+        TypeManager.getMethodBindPtr("Script", "get_script_signal_list", 2915620761)
 
     public val getScriptConstantMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_constant_map")
+        TypeManager.getMethodBindPtr("Script", "get_script_constant_map", 2382534195)
 
     public val getPropertyDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_property_default_value")
+        TypeManager.getMethodBindPtr("Script", "get_property_default_value", 2138907829)
 
-    public val isToolPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_tool")
+    public val isToolPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_tool", 36873697)
 
-    public val isAbstractPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_abstract")
+    public val isAbstractPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "is_abstract", 36873697)
   }
 }

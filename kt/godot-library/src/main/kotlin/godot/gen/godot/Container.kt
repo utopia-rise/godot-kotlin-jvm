@@ -97,9 +97,10 @@ public open class Container : Control() {
   }
 
   internal object MethodBindings {
-    public val queueSortPtr: VoidPtr = TypeManager.getMethodBindPtr("Container", "queue_sort")
+    public val queueSortPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Container", "queue_sort", 3218959716)
 
     public val fitChildInRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Container", "fit_child_in_rect")
+        TypeManager.getMethodBindPtr("Container", "fit_child_in_rect", 1993438598)
   }
 }

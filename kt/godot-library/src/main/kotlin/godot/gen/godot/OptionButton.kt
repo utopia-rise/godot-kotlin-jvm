@@ -367,98 +367,105 @@ public open class OptionButton : Button() {
   public companion object
 
   internal object MethodBindings {
-    public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "add_item")
+    public val addItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "add_item", 2697778442)
 
     public val addIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "add_icon_item")
+        TypeManager.getMethodBindPtr("OptionButton", "add_icon_item", 3781678508)
 
     public val setItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_text")
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_text", 501894301)
 
     public val setItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_icon")
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_icon", 666127730)
 
     public val setItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_disabled")
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_disabled", 300928843)
 
-    public val setItemIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "set_item_id")
+    public val setItemIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_id", 3937882851)
 
     public val setItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_metadata")
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_metadata", 2152698145)
 
     public val setItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_tooltip")
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_tooltip", 501894301)
 
     public val getItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_text")
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_text", 844755477)
 
     public val getItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_icon")
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_icon", 3536238170)
 
-    public val getItemIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "get_item_id")
+    public val getItemIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_id", 923996154)
 
     public val getItemIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_index")
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_index", 923996154)
 
     public val getItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_metadata")
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_metadata", 4227898402)
 
     public val getItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_tooltip")
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_tooltip", 844755477)
 
     public val isItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "is_item_disabled")
+        TypeManager.getMethodBindPtr("OptionButton", "is_item_disabled", 1116898809)
 
     public val isItemSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "is_item_separator")
+        TypeManager.getMethodBindPtr("OptionButton", "is_item_separator", 1116898809)
 
     public val addSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "add_separator")
+        TypeManager.getMethodBindPtr("OptionButton", "add_separator", 3005725572)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "clear", 3218959716)
 
-    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "select")
+    public val selectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "select", 1286410249)
 
     public val getSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selected")
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected", 3905245786)
 
     public val getSelectedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selected_id")
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected_id", 3905245786)
 
     public val getSelectedMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selected_metadata")
+        TypeManager.getMethodBindPtr("OptionButton", "get_selected_metadata", 1214101251)
 
-    public val removeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "remove_item")
+    public val removeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "remove_item", 1286410249)
 
-    public val getPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "get_popup")
+    public val getPopupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_popup", 229722558)
 
-    public val showPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("OptionButton", "show_popup")
+    public val showPopupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "show_popup", 3218959716)
 
     public val setItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_item_count")
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_count", 1286410249)
 
     public val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_item_count")
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_count", 3905245786)
 
     public val hasSelectableItemsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "has_selectable_items")
+        TypeManager.getMethodBindPtr("OptionButton", "has_selectable_items", 36873697)
 
     public val getSelectableItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_selectable_item")
+        TypeManager.getMethodBindPtr("OptionButton", "get_selectable_item", 894402480)
 
     public val setFitToLongestItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_fit_to_longest_item")
+        TypeManager.getMethodBindPtr("OptionButton", "set_fit_to_longest_item", 2586408642)
 
     public val isFitToLongestItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "is_fit_to_longest_item")
+        TypeManager.getMethodBindPtr("OptionButton", "is_fit_to_longest_item", 36873697)
 
     public val setAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_allow_reselect")
+        TypeManager.getMethodBindPtr("OptionButton", "set_allow_reselect", 2586408642)
 
     public val getAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "get_allow_reselect")
+        TypeManager.getMethodBindPtr("OptionButton", "get_allow_reselect", 36873697)
 
     public val setDisableShortcutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptionButton", "set_disable_shortcuts")
+        TypeManager.getMethodBindPtr("OptionButton", "set_disable_shortcuts", 2586408642)
   }
 }

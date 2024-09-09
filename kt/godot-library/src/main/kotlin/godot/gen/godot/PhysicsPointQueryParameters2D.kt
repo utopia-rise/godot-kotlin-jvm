@@ -158,39 +158,39 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
 
   internal object MethodBindings {
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_position")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_position", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_position")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_position", 3341600327)
 
     public val setCanvasInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_canvas_instance_id")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_canvas_instance_id", 1286410249)
 
     public val getCanvasInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_canvas_instance_id")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_canvas_instance_id", 3905245786)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_collision_mask")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_collision_mask", 3905245786)
 
     public val setExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_exclude")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_exclude", 381264803)
 
     public val getExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_exclude")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "get_exclude", 3995934104)
 
     public val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_bodies")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_bodies", 2586408642)
 
     public val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_bodies_enabled")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_bodies_enabled", 36873697)
 
     public val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_areas")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "set_collide_with_areas", 2586408642)
 
     public val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_areas_enabled")
+        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters2D", "is_collide_with_areas_enabled", 36873697)
   }
 }

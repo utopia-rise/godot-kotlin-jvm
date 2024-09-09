@@ -154,35 +154,36 @@ public open class MultiplayerSpawner : Node() {
 
   internal object MethodBindings {
     public val addSpawnableScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "add_spawnable_scene")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "add_spawnable_scene", 83702148)
 
     public val getSpawnableSceneCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene_count")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene_count", 3905245786)
 
     public val getSpawnableScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawnable_scene", 844755477)
 
     public val clearSpawnableScenesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "clear_spawnable_scenes")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "clear_spawnable_scenes", 3218959716)
 
-    public val spawnPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiplayerSpawner", "spawn")
+    public val spawnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "spawn", 1991184589)
 
     public val getSpawnPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_path")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_path", 4075236667)
 
     public val setSpawnPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_path")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_path", 1348162250)
 
     public val getSpawnLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_limit")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_limit", 3905245786)
 
     public val setSpawnLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_limit")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_limit", 1286410249)
 
     public val getSpawnFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_function")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "get_spawn_function", 1307783378)
 
     public val setSpawnFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_function")
+        TypeManager.getMethodBindPtr("MultiplayerSpawner", "set_spawn_function", 1611583062)
   }
 }

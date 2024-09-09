@@ -212,49 +212,57 @@ public open class GLTFLight : Resource() {
   }
 
   internal object MethodBindings {
-    public val fromNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "from_node")
+    public val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
 
-    public val toNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "to_node")
+    public val toNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "to_node", 2040811672)
 
     public val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary")
+        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
 
-    public val toDictionaryPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "to_dictionary")
+    public val toDictionaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "to_dictionary", 3102165223)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "get_color", 3200896285)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "set_color", 2920490490)
 
-    public val getIntensityPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "get_intensity")
+    public val getIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "get_intensity", 191475506)
 
-    public val setIntensityPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "set_intensity")
+    public val setIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "set_intensity", 373806689)
 
     public val getLightTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_light_type")
+        TypeManager.getMethodBindPtr("GLTFLight", "get_light_type", 2841200299)
 
     public val setLightTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_light_type")
+        TypeManager.getMethodBindPtr("GLTFLight", "set_light_type", 83702148)
 
-    public val getRangePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "get_range")
+    public val getRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "get_range", 191475506)
 
-    public val setRangePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFLight", "set_range")
+    public val setRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFLight", "set_range", 373806689)
 
     public val getInnerConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_inner_cone_angle")
+        TypeManager.getMethodBindPtr("GLTFLight", "get_inner_cone_angle", 191475506)
 
     public val setInnerConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_inner_cone_angle")
+        TypeManager.getMethodBindPtr("GLTFLight", "set_inner_cone_angle", 373806689)
 
     public val getOuterConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_outer_cone_angle")
+        TypeManager.getMethodBindPtr("GLTFLight", "get_outer_cone_angle", 191475506)
 
     public val setOuterConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_outer_cone_angle")
+        TypeManager.getMethodBindPtr("GLTFLight", "set_outer_cone_angle", 373806689)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_additional_data")
+        TypeManager.getMethodBindPtr("GLTFLight", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data")
+        TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data", 3776071444)
   }
 }

@@ -147,12 +147,16 @@ public open class HingeJoint3D : Joint3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setParamPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "set_param")
+    public val setParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HingeJoint3D", "set_param", 3082977519)
 
-    public val getParamPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "get_param")
+    public val getParamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HingeJoint3D", "get_param", 4066002676)
 
-    public val setFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "set_flag")
+    public val setFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HingeJoint3D", "set_flag", 1083494620)
 
-    public val getFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("HingeJoint3D", "get_flag")
+    public val getFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HingeJoint3D", "get_flag", 2841369610)
   }
 }

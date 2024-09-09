@@ -289,63 +289,66 @@ public open class SceneState internal constructor() : RefCounted() {
 
   internal object MethodBindings {
     public val getNodeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_count")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_count", 3905245786)
 
-    public val getNodeTypePtr: VoidPtr = TypeManager.getMethodBindPtr("SceneState", "get_node_type")
+    public val getNodeTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneState", "get_node_type", 659327637)
 
-    public val getNodeNamePtr: VoidPtr = TypeManager.getMethodBindPtr("SceneState", "get_node_name")
+    public val getNodeNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneState", "get_node_name", 659327637)
 
-    public val getNodePathPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneState", "get_node_path")
+    public val getNodePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneState", "get_node_path", 2272487792)
 
     public val getNodeOwnerPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_owner_path")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_owner_path", 408788394)
 
     public val isNodeInstancePlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "is_node_instance_placeholder")
+        TypeManager.getMethodBindPtr("SceneState", "is_node_instance_placeholder", 1116898809)
 
     public val getNodeInstancePlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_instance_placeholder")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_instance_placeholder", 844755477)
 
     public val getNodeInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_instance")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_instance", 511017218)
 
     public val getNodeGroupsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_groups")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_groups", 647634434)
 
     public val getNodeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_index")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_index", 923996154)
 
     public val getNodePropertyCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_property_count")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_property_count", 923996154)
 
     public val getNodePropertyNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_property_name")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_property_name", 351665558)
 
     public val getNodePropertyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_property_value")
+        TypeManager.getMethodBindPtr("SceneState", "get_node_property_value", 678354945)
 
     public val getConnectionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_count")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_count", 3905245786)
 
     public val getConnectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_source")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_source", 408788394)
 
     public val getConnectionSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_signal")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_signal", 659327637)
 
     public val getConnectionTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_target")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_target", 408788394)
 
     public val getConnectionMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_method")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_method", 659327637)
 
     public val getConnectionFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_flags")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_flags", 923996154)
 
     public val getConnectionBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_binds")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_binds", 663333327)
 
     public val getConnectionUnbindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_unbinds")
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_unbinds", 923996154)
   }
 }

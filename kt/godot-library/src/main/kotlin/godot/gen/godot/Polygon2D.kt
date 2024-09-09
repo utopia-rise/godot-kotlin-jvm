@@ -445,99 +445,116 @@ public open class Polygon2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_polygon")
+    public val setPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_polygon", 1509147220)
 
-    public val getPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_polygon")
+    public val getPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_polygon", 2961356807)
 
-    public val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_uv")
+    public val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_uv", 1509147220)
 
-    public val getUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_uv")
+    public val getUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_uv", 2961356807)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_color", 3444240500)
 
-    public val setPolygonsPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_polygons")
+    public val setPolygonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_polygons", 381264803)
 
-    public val getPolygonsPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_polygons")
+    public val getPolygonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_polygons", 3995934104)
 
     public val setVertexColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_vertex_colors")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_vertex_colors", 3546319833)
 
     public val getVertexColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_vertex_colors")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_vertex_colors", 1392750486)
 
-    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_texture")
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture", 3635182373)
 
     public val setTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_offset")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_offset", 743155724)
 
     public val getTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_offset")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_offset", 3341600327)
 
     public val setTextureRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_rotation")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_rotation", 373806689)
 
     public val getTextureRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_rotation")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_rotation", 1740695150)
 
     public val setTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_scale")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_scale", 743155724)
 
     public val getTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_scale")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_scale", 3341600327)
 
     public val setInvertEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_enabled")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_enabled", 2586408642)
 
     public val getInvertEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_enabled")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_enabled", 36873697)
 
     public val setAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_antialiased")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_antialiased", 2586408642)
 
     public val getAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_antialiased")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_antialiased", 36873697)
 
     public val setInvertBorderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_border")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_border", 373806689)
 
     public val getInvertBorderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_border")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_border", 1740695150)
 
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_offset", 3341600327)
 
-    public val addBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "add_bone")
+    public val addBonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "add_bone", 703042815)
 
     public val getBoneCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_count")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_count", 3905245786)
 
-    public val getBonePathPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_bone_path")
+    public val getBonePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_path", 408788394)
 
     public val getBoneWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_weights")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_weights", 1542882410)
 
-    public val eraseBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "erase_bone")
+    public val eraseBonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "erase_bone", 1286410249)
 
-    public val clearBonesPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "clear_bones")
+    public val clearBonesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "clear_bones", 3218959716)
 
-    public val setBonePathPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_bone_path")
+    public val setBonePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_path", 2761262315)
 
     public val setBoneWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_weights")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_weights", 1345852415)
 
-    public val setSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_skeleton")
+    public val setSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_skeleton", 1348162250)
 
-    public val getSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_skeleton")
+    public val getSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_skeleton", 4075236667)
 
     public val setInternalVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_internal_vertex_count")
+        TypeManager.getMethodBindPtr("Polygon2D", "set_internal_vertex_count", 1286410249)
 
     public val getInternalVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_internal_vertex_count")
+        TypeManager.getMethodBindPtr("Polygon2D", "get_internal_vertex_count", 3905245786)
   }
 }

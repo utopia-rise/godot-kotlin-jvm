@@ -61,15 +61,15 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
 
   internal object MethodBindings {
     public val setVaryingNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_name", 83702148)
 
     public val getVaryingNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_name", 201670096)
 
     public val setVaryingTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_type", 3565867981)
 
     public val getVaryingTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_type", 523183580)
   }
 }

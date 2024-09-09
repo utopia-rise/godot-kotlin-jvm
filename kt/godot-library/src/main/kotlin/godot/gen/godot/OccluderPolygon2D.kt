@@ -104,20 +104,21 @@ public open class OccluderPolygon2D : Resource() {
 
   internal object MethodBindings {
     public val setClosedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_closed")
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_closed", 2586408642)
 
-    public val isClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("OccluderPolygon2D", "is_closed")
+    public val isClosedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "is_closed", 36873697)
 
     public val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_cull_mode")
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_cull_mode", 3500863002)
 
     public val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_cull_mode")
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_cull_mode", 33931036)
 
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_polygon")
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_polygon")
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_polygon", 2961356807)
   }
 }

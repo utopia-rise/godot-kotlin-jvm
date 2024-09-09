@@ -157,33 +157,33 @@ public open class GLTFSpecGloss : Resource() {
 
   internal object MethodBindings {
     public val getDiffuseImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_img")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_img", 564927088)
 
     public val setDiffuseImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_img")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_img", 532598488)
 
     public val getDiffuseFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_factor")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_factor", 3200896285)
 
     public val setDiffuseFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_factor")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_factor", 2920490490)
 
     public val getGlossFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_gloss_factor")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_gloss_factor", 191475506)
 
     public val setGlossFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_gloss_factor")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_gloss_factor", 373806689)
 
     public val getSpecularFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_specular_factor")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_specular_factor", 3200896285)
 
     public val setSpecularFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_specular_factor")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_specular_factor", 2920490490)
 
     public val getSpecGlossImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_spec_gloss_img")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_spec_gloss_img", 564927088)
 
     public val setSpecGlossImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_spec_gloss_img")
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_spec_gloss_img", 532598488)
   }
 }

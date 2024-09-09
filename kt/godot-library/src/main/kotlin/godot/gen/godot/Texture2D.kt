@@ -228,24 +228,30 @@ public open class Texture2D : Texture() {
   public companion object
 
   internal object MethodBindings {
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_width")
+    public val getWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "get_width", 3905245786)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "get_height", 3905245786)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "get_size", 3341600327)
 
-    public val hasAlphaPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "has_alpha")
+    public val hasAlphaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "has_alpha", 36873697)
 
-    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw")
+    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw", 2729649137)
 
-    public val drawRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "draw_rect")
+    public val drawRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "draw_rect", 3499451691)
 
     public val drawRectRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "draw_rect_region")
+        TypeManager.getMethodBindPtr("Texture2D", "draw_rect_region", 2963678660)
 
-    public val getImagePtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_image")
+    public val getImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Texture2D", "get_image", 4190603485)
 
     public val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "create_placeholder")
+        TypeManager.getMethodBindPtr("Texture2D", "create_placeholder", 121922552)
   }
 }

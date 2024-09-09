@@ -321,47 +321,51 @@ public open class ConfigFile : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val setValuePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "set_value")
+    public val setValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConfigFile", "set_value", 2504492430)
 
-    public val getValuePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "get_value")
+    public val getValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConfigFile", "get_value", 89809366)
 
-    public val hasSectionPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "has_section")
+    public val hasSectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConfigFile", "has_section", 3927539163)
 
     public val hasSectionKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "has_section_key")
+        TypeManager.getMethodBindPtr("ConfigFile", "has_section_key", 820780508)
 
-    public val getSectionsPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "get_sections")
+    public val getSectionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ConfigFile", "get_sections", 1139954409)
 
     public val getSectionKeysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "get_section_keys")
+        TypeManager.getMethodBindPtr("ConfigFile", "get_section_keys", 4291131558)
 
     public val eraseSectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "erase_section")
+        TypeManager.getMethodBindPtr("ConfigFile", "erase_section", 83702148)
 
     public val eraseSectionKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "erase_section_key")
+        TypeManager.getMethodBindPtr("ConfigFile", "erase_section_key", 3186203200)
 
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "load")
+    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "load", 166001499)
 
-    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "parse")
+    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "parse", 166001499)
 
-    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "save")
+    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "save", 166001499)
 
     public val encodeToTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "encode_to_text")
+        TypeManager.getMethodBindPtr("ConfigFile", "encode_to_text", 201670096)
 
     public val loadEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted")
+        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted", 887037711)
 
     public val loadEncryptedPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted_pass")
+        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted_pass", 852856452)
 
     public val saveEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted")
+        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted", 887037711)
 
     public val saveEncryptedPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted_pass")
+        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted_pass", 852856452)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "clear", 3218959716)
   }
 }

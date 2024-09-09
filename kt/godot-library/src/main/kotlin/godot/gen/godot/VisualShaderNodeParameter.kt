@@ -93,15 +93,15 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
 
   internal object MethodBindings {
     public val setParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name", 83702148)
 
     public val getParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name", 201670096)
 
     public val setQualifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier", 1276489447)
 
     public val getQualifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier", 3558406205)
   }
 }

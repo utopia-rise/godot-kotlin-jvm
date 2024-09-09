@@ -98,15 +98,15 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
 
   internal object MethodBindings {
     public val setEnableModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "set_enable_mode")
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "set_enable_mode", 2961788752)
 
     public val getEnableModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "get_enable_mode")
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "get_enable_mode", 2650445576)
 
     public val setEnableNodePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "set_enable_node_path")
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "set_enable_node_path", 1348162250)
 
     public val getEnableNodePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "get_enable_node_path")
+        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler2D", "get_enable_node_path", 277076166)
   }
 }

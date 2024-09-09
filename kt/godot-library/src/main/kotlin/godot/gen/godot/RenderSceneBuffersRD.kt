@@ -351,84 +351,84 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
 
   internal object MethodBindings {
     public val hasTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "has_texture")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "has_texture", 471820014)
 
     public val createTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture", 3559915770)
 
     public val createTextureFromFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_from_format")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_from_format", 3344669382)
 
     public val createTextureViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_view")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "create_texture_view", 283055834)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture", 750006389)
 
     public val getTextureFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_format")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_format", 371461758)
 
     public val getTextureSlicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice", 588440706)
 
     public val getTextureSliceViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_view")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_view", 682451778)
 
     public val getTextureSliceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_size")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_slice_size", 2617625368)
 
     public val clearContextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "clear_context")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "clear_context", 3304788590)
 
     public val getColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_texture")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_texture", 3050822880)
 
     public val getColorLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_layer")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_color_layer", 3087988589)
 
     public val getDepthTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_texture")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_texture", 3050822880)
 
     public val getDepthLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_layer")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_depth_layer", 3087988589)
 
     public val getVelocityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_texture")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_texture", 3050822880)
 
     public val getVelocityLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_layer")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_velocity_layer", 3087988589)
 
     public val getRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_render_target")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_render_target", 2944877500)
 
     public val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_view_count")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_view_count", 3905245786)
 
     public val getInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_internal_size")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_internal_size", 3690982128)
 
     public val getTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_target_size")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_target_size", 3690982128)
 
     public val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_scaling_3d_mode")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_scaling_3d_mode", 976778074)
 
     public val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_fsr_sharpness")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_fsr_sharpness", 1740695150)
 
     public val getMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_msaa_3d")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_msaa_3d", 3109158617)
 
     public val getTextureSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_samples")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_texture_samples", 407791724)
 
     public val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_screen_space_aa")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_screen_space_aa", 641513172)
 
     public val getUseTaaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_taa")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_taa", 36873697)
 
     public val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_debanding")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersRD", "get_use_debanding", 36873697)
   }
 }

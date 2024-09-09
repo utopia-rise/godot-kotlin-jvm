@@ -513,127 +513,143 @@ public open class GridMap : Node3D() {
 
   internal object MethodBindings {
     public val setCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer")
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer", 1286410249)
 
     public val getCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer")
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer", 3905245786)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask")
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask")
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask", 3905245786)
 
     public val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask_value")
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_mask_value", 300928843)
 
     public val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask_value")
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_mask_value", 1116898809)
 
     public val setCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer_value")
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_layer_value", 300928843)
 
     public val getCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer_value")
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_layer_value", 1116898809)
 
     public val setCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_collision_priority")
+        TypeManager.getMethodBindPtr("GridMap", "set_collision_priority", 373806689)
 
     public val getCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_collision_priority")
+        TypeManager.getMethodBindPtr("GridMap", "get_collision_priority", 1740695150)
 
     public val setPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_physics_material")
+        TypeManager.getMethodBindPtr("GridMap", "set_physics_material", 1784508650)
 
     public val getPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_physics_material")
+        TypeManager.getMethodBindPtr("GridMap", "get_physics_material", 2521850424)
 
     public val setBakeNavigationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_bake_navigation")
+        TypeManager.getMethodBindPtr("GridMap", "set_bake_navigation", 2586408642)
 
     public val isBakingNavigationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "is_baking_navigation")
+        TypeManager.getMethodBindPtr("GridMap", "is_baking_navigation", 2240911060)
 
     public val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_navigation_map")
+        TypeManager.getMethodBindPtr("GridMap", "set_navigation_map", 2722037293)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_navigation_map")
+        TypeManager.getMethodBindPtr("GridMap", "get_navigation_map", 2944877500)
 
     public val setMeshLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_mesh_library")
+        TypeManager.getMethodBindPtr("GridMap", "set_mesh_library", 1488083439)
 
     public val getMeshLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_mesh_library")
+        TypeManager.getMethodBindPtr("GridMap", "get_mesh_library", 3350993772)
 
-    public val setCellSizePtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "set_cell_size")
+    public val setCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "set_cell_size", 3460891852)
 
-    public val getCellSizePtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_cell_size")
+    public val getCellSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_size", 3360562783)
 
-    public val setCellScalePtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "set_cell_scale")
+    public val setCellScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "set_cell_scale", 373806689)
 
-    public val getCellScalePtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_cell_scale")
+    public val getCellScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_scale", 1740695150)
 
     public val setOctantSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "set_octant_size")
+        TypeManager.getMethodBindPtr("GridMap", "set_octant_size", 1286410249)
 
     public val getOctantSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_octant_size")
+        TypeManager.getMethodBindPtr("GridMap", "get_octant_size", 3905245786)
 
-    public val setCellItemPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "set_cell_item")
+    public val setCellItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "set_cell_item", 3449088946)
 
-    public val getCellItemPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_cell_item")
+    public val getCellItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_item", 3724960147)
 
     public val getCellItemOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_orientation")
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_orientation", 3724960147)
 
     public val getCellItemBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_basis")
+        TypeManager.getMethodBindPtr("GridMap", "get_cell_item_basis", 3493604918)
 
     public val getBasisWithOrthogonalIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_basis_with_orthogonal_index")
+        TypeManager.getMethodBindPtr("GridMap", "get_basis_with_orthogonal_index", 2816196998)
 
     public val getOrthogonalIndexFromBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_orthogonal_index_from_basis")
+        TypeManager.getMethodBindPtr("GridMap", "get_orthogonal_index_from_basis", 4210359952)
 
-    public val localToMapPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "local_to_map")
+    public val localToMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "local_to_map", 1257687843)
 
-    public val mapToLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "map_to_local")
+    public val mapToLocalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "map_to_local", 1088329196)
 
     public val resourceChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "resource_changed")
+        TypeManager.getMethodBindPtr("GridMap", "resource_changed", 968641751)
 
-    public val setCenterXPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "set_center_x")
+    public val setCenterXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "set_center_x", 2586408642)
 
-    public val getCenterXPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_center_x")
+    public val getCenterXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_center_x", 36873697)
 
-    public val setCenterYPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "set_center_y")
+    public val setCenterYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "set_center_y", 2586408642)
 
-    public val getCenterYPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_center_y")
+    public val getCenterYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_center_y", 36873697)
 
-    public val setCenterZPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "set_center_z")
+    public val setCenterZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "set_center_z", 2586408642)
 
-    public val getCenterZPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_center_z")
+    public val getCenterZPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_center_z", 36873697)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "clear", 3218959716)
 
-    public val getUsedCellsPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_used_cells")
+    public val getUsedCellsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_used_cells", 3995934104)
 
     public val getUsedCellsByItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_used_cells_by_item")
+        TypeManager.getMethodBindPtr("GridMap", "get_used_cells_by_item", 663333327)
 
-    public val getMeshesPtr: VoidPtr = TypeManager.getMethodBindPtr("GridMap", "get_meshes")
+    public val getMeshesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GridMap", "get_meshes", 3995934104)
 
     public val getBakeMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_bake_meshes")
+        TypeManager.getMethodBindPtr("GridMap", "get_bake_meshes", 2915620761)
 
     public val getBakeMeshInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "get_bake_mesh_instance")
+        TypeManager.getMethodBindPtr("GridMap", "get_bake_mesh_instance", 937000113)
 
     public val clearBakedMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "clear_baked_meshes")
+        TypeManager.getMethodBindPtr("GridMap", "clear_baked_meshes", 3218959716)
 
     public val makeBakedMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridMap", "make_baked_meshes")
+        TypeManager.getMethodBindPtr("GridMap", "make_baked_meshes", 3609286057)
   }
 }

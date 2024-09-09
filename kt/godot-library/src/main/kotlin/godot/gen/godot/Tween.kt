@@ -817,55 +817,65 @@ public open class Tween : RefCounted() {
   }
 
   internal object MethodBindings {
-    public val tweenPropertyPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_property")
+    public val tweenPropertyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "tween_property", 4049770449)
 
-    public val tweenIntervalPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_interval")
+    public val tweenIntervalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "tween_interval", 413360199)
 
-    public val tweenCallbackPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_callback")
+    public val tweenCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "tween_callback", 1540176488)
 
-    public val tweenMethodPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "tween_method")
+    public val tweenMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "tween_method", 2337877153)
 
-    public val customStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "custom_step")
+    public val customStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "custom_step", 330693286)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "stop")
+    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "stop", 3218959716)
 
-    public val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "pause")
+    public val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "pause", 3218959716)
 
-    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "play")
+    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "play", 3218959716)
 
-    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "kill")
+    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "kill", 3218959716)
 
     public val getTotalElapsedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "get_total_elapsed_time")
+        TypeManager.getMethodBindPtr("Tween", "get_total_elapsed_time", 1740695150)
 
-    public val isRunningPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "is_running")
+    public val isRunningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "is_running", 2240911060)
 
-    public val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "is_valid")
+    public val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "is_valid", 2240911060)
 
-    public val bindNodePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "bind_node")
+    public val bindNodePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "bind_node", 2946786331)
 
     public val setProcessModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_process_mode")
+        TypeManager.getMethodBindPtr("Tween", "set_process_mode", 855258840)
 
-    public val setPauseModePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_pause_mode")
+    public val setPauseModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "set_pause_mode", 3363368837)
 
-    public val setParallelPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_parallel")
+    public val setParallelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "set_parallel", 1942052223)
 
-    public val setLoopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_loops")
+    public val setLoopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_loops", 2670836414)
 
-    public val getLoopsLeftPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "get_loops_left")
+    public val getLoopsLeftPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "get_loops_left", 3905245786)
 
-    public val setSpeedScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_speed_scale")
+    public val setSpeedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "set_speed_scale", 3961971106)
 
-    public val setTransPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_trans")
+    public val setTransPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_trans", 3965963875)
 
-    public val setEasePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_ease")
+    public val setEasePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_ease", 1208117252)
 
-    public val parallelPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "parallel")
+    public val parallelPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "parallel", 3426978995)
 
-    public val chainPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "chain")
+    public val chainPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "chain", 3426978995)
 
     public val interpolateValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "interpolate_value")
+        TypeManager.getMethodBindPtr("Tween", "interpolate_value", 3452526450)
   }
 }

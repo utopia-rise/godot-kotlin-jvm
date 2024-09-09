@@ -206,21 +206,24 @@ public open class JSON : Resource() {
   }
 
   internal object MethodBindings {
-    public val stringifyPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "stringify")
+    public val stringifyPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "stringify", 462733549)
 
-    public val parseStringPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse_string")
+    public val parseStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "parse_string", 309047738)
 
-    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse")
+    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse", 885841341)
 
-    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_data")
+    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_data", 1214101251)
 
-    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "set_data")
+    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "set_data", 1114965689)
 
-    public val getParsedTextPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_parsed_text")
+    public val getParsedTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "get_parsed_text", 201670096)
 
-    public val getErrorLinePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_error_line")
+    public val getErrorLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "get_error_line", 3905245786)
 
     public val getErrorMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "get_error_message")
+        TypeManager.getMethodBindPtr("JSON", "get_error_message", 201670096)
   }
 }

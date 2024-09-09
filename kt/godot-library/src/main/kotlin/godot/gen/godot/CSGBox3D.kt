@@ -89,12 +89,16 @@ public open class CSGBox3D : CSGPrimitive3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("CSGBox3D", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGBox3D", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("CSGBox3D", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGBox3D", "get_size", 3360562783)
 
-    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGBox3D", "set_material")
+    public val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGBox3D", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGBox3D", "get_material")
+    public val getMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGBox3D", "get_material", 5934680)
   }
 }

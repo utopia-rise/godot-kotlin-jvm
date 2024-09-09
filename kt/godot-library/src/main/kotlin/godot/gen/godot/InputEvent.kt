@@ -232,38 +232,47 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   internal object MethodBindings {
-    public val setDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "set_device")
+    public val setDevicePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "set_device", 1286410249)
 
-    public val getDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "get_device")
+    public val getDevicePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "get_device", 3905245786)
 
-    public val isActionPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_action")
+    public val isActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "is_action", 1558498928)
 
     public val isActionPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_action_pressed")
+        TypeManager.getMethodBindPtr("InputEvent", "is_action_pressed", 1631499404)
 
     public val isActionReleasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_action_released")
+        TypeManager.getMethodBindPtr("InputEvent", "is_action_released", 1558498928)
 
     public val getActionStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "get_action_strength")
+        TypeManager.getMethodBindPtr("InputEvent", "get_action_strength", 801543509)
 
-    public val isCanceledPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_canceled")
+    public val isCanceledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "is_canceled", 36873697)
 
-    public val isPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_pressed")
+    public val isPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "is_pressed", 36873697)
 
-    public val isReleasedPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_released")
+    public val isReleasedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "is_released", 36873697)
 
-    public val isEchoPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_echo")
+    public val isEchoPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_echo", 36873697)
 
-    public val asTextPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "as_text")
+    public val asTextPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "as_text", 201670096)
 
-    public val isMatchPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_match")
+    public val isMatchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "is_match", 1754951977)
 
     public val isActionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_action_type")
+        TypeManager.getMethodBindPtr("InputEvent", "is_action_type", 36873697)
 
-    public val accumulatePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "accumulate")
+    public val accumulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "accumulate", 1062211774)
 
-    public val xformedByPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "xformed_by")
+    public val xformedByPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEvent", "xformed_by", 1282766827)
   }
 }

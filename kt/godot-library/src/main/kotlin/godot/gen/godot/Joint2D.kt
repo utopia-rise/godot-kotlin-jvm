@@ -106,24 +106,28 @@ public open class Joint2D internal constructor() : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setNodeAPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_node_a")
+    public val setNodeAPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Joint2D", "set_node_a", 1348162250)
 
-    public val getNodeAPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_node_a")
+    public val getNodeAPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Joint2D", "get_node_a", 4075236667)
 
-    public val setNodeBPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_node_b")
+    public val setNodeBPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Joint2D", "set_node_b", 1348162250)
 
-    public val getNodeBPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_node_b")
+    public val getNodeBPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Joint2D", "get_node_b", 4075236667)
 
-    public val setBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_bias")
+    public val setBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_bias", 373806689)
 
-    public val getBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_bias")
+    public val getBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_bias", 1740695150)
 
     public val setExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision")
+        TypeManager.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision", 2586408642)
 
     public val getExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision")
+        TypeManager.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision", 36873697)
 
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_rid")
+    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_rid", 2944877500)
   }
 }

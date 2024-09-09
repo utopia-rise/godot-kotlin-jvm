@@ -45,9 +45,9 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "set_parameter_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "set_parameter_name", 83702148)
 
     public val getParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "get_parameter_name")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "get_parameter_name", 201670096)
   }
 }

@@ -366,84 +366,87 @@ public open class ColorPicker : VBoxContainer() {
 
   internal object MethodBindings {
     public val setPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_pick_color")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_pick_color", 2920490490)
 
     public val getPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_pick_color")
+        TypeManager.getMethodBindPtr("ColorPicker", "get_pick_color", 3444240500)
 
     public val setDeferredModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_deferred_mode")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_deferred_mode", 2586408642)
 
     public val isDeferredModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_deferred_mode")
+        TypeManager.getMethodBindPtr("ColorPicker", "is_deferred_mode", 36873697)
 
     public val setColorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_color_mode")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_color_mode", 1579114136)
 
     public val getColorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_color_mode")
+        TypeManager.getMethodBindPtr("ColorPicker", "get_color_mode", 392907674)
 
     public val setEditAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_edit_alpha")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_edit_alpha", 2586408642)
 
     public val isEditingAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_editing_alpha")
+        TypeManager.getMethodBindPtr("ColorPicker", "is_editing_alpha", 36873697)
 
     public val setCanAddSwatchesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_can_add_swatches")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_can_add_swatches", 2586408642)
 
     public val areSwatchesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_swatches_enabled")
+        TypeManager.getMethodBindPtr("ColorPicker", "are_swatches_enabled", 36873697)
 
     public val setPresetsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_presets_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_presets_visible", 2586408642)
 
     public val arePresetsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_presets_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "are_presets_visible", 36873697)
 
     public val setModesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_modes_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_modes_visible", 2586408642)
 
     public val areModesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_modes_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "are_modes_visible", 36873697)
 
     public val setSamplerVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_sampler_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_sampler_visible", 2586408642)
 
     public val isSamplerVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_sampler_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "is_sampler_visible", 36873697)
 
     public val setSlidersVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_sliders_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_sliders_visible", 2586408642)
 
     public val areSlidersVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_sliders_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "are_sliders_visible", 36873697)
 
     public val setHexVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_hex_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_hex_visible", 2586408642)
 
     public val isHexVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_hex_visible")
+        TypeManager.getMethodBindPtr("ColorPicker", "is_hex_visible", 36873697)
 
-    public val addPresetPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPicker", "add_preset")
+    public val addPresetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "add_preset", 2920490490)
 
-    public val erasePresetPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPicker", "erase_preset")
+    public val erasePresetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "erase_preset", 2920490490)
 
-    public val getPresetsPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPicker", "get_presets")
+    public val getPresetsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "get_presets", 1392750486)
 
     public val addRecentPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "add_recent_preset")
+        TypeManager.getMethodBindPtr("ColorPicker", "add_recent_preset", 2920490490)
 
     public val eraseRecentPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "erase_recent_preset")
+        TypeManager.getMethodBindPtr("ColorPicker", "erase_recent_preset", 2920490490)
 
     public val getRecentPresetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_recent_presets")
+        TypeManager.getMethodBindPtr("ColorPicker", "get_recent_presets", 1392750486)
 
     public val setPickerShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_picker_shape")
+        TypeManager.getMethodBindPtr("ColorPicker", "set_picker_shape", 3981373861)
 
     public val getPickerShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_picker_shape")
+        TypeManager.getMethodBindPtr("ColorPicker", "get_picker_shape", 1143229889)
   }
 }

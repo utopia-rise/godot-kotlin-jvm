@@ -1096,211 +1096,225 @@ public open class Animation : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val addTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "add_track")
+    public val addTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "add_track", 3843682357)
 
-    public val removeTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "remove_track")
+    public val removeTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "remove_track", 1286410249)
 
     public val getTrackCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "get_track_count")
+        TypeManager.getMethodBindPtr("Animation", "get_track_count", 3905245786)
 
     public val trackGetTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_type")
+        TypeManager.getMethodBindPtr("Animation", "track_get_type", 3445944217)
 
     public val trackGetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_path")
+        TypeManager.getMethodBindPtr("Animation", "track_get_path", 408788394)
 
     public val trackSetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_path")
+        TypeManager.getMethodBindPtr("Animation", "track_set_path", 2761262315)
 
-    public val findTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "find_track")
+    public val findTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "find_track", 245376003)
 
-    public val trackMoveUpPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "track_move_up")
+    public val trackMoveUpPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_move_up", 1286410249)
 
     public val trackMoveDownPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_move_down")
+        TypeManager.getMethodBindPtr("Animation", "track_move_down", 1286410249)
 
-    public val trackMoveToPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "track_move_to")
+    public val trackMoveToPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_move_to", 3937882851)
 
-    public val trackSwapPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "track_swap")
+    public val trackSwapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "track_swap", 3937882851)
 
     public val trackSetImportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_imported")
+        TypeManager.getMethodBindPtr("Animation", "track_set_imported", 300928843)
 
     public val trackIsImportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_is_imported")
+        TypeManager.getMethodBindPtr("Animation", "track_is_imported", 1116898809)
 
     public val trackSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_enabled")
+        TypeManager.getMethodBindPtr("Animation", "track_set_enabled", 300928843)
 
     public val trackIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_is_enabled")
+        TypeManager.getMethodBindPtr("Animation", "track_is_enabled", 1116898809)
 
     public val positionTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "position_track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "position_track_insert_key", 2540608232)
 
     public val rotationTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "rotation_track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "rotation_track_insert_key", 4165004800)
 
     public val scaleTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "scale_track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "scale_track_insert_key", 2540608232)
 
     public val blendShapeTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_insert_key", 1534913637)
 
     public val positionTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "position_track_interpolate")
+        TypeManager.getMethodBindPtr("Animation", "position_track_interpolate", 3530011197)
 
     public val rotationTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "rotation_track_interpolate")
+        TypeManager.getMethodBindPtr("Animation", "rotation_track_interpolate", 2915876792)
 
     public val scaleTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "scale_track_interpolate")
+        TypeManager.getMethodBindPtr("Animation", "scale_track_interpolate", 3530011197)
 
     public val blendShapeTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_interpolate")
+        TypeManager.getMethodBindPtr("Animation", "blend_shape_track_interpolate", 2482365182)
 
     public val trackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "track_insert_key", 808952278)
 
     public val trackRemoveKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_remove_key")
+        TypeManager.getMethodBindPtr("Animation", "track_remove_key", 3937882851)
 
     public val trackRemoveKeyAtTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_remove_key_at_time")
+        TypeManager.getMethodBindPtr("Animation", "track_remove_key_at_time", 1602489585)
 
     public val trackSetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_key_value")
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_value", 2060538656)
 
     public val trackSetKeyTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_key_transition")
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_transition", 3506521499)
 
     public val trackSetKeyTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_key_time")
+        TypeManager.getMethodBindPtr("Animation", "track_set_key_time", 3506521499)
 
     public val trackGetKeyTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_transition")
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_transition", 3085491603)
 
     public val trackGetKeyCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_count")
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_count", 923996154)
 
     public val trackGetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_value")
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_value", 678354945)
 
     public val trackGetKeyTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_key_time")
+        TypeManager.getMethodBindPtr("Animation", "track_get_key_time", 3085491603)
 
     public val trackFindKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_find_key")
+        TypeManager.getMethodBindPtr("Animation", "track_find_key", 4230953007)
 
     public val trackSetInterpolationTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_type")
+        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_type", 4112932513)
 
     public val trackGetInterpolationTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_type")
+        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_type", 1530756894)
 
     public val trackSetInterpolationLoopWrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_loop_wrap")
+        TypeManager.getMethodBindPtr("Animation", "track_set_interpolation_loop_wrap", 300928843)
 
     public val trackGetInterpolationLoopWrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_loop_wrap")
+        TypeManager.getMethodBindPtr("Animation", "track_get_interpolation_loop_wrap", 1116898809)
 
     public val trackIsCompressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "track_is_compressed")
+        TypeManager.getMethodBindPtr("Animation", "track_is_compressed", 1116898809)
 
     public val valueTrackSetUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "value_track_set_update_mode")
+        TypeManager.getMethodBindPtr("Animation", "value_track_set_update_mode", 2854058312)
 
     public val valueTrackGetUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "value_track_get_update_mode")
+        TypeManager.getMethodBindPtr("Animation", "value_track_get_update_mode", 1440326473)
 
     public val valueTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "value_track_interpolate")
+        TypeManager.getMethodBindPtr("Animation", "value_track_interpolate", 747269075)
 
     public val methodTrackGetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "method_track_get_name")
+        TypeManager.getMethodBindPtr("Animation", "method_track_get_name", 351665558)
 
     public val methodTrackGetParamsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "method_track_get_params")
+        TypeManager.getMethodBindPtr("Animation", "method_track_get_params", 2345056839)
 
     public val bezierTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_insert_key", 3656773645)
 
     public val bezierTrackSetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_value")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_value", 3506521499)
 
     public val bezierTrackSetKeyInHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_in_handle")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_in_handle", 1719223284)
 
     public val bezierTrackSetKeyOutHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_out_handle")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_set_key_out_handle", 1719223284)
 
     public val bezierTrackGetKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_value")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_value", 3085491603)
 
     public val bezierTrackGetKeyInHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_in_handle")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_in_handle", 3016396712)
 
     public val bezierTrackGetKeyOutHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_out_handle")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_get_key_out_handle", 3016396712)
 
     public val bezierTrackInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "bezier_track_interpolate")
+        TypeManager.getMethodBindPtr("Animation", "bezier_track_interpolate", 1900462983)
 
     public val audioTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_insert_key", 4021027286)
 
     public val audioTrackSetKeyStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_stream")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_stream", 3886397084)
 
     public val audioTrackSetKeyStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_start_offset")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_start_offset", 3506521499)
 
     public val audioTrackSetKeyEndOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_end_offset")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_key_end_offset", 3506521499)
 
     public val audioTrackGetKeyStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_stream")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_stream", 635277205)
 
     public val audioTrackGetKeyStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_start_offset")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_start_offset", 3085491603)
 
     public val audioTrackGetKeyEndOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_end_offset")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_get_key_end_offset", 3085491603)
 
     public val audioTrackSetUseBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_set_use_blend")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_set_use_blend", 300928843)
 
     public val audioTrackIsUseBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "audio_track_is_use_blend")
+        TypeManager.getMethodBindPtr("Animation", "audio_track_is_use_blend", 1116898809)
 
     public val animationTrackInsertKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "animation_track_insert_key")
+        TypeManager.getMethodBindPtr("Animation", "animation_track_insert_key", 158676774)
 
     public val animationTrackSetKeyAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "animation_track_set_key_animation")
+        TypeManager.getMethodBindPtr("Animation", "animation_track_set_key_animation", 117615382)
 
     public val animationTrackGetKeyAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "animation_track_get_key_animation")
+        TypeManager.getMethodBindPtr("Animation", "animation_track_get_key_animation", 351665558)
 
-    public val setLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "set_length")
+    public val setLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "set_length", 373806689)
 
-    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "get_length")
+    public val getLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_length", 1740695150)
 
-    public val setLoopModePtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "set_loop_mode")
+    public val setLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "set_loop_mode", 3155355575)
 
-    public val getLoopModePtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "get_loop_mode")
+    public val getLoopModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_loop_mode", 1988889481)
 
-    public val setStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "set_step")
+    public val setStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "set_step", 373806689)
 
-    public val getStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "get_step")
+    public val getStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "get_step", 1740695150)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "clear", 3218959716)
 
-    public val copyTrackPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "copy_track")
+    public val copyTrackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "copy_track", 148001024)
 
-    public val compressPtr: VoidPtr = TypeManager.getMethodBindPtr("Animation", "compress")
+    public val compressPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Animation", "compress", 3608408117)
 
     public val isCaptureIncludedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Animation", "is_capture_included")
+        TypeManager.getMethodBindPtr("Animation", "is_capture_included", 36873697)
   }
 }

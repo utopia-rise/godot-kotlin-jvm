@@ -154,33 +154,33 @@ public open class SkeletonModification2D : Resource() {
 
   internal object MethodBindings {
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_enabled")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_enabled", 2586408642)
 
     public val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_enabled")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_enabled", 2240911060)
 
     public val getModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_modification_stack")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_modification_stack", 2137761694)
 
     public val setIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_is_setup")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_is_setup", 2586408642)
 
     public val getIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_is_setup")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_is_setup", 36873697)
 
     public val setExecutionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_execution_mode")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_execution_mode", 1286410249)
 
     public val getExecutionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_execution_mode")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_execution_mode", 3905245786)
 
     public val clampAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "clamp_angle")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "clamp_angle", 1229502682)
 
     public val setEditorDrawGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo", 2586408642)
 
     public val getEditorDrawGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo")
+        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo", 36873697)
   }
 }

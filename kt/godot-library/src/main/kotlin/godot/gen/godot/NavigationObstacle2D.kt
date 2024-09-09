@@ -239,60 +239,61 @@ public open class NavigationObstacle2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_rid")
+    public val getRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_rid", 2944877500)
 
     public val setAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_enabled", 2586408642)
 
     public val getAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_enabled", 36873697)
 
     public val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_navigation_map")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_navigation_map", 2722037293)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_navigation_map")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_navigation_map", 2944877500)
 
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_radius")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_radius")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_radius", 1740695150)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_velocity")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_velocity", 743155724)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_velocity")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_velocity", 3341600327)
 
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_vertices")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_vertices", 1509147220)
 
     public val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_vertices")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_vertices", 2961356807)
 
     public val setAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layers", 1286410249)
 
     public val getAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layers", 3905245786)
 
     public val setAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layer_value")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layer_value", 300928843)
 
     public val getAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layer_value")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layer_value", 1116898809)
 
     public val setAffectNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_affect_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_affect_navigation_mesh", 2586408642)
 
     public val getAffectNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_affect_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_affect_navigation_mesh", 36873697)
 
     public val setCarveNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_carve_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_carve_navigation_mesh", 2586408642)
 
     public val getCarveNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_carve_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_carve_navigation_mesh", 36873697)
   }
 }

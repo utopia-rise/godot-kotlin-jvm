@@ -310,57 +310,68 @@ public open class CanvasLayer : Node() {
   public companion object
 
   internal object MethodBindings {
-    public val setLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_layer")
+    public val setLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_layer", 1286410249)
 
-    public val getLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_layer")
+    public val getLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_layer", 3905245786)
 
-    public val setVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_visible")
+    public val setVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "is_visible")
+    public val isVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "is_visible", 36873697)
 
-    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "show")
+    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "show", 3218959716)
 
-    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "hide")
+    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "hide", 3218959716)
 
     public val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_transform")
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_transform", 2761652528)
 
     public val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_transform")
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_transform", 3814499831)
 
     public val getFinalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_final_transform")
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_final_transform", 3814499831)
 
-    public val setOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_offset")
+    public val setOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_offset", 743155724)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_offset", 3341600327)
 
-    public val setRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_rotation")
+    public val setRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_rotation", 373806689)
 
-    public val getRotationPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_rotation")
+    public val getRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_rotation", 1740695150)
 
-    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "set_scale")
+    public val setScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_scale", 743155724)
 
-    public val getScalePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_scale")
+    public val getScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_scale", 3341600327)
 
     public val setFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport")
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport", 2586408642)
 
     public val isFollowingViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "is_following_viewport")
+        TypeManager.getMethodBindPtr("CanvasLayer", "is_following_viewport", 36873697)
 
     public val setFollowViewportScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport_scale")
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport_scale", 373806689)
 
     public val getFollowViewportScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_follow_viewport_scale")
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_follow_viewport_scale", 1740695150)
 
     public val setCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_custom_viewport")
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_custom_viewport", 1078189570)
 
     public val getCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_custom_viewport")
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_custom_viewport", 3160264692)
 
-    public val getCanvasPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "get_canvas")
+    public val getCanvasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_canvas", 2944877500)
   }
 }

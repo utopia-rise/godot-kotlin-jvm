@@ -503,69 +503,73 @@ public open class HTTPRequest : Node() {
   public companion object
 
   internal object MethodBindings {
-    public val requestPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "request")
+    public val requestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "request", 3215244323)
 
-    public val requestRawPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "request_raw")
+    public val requestRawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "request_raw", 2714829993)
 
     public val cancelRequestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "cancel_request")
+        TypeManager.getMethodBindPtr("HTTPRequest", "cancel_request", 3218959716)
 
     public val setTlsOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_tls_options")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_tls_options", 2210231844)
 
     public val getHttpClientStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_http_client_status")
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_http_client_status", 1426656811)
 
     public val setUseThreadsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_use_threads")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_use_threads", 2586408642)
 
     public val isUsingThreadsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "is_using_threads")
+        TypeManager.getMethodBindPtr("HTTPRequest", "is_using_threads", 36873697)
 
     public val setAcceptGzipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_accept_gzip")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_accept_gzip", 2586408642)
 
     public val isAcceptingGzipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "is_accepting_gzip")
+        TypeManager.getMethodBindPtr("HTTPRequest", "is_accepting_gzip", 36873697)
 
     public val setBodySizeLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_body_size_limit")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_body_size_limit", 1286410249)
 
     public val getBodySizeLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size_limit")
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size_limit", 3905245786)
 
     public val setMaxRedirectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_max_redirects")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_max_redirects", 1286410249)
 
     public val getMaxRedirectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_max_redirects")
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_max_redirects", 3905245786)
 
     public val setDownloadFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_file")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_file", 83702148)
 
     public val getDownloadFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_file")
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_file", 201670096)
 
     public val getDownloadedBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_downloaded_bytes")
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_downloaded_bytes", 3905245786)
 
     public val getBodySizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size")
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size", 3905245786)
 
-    public val setTimeoutPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "set_timeout")
+    public val setTimeoutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_timeout", 373806689)
 
-    public val getTimeoutPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPRequest", "get_timeout")
+    public val getTimeoutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_timeout", 191475506)
 
     public val setDownloadChunkSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_chunk_size")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_chunk_size", 1286410249)
 
     public val getDownloadChunkSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_chunk_size")
+        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_chunk_size", 3905245786)
 
     public val setHttpProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_http_proxy")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_http_proxy", 2956805083)
 
     public val setHttpsProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_https_proxy")
+        TypeManager.getMethodBindPtr("HTTPRequest", "set_https_proxy", 2956805083)
   }
 }

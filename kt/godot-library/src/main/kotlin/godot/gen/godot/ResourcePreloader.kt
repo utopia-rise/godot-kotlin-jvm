@@ -92,21 +92,21 @@ public open class ResourcePreloader : Node() {
 
   internal object MethodBindings {
     public val addResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "add_resource")
+        TypeManager.getMethodBindPtr("ResourcePreloader", "add_resource", 1168801743)
 
     public val removeResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "remove_resource")
+        TypeManager.getMethodBindPtr("ResourcePreloader", "remove_resource", 3304788590)
 
     public val renameResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "rename_resource")
+        TypeManager.getMethodBindPtr("ResourcePreloader", "rename_resource", 3740211285)
 
     public val hasResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "has_resource")
+        TypeManager.getMethodBindPtr("ResourcePreloader", "has_resource", 2619796661)
 
     public val getResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource")
+        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource", 3742749261)
 
     public val getResourceListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource_list")
+        TypeManager.getMethodBindPtr("ResourcePreloader", "get_resource_list", 1139954409)
   }
 }

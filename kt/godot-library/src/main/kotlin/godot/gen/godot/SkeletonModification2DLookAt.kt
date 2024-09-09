@@ -173,51 +173,51 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
 
   internal object MethodBindings {
     public val setBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone2d_node")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone2d_node", 1348162250)
 
     public val getBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone2d_node")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone2d_node", 4075236667)
 
     public val setBoneIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone_index")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_bone_index", 1286410249)
 
     public val getBoneIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone_index")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_bone_index", 3905245786)
 
     public val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_target_node")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_target_node", 1348162250)
 
     public val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_target_node")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_target_node", 4075236667)
 
     public val setAdditionalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_additional_rotation")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_additional_rotation", 373806689)
 
     public val getAdditionalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_additional_rotation")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_additional_rotation", 1740695150)
 
     public val setEnableConstraintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_enable_constraint")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_enable_constraint", 2586408642)
 
     public val getEnableConstraintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_enable_constraint")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_enable_constraint", 36873697)
 
     public val setConstraintAngleMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_min")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_min", 373806689)
 
     public val getConstraintAngleMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_min")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_min", 1740695150)
 
     public val setConstraintAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_max")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_max", 373806689)
 
     public val getConstraintAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_max")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_max", 1740695150)
 
     public val setConstraintAngleInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_invert")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "set_constraint_angle_invert", 2586408642)
 
     public val getConstraintAngleInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_invert")
+        TypeManager.getMethodBindPtr("SkeletonModification2DLookAt", "get_constraint_angle_invert", 36873697)
   }
 }

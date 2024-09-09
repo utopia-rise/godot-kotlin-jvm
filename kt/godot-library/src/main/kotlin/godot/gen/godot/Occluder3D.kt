@@ -49,8 +49,10 @@ public open class Occluder3D internal constructor() : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getVerticesPtr: VoidPtr = TypeManager.getMethodBindPtr("Occluder3D", "get_vertices")
+    public val getVerticesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Occluder3D", "get_vertices", 497664490)
 
-    public val getIndicesPtr: VoidPtr = TypeManager.getMethodBindPtr("Occluder3D", "get_indices")
+    public val getIndicesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Occluder3D", "get_indices", 1930428628)
   }
 }

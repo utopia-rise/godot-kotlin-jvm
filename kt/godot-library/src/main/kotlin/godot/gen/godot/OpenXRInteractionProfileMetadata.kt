@@ -103,15 +103,15 @@ public open class OpenXRInteractionProfileMetadata : Object() {
 
   internal object MethodBindings {
     public val registerProfileRenamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_profile_rename")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_profile_rename", 3186203200)
 
     public val registerTopLevelPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_top_level_path")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_top_level_path", 254767734)
 
     public val registerInteractionProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_interaction_profile")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_interaction_profile", 254767734)
 
     public val registerIoPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_io_path")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_io_path", 3443511926)
   }
 }

@@ -270,66 +270,67 @@ public open class NavigationLink3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationLink3D", "get_rid")
+    public val getRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_rid", 2944877500)
 
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enabled")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enabled", 2586408642)
 
     public val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "is_enabled")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "is_enabled", 36873697)
 
     public val setBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_bidirectional")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_bidirectional", 2586408642)
 
     public val isBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "is_bidirectional")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "is_bidirectional", 36873697)
 
     public val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layers", 1286410249)
 
     public val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layers", 3905245786)
 
     public val setNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layer_value")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layer_value", 300928843)
 
     public val getNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layer_value")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layer_value", 1116898809)
 
     public val setStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_start_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_start_position", 3460891852)
 
     public val getStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_start_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_start_position", 3360562783)
 
     public val setEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_end_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_end_position", 3460891852)
 
     public val getEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_end_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_end_position", 3360562783)
 
     public val setGlobalStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_start_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_start_position", 3460891852)
 
     public val getGlobalStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_start_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_start_position", 3360562783)
 
     public val setGlobalEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_end_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_end_position", 3460891852)
 
     public val getGlobalEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_end_position")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_end_position", 3360562783)
 
     public val setEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enter_cost", 373806689)
 
     public val getEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_enter_cost", 1740695150)
 
     public val setTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_travel_cost", 373806689)
 
     public val getTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_travel_cost", 1740695150)
   }
 }

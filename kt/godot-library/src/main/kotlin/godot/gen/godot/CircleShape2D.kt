@@ -47,8 +47,10 @@ public open class CircleShape2D : Shape2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CircleShape2D", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CircleShape2D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CircleShape2D", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CircleShape2D", "get_radius", 1740695150)
   }
 }

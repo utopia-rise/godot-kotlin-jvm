@@ -243,38 +243,40 @@ public open class NinePatchRect : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("NinePatchRect", "set_texture")
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("NinePatchRect", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_texture", 3635182373)
 
     public val setPatchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_patch_margin")
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_patch_margin", 437707142)
 
     public val getPatchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_patch_margin")
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_patch_margin", 1983885014)
 
     public val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_region_rect")
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_region_rect", 2046264180)
 
     public val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_region_rect")
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_region_rect", 1639390495)
 
     public val setDrawCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_draw_center")
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_draw_center", 2586408642)
 
     public val isDrawCenterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "is_draw_center_enabled")
+        TypeManager.getMethodBindPtr("NinePatchRect", "is_draw_center_enabled", 36873697)
 
     public val setHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_h_axis_stretch_mode")
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_h_axis_stretch_mode", 3219608417)
 
     public val getHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_h_axis_stretch_mode")
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_h_axis_stretch_mode", 3317113799)
 
     public val setVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_v_axis_stretch_mode")
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_v_axis_stretch_mode", 3219608417)
 
     public val getVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_v_axis_stretch_mode")
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_v_axis_stretch_mode", 3317113799)
   }
 }

@@ -550,28 +550,28 @@ public open class XRBodyTracker : XRPositionalTracker() {
 
   internal object MethodBindings {
     public val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_has_tracking_data")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_has_tracking_data", 2586408642)
 
     public val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_has_tracking_data")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_has_tracking_data", 36873697)
 
     public val setBodyFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_body_flags")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_body_flags", 2103235750)
 
     public val getBodyFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_body_flags")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_body_flags", 3543166366)
 
     public val setJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_flags")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_flags", 592144999)
 
     public val getJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_flags")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_flags", 1030162609)
 
     public val setJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_transform")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_transform", 2635424328)
 
     public val getJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_transform")
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_transform", 3474811534)
   }
 }
 

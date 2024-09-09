@@ -96,27 +96,27 @@ public open class CollisionPolygon3D : Node3D() {
 
   internal object MethodBindings {
     public val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_depth")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_depth", 373806689)
 
     public val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_depth")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_depth", 1740695150)
 
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_polygon")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_polygon")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_polygon", 2961356807)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_disabled")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "is_disabled")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "is_disabled", 36873697)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_margin")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_margin", 373806689)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_margin")
+        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_margin", 1740695150)
   }
 }

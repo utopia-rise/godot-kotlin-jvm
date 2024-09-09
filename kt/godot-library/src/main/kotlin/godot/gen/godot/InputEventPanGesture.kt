@@ -75,9 +75,9 @@ public open class InputEventPanGesture : InputEventGesture() {
 
   internal object MethodBindings {
     public val setDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventPanGesture", "set_delta")
+        TypeManager.getMethodBindPtr("InputEventPanGesture", "set_delta", 743155724)
 
     public val getDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventPanGesture", "get_delta")
+        TypeManager.getMethodBindPtr("InputEventPanGesture", "get_delta", 3341600327)
   }
 }

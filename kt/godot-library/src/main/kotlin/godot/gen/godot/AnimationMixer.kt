@@ -696,113 +696,117 @@ public open class AnimationMixer internal constructor() : Node() {
 
   internal object MethodBindings {
     public val addAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "add_animation_library")
+        TypeManager.getMethodBindPtr("AnimationMixer", "add_animation_library", 618909818)
 
     public val removeAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "remove_animation_library")
+        TypeManager.getMethodBindPtr("AnimationMixer", "remove_animation_library", 3304788590)
 
     public val renameAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "rename_animation_library")
+        TypeManager.getMethodBindPtr("AnimationMixer", "rename_animation_library", 3740211285)
 
     public val hasAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation_library")
+        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation_library", 2619796661)
 
     public val getAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library", 147342321)
 
     public val getAnimationLibraryListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library_list")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library_list", 3995934104)
 
     public val hasAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation")
+        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation", 2619796661)
 
     public val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation", 2933122410)
 
     public val getAnimationListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_list")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_list", 1139954409)
 
-    public val setActivePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "set_active")
+    public val setActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_active", 2586408642)
 
-    public val isActivePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "is_active")
+    public val isActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "is_active", 36873697)
 
     public val setDeterministicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_deterministic")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_deterministic", 2586408642)
 
     public val isDeterministicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "is_deterministic")
+        TypeManager.getMethodBindPtr("AnimationMixer", "is_deterministic", 36873697)
 
     public val setRootNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_node")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_node", 1348162250)
 
     public val getRootNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_node")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_node", 4075236667)
 
     public val setCallbackModeProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_process")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_process", 2153733086)
 
     public val getCallbackModeProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_process")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_process", 1394468472)
 
     public val setCallbackModeMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_method")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_method", 742218271)
 
     public val getCallbackModeMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_method")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_method", 489449656)
 
     public val setCallbackModeDiscretePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_discrete")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_discrete", 1998944670)
 
     public val getCallbackModeDiscretePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_discrete")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_discrete", 3493168860)
 
     public val setAudioMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_audio_max_polyphony")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_audio_max_polyphony", 1286410249)
 
     public val getAudioMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_audio_max_polyphony")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_audio_max_polyphony", 3905245786)
 
     public val setRootMotionTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_motion_track")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_motion_track", 1348162250)
 
     public val getRootMotionTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_track")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_track", 4075236667)
 
     public val getRootMotionPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position", 3360562783)
 
     public val getRootMotionRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation", 1222331677)
 
     public val getRootMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale", 3360562783)
 
     public val getRootMotionPositionAccumulatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position_accumulator")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position_accumulator", 3360562783)
 
     public val getRootMotionRotationAccumulatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation_accumulator")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation_accumulator", 1222331677)
 
     public val getRootMotionScaleAccumulatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale_accumulator")
+        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale_accumulator", 3360562783)
 
     public val clearCachesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "clear_caches")
+        TypeManager.getMethodBindPtr("AnimationMixer", "clear_caches", 3218959716)
 
-    public val advancePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "advance")
+    public val advancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "advance", 373806689)
 
-    public val capturePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationMixer", "capture")
+    public val capturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationMixer", "capture", 1333632127)
 
     public val setResetOnSaveEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_reset_on_save_enabled")
+        TypeManager.getMethodBindPtr("AnimationMixer", "set_reset_on_save_enabled", 2586408642)
 
     public val isResetOnSaveEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "is_reset_on_save_enabled")
+        TypeManager.getMethodBindPtr("AnimationMixer", "is_reset_on_save_enabled", 36873697)
 
     public val findAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation")
+        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation", 1559484580)
 
     public val findAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation_library")
+        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation_library", 1559484580)
   }
 }

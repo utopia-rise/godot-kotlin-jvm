@@ -31,6 +31,6 @@ public open class JvmScript internal constructor() : Script() {
   public companion object
 
   internal object MethodBindings {
-    public val newPtr: VoidPtr = TypeManager.getMethodBindPtr("JvmScript", "new")
+    public val newPtr: VoidPtr = TypeManager.getMethodBindPtr("JvmScript", "new", 1545262638)
   }
 }

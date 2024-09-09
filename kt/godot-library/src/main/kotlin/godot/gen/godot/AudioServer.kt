@@ -554,136 +554,149 @@ public object AudioServer : Object() {
 
   internal object MethodBindings {
     public val setBusCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_count")
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_count", 1286410249)
 
     public val getBusCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_count")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_count", 3905245786)
 
-    public val removeBusPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "remove_bus")
+    public val removeBusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "remove_bus", 1286410249)
 
-    public val addBusPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "add_bus")
+    public val addBusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "add_bus", 1025054187)
 
-    public val moveBusPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "move_bus")
+    public val moveBusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "move_bus", 3937882851)
 
-    public val setBusNamePtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "set_bus_name")
+    public val setBusNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_name", 501894301)
 
-    public val getBusNamePtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "get_bus_name")
+    public val getBusNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_name", 844755477)
 
     public val getBusIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_index")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_index", 2458036349)
 
     public val getBusChannelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_channels")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_channels", 923996154)
 
     public val setBusVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_volume_db")
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_volume_db", 1602489585)
 
     public val getBusVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_db")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_volume_db", 2339986948)
 
-    public val setBusSendPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "set_bus_send")
+    public val setBusSendPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_send", 3780747571)
 
-    public val getBusSendPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "get_bus_send")
+    public val getBusSendPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_send", 659327637)
 
-    public val setBusSoloPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "set_bus_solo")
+    public val setBusSoloPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_solo", 300928843)
 
-    public val isBusSoloPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "is_bus_solo")
+    public val isBusSoloPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_solo", 1116898809)
 
-    public val setBusMutePtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "set_bus_mute")
+    public val setBusMutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_mute", 300928843)
 
-    public val isBusMutePtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "is_bus_mute")
+    public val isBusMutePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_mute", 1116898809)
 
     public val setBusBypassEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_bypass_effects")
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_bypass_effects", 300928843)
 
     public val isBusBypassingEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_bus_bypassing_effects")
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_bypassing_effects", 1116898809)
 
     public val addBusEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "add_bus_effect")
+        TypeManager.getMethodBindPtr("AudioServer", "add_bus_effect", 4068819785)
 
     public val removeBusEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "remove_bus_effect")
+        TypeManager.getMethodBindPtr("AudioServer", "remove_bus_effect", 3937882851)
 
     public val getBusEffectCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_count")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_count", 3744713108)
 
     public val getBusEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect", 726064442)
 
     public val getBusEffectInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_instance")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_effect_instance", 1829771234)
 
     public val swapBusEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "swap_bus_effects")
+        TypeManager.getMethodBindPtr("AudioServer", "swap_bus_effects", 1649997291)
 
     public val setBusEffectEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_effect_enabled")
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_effect_enabled", 1383440665)
 
     public val isBusEffectEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_bus_effect_enabled")
+        TypeManager.getMethodBindPtr("AudioServer", "is_bus_effect_enabled", 2522259332)
 
     public val getBusPeakVolumeLeftDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_left_db")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_left_db", 3085491603)
 
     public val getBusPeakVolumeRightDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_right_db")
+        TypeManager.getMethodBindPtr("AudioServer", "get_bus_peak_volume_right_db", 3085491603)
 
     public val setPlaybackSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_playback_speed_scale")
+        TypeManager.getMethodBindPtr("AudioServer", "set_playback_speed_scale", 373806689)
 
     public val getPlaybackSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_playback_speed_scale")
+        TypeManager.getMethodBindPtr("AudioServer", "get_playback_speed_scale", 1740695150)
 
-    public val lockPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "lock")
+    public val lockPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "lock", 3218959716)
 
-    public val unlockPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "unlock")
+    public val unlockPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "unlock", 3218959716)
 
     public val getSpeakerModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_speaker_mode")
+        TypeManager.getMethodBindPtr("AudioServer", "get_speaker_mode", 2549190337)
 
-    public val getMixRatePtr: VoidPtr = TypeManager.getMethodBindPtr("AudioServer", "get_mix_rate")
+    public val getMixRatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioServer", "get_mix_rate", 1740695150)
 
     public val getOutputDeviceListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_output_device_list")
+        TypeManager.getMethodBindPtr("AudioServer", "get_output_device_list", 2981934095)
 
     public val getOutputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_output_device")
+        TypeManager.getMethodBindPtr("AudioServer", "get_output_device", 2841200299)
 
     public val setOutputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_output_device")
+        TypeManager.getMethodBindPtr("AudioServer", "set_output_device", 83702148)
 
     public val getTimeToNextMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_time_to_next_mix")
+        TypeManager.getMethodBindPtr("AudioServer", "get_time_to_next_mix", 1740695150)
 
     public val getTimeSinceLastMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_time_since_last_mix")
+        TypeManager.getMethodBindPtr("AudioServer", "get_time_since_last_mix", 1740695150)
 
     public val getOutputLatencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_output_latency")
+        TypeManager.getMethodBindPtr("AudioServer", "get_output_latency", 1740695150)
 
     public val getInputDeviceListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_input_device_list")
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_device_list", 2981934095)
 
     public val getInputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "get_input_device")
+        TypeManager.getMethodBindPtr("AudioServer", "get_input_device", 2841200299)
 
     public val setInputDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_input_device")
+        TypeManager.getMethodBindPtr("AudioServer", "set_input_device", 83702148)
 
     public val setBusLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_bus_layout")
+        TypeManager.getMethodBindPtr("AudioServer", "set_bus_layout", 3319058824)
 
     public val generateBusLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "generate_bus_layout")
+        TypeManager.getMethodBindPtr("AudioServer", "generate_bus_layout", 3769973890)
 
     public val setEnableTaggingUsedAudioStreamsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "set_enable_tagging_used_audio_streams")
+        TypeManager.getMethodBindPtr("AudioServer", "set_enable_tagging_used_audio_streams", 2586408642)
 
     public val isStreamRegisteredAsSamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "is_stream_registered_as_sample")
+        TypeManager.getMethodBindPtr("AudioServer", "is_stream_registered_as_sample", 500225754)
 
     public val registerStreamAsSamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioServer", "register_stream_as_sample")
+        TypeManager.getMethodBindPtr("AudioServer", "register_stream_as_sample", 2210767741)
   }
 }

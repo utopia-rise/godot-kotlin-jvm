@@ -372,78 +372,78 @@ public open class ArrayMesh : Mesh() {
 
   internal object MethodBindings {
     public val addBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "add_blend_shape")
+        TypeManager.getMethodBindPtr("ArrayMesh", "add_blend_shape", 3304788590)
 
     public val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_count")
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_count", 3905245786)
 
     public val getBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_name")
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_name", 659327637)
 
     public val setBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_name")
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_name", 3780747571)
 
     public val clearBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "clear_blend_shapes")
+        TypeManager.getMethodBindPtr("ArrayMesh", "clear_blend_shapes", 3218959716)
 
     public val setBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_mode")
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_mode", 227983991)
 
     public val getBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_mode")
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_mode", 836485024)
 
     public val addSurfaceFromArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "add_surface_from_arrays")
+        TypeManager.getMethodBindPtr("ArrayMesh", "add_surface_from_arrays", 1796411378)
 
     public val clearSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "clear_surfaces")
+        TypeManager.getMethodBindPtr("ArrayMesh", "clear_surfaces", 3218959716)
 
     public val surfaceUpdateVertexRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region", 3837166854)
 
     public val surfaceUpdateAttributeRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_attribute_region")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_attribute_region", 3837166854)
 
     public val surfaceUpdateSkinRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_skin_region")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_skin_region", 3837166854)
 
     public val surfaceGetArrayLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_len")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_len", 923996154)
 
     public val surfaceGetArrayIndexLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_index_len")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_index_len", 923996154)
 
     public val surfaceGetFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_format")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_format", 3718287884)
 
     public val surfaceGetPrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_primitive_type")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_primitive_type", 4141943888)
 
     public val surfaceFindByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_find_by_name")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_find_by_name", 1321353865)
 
     public val surfaceSetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_set_name")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_set_name", 501894301)
 
     public val surfaceGetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_name")
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_name", 844755477)
 
     public val regenNormalMapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "regen_normal_maps")
+        TypeManager.getMethodBindPtr("ArrayMesh", "regen_normal_maps", 3218959716)
 
     public val lightmapUnwrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "lightmap_unwrap")
+        TypeManager.getMethodBindPtr("ArrayMesh", "lightmap_unwrap", 1476641071)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_custom_aabb")
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_custom_aabb")
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_custom_aabb", 1068685055)
 
     public val setShadowMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_shadow_mesh")
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_shadow_mesh", 3377897901)
 
     public val getShadowMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_shadow_mesh")
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_shadow_mesh", 3206942465)
   }
 }
