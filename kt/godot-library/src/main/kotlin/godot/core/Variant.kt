@@ -387,7 +387,7 @@ enum class VariantType(override val id: Int) : VariantConverter {
             } else {
                 require(any is KtCallable<*>)
                 buffer.bool = true
-
+                buffer.putLong(any.wrapInCustomCallable())
             }
         }
     },
