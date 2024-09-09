@@ -48,7 +48,11 @@ uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance
     jni::Env env {p_raw_env};
     String class_name {env.from_jstring(jni::JString(p_class_name))};
     String method_name {env.from_jstring(jni::JString(p_method_name))};
-    return reinterpret_cast<uintptr_t>(ClassDB::get_method(class_name, method_name));
+    if(MethodBind* bind = ClassDB::get_method(class_name, method_name)){
+        return reinterpret_cast<uintptr_t>(bind);
+    }
+    LOG_ERROR(vformat("Method %s from Class %s doesn't exist. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name));
+    return 0;
 }
 
 TypeManager::~TypeManager() = default;

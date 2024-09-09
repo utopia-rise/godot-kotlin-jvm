@@ -27,9 +27,7 @@ GdjLanguage* GdjLanguage::get_instance() {
 }
 
 void GdjLanguage::init() {
-    if (GDKotlin::get_instance().get_state() == GDKotlin::State::CORE_LIBRARY_INITIALIZED) {
-        GDKotlin::get_instance().load_user_code();
-    }
+    GDKotlin::get_instance().init();
 
 #ifdef DEBUG_ENABLED
     GDKotlin::get_instance().validate_state();
@@ -40,6 +38,10 @@ void GdjLanguage::frame() {
     if (unlikely(GDKotlin::get_instance().user_configuration.disable_gc)) { return; }
     jni::Env env {jni::Jvm::current_env()};
     MemoryManager::get_instance().sync_memory(env);
+}
+
+void GdjLanguage::finish() {
+    GDKotlin::get_instance().finish();
 }
 
 void GdjLanguage::thread_enter() {

@@ -14,6 +14,7 @@ public:
 
     void init() override;
     void frame() override;
+    void finish() override;
 
     void thread_enter() override;
     void thread_exit() override;

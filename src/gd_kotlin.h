@@ -52,6 +52,7 @@ private:
 
     bool load_bootstrap();
     bool initialize_core_library();
+    bool load_user_code();
 
 public:
     GDKotlin() = default;
@@ -64,7 +65,7 @@ public:
     State get_state();
 
     void init();
-    void load_user_code();
+
     void finish();
 
     //TODO: delete when https://github.com/godotengine/godot/issues/95231 is resolved

@@ -39,9 +39,7 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
 
-    if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
-        GDKotlin::get_instance().init();
-
+    if (p_level == MODULE_INITIALIZATION_LEVEL_SERVERS) {
         GDREGISTER_ABSTRACT_CLASS(JvmScript);
         GDREGISTER_CLASS(GdjScript);
         GDREGISTER_CLASS(KotlinScript);
@@ -70,7 +68,7 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
 
-    if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) { return; }
+    if (p_level != MODULE_INITIALIZATION_LEVEL_SERVERS) { return; }
 
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
@@ -88,6 +86,4 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     JvmLanguage* jvm_language {GdjLanguage::get_instance()};
     ScriptServer::unregister_language(jvm_language);
     memdelete(jvm_language);
-
-    GDKotlin::get_instance().finish();
 }
