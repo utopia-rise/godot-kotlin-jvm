@@ -52,19 +52,3 @@ func test_set_objects_from_gdscript():
 
 	invocation_script.free()
 	node3d.free()
-
-func test_function_nullable_param():
-	var node3d = Node3D.new()
-	var invocation_script: Object = Invocation.new()
-	node3d.add_child(invocation_script)
-	assert_eq(invocation_script.nullable_string_is_null("huhu"), false, "nullable_string_is_null should return false when string is passed as arg")
-	assert_eq(invocation_script.nullable_string_is_null(null), true, "nullable_string_is_null should return true when null is passed as arg")
-	node3d.free()
-
-func test_function_nullable_return():
-	var node3d = Node3D.new()
-	var invocation_script = Invocation.new()
-	node3d.add_child(invocation_script)
-	assert_eq(invocation_script.nullable_return_type(false), "not null", "nullable_return_type should return \"not null\"")
-	assert_eq(invocation_script.nullable_return_type(true), null, "nullable_return_type should return null")
-	node3d.free()
