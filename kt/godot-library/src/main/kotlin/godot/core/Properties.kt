@@ -1,5 +1,7 @@
 package godot.core
 
+import godot.PropertyHint
+import godot.PropertyUsageFlags
 import godot.core.memory.TransferContext
 import kotlin.reflect.KMutableProperty1
 
@@ -9,20 +11,19 @@ data class KtPropertyInfo(
     val className: String,
     val _hint: PropertyHint,
     val hintString: String,
-    val visibleInEditor: Boolean,
+    val usage: Long = PropertyUsageFlags.PROPERTY_USAGE_STORAGE.flag
 ) {
     val type: Int
         get() = _type.id
 
     val hint: Int
-        get() = _hint.ordinal
+        get() = _hint.id.toInt()
 }
 
 open class KtProperty<T : KtObject, P : Any?>(
     val ktPropertyInfo: KtPropertyInfo,
     protected val kProperty: KMutableProperty1<T, P>,
     protected val variantConverter: VariantConverter,
-    val isRef: Boolean
 ) {
     open fun callGet(instance: T) {
         TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
@@ -49,8 +50,7 @@ class KtEnumProperty<T : KtObject, P : Any>(
 ) : KtProperty<T, P>(
     ktPropertyInfo,
     kProperty,
-    VariantCaster.INT,
-    false
+    VariantCaster.INT
 ) {
     override fun callGet(instance: T) {
         TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantCaster.INT)
@@ -70,8 +70,7 @@ class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
 ) : KtProperty<T, L>(
     ktPropertyInfo,
     kProperty,
-    VariantType.ARRAY,
-    false
+    VariantType.ARRAY
 ) {
     override fun callGet(instance: T) {
         TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.ARRAY)

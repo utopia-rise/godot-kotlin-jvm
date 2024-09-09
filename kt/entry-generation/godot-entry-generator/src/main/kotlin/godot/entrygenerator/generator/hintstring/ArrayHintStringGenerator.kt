@@ -1,6 +1,6 @@
 package godot.entrygenerator.generator.hintstring
 
-import godot.core.PropertyHint
+import godot.PropertyHint
 import godot.core.VariantType
 import godot.entrygenerator.ext.baseGodotType
 import godot.entrygenerator.ext.getAsGodotClassName
@@ -66,8 +66,8 @@ class ArrayHintStringGenerator(
                                 val objectVariantType = VariantType.OBJECT.id
 
                                 val propertyType = when {
-                                    currentElementType.isNodeType() -> PropertyHint.NODE_TYPE.ordinal
-                                    currentElementType.isResource() -> PropertyHint.RESOURCE_TYPE.ordinal
+                                    currentElementType.isNodeType() -> PropertyHint.PROPERTY_HINT_NODE_TYPE.ordinal
+                                    currentElementType.isResource() -> PropertyHint.PROPERTY_HINT_RESOURCE_TYPE.ordinal
                                     else -> ""
                                 }
                                 val className = currentElementType.registeredName()

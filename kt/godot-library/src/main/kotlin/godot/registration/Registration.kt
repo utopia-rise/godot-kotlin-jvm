@@ -1,5 +1,7 @@
 package godot.registration
 
+import godot.PropertyHint
+import godot.PropertyUsageFlags
 import godot.core.*
 import godot.core.TypeManager
 import godot.tools.common.constants.Constraints
@@ -34,9 +36,9 @@ data class KtFunctionArgument(
         type,
         name,
         className,
-        PropertyHint.NONE,
+        PropertyHint.PROPERTY_HINT_NONE,
         "", //always empty. Only used for properties
-        true, //always true. Only used for properties
+        PropertyUsageFlags.PROPERTY_USAGE_NIL_IS_VARIANT.flag
     )
 }
 
@@ -73,10 +75,9 @@ class ClassBuilderDsl<T : KtObject>(
         variantType: VariantConverter,
         type: VariantConverter,
         className: String,
-        hint: PropertyHint = PropertyHint.NONE,
+        hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
         hintString: String = "",
-        visibleInEditor: Boolean = true,
-        isRef: Boolean = false
+        usage: Long
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -89,17 +90,16 @@ class ClassBuilderDsl<T : KtObject>(
                 className,
                 hint,
                 hintString,
-                visibleInEditor,
+                usage
             ),
             kProperty,
-            variantType,
-            isRef
+            variantType
         )
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
         kProperty: KMutableProperty1<T, P>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -112,9 +112,9 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantType.LONG,
                 propertyName,
                 "Int",
-                PropertyHint.ENUM,
+                PropertyHint.PROPERTY_HINT_ENUM,
                 hintString,
-                visibleInEditor,
+                usage,
             ),
             kProperty,
             { enum: P? -> enum?.ordinal ?: 1 },
@@ -124,7 +124,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
         kProperty: KMutableProperty1<T, L>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -137,9 +137,9 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantType.ARRAY,
                 propertyName,
                 "Int",
-                PropertyHint.ENUM,
+                PropertyHint.PROPERTY_HINT_ENUM,
                 hintString,
-                visibleInEditor,
+                usage,
             ),
             kProperty,
             { enumList: Collection<P>? ->
@@ -159,17 +159,18 @@ class ClassBuilderDsl<T : KtObject>(
     @Suppress("UNCHECKED_CAST")
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) = enumFlagProperty(
         kProperty as KMutableProperty1<T, Set<P>>,
-        visibleInEditor,
-        hintString
-    )
+        usage,
+        hintString,
+
+        )
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -182,9 +183,9 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantType.LONG,
                 propertyName,
                 "Int",
-                PropertyHint.FLAGS,
+                PropertyHint.PROPERTY_HINT_FLAGS,
                 hintString,
-                visibleInEditor,
+                usage,
             ),
             kProperty,
             { enumSet ->
@@ -247,9 +248,8 @@ class ClassBuilderDsl<T : KtObject>(
                         _type = returnType.type,
                         name = "",
                         className = returnType.className,
-                        _hint = PropertyHint.NONE,
-                        hintString = "",
-                        visibleInEditor = true, // always true. Only used for properties
+                        _hint = PropertyHint.PROPERTY_HINT_NONE,
+                        hintString = ""
                     ),
                     rpcConfig = rpcConfig
                 ),

@@ -235,8 +235,9 @@ void JvmScript::update_script() {
         const String& property_name {exported_property.name};
 
         if(exported_property.type != Variant::OBJECT) {
+            LOG_DEV_VERBOSE(vformat("Get default value for %s property from %s:",exported_property.name, kotlin_class->registered_class_name));
             kotlin_script_instance->get_or_default(property_name, default_value);
-            LOG_DEV_VERBOSE(vformat("Get default value for %s property %s script: %S",exported_property.name, kotlin_class->registered_class_name, default_value.stringify()));
+            LOG_DEV_VERBOSE(vformat("    %s",default_value.stringify()));
         }
         exported_members_default_value_cache[property_name] = default_value;
     }

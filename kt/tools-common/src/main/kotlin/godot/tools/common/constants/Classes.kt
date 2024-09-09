@@ -118,6 +118,7 @@ object GodotTypes {
     const val variant = "Variant"
     const val variantType = "Variant.Type"
     const val propertyHint = "PropertyHint"
+    const val propertyUsage = "PropertyUsageFlags"
     const val rpcMode = "MultiplayerAPI.RPCMode"
     const val transferMode = "MultiplayerPeer.TransferMode"
 

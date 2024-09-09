@@ -3,10 +3,12 @@
 #include "gd_kotlin.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 
-KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped), parameter_count(-1) {
+KtFunction::KtFunction(jni::Env& p_env, jni::JObject p_wrapped) :
+  JvmInstanceWrapper(p_env, p_wrapped),
+  parameter_count(-1) {
     method_info = new KtFunctionInfo(p_env, wrapped.call_object_method(p_env, GET_FUNCTION_INFO));
     parameter_count = wrapped.call_int_method(p_env, GET_PARAMETER_COUNT);
-    has_return_value = method_info->return_val->type != Variant::NIL;
+    has_return_value = method_info->return_val->type != Variant::NIL || (method_info->return_val->usage & PropertyUsageFlags::PROPERTY_USAGE_NIL_IS_VARIANT) != 0;
 }
 
 KtFunction::~KtFunction() {
@@ -38,7 +40,7 @@ void KtFunction::invoke(jni::Env& p_env, const KtObject* instance, const Variant
     transferContext.write_args(p_env, p_args, args_count);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
 
-    if(has_return_value){
+    if (has_return_value) {
         jni::JObject ret = wrapped.call_object_method<false>(p_env, INVOKE_WITH_RETURN, call_args);
         transferContext.read_return_value(p_env, r_ret);
         ret.delete_local_ref(p_env);

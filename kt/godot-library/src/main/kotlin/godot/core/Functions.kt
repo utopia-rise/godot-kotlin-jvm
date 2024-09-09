@@ -5,47 +5,6 @@ package godot.core
 import godot.core.callable.ParametersReader
 import godot.util.camelToSnakeCase
 
-enum class PropertyHint {
-    NONE, ///< no hint provided.
-    RANGE, ///< hint_text = "min,max[,step][,or_greater][,or_less][,hide_slider][,radians][,degrees][,exp][,suffix:<keyword>] range.
-    ENUM, ///< hint_text= "val1,val2,val3,etc"
-    ENUM_SUGGESTION, ///< hint_text= "val1,val2,val3,etc"
-    EXP_EASING, /// exponential easing function (Math::ease) use "attenuation" hint string to revert (flip h), "positive_only" to exclude in-out and out-in. (ie: "attenuation,positive_only")
-    LINK,
-    FLAGS, ///< hint_text= "flag1,flag2,etc" (as bit flags)
-    LAYERS_2D_RENDER,
-    LAYERS_2D_PHYSICS,
-    LAYERS_2D_NAVIGATION,
-    LAYERS_3D_RENDER,
-    LAYERS_3D_PHYSICS,
-    LAYERS_3D_NAVIGATION,
-    FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
-    DIR, ///< a directory path must be passed
-    GLOBAL_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
-    GLOBAL_DIR, ///< a directory path must be passed
-    RESOURCE_TYPE, ///< a resource object type
-    MULTILINE_TEXT, ///< used for string properties that can contain multiple lines
-    EXPRESSION, ///< used for string properties that can contain multiple lines
-    PLACEHOLDER_TEXT, ///< used to set a placeholder text for string properties
-    COLOR_NO_ALPHA, ///< used for ignoring alpha component when editing a color
-    OBJECT_ID,
-    TYPE_STRING, ///< a type string, the hint is the base type to choose
-    NODE_PATH_TO_EDITED_NODE, ///< so something else can provide this (used in scripts)
-    OBJECT_TOO_BIG, ///< object is too big to send
-    NODE_PATH_VALID_TYPES,
-    SAVE_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,". This opens a save dialog
-    GLOBAL_SAVE_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,". This opens a save dialog
-    INT_IS_OBJECTID,
-    INT_IS_POINTER,
-    ARRAY_TYPE,
-    LOCALE_ID,
-    LOCALIZABLE_STRING,
-    NODE_TYPE, ///< a node object type
-    HIDE_QUATERNION_EDIT, /// Only Node3D::transform should hide the quaternion editor.
-    PASSWORD,
-    MAX,
-}
-
 data class KtFunctionInfo(
     val name: String,
     val _arguments: List<KtPropertyInfo>,

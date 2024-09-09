@@ -772,7 +772,7 @@
       {"name":"getHintString","parameterTypes":[] },
       {"name":"getName","parameterTypes":[] },
       {"name":"getType","parameterTypes":[] },
-      {"name":"getVisibleInEditor","parameterTypes":[] }
+      {"name":"getUsage","parameterTypes":[] }
     ]
   },
   {

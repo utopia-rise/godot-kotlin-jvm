@@ -16,7 +16,7 @@ KtPropertyInfo::KtPropertyInfo(jni::Env& p_env, jni::JObject p_wrapped) : JvmIns
     jni::JString jhint_string {wrapped.call_object_method(p_env, GET_HINT_STRING)};
     hint_string = p_env.from_jstring(jhint_string);
 
-    visible_in_editor = wrapped.call_boolean_method(p_env, GET_VISIBLE_IN_EDITOR);
+    usage = static_cast<PropertyUsageFlags>(wrapped.call_long_method(p_env, GET_USAGE));
 
     jhint_string.delete_local_ref(p_env);
     jclass_name.delete_local_ref(p_env);
@@ -30,17 +30,12 @@ PropertyInfo KtPropertyInfo::toPropertyInfo() const {
     info.class_name = class_name;
     info.hint = hint;
     info.hint_string = hint_string;
-    if (visible_in_editor) {
-        info.usage = PropertyUsageFlags::PROPERTY_USAGE_DEFAULT;
-    } else {
-        info.usage = PropertyUsageFlags::PROPERTY_USAGE_NO_EDITOR;
-    }
+    info.usage = usage;
     return info;
 }
 
 KtProperty::KtProperty(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {
     propertyInfo = new KtPropertyInfo(p_env, wrapped.call_object_method(p_env, GET_KT_PROPERTY_INFO));
-    is_ref = wrapped.call_boolean_method(p_env, IS_REF);
 }
 
 KtProperty::~KtProperty() {
