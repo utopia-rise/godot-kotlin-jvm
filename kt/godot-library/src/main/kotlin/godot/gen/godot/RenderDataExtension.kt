@@ -8,8 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -55,17 +53,5 @@ public open class RenderDataExtension : RenderData() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _getRenderSceneBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderDataExtension", "_get_render_scene_buffers")
-
-    public val _getRenderSceneDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderDataExtension", "_get_render_scene_data")
-
-    public val _getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderDataExtension", "_get_environment")
-
-    public val _getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderDataExtension", "_get_camera_attributes")
-  }
+  internal object MethodBindings
 }

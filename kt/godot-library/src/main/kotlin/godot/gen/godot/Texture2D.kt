@@ -228,22 +228,6 @@ public open class Texture2D : Texture() {
   public companion object
 
   internal object MethodBindings {
-    public val _getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_get_width")
-
-    public val _getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_get_height")
-
-    public val _isPixelOpaquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "_is_pixel_opaque")
-
-    public val _hasAlphaPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_has_alpha")
-
-    public val _drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_draw")
-
-    public val _drawRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "_draw_rect")
-
-    public val _drawRectRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2D", "_draw_rect_region")
-
     public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_width")
 
     public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture2D", "get_height")

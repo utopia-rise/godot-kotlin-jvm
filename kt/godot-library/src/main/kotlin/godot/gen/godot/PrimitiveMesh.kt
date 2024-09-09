@@ -186,9 +186,6 @@ public open class PrimitiveMesh : Mesh() {
   public companion object
 
   internal object MethodBindings {
-    public val _createMeshArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "_create_mesh_array")
-
     public val setMaterialPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PrimitiveMesh", "set_material")
 

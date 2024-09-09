@@ -35,12 +35,6 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public companion object
 
   internal object MethodBindings {
-    public val _mixResampledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "_mix_resampled")
-
-    public val _getStreamSamplingRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "_get_stream_sampling_rate")
-
     public val beginResamplePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "begin_resample")
   }

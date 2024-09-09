@@ -425,10 +425,6 @@ public open class AStar2D : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val _estimateCostPtr: VoidPtr = TypeManager.getMethodBindPtr("AStar2D", "_estimate_cost")
-
-    public val _computeCostPtr: VoidPtr = TypeManager.getMethodBindPtr("AStar2D", "_compute_cost")
-
     public val getAvailablePointIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStar2D", "get_available_point_id")
 

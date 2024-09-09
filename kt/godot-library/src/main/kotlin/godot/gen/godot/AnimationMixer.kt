@@ -695,9 +695,6 @@ public open class AnimationMixer internal constructor() : Node() {
   public companion object
 
   internal object MethodBindings {
-    public val _postProcessKeyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "_post_process_key_value")
-
     public val addAnimationLibraryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationMixer", "add_animation_library")
 

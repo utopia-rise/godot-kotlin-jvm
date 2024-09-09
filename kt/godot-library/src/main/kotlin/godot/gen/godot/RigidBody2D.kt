@@ -841,9 +841,6 @@ public open class RigidBody2D : PhysicsBody2D() {
   public companion object
 
   internal object MethodBindings {
-    public val _integrateForcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "_integrate_forces")
-
     public val setMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "set_mass")
 
     public val getMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "get_mass")

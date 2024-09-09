@@ -269,69 +269,6 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   public companion object
 
   internal object MethodBindings {
-    public val _getNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_name")
-
-    public val _getDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_description")
-
-    public val _getCategoryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_category")
-
-    public val _getReturnIconTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_return_icon_type")
-
-    public val _getInputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_input_port_count")
-
-    public val _getInputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_input_port_type")
-
-    public val _getInputPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_input_port_name")
-
-    public val _getInputPortDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_input_port_default_value")
-
-    public val _getDefaultInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_default_input_port")
-
-    public val _getOutputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_output_port_count")
-
-    public val _getOutputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_output_port_type")
-
-    public val _getOutputPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_output_port_name")
-
-    public val _getPropertyCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_count")
-
-    public val _getPropertyNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_name")
-
-    public val _getPropertyDefaultIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_default_index")
-
-    public val _getPropertyOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_property_options")
-
-    public val _getCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_code")
-
-    public val _getFuncCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_func_code")
-
-    public val _getGlobalCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_get_global_code")
-
-    public val _isHighendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_is_highend")
-
-    public val _isAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "_is_available")
-
     public val getOptionIndexPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "get_option_index")
   }

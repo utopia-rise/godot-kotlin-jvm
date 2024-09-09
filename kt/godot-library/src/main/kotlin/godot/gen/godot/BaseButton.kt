@@ -313,10 +313,6 @@ public open class BaseButton : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val _pressedPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "_pressed")
-
-    public val _toggledPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "_toggled")
-
     public val setPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "set_pressed")
 
     public val isPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "is_pressed")

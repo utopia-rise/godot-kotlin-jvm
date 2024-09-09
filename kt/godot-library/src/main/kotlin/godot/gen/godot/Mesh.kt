@@ -645,47 +645,6 @@ public open class Mesh : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _getSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_get_surface_count")
-
-    public val _surfaceGetArrayLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_array_len")
-
-    public val _surfaceGetArrayIndexLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_array_index_len")
-
-    public val _surfaceGetArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_arrays")
-
-    public val _surfaceGetBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_blend_shape_arrays")
-
-    public val _surfaceGetLodsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_lods")
-
-    public val _surfaceGetFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_format")
-
-    public val _surfaceGetPrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_primitive_type")
-
-    public val _surfaceSetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_set_material")
-
-    public val _surfaceGetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_surface_get_material")
-
-    public val _getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_get_blend_shape_count")
-
-    public val _getBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_get_blend_shape_name")
-
-    public val _setBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "_set_blend_shape_name")
-
-    public val _getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "_get_aabb")
-
     public val setLightmapSizeHintPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Mesh", "set_lightmap_size_hint")
 

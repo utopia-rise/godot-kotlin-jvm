@@ -1849,9 +1849,6 @@ public open class Window : Viewport() {
   }
 
   internal object MethodBindings {
-    public val _getContentsMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "_get_contents_minimum_size")
-
     public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_title")
 
     public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_title")

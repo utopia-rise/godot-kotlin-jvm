@@ -365,28 +365,6 @@ public open class AnimationNode : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _getChildNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_child_nodes")
-
-    public val _getParameterListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_parameter_list")
-
-    public val _getChildByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_child_by_name")
-
-    public val _getParameterDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_parameter_default_value")
-
-    public val _isParameterReadOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_is_parameter_read_only")
-
-    public val _processPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "_process")
-
-    public val _getCaptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_caption")
-
-    public val _hasFilterPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "_has_filter")
-
     public val addInputPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "add_input")
 
     public val removeInputPtr: VoidPtr =

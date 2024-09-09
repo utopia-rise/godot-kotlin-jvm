@@ -958,18 +958,6 @@ public open class GraphEdit : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val _isInInputHotzonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "_is_in_input_hotzone")
-
-    public val _isInOutputHotzonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "_is_in_output_hotzone")
-
-    public val _getConnectionLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "_get_connection_line")
-
-    public val _isNodeHoverValidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "_is_node_hover_valid")
-
     public val connectNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphEdit", "connect_node")
 
     public val isNodeConnectedPtr: VoidPtr =

@@ -500,9 +500,6 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public companion object
 
   internal object MethodBindings {
-    public val _integrateForcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "_integrate_forces")
-
     public val applyCentralImpulsePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_central_impulse")
 

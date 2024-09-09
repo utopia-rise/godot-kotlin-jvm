@@ -231,8 +231,6 @@ public open class Range : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val _valueChangedPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "_value_changed")
-
     public val getValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_value")
 
     public val getMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_min")

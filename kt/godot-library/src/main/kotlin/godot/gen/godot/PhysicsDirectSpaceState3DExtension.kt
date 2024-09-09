@@ -46,27 +46,6 @@ public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D
   public companion object
 
   internal object MethodBindings {
-    public val _intersectRayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "_intersect_ray")
-
-    public val _intersectPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "_intersect_point")
-
-    public val _intersectShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "_intersect_shape")
-
-    public val _castMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "_cast_motion")
-
-    public val _collideShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "_collide_shape")
-
-    public val _restInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "_rest_info")
-
-    public val _getClosestPointToObjectVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "_get_closest_point_to_object_volume")
-
     public val isBodyExcludedFromQueryPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "is_body_excluded_from_query")
   }

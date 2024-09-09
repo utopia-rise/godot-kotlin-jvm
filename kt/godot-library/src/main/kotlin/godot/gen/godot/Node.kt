@@ -2607,30 +2607,6 @@ public open class Node : Object() {
   }
 
   internal object MethodBindings {
-    public val _processPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "_process")
-
-    public val _physicsProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "_physics_process")
-
-    public val _enterTreePtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "_enter_tree")
-
-    public val _exitTreePtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "_exit_tree")
-
-    public val _readyPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "_ready")
-
-    public val _getConfigurationWarningsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "_get_configuration_warnings")
-
-    public val _inputPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "_input")
-
-    public val _shortcutInputPtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "_shortcut_input")
-
-    public val _unhandledInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "_unhandled_input")
-
-    public val _unhandledKeyInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "_unhandled_key_input")
-
     public val printOrphanNodesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "print_orphan_nodes")
 

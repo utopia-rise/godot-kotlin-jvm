@@ -210,9 +210,6 @@ public open class CompositorEffect : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _renderCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "_render_callback")
-
     public val setEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CompositorEffect", "set_enabled")
 

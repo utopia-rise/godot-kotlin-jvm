@@ -791,12 +791,6 @@ public open class TileMap : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val _useTileDataRuntimeUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "_use_tile_data_runtime_update")
-
-    public val _tileDataRuntimeUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "_tile_data_runtime_update")
-
     public val setNavigationMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMap", "set_navigation_map")
 

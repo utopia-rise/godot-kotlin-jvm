@@ -11,8 +11,6 @@ import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int
@@ -293,62 +291,5 @@ public open class GLTFDocumentExtension : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _importPreflightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_import_preflight")
-
-    public val _getSupportedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_get_supported_extensions")
-
-    public val _parseNodeExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_parse_node_extensions")
-
-    public val _parseImageDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_parse_image_data")
-
-    public val _getImageFileExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_get_image_file_extension")
-
-    public val _parseTextureJsonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_parse_texture_json")
-
-    public val _generateSceneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_generate_scene_node")
-
-    public val _importPostParsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_import_post_parse")
-
-    public val _importNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_import_node")
-
-    public val _importPostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_import_post")
-
-    public val _exportPreflightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_export_preflight")
-
-    public val _convertSceneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_convert_scene_node")
-
-    public val _exportPreserializePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_export_preserialize")
-
-    public val _getSaveableImageFormatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_get_saveable_image_formats")
-
-    public val _serializeImageToBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_serialize_image_to_bytes")
-
-    public val _saveImageAtPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_save_image_at_path")
-
-    public val _serializeTextureJsonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_serialize_texture_json")
-
-    public val _exportNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_export_node")
-
-    public val _exportPostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocumentExtension", "_export_post")
-  }
+  internal object MethodBindings
 }

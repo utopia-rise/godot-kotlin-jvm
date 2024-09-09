@@ -470,21 +470,6 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val _inputEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject2D", "_input_event")
-
-    public val _mouseEnterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject2D", "_mouse_enter")
-
-    public val _mouseExitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject2D", "_mouse_exit")
-
-    public val _mouseShapeEnterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject2D", "_mouse_shape_enter")
-
-    public val _mouseShapeExitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject2D", "_mouse_shape_exit")
-
     public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("CollisionObject2D", "get_rid")
 
     public val setCollisionLayerPtr: VoidPtr =

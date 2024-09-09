@@ -412,8 +412,6 @@ public open class GraphNode : GraphElement() {
   public companion object
 
   internal object MethodBindings {
-    public val _drawPortPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "_draw_port")
-
     public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "set_title")
 
     public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "get_title")

@@ -7,9 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -55,11 +53,5 @@ public open class EngineProfiler : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _togglePtr: VoidPtr = TypeManager.getMethodBindPtr("EngineProfiler", "_toggle")
-
-    public val _addFramePtr: VoidPtr = TypeManager.getMethodBindPtr("EngineProfiler", "_add_frame")
-
-    public val _tickPtr: VoidPtr = TypeManager.getMethodBindPtr("EngineProfiler", "_tick")
-  }
+  internal object MethodBindings
 }

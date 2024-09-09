@@ -621,12 +621,6 @@ public open class AStarGrid2D : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val _estimateCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "_estimate_cost")
-
-    public val _computeCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "_compute_cost")
-
     public val setRegionPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "set_region")
 
     public val getRegionPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "get_region")

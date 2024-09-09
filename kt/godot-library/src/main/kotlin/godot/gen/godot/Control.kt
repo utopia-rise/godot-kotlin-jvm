@@ -2622,27 +2622,6 @@ public open class Control : CanvasItem() {
   }
 
   internal object MethodBindings {
-    public val _hasPointPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "_has_point")
-
-    public val _structuredTextParserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "_structured_text_parser")
-
-    public val _getMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "_get_minimum_size")
-
-    public val _getTooltipPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "_get_tooltip")
-
-    public val _getDragDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "_get_drag_data")
-
-    public val _canDropDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "_can_drop_data")
-
-    public val _dropDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "_drop_data")
-
-    public val _makeCustomTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Control", "_make_custom_tooltip")
-
-    public val _guiInputPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "_gui_input")
-
     public val acceptEventPtr: VoidPtr = TypeManager.getMethodBindPtr("Control", "accept_event")
 
     public val getMinimumSizePtr: VoidPtr =

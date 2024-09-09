@@ -10,9 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -73,23 +71,5 @@ public open class RenderSceneDataExtension : RenderSceneData() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _getCamTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneDataExtension", "_get_cam_transform")
-
-    public val _getCamProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneDataExtension", "_get_cam_projection")
-
-    public val _getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneDataExtension", "_get_view_count")
-
-    public val _getViewEyeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneDataExtension", "_get_view_eye_offset")
-
-    public val _getViewProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneDataExtension", "_get_view_projection")
-
-    public val _getUniformBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneDataExtension", "_get_uniform_buffer")
-  }
+  internal object MethodBindings
 }

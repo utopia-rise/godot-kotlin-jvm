@@ -153,15 +153,6 @@ public open class SkeletonModification2D : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _executePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "_execute")
-
-    public val _setupModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "_setup_modification")
-
-    public val _drawEditorGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "_draw_editor_gizmo")
-
     public val setEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SkeletonModification2D", "set_enabled")
 

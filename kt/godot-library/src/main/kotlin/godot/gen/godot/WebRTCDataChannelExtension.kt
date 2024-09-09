@@ -8,8 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -87,59 +85,5 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _getPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_packet")
-
-    public val _putPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_put_packet")
-
-    public val _getAvailablePacketCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_available_packet_count")
-
-    public val _getMaxPacketSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_max_packet_size")
-
-    public val _pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_poll")
-
-    public val _closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_close")
-
-    public val _setWriteModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_set_write_mode")
-
-    public val _getWriteModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_write_mode")
-
-    public val _wasStringPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_was_string_packet")
-
-    public val _getReadyStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_ready_state")
-
-    public val _getLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_label")
-
-    public val _isOrderedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_is_ordered")
-
-    public val _getIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_id")
-
-    public val _getMaxPacketLifeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_max_packet_life_time")
-
-    public val _getMaxRetransmitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_max_retransmits")
-
-    public val _getProtocolPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_protocol")
-
-    public val _isNegotiatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_is_negotiated")
-
-    public val _getBufferedAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCDataChannelExtension", "_get_buffered_amount")
-  }
+  internal object MethodBindings
 }

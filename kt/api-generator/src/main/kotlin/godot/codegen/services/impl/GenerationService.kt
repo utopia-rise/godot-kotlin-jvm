@@ -152,7 +152,7 @@ class GenerationService(
             constantsTypeReceiver.addProperty(generateConstant(constant, name))
         }
 
-        for (method in enrichedClass.methods) {
+        for (method in enrichedClass.methods.filter{ !it.internal.isVirtual}) {
             methodBindPtrReceiver.addProperty(generateMethodVoidPtr(enrichedClass, method))
         }
 

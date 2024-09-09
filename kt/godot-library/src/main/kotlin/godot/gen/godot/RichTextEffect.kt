@@ -7,8 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -51,8 +49,5 @@ public open class RichTextEffect : Resource() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _processCustomFxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextEffect", "_process_custom_fx")
-  }
+  internal object MethodBindings
 }

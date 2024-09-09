@@ -166,8 +166,6 @@ public open class VisualInstance3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val _getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "_get_aabb")
-
     public val setBasePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "set_base")
 
     public val getBasePtr: VoidPtr = TypeManager.getMethodBindPtr("VisualInstance3D", "get_base")

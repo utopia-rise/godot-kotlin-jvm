@@ -1429,8 +1429,6 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   internal object MethodBindings {
-    public val _drawPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasItem", "_draw")
-
     public val getCanvasItemPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "get_canvas_item")
 

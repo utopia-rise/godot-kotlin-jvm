@@ -9,8 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -74,38 +72,5 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _getConnectionStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_get_connection_state")
-
-    public val _getGatheringStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_get_gathering_state")
-
-    public val _getSignalingStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_get_signaling_state")
-
-    public val _initializePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_initialize")
-
-    public val _createDataChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_create_data_channel")
-
-    public val _createOfferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_create_offer")
-
-    public val _setRemoteDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_set_remote_description")
-
-    public val _setLocalDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_set_local_description")
-
-    public val _addIceCandidatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_add_ice_candidate")
-
-    public val _pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_poll")
-
-    public val _closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnectionExtension", "_close")
-  }
+  internal object MethodBindings
 }

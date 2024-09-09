@@ -178,26 +178,6 @@ public open class TextureLayered : Texture() {
   public companion object
 
   internal object MethodBindings {
-    public val _getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_format")
-
-    public val _getLayeredTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_layered_type")
-
-    public val _getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "_get_width")
-
-    public val _getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_height")
-
-    public val _getLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_layers")
-
-    public val _hasMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_has_mipmaps")
-
-    public val _getLayerDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_layer_data")
-
     public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_format")
 
     public val getLayeredTypePtr: VoidPtr =

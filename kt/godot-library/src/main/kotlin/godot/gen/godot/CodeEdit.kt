@@ -1126,15 +1126,6 @@ public open class CodeEdit : TextEdit() {
   public companion object
 
   internal object MethodBindings {
-    public val _confirmCodeCompletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeEdit", "_confirm_code_completion")
-
-    public val _requestCodeCompletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeEdit", "_request_code_completion")
-
-    public val _filterCodeCompletionCandidatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeEdit", "_filter_code_completion_candidates")
-
     public val setIndentSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("CodeEdit", "set_indent_size")
 

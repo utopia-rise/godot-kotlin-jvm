@@ -166,11 +166,6 @@ public open class Translation : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _getPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "_get_plural_message")
-
-    public val _getMessagePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "_get_message")
-
     public val setLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "set_locale")
 
     public val getLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "get_locale")

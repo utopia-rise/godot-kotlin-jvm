@@ -10,9 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -176,30 +174,5 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _pollPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_poll")
-
-    public val _setMultiplayerPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_set_multiplayer_peer")
-
-    public val _getMultiplayerPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_get_multiplayer_peer")
-
-    public val _getUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_get_unique_id")
-
-    public val _getPeerIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_get_peer_ids")
-
-    public val _rpcPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_rpc")
-
-    public val _getRemoteSenderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_get_remote_sender_id")
-
-    public val _objectConfigurationAddPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_object_configuration_add")
-
-    public val _objectConfigurationRemovePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPIExtension", "_object_configuration_remove")
-  }
+  internal object MethodBindings
 }

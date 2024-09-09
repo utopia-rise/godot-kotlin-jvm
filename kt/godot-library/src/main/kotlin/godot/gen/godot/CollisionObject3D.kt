@@ -420,15 +420,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val _inputEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject3D", "_input_event")
-
-    public val _mouseEnterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject3D", "_mouse_enter")
-
-    public val _mouseExitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionObject3D", "_mouse_exit")
-
     public val setCollisionLayerPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CollisionObject3D", "set_collision_layer")
 

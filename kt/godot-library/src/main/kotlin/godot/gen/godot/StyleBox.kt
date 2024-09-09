@@ -204,15 +204,6 @@ public open class StyleBox : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _drawPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "_draw")
-
-    public val _getDrawRectPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "_get_draw_rect")
-
-    public val _getMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "_get_minimum_size")
-
-    public val _testMaskPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "_test_mask")
-
     public val getMinimumSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("StyleBox", "get_minimum_size")
 

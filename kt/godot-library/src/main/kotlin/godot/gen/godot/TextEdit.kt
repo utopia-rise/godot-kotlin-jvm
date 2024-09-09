@@ -2653,20 +2653,6 @@ public open class TextEdit : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val _handleUnicodeInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "_handle_unicode_input")
-
-    public val _backspacePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "_backspace")
-
-    public val _cutPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "_cut")
-
-    public val _copyPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "_copy")
-
-    public val _pastePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "_paste")
-
-    public val _pastePrimaryClipboardPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextEdit", "_paste_primary_clipboard")
-
     public val hasImeTextPtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "has_ime_text")
 
     public val cancelImePtr: VoidPtr = TypeManager.getMethodBindPtr("TextEdit", "cancel_ime")

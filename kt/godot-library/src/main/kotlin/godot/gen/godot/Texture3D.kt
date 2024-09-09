@@ -146,18 +146,6 @@ public open class Texture3D : Texture() {
   public companion object
 
   internal object MethodBindings {
-    public val _getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "_get_format")
-
-    public val _getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "_get_width")
-
-    public val _getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "_get_height")
-
-    public val _getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "_get_depth")
-
-    public val _hasMipmapsPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "_has_mipmaps")
-
-    public val _getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "_get_data")
-
     public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "get_format")
 
     public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Texture3D", "get_width")

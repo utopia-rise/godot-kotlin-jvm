@@ -607,12 +607,6 @@ public open class TileMapLayer : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val _useTileDataRuntimeUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapLayer", "_use_tile_data_runtime_update")
-
-    public val _tileDataRuntimeUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMapLayer", "_tile_data_runtime_update")
-
     public val setCellPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMapLayer", "set_cell")
 
     public val eraseCellPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMapLayer", "erase_cell")

@@ -55,9 +55,6 @@ public open class VideoStream : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _instantiatePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStream", "_instantiate_playback")
-
     public val setFilePtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStream", "set_file")
 
     public val getFilePtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStream", "get_file")

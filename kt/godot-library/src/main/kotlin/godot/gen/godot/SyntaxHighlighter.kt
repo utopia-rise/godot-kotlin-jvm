@@ -108,15 +108,6 @@ public open class SyntaxHighlighter : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _getLineSyntaxHighlightingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "_get_line_syntax_highlighting")
-
-    public val _clearHighlightingCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "_clear_highlighting_cache")
-
-    public val _updateCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "_update_cache")
-
     public val getLineSyntaxHighlightingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SyntaxHighlighter", "get_line_syntax_highlighting")
 
