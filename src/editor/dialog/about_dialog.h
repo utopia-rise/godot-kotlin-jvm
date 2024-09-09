@@ -9,18 +9,16 @@
 #include <scene/gui/dialogs.h>
 
 class AboutDialog : public AcceptDialog {
-public:
-    AboutDialog();
-
-protected:
-    void _notificationv(int p_notification, bool p_reversed) override;
-
-private:
-    CheckBox* about_dialog_check_box;
+    GDCLASS(AboutDialog, AcceptDialog)
 
     void on_checkbox_toggled(bool is_selected);
-
     void on_url_clicked(const String& url);
+
+public:
+    AboutDialog();
+    ~AboutDialog() = default;
+
+    void _notification(int notification);
 };
 
 #endif// GODOT_JVM_ABOUT_DIALOG_H

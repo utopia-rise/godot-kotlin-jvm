@@ -8,16 +8,17 @@
 #include <scene/gui/scroll_container.h>
 
 class BuildDialog : public AcceptDialog {
-public:
-    BuildDialog();
+    GDCLASS(BuildDialog, AcceptDialog)
 
-    void update_state();
-
-private:
     ScrollContainer* scroll_container;
     Label* log_label;
 
-    void on_build_dialog_hide();
+public:
+    BuildDialog();
+
+    void set_scrollbar_at_bottom();
+    void update_state(String log);
+    void _notification(int notification);
 };
 
 #endif// GODOT_JVM_BUILD_DIALOG_H
