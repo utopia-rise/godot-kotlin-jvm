@@ -65,7 +65,7 @@ public object Performance : Object() {
    *
    * See [getCustomMonitor] to query custom performance monitors' values.
    */
-  public fun getMonitor(monitor: Monitor): Double {
+  public final fun getMonitor(monitor: Monitor): Double {
     TransferContext.writeArguments(LONG to monitor.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getMonitorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -134,7 +134,7 @@ public object Performance : Object() {
    * Callables are called with arguments supplied in argument array.
    */
   @JvmOverloads
-  public fun addCustomMonitor(
+  public final fun addCustomMonitor(
     id: StringName,
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
@@ -147,7 +147,7 @@ public object Performance : Object() {
    * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
    * absent.
    */
-  public fun removeCustomMonitor(id: StringName): Unit {
+  public final fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, MethodBindings.removeCustomMonitorPtr, NIL)
   }
@@ -155,7 +155,7 @@ public object Performance : Object() {
   /**
    * Returns `true` if custom monitor with the given [id] is present, `false` otherwise.
    */
-  public fun hasCustomMonitor(id: StringName): Boolean {
+  public final fun hasCustomMonitor(id: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCustomMonitorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -165,7 +165,7 @@ public object Performance : Object() {
    * Returns the value of custom monitor with given [id]. The callable is called to get the value of
    * custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
    */
-  public fun getCustomMonitor(id: StringName): Any? {
+  public final fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -175,7 +175,7 @@ public object Performance : Object() {
    * Returns the last tick in which custom monitor was added/removed (in microseconds since the
    * engine started). This is set to [Time.getTicksUsec] when the monitor is updated.
    */
-  public fun getMonitorModificationTime(): Long {
+  public final fun getMonitorModificationTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMonitorModificationTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -184,7 +184,7 @@ public object Performance : Object() {
   /**
    * Returns the names of active custom monitors in an [Array].
    */
-  public fun getCustomMonitorNames(): VariantArray<StringName> {
+  public final fun getCustomMonitorNames(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)

@@ -28,7 +28,7 @@ public open class GLTFTextureSampler : Resource() {
    * Texture's magnification filter, used when texture appears larger on screen than the source
    * image.
    */
-  public var magFilter: Int
+  public final inline var magFilter: Int
     @JvmName("magFilterProperty")
     get() = getMagFilter()
     @JvmName("magFilterProperty")
@@ -40,7 +40,7 @@ public open class GLTFTextureSampler : Resource() {
    * Texture's minification filter, used when the texture appears smaller on screen than the source
    * image.
    */
-  public var minFilter: Int
+  public final inline var minFilter: Int
     @JvmName("minFilterProperty")
     get() = getMinFilter()
     @JvmName("minFilterProperty")
@@ -51,7 +51,7 @@ public open class GLTFTextureSampler : Resource() {
   /**
    * Wrapping mode to use for S-axis (horizontal) texture coordinates.
    */
-  public var wrapS: Int
+  public final inline var wrapS: Int
     @JvmName("wrapSProperty")
     get() = getWrapS()
     @JvmName("wrapSProperty")
@@ -62,7 +62,7 @@ public open class GLTFTextureSampler : Resource() {
   /**
    * Wrapping mode to use for T-axis (vertical) texture coordinates.
    */
-  public var wrapT: Int
+  public final inline var wrapT: Int
     @JvmName("wrapTProperty")
     get() = getWrapT()
     @JvmName("wrapTProperty")
@@ -74,46 +74,46 @@ public open class GLTFTextureSampler : Resource() {
     callConstructor(ENGINECLASS_GLTFTEXTURESAMPLER, scriptIndex)
   }
 
-  public fun getMagFilter(): Int {
+  public final fun getMagFilter(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMagFilter(filterMode: Int): Unit {
+  public final fun setMagFilter(filterMode: Int): Unit {
     TransferContext.writeArguments(LONG to filterMode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
   }
 
-  public fun getMinFilter(): Int {
+  public final fun getMinFilter(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMinFilter(filterMode: Int): Unit {
+  public final fun setMinFilter(filterMode: Int): Unit {
     TransferContext.writeArguments(LONG to filterMode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
   }
 
-  public fun getWrapS(): Int {
+  public final fun getWrapS(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setWrapS(wrapMode: Int): Unit {
+  public final fun setWrapS(wrapMode: Int): Unit {
     TransferContext.writeArguments(LONG to wrapMode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
   }
 
-  public fun getWrapT(): Int {
+  public final fun getWrapT(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setWrapT(wrapMode: Int): Unit {
+  public final fun setWrapT(wrapMode: Int): Unit {
     TransferContext.writeArguments(LONG to wrapMode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
   }

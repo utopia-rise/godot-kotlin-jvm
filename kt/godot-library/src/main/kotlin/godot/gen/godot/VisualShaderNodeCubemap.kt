@@ -28,7 +28,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines which source should be used for the sampling. See [Source] for options.
    */
-  public var source: Source
+  public final inline var source: Source
     @JvmName("sourceProperty")
     get() = getSource()
     @JvmName("sourceProperty")
@@ -39,7 +39,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * The [Cubemap] texture to sample when using [SOURCE_TEXTURE] as [source].
    */
-  public var cubeMap: Cubemap?
+  public final inline var cubeMap: Cubemap?
     @JvmName("cubeMapProperty")
     get() = getCubeMap()
     @JvmName("cubeMapProperty")
@@ -50,7 +50,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines the type of data provided by the source texture. See [TextureType] for options.
    */
-  public var textureType: TextureType
+  public final inline var textureType: TextureType
     @JvmName("textureTypeProperty")
     get() = getTextureType()
     @JvmName("textureTypeProperty")
@@ -62,34 +62,34 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAP, scriptIndex)
   }
 
-  public fun setSource(`value`: Source): Unit {
+  public final fun setSource(`value`: Source): Unit {
     TransferContext.writeArguments(LONG to value.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
   }
 
-  public fun getSource(): Source {
+  public final fun getSource(): Source {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setCubeMap(`value`: Cubemap?): Unit {
+  public final fun setCubeMap(`value`: Cubemap?): Unit {
     TransferContext.writeArguments(OBJECT to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCubeMapPtr, NIL)
   }
 
-  public fun getCubeMap(): Cubemap? {
+  public final fun getCubeMap(): Cubemap? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Cubemap?)
   }
 
-  public fun setTextureType(`value`: TextureType): Unit {
+  public final fun setTextureType(`value`: TextureType): Unit {
     TransferContext.writeArguments(LONG to value.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
   }
 
-  public fun getTextureType(): TextureType {
+  public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
     return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)

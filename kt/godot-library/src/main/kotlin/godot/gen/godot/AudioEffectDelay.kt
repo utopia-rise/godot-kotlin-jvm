@@ -32,7 +32,7 @@ public open class AudioEffectDelay : AudioEffect() {
    * Output percent of original sound. At 0, only delayed sounds are output. Value can range from 0
    * to 1.
    */
-  public var dry: Float
+  public final inline var dry: Float
     @JvmName("dryProperty")
     get() = getDry()
     @JvmName("dryProperty")
@@ -43,7 +43,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * If `true`, the first tap will be enabled.
    */
-  public var tap1Active: Boolean
+  public final inline var tap1Active: Boolean
     @JvmName("tap1ActiveProperty")
     get() = isTap1Active()
     @JvmName("tap1ActiveProperty")
@@ -54,7 +54,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * First tap delay time in milliseconds.
    */
-  public var tap1DelayMs: Float
+  public final inline var tap1DelayMs: Float
     @JvmName("tap1DelayMsProperty")
     get() = getTap1DelayMs()
     @JvmName("tap1DelayMsProperty")
@@ -65,7 +65,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Sound level for the first tap.
    */
-  public var tap1LevelDb: Float
+  public final inline var tap1LevelDb: Float
     @JvmName("tap1LevelDbProperty")
     get() = getTap1LevelDb()
     @JvmName("tap1LevelDbProperty")
@@ -76,7 +76,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Pan position for the first tap. Value can range from -1 (fully left) to 1 (fully right).
    */
-  public var tap1Pan: Float
+  public final inline var tap1Pan: Float
     @JvmName("tap1PanProperty")
     get() = getTap1Pan()
     @JvmName("tap1PanProperty")
@@ -87,7 +87,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * If `true`, the second tap will be enabled.
    */
-  public var tap2Active: Boolean
+  public final inline var tap2Active: Boolean
     @JvmName("tap2ActiveProperty")
     get() = isTap2Active()
     @JvmName("tap2ActiveProperty")
@@ -98,7 +98,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Second tap delay time in milliseconds.
    */
-  public var tap2DelayMs: Float
+  public final inline var tap2DelayMs: Float
     @JvmName("tap2DelayMsProperty")
     get() = getTap2DelayMs()
     @JvmName("tap2DelayMsProperty")
@@ -109,7 +109,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Sound level for the second tap.
    */
-  public var tap2LevelDb: Float
+  public final inline var tap2LevelDb: Float
     @JvmName("tap2LevelDbProperty")
     get() = getTap2LevelDb()
     @JvmName("tap2LevelDbProperty")
@@ -120,7 +120,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Pan position for the second tap. Value can range from -1 (fully left) to 1 (fully right).
    */
-  public var tap2Pan: Float
+  public final inline var tap2Pan: Float
     @JvmName("tap2PanProperty")
     get() = getTap2Pan()
     @JvmName("tap2PanProperty")
@@ -131,7 +131,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * If `true`, feedback is enabled.
    */
-  public var feedbackActive: Boolean
+  public final inline var feedbackActive: Boolean
     @JvmName("feedbackActiveProperty")
     get() = isFeedbackActive()
     @JvmName("feedbackActiveProperty")
@@ -142,7 +142,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Feedback delay time in milliseconds.
    */
-  public var feedbackDelayMs: Float
+  public final inline var feedbackDelayMs: Float
     @JvmName("feedbackDelayMsProperty")
     get() = getFeedbackDelayMs()
     @JvmName("feedbackDelayMsProperty")
@@ -153,7 +153,7 @@ public open class AudioEffectDelay : AudioEffect() {
   /**
    * Sound level for feedback.
    */
-  public var feedbackLevelDb: Float
+  public final inline var feedbackLevelDb: Float
     @JvmName("feedbackLevelDbProperty")
     get() = getFeedbackLevelDb()
     @JvmName("feedbackLevelDbProperty")
@@ -165,7 +165,7 @@ public open class AudioEffectDelay : AudioEffect() {
    * Low-pass filter for feedback, in Hz. Frequencies below this value are filtered out of the
    * source signal.
    */
-  public var feedbackLowpass: Float
+  public final inline var feedbackLowpass: Float
     @JvmName("feedbackLowpassProperty")
     get() = getFeedbackLowpass()
     @JvmName("feedbackLowpassProperty")
@@ -177,144 +177,144 @@ public open class AudioEffectDelay : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTDELAY, scriptIndex)
   }
 
-  public fun setDry(amount: Float): Unit {
+  public final fun setDry(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
   }
 
-  public fun getDry(): Float {
+  public final fun getDry(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTap1Active(amount: Boolean): Unit {
+  public final fun setTap1Active(amount: Boolean): Unit {
     TransferContext.writeArguments(BOOL to amount)
     TransferContext.callMethod(rawPtr, MethodBindings.setTap1ActivePtr, NIL)
   }
 
-  public fun isTap1Active(): Boolean {
+  public final fun isTap1Active(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTap1ActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTap1DelayMs(amount: Float): Unit {
+  public final fun setTap1DelayMs(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTap1DelayMsPtr, NIL)
   }
 
-  public fun getTap1DelayMs(): Float {
+  public final fun getTap1DelayMs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap1DelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTap1LevelDb(amount: Float): Unit {
+  public final fun setTap1LevelDb(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTap1LevelDbPtr, NIL)
   }
 
-  public fun getTap1LevelDb(): Float {
+  public final fun getTap1LevelDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap1LevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTap1Pan(amount: Float): Unit {
+  public final fun setTap1Pan(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTap1PanPtr, NIL)
   }
 
-  public fun getTap1Pan(): Float {
+  public final fun getTap1Pan(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap1PanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTap2Active(amount: Boolean): Unit {
+  public final fun setTap2Active(amount: Boolean): Unit {
     TransferContext.writeArguments(BOOL to amount)
     TransferContext.callMethod(rawPtr, MethodBindings.setTap2ActivePtr, NIL)
   }
 
-  public fun isTap2Active(): Boolean {
+  public final fun isTap2Active(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTap2ActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTap2DelayMs(amount: Float): Unit {
+  public final fun setTap2DelayMs(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTap2DelayMsPtr, NIL)
   }
 
-  public fun getTap2DelayMs(): Float {
+  public final fun getTap2DelayMs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap2DelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTap2LevelDb(amount: Float): Unit {
+  public final fun setTap2LevelDb(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTap2LevelDbPtr, NIL)
   }
 
-  public fun getTap2LevelDb(): Float {
+  public final fun getTap2LevelDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap2LevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTap2Pan(amount: Float): Unit {
+  public final fun setTap2Pan(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTap2PanPtr, NIL)
   }
 
-  public fun getTap2Pan(): Float {
+  public final fun getTap2Pan(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap2PanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFeedbackActive(amount: Boolean): Unit {
+  public final fun setFeedbackActive(amount: Boolean): Unit {
     TransferContext.writeArguments(BOOL to amount)
     TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackActivePtr, NIL)
   }
 
-  public fun isFeedbackActive(): Boolean {
+  public final fun isFeedbackActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFeedbackActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFeedbackDelayMs(amount: Float): Unit {
+  public final fun setFeedbackDelayMs(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackDelayMsPtr, NIL)
   }
 
-  public fun getFeedbackDelayMs(): Float {
+  public final fun getFeedbackDelayMs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackDelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFeedbackLevelDb(amount: Float): Unit {
+  public final fun setFeedbackLevelDb(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackLevelDbPtr, NIL)
   }
 
-  public fun getFeedbackLevelDb(): Float {
+  public final fun getFeedbackLevelDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFeedbackLowpass(amount: Float): Unit {
+  public final fun setFeedbackLowpass(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackLowpassPtr, NIL)
   }
 
-  public fun getFeedbackLowpass(): Float {
+  public final fun getFeedbackLowpass(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLowpassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

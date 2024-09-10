@@ -32,7 +32,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    * Automatically use [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other
    * platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
    */
-  public var commandOrControlAutoremap: Boolean
+  public final inline var commandOrControlAutoremap: Boolean
     @JvmName("commandOrControlAutoremapProperty")
     get() = isCommandOrControlAutoremap()
     @JvmName("commandOrControlAutoremapProperty")
@@ -43,7 +43,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Alt[/kbd] modifier.
    */
-  public var altPressed: Boolean
+  public final inline var altPressed: Boolean
     @JvmName("altPressedProperty")
     get() = isAltPressed()
     @JvmName("altPressedProperty")
@@ -54,7 +54,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Shift[/kbd] modifier.
    */
-  public var shiftPressed: Boolean
+  public final inline var shiftPressed: Boolean
     @JvmName("shiftPressedProperty")
     get() = isShiftPressed()
     @JvmName("shiftPressedProperty")
@@ -65,7 +65,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * State of the [kbd]Ctrl[/kbd] modifier.
    */
-  public var ctrlPressed: Boolean
+  public final inline var ctrlPressed: Boolean
     @JvmName("ctrlPressedProperty")
     get() = isCtrlPressed()
     @JvmName("ctrlPressedProperty")
@@ -77,7 +77,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    * State of the [kbd]Meta[/kbd] modifier. On Windows and Linux, this represents the Windows key
    * (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key.
    */
-  public var metaPressed: Boolean
+  public final inline var metaPressed: Boolean
     @JvmName("metaPressedProperty")
     get() = isMetaPressed()
     @JvmName("metaPressedProperty")
@@ -89,12 +89,12 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     callConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
   }
 
-  public fun setCommandOrControlAutoremap(enable: Boolean): Unit {
+  public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCommandOrControlAutoremapPtr, NIL)
   }
 
-  public fun isCommandOrControlAutoremap(): Boolean {
+  public final fun isCommandOrControlAutoremap(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCommandOrControlAutoremapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -104,51 +104,51 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    * On macOS, returns `true` if [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) is pressed.
    * On other platforms, returns `true` if [kbd]Ctrl[/kbd] is pressed.
    */
-  public fun isCommandOrControlPressed(): Boolean {
+  public final fun isCommandOrControlPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCommandOrControlPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAltPressed(pressed: Boolean): Unit {
+  public final fun setAltPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setAltPressedPtr, NIL)
   }
 
-  public fun isAltPressed(): Boolean {
+  public final fun isAltPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAltPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShiftPressed(pressed: Boolean): Unit {
+  public final fun setShiftPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setShiftPressedPtr, NIL)
   }
 
-  public fun isShiftPressed(): Boolean {
+  public final fun isShiftPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShiftPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCtrlPressed(pressed: Boolean): Unit {
+  public final fun setCtrlPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setCtrlPressedPtr, NIL)
   }
 
-  public fun isCtrlPressed(): Boolean {
+  public final fun isCtrlPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCtrlPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMetaPressed(pressed: Boolean): Unit {
+  public final fun setMetaPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setMetaPressedPtr, NIL)
   }
 
-  public fun isMetaPressed(): Boolean {
+  public final fun isMetaPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMetaPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -157,7 +157,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   /**
    * Returns the keycode combination of modifier keys.
    */
-  public fun getModifiersMask(): KeyModifierMask {
+  public final fun getModifiersMask(): KeyModifierMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModifiersMaskPtr, LONG)
     return KeyModifierMaskValue(TransferContext.readReturnValue(LONG) as Long)

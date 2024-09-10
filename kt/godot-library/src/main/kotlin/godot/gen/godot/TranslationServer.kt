@@ -42,7 +42,7 @@ public object TranslationServer : Object() {
    * (e.g. `en-US` would be matched to `en_US`).
    * If translations have been loaded beforehand for the new locale, they will be applied.
    */
-  public fun setLocale(locale: String): Unit {
+  public final fun setLocale(locale: String): Unit {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
   }
@@ -51,7 +51,7 @@ public object TranslationServer : Object() {
    * Returns the current locale of the project.
    * See also [OS.getLocale] and [OS.getLocaleLanguage] to query the locale of the user system.
    */
-  public fun getLocale(): String {
+  public final fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -61,7 +61,7 @@ public object TranslationServer : Object() {
    * Returns the current locale of the editor.
    * **Note:** When called from an exported project returns the same value as [getLocale].
    */
-  public fun getToolLocale(): String {
+  public final fun getToolLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getToolLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -71,7 +71,7 @@ public object TranslationServer : Object() {
    * Compares two locales and returns a similarity score between `0` (no match) and `10` (full
    * match).
    */
-  public fun compareLocales(localeA: String, localeB: String): Int {
+  public final fun compareLocales(localeA: String, localeB: String): Int {
     TransferContext.writeArguments(STRING to localeA, STRING to localeB)
     TransferContext.callMethod(rawPtr, MethodBindings.compareLocalesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -81,7 +81,7 @@ public object TranslationServer : Object() {
    * Returns a [locale] string standardized to match known locales (e.g. `en-US` would be matched to
    * `en_US`).
    */
-  public fun standardizeLocale(locale: String): String {
+  public final fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.standardizeLocalePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -90,7 +90,7 @@ public object TranslationServer : Object() {
   /**
    * Returns array of known language codes.
    */
-  public fun getAllLanguages(): PackedStringArray {
+  public final fun getAllLanguages(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllLanguagesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -99,7 +99,7 @@ public object TranslationServer : Object() {
   /**
    * Returns a readable language name for the [language] code.
    */
-  public fun getLanguageName(language: String): String {
+  public final fun getLanguageName(language: String): String {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguageNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -108,7 +108,7 @@ public object TranslationServer : Object() {
   /**
    * Returns an array of known script codes.
    */
-  public fun getAllScripts(): PackedStringArray {
+  public final fun getAllScripts(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllScriptsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -117,7 +117,7 @@ public object TranslationServer : Object() {
   /**
    * Returns a readable script name for the [script] code.
    */
-  public fun getScriptName(script: String): String {
+  public final fun getScriptName(script: String): String {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -126,7 +126,7 @@ public object TranslationServer : Object() {
   /**
    * Returns an array of known country codes.
    */
-  public fun getAllCountries(): PackedStringArray {
+  public final fun getAllCountries(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllCountriesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -135,7 +135,7 @@ public object TranslationServer : Object() {
   /**
    * Returns a readable country name for the [country] code.
    */
-  public fun getCountryName(country: String): String {
+  public final fun getCountryName(country: String): String {
     TransferContext.writeArguments(STRING to country)
     TransferContext.callMethod(rawPtr, MethodBindings.getCountryNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -145,7 +145,7 @@ public object TranslationServer : Object() {
    * Returns a locale's language and its variant (e.g. `"en_US"` would return `"English (United
    * States)"`).
    */
-  public fun getLocaleName(locale: String): String {
+  public final fun getLocaleName(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.getLocaleNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -155,7 +155,8 @@ public object TranslationServer : Object() {
    * Returns the current locale's translation for the given message (key) and context.
    */
   @JvmOverloads
-  public fun translate(message: StringName, context: StringName = StringName("")): StringName {
+  public final fun translate(message: StringName, context: StringName = StringName("")):
+      StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, MethodBindings.translatePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -168,7 +169,7 @@ public object TranslationServer : Object() {
    * translation system to fetch the correct plural form for the selected language.
    */
   @JvmOverloads
-  public fun translatePlural(
+  public final fun translatePlural(
     message: StringName,
     pluralMessage: StringName,
     n: Int,
@@ -182,7 +183,7 @@ public object TranslationServer : Object() {
   /**
    * Adds a [Translation] resource.
    */
-  public fun addTranslation(translation: Translation?): Unit {
+  public final fun addTranslation(translation: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr, MethodBindings.addTranslationPtr, NIL)
   }
@@ -190,7 +191,7 @@ public object TranslationServer : Object() {
   /**
    * Removes the given translation from the server.
    */
-  public fun removeTranslation(translation: Translation?): Unit {
+  public final fun removeTranslation(translation: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr, MethodBindings.removeTranslationPtr, NIL)
   }
@@ -199,7 +200,7 @@ public object TranslationServer : Object() {
    * Returns the [Translation] instance based on the [locale] passed in.
    * It will return `null` if there is no [Translation] instance that matches the [locale].
    */
-  public fun getTranslationObject(locale: String): Translation? {
+  public final fun getTranslationObject(locale: String): Translation? {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.getTranslationObjectPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Translation?)
@@ -208,7 +209,7 @@ public object TranslationServer : Object() {
   /**
    * Clears the server from all translations.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -216,19 +217,19 @@ public object TranslationServer : Object() {
   /**
    * Returns an array of all loaded locales of the project.
    */
-  public fun getLoadedLocales(): PackedStringArray {
+  public final fun getLoadedLocales(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
-  public fun isPseudolocalizationEnabled(): Boolean {
+  public final fun isPseudolocalizationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPseudolocalizationEnabled(enabled: Boolean): Unit {
+  public final fun setPseudolocalizationEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setPseudolocalizationEnabledPtr, NIL)
   }
@@ -236,7 +237,7 @@ public object TranslationServer : Object() {
   /**
    * Reparses the pseudolocalization options and reloads the translation.
    */
-  public fun reloadPseudolocalization(): Unit {
+  public final fun reloadPseudolocalization(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.reloadPseudolocalizationPtr, NIL)
   }
@@ -244,7 +245,7 @@ public object TranslationServer : Object() {
   /**
    * Returns the pseudolocalized string based on the [message] passed in.
    */
-  public fun pseudolocalize(message: StringName): StringName {
+  public final fun pseudolocalize(message: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to message)
     TransferContext.callMethod(rawPtr, MethodBindings.pseudolocalizePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)

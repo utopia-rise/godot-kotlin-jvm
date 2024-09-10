@@ -42,7 +42,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrInstance.html]XrInstance[/url]
    * created during the initialization of the OpenXR API.
    */
-  public fun getInstance(): Long {
+  public final fun getInstance(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstancePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -53,7 +53,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSystemId.html]XrSystemId[/url] cast
    * to an integer.
    */
-  public fun getSystemId(): Long {
+  public final fun getSystemId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -64,7 +64,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSession.html]XrSession[/url] cast to
    * an integer.
    */
-  public fun getSession(): Long {
+  public final fun getSession(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSessionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -77,7 +77,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] converted
    * to a string, with the specified additional information.
    */
-  public fun xrResult(
+  public final fun xrResult(
     result: Long,
     format: String,
     args: VariantArray<Any?>,
@@ -93,7 +93,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * **Note:** `openxr/util.h` contains utility macros for acquiring OpenXR functions, e.g.
    * `GDEXTENSION_INIT_XR_FUNC_V(xrCreateAction)`.
    */
-  public fun getInstanceProcAddr(name: String): Long {
+  public final fun getInstanceProcAddr(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceProcAddrPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -103,7 +103,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Returns an error string for the given
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url].
    */
-  public fun getErrorString(result: Long): String {
+  public final fun getErrorString(result: Long): String {
     TransferContext.writeArguments(LONG to result)
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -112,7 +112,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Returns the name of the specified swapchain format.
    */
-  public fun getSwapchainFormatName(swapchainFormat: Long): String {
+  public final fun getSwapchainFormatName(swapchainFormat: Long): String {
     TransferContext.writeArguments(LONG to swapchainFormat)
     TransferContext.callMethod(rawPtr, MethodBindings.getSwapchainFormatNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -121,7 +121,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Returns `true` if OpenXR is initialized.
    */
-  public fun isInitialized(): Boolean {
+  public final fun isInitialized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInitializedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -132,7 +132,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * ([url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/xrBeginSession.html]xrBeginSession[/url]
    * was successfully called and the swapchains were created).
    */
-  public fun isRunning(): Boolean {
+  public final fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -143,7 +143,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSpace.html]XrSpace[/url] cast to an
    * integer.
    */
-  public fun getPlaySpace(): Long {
+  public final fun getPlaySpace(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaySpacePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -152,7 +152,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Returns the predicted display timing for the current frame.
    */
-  public fun getPredictedDisplayTime(): Long {
+  public final fun getPredictedDisplayTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPredictedDisplayTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -161,7 +161,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Returns the predicted display timing for the next frame.
    */
-  public fun getNextFrameTime(): Long {
+  public final fun getNextFrameTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNextFrameTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -170,7 +170,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Returns `true` if OpenXR is initialized for rendering with an XR viewport.
    */
-  public fun canRender(): Boolean {
+  public final fun canRender(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canRenderPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -179,7 +179,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Returns the corresponding `XRHandTrackerEXT` handle for the given hand index value.
    */
-  public fun getHandTracker(handIndex: Int): Long {
+  public final fun getHandTracker(handIndex: Int): Long {
     TransferContext.writeArguments(LONG to handIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -188,7 +188,8 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Registers the given extension as a composition layer provider.
    */
-  public fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?): Unit {
+  public final fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
+      Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(rawPtr, MethodBindings.registerCompositionLayerProviderPtr, NIL)
   }
@@ -196,7 +197,8 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Unregisters the given extension as a composition layer provider.
    */
-  public fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?): Unit {
+  public final fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
+      Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterCompositionLayerProviderPtr, NIL)
   }
@@ -205,7 +207,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * If set to `true`, an OpenXR extension is loaded which is capable of emulating the
    * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] blend mode.
    */
-  public fun setEmulateEnvironmentBlendModeAlphaBlend(enabled: Boolean): Unit {
+  public final fun setEmulateEnvironmentBlendModeAlphaBlend(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmulateEnvironmentBlendModeAlphaBlendPtr,
         NIL)
@@ -215,7 +217,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Returns [OpenXRAPIExtension.OpenXRAlphaBlendModeSupport] denoting if
    * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is really supported, emulated or not supported at all.
    */
-  public fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
+  public final fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnvironmentBlendModeAlphaSupportedPtr, LONG)
     return OpenXRAPIExtension.OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
@@ -253,7 +255,7 @@ public open class OpenXRAPIExtension : RefCounted() {
     /**
      * Returns `true` if OpenXR is enabled.
      */
-    public fun openxrIsEnabled(checkRunInEditor: Boolean): Boolean {
+    public final fun openxrIsEnabled(checkRunInEditor: Boolean): Boolean {
       TransferContext.writeArguments(BOOL to checkRunInEditor)
       TransferContext.callMethod(0, MethodBindings.openxrIsEnabledPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -36,7 +36,7 @@ public open class GLTFAccessor : Resource() {
    * The index of the buffer view this accessor is referencing. If `-1`, this accessor is not
    * referencing any buffer view.
    */
-  public var bufferView: Int
+  public final inline var bufferView: Int
     @JvmName("bufferViewProperty")
     get() = getBufferView()
     @JvmName("bufferViewProperty")
@@ -47,7 +47,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The offset relative to the start of the buffer view in bytes.
    */
-  public var byteOffset: Int
+  public final inline var byteOffset: Int
     @JvmName("byteOffsetProperty")
     get() = getByteOffset()
     @JvmName("byteOffsetProperty")
@@ -61,7 +61,7 @@ public open class GLTFAccessor : Resource() {
    * for "FLOAT". A value of 5125 or "UNSIGNED_INT" must not be used for any accessor that is not
    * referenced by mesh.primitive.indices.
    */
-  public var componentType: Int
+  public final inline var componentType: Int
     @JvmName("componentTypeProperty")
     get() = getComponentType()
     @JvmName("componentTypeProperty")
@@ -72,7 +72,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * Specifies whether integer data values are normalized before usage.
    */
-  public var normalized: Boolean
+  public final inline var normalized: Boolean
     @JvmName("normalizedProperty")
     get() = getNormalized()
     @JvmName("normalizedProperty")
@@ -83,7 +83,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The number of elements referenced by this accessor.
    */
-  public var count: Int
+  public final inline var count: Int
     @JvmName("countProperty")
     get() = getCount()
     @JvmName("countProperty")
@@ -95,7 +95,7 @@ public open class GLTFAccessor : Resource() {
    * The GLTF accessor type as an enum. Possible values are 0 for "SCALAR", 1 for "VEC2", 2 for
    * "VEC3", 3 for "VEC4", 4 for "MAT2", 5 for "MAT3", and 6 for "MAT4".
    */
-  public var accessorType: GLTFAccessorType
+  public final inline var accessorType: GLTFAccessorType
     @JvmName("accessorTypeProperty")
     get() = getAccessorType()
     @JvmName("accessorTypeProperty")
@@ -106,7 +106,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The GLTF accessor type as an enum. Use [accessorType] instead.
    */
-  public var type: Int
+  public final inline var type: Int
     @JvmName("typeProperty")
     get() = getType()
     @JvmName("typeProperty")
@@ -117,7 +117,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * Minimum value of each component in this accessor.
    */
-  public var min: PackedFloat64Array
+  public final inline var min: PackedFloat64Array
     @JvmName("minProperty")
     get() = getMin()
     @JvmName("minProperty")
@@ -128,7 +128,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * Maximum value of each component in this accessor.
    */
-  public var max: PackedFloat64Array
+  public final inline var max: PackedFloat64Array
     @JvmName("maxProperty")
     get() = getMax()
     @JvmName("maxProperty")
@@ -139,7 +139,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * Number of deviating accessor values stored in the sparse array.
    */
-  public var sparseCount: Int
+  public final inline var sparseCount: Int
     @JvmName("sparseCountProperty")
     get() = getSparseCount()
     @JvmName("sparseCountProperty")
@@ -152,7 +152,7 @@ public open class GLTFAccessor : Resource() {
    * target or byteStride properties defined. The buffer view and the optional byteOffset MUST be
    * aligned to the componentType byte length.
    */
-  public var sparseIndicesBufferView: Int
+  public final inline var sparseIndicesBufferView: Int
     @JvmName("sparseIndicesBufferViewProperty")
     get() = getSparseIndicesBufferView()
     @JvmName("sparseIndicesBufferViewProperty")
@@ -163,7 +163,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The offset relative to the start of the buffer view in bytes.
    */
-  public var sparseIndicesByteOffset: Int
+  public final inline var sparseIndicesByteOffset: Int
     @JvmName("sparseIndicesByteOffsetProperty")
     get() = getSparseIndicesByteOffset()
     @JvmName("sparseIndicesByteOffsetProperty")
@@ -175,7 +175,7 @@ public open class GLTFAccessor : Resource() {
    * The indices component data type as an enum. Possible values are 5121 for "UNSIGNED_BYTE", 5123
    * for "UNSIGNED_SHORT", and 5125 for "UNSIGNED_INT".
    */
-  public var sparseIndicesComponentType: Int
+  public final inline var sparseIndicesComponentType: Int
     @JvmName("sparseIndicesComponentTypeProperty")
     get() = getSparseIndicesComponentType()
     @JvmName("sparseIndicesComponentTypeProperty")
@@ -187,7 +187,7 @@ public open class GLTFAccessor : Resource() {
    * The index of the bufferView with sparse values. The referenced buffer view MUST NOT have its
    * target or byteStride properties defined.
    */
-  public var sparseValuesBufferView: Int
+  public final inline var sparseValuesBufferView: Int
     @JvmName("sparseValuesBufferViewProperty")
     get() = getSparseValuesBufferView()
     @JvmName("sparseValuesBufferViewProperty")
@@ -198,7 +198,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The offset relative to the start of the bufferView in bytes.
    */
-  public var sparseValuesByteOffset: Int
+  public final inline var sparseValuesByteOffset: Int
     @JvmName("sparseValuesByteOffsetProperty")
     get() = getSparseValuesByteOffset()
     @JvmName("sparseValuesByteOffsetProperty")
@@ -210,167 +210,167 @@ public open class GLTFAccessor : Resource() {
     callConstructor(ENGINECLASS_GLTFACCESSOR, scriptIndex)
   }
 
-  public fun getBufferView(): Int {
+  public final fun getBufferView(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferViewPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setBufferView(bufferView: Int): Unit {
+  public final fun setBufferView(bufferView: Int): Unit {
     TransferContext.writeArguments(LONG to bufferView.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBufferViewPtr, NIL)
   }
 
-  public fun getByteOffset(): Int {
+  public final fun getByteOffset(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setByteOffset(byteOffset: Int): Unit {
+  public final fun setByteOffset(byteOffset: Int): Unit {
     TransferContext.writeArguments(LONG to byteOffset.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
   }
 
-  public fun getComponentType(): Int {
+  public final fun getComponentType(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getComponentTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setComponentType(componentType: Int): Unit {
+  public final fun setComponentType(componentType: Int): Unit {
     TransferContext.writeArguments(LONG to componentType.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setComponentTypePtr, NIL)
   }
 
-  public fun getNormalized(): Boolean {
+  public final fun getNormalized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNormalizedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setNormalized(normalized: Boolean): Unit {
+  public final fun setNormalized(normalized: Boolean): Unit {
     TransferContext.writeArguments(BOOL to normalized)
     TransferContext.callMethod(rawPtr, MethodBindings.setNormalizedPtr, NIL)
   }
 
-  public fun getCount(): Int {
+  public final fun getCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setCount(count: Int): Unit {
+  public final fun setCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCountPtr, NIL)
   }
 
-  public fun getAccessorType(): GLTFAccessorType {
+  public final fun getAccessorType(): GLTFAccessorType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccessorTypePtr, LONG)
     return GLTFAccessor.GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAccessorType(accessorType: GLTFAccessorType): Unit {
+  public final fun setAccessorType(accessorType: GLTFAccessorType): Unit {
     TransferContext.writeArguments(LONG to accessorType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAccessorTypePtr, NIL)
   }
 
-  public fun getType(): Int {
+  public final fun getType(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setType(type: Int): Unit {
+  public final fun setType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setTypePtr, NIL)
   }
 
-  public fun getMin(): PackedFloat64Array {
+  public final fun getMin(): PackedFloat64Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, PACKED_FLOAT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY, false) as PackedFloat64Array)
   }
 
-  public fun setMin(min: PackedFloat64Array): Unit {
+  public final fun setMin(min: PackedFloat64Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to min)
     TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
-  public fun getMax(): PackedFloat64Array {
+  public final fun getMax(): PackedFloat64Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, PACKED_FLOAT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY, false) as PackedFloat64Array)
   }
 
-  public fun setMax(max: PackedFloat64Array): Unit {
+  public final fun setMax(max: PackedFloat64Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to max)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
-  public fun getSparseCount(): Int {
+  public final fun getSparseCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSparseCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSparseCount(sparseCount: Int): Unit {
+  public final fun setSparseCount(sparseCount: Int): Unit {
     TransferContext.writeArguments(LONG to sparseCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSparseCountPtr, NIL)
   }
 
-  public fun getSparseIndicesBufferView(): Int {
+  public final fun getSparseIndicesBufferView(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSparseIndicesBufferViewPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSparseIndicesBufferView(sparseIndicesBufferView: Int): Unit {
+  public final fun setSparseIndicesBufferView(sparseIndicesBufferView: Int): Unit {
     TransferContext.writeArguments(LONG to sparseIndicesBufferView.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSparseIndicesBufferViewPtr, NIL)
   }
 
-  public fun getSparseIndicesByteOffset(): Int {
+  public final fun getSparseIndicesByteOffset(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSparseIndicesByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Int): Unit {
+  public final fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Int): Unit {
     TransferContext.writeArguments(LONG to sparseIndicesByteOffset.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSparseIndicesByteOffsetPtr, NIL)
   }
 
-  public fun getSparseIndicesComponentType(): Int {
+  public final fun getSparseIndicesComponentType(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSparseIndicesComponentTypePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSparseIndicesComponentType(sparseIndicesComponentType: Int): Unit {
+  public final fun setSparseIndicesComponentType(sparseIndicesComponentType: Int): Unit {
     TransferContext.writeArguments(LONG to sparseIndicesComponentType.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSparseIndicesComponentTypePtr, NIL)
   }
 
-  public fun getSparseValuesBufferView(): Int {
+  public final fun getSparseValuesBufferView(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSparseValuesBufferViewPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSparseValuesBufferView(sparseValuesBufferView: Int): Unit {
+  public final fun setSparseValuesBufferView(sparseValuesBufferView: Int): Unit {
     TransferContext.writeArguments(LONG to sparseValuesBufferView.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSparseValuesBufferViewPtr, NIL)
   }
 
-  public fun getSparseValuesByteOffset(): Int {
+  public final fun getSparseValuesByteOffset(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSparseValuesByteOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSparseValuesByteOffset(sparseValuesByteOffset: Int): Unit {
+  public final fun setSparseValuesByteOffset(sparseValuesByteOffset: Int): Unit {
     TransferContext.writeArguments(LONG to sparseValuesByteOffset.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSparseValuesByteOffsetPtr, NIL)
   }

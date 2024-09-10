@@ -37,7 +37,7 @@ public open class InputEventMouseButton : InputEventMouse() {
    * the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported
    * sensitivity varies depending on the platform. May be `0` if not supported.
    */
-  public var factor: Float
+  public final inline var factor: Float
     @JvmName("factorProperty")
     get() = getFactor()
     @JvmName("factorProperty")
@@ -48,7 +48,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   /**
    * The mouse button identifier, one of the [MouseButton] button or button wheel constants.
    */
-  public var buttonIndex: MouseButton
+  public final inline var buttonIndex: MouseButton
     @JvmName("buttonIndexProperty")
     get() = getButtonIndex()
     @JvmName("buttonIndexProperty")
@@ -59,7 +59,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   /**
    * If `true`, the mouse button event has been canceled.
    */
-  public var canceled: Boolean
+  public final inline var canceled: Boolean
     @JvmName("canceledProperty")
     get() = isCanceled()
     @JvmName("canceledProperty")
@@ -71,7 +71,7 @@ public open class InputEventMouseButton : InputEventMouse() {
    * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is
    * released.
    */
-  public var pressed: Boolean
+  public final inline var pressed: Boolean
     @JvmName("pressedProperty")
     get() = isPressed()
     @JvmName("pressedProperty")
@@ -82,7 +82,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   /**
    * If `true`, the mouse button's state is a double-click.
    */
-  public var doubleClick: Boolean
+  public final inline var doubleClick: Boolean
     @JvmName("doubleClickProperty")
     get() = isDoubleClick()
     @JvmName("doubleClickProperty")
@@ -94,44 +94,44 @@ public open class InputEventMouseButton : InputEventMouse() {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON, scriptIndex)
   }
 
-  public fun setFactor(factor: Float): Unit {
+  public final fun setFactor(factor: Float): Unit {
     TransferContext.writeArguments(DOUBLE to factor.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
   }
 
-  public fun getFactor(): Float {
+  public final fun getFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setButtonIndex(buttonIndex: MouseButton): Unit {
+  public final fun setButtonIndex(buttonIndex: MouseButton): Unit {
     TransferContext.writeArguments(LONG to buttonIndex.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
   }
 
-  public fun getButtonIndex(): MouseButton {
+  public final fun getButtonIndex(): MouseButton {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
     return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
-  public fun setCanceled(canceled: Boolean): Unit {
+  public final fun setCanceled(canceled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to canceled)
     TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
   }
 
-  public fun setDoubleClick(doubleClick: Boolean): Unit {
+  public final fun setDoubleClick(doubleClick: Boolean): Unit {
     TransferContext.writeArguments(BOOL to doubleClick)
     TransferContext.callMethod(rawPtr, MethodBindings.setDoubleClickPtr, NIL)
   }
 
-  public fun isDoubleClick(): Boolean {
+  public final fun isDoubleClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDoubleClickPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -40,7 +40,7 @@ public open class XRPose : RefCounted() {
    * If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking
    * data and our state is whatever that last valid state was.
    */
-  public var hasTrackingData: Boolean
+  public final inline var hasTrackingData: Boolean
     @JvmName("hasTrackingDataProperty")
     get() = getHasTrackingData()
     @JvmName("hasTrackingDataProperty")
@@ -59,7 +59,7 @@ public open class XRPose : RefCounted() {
    * - `skeleton` defines the root location a hand mesh should be placed when using hand tracking
    * and the animated skeleton supplied by the XR runtime.
    */
-  public var name: StringName
+  public final inline var name: StringName
     @JvmName("nameProperty")
     get() = getName()
     @JvmName("nameProperty")
@@ -71,7 +71,7 @@ public open class XRPose : RefCounted() {
    * The transform containing the original and transform as reported by the XR runtime.
    */
   @CoreTypeLocalCopy
-  public var transform: Transform3D
+  public final inline var transform: Transform3D
     @JvmName("transformProperty")
     get() = getTransform()
     @JvmName("transformProperty")
@@ -83,7 +83,7 @@ public open class XRPose : RefCounted() {
    * The linear velocity of this pose.
    */
   @CoreTypeLocalCopy
-  public var linearVelocity: Vector3
+  public final inline var linearVelocity: Vector3
     @JvmName("linearVelocityProperty")
     get() = getLinearVelocity()
     @JvmName("linearVelocityProperty")
@@ -95,7 +95,7 @@ public open class XRPose : RefCounted() {
    * The angular velocity for this pose.
    */
   @CoreTypeLocalCopy
-  public var angularVelocity: Vector3
+  public final inline var angularVelocity: Vector3
     @JvmName("angularVelocityProperty")
     get() = getAngularVelocity()
     @JvmName("angularVelocityProperty")
@@ -107,7 +107,7 @@ public open class XRPose : RefCounted() {
    * The tracking confidence for this pose, provides insight on how accurate the spatial positioning
    * of this record is.
    */
-  public var trackingConfidence: TrackingConfidence
+  public final inline var trackingConfidence: TrackingConfidence
     @JvmName("trackingConfidenceProperty")
     get() = getTrackingConfidence()
     @JvmName("trackingConfidenceProperty")
@@ -137,7 +137,7 @@ public open class XRPose : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
+  public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply{
       block(this)
       transform = this
   }
@@ -161,7 +161,7 @@ public open class XRPose : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
+  public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -185,40 +185,41 @@ public open class XRPose : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
+  public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
+      angularVelocity.apply{
       block(this)
       angularVelocity = this
   }
 
 
-  public fun setHasTrackingData(hasTrackingData: Boolean): Unit {
+  public final fun setHasTrackingData(hasTrackingData: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hasTrackingData)
     TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
 
-  public fun getHasTrackingData(): Boolean {
+  public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setName(name: StringName): Unit {
+  public final fun setName(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
   }
 
-  public fun getName(): StringName {
+  public final fun getName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setTransform(transform: Transform3D): Unit {
+  public final fun setTransform(transform: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
   }
 
-  public fun getTransform(): Transform3D {
+  public final fun getTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -228,40 +229,40 @@ public open class XRPose : RefCounted() {
    * Returns the [transform] with world scale and our reference frame applied. This is the transform
    * used to position [XRNode3D] objects.
    */
-  public fun getAdjustedTransform(): Transform3D {
+  public final fun getAdjustedTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
-  public fun setLinearVelocity(velocity: Vector3): Unit {
+  public final fun setLinearVelocity(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
   }
 
-  public fun getLinearVelocity(): Vector3 {
+  public final fun getLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setAngularVelocity(velocity: Vector3): Unit {
+  public final fun setAngularVelocity(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
   }
 
-  public fun getAngularVelocity(): Vector3 {
+  public final fun getAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setTrackingConfidence(trackingConfidence: TrackingConfidence): Unit {
+  public final fun setTrackingConfidence(trackingConfidence: TrackingConfidence): Unit {
     TransferContext.writeArguments(LONG to trackingConfidence.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTrackingConfidencePtr, NIL)
   }
 
-  public fun getTrackingConfidence(): TrackingConfidence {
+  public final fun getTrackingConfidence(): TrackingConfidence {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackingConfidencePtr, LONG)
     return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)

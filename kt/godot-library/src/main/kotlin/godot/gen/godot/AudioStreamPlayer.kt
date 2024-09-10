@@ -49,7 +49,7 @@ public open class AudioStreamPlayer : Node() {
    * The [AudioStream] resource to be played. Setting this property stops all currently playing
    * sounds. If left empty, the [AudioStreamPlayer] does not work.
    */
-  public var stream: AudioStream?
+  public final inline var stream: AudioStream?
     @JvmName("streamProperty")
     get() = getStream()
     @JvmName("streamProperty")
@@ -62,7 +62,7 @@ public open class AudioStreamPlayer : Node() {
    * **Note:** To convert between decibel and linear energy (like most volume sliders do), use
    * [@GlobalScope.dbToLinear] and [@GlobalScope.linearToDb].
    */
-  public var volumeDb: Float
+  public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
     get() = getVolumeDb()
     @JvmName("volumeDbProperty")
@@ -74,7 +74,7 @@ public open class AudioStreamPlayer : Node() {
    * The audio's pitch and tempo, as a multiplier of the [stream]'s sample rate. A value of `2.0`
    * doubles the audio's pitch, while a value of `0.5` halves the pitch.
    */
-  public var pitchScale: Float
+  public final inline var pitchScale: Float
     @JvmName("pitchScaleProperty")
     get() = getPitchScale()
     @JvmName("pitchScaleProperty")
@@ -86,14 +86,14 @@ public open class AudioStreamPlayer : Node() {
    * If `true`, this node is playing sounds. Setting this property has the same effect as [play] and
    * [stop].
    */
-  public val playing: Boolean
+  public final inline val playing: Boolean
     @JvmName("playingProperty")
     get() = isPlaying()
 
   /**
    * If `true`, this node calls [play] when entering the tree.
    */
-  public var autoplay: Boolean
+  public final inline var autoplay: Boolean
     @JvmName("autoplayProperty")
     get() = isAutoplayEnabled()
     @JvmName("autoplayProperty")
@@ -106,7 +106,7 @@ public open class AudioStreamPlayer : Node() {
    * **Note:** This property is automatically changed when exiting or entering the tree, or this
    * node is paused (see [Node.processMode]).
    */
-  public var streamPaused: Boolean
+  public final inline var streamPaused: Boolean
     @JvmName("streamPausedProperty")
     get() = getStreamPaused()
     @JvmName("streamPausedProperty")
@@ -118,7 +118,7 @@ public open class AudioStreamPlayer : Node() {
    * The mix target channels, as one of the [MixTarget] constants. Has no effect when two speakers
    * or less are detected (see [AudioServer.SpeakerMode]).
    */
-  public var mixTarget: MixTarget
+  public final inline var mixTarget: MixTarget
     @JvmName("mixTargetProperty")
     get() = getMixTarget()
     @JvmName("mixTargetProperty")
@@ -130,7 +130,7 @@ public open class AudioStreamPlayer : Node() {
    * The maximum number of sounds this node can play at the same time. Calling [play] after this
    * value is reached will cut off the oldest sounds.
    */
-  public var maxPolyphony: Int
+  public final inline var maxPolyphony: Int
     @JvmName("maxPolyphonyProperty")
     get() = getMaxPolyphony()
     @JvmName("maxPolyphonyProperty")
@@ -143,7 +143,7 @@ public open class AudioStreamPlayer : Node() {
    * **Note:** At runtime, if no bus with the given name exists, all sounds will fall back on
    * `"Master"`. See also [AudioServer.getBusName].
    */
-  public var bus: StringName
+  public final inline var bus: StringName
     @JvmName("busProperty")
     get() = getBus()
     @JvmName("busProperty")
@@ -155,7 +155,7 @@ public open class AudioStreamPlayer : Node() {
    * The playback type of the stream player. If set other than to the default value, it will force
    * that playback type.
    */
-  public var playbackType: AudioServer.PlaybackType
+  public final inline var playbackType: AudioServer.PlaybackType
     @JvmName("playbackTypeProperty")
     get() = getPlaybackType()
     @JvmName("playbackTypeProperty")
@@ -167,34 +167,34 @@ public open class AudioStreamPlayer : Node() {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER, scriptIndex)
   }
 
-  public fun setStream(stream: AudioStream?): Unit {
+  public final fun setStream(stream: AudioStream?): Unit {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
   }
 
-  public fun getStream(): AudioStream? {
+  public final fun getStream(): AudioStream? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
   }
 
-  public fun setVolumeDb(volumeDb: Float): Unit {
+  public final fun setVolumeDb(volumeDb: Float): Unit {
     TransferContext.writeArguments(DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
   }
 
-  public fun getVolumeDb(): Float {
+  public final fun getVolumeDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPitchScale(pitchScale: Float): Unit {
+  public final fun setPitchScale(pitchScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pitchScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
   }
 
-  public fun getPitchScale(): Float {
+  public final fun getPitchScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -204,7 +204,7 @@ public open class AudioStreamPlayer : Node() {
    * Plays a sound from the beginning, or the given [fromPosition] in seconds.
    */
   @JvmOverloads
-  public fun play(fromPosition: Float = 0.0f): Unit {
+  public final fun play(fromPosition: Float = 0.0f): Unit {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
@@ -213,7 +213,7 @@ public open class AudioStreamPlayer : Node() {
    * Restarts all sounds to be played from the given [toPosition], in seconds. Does nothing if no
    * sounds are playing.
    */
-  public fun seek(toPosition: Float): Unit {
+  public final fun seek(toPosition: Float): Unit {
     TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
@@ -221,12 +221,12 @@ public open class AudioStreamPlayer : Node() {
   /**
    * Stops all sounds from this node.
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
-  public fun isPlaying(): Boolean {
+  public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -239,62 +239,62 @@ public open class AudioStreamPlayer : Node() {
    * processed frame. To get more accurate results, add [AudioServer.getTimeSinceLastMix] to the
    * returned position.
    */
-  public fun getPlaybackPosition(): Float {
+  public final fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBus(bus: StringName): Unit {
+  public final fun setBus(bus: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to bus)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
   }
 
-  public fun getBus(): StringName {
+  public final fun getBus(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setAutoplay(enable: Boolean): Unit {
+  public final fun setAutoplay(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
   }
 
-  public fun isAutoplayEnabled(): Boolean {
+  public final fun isAutoplayEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoplayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMixTarget(mixTarget: MixTarget): Unit {
+  public final fun setMixTarget(mixTarget: MixTarget): Unit {
     TransferContext.writeArguments(LONG to mixTarget.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMixTargetPtr, NIL)
   }
 
-  public fun getMixTarget(): MixTarget {
+  public final fun getMixTarget(): MixTarget {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMixTargetPtr, LONG)
     return AudioStreamPlayer.MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setStreamPaused(pause: Boolean): Unit {
+  public final fun setStreamPaused(pause: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pause)
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamPausedPtr, NIL)
   }
 
-  public fun getStreamPaused(): Boolean {
+  public final fun getStreamPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMaxPolyphony(maxPolyphony: Int): Unit {
+  public final fun setMaxPolyphony(maxPolyphony: Int): Unit {
     TransferContext.writeArguments(LONG to maxPolyphony.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxPolyphonyPtr, NIL)
   }
 
-  public fun getMaxPolyphony(): Int {
+  public final fun getMaxPolyphony(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPolyphonyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -304,7 +304,7 @@ public open class AudioStreamPlayer : Node() {
    * Returns `true` if any sound is active, even if [streamPaused] is set to `true`. See also
    * [playing] and [getStreamPlayback].
    */
-  public fun hasStreamPlayback(): Boolean {
+  public final fun hasStreamPlayback(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasStreamPlaybackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -314,18 +314,18 @@ public open class AudioStreamPlayer : Node() {
    * Returns the latest [AudioStreamPlayback] of this node, usually the most recently created by
    * [play]. If no sounds are playing, this method fails and returns an empty playback.
    */
-  public fun getStreamPlayback(): AudioStreamPlayback? {
+  public final fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
   }
 
-  public fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
+  public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
     TransferContext.writeArguments(LONG to playbackType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
   }
 
-  public fun getPlaybackType(): AudioServer.PlaybackType {
+  public final fun getPlaybackType(): AudioServer.PlaybackType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackTypePtr, LONG)
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)

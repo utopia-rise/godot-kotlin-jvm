@@ -40,7 +40,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
    * [mode] determines how the frequency range will be processed. See [MagnitudeMode].
    */
   @JvmOverloads
-  public fun getMagnitudeForFrequencyRange(
+  public final fun getMagnitudeForFrequencyRange(
     fromHz: Float,
     toHz: Float,
     mode: MagnitudeMode = AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAGNITUDE_MAX,

@@ -88,7 +88,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * [dstAlphaBlendFactor]. The blend modes [colorBlendOp] and [alphaBlendOp] are also taken into
    * account, with [writeR], [writeG], [writeB] and [writeA] controlling the output.
    */
-  public var enableBlend: Boolean
+  public final inline var enableBlend: Boolean
     @JvmName("enableBlendProperty")
     get() = getEnableBlend()
     @JvmName("enableBlendProperty")
@@ -100,7 +100,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * Controls how the blend factor for the color channels is determined based on the source's
    * fragments.
    */
-  public var srcColorBlendFactor: RenderingDevice.BlendFactor
+  public final inline var srcColorBlendFactor: RenderingDevice.BlendFactor
     @JvmName("srcColorBlendFactorProperty")
     get() = getSrcColorBlendFactor()
     @JvmName("srcColorBlendFactorProperty")
@@ -112,7 +112,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * Controls how the blend factor for the color channels is determined based on the destination's
    * fragments.
    */
-  public var dstColorBlendFactor: RenderingDevice.BlendFactor
+  public final inline var dstColorBlendFactor: RenderingDevice.BlendFactor
     @JvmName("dstColorBlendFactorProperty")
     get() = getDstColorBlendFactor()
     @JvmName("dstColorBlendFactorProperty")
@@ -123,7 +123,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    * The blend mode to use for the red/green/blue color channels.
    */
-  public var colorBlendOp: RenderingDevice.BlendOperation
+  public final inline var colorBlendOp: RenderingDevice.BlendOperation
     @JvmName("colorBlendOpProperty")
     get() = getColorBlendOp()
     @JvmName("colorBlendOpProperty")
@@ -135,7 +135,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * Controls how the blend factor for the alpha channel is determined based on the source's
    * fragments.
    */
-  public var srcAlphaBlendFactor: RenderingDevice.BlendFactor
+  public final inline var srcAlphaBlendFactor: RenderingDevice.BlendFactor
     @JvmName("srcAlphaBlendFactorProperty")
     get() = getSrcAlphaBlendFactor()
     @JvmName("srcAlphaBlendFactorProperty")
@@ -147,7 +147,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * Controls how the blend factor for the alpha channel is determined based on the destination's
    * fragments.
    */
-  public var dstAlphaBlendFactor: RenderingDevice.BlendFactor
+  public final inline var dstAlphaBlendFactor: RenderingDevice.BlendFactor
     @JvmName("dstAlphaBlendFactorProperty")
     get() = getDstAlphaBlendFactor()
     @JvmName("dstAlphaBlendFactorProperty")
@@ -158,7 +158,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    * The blend mode to use for the alpha channel.
    */
-  public var alphaBlendOp: RenderingDevice.BlendOperation
+  public final inline var alphaBlendOp: RenderingDevice.BlendOperation
     @JvmName("alphaBlendOpProperty")
     get() = getAlphaBlendOp()
     @JvmName("alphaBlendOpProperty")
@@ -169,7 +169,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    * If `true`, writes the new red color channel to the final result.
    */
-  public var writeR: Boolean
+  public final inline var writeR: Boolean
     @JvmName("writeRProperty")
     get() = getWriteR()
     @JvmName("writeRProperty")
@@ -180,7 +180,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    * If `true`, writes the new green color channel to the final result.
    */
-  public var writeG: Boolean
+  public final inline var writeG: Boolean
     @JvmName("writeGProperty")
     get() = getWriteG()
     @JvmName("writeGProperty")
@@ -191,7 +191,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    * If `true`, writes the new blue color channel to the final result.
    */
-  public var writeB: Boolean
+  public final inline var writeB: Boolean
     @JvmName("writeBProperty")
     get() = getWriteB()
     @JvmName("writeBProperty")
@@ -202,7 +202,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
    * If `true`, writes the new alpha channel to the final result.
    */
-  public var writeA: Boolean
+  public final inline var writeA: Boolean
     @JvmName("writeAProperty")
     get() = getWriteA()
     @JvmName("writeAProperty")
@@ -222,127 +222,127 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * [RenderingDevice.BLEND_FACTOR_SRC_ALPHA] and [dstAlphaBlendFactor] to
    * [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA].
    */
-  public fun setAsMix(): Unit {
+  public final fun setAsMix(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.setAsMixPtr, NIL)
   }
 
-  public fun setEnableBlend(pMember: Boolean): Unit {
+  public final fun setEnableBlend(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableBlendPtr, NIL)
   }
 
-  public fun getEnableBlend(): Boolean {
+  public final fun getEnableBlend(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSrcColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setSrcColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSrcColorBlendFactorPtr, NIL)
   }
 
-  public fun getSrcColorBlendFactor(): RenderingDevice.BlendFactor {
+  public final fun getSrcColorBlendFactor(): RenderingDevice.BlendFactor {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSrcColorBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDstColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setDstColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDstColorBlendFactorPtr, NIL)
   }
 
-  public fun getDstColorBlendFactor(): RenderingDevice.BlendFactor {
+  public final fun getDstColorBlendFactor(): RenderingDevice.BlendFactor {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDstColorBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setColorBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
+  public final fun setColorBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorBlendOpPtr, NIL)
   }
 
-  public fun getColorBlendOp(): RenderingDevice.BlendOperation {
+  public final fun getColorBlendOp(): RenderingDevice.BlendOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorBlendOpPtr, LONG)
     return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSrcAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setSrcAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSrcAlphaBlendFactorPtr, NIL)
   }
 
-  public fun getSrcAlphaBlendFactor(): RenderingDevice.BlendFactor {
+  public final fun getSrcAlphaBlendFactor(): RenderingDevice.BlendFactor {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSrcAlphaBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDstAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setDstAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDstAlphaBlendFactorPtr, NIL)
   }
 
-  public fun getDstAlphaBlendFactor(): RenderingDevice.BlendFactor {
+  public final fun getDstAlphaBlendFactor(): RenderingDevice.BlendFactor {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDstAlphaBlendFactorPtr, LONG)
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAlphaBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
+  public final fun setAlphaBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendOpPtr, NIL)
   }
 
-  public fun getAlphaBlendOp(): RenderingDevice.BlendOperation {
+  public final fun getAlphaBlendOp(): RenderingDevice.BlendOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendOpPtr, LONG)
     return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setWriteR(pMember: Boolean): Unit {
+  public final fun setWriteR(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setWriteRPtr, NIL)
   }
 
-  public fun getWriteR(): Boolean {
+  public final fun getWriteR(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteRPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setWriteG(pMember: Boolean): Unit {
+  public final fun setWriteG(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setWriteGPtr, NIL)
   }
 
-  public fun getWriteG(): Boolean {
+  public final fun getWriteG(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteGPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setWriteB(pMember: Boolean): Unit {
+  public final fun setWriteB(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setWriteBPtr, NIL)
   }
 
-  public fun getWriteB(): Boolean {
+  public final fun getWriteB(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteBPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setWriteA(pMember: Boolean): Unit {
+  public final fun setWriteA(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setWriteAPtr, NIL)
   }
 
-  public fun getWriteA(): Boolean {
+  public final fun getWriteA(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteAPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

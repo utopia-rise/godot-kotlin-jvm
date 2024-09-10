@@ -35,7 +35,7 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
    * The collision box's size in 3D units.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
+  public final inline var size: Vector3
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -65,18 +65,18 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
 
 
-  public fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector3 {
+  public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)

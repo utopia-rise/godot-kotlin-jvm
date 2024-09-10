@@ -69,7 +69,7 @@ public open class GridMap : Node3D() {
   /**
    * The assigned [MeshLibrary].
    */
-  public var meshLibrary: MeshLibrary?
+  public final inline var meshLibrary: MeshLibrary?
     @JvmName("meshLibraryProperty")
     get() = getMeshLibrary()
     @JvmName("meshLibraryProperty")
@@ -80,7 +80,7 @@ public open class GridMap : Node3D() {
   /**
    * Overrides the default friction and bounce physics properties for the whole [GridMap].
    */
-  public var physicsMaterial: PhysicsMaterial?
+  public final inline var physicsMaterial: PhysicsMaterial?
     @JvmName("physicsMaterialProperty")
     get() = getPhysicsMaterial()
     @JvmName("physicsMaterialProperty")
@@ -93,7 +93,7 @@ public open class GridMap : Node3D() {
    * This does not affect the size of the meshes. See [cellScale].
    */
   @CoreTypeLocalCopy
-  public var cellSize: Vector3
+  public final inline var cellSize: Vector3
     @JvmName("cellSizeProperty")
     get() = getCellSize()
     @JvmName("cellSizeProperty")
@@ -104,7 +104,7 @@ public open class GridMap : Node3D() {
   /**
    * The size of each octant measured in number of cells. This applies to all three axis.
    */
-  public var cellOctantSize: Int
+  public final inline var cellOctantSize: Int
     @JvmName("cellOctantSizeProperty")
     get() = getOctantSize()
     @JvmName("cellOctantSizeProperty")
@@ -115,7 +115,7 @@ public open class GridMap : Node3D() {
   /**
    * If `true`, grid items are centered on the X axis.
    */
-  public var cellCenterX: Boolean
+  public final inline var cellCenterX: Boolean
     @JvmName("cellCenterXProperty")
     get() = getCenterX()
     @JvmName("cellCenterXProperty")
@@ -126,7 +126,7 @@ public open class GridMap : Node3D() {
   /**
    * If `true`, grid items are centered on the Y axis.
    */
-  public var cellCenterY: Boolean
+  public final inline var cellCenterY: Boolean
     @JvmName("cellCenterYProperty")
     get() = getCenterY()
     @JvmName("cellCenterYProperty")
@@ -137,7 +137,7 @@ public open class GridMap : Node3D() {
   /**
    * If `true`, grid items are centered on the Z axis.
    */
-  public var cellCenterZ: Boolean
+  public final inline var cellCenterZ: Boolean
     @JvmName("cellCenterZProperty")
     get() = getCenterZ()
     @JvmName("cellCenterZProperty")
@@ -150,7 +150,7 @@ public open class GridMap : Node3D() {
    * This does not affect the size of the grid cells themselves, only the items in them. This can be
    * used to make cell items overlap their neighbors.
    */
-  public var cellScale: Float
+  public final inline var cellScale: Float
     @JvmName("cellScaleProperty")
     get() = getCellScale()
     @JvmName("cellScaleProperty")
@@ -163,7 +163,7 @@ public open class GridMap : Node3D() {
    * GridMaps act as static bodies, meaning they aren't affected by gravity or other forces. They
    * only affect other physics bodies that collide with them.
    */
-  public var collisionLayer: Long
+  public final inline var collisionLayer: Long
     @JvmName("collisionLayerProperty")
     get() = getCollisionLayer()
     @JvmName("collisionLayerProperty")
@@ -176,7 +176,7 @@ public open class GridMap : Node3D() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionMask: Long
+  public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
     get() = getCollisionMask()
     @JvmName("collisionMaskProperty")
@@ -189,7 +189,7 @@ public open class GridMap : Node3D() {
    * the lower the penetration into the object will be. This can for example be used to prevent the
    * player from breaking through the boundaries of a level.
    */
-  public var collisionPriority: Float
+  public final inline var collisionPriority: Float
     @JvmName("collisionPriorityProperty")
     get() = getCollisionPriority()
     @JvmName("collisionPriorityProperty")
@@ -202,7 +202,7 @@ public open class GridMap : Node3D() {
    * item with a navigation mesh. The created navigation region will use the navigation layers bitmask
    * assigned to the [MeshLibrary]'s item.
    */
-  public var bakeNavigation: Boolean
+  public final inline var bakeNavigation: Boolean
     @JvmName("bakeNavigationProperty")
     get() = isBakingNavigation()
     @JvmName("bakeNavigationProperty")
@@ -233,29 +233,29 @@ public open class GridMap : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun cellSizeMutate(block: Vector3.() -> Unit): Vector3 = cellSize.apply{
+  public final fun cellSizeMutate(block: Vector3.() -> Unit): Vector3 = cellSize.apply{
       block(this)
       cellSize = this
   }
 
 
-  public fun setCollisionLayer(layer: Long): Unit {
+  public final fun setCollisionLayer(layer: Long): Unit {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
   }
 
-  public fun getCollisionLayer(): Long {
+  public final fun getCollisionLayer(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
-  public fun getCollisionMask(): Long {
+  public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -265,7 +265,7 @@ public open class GridMap : Node3D() {
    * Based on [value], enables or disables the specified layer in the [collisionMask], given a
    * [layerNumber] between 1 and 32.
    */
-  public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
@@ -274,7 +274,7 @@ public open class GridMap : Node3D() {
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getCollisionMaskValue(layerNumber: Int): Boolean {
+  public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -284,7 +284,7 @@ public open class GridMap : Node3D() {
    * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
    * [layerNumber] between 1 and 32.
    */
-  public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerValuePtr, NIL)
   }
@@ -293,40 +293,40 @@ public open class GridMap : Node3D() {
    * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getCollisionLayerValue(layerNumber: Int): Boolean {
+  public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollisionPriority(priority: Float): Unit {
+  public final fun setCollisionPriority(priority: Float): Unit {
     TransferContext.writeArguments(DOUBLE to priority.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
   }
 
-  public fun getCollisionPriority(): Float {
+  public final fun getCollisionPriority(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPhysicsMaterial(material: PhysicsMaterial?): Unit {
+  public final fun setPhysicsMaterial(material: PhysicsMaterial?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialPtr, NIL)
   }
 
-  public fun getPhysicsMaterial(): PhysicsMaterial? {
+  public final fun getPhysicsMaterial(): PhysicsMaterial? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
   }
 
-  public fun setBakeNavigation(bakeNavigation: Boolean): Unit {
+  public final fun setBakeNavigation(bakeNavigation: Boolean): Unit {
     TransferContext.writeArguments(BOOL to bakeNavigation)
     TransferContext.callMethod(rawPtr, MethodBindings.setBakeNavigationPtr, NIL)
   }
 
-  public fun isBakingNavigation(): Boolean {
+  public final fun isBakingNavigation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -336,7 +336,7 @@ public open class GridMap : Node3D() {
    * Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation
    * meshes.
    */
-  public fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
@@ -348,51 +348,51 @@ public open class GridMap : Node3D() {
    * NavigationServer. If the map is changed directly with the NavigationServer API the GridMap node
    * will not be aware of the map change.
    */
-  public fun getNavigationMap(): RID {
+  public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setMeshLibrary(meshLibrary: MeshLibrary?): Unit {
+  public final fun setMeshLibrary(meshLibrary: MeshLibrary?): Unit {
     TransferContext.writeArguments(OBJECT to meshLibrary)
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshLibraryPtr, NIL)
   }
 
-  public fun getMeshLibrary(): MeshLibrary? {
+  public final fun getMeshLibrary(): MeshLibrary? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshLibraryPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MeshLibrary?)
   }
 
-  public fun setCellSize(size: Vector3): Unit {
+  public final fun setCellSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
   }
 
-  public fun getCellSize(): Vector3 {
+  public final fun getCellSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setCellScale(scale: Float): Unit {
+  public final fun setCellScale(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCellScalePtr, NIL)
   }
 
-  public fun getCellScale(): Float {
+  public final fun getCellScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setOctantSize(size: Int): Unit {
+  public final fun setOctantSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setOctantSizePtr, NIL)
   }
 
-  public fun getOctantSize(): Int {
+  public final fun getOctantSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOctantSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -405,7 +405,7 @@ public open class GridMap : Node3D() {
    * [getOrthogonalIndexFromBasis].
    */
   @JvmOverloads
-  public fun setCellItem(
+  public final fun setCellItem(
     position: Vector3i,
     item: Int,
     orientation: Int = 0,
@@ -418,7 +418,7 @@ public open class GridMap : Node3D() {
    * The [MeshLibrary] item index located at the given grid coordinates. If the cell is empty,
    * [INVALID_CELL_ITEM] will be returned.
    */
-  public fun getCellItem(position: Vector3i): Int {
+  public final fun getCellItem(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -428,7 +428,7 @@ public open class GridMap : Node3D() {
    * The orientation of the cell at the given grid coordinates. `-1` is returned if the cell is
    * empty.
    */
-  public fun getCellItemOrientation(position: Vector3i): Int {
+  public final fun getCellItemOrientation(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemOrientationPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -437,7 +437,7 @@ public open class GridMap : Node3D() {
   /**
    * Returns the basis that gives the specified cell its orientation.
    */
-  public fun getCellItemBasis(position: Vector3i): Basis {
+  public final fun getCellItemBasis(position: Vector3i): Basis {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemBasisPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS, false) as Basis)
@@ -447,7 +447,7 @@ public open class GridMap : Node3D() {
    * Returns one of 24 possible rotations that lie along the vectors (x,y,z) with each component
    * being either -1, 0, or 1. For further details, refer to the Godot source code.
    */
-  public fun getBasisWithOrthogonalIndex(index: Int): Basis {
+  public final fun getBasisWithOrthogonalIndex(index: Int): Basis {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBasisWithOrthogonalIndexPtr, BASIS)
     return (TransferContext.readReturnValue(BASIS, false) as Basis)
@@ -459,7 +459,7 @@ public open class GridMap : Node3D() {
    * the range from 0 to 23) of the point best representing the orientation of the object. For further
    * details, refer to the Godot source code.
    */
-  public fun getOrthogonalIndexFromBasis(basis: Basis): Int {
+  public final fun getOrthogonalIndexFromBasis(basis: Basis): Int {
     TransferContext.writeArguments(BASIS to basis)
     TransferContext.callMethod(rawPtr, MethodBindings.getOrthogonalIndexFromBasisPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -470,7 +470,7 @@ public open class GridMap : Node3D() {
    * [localPosition] is in global coordinates, consider using [Node3D.toLocal] before passing it to
    * this method. See also [mapToLocal].
    */
-  public fun localToMap(localPosition: Vector3): Vector3i {
+  public final fun localToMap(localPosition: Vector3): Vector3i {
     TransferContext.writeArguments(VECTOR3 to localPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.localToMapPtr, VECTOR3I)
     return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
@@ -480,7 +480,7 @@ public open class GridMap : Node3D() {
    * Returns the position of a grid cell in the GridMap's local coordinate space. To convert the
    * returned value into global coordinates, use [Node3D.toGlobal]. See also [localToMap].
    */
-  public fun mapToLocal(mapPosition: Vector3i): Vector3 {
+  public final fun mapToLocal(mapPosition: Vector3i): Vector3 {
     TransferContext.writeArguments(VECTOR3I to mapPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.mapToLocalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -489,39 +489,39 @@ public open class GridMap : Node3D() {
   /**
    * This method does nothing.
    */
-  public fun resourceChanged(resource: Resource?): Unit {
+  public final fun resourceChanged(resource: Resource?): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
   }
 
-  public fun setCenterX(enable: Boolean): Unit {
+  public final fun setCenterX(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCenterXPtr, NIL)
   }
 
-  public fun getCenterX(): Boolean {
+  public final fun getCenterX(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterXPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCenterY(enable: Boolean): Unit {
+  public final fun setCenterY(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCenterYPtr, NIL)
   }
 
-  public fun getCenterY(): Boolean {
+  public final fun getCenterY(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCenterZ(enable: Boolean): Unit {
+  public final fun setCenterZ(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCenterZPtr, NIL)
   }
 
-  public fun getCenterZ(): Boolean {
+  public final fun getCenterZ(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterZPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -530,7 +530,7 @@ public open class GridMap : Node3D() {
   /**
    * Clear all cells.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -538,7 +538,7 @@ public open class GridMap : Node3D() {
   /**
    * Returns an array of [Vector3] with the non-empty cell coordinates in the grid map.
    */
-  public fun getUsedCells(): VariantArray<Vector3i> {
+  public final fun getUsedCells(): VariantArray<Vector3i> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>)
@@ -547,7 +547,7 @@ public open class GridMap : Node3D() {
   /**
    * Returns an array of all cells with the given item index specified in [item].
    */
-  public fun getUsedCellsByItem(item: Int): VariantArray<Vector3i> {
+  public final fun getUsedCellsByItem(item: Int): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to item.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsByItemPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>)
@@ -557,7 +557,7 @@ public open class GridMap : Node3D() {
    * Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in
    * the grid. The transforms are specified in local space.
    */
-  public fun getMeshes(): VariantArray<Any?> {
+  public final fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -567,7 +567,7 @@ public open class GridMap : Node3D() {
    * Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist
    * within the current GridMap.
    */
-  public fun getBakeMeshes(): VariantArray<Any?> {
+  public final fun getBakeMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -576,7 +576,7 @@ public open class GridMap : Node3D() {
   /**
    * Returns [RID] of a baked mesh with the given [idx].
    */
-  public fun getBakeMeshInstance(idx: Int): RID {
+  public final fun getBakeMeshInstance(idx: Int): RID {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMeshInstancePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -585,7 +585,7 @@ public open class GridMap : Node3D() {
   /**
    * Clears all baked meshes. See [makeBakedMeshes].
    */
-  public fun clearBakedMeshes(): Unit {
+  public final fun clearBakedMeshes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBakedMeshesPtr, NIL)
   }
@@ -594,8 +594,8 @@ public open class GridMap : Node3D() {
    * Bakes lightmap data for all meshes in the assigned [MeshLibrary].
    */
   @JvmOverloads
-  public fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Float = 0.1f):
-      Unit {
+  public final fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Float =
+      0.1f): Unit {
     TransferContext.writeArguments(BOOL to genLightmapUv, DOUBLE to lightmapUvTexelSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.makeBakedMeshesPtr, NIL)
   }

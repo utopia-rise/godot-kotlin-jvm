@@ -41,7 +41,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * transparency mode other than [TRANSPARENCY_DISABLED] has a greater performance impact compared to
    * opaque rendering. See also [blendMode].
    */
-  public var transparency: Transparency
+  public final inline var transparency: Transparency
     @JvmName("transparencyProperty")
     get() = getTransparency()
     @JvmName("transparencyProperty")
@@ -55,7 +55,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [alphaScissorThreshold]. If the material disappears at a distance, try decreasing
    * [alphaScissorThreshold].
    */
-  public var alphaScissorThreshold: Float
+  public final inline var alphaScissorThreshold: Float
     @JvmName("alphaScissorThresholdProperty")
     get() = getAlphaScissorThreshold()
     @JvmName("alphaScissorThresholdProperty")
@@ -66,7 +66,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The hashing scale for Alpha Hash. Recommended values between `0` and `2`.
    */
-  public var alphaHashScale: Float
+  public final inline var alphaHashScale: Float
     @JvmName("alphaHashScaleProperty")
     get() = getAlphaHashScale()
     @JvmName("alphaHashScaleProperty")
@@ -77,7 +77,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The type of alpha antialiasing to apply. See [AlphaAntiAliasing].
    */
-  public var alphaAntialiasingMode: AlphaAntiAliasing
+  public final inline var alphaAntialiasingMode: AlphaAntiAliasing
     @JvmName("alphaAntialiasingModeProperty")
     get() = getAlphaAntialiasing()
     @JvmName("alphaAntialiasingModeProperty")
@@ -88,7 +88,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Threshold at which antialiasing will be applied on the alpha channel.
    */
-  public var alphaAntialiasingEdge: Float
+  public final inline var alphaAntialiasingEdge: Float
     @JvmName("alphaAntialiasingEdgeProperty")
     get() = getAlphaAntialiasingEdge()
     @JvmName("alphaAntialiasingEdgeProperty")
@@ -101,7 +101,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Values other than `Mix` force the object into the transparent pipeline. See
    * [BlendMode].
    */
-  public var blendMode: BlendMode
+  public final inline var blendMode: BlendMode
     @JvmName("blendModeProperty")
     get() = getBlendMode()
     @JvmName("blendModeProperty")
@@ -113,7 +113,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Determines which side of the triangle to cull depending on whether the triangle faces towards
    * or away from the camera. See [CullMode].
    */
-  public var cullMode: CullMode
+  public final inline var cullMode: CullMode
     @JvmName("cullModeProperty")
     get() = getCullMode()
     @JvmName("cullModeProperty")
@@ -124,7 +124,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Determines when depth rendering takes place. See [DepthDrawMode]. See also [transparency].
    */
-  public var depthDrawMode: DepthDrawMode
+  public final inline var depthDrawMode: DepthDrawMode
     @JvmName("depthDrawModeProperty")
     get() = getDepthDrawMode()
     @JvmName("depthDrawModeProperty")
@@ -135,7 +135,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, depth testing is disabled and the object will be drawn in render order.
    */
-  public var noDepthTest: Boolean
+  public final inline var noDepthTest: Boolean
     @JvmName("noDepthTestProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_DISABLE_DEPTH_TEST)
     @JvmName("noDepthTestProperty")
@@ -150,7 +150,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Setting the shading mode vertex shading currently has no effect, as vertex shading is
    * not implemented yet.
    */
-  public var shadingMode: ShadingMode
+  public final inline var shadingMode: ShadingMode
     @JvmName("shadingModeProperty")
     get() = getShadingMode()
     @JvmName("shadingModeProperty")
@@ -161,7 +161,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The algorithm used for diffuse light scattering. See [DiffuseMode].
    */
-  public var diffuseMode: DiffuseMode
+  public final inline var diffuseMode: DiffuseMode
     @JvmName("diffuseModeProperty")
     get() = getDiffuseMode()
     @JvmName("diffuseModeProperty")
@@ -175,7 +175,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To
    * disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
    */
-  public var specularMode: SpecularMode
+  public final inline var specularMode: SpecularMode
     @JvmName("specularModeProperty")
     get() = getSpecularMode()
     @JvmName("specularModeProperty")
@@ -186,7 +186,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the object receives no ambient light.
    */
-  public var disableAmbientLight: Boolean
+  public final inline var disableAmbientLight: Boolean
     @JvmName("disableAmbientLightProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_DISABLE_AMBIENT_LIGHT)
     @JvmName("disableAmbientLightProperty")
@@ -199,7 +199,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * useful for unshaded or transparent materials (e.g. particles), which without this setting will be
    * affected even if fully transparent.
    */
-  public var disableFog: Boolean
+  public final inline var disableFog: Boolean
     @JvmName("disableFogProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_DISABLE_FOG)
     @JvmName("disableFogProperty")
@@ -210,7 +210,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the vertex color is used as albedo color.
    */
-  public var vertexColorUseAsAlbedo: Boolean
+  public final inline var vertexColorUseAsAlbedo: Boolean
     @JvmName("vertexColorUseAsAlbedoProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_FROM_VERTEX_COLOR)
     @JvmName("vertexColorUseAsAlbedoProperty")
@@ -225,7 +225,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Only effective when using the Forward+ and Mobile rendering methods, not
    * Compatibility.
    */
-  public var vertexColorIsSrgb: Boolean
+  public final inline var vertexColorIsSrgb: Boolean
     @JvmName("vertexColorIsSrgbProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_SRGB_VERTEX_COLOR)
     @JvmName("vertexColorIsSrgbProperty")
@@ -240,7 +240,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * not specifying an albedo texture and using a transparent [detailAlbedo] texture instead.
    */
   @CoreTypeLocalCopy
-  public var albedoColor: Color
+  public final inline var albedoColor: Color
     @JvmName("albedoColorProperty")
     get() = getAlbedo()
     @JvmName("albedoColorProperty")
@@ -252,7 +252,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture to multiply by [albedoColor]. Used for basic texturing of objects.
    * If the texture appears unexpectedly too dark or too bright, check [albedoTextureForceSrgb].
    */
-  public var albedoTexture: Texture2D?
+  public final inline var albedoTexture: Texture2D?
     @JvmName("albedoTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_ALBEDO)
     @JvmName("albedoTextureProperty")
@@ -268,7 +268,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * appear to be too dark. If [albedoTextureForceSrgb] is `false` when it shouldn't be, the texture
    * will appear to be too bright.
    */
-  public var albedoTextureForceSrgb: Boolean
+  public final inline var albedoTextureForceSrgb: Boolean
     @JvmName("albedoTextureForceSrgbProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_TEXTURE_FORCE_SRGB)
     @JvmName("albedoTextureForceSrgbProperty")
@@ -280,7 +280,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Enables multichannel signed distance field rendering shader. Use [msdfPixelRange] and
    * [msdfOutlineSize] to configure MSDF parameters.
    */
-  public var albedoTextureMsdf: Boolean
+  public final inline var albedoTextureMsdf: Boolean
     @JvmName("albedoTextureMsdfProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_TEXTURE_MSDF)
     @JvmName("albedoTextureMsdfProperty")
@@ -294,7 +294,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * stored in the red channel. Roughness map is stored in the green channel. Metallic map is stored in
    * the blue channel. The alpha channel is ignored.
    */
-  public var ormTexture: Texture2D?
+  public final inline var ormTexture: Texture2D?
     @JvmName("ormTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_ORM)
     @JvmName("ormTextureProperty")
@@ -310,7 +310,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * metal or fully non-metal, values between `0` and `1` should only be used for blending between
    * metal and non-metal sections. To alter the amount of reflection use [roughness].
    */
-  public var metallic: Float
+  public final inline var metallic: Float
     @JvmName("metallicProperty")
     get() = getMetallic()
     @JvmName("metallicProperty")
@@ -327,7 +327,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in
    * most cases. See also [roughness].
    */
-  public var metallicSpecular: Float
+  public final inline var metallicSpecular: Float
     @JvmName("metallicSpecularProperty")
     get() = getSpecular()
     @JvmName("metallicSpecularProperty")
@@ -338,7 +338,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Texture used to specify metallic for an object. This is multiplied by [metallic].
    */
-  public var metallicTexture: Texture2D?
+  public final inline var metallicTexture: Texture2D?
     @JvmName("metallicTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_METALLIC)
     @JvmName("metallicTextureProperty")
@@ -352,7 +352,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in
    * the green you could reduce the number of textures you use.
    */
-  public var metallicTextureChannel: TextureChannel
+  public final inline var metallicTextureChannel: TextureChannel
     @JvmName("metallicTextureChannelProperty")
     get() = getMetallicTextureChannel()
     @JvmName("metallicTextureChannelProperty")
@@ -364,7 +364,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Surface reflection. A value of `0` represents a perfect mirror while a value of `1` completely
    * blurs the reflection. See also [metallic].
    */
-  public var roughness: Float
+  public final inline var roughness: Float
     @JvmName("roughnessProperty")
     get() = getRoughness()
     @JvmName("roughnessProperty")
@@ -375,7 +375,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Texture used to control the roughness per-pixel. Multiplied by [roughness].
    */
-  public var roughnessTexture: Texture2D?
+  public final inline var roughnessTexture: Texture2D?
     @JvmName("roughnessTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_ROUGHNESS)
     @JvmName("roughnessTextureProperty")
@@ -389,7 +389,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in
    * the green you could reduce the number of textures you use.
    */
-  public var roughnessTextureChannel: TextureChannel
+  public final inline var roughnessTextureChannel: TextureChannel
     @JvmName("roughnessTextureChannelProperty")
     get() = getRoughnessTextureChannel()
     @JvmName("roughnessTextureChannelProperty")
@@ -402,7 +402,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * can also cast light on other objects if a [VoxelGI], SDFGI, or [LightmapGI] is used and this
    * object is used in baked lighting.
    */
-  public var emissionEnabled: Boolean
+  public final inline var emissionEnabled: Boolean
     @JvmName("emissionEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_EMISSION)
     @JvmName("emissionEnabledProperty")
@@ -414,7 +414,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The emitted light's color. See [emissionEnabled].
    */
   @CoreTypeLocalCopy
-  public var emission: Color
+  public final inline var emission: Color
     @JvmName("emissionProperty")
     get() = getEmission()
     @JvmName("emissionProperty")
@@ -425,7 +425,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Multiplier for emitted light. See [emissionEnabled].
    */
-  public var emissionEnergyMultiplier: Float
+  public final inline var emissionEnergyMultiplier: Float
     @JvmName("emissionEnergyMultiplierProperty")
     get() = getEmissionEnergyMultiplier()
     @JvmName("emissionEnergyMultiplierProperty")
@@ -438,7 +438,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default is
    * roughly equivalent to an indoor lightbulb.
    */
-  public var emissionIntensity: Float
+  public final inline var emissionIntensity: Float
     @JvmName("emissionIntensityProperty")
     get() = getEmissionIntensity()
     @JvmName("emissionIntensityProperty")
@@ -450,7 +450,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See
    * [EmissionOperator] for options.
    */
-  public var emissionOperator: EmissionOperator
+  public final inline var emissionOperator: EmissionOperator
     @JvmName("emissionOperatorProperty")
     get() = getEmissionOperator()
     @JvmName("emissionOperatorProperty")
@@ -461,7 +461,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Use `UV2` to read from the [emissionTexture].
    */
-  public var emissionOnUv2: Boolean
+  public final inline var emissionOnUv2: Boolean
     @JvmName("emissionOnUv2Property")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_EMISSION_ON_UV2)
     @JvmName("emissionOnUv2Property")
@@ -472,7 +472,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Texture that specifies how much surface emits light at a given point.
    */
-  public var emissionTexture: Texture2D?
+  public final inline var emissionTexture: Texture2D?
     @JvmName("emissionTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_EMISSION)
     @JvmName("emissionTextureProperty")
@@ -484,7 +484,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, normal mapping is enabled. This has a slight performance cost, especially on mobile
    * GPUs.
    */
-  public var normalEnabled: Boolean
+  public final inline var normalEnabled: Boolean
     @JvmName("normalEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_NORMAL_MAPPING)
     @JvmName("normalEnabledProperty")
@@ -495,7 +495,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The strength of the normal map's effect.
    */
-  public var normalScale: Float
+  public final inline var normalScale: Float
     @JvmName("normalScaleProperty")
     get() = getNormalScale()
     @JvmName("normalScaleProperty")
@@ -518,7 +518,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [normalTexture]. To display a normal map *above* the [detailAlbedo] texture, use [detailNormal]
    * instead.
    */
-  public var normalTexture: Texture2D?
+  public final inline var normalTexture: Texture2D?
     @JvmName("normalTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_NORMAL)
     @JvmName("normalTextureProperty")
@@ -532,7 +532,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Rim lighting is not visible if the material's [shadingMode] is
    * [SHADING_MODE_UNSHADED].
    */
-  public var rimEnabled: Boolean
+  public final inline var rimEnabled: Boolean
     @JvmName("rimEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_RIM)
     @JvmName("rimEnabledProperty")
@@ -543,7 +543,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets the strength of the rim lighting effect.
    */
-  public var rim: Float
+  public final inline var rim: Float
     @JvmName("rimProperty")
     get() = getRim()
     @JvmName("rimProperty")
@@ -555,7 +555,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The amount of to blend light and albedo color when rendering rim effect. If `0` the light color
    * is used, while `1` means albedo color is used. An intermediate value generally works best.
    */
-  public var rimTint: Float
+  public final inline var rimTint: Float
     @JvmName("rimTintProperty")
     get() = getRimTint()
     @JvmName("rimTintProperty")
@@ -566,7 +566,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Texture used to set the strength of the rim lighting effect per-pixel. Multiplied by [rim].
    */
-  public var rimTexture: Texture2D?
+  public final inline var rimTexture: Texture2D?
     @JvmName("rimTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_RIM)
     @JvmName("rimTextureProperty")
@@ -581,7 +581,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Clearcoat rendering is not visible if the material's [shadingMode] is
    * [SHADING_MODE_UNSHADED].
    */
-  public var clearcoatEnabled: Boolean
+  public final inline var clearcoatEnabled: Boolean
     @JvmName("clearcoatEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_CLEARCOAT)
     @JvmName("clearcoatEnabledProperty")
@@ -593,7 +593,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Sets the strength of the clearcoat effect. Setting to `0` looks the same as disabling the
    * clearcoat effect.
    */
-  public var clearcoat: Float
+  public final inline var clearcoat: Float
     @JvmName("clearcoatProperty")
     get() = getClearcoat()
     @JvmName("clearcoatProperty")
@@ -605,7 +605,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Sets the roughness of the clearcoat pass. A higher value results in a rougher clearcoat while a
    * lower value results in a smoother clearcoat.
    */
-  public var clearcoatRoughness: Float
+  public final inline var clearcoatRoughness: Float
     @JvmName("clearcoatRoughnessProperty")
     get() = getClearcoatRoughness()
     @JvmName("clearcoatRoughnessProperty")
@@ -617,7 +617,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture that defines the strength of the clearcoat effect and the glossiness of the clearcoat.
    * Strength is specified in the red channel while glossiness is specified in the green channel.
    */
-  public var clearcoatTexture: Texture2D?
+  public final inline var clearcoatTexture: Texture2D?
     @JvmName("clearcoatTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_CLEARCOAT)
     @JvmName("clearcoatTextureProperty")
@@ -634,7 +634,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * which can be enabled by setting [textureFilter] to
    * [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].
    */
-  public var anisotropyEnabled: Boolean
+  public final inline var anisotropyEnabled: Boolean
     @JvmName("anisotropyEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_ANISOTROPY)
     @JvmName("anisotropyEnabledProperty")
@@ -646,7 +646,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The strength of the anisotropy effect. This is multiplied by [anisotropyFlowmap]'s alpha
    * channel if a texture is defined there and the texture contains an alpha channel.
    */
-  public var anisotropy: Float
+  public final inline var anisotropy: Float
     @JvmName("anisotropyProperty")
     get() = getAnisotropy()
     @JvmName("anisotropyProperty")
@@ -665,7 +665,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue
    * channel is ignored.
    */
-  public var anisotropyFlowmap: Texture2D?
+  public final inline var anisotropyFlowmap: Texture2D?
     @JvmName("anisotropyFlowmapProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_FLOWMAP)
     @JvmName("anisotropyFlowmapProperty")
@@ -677,7 +677,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, ambient occlusion is enabled. Ambient occlusion darkens areas based on the
    * [aoTexture].
    */
-  public var aoEnabled: Boolean
+  public final inline var aoEnabled: Boolean
     @JvmName("aoEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_AMBIENT_OCCLUSION)
     @JvmName("aoEnabledProperty")
@@ -691,7 +691,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * light. This can be used to impact the strength of the ambient occlusion effect, but typically
    * looks unrealistic.
    */
-  public var aoLightAffect: Float
+  public final inline var aoLightAffect: Float
     @JvmName("aoLightAffectProperty")
     get() = getAoLightAffect()
     @JvmName("aoLightAffectProperty")
@@ -702,7 +702,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Texture that defines the amount of ambient occlusion for a given point on the object.
    */
-  public var aoTexture: Texture2D?
+  public final inline var aoTexture: Texture2D?
     @JvmName("aoTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_AMBIENT_OCCLUSION)
     @JvmName("aoTextureProperty")
@@ -713,7 +713,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, use `UV2` coordinates to look up from the [aoTexture].
    */
-  public var aoOnUv2: Boolean
+  public final inline var aoOnUv2: Boolean
     @JvmName("aoOnUv2Property")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_AO_ON_UV2)
     @JvmName("aoOnUv2Property")
@@ -727,7 +727,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in
    * the green you could reduce the number of textures you use.
    */
-  public var aoTextureChannel: TextureChannel
+  public final inline var aoTextureChannel: TextureChannel
     @JvmName("aoTextureChannelProperty")
     get() = getAoTextureChannel()
     @JvmName("aoTextureChannelProperty")
@@ -742,7 +742,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Height mapping is not supported if triplanar mapping is used on the same material.
    * The value of [heightmapEnabled] will be ignored if [uv1Triplanar] is enabled.
    */
-  public var heightmapEnabled: Boolean
+  public final inline var heightmapEnabled: Boolean
     @JvmName("heightmapEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_HEIGHT_MAPPING)
     @JvmName("heightmapEnabledProperty")
@@ -763,7 +763,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * recommendations on authoring heightmap textures, as the way the heightmap texture is authored
    * affects how [heightmapScale] behaves.
    */
-  public var heightmapScale: Float
+  public final inline var heightmapScale: Float
     @JvmName("heightmapScaleProperty")
     get() = getHeightmapScale()
     @JvmName("heightmapScaleProperty")
@@ -777,7 +777,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * much more expensive on the GPU. Only enable this on materials where it makes a significant visual
    * difference.
    */
-  public var heightmapDeepParallax: Boolean
+  public final inline var heightmapDeepParallax: Boolean
     @JvmName("heightmapDeepParallaxProperty")
     get() = isHeightmapDeepParallaxEnabled()
     @JvmName("heightmapDeepParallaxProperty")
@@ -792,7 +792,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * increased on materials where it makes a significant visual difference.
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
-  public var heightmapMinLayers: Int
+  public final inline var heightmapMinLayers: Int
     @JvmName("heightmapMinLayersProperty")
     get() = getHeightmapDeepParallaxMinLayers()
     @JvmName("heightmapMinLayersProperty")
@@ -807,7 +807,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * increased on materials where it makes a significant visual difference.
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
-  public var heightmapMaxLayers: Int
+  public final inline var heightmapMaxLayers: Int
     @JvmName("heightmapMaxLayersProperty")
     get() = getHeightmapDeepParallaxMaxLayers()
     @JvmName("heightmapMaxLayersProperty")
@@ -820,7 +820,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting
    * this to `true`.
    */
-  public var heightmapFlipTangent: Boolean
+  public final inline var heightmapFlipTangent: Boolean
     @JvmName("heightmapFlipTangentProperty")
     get() = getHeightmapDeepParallaxFlipTangent()
     @JvmName("heightmapFlipTangentProperty")
@@ -833,7 +833,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * effect looks strange when the camera moves (even with a reasonable [heightmapScale]), try setting
    * this to `true`.
    */
-  public var heightmapFlipBinormal: Boolean
+  public final inline var heightmapFlipBinormal: Boolean
     @JvmName("heightmapFlipBinormalProperty")
     get() = getHeightmapDeepParallaxFlipBinormal()
     @JvmName("heightmapFlipBinormalProperty")
@@ -850,7 +850,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** To reduce memory usage and improve loading times, you may be able to use a
    * lower-resolution heightmap texture as most heightmaps are only comprised of low-frequency data.
    */
-  public var heightmapTexture: Texture2D?
+  public final inline var heightmapTexture: Texture2D?
     @JvmName("heightmapTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_HEIGHTMAP)
     @JvmName("heightmapTextureProperty")
@@ -865,7 +865,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * necessary if the Invert import option was used to invert the depth map in Godot 3.x, in which case
    * [heightmapFlipTexture] should remain `false`.
    */
-  public var heightmapFlipTexture: Boolean
+  public final inline var heightmapFlipTexture: Boolean
     @JvmName("heightmapFlipTextureProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_INVERT_HEIGHTMAP)
     @JvmName("heightmapFlipTextureProperty")
@@ -878,7 +878,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * surface, is scattered, and then emerges. Subsurface scattering quality is controlled by
    * [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality].
    */
-  public var subsurfScatterEnabled: Boolean
+  public final inline var subsurfScatterEnabled: Boolean
     @JvmName("subsurfScatterEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_SCATTERING)
     @JvmName("subsurfScatterEnabledProperty")
@@ -891,7 +891,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringScale], which is
    * set globally.
    */
-  public var subsurfScatterStrength: Float
+  public final inline var subsurfScatterStrength: Float
     @JvmName("subsurfScatterStrengthProperty")
     get() = getSubsurfaceScatteringStrength()
     @JvmName("subsurfScatterStrengthProperty")
@@ -903,7 +903,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, subsurface scattering will use a special mode optimized for the color and density of
    * human skin, such as boosting the intensity of the red channel in subsurface scattering.
    */
-  public var subsurfScatterSkinMode: Boolean
+  public final inline var subsurfScatterSkinMode: Boolean
     @JvmName("subsurfScatterSkinModeProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_SUBSURFACE_MODE_SKIN)
     @JvmName("subsurfScatterSkinModeProperty")
@@ -915,7 +915,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture used to control the subsurface scattering strength. Stored in the red texture channel.
    * Multiplied by [subsurfScatterStrength].
    */
-  public var subsurfScatterTexture: Texture2D?
+  public final inline var subsurfScatterTexture: Texture2D?
     @JvmName("subsurfScatterTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_SUBSURFACE_SCATTERING)
     @JvmName("subsurfScatterTextureProperty")
@@ -927,7 +927,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, enables subsurface scattering transmittance. Only effective if
    * [subsurfScatterEnabled] is `true`. See also [backlightEnabled].
    */
-  public var subsurfScatterTransmittanceEnabled: Boolean
+  public final inline var subsurfScatterTransmittanceEnabled: Boolean
     @JvmName("subsurfScatterTransmittanceEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_TRANSMITTANCE)
     @JvmName("subsurfScatterTransmittanceEnabledProperty")
@@ -940,7 +940,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [subsurfScatterSkinMode] is `true`.
    */
   @CoreTypeLocalCopy
-  public var subsurfScatterTransmittanceColor: Color
+  public final inline var subsurfScatterTransmittanceColor: Color
     @JvmName("subsurfScatterTransmittanceColorProperty")
     get() = getTransmittanceColor()
     @JvmName("subsurfScatterTransmittanceColorProperty")
@@ -952,7 +952,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The texture to use for multiplying the intensity of the subsurface scattering transmittance
    * intensity. See also [subsurfScatterTexture]. Ignored if [subsurfScatterSkinMode] is `true`.
    */
-  public var subsurfScatterTransmittanceTexture: Texture2D?
+  public final inline var subsurfScatterTransmittanceTexture: Texture2D?
     @JvmName("subsurfScatterTransmittanceTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_SUBSURFACE_TRANSMITTANCE)
     @JvmName("subsurfScatterTransmittanceTextureProperty")
@@ -963,7 +963,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The depth of the subsurface scattering transmittance effect.
    */
-  public var subsurfScatterTransmittanceDepth: Float
+  public final inline var subsurfScatterTransmittanceDepth: Float
     @JvmName("subsurfScatterTransmittanceDepthProperty")
     get() = getTransmittanceDepth()
     @JvmName("subsurfScatterTransmittanceDepthProperty")
@@ -974,7 +974,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The intensity of the subsurface scattering transmittance effect.
    */
-  public var subsurfScatterTransmittanceBoost: Float
+  public final inline var subsurfScatterTransmittanceBoost: Float
     @JvmName("subsurfScatterTransmittanceBoostProperty")
     get() = getTransmittanceBoost()
     @JvmName("subsurfScatterTransmittanceBoostProperty")
@@ -985,7 +985,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the backlight effect is enabled. See also [subsurfScatterTransmittanceEnabled].
    */
-  public var backlightEnabled: Boolean
+  public final inline var backlightEnabled: Boolean
     @JvmName("backlightEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_BACKLIGHT)
     @JvmName("backlightEnabledProperty")
@@ -997,7 +997,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The color used by the backlight effect. Represents the light passing through an object.
    */
   @CoreTypeLocalCopy
-  public var backlight: Color
+  public final inline var backlight: Color
     @JvmName("backlightProperty")
     get() = getBacklight()
     @JvmName("backlightProperty")
@@ -1008,7 +1008,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Texture used to control the backlight effect per-pixel. Added to [backlight].
    */
-  public var backlightTexture: Texture2D?
+  public final inline var backlightTexture: Texture2D?
     @JvmName("backlightTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_BACKLIGHT)
     @JvmName("backlightTextureProperty")
@@ -1020,7 +1020,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, the refraction effect is enabled. Distorts transparency based on light from behind
    * the object.
    */
-  public var refractionEnabled: Boolean
+  public final inline var refractionEnabled: Boolean
     @JvmName("refractionEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_REFRACTION)
     @JvmName("refractionEnabledProperty")
@@ -1031,7 +1031,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The strength of the refraction effect.
    */
-  public var refractionScale: Float
+  public final inline var refractionScale: Float
     @JvmName("refractionScaleProperty")
     get() = getRefraction()
     @JvmName("refractionScaleProperty")
@@ -1043,7 +1043,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture that controls the strength of the refraction per-pixel. Multiplied by
    * [refractionScale].
    */
-  public var refractionTexture: Texture2D?
+  public final inline var refractionTexture: Texture2D?
     @JvmName("refractionTextureProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_REFRACTION)
     @JvmName("refractionTextureProperty")
@@ -1057,7 +1057,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * example if you stored refraction in the red channel, roughness in the blue, and ambient occlusion
    * in the green you could reduce the number of textures you use.
    */
-  public var refractionTextureChannel: TextureChannel
+  public final inline var refractionTextureChannel: TextureChannel
     @JvmName("refractionTextureChannelProperty")
     get() = getRefractionTextureChannel()
     @JvmName("refractionTextureChannelProperty")
@@ -1070,7 +1070,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * surface of the object based on [detailMask] and [detailAlbedo]'s alpha channel. This can be used
    * to add variation to objects, or to blend between two different albedo/normal textures.
    */
-  public var detailEnabled: Boolean
+  public final inline var detailEnabled: Boolean
     @JvmName("detailEnabledProperty")
     get() = getFeature(BaseMaterial3D.Feature.FEATURE_DETAIL)
     @JvmName("detailEnabledProperty")
@@ -1082,7 +1082,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Texture used to specify how the detail textures get blended with the base textures.
    * [detailMask] can be used together with [detailAlbedo]'s alpha channel (if any).
    */
-  public var detailMask: Texture2D?
+  public final inline var detailMask: Texture2D?
     @JvmName("detailMaskProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_MASK)
     @JvmName("detailMaskProperty")
@@ -1094,7 +1094,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [BlendMode] for
    * options.
    */
-  public var detailBlendMode: BlendMode
+  public final inline var detailBlendMode: BlendMode
     @JvmName("detailBlendModeProperty")
     get() = getDetailBlendMode()
     @JvmName("detailBlendModeProperty")
@@ -1105,7 +1105,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies whether to use `UV` or `UV2` for the detail layer. See [DetailUV] for options.
    */
-  public var detailUvLayer: DetailUV
+  public final inline var detailUvLayer: DetailUV
     @JvmName("detailUvLayerProperty")
     get() = getDetailUv()
     @JvmName("detailUvLayerProperty")
@@ -1119,7 +1119,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [detailMask].
    * **Note:** [detailAlbedo] is *not* modulated by [albedoColor].
    */
-  public var detailAlbedo: Texture2D?
+  public final inline var detailAlbedo: Texture2D?
     @JvmName("detailAlbedoProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_ALBEDO)
     @JvmName("detailAlbedoProperty")
@@ -1135,7 +1135,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
    * page[/url] for a comparison of normal map coordinates expected by popular engines.
    */
-  public var detailNormal: Texture2D?
+  public final inline var detailNormal: Texture2D?
     @JvmName("detailNormalProperty")
     get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_NORMAL)
     @JvmName("detailNormalProperty")
@@ -1148,7 +1148,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Z component is used when [uv1Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeLocalCopy
-  public var uv1Scale: Vector3
+  public final inline var uv1Scale: Vector3
     @JvmName("uv1ScaleProperty")
     get() = getUv1Scale()
     @JvmName("uv1ScaleProperty")
@@ -1162,7 +1162,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * enabled, but it is not used anywhere else.
    */
   @CoreTypeLocalCopy
-  public var uv1Offset: Vector3
+  public final inline var uv1Offset: Vector3
     @JvmName("uv1OffsetProperty")
     get() = getUv1Offset()
     @JvmName("uv1OffsetProperty")
@@ -1180,7 +1180,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp
    * texturing.
    */
-  public var uv1Triplanar: Boolean
+  public final inline var uv1Triplanar: Boolean
     @JvmName("uv1TriplanarProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_UV1_USE_TRIPLANAR)
     @JvmName("uv1TriplanarProperty")
@@ -1194,7 +1194,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** [uv1TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values
    * outside that range can look broken depending on the mesh.
    */
-  public var uv1TriplanarSharpness: Float
+  public final inline var uv1TriplanarSharpness: Float
     @JvmName("uv1TriplanarSharpnessProperty")
     get() = getUv1TriplanarBlendSharpness()
     @JvmName("uv1TriplanarSharpnessProperty")
@@ -1206,7 +1206,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, triplanar mapping for `UV` is calculated in world space rather than object local
    * space. See also [uv1Triplanar].
    */
-  public var uv1WorldTriplanar: Boolean
+  public final inline var uv1WorldTriplanar: Boolean
     @JvmName("uv1WorldTriplanarProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_UV1_USE_WORLD_TRIPLANAR)
     @JvmName("uv1WorldTriplanarProperty")
@@ -1219,7 +1219,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The Z component is used when [uv2Triplanar] is enabled, but it is not used anywhere else.
    */
   @CoreTypeLocalCopy
-  public var uv2Scale: Vector3
+  public final inline var uv2Scale: Vector3
     @JvmName("uv2ScaleProperty")
     get() = getUv2Scale()
     @JvmName("uv2ScaleProperty")
@@ -1233,7 +1233,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * enabled, but it is not used anywhere else.
    */
   @CoreTypeLocalCopy
-  public var uv2Offset: Vector3
+  public final inline var uv2Offset: Vector3
     @JvmName("uv2OffsetProperty")
     get() = getUv2Offset()
     @JvmName("uv2OffsetProperty")
@@ -1251,7 +1251,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp
    * texturing.
    */
-  public var uv2Triplanar: Boolean
+  public final inline var uv2Triplanar: Boolean
     @JvmName("uv2TriplanarProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_UV2_USE_TRIPLANAR)
     @JvmName("uv2TriplanarProperty")
@@ -1265,7 +1265,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** [uv2TriplanarSharpness] is clamped between `0.0` and `150.0` (inclusive) as values
    * outside that range can look broken depending on the mesh.
    */
-  public var uv2TriplanarSharpness: Float
+  public final inline var uv2TriplanarSharpness: Float
     @JvmName("uv2TriplanarSharpnessProperty")
     get() = getUv2TriplanarBlendSharpness()
     @JvmName("uv2TriplanarSharpnessProperty")
@@ -1277,7 +1277,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, triplanar mapping for `UV2` is calculated in world space rather than object local
    * space. See also [uv2Triplanar].
    */
-  public var uv2WorldTriplanar: Boolean
+  public final inline var uv2WorldTriplanar: Boolean
     @JvmName("uv2WorldTriplanarProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_UV2_USE_WORLD_TRIPLANAR)
     @JvmName("uv2WorldTriplanarProperty")
@@ -1292,7 +1292,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * sharper height transitions between pixels, resize the heightmap texture in an image editor with
    * nearest-neighbor filtering.
    */
-  public var textureFilter: TextureFilter
+  public final inline var textureFilter: TextureFilter
     @JvmName("textureFilterProperty")
     get() = getTextureFilter()
     @JvmName("textureFilterProperty")
@@ -1303,7 +1303,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Repeat flags for the texture. See [TextureFilter] for options.
    */
-  public var textureRepeat: Boolean
+  public final inline var textureRepeat: Boolean
     @JvmName("textureRepeatProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_USE_TEXTURE_REPEAT)
     @JvmName("textureRepeatProperty")
@@ -1314,7 +1314,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the object receives no shadow that would otherwise be cast onto it.
    */
-  public var disableReceiveShadows: Boolean
+  public final inline var disableReceiveShadows: Boolean
     @JvmName("disableReceiveShadowsProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_DONT_RECEIVE_SHADOWS)
     @JvmName("disableReceiveShadowsProperty")
@@ -1327,7 +1327,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * shadowed areas are opaque and non-shadowed areas are transparent. Useful for overlaying shadows
    * onto a camera feed in AR.
    */
-  public var shadowToOpacity: Boolean
+  public final inline var shadowToOpacity: Boolean
     @JvmName("shadowToOpacityProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_USE_SHADOW_TO_OPACITY)
     @JvmName("shadowToOpacityProperty")
@@ -1345,7 +1345,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * not horizontal when the screen is attached to your head instead of on the table. See
    * [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
    */
-  public var billboardMode: BillboardMode
+  public final inline var billboardMode: BillboardMode
     @JvmName("billboardModeProperty")
     get() = getBillboardMode()
     @JvmName("billboardModeProperty")
@@ -1357,7 +1357,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when
    * billboarding. Only applies when [billboardMode] is not [BILLBOARD_DISABLED].
    */
-  public var billboardKeepScale: Boolean
+  public final inline var billboardKeepScale: Boolean
     @JvmName("billboardKeepScaleProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_BILLBOARD_KEEP_SCALE)
     @JvmName("billboardKeepScaleProperty")
@@ -1369,7 +1369,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The number of horizontal frames in the particle sprite sheet. Only enabled when using
    * [BILLBOARD_PARTICLES]. See [billboardMode].
    */
-  public var particlesAnimHFrames: Int
+  public final inline var particlesAnimHFrames: Int
     @JvmName("particlesAnimHFramesProperty")
     get() = getParticlesAnimHFrames()
     @JvmName("particlesAnimHFramesProperty")
@@ -1381,7 +1381,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The number of vertical frames in the particle sprite sheet. Only enabled when using
    * [BILLBOARD_PARTICLES]. See [billboardMode].
    */
-  public var particlesAnimVFrames: Int
+  public final inline var particlesAnimVFrames: Int
     @JvmName("particlesAnimVFramesProperty")
     get() = getParticlesAnimVFrames()
     @JvmName("particlesAnimVFramesProperty")
@@ -1393,7 +1393,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, particle animations are looped. Only enabled when using [BILLBOARD_PARTICLES]. See
    * [billboardMode].
    */
-  public var particlesAnimLoop: Boolean
+  public final inline var particlesAnimLoop: Boolean
     @JvmName("particlesAnimLoopProperty")
     get() = getParticlesAnimLoop()
     @JvmName("particlesAnimLoopProperty")
@@ -1410,7 +1410,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * the 3D authoring software. In this case, grow will be able to join every outline together, just
    * like in the original mesh.
    */
-  public var grow: Boolean
+  public final inline var grow: Boolean
     @JvmName("growProperty")
     get() = isGrowEnabled()
     @JvmName("growProperty")
@@ -1421,7 +1421,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Grows object vertices in the direction of their normals. Only effective if [grow] is `true`.
    */
-  public var growAmount: Float
+  public final inline var growAmount: Float
     @JvmName("growAmountProperty")
     get() = getGrow()
     @JvmName("growAmountProperty")
@@ -1432,7 +1432,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, the object is rendered at the same size regardless of distance.
    */
-  public var fixedSize: Boolean
+  public final inline var fixedSize: Boolean
     @JvmName("fixedSizeProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_FIXED_SIZE)
     @JvmName("fixedSizeProperty")
@@ -1445,7 +1445,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** This is only effective for objects whose geometry is point-based rather than
    * triangle-based. See also [pointSize].
    */
-  public var usePointSize: Boolean
+  public final inline var usePointSize: Boolean
     @JvmName("usePointSizeProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_USE_POINT_SIZE)
     @JvmName("usePointSizeProperty")
@@ -1456,7 +1456,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The point size in pixels. See [usePointSize].
    */
-  public var pointSize: Float
+  public final inline var pointSize: Float
     @JvmName("pointSizeProperty")
     get() = getPointSize()
     @JvmName("pointSizeProperty")
@@ -1470,7 +1470,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [TubeTrailMesh]. Enabling this feature outside of materials used in [GPUParticles3D] meshes will
    * break material rendering.
    */
-  public var useParticleTrails: Boolean
+  public final inline var useParticleTrails: Boolean
     @JvmName("useParticleTrailsProperty")
     get() = getFlag(BaseMaterial3D.Flags.FLAG_PARTICLE_TRAILS_MODE)
     @JvmName("useParticleTrailsProperty")
@@ -1482,7 +1482,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, the proximity fade effect is enabled. The proximity fade effect fades out each pixel
    * based on its distance to another object.
    */
-  public var proximityFadeEnabled: Boolean
+  public final inline var proximityFadeEnabled: Boolean
     @JvmName("proximityFadeEnabledProperty")
     get() = isProximityFadeEnabled()
     @JvmName("proximityFadeEnabledProperty")
@@ -1494,7 +1494,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Distance over which the fade effect takes place. The larger the distance the longer it takes
    * for an object to fade.
    */
-  public var proximityFadeDistance: Float
+  public final inline var proximityFadeDistance: Float
     @JvmName("proximityFadeDistanceProperty")
     get() = getProximityFadeDistance()
     @JvmName("proximityFadeDistanceProperty")
@@ -1506,7 +1506,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The width of the range around the shape between the minimum and maximum representable signed
    * distance.
    */
-  public var msdfPixelRange: Float
+  public final inline var msdfPixelRange: Float
     @JvmName("msdfPixelRangeProperty")
     get() = getMsdfPixelRange()
     @JvmName("msdfPixelRangeProperty")
@@ -1517,7 +1517,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The width of the shape outline.
    */
-  public var msdfOutlineSize: Float
+  public final inline var msdfOutlineSize: Float
     @JvmName("msdfOutlineSizeProperty")
     get() = getMsdfOutlineSize()
     @JvmName("msdfOutlineSizeProperty")
@@ -1528,7 +1528,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Specifies which type of fade to use. Can be any of the [DistanceFadeMode]s.
    */
-  public var distanceFadeMode: DistanceFadeMode
+  public final inline var distanceFadeMode: DistanceFadeMode
     @JvmName("distanceFadeModeProperty")
     get() = getDistanceFade()
     @JvmName("distanceFadeModeProperty")
@@ -1543,7 +1543,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully
    * disappear once it reaches [distanceFadeMinDistance].
    */
-  public var distanceFadeMinDistance: Float
+  public final inline var distanceFadeMinDistance: Float
     @JvmName("distanceFadeMinDistanceProperty")
     get() = getDistanceFadeMinDistance()
     @JvmName("distanceFadeMinDistanceProperty")
@@ -1557,7 +1557,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * will be reversed. The object will start to fade away at [distanceFadeMaxDistance] and will fully
    * disappear once it reaches [distanceFadeMinDistance].
    */
-  public var distanceFadeMaxDistance: Float
+  public final inline var distanceFadeMaxDistance: Float
     @JvmName("distanceFadeMaxDistanceProperty")
     get() = getDistanceFadeMaxDistance()
     @JvmName("distanceFadeMaxDistanceProperty")
@@ -1590,7 +1590,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun albedoColorMutate(block: Color.() -> Unit): Color = albedoColor.apply{
+  public final fun albedoColorMutate(block: Color.() -> Unit): Color = albedoColor.apply{
       block(this)
       albedoColor = this
   }
@@ -1614,7 +1614,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
+  public final fun emissionMutate(block: Color.() -> Unit): Color = emission.apply{
       block(this)
       emission = this
   }
@@ -1639,7 +1639,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun subsurfScatterTransmittanceColorMutate(block: Color.() -> Unit): Color =
+  public final fun subsurfScatterTransmittanceColorMutate(block: Color.() -> Unit): Color =
       subsurfScatterTransmittanceColor.apply{
       block(this)
       subsurfScatterTransmittanceColor = this
@@ -1664,7 +1664,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun backlightMutate(block: Color.() -> Unit): Color = backlight.apply{
+  public final fun backlightMutate(block: Color.() -> Unit): Color = backlight.apply{
       block(this)
       backlight = this
   }
@@ -1689,7 +1689,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv1ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply{
+  public final fun uv1ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv1Scale.apply{
       block(this)
       uv1Scale = this
   }
@@ -1715,7 +1715,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv1OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply{
+  public final fun uv1OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv1Offset.apply{
       block(this)
       uv1Offset = this
   }
@@ -1740,7 +1740,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv2ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply{
+  public final fun uv2ScaleMutate(block: Vector3.() -> Unit): Vector3 = uv2Scale.apply{
       block(this)
       uv2Scale = this
   }
@@ -1766,348 +1766,348 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply{
+  public final fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply{
       block(this)
       uv2Offset = this
   }
 
 
-  public fun setAlbedo(albedo: Color): Unit {
+  public final fun setAlbedo(albedo: Color): Unit {
     TransferContext.writeArguments(COLOR to albedo)
     TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
   }
 
-  public fun getAlbedo(): Color {
+  public final fun getAlbedo(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setTransparency(transparency: Transparency): Unit {
+  public final fun setTransparency(transparency: Transparency): Unit {
     TransferContext.writeArguments(LONG to transparency.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
   }
 
-  public fun getTransparency(): Transparency {
+  public final fun getTransparency(): Transparency {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, LONG)
     return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing): Unit {
+  public final fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing): Unit {
     TransferContext.writeArguments(LONG to alphaAa.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
-  public fun getAlphaAntialiasing(): AlphaAntiAliasing {
+  public final fun getAlphaAntialiasing(): AlphaAntiAliasing {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
     return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAlphaAntialiasingEdge(edge: Float): Unit {
+  public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
     TransferContext.writeArguments(DOUBLE to edge.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
 
-  public fun getAlphaAntialiasingEdge(): Float {
+  public final fun getAlphaAntialiasingEdge(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setShadingMode(shadingMode: ShadingMode): Unit {
+  public final fun setShadingMode(shadingMode: ShadingMode): Unit {
     TransferContext.writeArguments(LONG to shadingMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setShadingModePtr, NIL)
   }
 
-  public fun getShadingMode(): ShadingMode {
+  public final fun getShadingMode(): ShadingMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadingModePtr, LONG)
     return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSpecular(specular: Float): Unit {
+  public final fun setSpecular(specular: Float): Unit {
     TransferContext.writeArguments(DOUBLE to specular.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpecularPtr, NIL)
   }
 
-  public fun getSpecular(): Float {
+  public final fun getSpecular(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMetallic(metallic: Float): Unit {
+  public final fun setMetallic(metallic: Float): Unit {
     TransferContext.writeArguments(DOUBLE to metallic.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMetallicPtr, NIL)
   }
 
-  public fun getMetallic(): Float {
+  public final fun getMetallic(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMetallicPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRoughness(roughness: Float): Unit {
+  public final fun setRoughness(roughness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to roughness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessPtr, NIL)
   }
 
-  public fun getRoughness(): Float {
+  public final fun getRoughness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEmission(emission: Color): Unit {
+  public final fun setEmission(emission: Color): Unit {
     TransferContext.writeArguments(COLOR to emission)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
   }
 
-  public fun getEmission(): Color {
+  public final fun getEmission(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setEmissionEnergyMultiplier(emissionEnergyMultiplier: Float): Unit {
+  public final fun setEmissionEnergyMultiplier(emissionEnergyMultiplier: Float): Unit {
     TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyMultiplierPtr, NIL)
   }
 
-  public fun getEmissionEnergyMultiplier(): Float {
+  public final fun getEmissionEnergyMultiplier(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEmissionIntensity(emissionEnergyMultiplier: Float): Unit {
+  public final fun setEmissionIntensity(emissionEnergyMultiplier: Float): Unit {
     TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionIntensityPtr, NIL)
   }
 
-  public fun getEmissionIntensity(): Float {
+  public final fun getEmissionIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setNormalScale(normalScale: Float): Unit {
+  public final fun setNormalScale(normalScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to normalScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setNormalScalePtr, NIL)
   }
 
-  public fun getNormalScale(): Float {
+  public final fun getNormalScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNormalScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRim(rim: Float): Unit {
+  public final fun setRim(rim: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rim.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRimPtr, NIL)
   }
 
-  public fun getRim(): Float {
+  public final fun getRim(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRimPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRimTint(rimTint: Float): Unit {
+  public final fun setRimTint(rimTint: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rimTint.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRimTintPtr, NIL)
   }
 
-  public fun getRimTint(): Float {
+  public final fun getRimTint(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRimTintPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setClearcoat(clearcoat: Float): Unit {
+  public final fun setClearcoat(clearcoat: Float): Unit {
     TransferContext.writeArguments(DOUBLE to clearcoat.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatPtr, NIL)
   }
 
-  public fun getClearcoat(): Float {
+  public final fun getClearcoat(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setClearcoatRoughness(clearcoatRoughness: Float): Unit {
+  public final fun setClearcoatRoughness(clearcoatRoughness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to clearcoatRoughness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatRoughnessPtr, NIL)
   }
 
-  public fun getClearcoatRoughness(): Float {
+  public final fun getClearcoatRoughness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatRoughnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAnisotropy(anisotropy: Float): Unit {
+  public final fun setAnisotropy(anisotropy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to anisotropy.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyPtr, NIL)
   }
 
-  public fun getAnisotropy(): Float {
+  public final fun getAnisotropy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHeightmapScale(heightmapScale: Float): Unit {
+  public final fun setHeightmapScale(heightmapScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to heightmapScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapScalePtr, NIL)
   }
 
-  public fun getHeightmapScale(): Float {
+  public final fun getHeightmapScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSubsurfaceScatteringStrength(strength: Float): Unit {
+  public final fun setSubsurfaceScatteringStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSubsurfaceScatteringStrengthPtr, NIL)
   }
 
-  public fun getSubsurfaceScatteringStrength(): Float {
+  public final fun getSubsurfaceScatteringStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubsurfaceScatteringStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTransmittanceColor(color: Color): Unit {
+  public final fun setTransmittanceColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceColorPtr, NIL)
   }
 
-  public fun getTransmittanceColor(): Color {
+  public final fun getTransmittanceColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setTransmittanceDepth(depth: Float): Unit {
+  public final fun setTransmittanceDepth(depth: Float): Unit {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceDepthPtr, NIL)
   }
 
-  public fun getTransmittanceDepth(): Float {
+  public final fun getTransmittanceDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTransmittanceBoost(boost: Float): Unit {
+  public final fun setTransmittanceBoost(boost: Float): Unit {
     TransferContext.writeArguments(DOUBLE to boost.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceBoostPtr, NIL)
   }
 
-  public fun getTransmittanceBoost(): Float {
+  public final fun getTransmittanceBoost(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceBoostPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBacklight(backlight: Color): Unit {
+  public final fun setBacklight(backlight: Color): Unit {
     TransferContext.writeArguments(COLOR to backlight)
     TransferContext.callMethod(rawPtr, MethodBindings.setBacklightPtr, NIL)
   }
 
-  public fun getBacklight(): Color {
+  public final fun getBacklight(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBacklightPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setRefraction(refraction: Float): Unit {
+  public final fun setRefraction(refraction: Float): Unit {
     TransferContext.writeArguments(DOUBLE to refraction.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRefractionPtr, NIL)
   }
 
-  public fun getRefraction(): Float {
+  public final fun getRefraction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRefractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPointSize(pointSize: Float): Unit {
+  public final fun setPointSize(pointSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pointSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPointSizePtr, NIL)
   }
 
-  public fun getPointSize(): Float {
+  public final fun getPointSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDetailUv(detailUv: DetailUV): Unit {
+  public final fun setDetailUv(detailUv: DetailUV): Unit {
     TransferContext.writeArguments(LONG to detailUv.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDetailUvPtr, NIL)
   }
 
-  public fun getDetailUv(): DetailUV {
+  public final fun getDetailUv(): DetailUV {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDetailUvPtr, LONG)
     return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBlendMode(blendMode: BlendMode): Unit {
+  public final fun setBlendMode(blendMode: BlendMode): Unit {
     TransferContext.writeArguments(LONG to blendMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
   }
 
-  public fun getBlendMode(): BlendMode {
+  public final fun getBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
     return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDepthDrawMode(depthDrawMode: DepthDrawMode): Unit {
+  public final fun setDepthDrawMode(depthDrawMode: DepthDrawMode): Unit {
     TransferContext.writeArguments(LONG to depthDrawMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthDrawModePtr, NIL)
   }
 
-  public fun getDepthDrawMode(): DepthDrawMode {
+  public final fun getDepthDrawMode(): DepthDrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthDrawModePtr, LONG)
     return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setCullMode(cullMode: CullMode): Unit {
+  public final fun setCullMode(cullMode: CullMode): Unit {
     TransferContext.writeArguments(LONG to cullMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
   }
 
-  public fun getCullMode(): CullMode {
+  public final fun getCullMode(): CullMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
     return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDiffuseMode(diffuseMode: DiffuseMode): Unit {
+  public final fun setDiffuseMode(diffuseMode: DiffuseMode): Unit {
     TransferContext.writeArguments(LONG to diffuseMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseModePtr, NIL)
   }
 
-  public fun getDiffuseMode(): DiffuseMode {
+  public final fun getDiffuseMode(): DiffuseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseModePtr, LONG)
     return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSpecularMode(specularMode: SpecularMode): Unit {
+  public final fun setSpecularMode(specularMode: SpecularMode): Unit {
     TransferContext.writeArguments(LONG to specularMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSpecularModePtr, NIL)
   }
 
-  public fun getSpecularMode(): SpecularMode {
+  public final fun getSpecularMode(): SpecularMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularModePtr, LONG)
     return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -2119,7 +2119,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by
    * setting the corresponding member to `true`. See [Flags] enumerator for options.
    */
-  public fun setFlag(flag: Flags, enable: Boolean): Unit {
+  public final fun setFlag(flag: Flags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
   }
@@ -2127,18 +2127,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Returns `true`, if the specified flag is enabled. See [Flags] enumerator for options.
    */
-  public fun getFlag(flag: Flags): Boolean {
+  public final fun getFlag(flag: Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTextureFilter(mode: TextureFilter): Unit {
+  public final fun setTextureFilter(mode: TextureFilter): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
-  public fun getTextureFilter(): TextureFilter {
+  public final fun getTextureFilter(): TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
     return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
@@ -2150,7 +2150,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * incurred when specified. Features can also be enabled by setting the corresponding member to
    * `true`.
    */
-  public fun setFeature(feature: Feature, enable: Boolean): Unit {
+  public final fun setFeature(feature: Feature, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
   }
@@ -2158,7 +2158,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Returns `true`, if the specified [Feature] is enabled.
    */
-  public fun getFeature(feature: Feature): Boolean {
+  public final fun getFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2167,7 +2167,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Sets the texture for the slot specified by [param]. See [TextureParam] for available slots.
    */
-  public fun setTexture(`param`: TextureParam, texture: Texture2D?): Unit {
+  public final fun setTexture(`param`: TextureParam, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
@@ -2175,370 +2175,370 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * Returns the [Texture2D] associated with the specified [TextureParam].
    */
-  public fun getTexture(`param`: TextureParam): Texture2D? {
+  public final fun getTexture(`param`: TextureParam): Texture2D? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setDetailBlendMode(detailBlendMode: BlendMode): Unit {
+  public final fun setDetailBlendMode(detailBlendMode: BlendMode): Unit {
     TransferContext.writeArguments(LONG to detailBlendMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDetailBlendModePtr, NIL)
   }
 
-  public fun getDetailBlendMode(): BlendMode {
+  public final fun getDetailBlendMode(): BlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDetailBlendModePtr, LONG)
     return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setUv1Scale(scale: Vector3): Unit {
+  public final fun setUv1Scale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, MethodBindings.setUv1ScalePtr, NIL)
   }
 
-  public fun getUv1Scale(): Vector3 {
+  public final fun getUv1Scale(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUv1ScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setUv1Offset(offset: Vector3): Unit {
+  public final fun setUv1Offset(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setUv1OffsetPtr, NIL)
   }
 
-  public fun getUv1Offset(): Vector3 {
+  public final fun getUv1Offset(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUv1OffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setUv1TriplanarBlendSharpness(sharpness: Float): Unit {
+  public final fun setUv1TriplanarBlendSharpness(sharpness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setUv1TriplanarBlendSharpnessPtr, NIL)
   }
 
-  public fun getUv1TriplanarBlendSharpness(): Float {
+  public final fun getUv1TriplanarBlendSharpness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUv1TriplanarBlendSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setUv2Scale(scale: Vector3): Unit {
+  public final fun setUv2Scale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, MethodBindings.setUv2ScalePtr, NIL)
   }
 
-  public fun getUv2Scale(): Vector3 {
+  public final fun getUv2Scale(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUv2ScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setUv2Offset(offset: Vector3): Unit {
+  public final fun setUv2Offset(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setUv2OffsetPtr, NIL)
   }
 
-  public fun getUv2Offset(): Vector3 {
+  public final fun getUv2Offset(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUv2OffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setUv2TriplanarBlendSharpness(sharpness: Float): Unit {
+  public final fun setUv2TriplanarBlendSharpness(sharpness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setUv2TriplanarBlendSharpnessPtr, NIL)
   }
 
-  public fun getUv2TriplanarBlendSharpness(): Float {
+  public final fun getUv2TriplanarBlendSharpness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUv2TriplanarBlendSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBillboardMode(mode: BillboardMode): Unit {
+  public final fun setBillboardMode(mode: BillboardMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
   }
 
-  public fun getBillboardMode(): BillboardMode {
+  public final fun getBillboardMode(): BillboardMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
     return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setParticlesAnimHFrames(frames: Int): Unit {
+  public final fun setParticlesAnimHFrames(frames: Int): Unit {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
   }
 
-  public fun getParticlesAnimHFrames(): Int {
+  public final fun getParticlesAnimHFrames(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setParticlesAnimVFrames(frames: Int): Unit {
+  public final fun setParticlesAnimVFrames(frames: Int): Unit {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
   }
 
-  public fun getParticlesAnimVFrames(): Int {
+  public final fun getParticlesAnimVFrames(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setParticlesAnimLoop(loop: Boolean): Unit {
+  public final fun setParticlesAnimLoop(loop: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
   }
 
-  public fun getParticlesAnimLoop(): Boolean {
+  public final fun getParticlesAnimLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHeightmapDeepParallax(enable: Boolean): Unit {
+  public final fun setHeightmapDeepParallax(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxPtr, NIL)
   }
 
-  public fun isHeightmapDeepParallaxEnabled(): Boolean {
+  public final fun isHeightmapDeepParallaxEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHeightmapDeepParallaxEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHeightmapDeepParallaxMinLayers(layer: Int): Unit {
+  public final fun setHeightmapDeepParallaxMinLayers(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMinLayersPtr, NIL)
   }
 
-  public fun getHeightmapDeepParallaxMinLayers(): Int {
+  public final fun getHeightmapDeepParallaxMinLayers(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMinLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setHeightmapDeepParallaxMaxLayers(layer: Int): Unit {
+  public final fun setHeightmapDeepParallaxMaxLayers(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMaxLayersPtr, NIL)
   }
 
-  public fun getHeightmapDeepParallaxMaxLayers(): Int {
+  public final fun getHeightmapDeepParallaxMaxLayers(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMaxLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setHeightmapDeepParallaxFlipTangent(flip: Boolean): Unit {
+  public final fun setHeightmapDeepParallaxFlipTangent(flip: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipTangentPtr, NIL)
   }
 
-  public fun getHeightmapDeepParallaxFlipTangent(): Boolean {
+  public final fun getHeightmapDeepParallaxFlipTangent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipTangentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHeightmapDeepParallaxFlipBinormal(flip: Boolean): Unit {
+  public final fun setHeightmapDeepParallaxFlipBinormal(flip: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipBinormalPtr, NIL)
   }
 
-  public fun getHeightmapDeepParallaxFlipBinormal(): Boolean {
+  public final fun getHeightmapDeepParallaxFlipBinormal(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipBinormalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setGrow(amount: Float): Unit {
+  public final fun setGrow(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGrowPtr, NIL)
   }
 
-  public fun getGrow(): Float {
+  public final fun getGrow(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGrowPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEmissionOperator(_operator: EmissionOperator): Unit {
+  public final fun setEmissionOperator(_operator: EmissionOperator): Unit {
     TransferContext.writeArguments(LONG to _operator.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionOperatorPtr, NIL)
   }
 
-  public fun getEmissionOperator(): EmissionOperator {
+  public final fun getEmissionOperator(): EmissionOperator {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionOperatorPtr, LONG)
     return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAoLightAffect(amount: Float): Unit {
+  public final fun setAoLightAffect(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAoLightAffectPtr, NIL)
   }
 
-  public fun getAoLightAffect(): Float {
+  public final fun getAoLightAffect(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAoLightAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAlphaScissorThreshold(threshold: Float): Unit {
+  public final fun setAlphaScissorThreshold(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
 
-  public fun getAlphaScissorThreshold(): Float {
+  public final fun getAlphaScissorThreshold(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAlphaHashScale(threshold: Float): Unit {
+  public final fun setAlphaHashScale(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
 
-  public fun getAlphaHashScale(): Float {
+  public final fun getAlphaHashScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGrowEnabled(enable: Boolean): Unit {
+  public final fun setGrowEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setGrowEnabledPtr, NIL)
   }
 
-  public fun isGrowEnabled(): Boolean {
+  public final fun isGrowEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isGrowEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMetallicTextureChannel(channel: TextureChannel): Unit {
+  public final fun setMetallicTextureChannel(channel: TextureChannel): Unit {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMetallicTextureChannelPtr, NIL)
   }
 
-  public fun getMetallicTextureChannel(): TextureChannel {
+  public final fun getMetallicTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMetallicTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setRoughnessTextureChannel(channel: TextureChannel): Unit {
+  public final fun setRoughnessTextureChannel(channel: TextureChannel): Unit {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
   }
 
-  public fun getRoughnessTextureChannel(): TextureChannel {
+  public final fun getRoughnessTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAoTextureChannel(channel: TextureChannel): Unit {
+  public final fun setAoTextureChannel(channel: TextureChannel): Unit {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAoTextureChannelPtr, NIL)
   }
 
-  public fun getAoTextureChannel(): TextureChannel {
+  public final fun getAoTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAoTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setRefractionTextureChannel(channel: TextureChannel): Unit {
+  public final fun setRefractionTextureChannel(channel: TextureChannel): Unit {
     TransferContext.writeArguments(LONG to channel.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRefractionTextureChannelPtr, NIL)
   }
 
-  public fun getRefractionTextureChannel(): TextureChannel {
+  public final fun getRefractionTextureChannel(): TextureChannel {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRefractionTextureChannelPtr, LONG)
     return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setProximityFadeEnabled(enabled: Boolean): Unit {
+  public final fun setProximityFadeEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeEnabledPtr, NIL)
   }
 
-  public fun isProximityFadeEnabled(): Boolean {
+  public final fun isProximityFadeEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isProximityFadeEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setProximityFadeDistance(distance: Float): Unit {
+  public final fun setProximityFadeDistance(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeDistancePtr, NIL)
   }
 
-  public fun getProximityFadeDistance(): Float {
+  public final fun getProximityFadeDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProximityFadeDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMsdfPixelRange(range: Float): Unit {
+  public final fun setMsdfPixelRange(range: Float): Unit {
     TransferContext.writeArguments(DOUBLE to range.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
 
-  public fun getMsdfPixelRange(): Float {
+  public final fun getMsdfPixelRange(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMsdfOutlineSize(size: Float): Unit {
+  public final fun setMsdfOutlineSize(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMsdfOutlineSizePtr, NIL)
   }
 
-  public fun getMsdfOutlineSize(): Float {
+  public final fun getMsdfOutlineSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMsdfOutlineSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDistanceFade(mode: DistanceFadeMode): Unit {
+  public final fun setDistanceFade(mode: DistanceFadeMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadePtr, NIL)
   }
 
-  public fun getDistanceFade(): DistanceFadeMode {
+  public final fun getDistanceFade(): DistanceFadeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadePtr, LONG)
     return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDistanceFadeMaxDistance(distance: Float): Unit {
+  public final fun setDistanceFadeMaxDistance(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
   }
 
-  public fun getDistanceFadeMaxDistance(): Float {
+  public final fun getDistanceFadeMaxDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDistanceFadeMinDistance(distance: Float): Unit {
+  public final fun setDistanceFadeMinDistance(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMinDistancePtr, NIL)
   }
 
-  public fun getDistanceFadeMinDistance(): Float {
+  public final fun getDistanceFadeMinDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMinDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

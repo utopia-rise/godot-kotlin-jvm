@@ -50,7 +50,7 @@ public open class Sprite2D : Node2D() {
   /**
    * [Texture2D] object to draw.
    */
-  public var texture: Texture2D?
+  public final inline var texture: Texture2D?
     @JvmName("textureProperty")
     get() = getTexture()
     @JvmName("textureProperty")
@@ -65,7 +65,7 @@ public open class Sprite2D : Node2D() {
    * `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and
    * [ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
    */
-  public var centered: Boolean
+  public final inline var centered: Boolean
     @JvmName("centeredProperty")
     get() = isCentered()
     @JvmName("centeredProperty")
@@ -77,7 +77,7 @@ public open class Sprite2D : Node2D() {
    * The texture's drawing offset.
    */
   @CoreTypeLocalCopy
-  public var offset: Vector2
+  public final inline var offset: Vector2
     @JvmName("offsetProperty")
     get() = getOffset()
     @JvmName("offsetProperty")
@@ -88,7 +88,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is flipped horizontally.
    */
-  public var flipH: Boolean
+  public final inline var flipH: Boolean
     @JvmName("flipHProperty")
     get() = isFlippedH()
     @JvmName("flipHProperty")
@@ -99,7 +99,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is flipped vertically.
    */
-  public var flipV: Boolean
+  public final inline var flipV: Boolean
     @JvmName("flipVProperty")
     get() = isFlippedV()
     @JvmName("flipVProperty")
@@ -112,7 +112,7 @@ public open class Sprite2D : Node2D() {
    * so that the same visual frame is maintained (same row and column). If that's impossible, [frame]
    * is reset to `0`.
    */
-  public var hframes: Int
+  public final inline var hframes: Int
     @JvmName("hframesProperty")
     get() = getHframes()
     @JvmName("hframesProperty")
@@ -125,7 +125,7 @@ public open class Sprite2D : Node2D() {
    * that the same visual frame is maintained (same row and column). If that's impossible, [frame] is
    * reset to `0`.
    */
-  public var vframes: Int
+  public final inline var vframes: Int
     @JvmName("vframesProperty")
     get() = getVframes()
     @JvmName("vframesProperty")
@@ -138,7 +138,7 @@ public open class Sprite2D : Node2D() {
    * property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the
    * same visual frame (same column and row). If that's impossible, this value is reset to `0`.
    */
-  public var frame: Int
+  public final inline var frame: Int
     @JvmName("frameProperty")
     get() = getFrame()
     @JvmName("frameProperty")
@@ -151,7 +151,7 @@ public open class Sprite2D : Node2D() {
    * property. [hframes] or [vframes] must be greater than 1.
    */
   @CoreTypeLocalCopy
-  public var frameCoords: Vector2i
+  public final inline var frameCoords: Vector2i
     @JvmName("frameCoordsProperty")
     get() = getFrameCoords()
     @JvmName("frameCoordsProperty")
@@ -162,7 +162,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is cut from a larger atlas texture. See [regionRect].
    */
-  public var regionEnabled: Boolean
+  public final inline var regionEnabled: Boolean
     @JvmName("regionEnabledProperty")
     get() = isRegionEnabled()
     @JvmName("regionEnabledProperty")
@@ -174,7 +174,7 @@ public open class Sprite2D : Node2D() {
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    */
   @CoreTypeLocalCopy
-  public var regionRect: Rect2
+  public final inline var regionRect: Rect2
     @JvmName("regionRectProperty")
     get() = getRegionRect()
     @JvmName("regionRectProperty")
@@ -185,7 +185,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, the outermost pixels get blurred out. [regionEnabled] must be `true`.
    */
-  public var regionFilterClipEnabled: Boolean
+  public final inline var regionFilterClipEnabled: Boolean
     @JvmName("regionFilterClipEnabledProperty")
     get() = isRegionFilterClipEnabled()
     @JvmName("regionFilterClipEnabledProperty")
@@ -215,7 +215,7 @@ public open class Sprite2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -240,7 +240,7 @@ public open class Sprite2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
+  public final fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply{
       block(this)
       frameCoords = this
   }
@@ -264,73 +264,73 @@ public open class Sprite2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
       block(this)
       regionRect = this
   }
 
 
-  public fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun getTexture(): Texture2D? {
+  public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setCentered(centered: Boolean): Unit {
+  public final fun setCentered(centered: Boolean): Unit {
     TransferContext.writeArguments(BOOL to centered)
     TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
   }
 
-  public fun isCentered(): Boolean {
+  public final fun isCentered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
-  public fun getOffset(): Vector2 {
+  public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setFlipH(flipH: Boolean): Unit {
+  public final fun setFlipH(flipH: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flipH)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
   }
 
-  public fun isFlippedH(): Boolean {
+  public final fun isFlippedH(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFlipV(flipV: Boolean): Unit {
+  public final fun setFlipV(flipV: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flipV)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
   }
 
-  public fun isFlippedV(): Boolean {
+  public final fun isFlippedV(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setRegionEnabled(enabled: Boolean): Unit {
+  public final fun setRegionEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setRegionEnabledPtr, NIL)
   }
 
-  public fun isRegionEnabled(): Boolean {
+  public final fun isRegionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRegionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -342,73 +342,73 @@ public open class Sprite2D : Node2D() {
    * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position
    * is invalid.
    */
-  public fun isPixelOpaque(pos: Vector2): Boolean {
+  public final fun isPixelOpaque(pos: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.isPixelOpaquePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setRegionRect(rect: Rect2): Unit {
+  public final fun setRegionRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
   }
 
-  public fun getRegionRect(): Rect2 {
+  public final fun getRegionRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
-  public fun setRegionFilterClipEnabled(enabled: Boolean): Unit {
+  public final fun setRegionFilterClipEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setRegionFilterClipEnabledPtr, NIL)
   }
 
-  public fun isRegionFilterClipEnabled(): Boolean {
+  public final fun isRegionFilterClipEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRegionFilterClipEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFrame(frame: Int): Unit {
+  public final fun setFrame(frame: Int): Unit {
     TransferContext.writeArguments(LONG to frame.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
   }
 
-  public fun getFrame(): Int {
+  public final fun getFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFrameCoords(coords: Vector2i): Unit {
+  public final fun setFrameCoords(coords: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrameCoordsPtr, NIL)
   }
 
-  public fun getFrameCoords(): Vector2i {
+  public final fun getFrameCoords(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameCoordsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
-  public fun setVframes(vframes: Int): Unit {
+  public final fun setVframes(vframes: Int): Unit {
     TransferContext.writeArguments(LONG to vframes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setVframesPtr, NIL)
   }
 
-  public fun getVframes(): Int {
+  public final fun getVframes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVframesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setHframes(hframes: Int): Unit {
+  public final fun setHframes(hframes: Int): Unit {
     TransferContext.writeArguments(LONG to hframes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setHframesPtr, NIL)
   }
 
-  public fun getHframes(): Int {
+  public final fun getHframes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHframesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -444,7 +444,7 @@ public open class Sprite2D : Node2D() {
    * }
    * ```
    */
-  public fun getRect(): Rect2 {
+  public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)

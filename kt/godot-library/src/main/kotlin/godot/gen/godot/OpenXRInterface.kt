@@ -92,7 +92,7 @@ public open class OpenXRInterface : XRInterface() {
    * The display refresh rate for the current HMD. Only functional if this feature is supported by
    * the OpenXR runtime and after the interface has been initialized.
    */
-  public var displayRefreshRate: Float
+  public final inline var displayRefreshRate: Float
     @JvmName("displayRefreshRateProperty")
     get() = getDisplayRefreshRate()
     @JvmName("displayRefreshRateProperty")
@@ -104,7 +104,7 @@ public open class OpenXRInterface : XRInterface() {
    * The render size multiplier for the current HMD. Must be set before the interface has been
    * initialized.
    */
-  public var renderTargetSizeMultiplier: Double
+  public final inline var renderTargetSizeMultiplier: Double
     @JvmName("renderTargetSizeMultiplierProperty")
     get() = getRenderTargetSizeMultiplier()
     @JvmName("renderTargetSizeMultiplierProperty")
@@ -117,7 +117,7 @@ public open class OpenXRInterface : XRInterface() {
    * accessible.
    * **Note:** Only works on compatibility renderer.
    */
-  public var foveationLevel: Int
+  public final inline var foveationLevel: Int
     @JvmName("foveationLevelProperty")
     get() = getFoveationLevel()
     @JvmName("foveationLevelProperty")
@@ -130,7 +130,7 @@ public open class OpenXRInterface : XRInterface() {
    * accessible. If enabled foveation will automatically adjusted between low and [foveationLevel].
    * **Note:** Only works on compatibility renderer.
    */
-  public var foveationDynamic: Boolean
+  public final inline var foveationDynamic: Boolean
     @JvmName("foveationDynamicProperty")
     get() = getFoveationDynamic()
     @JvmName("foveationDynamicProperty")
@@ -144,7 +144,7 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
    * [Viewport.VRS_XR].
    */
-  public var vrsMinRadius: Float
+  public final inline var vrsMinRadius: Float
     @JvmName("vrsMinRadiusProperty")
     get() = getVrsMinRadius()
     @JvmName("vrsMinRadiusProperty")
@@ -158,7 +158,7 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
    * [Viewport.VRS_XR].
    */
-  public var vrsStrength: Float
+  public final inline var vrsStrength: Float
     @JvmName("vrsStrengthProperty")
     get() = getVrsStrength()
     @JvmName("vrsStrengthProperty")
@@ -170,24 +170,24 @@ public open class OpenXRInterface : XRInterface() {
     callConstructor(ENGINECLASS_OPENXRINTERFACE, scriptIndex)
   }
 
-  public fun getDisplayRefreshRate(): Float {
+  public final fun getDisplayRefreshRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDisplayRefreshRate(refreshRate: Float): Unit {
+  public final fun setDisplayRefreshRate(refreshRate: Float): Unit {
     TransferContext.writeArguments(DOUBLE to refreshRate.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
   }
 
-  public fun getRenderTargetSizeMultiplier(): Double {
+  public final fun getRenderTargetSizeMultiplier(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setRenderTargetSizeMultiplier(multiplier: Double): Unit {
+  public final fun setRenderTargetSizeMultiplier(multiplier: Double): Unit {
     TransferContext.writeArguments(DOUBLE to multiplier)
     TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetSizeMultiplierPtr, NIL)
   }
@@ -198,30 +198,30 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** This feature is only available on the compatibility renderer and currently only
    * available on some stand alone headsets. For Vulkan set [Viewport.vrsMode] to `VRS_XR` on desktop.
    */
-  public fun isFoveationSupported(): Boolean {
+  public final fun isFoveationSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFoveationSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getFoveationLevel(): Int {
+  public final fun getFoveationLevel(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFoveationLevelPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFoveationLevel(foveationLevel: Int): Unit {
+  public final fun setFoveationLevel(foveationLevel: Int): Unit {
     TransferContext.writeArguments(LONG to foveationLevel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFoveationLevelPtr, NIL)
   }
 
-  public fun getFoveationDynamic(): Boolean {
+  public final fun getFoveationDynamic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFoveationDynamicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFoveationDynamic(foveationDynamic: Boolean): Unit {
+  public final fun setFoveationDynamic(foveationDynamic: Boolean): Unit {
     TransferContext.writeArguments(BOOL to foveationDynamic)
     TransferContext.callMethod(rawPtr, MethodBindings.setFoveationDynamicPtr, NIL)
   }
@@ -229,7 +229,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Returns `true` if the given action set is active.
    */
-  public fun isActionSetActive(name: String): Boolean {
+  public final fun isActionSetActive(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionSetActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -238,7 +238,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Sets the given action set as active or inactive.
    */
-  public fun setActionSetActive(name: String, active: Boolean): Unit {
+  public final fun setActionSetActive(name: String, active: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionSetActivePtr, NIL)
   }
@@ -246,7 +246,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Returns a list of action sets registered with Godot (loaded from the action map at runtime).
    */
-  public fun getActionSets(): VariantArray<Any?> {
+  public final fun getActionSets(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -256,7 +256,7 @@ public open class OpenXRInterface : XRInterface() {
    * Returns display refresh rates supported by the current HMD. Only returned if this feature is
    * supported by the OpenXR runtime and after the interface has been initialized.
    */
-  public fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
+  public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -266,7 +266,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled and motion range is supported, sets the currently configured motion
    * range for [hand] to [motionRange].
    */
-  public fun setMotionRange(hand: Hand, motionRange: HandMotionRange): Unit {
+  public final fun setMotionRange(hand: Hand, motionRange: HandMotionRange): Unit {
     TransferContext.writeArguments(LONG to hand.id, LONG to motionRange.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
   }
@@ -275,7 +275,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled and motion range is supported, gets the currently configured motion
    * range for [hand].
    */
-  public fun getMotionRange(hand: Hand): HandMotionRange {
+  public final fun getMotionRange(hand: Hand): HandMotionRange {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
     return OpenXRInterface.HandMotionRange.from(TransferContext.readReturnValue(LONG) as Long)
@@ -285,7 +285,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled and hand tracking source is supported, gets the source of the hand
    * tracking data for [hand].
    */
-  public fun getHandTrackingSource(hand: Hand): HandTrackedSource {
+  public final fun getHandTrackingSource(hand: Hand): HandTrackedSource {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
     return OpenXRInterface.HandTrackedSource.from(TransferContext.readReturnValue(LONG) as Long)
@@ -294,7 +294,7 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * If handtracking is enabled, returns flags that inform us of the validity of the tracking data.
    */
-  public fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
+  public final fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
     return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
@@ -304,7 +304,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled, returns the rotation of a joint ([joint]) of a hand ([hand]) as
    * provided by OpenXR.
    */
-  public fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
+  public final fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
@@ -314,7 +314,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled, returns the position of a joint ([joint]) of a hand ([hand]) as
    * provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
-  public fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
+  public final fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -324,7 +324,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled, returns the radius of a joint ([joint]) of a hand ([hand]) as
    * provided by OpenXR. This is without worldscale applied!
    */
-  public fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
+  public final fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -334,7 +334,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled, returns the linear velocity of a joint ([joint]) of a hand ([hand])
    * as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
-  public fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
+  public final fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -344,7 +344,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled, returns the angular velocity of a joint ([joint]) of a hand
    * ([hand]) as provided by OpenXR. This is relative to [XROrigin3D]!
    */
-  public fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
+  public final fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -354,7 +354,7 @@ public open class OpenXRInterface : XRInterface() {
    * Returns `true` if OpenXR's hand tracking is supported and enabled.
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
-  public fun isHandTrackingSupported(): Boolean {
+  public final fun isHandTrackingSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHandTrackingSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -364,7 +364,7 @@ public open class OpenXRInterface : XRInterface() {
    * Returns `true` if OpenXR's hand interaction profile is supported and enabled.
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
-  public fun isHandInteractionSupported(): Boolean {
+  public final fun isHandInteractionSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHandInteractionSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -374,30 +374,30 @@ public open class OpenXRInterface : XRInterface() {
    * Returns the capabilities of the eye gaze interaction extension.
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
-  public fun isEyeGazeInteractionSupported(): Boolean {
+  public final fun isEyeGazeInteractionSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getVrsMinRadius(): Float {
+  public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVrsMinRadius(radius: Float): Unit {
+  public final fun setVrsMinRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
   }
 
-  public fun getVrsStrength(): Float {
+  public final fun getVrsStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVrsStrength(strength: Float): Unit {
+  public final fun setVrsStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
   }

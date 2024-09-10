@@ -55,7 +55,7 @@ public open class ColorPicker : VBoxContainer() {
    * The currently selected color.
    */
   @CoreTypeLocalCopy
-  public var color: Color
+  public final inline var color: Color
     @JvmName("colorProperty")
     get() = getPickColor()
     @JvmName("colorProperty")
@@ -66,7 +66,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * If `true`, shows an alpha channel slider (opacity).
    */
-  public var editAlpha: Boolean
+  public final inline var editAlpha: Boolean
     @JvmName("editAlphaProperty")
     get() = isEditingAlpha()
     @JvmName("editAlphaProperty")
@@ -77,7 +77,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * The currently selected color mode. See [ColorModeType].
    */
-  public var colorMode: ColorModeType
+  public final inline var colorMode: ColorModeType
     @JvmName("colorModeProperty")
     get() = getColorMode()
     @JvmName("colorModeProperty")
@@ -89,7 +89,7 @@ public open class ColorPicker : VBoxContainer() {
    * If `true`, the color will apply only after the user releases the mouse button, otherwise it
    * will apply immediately even in mouse motion event (which can cause performance issues).
    */
-  public var deferredMode: Boolean
+  public final inline var deferredMode: Boolean
     @JvmName("deferredModeProperty")
     get() = isDeferredMode()
     @JvmName("deferredModeProperty")
@@ -100,7 +100,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * The shape of the color space view. See [PickerShapeType].
    */
-  public var pickerShape: PickerShapeType
+  public final inline var pickerShape: PickerShapeType
     @JvmName("pickerShapeProperty")
     get() = getPickerShape()
     @JvmName("pickerShapeProperty")
@@ -112,7 +112,7 @@ public open class ColorPicker : VBoxContainer() {
    * If `true`, it's possible to add presets under Swatches. If `false`, the button to add presets
    * is disabled.
    */
-  public var canAddSwatches: Boolean
+  public final inline var canAddSwatches: Boolean
     @JvmName("canAddSwatchesProperty")
     get() = areSwatchesEnabled()
     @JvmName("canAddSwatchesProperty")
@@ -123,7 +123,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * If `true`, the color sampler and color preview are visible.
    */
-  public var samplerVisible: Boolean
+  public final inline var samplerVisible: Boolean
     @JvmName("samplerVisibleProperty")
     get() = isSamplerVisible()
     @JvmName("samplerVisibleProperty")
@@ -134,7 +134,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * If `true`, the color mode buttons are visible.
    */
-  public var colorModesVisible: Boolean
+  public final inline var colorModesVisible: Boolean
     @JvmName("colorModesVisibleProperty")
     get() = areModesVisible()
     @JvmName("colorModesVisibleProperty")
@@ -145,7 +145,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * If `true`, the color sliders are visible.
    */
-  public var slidersVisible: Boolean
+  public final inline var slidersVisible: Boolean
     @JvmName("slidersVisibleProperty")
     get() = areSlidersVisible()
     @JvmName("slidersVisibleProperty")
@@ -156,7 +156,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * If `true`, the hex color code input field is visible.
    */
-  public var hexVisible: Boolean
+  public final inline var hexVisible: Boolean
     @JvmName("hexVisibleProperty")
     get() = isHexVisible()
     @JvmName("hexVisibleProperty")
@@ -167,7 +167,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * If `true`, the Swatches and Recent Colors presets are visible.
    */
-  public var presetsVisible: Boolean
+  public final inline var presetsVisible: Boolean
     @JvmName("presetsVisibleProperty")
     get() = arePresetsVisible()
     @JvmName("presetsVisibleProperty")
@@ -197,117 +197,117 @@ public open class ColorPicker : VBoxContainer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
 
 
-  public fun setPickColor(color: Color): Unit {
+  public final fun setPickColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
   }
 
-  public fun getPickColor(): Color {
+  public final fun getPickColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setDeferredMode(mode: Boolean): Unit {
+  public final fun setDeferredMode(mode: Boolean): Unit {
     TransferContext.writeArguments(BOOL to mode)
     TransferContext.callMethod(rawPtr, MethodBindings.setDeferredModePtr, NIL)
   }
 
-  public fun isDeferredMode(): Boolean {
+  public final fun isDeferredMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDeferredModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setColorMode(colorMode: ColorModeType): Unit {
+  public final fun setColorMode(colorMode: ColorModeType): Unit {
     TransferContext.writeArguments(LONG to colorMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorModePtr, NIL)
   }
 
-  public fun getColorMode(): ColorModeType {
+  public final fun getColorMode(): ColorModeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorModePtr, LONG)
     return ColorPicker.ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setEditAlpha(show: Boolean): Unit {
+  public final fun setEditAlpha(show: Boolean): Unit {
     TransferContext.writeArguments(BOOL to show)
     TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
   }
 
-  public fun isEditingAlpha(): Boolean {
+  public final fun isEditingAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCanAddSwatches(enabled: Boolean): Unit {
+  public final fun setCanAddSwatches(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setCanAddSwatchesPtr, NIL)
   }
 
-  public fun areSwatchesEnabled(): Boolean {
+  public final fun areSwatchesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areSwatchesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPresetsVisible(visible: Boolean): Unit {
+  public final fun setPresetsVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setPresetsVisiblePtr, NIL)
   }
 
-  public fun arePresetsVisible(): Boolean {
+  public final fun arePresetsVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.arePresetsVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setModesVisible(visible: Boolean): Unit {
+  public final fun setModesVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setModesVisiblePtr, NIL)
   }
 
-  public fun areModesVisible(): Boolean {
+  public final fun areModesVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areModesVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSamplerVisible(visible: Boolean): Unit {
+  public final fun setSamplerVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setSamplerVisiblePtr, NIL)
   }
 
-  public fun isSamplerVisible(): Boolean {
+  public final fun isSamplerVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSamplerVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSlidersVisible(visible: Boolean): Unit {
+  public final fun setSlidersVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setSlidersVisiblePtr, NIL)
   }
 
-  public fun areSlidersVisible(): Boolean {
+  public final fun areSlidersVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areSlidersVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHexVisible(visible: Boolean): Unit {
+  public final fun setHexVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setHexVisiblePtr, NIL)
   }
 
-  public fun isHexVisible(): Boolean {
+  public final fun isHexVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHexVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -318,7 +318,7 @@ public open class ColorPicker : VBoxContainer() {
    * and the user will be able to select them.
    * **Note:** The presets list is only for *this* color picker.
    */
-  public fun addPreset(color: Color): Unit {
+  public final fun addPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.addPresetPtr, NIL)
   }
@@ -326,7 +326,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Removes the given color from the list of color presets of this color picker.
    */
-  public fun erasePreset(color: Color): Unit {
+  public final fun erasePreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.erasePresetPtr, NIL)
   }
@@ -334,7 +334,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Returns the list of colors in the presets of the color picker.
    */
-  public fun getPresets(): PackedColorArray {
+  public final fun getPresets(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPresetsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
@@ -346,7 +346,7 @@ public open class ColorPicker : VBoxContainer() {
    * to recent presets when you pick a new color.
    * **Note:** The recent presets list is only for *this* color picker.
    */
-  public fun addRecentPreset(color: Color): Unit {
+  public final fun addRecentPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.addRecentPresetPtr, NIL)
   }
@@ -354,7 +354,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Removes the given color from the list of color recent presets of this color picker.
    */
-  public fun eraseRecentPreset(color: Color): Unit {
+  public final fun eraseRecentPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.eraseRecentPresetPtr, NIL)
   }
@@ -362,18 +362,18 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Returns the list of colors in the recent presets of the color picker.
    */
-  public fun getRecentPresets(): PackedColorArray {
+  public final fun getRecentPresets(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRecentPresetsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
   }
 
-  public fun setPickerShape(shape: PickerShapeType): Unit {
+  public final fun setPickerShape(shape: PickerShapeType): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPickerShapePtr, NIL)
   }
 
-  public fun getPickerShape(): PickerShapeType {
+  public final fun getPickerShape(): PickerShapeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPickerShapePtr, LONG)
     return ColorPicker.PickerShapeType.from(TransferContext.readReturnValue(LONG) as Long)

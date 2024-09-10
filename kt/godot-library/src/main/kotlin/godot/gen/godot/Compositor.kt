@@ -27,7 +27,7 @@ public open class Compositor : Resource() {
    * The custom [CompositorEffect]s that are applied during rendering of viewports using this
    * compositor.
    */
-  public var compositorEffects: VariantArray<CompositorEffect>
+  public final inline var compositorEffects: VariantArray<CompositorEffect>
     @JvmName("compositorEffectsProperty")
     get() = getCompositorEffects()
     @JvmName("compositorEffectsProperty")
@@ -39,12 +39,12 @@ public open class Compositor : Resource() {
     callConstructor(ENGINECLASS_COMPOSITOR, scriptIndex)
   }
 
-  public fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {
+  public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {
     TransferContext.writeArguments(ARRAY to compositorEffects)
     TransferContext.callMethod(rawPtr, MethodBindings.setCompositorEffectsPtr, NIL)
   }
 
-  public fun getCompositorEffects(): VariantArray<CompositorEffect> {
+  public final fun getCompositorEffects(): VariantArray<CompositorEffect> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCompositorEffectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<CompositorEffect>)

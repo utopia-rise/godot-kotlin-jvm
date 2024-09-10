@@ -29,7 +29,7 @@ public open class AudioEffectReverb : AudioEffect() {
    * Time between the original signal and the early reflections of the reverb signal, in
    * milliseconds.
    */
-  public var predelayMsec: Float
+  public final inline var predelayMsec: Float
     @JvmName("predelayMsecProperty")
     get() = getPredelayMsec()
     @JvmName("predelayMsecProperty")
@@ -40,7 +40,7 @@ public open class AudioEffectReverb : AudioEffect() {
   /**
    * Output percent of predelay. Value can range from 0 to 1.
    */
-  public var predelayFeedback: Float
+  public final inline var predelayFeedback: Float
     @JvmName("predelayFeedbackProperty")
     get() = getPredelayFeedback()
     @JvmName("predelayFeedbackProperty")
@@ -51,7 +51,7 @@ public open class AudioEffectReverb : AudioEffect() {
   /**
    * Dimensions of simulated room. Bigger means more echoes. Value can range from 0 to 1.
    */
-  public var roomSize: Float
+  public final inline var roomSize: Float
     @JvmName("roomSizeProperty")
     get() = getRoomSize()
     @JvmName("roomSizeProperty")
@@ -62,7 +62,7 @@ public open class AudioEffectReverb : AudioEffect() {
   /**
    * Defines how reflective the imaginary room's walls are. Value can range from 0 to 1.
    */
-  public var damping: Float
+  public final inline var damping: Float
     @JvmName("dampingProperty")
     get() = getDamping()
     @JvmName("dampingProperty")
@@ -74,7 +74,7 @@ public open class AudioEffectReverb : AudioEffect() {
    * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range
    * from 0 to 1.
    */
-  public var spread: Float
+  public final inline var spread: Float
     @JvmName("spreadProperty")
     get() = getSpread()
     @JvmName("spreadProperty")
@@ -86,7 +86,7 @@ public open class AudioEffectReverb : AudioEffect() {
    * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and
    * attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
    */
-  public var hipass: Float
+  public final inline var hipass: Float
     @JvmName("hipassProperty")
     get() = getHpf()
     @JvmName("hipassProperty")
@@ -98,7 +98,7 @@ public open class AudioEffectReverb : AudioEffect() {
    * Output percent of original sound. At 0, only modified sound is outputted. Value can range from
    * 0 to 1.
    */
-  public var dry: Float
+  public final inline var dry: Float
     @JvmName("dryProperty")
     get() = getDry()
     @JvmName("dryProperty")
@@ -110,7 +110,7 @@ public open class AudioEffectReverb : AudioEffect() {
    * Output percent of modified sound. At 0, only original sound is outputted. Value can range from
    * 0 to 1.
    */
-  public var wet: Float
+  public final inline var wet: Float
     @JvmName("wetProperty")
     get() = getWet()
     @JvmName("wetProperty")
@@ -122,89 +122,89 @@ public open class AudioEffectReverb : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTREVERB, scriptIndex)
   }
 
-  public fun setPredelayMsec(msec: Float): Unit {
+  public final fun setPredelayMsec(msec: Float): Unit {
     TransferContext.writeArguments(DOUBLE to msec.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPredelayMsecPtr, NIL)
   }
 
-  public fun getPredelayMsec(): Float {
+  public final fun getPredelayMsec(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPredelayMsecPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPredelayFeedback(feedback: Float): Unit {
+  public final fun setPredelayFeedback(feedback: Float): Unit {
     TransferContext.writeArguments(DOUBLE to feedback.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPredelayFeedbackPtr, NIL)
   }
 
-  public fun getPredelayFeedback(): Float {
+  public final fun getPredelayFeedback(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPredelayFeedbackPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRoomSize(size: Float): Unit {
+  public final fun setRoomSize(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRoomSizePtr, NIL)
   }
 
-  public fun getRoomSize(): Float {
+  public final fun getRoomSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRoomSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDamping(amount: Float): Unit {
+  public final fun setDamping(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
   }
 
-  public fun getDamping(): Float {
+  public final fun getDamping(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSpread(amount: Float): Unit {
+  public final fun setSpread(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
   }
 
-  public fun getSpread(): Float {
+  public final fun getSpread(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDry(amount: Float): Unit {
+  public final fun setDry(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
   }
 
-  public fun getDry(): Float {
+  public final fun getDry(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setWet(amount: Float): Unit {
+  public final fun setWet(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
   }
 
-  public fun getWet(): Float {
+  public final fun getWet(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHpf(amount: Float): Unit {
+  public final fun setHpf(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHpfPtr, NIL)
   }
 
-  public fun getHpf(): Float {
+  public final fun getHpf(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHpfPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

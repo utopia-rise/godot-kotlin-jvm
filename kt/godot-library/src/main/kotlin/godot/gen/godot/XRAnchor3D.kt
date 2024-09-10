@@ -40,7 +40,7 @@ public open class XRAnchor3D : XRNode3D() {
    * Returns the estimated size of the plane that was detected. Say when the anchor relates to a
    * table in the real world, this is the estimated size of the surface of that table.
    */
-  public fun getSize(): Vector3 {
+  public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -49,7 +49,7 @@ public open class XRAnchor3D : XRNode3D() {
   /**
    * Returns a plane aligned with our anchor; handy for intersection testing.
    */
-  public fun getPlane(): Plane {
+  public final fun getPlane(): Plane {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
     return (TransferContext.readReturnValue(PLANE, false) as Plane)

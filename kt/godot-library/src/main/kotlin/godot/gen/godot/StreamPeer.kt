@@ -45,7 +45,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * If `true`, this [StreamPeer] will using big-endian format for encoding and decoding.
    */
-  public var bigEndian: Boolean
+  public final inline var bigEndian: Boolean
     @JvmName("bigEndianProperty")
     get() = isBigEndianEnabled()
     @JvmName("bigEndianProperty")
@@ -61,7 +61,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Sends a chunk of data through the connection, blocking if necessary until the data is done
    * sending. This function returns an [Error] code.
    */
-  public fun putData(`data`: PackedByteArray): GodotError {
+  public final fun putData(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.putDataPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -72,7 +72,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * part of it will. This function returns two values, an [Error] code and an integer, describing how
    * much data was actually sent.
    */
-  public fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
+  public final fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.putPartialDataPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -84,7 +84,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * until the desired amount is received. This function returns two values, an [Error] code and a data
    * array.
    */
-  public fun getData(bytes: Int): VariantArray<Any?> {
+  public final fun getData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -95,7 +95,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * requested in the "bytes" argument. If not enough bytes are available, the function will return how
    * many were actually received. This function returns two values, an [Error] code, and a data array.
    */
-  public fun getPartialData(bytes: Int): VariantArray<Any?> {
+  public final fun getPartialData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPartialDataPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -104,18 +104,18 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Returns the number of bytes this [StreamPeer] has available.
    */
-  public fun getAvailableBytes(): Int {
+  public final fun getAvailableBytes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailableBytesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setBigEndian(enable: Boolean): Unit {
+  public final fun setBigEndian(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
   }
 
-  public fun isBigEndianEnabled(): Boolean {
+  public final fun isBigEndianEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBigEndianEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -124,7 +124,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed byte into the stream.
    */
-  public fun put8(`value`: Int): Unit {
+  public final fun put8(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.put8Ptr, NIL)
   }
@@ -132,7 +132,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned byte into the stream.
    */
-  public fun putU8(`value`: Int): Unit {
+  public final fun putU8(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.putU8Ptr, NIL)
   }
@@ -140,7 +140,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 16-bit value into the stream.
    */
-  public fun put16(`value`: Int): Unit {
+  public final fun put16(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.put16Ptr, NIL)
   }
@@ -148,7 +148,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 16-bit value into the stream.
    */
-  public fun putU16(`value`: Int): Unit {
+  public final fun putU16(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.putU16Ptr, NIL)
   }
@@ -156,7 +156,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 32-bit value into the stream.
    */
-  public fun put32(`value`: Int): Unit {
+  public final fun put32(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.put32Ptr, NIL)
   }
@@ -164,7 +164,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 32-bit value into the stream.
    */
-  public fun putU32(`value`: Long): Unit {
+  public final fun putU32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, MethodBindings.putU32Ptr, NIL)
   }
@@ -172,7 +172,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 64-bit value into the stream.
    */
-  public fun put64(`value`: Long): Unit {
+  public final fun put64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, MethodBindings.put64Ptr, NIL)
   }
@@ -180,7 +180,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 64-bit value into the stream.
    */
-  public fun putU64(`value`: Long): Unit {
+  public final fun putU64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, MethodBindings.putU64Ptr, NIL)
   }
@@ -188,7 +188,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a single-precision float into the stream.
    */
-  public fun putFloat(`value`: Float): Unit {
+  public final fun putFloat(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.putFloatPtr, NIL)
   }
@@ -196,7 +196,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a double-precision float into the stream.
    */
-  public fun putDouble(`value`: Double): Unit {
+  public final fun putDouble(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, MethodBindings.putDoublePtr, NIL)
   }
@@ -215,7 +215,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * PutData("Hello World".ToAsciiBuffer());
    * ```
    */
-  public fun putString(`value`: String): Unit {
+  public final fun putString(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
     TransferContext.callMethod(rawPtr, MethodBindings.putStringPtr, NIL)
   }
@@ -234,7 +234,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * PutData("Hello World".ToUtf8Buffer());
    * ```
    */
-  public fun putUtf8String(`value`: String): Unit {
+  public final fun putUtf8String(`value`: String): Unit {
     TransferContext.writeArguments(STRING to value)
     TransferContext.callMethod(rawPtr, MethodBindings.putUtf8StringPtr, NIL)
   }
@@ -245,7 +245,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
-  public fun putVar(`value`: Any?, fullObjects: Boolean = false): Unit {
+  public final fun putVar(`value`: Any?, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.putVarPtr, NIL)
   }
@@ -253,7 +253,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed byte from the stream.
    */
-  public fun get8(): Int {
+  public final fun get8(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get8Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -262,7 +262,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned byte from the stream.
    */
-  public fun getU8(): Int {
+  public final fun getU8(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getU8Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -271,7 +271,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed 16-bit value from the stream.
    */
-  public fun get16(): Int {
+  public final fun get16(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get16Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -280,7 +280,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned 16-bit value from the stream.
    */
-  public fun getU16(): Int {
+  public final fun getU16(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getU16Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -289,7 +289,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed 32-bit value from the stream.
    */
-  public fun get32(): Int {
+  public final fun get32(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get32Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -298,7 +298,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned 32-bit value from the stream.
    */
-  public fun getU32(): Long {
+  public final fun getU32(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getU32Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -307,7 +307,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a signed 64-bit value from the stream.
    */
-  public fun get64(): Long {
+  public final fun get64(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get64Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -316,7 +316,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets an unsigned 64-bit value from the stream.
    */
-  public fun getU64(): Long {
+  public final fun getU64(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getU64Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -325,7 +325,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a single-precision float from the stream.
    */
-  public fun getFloat(): Float {
+  public final fun getFloat(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -334,7 +334,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Gets a double-precision float from the stream.
    */
-  public fun getDouble(): Double {
+  public final fun getDouble(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDoublePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -345,7 +345,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * the length will be read from the stream using the reverse process of [putString].
    */
   @JvmOverloads
-  public fun getString(bytes: Int = -1): String {
+  public final fun getString(bytes: Int = -1): String {
     TransferContext.writeArguments(LONG to bytes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -357,7 +357,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * process of [putUtf8String].
    */
   @JvmOverloads
-  public fun getUtf8String(bytes: Int = -1): String {
+  public final fun getUtf8String(bytes: Int = -1): String {
     TransferContext.writeArguments(LONG to bytes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUtf8StringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -371,7 +371,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * remote code execution.
    */
   @JvmOverloads
-  public fun getVar(allowObjects: Boolean = false): Any? {
+  public final fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)

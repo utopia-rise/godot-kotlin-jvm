@@ -35,7 +35,7 @@ public open class ConeTwistJoint3D : Joint3D() {
    * Could be defined as looseness in the [ConeTwistJoint3D].
    * If below 0.05, this behavior is locked.
    */
-  public var swingSpan: Float
+  public final inline var swingSpan: Float
     @JvmName("swingSpanProperty")
     get() = getParam(ConeTwistJoint3D.Param.PARAM_SWING_SPAN)
     @JvmName("swingSpanProperty")
@@ -47,7 +47,7 @@ public open class ConeTwistJoint3D : Joint3D() {
    * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
    * Twist is locked if below 0.05.
    */
-  public var twistSpan: Float
+  public final inline var twistSpan: Float
     @JvmName("twistSpanProperty")
     get() = getParam(ConeTwistJoint3D.Param.PARAM_TWIST_SPAN)
     @JvmName("twistSpanProperty")
@@ -59,7 +59,7 @@ public open class ConeTwistJoint3D : Joint3D() {
    * The speed with which the swing or twist will take place.
    * The higher, the faster.
    */
-  public var bias: Float
+  public final inline var bias: Float
     @JvmName("biasProperty")
     get() = getParam(ConeTwistJoint3D.Param.PARAM_BIAS)
     @JvmName("biasProperty")
@@ -71,7 +71,7 @@ public open class ConeTwistJoint3D : Joint3D() {
    * The ease with which the joint starts to twist. If it's too low, it takes more force to start
    * twisting the joint.
    */
-  public var softness: Float
+  public final inline var softness: Float
     @JvmName("softnessProperty")
     get() = getParam(ConeTwistJoint3D.Param.PARAM_SOFTNESS)
     @JvmName("softnessProperty")
@@ -82,7 +82,7 @@ public open class ConeTwistJoint3D : Joint3D() {
   /**
    * Defines, how fast the swing- and twist-speed-difference on both sides gets synced.
    */
-  public var relaxation: Float
+  public final inline var relaxation: Float
     @JvmName("relaxationProperty")
     get() = getParam(ConeTwistJoint3D.Param.PARAM_RELAXATION)
     @JvmName("relaxationProperty")
@@ -97,7 +97,7 @@ public open class ConeTwistJoint3D : Joint3D() {
   /**
    * Sets the value of the specified parameter.
    */
-  public fun setParam(`param`: Param, `value`: Float): Unit {
+  public final fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
@@ -105,7 +105,7 @@ public open class ConeTwistJoint3D : Joint3D() {
   /**
    * Returns the value of the specified parameter.
    */
-  public fun getParam(`param`: Param): Float {
+  public final fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

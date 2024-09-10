@@ -44,7 +44,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, collisions will be reported.
    */
-  public var enabled: Boolean
+  public final inline var enabled: Boolean
     @JvmName("enabledProperty")
     get() = isEnabled()
     @JvmName("enabledProperty")
@@ -55,7 +55,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, the parent node will be excluded from collision detection.
    */
-  public var excludeParent: Boolean
+  public final inline var excludeParent: Boolean
     @JvmName("excludeParentProperty")
     get() = getExcludeParentBody()
     @JvmName("excludeParentProperty")
@@ -67,7 +67,7 @@ public open class RayCast2D : Node2D() {
    * The ray's destination point, relative to the RayCast's `position`.
    */
   @CoreTypeLocalCopy
-  public var targetPosition: Vector2
+  public final inline var targetPosition: Vector2
     @JvmName("targetPositionProperty")
     get() = getTargetPosition()
     @JvmName("targetPositionProperty")
@@ -81,7 +81,7 @@ public open class RayCast2D : Node2D() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionMask: Long
+  public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
     get() = getCollisionMask()
     @JvmName("collisionMaskProperty")
@@ -93,7 +93,7 @@ public open class RayCast2D : Node2D() {
    * If `true`, the ray will detect a hit when starting inside shapes. In this case the collision
    * normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes.
    */
-  public var hitFromInside: Boolean
+  public final inline var hitFromInside: Boolean
     @JvmName("hitFromInsideProperty")
     get() = isHitFromInsideEnabled()
     @JvmName("hitFromInsideProperty")
@@ -104,7 +104,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, collisions with [Area2D]s will be reported.
    */
-  public var collideWithAreas: Boolean
+  public final inline var collideWithAreas: Boolean
     @JvmName("collideWithAreasProperty")
     get() = isCollideWithAreasEnabled()
     @JvmName("collideWithAreasProperty")
@@ -115,7 +115,7 @@ public open class RayCast2D : Node2D() {
   /**
    * If `true`, collisions with [PhysicsBody2D]s will be reported.
    */
-  public var collideWithBodies: Boolean
+  public final inline var collideWithBodies: Boolean
     @JvmName("collideWithBodiesProperty")
     get() = isCollideWithBodiesEnabled()
     @JvmName("collideWithBodiesProperty")
@@ -145,29 +145,29 @@ public open class RayCast2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
+  public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
       block(this)
       targetPosition = this
   }
 
 
-  public fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
-  public fun isEnabled(): Boolean {
+  public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTargetPosition(localPoint: Vector2): Unit {
+  public final fun setTargetPosition(localPoint: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to localPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
-  public fun getTargetPosition(): Vector2 {
+  public final fun getTargetPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -177,7 +177,7 @@ public open class RayCast2D : Node2D() {
    * Returns whether any object is intersecting with the ray's vector (considering the vector
    * length).
    */
-  public fun isColliding(): Boolean {
+  public final fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -189,7 +189,7 @@ public open class RayCast2D : Node2D() {
    * state.
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
-  public fun forceRaycastUpdate(): Unit {
+  public final fun forceRaycastUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceRaycastUpdatePtr, NIL)
   }
@@ -198,7 +198,7 @@ public open class RayCast2D : Node2D() {
    * Returns the first object that the ray intersects, or `null` if no object is intersecting the
    * ray (i.e. [isColliding] returns `false`).
    */
-  public fun getCollider(): Object? {
+  public final fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Object?)
@@ -208,7 +208,7 @@ public open class RayCast2D : Node2D() {
    * Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object
    * is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  public fun getColliderRid(): RID {
+  public final fun getColliderRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -234,7 +234,7 @@ public open class RayCast2D : Node2D() {
    * var shape = target.ShapeOwnerGetOwner(ownerId);
    * ```
    */
-  public fun getColliderShape(): Int {
+  public final fun getColliderShape(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -247,7 +247,7 @@ public open class RayCast2D : Node2D() {
    * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
    * returned point is valid and up-to-date.
    */
-  public fun getCollisionPoint(): Vector2 {
+  public final fun getCollisionPoint(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -259,7 +259,7 @@ public open class RayCast2D : Node2D() {
    * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
    * returned normal is valid and up-to-date.
    */
-  public fun getCollisionNormal(): Vector2 {
+  public final fun getCollisionNormal(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -268,7 +268,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
-  public fun addExceptionRid(rid: RID): Unit {
+  public final fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.addExceptionRidPtr, NIL)
   }
@@ -277,7 +277,7 @@ public open class RayCast2D : Node2D() {
    * Adds a collision exception so the ray does not report collisions with the specified
    * [CollisionObject2D] node.
    */
-  public fun addException(node: CollisionObject2D?): Unit {
+  public final fun addException(node: CollisionObject2D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.addExceptionPtr, NIL)
   }
@@ -285,7 +285,7 @@ public open class RayCast2D : Node2D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
-  public fun removeExceptionRid(rid: RID): Unit {
+  public final fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionRidPtr, NIL)
   }
@@ -294,7 +294,7 @@ public open class RayCast2D : Node2D() {
    * Removes a collision exception so the ray does report collisions with the specified
    * [CollisionObject2D] node.
    */
-  public fun removeException(node: CollisionObject2D?): Unit {
+  public final fun removeException(node: CollisionObject2D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionPtr, NIL)
   }
@@ -302,17 +302,17 @@ public open class RayCast2D : Node2D() {
   /**
    * Removes all collision exceptions for this ray.
    */
-  public fun clearExceptions(): Unit {
+  public final fun clearExceptions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
-  public fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
-  public fun getCollisionMask(): Long {
+  public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -322,7 +322,7 @@ public open class RayCast2D : Node2D() {
    * Based on [value], enables or disables the specified layer in the [collisionMask], given a
    * [layerNumber] between 1 and 32.
    */
-  public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
@@ -331,51 +331,51 @@ public open class RayCast2D : Node2D() {
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getCollisionMaskValue(layerNumber: Int): Boolean {
+  public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setExcludeParentBody(mask: Boolean): Unit {
+  public final fun setExcludeParentBody(mask: Boolean): Unit {
     TransferContext.writeArguments(BOOL to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setExcludeParentBodyPtr, NIL)
   }
 
-  public fun getExcludeParentBody(): Boolean {
+  public final fun getExcludeParentBody(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
-  public fun isCollideWithAreasEnabled(): Boolean {
+  public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
-  public fun isCollideWithBodiesEnabled(): Boolean {
+  public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHitFromInside(enable: Boolean): Unit {
+  public final fun setHitFromInside(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
   }
 
-  public fun isHitFromInsideEnabled(): Boolean {
+  public final fun isHitFromInsideEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

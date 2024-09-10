@@ -31,7 +31,7 @@ public open class BoxContainer : Container() {
    * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN],
    * [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
-  public var alignment: AlignmentMode
+  public final inline var alignment: AlignmentMode
     @JvmName("alignmentProperty")
     get() = getAlignment()
     @JvmName("alignmentProperty")
@@ -43,7 +43,7 @@ public open class BoxContainer : Container() {
    * If `true`, the [BoxContainer] will arrange its children vertically, rather than horizontally.
    * Can't be changed when using [HBoxContainer] and [VBoxContainer].
    */
-  public var vertical: Boolean
+  public final inline var vertical: Boolean
     @JvmName("verticalProperty")
     get() = isVertical()
     @JvmName("verticalProperty")
@@ -59,29 +59,29 @@ public open class BoxContainer : Container() {
    * Adds a [Control] node to the box as a spacer. If [begin] is `true`, it will insert the
    * [Control] node in front of all other children.
    */
-  public fun addSpacer(begin: Boolean): Control? {
+  public final fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
     TransferContext.callMethod(rawPtr, MethodBindings.addSpacerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
-  public fun setAlignment(alignment: AlignmentMode): Unit {
+  public final fun setAlignment(alignment: AlignmentMode): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
   }
 
-  public fun getAlignment(): AlignmentMode {
+  public final fun getAlignment(): AlignmentMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
     return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setVertical(vertical: Boolean): Unit {
+  public final fun setVertical(vertical: Boolean): Unit {
     TransferContext.writeArguments(BOOL to vertical)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
   }
 
-  public fun isVertical(): Boolean {
+  public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

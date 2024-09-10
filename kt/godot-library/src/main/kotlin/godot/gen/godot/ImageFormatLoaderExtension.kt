@@ -55,7 +55,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * Add this format loader to the engine, allowing it to recognize the file extensions returned by
    * [_getRecognizedExtensions].
    */
-  public fun addFormatLoader(): Unit {
+  public final fun addFormatLoader(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.addFormatLoaderPtr, NIL)
   }
@@ -63,7 +63,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   /**
    * Remove this format loader from the engine.
    */
-  public fun removeFormatLoader(): Unit {
+  public final fun removeFormatLoader(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.removeFormatLoaderPtr, NIL)
   }

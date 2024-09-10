@@ -33,7 +33,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
    * The name of the [XRHandTracker] registered with [XRServer] to obtain the hand tracking data
    * from.
    */
-  public var handTracker: StringName
+  public final inline var handTracker: StringName
     @JvmName("handTrackerProperty")
     get() = getHandTracker()
     @JvmName("handTrackerProperty")
@@ -44,7 +44,7 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
   /**
    * Specifies the type of updates to perform on the bones.
    */
-  public var boneUpdate: BoneUpdate
+  public final inline var boneUpdate: BoneUpdate
     @JvmName("boneUpdateProperty")
     get() = getBoneUpdate()
     @JvmName("boneUpdateProperty")
@@ -56,23 +56,23 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     callConstructor(ENGINECLASS_XRHANDMODIFIER3D, scriptIndex)
   }
 
-  public fun setHandTracker(trackerName: StringName): Unit {
+  public final fun setHandTracker(trackerName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackerPtr, NIL)
   }
 
-  public fun getHandTracker(): StringName {
+  public final fun getHandTracker(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+  public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
     TransferContext.writeArguments(LONG to boneUpdate.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
-  public fun getBoneUpdate(): BoneUpdate {
+  public final fun getBoneUpdate(): BoneUpdate {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
     return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)

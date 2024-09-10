@@ -33,7 +33,7 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
    * If set, the order of the vertices in each triangle are reversed resulting in the backside of
    * the mesh being drawn.
    */
-  public var flipFaces: Boolean
+  public final inline var flipFaces: Boolean
     @JvmName("flipFacesProperty")
     get() = getFlipFaces()
     @JvmName("flipFacesProperty")
@@ -45,12 +45,12 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     callConstructor(ENGINECLASS_CSGPRIMITIVE3D, scriptIndex)
   }
 
-  public fun setFlipFaces(flipFaces: Boolean): Unit {
+  public final fun setFlipFaces(flipFaces: Boolean): Unit {
     TransferContext.writeArguments(BOOL to flipFaces)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
   }
 
-  public fun getFlipFaces(): Boolean {
+  public final fun getFlipFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

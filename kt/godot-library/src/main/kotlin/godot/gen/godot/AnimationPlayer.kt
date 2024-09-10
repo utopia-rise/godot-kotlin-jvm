@@ -70,7 +70,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * not saved in the scene. This property is mainly used to get the currently playing animation, and
    * internally for animation playback tracks. For more information, see [Animation].
    */
-  public var currentAnimation: String
+  public final inline var currentAnimation: String
     @JvmName("currentAnimationProperty")
     get() = getCurrentAnimation()
     @JvmName("currentAnimationProperty")
@@ -82,7 +82,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * If playing, the current animation's key, otherwise, the animation last played. When set, this
    * changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
-  public var assignedAnimation: String
+  public final inline var assignedAnimation: String
     @JvmName("assignedAnimationProperty")
     get() = getAssignedAnimation()
     @JvmName("assignedAnimationProperty")
@@ -93,7 +93,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * The key of the animation to play when the scene loads.
    */
-  public var autoplay: String
+  public final inline var autoplay: String
     @JvmName("autoplayProperty")
     get() = getAutoplay()
     @JvmName("autoplayProperty")
@@ -104,14 +104,14 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * The length (in seconds) of the currently playing animation.
    */
-  public val currentAnimationLength: Double
+  public final inline val currentAnimationLength: Double
     @JvmName("currentAnimationLengthProperty")
     get() = getCurrentAnimationLength()
 
   /**
    * The position (in seconds) of the currently playing animation.
    */
-  public val currentAnimationPosition: Double
+  public final inline val currentAnimationPosition: Double
     @JvmName("currentAnimationPositionProperty")
     get() = getCurrentAnimationPosition()
 
@@ -121,7 +121,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * **Note:** Capture interpolation is only performed if the animation contains a capture track.
    * See also [Animation.UPDATE_CAPTURE].
    */
-  public var playbackAutoCapture: Boolean
+  public final inline var playbackAutoCapture: Boolean
     @JvmName("playbackAutoCaptureProperty")
     get() = isAutoCapture()
     @JvmName("playbackAutoCaptureProperty")
@@ -134,7 +134,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * If [playbackAutoCaptureDuration] is negative value, the duration is set to the interval between
    * the current position and the first key.
    */
-  public var playbackAutoCaptureDuration: Double
+  public final inline var playbackAutoCaptureDuration: Double
     @JvmName("playbackAutoCaptureDurationProperty")
     get() = getAutoCaptureDuration()
     @JvmName("playbackAutoCaptureDurationProperty")
@@ -145,7 +145,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * The transition type of the capture interpolation. See also [Tween.TransitionType].
    */
-  public var playbackAutoCaptureTransitionType: Tween.TransitionType
+  public final inline var playbackAutoCaptureTransitionType: Tween.TransitionType
     @JvmName("playbackAutoCaptureTransitionTypeProperty")
     get() = getAutoCaptureTransitionType()
     @JvmName("playbackAutoCaptureTransitionTypeProperty")
@@ -156,7 +156,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * The ease type of the capture interpolation. See also [Tween.EaseType].
    */
-  public var playbackAutoCaptureEaseType: Tween.EaseType
+  public final inline var playbackAutoCaptureEaseType: Tween.EaseType
     @JvmName("playbackAutoCaptureEaseTypeProperty")
     get() = getAutoCaptureEaseType()
     @JvmName("playbackAutoCaptureEaseTypeProperty")
@@ -167,7 +167,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision.
    */
-  public var playbackDefaultBlendTime: Double
+  public final inline var playbackDefaultBlendTime: Double
     @JvmName("playbackDefaultBlendTimeProperty")
     get() = getDefaultBlendTime()
     @JvmName("playbackDefaultBlendTimeProperty")
@@ -181,7 +181,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * If set to a negative value, the animation is played in reverse. If set to `0`, the animation
    * will not advance.
    */
-  public var speedScale: Float
+  public final inline var speedScale: Float
     @JvmName("speedScaleProperty")
     get() = getSpeedScale()
     @JvmName("speedScaleProperty")
@@ -196,7 +196,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * **Note:** This obeys the same logic as the [signal AnimationMixer.animation_finished] signal,
    * so it will not quit the engine if the animation is set to be looping.
    */
-  public var movieQuitOnFinish: Boolean
+  public final inline var movieQuitOnFinish: Boolean
     @JvmName("movieQuitOnFinishProperty")
     get() = isMovieQuitOnFinishEnabled()
     @JvmName("movieQuitOnFinishProperty")
@@ -211,7 +211,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Triggers the [animationTo] animation when the [animationFrom] animation completes.
    */
-  public fun animationSetNext(animationFrom: StringName, animationTo: StringName): Unit {
+  public final fun animationSetNext(animationFrom: StringName, animationTo: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
     TransferContext.callMethod(rawPtr, MethodBindings.animationSetNextPtr, NIL)
   }
@@ -219,7 +219,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Returns the key of the animation which is queued to play after the [animationFrom] animation.
    */
-  public fun animationGetNext(animationFrom: StringName): StringName {
+  public final fun animationGetNext(animationFrom: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to animationFrom)
     TransferContext.callMethod(rawPtr, MethodBindings.animationGetNextPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -228,7 +228,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Specifies a blend time (in seconds) between two animations, referenced by their keys.
    */
-  public fun setBlendTime(
+  public final fun setBlendTime(
     animationFrom: StringName,
     animationTo: StringName,
     sec: Double,
@@ -240,62 +240,63 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Returns the blend time (in seconds) between two animations, referenced by their keys.
    */
-  public fun getBlendTime(animationFrom: StringName, animationTo: StringName): Double {
+  public final fun getBlendTime(animationFrom: StringName, animationTo: StringName): Double {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setDefaultBlendTime(sec: Double): Unit {
+  public final fun setDefaultBlendTime(sec: Double): Unit {
     TransferContext.writeArguments(DOUBLE to sec)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBlendTimePtr, NIL)
   }
 
-  public fun getDefaultBlendTime(): Double {
+  public final fun getDefaultBlendTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBlendTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setAutoCapture(autoCapture: Boolean): Unit {
+  public final fun setAutoCapture(autoCapture: Boolean): Unit {
     TransferContext.writeArguments(BOOL to autoCapture)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoCapturePtr, NIL)
   }
 
-  public fun isAutoCapture(): Boolean {
+  public final fun isAutoCapture(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoCapturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAutoCaptureDuration(autoCaptureDuration: Double): Unit {
+  public final fun setAutoCaptureDuration(autoCaptureDuration: Double): Unit {
     TransferContext.writeArguments(DOUBLE to autoCaptureDuration)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureDurationPtr, NIL)
   }
 
-  public fun getAutoCaptureDuration(): Double {
+  public final fun getAutoCaptureDuration(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureDurationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setAutoCaptureTransitionType(autoCaptureTransitionType: Tween.TransitionType): Unit {
+  public final fun setAutoCaptureTransitionType(autoCaptureTransitionType: Tween.TransitionType):
+      Unit {
     TransferContext.writeArguments(LONG to autoCaptureTransitionType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureTransitionTypePtr, NIL)
   }
 
-  public fun getAutoCaptureTransitionType(): Tween.TransitionType {
+  public final fun getAutoCaptureTransitionType(): Tween.TransitionType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureTransitionTypePtr, LONG)
     return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAutoCaptureEaseType(autoCaptureEaseType: Tween.EaseType): Unit {
+  public final fun setAutoCaptureEaseType(autoCaptureEaseType: Tween.EaseType): Unit {
     TransferContext.writeArguments(LONG to autoCaptureEaseType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureEaseTypePtr, NIL)
   }
 
-  public fun getAutoCaptureEaseType(): Tween.EaseType {
+  public final fun getAutoCaptureEaseType(): Tween.EaseType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureEaseTypePtr, LONG)
     return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
@@ -315,7 +316,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * perform the update immediately, call `advance(0)`.
    */
   @JvmOverloads
-  public fun play(
+  public final fun play(
     name: StringName = StringName(""),
     customBlend: Double = -1.0,
     customSpeed: Float = 1.0f,
@@ -331,7 +332,8 @@ public open class AnimationPlayer : AnimationMixer() {
    * its description for more information.
    */
   @JvmOverloads
-  public fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0): Unit {
+  public final fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0):
+      Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend)
     TransferContext.callMethod(rawPtr, MethodBindings.playBackwardsPtr, NIL)
   }
@@ -354,7 +356,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * animations.
    */
   @JvmOverloads
-  public fun playWithCapture(
+  public final fun playWithCapture(
     name: StringName = StringName(""),
     duration: Double = -1.0,
     customBlend: Double = -1.0,
@@ -373,7 +375,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * will resume the animation.
    * See also [stop].
    */
-  public fun pause(): Unit {
+  public final fun pause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
   }
@@ -385,7 +387,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * **Note:** The method / audio / animation playback tracks will not be processed by this method.
    */
   @JvmOverloads
-  public fun stop(keepState: Boolean = false): Unit {
+  public final fun stop(keepState: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to keepState)
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
@@ -394,29 +396,29 @@ public open class AnimationPlayer : AnimationMixer() {
    * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed`
    * are `0`).
    */
-  public fun isPlaying(): Boolean {
+  public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCurrentAnimation(animation: String): Unit {
+  public final fun setCurrentAnimation(animation: String): Unit {
     TransferContext.writeArguments(STRING to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurrentAnimationPtr, NIL)
   }
 
-  public fun getCurrentAnimation(): String {
+  public final fun getCurrentAnimation(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setAssignedAnimation(animation: String): Unit {
+  public final fun setAssignedAnimation(animation: String): Unit {
     TransferContext.writeArguments(STRING to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.setAssignedAnimationPtr, NIL)
   }
 
-  public fun getAssignedAnimation(): String {
+  public final fun getAssignedAnimation(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAssignedAnimationPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -428,7 +430,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * **Note:** If a looped animation is currently playing, the queued animation will never play
    * unless the looped animation is stopped somehow.
    */
-  public fun queue(name: StringName): Unit {
+  public final fun queue(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.queuePtr, NIL)
   }
@@ -436,7 +438,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Returns a list of the animation keys that are currently queued to play.
    */
-  public fun getQueue(): PackedStringArray {
+  public final fun getQueue(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getQueuePtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -445,17 +447,17 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Clears all queued, unplayed animations.
    */
-  public fun clearQueue(): Unit {
+  public final fun clearQueue(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearQueuePtr, NIL)
   }
 
-  public fun setSpeedScale(speed: Float): Unit {
+  public final fun setSpeedScale(speed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
-  public fun getSpeedScale(): Float {
+  public final fun getSpeedScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -467,41 +469,41 @@ public open class AnimationPlayer : AnimationMixer() {
    * method.
    * Returns a negative value if the current animation is playing backwards.
    */
-  public fun getPlayingSpeed(): Float {
+  public final fun getPlayingSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAutoplay(name: String): Unit {
+  public final fun setAutoplay(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
   }
 
-  public fun getAutoplay(): String {
+  public final fun getAutoplay(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setMovieQuitOnFinishEnabled(enabled: Boolean): Unit {
+  public final fun setMovieQuitOnFinishEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setMovieQuitOnFinishEnabledPtr, NIL)
   }
 
-  public fun isMovieQuitOnFinishEnabled(): Boolean {
+  public final fun isMovieQuitOnFinishEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMovieQuitOnFinishEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getCurrentAnimationPosition(): Double {
+  public final fun getCurrentAnimationPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getCurrentAnimationLength(): Double {
+  public final fun getCurrentAnimationLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -518,7 +520,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * [AnimationMixer.advance].
    */
   @JvmOverloads
-  public fun seek(
+  public final fun seek(
     seconds: Double,
     update: Boolean = false,
     updateOnly: Boolean = false,
@@ -530,7 +532,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Sets the process notification in which to update animations.
    */
-  public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
+  public final fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
   }
@@ -538,7 +540,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Returns the process notification in which to update animations.
    */
-  public fun getProcessCallback(): AnimationProcessCallback {
+  public final fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
     return AnimationPlayer.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
@@ -547,7 +549,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Sets the call mode used for "Call Method" tracks.
    */
-  public fun setMethodCallMode(mode: AnimationMethodCallMode): Unit {
+  public final fun setMethodCallMode(mode: AnimationMethodCallMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMethodCallModePtr, NIL)
   }
@@ -555,7 +557,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Returns the call mode used for "Call Method" tracks.
    */
-  public fun getMethodCallMode(): AnimationMethodCallMode {
+  public final fun getMethodCallMode(): AnimationMethodCallMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMethodCallModePtr, LONG)
     return AnimationPlayer.AnimationMethodCallMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -564,7 +566,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Sets the node which node path references will travel from.
    */
-  public fun setRoot(path: NodePath): Unit {
+  public final fun setRoot(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setRootPtr, NIL)
   }
@@ -572,7 +574,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Returns the node which node path references will travel from.
    */
-  public fun getRoot(): NodePath {
+  public final fun getRoot(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)

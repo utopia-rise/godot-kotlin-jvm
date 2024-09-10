@@ -31,7 +31,7 @@ public open class TextureRect : Control() {
   /**
    * The node's [Texture2D] resource.
    */
-  public var texture: Texture2D?
+  public final inline var texture: Texture2D?
     @JvmName("textureProperty")
     get() = getTexture()
     @JvmName("textureProperty")
@@ -43,7 +43,7 @@ public open class TextureRect : Control() {
    * Defines how minimum size is determined based on the texture's size. See [ExpandMode] for
    * options.
    */
-  public var expandMode: ExpandMode
+  public final inline var expandMode: ExpandMode
     @JvmName("expandModeProperty")
     get() = getExpandMode()
     @JvmName("expandModeProperty")
@@ -54,7 +54,7 @@ public open class TextureRect : Control() {
   /**
    * Controls the texture's behavior when resizing the node's bounding rectangle. See [StretchMode].
    */
-  public var stretchMode: StretchMode
+  public final inline var stretchMode: StretchMode
     @JvmName("stretchModeProperty")
     get() = getStretchMode()
     @JvmName("stretchModeProperty")
@@ -65,7 +65,7 @@ public open class TextureRect : Control() {
   /**
    * If `true`, texture is flipped horizontally.
    */
-  public var flipH: Boolean
+  public final inline var flipH: Boolean
     @JvmName("flipHProperty")
     get() = isFlippedH()
     @JvmName("flipHProperty")
@@ -76,7 +76,7 @@ public open class TextureRect : Control() {
   /**
    * If `true`, texture is flipped vertically.
    */
-  public var flipV: Boolean
+  public final inline var flipV: Boolean
     @JvmName("flipVProperty")
     get() = isFlippedV()
     @JvmName("flipVProperty")
@@ -88,56 +88,56 @@ public open class TextureRect : Control() {
     callConstructor(ENGINECLASS_TEXTURERECT, scriptIndex)
   }
 
-  public fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun getTexture(): Texture2D? {
+  public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setExpandMode(expandMode: ExpandMode): Unit {
+  public final fun setExpandMode(expandMode: ExpandMode): Unit {
     TransferContext.writeArguments(LONG to expandMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setExpandModePtr, NIL)
   }
 
-  public fun getExpandMode(): ExpandMode {
+  public final fun getExpandMode(): ExpandMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExpandModePtr, LONG)
     return TextureRect.ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFlipH(enable: Boolean): Unit {
+  public final fun setFlipH(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
   }
 
-  public fun isFlippedH(): Boolean {
+  public final fun isFlippedH(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFlipV(enable: Boolean): Unit {
+  public final fun setFlipV(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
   }
 
-  public fun isFlippedV(): Boolean {
+  public final fun isFlippedV(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setStretchMode(stretchMode: StretchMode): Unit {
+  public final fun setStretchMode(stretchMode: StretchMode): Unit {
     TransferContext.writeArguments(LONG to stretchMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
   }
 
-  public fun getStretchMode(): StretchMode {
+  public final fun getStretchMode(): StretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
     return TextureRect.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)

@@ -31,7 +31,7 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   /**
    * Switch to a clip (by name).
    */
-  public fun switchToClipByName(clipName: StringName): Unit {
+  public final fun switchToClipByName(clipName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to clipName)
     TransferContext.callMethod(rawPtr, MethodBindings.switchToClipByNamePtr, NIL)
   }
@@ -39,7 +39,7 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
   /**
    * Switch to a clip (by index).
    */
-  public fun switchToClip(clipIndex: Int): Unit {
+  public final fun switchToClip(clipIndex: Int): Unit {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.switchToClipPtr, NIL)
   }

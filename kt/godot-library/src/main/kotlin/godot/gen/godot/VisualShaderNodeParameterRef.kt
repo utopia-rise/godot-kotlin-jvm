@@ -27,7 +27,7 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
   /**
    * The name of the parameter which this reference points to.
    */
-  public var parameterName: String
+  public final inline var parameterName: String
     @JvmName("parameterNameProperty")
     get() = getParameterName()
     @JvmName("parameterNameProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETERREF, scriptIndex)
   }
 
-  public fun setParameterName(name: String): Unit {
+  public final fun setParameterName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
   }
 
-  public fun getParameterName(): String {
+  public final fun getParameterName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

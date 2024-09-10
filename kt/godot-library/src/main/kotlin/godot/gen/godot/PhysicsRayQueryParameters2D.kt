@@ -39,7 +39,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
    * The starting point of the ray being queried for, in global coordinates.
    */
   @CoreTypeLocalCopy
-  public var from: Vector2
+  public final inline var from: Vector2
     @JvmName("fromProperty")
     get() = getFrom()
     @JvmName("fromProperty")
@@ -51,7 +51,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
    * The ending point of the ray being queried for, in global coordinates.
    */
   @CoreTypeLocalCopy
-  public var to: Vector2
+  public final inline var to: Vector2
     @JvmName("toProperty")
     get() = getTo()
     @JvmName("toProperty")
@@ -65,7 +65,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionMask: Long
+  public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
     get() = getCollisionMask()
     @JvmName("collisionMaskProperty")
@@ -80,7 +80,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
    */
-  public var exclude: VariantArray<RID>
+  public final inline var exclude: VariantArray<RID>
     @JvmName("excludeProperty")
     get() = getExclude()
     @JvmName("excludeProperty")
@@ -91,7 +91,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * If `true`, the query will take [PhysicsBody2D]s into account.
    */
-  public var collideWithBodies: Boolean
+  public final inline var collideWithBodies: Boolean
     @JvmName("collideWithBodiesProperty")
     get() = isCollideWithBodiesEnabled()
     @JvmName("collideWithBodiesProperty")
@@ -102,7 +102,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   /**
    * If `true`, the query will take [Area2D]s into account.
    */
-  public var collideWithAreas: Boolean
+  public final inline var collideWithAreas: Boolean
     @JvmName("collideWithAreasProperty")
     get() = isCollideWithAreasEnabled()
     @JvmName("collideWithAreasProperty")
@@ -114,7 +114,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
    * If `true`, the query will detect a hit when starting inside shapes. In this case the collision
    * normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes.
    */
-  public var hitFromInside: Boolean
+  public final inline var hitFromInside: Boolean
     @JvmName("hitFromInsideProperty")
     get() = isHitFromInsideEnabled()
     @JvmName("hitFromInsideProperty")
@@ -144,7 +144,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fromMutate(block: Vector2.() -> Unit): Vector2 = from.apply{
+  public final fun fromMutate(block: Vector2.() -> Unit): Vector2 = from.apply{
       block(this)
       from = this
   }
@@ -168,84 +168,84 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun toMutate(block: Vector2.() -> Unit): Vector2 = to.apply{
+  public final fun toMutate(block: Vector2.() -> Unit): Vector2 = to.apply{
       block(this)
       to = this
   }
 
 
-  public fun setFrom(from: Vector2): Unit {
+  public final fun setFrom(from: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to from)
     TransferContext.callMethod(rawPtr, MethodBindings.setFromPtr, NIL)
   }
 
-  public fun getFrom(): Vector2 {
+  public final fun getFrom(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setTo(to: Vector2): Unit {
+  public final fun setTo(to: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to to)
     TransferContext.callMethod(rawPtr, MethodBindings.setToPtr, NIL)
   }
 
-  public fun getTo(): Vector2 {
+  public final fun getTo(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getToPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setCollisionMask(collisionMask: Long): Unit {
+  public final fun setCollisionMask(collisionMask: Long): Unit {
     TransferContext.writeArguments(LONG to collisionMask)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
-  public fun getCollisionMask(): Long {
+  public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setExclude(exclude: VariantArray<RID>): Unit {
+  public final fun setExclude(exclude: VariantArray<RID>): Unit {
     TransferContext.writeArguments(ARRAY to exclude)
     TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
   }
 
-  public fun getExclude(): VariantArray<RID> {
+  public final fun getExclude(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
-  public fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
-  public fun isCollideWithBodiesEnabled(): Boolean {
+  public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
-  public fun isCollideWithAreasEnabled(): Boolean {
+  public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHitFromInside(enable: Boolean): Unit {
+  public final fun setHitFromInside(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
   }
 
-  public fun isHitFromInsideEnabled(): Boolean {
+  public final fun isHitFromInsideEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -262,7 +262,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
      * [/codeblock]
      */
     @JvmOverloads
-    public fun create(
+    public final fun create(
       from: Vector2,
       to: Vector2,
       collisionMask: Long = 4294967295,

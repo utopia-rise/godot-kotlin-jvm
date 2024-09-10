@@ -30,7 +30,7 @@ public open class MeshTexture : Texture2D() {
   /**
    * Sets the mesh used to draw. It must be a mesh using 2D vertices.
    */
-  public var mesh: Mesh?
+  public final inline var mesh: Mesh?
     @JvmName("meshProperty")
     get() = getMesh()
     @JvmName("meshProperty")
@@ -41,7 +41,7 @@ public open class MeshTexture : Texture2D() {
   /**
    * Sets the base texture that the Mesh will use to draw.
    */
-  public var baseTexture: Texture2D?
+  public final inline var baseTexture: Texture2D?
     @JvmName("baseTextureProperty")
     get() = getBaseTexture()
     @JvmName("baseTextureProperty")
@@ -53,7 +53,7 @@ public open class MeshTexture : Texture2D() {
    * Sets the size of the image, needed for reference.
    */
   @CoreTypeLocalCopy
-  public var imageSize: Vector2
+  public final inline var imageSize: Vector2
     @JvmName("imageSizeProperty")
     get() = getImageSize()
     @JvmName("imageSizeProperty")
@@ -83,40 +83,40 @@ public open class MeshTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun imageSizeMutate(block: Vector2.() -> Unit): Vector2 = imageSize.apply{
+  public final fun imageSizeMutate(block: Vector2.() -> Unit): Vector2 = imageSize.apply{
       block(this)
       imageSize = this
   }
 
 
-  public fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
-  public fun getMesh(): Mesh? {
+  public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
   }
 
-  public fun setImageSize(size: Vector2): Unit {
+  public final fun setImageSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
   }
 
-  public fun getImageSize(): Vector2 {
+  public final fun getImageSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setBaseTexture(texture: Texture2D?): Unit {
+  public final fun setBaseTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setBaseTexturePtr, NIL)
   }
 
-  public fun getBaseTexture(): Texture2D? {
+  public final fun getBaseTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)

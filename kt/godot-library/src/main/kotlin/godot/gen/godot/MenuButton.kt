@@ -40,7 +40,7 @@ public open class MenuButton : Button() {
    * If `true`, when the cursor hovers above another [MenuButton] within the same parent which also
    * has [switchOnHover] enabled, it will close the current [MenuButton] and open the other one.
    */
-  public var switchOnHover: Boolean
+  public final inline var switchOnHover: Boolean
     @JvmName("switchOnHoverProperty")
     get() = isSwitchOnHover()
     @JvmName("switchOnHoverProperty")
@@ -51,7 +51,7 @@ public open class MenuButton : Button() {
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Int
+  public final inline var itemCount: Int
     @JvmName("itemCountProperty")
     get() = getItemCount()
     @JvmName("itemCountProperty")
@@ -68,7 +68,7 @@ public open class MenuButton : Button() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
-  public fun getPopup(): PopupMenu? {
+  public final fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
@@ -78,17 +78,17 @@ public open class MenuButton : Button() {
    * Adjusts popup position and sizing for the [MenuButton], then shows the [PopupMenu]. Prefer this
    * over using `get_popup().popup()`.
    */
-  public fun showPopup(): Unit {
+  public final fun showPopup(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.showPopupPtr, NIL)
   }
 
-  public fun setSwitchOnHover(enable: Boolean): Unit {
+  public final fun setSwitchOnHover(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSwitchOnHoverPtr, NIL)
   }
 
-  public fun isSwitchOnHover(): Boolean {
+  public final fun isSwitchOnHover(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSwitchOnHoverPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -97,17 +97,17 @@ public open class MenuButton : Button() {
   /**
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
-  public fun setDisableShortcuts(disabled: Boolean): Unit {
+  public final fun setDisableShortcuts(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
 
-  public fun setItemCount(count: Int): Unit {
+  public final fun setItemCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
   }
 
-  public fun getItemCount(): Int {
+  public final fun getItemCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

@@ -231,7 +231,7 @@ public open class Tween : RefCounted() {
    * 1.0f).AsRelative().FromCurrent().SetTrans(Tween.TransitionType.Expo);
    * ```
    */
-  public fun tweenProperty(
+  public final fun tweenProperty(
     _object: Object?,
     `property`: NodePath,
     finalVal: Any?,
@@ -284,7 +284,7 @@ public open class Tween : RefCounted() {
    * tween.TweenInterval(2.0f);
    * ```
    */
-  public fun tweenInterval(time: Double): IntervalTweener? {
+  public final fun tweenInterval(time: Double): IntervalTweener? {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(rawPtr, MethodBindings.tweenIntervalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as IntervalTweener?)
@@ -322,7 +322,7 @@ public open class Tween : RefCounted() {
    * tween.TweenCallback(Callable.From(() => sprite.Modulate = Colors.Blue)).SetDelay(2.0f);
    * ```
    */
-  public fun tweenCallback(callback: Callable): CallbackTweener? {
+  public final fun tweenCallback(callback: Callable): CallbackTweener? {
     TransferContext.writeArguments(CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.tweenCallbackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?)
@@ -378,7 +378,7 @@ public open class Tween : RefCounted() {
    * }
    * ```
    */
-  public fun tweenMethod(
+  public final fun tweenMethod(
     method: Callable,
     from: Any?,
     to: Any?,
@@ -395,7 +395,7 @@ public open class Tween : RefCounted() {
    * by setting [delta] longer than the whole duration of the [Tween] animation.
    * Returns `true` if the [Tween] still has [Tweener]s that haven't finished.
    */
-  public fun customStep(delta: Double): Boolean {
+  public final fun customStep(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, MethodBindings.customStepPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -408,7 +408,7 @@ public open class Tween : RefCounted() {
    * manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using
    * [SceneTree.getProcessedTweens].
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
@@ -419,7 +419,7 @@ public open class Tween : RefCounted() {
    * manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using
    * [SceneTree.getProcessedTweens].
    */
-  public fun pause(): Unit {
+  public final fun pause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
   }
@@ -427,7 +427,7 @@ public open class Tween : RefCounted() {
   /**
    * Resumes a paused or stopped [Tween].
    */
-  public fun play(): Unit {
+  public final fun play(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
@@ -435,7 +435,7 @@ public open class Tween : RefCounted() {
   /**
    * Aborts all tweening operations and invalidates the [Tween].
    */
-  public fun kill(): Unit {
+  public final fun kill(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.killPtr, NIL)
   }
@@ -447,7 +447,7 @@ public open class Tween : RefCounted() {
    * **Note:** As it results from accumulating frame deltas, the time returned after the [Tween] has
    * finished animating will be slightly greater than the actual [Tween] duration.
    */
-  public fun getTotalElapsedTime(): Double {
+  public final fun getTotalElapsedTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalElapsedTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -456,7 +456,7 @@ public open class Tween : RefCounted() {
   /**
    * Returns whether the [Tween] is currently running, i.e. it wasn't paused and it's not finished.
    */
-  public fun isRunning(): Boolean {
+  public final fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -468,7 +468,7 @@ public open class Tween : RefCounted() {
    * become invalid when it has finished tweening, is killed, or when created with `Tween.new()`.
    * Invalid [Tween]s can't have [Tweener]s appended.
    */
-  public fun isValid(): Boolean {
+  public final fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -482,7 +482,7 @@ public open class Tween : RefCounted() {
    * pausing behavior dependent on the bound node.
    * For a shorter way to create and bind a [Tween], you can use [Node.createTween].
    */
-  public fun bindNode(node: Node?): Tween? {
+  public final fun bindNode(node: Node?): Tween? {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.bindNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -493,7 +493,7 @@ public open class Tween : RefCounted() {
    * frames (see [Node.PhysicsProcess]).
    * Default value is [TWEEN_PROCESS_IDLE].
    */
-  public fun setProcessMode(mode: TweenProcessMode): Tween? {
+  public final fun setProcessMode(mode: TweenProcessMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -504,7 +504,7 @@ public open class Tween : RefCounted() {
    * for options.
    * Default value is [TWEEN_PAUSE_BOUND].
    */
-  public fun setPauseMode(mode: TweenPauseMode): Tween? {
+  public final fun setPauseMode(mode: TweenPauseMode): Tween? {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPauseModePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -523,7 +523,7 @@ public open class Tween : RefCounted() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun setParallel(parallel: Boolean = true): Tween? {
+  public final fun setParallel(parallel: Boolean = true): Tween? {
     TransferContext.writeArguments(BOOL to parallel)
     TransferContext.callMethod(rawPtr, MethodBindings.setParallelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -541,7 +541,7 @@ public open class Tween : RefCounted() {
    * lifetime depends on some node, always use [bindNode].
    */
   @JvmOverloads
-  public fun setLoops(loops: Int = 0): Tween? {
+  public final fun setLoops(loops: Int = 0): Tween? {
     TransferContext.writeArguments(LONG to loops.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopsPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -552,7 +552,7 @@ public open class Tween : RefCounted() {
    * indicates an infinitely looping [Tween], and a return value of `0` indicates that the [Tween] has
    * already finished.
    */
-  public fun getLoopsLeft(): Int {
+  public final fun getLoopsLeft(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopsLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -561,7 +561,7 @@ public open class Tween : RefCounted() {
   /**
    * Scales the speed of tweening. This affects all [Tweener]s and their delays.
    */
-  public fun setSpeedScale(speed: Float): Tween? {
+  public final fun setSpeedScale(speed: Float): Tween? {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -572,7 +572,7 @@ public open class Tween : RefCounted() {
    * [Tween].
    * If not specified, the default value is [TRANS_LINEAR].
    */
-  public fun setTrans(trans: TransitionType): Tween? {
+  public final fun setTrans(trans: TransitionType): Tween? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -583,7 +583,7 @@ public open class Tween : RefCounted() {
    * [Tween].
    * If not specified, the default value is [EASE_IN_OUT].
    */
-  public fun setEase(ease: EaseType): Tween? {
+  public final fun setEase(ease: EaseType): Tween? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -611,7 +611,7 @@ public open class Tween : RefCounted() {
    * All [Tweener]s in the example will run at the same time.
    * You can make the [Tween] parallel by default by using [setParallel].
    */
-  public fun parallel(): Tween? {
+  public final fun parallel(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.parallelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -635,7 +635,7 @@ public open class Tween : RefCounted() {
    * tween.Chain().TweenProperty(...); // Will run after two above are finished.
    * ```
    */
-  public fun chain(): Tween? {
+  public final fun chain(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.chainPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
@@ -802,7 +802,7 @@ public open class Tween : RefCounted() {
      * **Note:** If [duration] is equal to `0`, the method will always return the final value,
      * regardless of [elapsedTime] provided.
      */
-    public fun interpolateValue(
+    public final fun interpolateValue(
       initialValue: Any?,
       deltaValue: Any?,
       elapsedTime: Double,

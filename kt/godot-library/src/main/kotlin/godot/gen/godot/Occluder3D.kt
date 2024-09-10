@@ -31,7 +31,7 @@ public open class Occluder3D internal constructor() : Resource() {
   /**
    * Returns the occluder shape's vertex positions.
    */
-  public fun getVertices(): PackedVector3Array {
+  public final fun getVertices(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
@@ -40,7 +40,7 @@ public open class Occluder3D internal constructor() : Resource() {
   /**
    * Returns the occluder shape's vertex indices.
    */
-  public fun getIndices(): PackedInt32Array {
+  public final fun getIndices(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)

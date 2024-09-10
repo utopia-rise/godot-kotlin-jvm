@@ -36,7 +36,7 @@ public open class ScrollBar internal constructor() : Range() {
    * Overrides the step used when clicking increment and decrement buttons or when using arrow keys
    * when the [ScrollBar] is focused.
    */
-  public var customStep: Float
+  public final inline var customStep: Float
     @JvmName("customStepProperty")
     get() = getCustomStep()
     @JvmName("customStepProperty")
@@ -48,12 +48,12 @@ public open class ScrollBar internal constructor() : Range() {
     callConstructor(ENGINECLASS_SCROLLBAR, scriptIndex)
   }
 
-  public fun setCustomStep(step: Float): Unit {
+  public final fun setCustomStep(step: Float): Unit {
     TransferContext.writeArguments(DOUBLE to step.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
   }
 
-  public fun getCustomStep(): Float {
+  public final fun getCustomStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

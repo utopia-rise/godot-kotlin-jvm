@@ -117,7 +117,7 @@ public open class NavigationAgent2D : Node() {
    * requested from the NavigationServer.
    */
   @CoreTypeLocalCopy
-  public var targetPosition: Vector2
+  public final inline var targetPosition: Vector2
     @JvmName("targetPositionProperty")
     get() = getTargetPosition()
     @JvmName("targetPositionProperty")
@@ -133,7 +133,7 @@ public open class NavigationAgent2D : Node() {
    * repath loop because it will constantly overshoot the distance to the next point on each physics
    * frame update.
    */
-  public var pathDesiredDistance: Float
+  public final inline var pathDesiredDistance: Float
     @JvmName("pathDesiredDistanceProperty")
     get() = getPathDesiredDistance()
     @JvmName("pathDesiredDistanceProperty")
@@ -153,7 +153,7 @@ public open class NavigationAgent2D : Node() {
    * stuck in a repath loop because it will constantly overshoot the distance to the target on each
    * physics frame update.
    */
-  public var targetDesiredDistance: Float
+  public final inline var targetDesiredDistance: Float
     @JvmName("targetDesiredDistanceProperty")
     get() = getTargetDesiredDistance()
     @JvmName("targetDesiredDistanceProperty")
@@ -166,7 +166,7 @@ public open class NavigationAgent2D : Node() {
    * can happen due to trying to avoid collisions. When the maximum distance is exceeded, it
    * recalculates the ideal path.
    */
-  public var pathMaxDistance: Float
+  public final inline var pathMaxDistance: Float
     @JvmName("pathMaxDistanceProperty")
     get() = getPathMaxDistance()
     @JvmName("pathMaxDistanceProperty")
@@ -179,7 +179,7 @@ public open class NavigationAgent2D : Node() {
    * calculate a path. Changing it during runtime will clear the current navigation path and generate a
    * new one, according to the new navigation layers.
    */
-  public var navigationLayers: Long
+  public final inline var navigationLayers: Long
     @JvmName("navigationLayersProperty")
     get() = getNavigationLayers()
     @JvmName("navigationLayersProperty")
@@ -190,7 +190,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * The pathfinding algorithm used in the path query.
    */
-  public var pathfindingAlgorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm
+  public final inline var pathfindingAlgorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm
     @JvmName("pathfindingAlgorithmProperty")
     get() = getPathfindingAlgorithm()
     @JvmName("pathfindingAlgorithmProperty")
@@ -201,7 +201,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * The path postprocessing applied to the raw path corridor found by the [pathfindingAlgorithm].
    */
-  public var pathPostprocessing: NavigationPathQueryParameters2D.PathPostProcessing
+  public final inline var pathPostprocessing: NavigationPathQueryParameters2D.PathPostProcessing
     @JvmName("pathPostprocessingProperty")
     get() = getPathPostprocessing()
     @JvmName("pathPostprocessingProperty")
@@ -212,7 +212,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * Additional information to return with the navigation path.
    */
-  public var pathMetadataFlags: NavigationPathQueryParameters2D.PathMetadataFlags
+  public final inline var pathMetadataFlags: NavigationPathQueryParameters2D.PathMetadataFlags
     @JvmName("pathMetadataFlagsProperty")
     get() = getPathMetadataFlags()
     @JvmName("pathMetadataFlagsProperty")
@@ -228,7 +228,7 @@ public open class NavigationAgent2D : Node() {
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".
    */
-  public var simplifyPath: Boolean
+  public final inline var simplifyPath: Boolean
     @JvmName("simplifyPathProperty")
     get() = getSimplifyPath()
     @JvmName("simplifyPathProperty")
@@ -239,7 +239,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * The path simplification amount in worlds units.
    */
-  public var simplifyEpsilon: Float
+  public final inline var simplifyEpsilon: Float
     @JvmName("simplifyEpsilonProperty")
     get() = getSimplifyEpsilon()
     @JvmName("simplifyEpsilonProperty")
@@ -254,7 +254,7 @@ public open class NavigationAgent2D : Node() {
    * agents has a significant performance cost and should only be enabled on agents that currently
    * require it.
    */
-  public var avoidanceEnabled: Boolean
+  public final inline var avoidanceEnabled: Boolean
     @JvmName("avoidanceEnabledProperty")
     get() = getAvoidanceEnabled()
     @JvmName("avoidanceEnabledProperty")
@@ -269,7 +269,7 @@ public open class NavigationAgent2D : Node() {
    * simulation velocity.
    */
   @CoreTypeLocalCopy
-  public var velocity: Vector2
+  public final inline var velocity: Vector2
     @JvmName("velocityProperty")
     get() = getVelocity()
     @JvmName("velocityProperty")
@@ -284,7 +284,7 @@ public open class NavigationAgent2D : Node() {
    * [NavigationMesh] resources with a different [NavigationMesh.agentRadius] property and use
    * different navigation maps for each actor size.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -295,7 +295,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * The distance to search for other agents.
    */
-  public var neighborDistance: Float
+  public final inline var neighborDistance: Float
     @JvmName("neighborDistanceProperty")
     get() = getNeighborDistance()
     @JvmName("neighborDistanceProperty")
@@ -306,7 +306,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * The maximum number of neighbors for the agent to consider.
    */
-  public var maxNeighbors: Int
+  public final inline var maxNeighbors: Int
     @JvmName("maxNeighborsProperty")
     get() = getMaxNeighbors()
     @JvmName("maxNeighborsProperty")
@@ -320,7 +320,7 @@ public open class NavigationAgent2D : Node() {
    * sooner the agent will respond to other agents, but less freedom in choosing its velocities. A too
    * high value will slow down agents movement considerably. Must be positive.
    */
-  public var timeHorizonAgents: Float
+  public final inline var timeHorizonAgents: Float
     @JvmName("timeHorizonAgentsProperty")
     get() = getTimeHorizonAgents()
     @JvmName("timeHorizonAgentsProperty")
@@ -335,7 +335,7 @@ public open class NavigationAgent2D : Node() {
    * choosing its velocities. A too high value will slow down agents movement considerably. Must be
    * positive.
    */
-  public var timeHorizonObstacles: Float
+  public final inline var timeHorizonObstacles: Float
     @JvmName("timeHorizonObstaclesProperty")
     get() = getTimeHorizonObstacles()
     @JvmName("timeHorizonObstaclesProperty")
@@ -346,7 +346,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * The maximum speed that an agent can move.
    */
-  public var maxSpeed: Float
+  public final inline var maxSpeed: Float
     @JvmName("maxSpeedProperty")
     get() = getMaxSpeed()
     @JvmName("maxSpeedProperty")
@@ -358,7 +358,7 @@ public open class NavigationAgent2D : Node() {
    * A bitfield determining the avoidance layers for this NavigationAgent. Other agents with a
    * matching bit on the [avoidanceMask] will avoid this agent.
    */
-  public var avoidanceLayers: Long
+  public final inline var avoidanceLayers: Long
     @JvmName("avoidanceLayersProperty")
     get() = getAvoidanceLayers()
     @JvmName("avoidanceLayersProperty")
@@ -370,7 +370,7 @@ public open class NavigationAgent2D : Node() {
    * A bitfield determining what other avoidance agents and obstacles this NavigationAgent will
    * avoid when a bit matches at least one of their [avoidanceLayers].
    */
-  public var avoidanceMask: Long
+  public final inline var avoidanceMask: Long
     @JvmName("avoidanceMaskProperty")
     get() = getAvoidanceMask()
     @JvmName("avoidanceMaskProperty")
@@ -383,7 +383,7 @@ public open class NavigationAgent2D : Node() {
    * but have a lower [avoidancePriority]. This in turn makes the other agents with lower priority
    * adjust their velocities even more to avoid collision with this agent.
    */
-  public var avoidancePriority: Float
+  public final inline var avoidancePriority: Float
     @JvmName("avoidancePriorityProperty")
     get() = getAvoidancePriority()
     @JvmName("avoidancePriorityProperty")
@@ -394,7 +394,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * If `true` shows debug visuals for this agent.
    */
-  public var debugEnabled: Boolean
+  public final inline var debugEnabled: Boolean
     @JvmName("debugEnabledProperty")
     get() = getDebugEnabled()
     @JvmName("debugEnabledProperty")
@@ -405,7 +405,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * If `true` uses the defined [debugPathCustomColor] for this agent instead of global color.
    */
-  public var debugUseCustom: Boolean
+  public final inline var debugUseCustom: Boolean
     @JvmName("debugUseCustomProperty")
     get() = getDebugUseCustom()
     @JvmName("debugUseCustomProperty")
@@ -417,7 +417,7 @@ public open class NavigationAgent2D : Node() {
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    */
   @CoreTypeLocalCopy
-  public var debugPathCustomColor: Color
+  public final inline var debugPathCustomColor: Color
     @JvmName("debugPathCustomColorProperty")
     get() = getDebugPathCustomColor()
     @JvmName("debugPathCustomColorProperty")
@@ -429,7 +429,7 @@ public open class NavigationAgent2D : Node() {
    * If [debugUseCustom] is `true` uses this rasterized point size for rendering path points for
    * this agent instead of global point size.
    */
-  public var debugPathCustomPointSize: Float
+  public final inline var debugPathCustomPointSize: Float
     @JvmName("debugPathCustomPointSizeProperty")
     get() = getDebugPathCustomPointSize()
     @JvmName("debugPathCustomPointSizeProperty")
@@ -441,7 +441,7 @@ public open class NavigationAgent2D : Node() {
    * If [debugUseCustom] is `true` uses this line width for rendering paths for this agent instead
    * of global line width.
    */
-  public var debugPathCustomLineWidth: Float
+  public final inline var debugPathCustomLineWidth: Float
     @JvmName("debugPathCustomLineWidthProperty")
     get() = getDebugPathCustomLineWidth()
     @JvmName("debugPathCustomLineWidthProperty")
@@ -472,7 +472,7 @@ public open class NavigationAgent2D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
+  public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
       block(this)
       targetPosition = this
   }
@@ -499,7 +499,7 @@ public open class NavigationAgent2D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
+  public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply{
       block(this)
       velocity = this
   }
@@ -523,7 +523,7 @@ public open class NavigationAgent2D : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
+  public final fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
       debugPathCustomColor.apply{
       block(this)
       debugPathCustomColor = this
@@ -533,128 +533,128 @@ public open class NavigationAgent2D : Node() {
   /**
    * Returns the [RID] of this agent on the [NavigationServer2D].
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setAvoidanceEnabled(enabled: Boolean): Unit {
+  public final fun setAvoidanceEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
   }
 
-  public fun getAvoidanceEnabled(): Boolean {
+  public final fun getAvoidanceEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPathDesiredDistance(desiredDistance: Float): Unit {
+  public final fun setPathDesiredDistance(desiredDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to desiredDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPathDesiredDistancePtr, NIL)
   }
 
-  public fun getPathDesiredDistance(): Float {
+  public final fun getPathDesiredDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathDesiredDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTargetDesiredDistance(desiredDistance: Float): Unit {
+  public final fun setTargetDesiredDistance(desiredDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to desiredDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTargetDesiredDistancePtr, NIL)
   }
 
-  public fun getTargetDesiredDistance(): Float {
+  public final fun getTargetDesiredDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetDesiredDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setNeighborDistance(neighborDistance: Float): Unit {
+  public final fun setNeighborDistance(neighborDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to neighborDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setNeighborDistancePtr, NIL)
   }
 
-  public fun getNeighborDistance(): Float {
+  public final fun getNeighborDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNeighborDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMaxNeighbors(maxNeighbors: Int): Unit {
+  public final fun setMaxNeighbors(maxNeighbors: Int): Unit {
     TransferContext.writeArguments(LONG to maxNeighbors.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxNeighborsPtr, NIL)
   }
 
-  public fun getMaxNeighbors(): Int {
+  public final fun getMaxNeighbors(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxNeighborsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setTimeHorizonAgents(timeHorizon: Float): Unit {
+  public final fun setTimeHorizonAgents(timeHorizon: Float): Unit {
     TransferContext.writeArguments(DOUBLE to timeHorizon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTimeHorizonAgentsPtr, NIL)
   }
 
-  public fun getTimeHorizonAgents(): Float {
+  public final fun getTimeHorizonAgents(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeHorizonAgentsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTimeHorizonObstacles(timeHorizon: Float): Unit {
+  public final fun setTimeHorizonObstacles(timeHorizon: Float): Unit {
     TransferContext.writeArguments(DOUBLE to timeHorizon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTimeHorizonObstaclesPtr, NIL)
   }
 
-  public fun getTimeHorizonObstacles(): Float {
+  public final fun getTimeHorizonObstacles(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeHorizonObstaclesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMaxSpeed(maxSpeed: Float): Unit {
+  public final fun setMaxSpeed(maxSpeed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to maxSpeed.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpeedPtr, NIL)
   }
 
-  public fun getMaxSpeed(): Float {
+  public final fun getMaxSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPathMaxDistance(maxSpeed: Float): Unit {
+  public final fun setPathMaxDistance(maxSpeed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to maxSpeed.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPathMaxDistancePtr, NIL)
   }
 
-  public fun getPathMaxDistance(): Float {
+  public final fun getPathMaxDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setNavigationLayers(navigationLayers: Long): Unit {
+  public final fun setNavigationLayers(navigationLayers: Long): Unit {
     TransferContext.writeArguments(LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
   }
 
-  public fun getNavigationLayers(): Long {
+  public final fun getNavigationLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -664,7 +664,7 @@ public open class NavigationAgent2D : Node() {
    * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
    * given a [layerNumber] between 1 and 32.
    */
-  public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
@@ -673,44 +673,45 @@ public open class NavigationAgent2D : Node() {
    * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
    * a [layerNumber] between 1 and 32.
    */
-  public fun getNavigationLayerValue(layerNumber: Int): Boolean {
+  public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public
+  public final
       fun setPathfindingAlgorithm(pathfindingAlgorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm):
       Unit {
     TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
 
-  public fun getPathfindingAlgorithm(): NavigationPathQueryParameters2D.PathfindingAlgorithm {
+  public final fun getPathfindingAlgorithm(): NavigationPathQueryParameters2D.PathfindingAlgorithm {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
     return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public
+  public final
       fun setPathPostprocessing(pathPostprocessing: NavigationPathQueryParameters2D.PathPostProcessing):
       Unit {
     TransferContext.writeArguments(LONG to pathPostprocessing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
 
-  public fun getPathPostprocessing(): NavigationPathQueryParameters2D.PathPostProcessing {
+  public final fun getPathPostprocessing(): NavigationPathQueryParameters2D.PathPostProcessing {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
     return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPathMetadataFlags(flags: NavigationPathQueryParameters2D.PathMetadataFlags): Unit {
+  public final fun setPathMetadataFlags(flags: NavigationPathQueryParameters2D.PathMetadataFlags):
+      Unit {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathMetadataFlagsPtr, NIL)
   }
 
-  public fun getPathMetadataFlags(): NavigationPathQueryParameters2D.PathMetadataFlags {
+  public final fun getPathMetadataFlags(): NavigationPathQueryParameters2D.PathMetadataFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathMetadataFlagsPtr, LONG)
     return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
@@ -720,7 +721,7 @@ public open class NavigationAgent2D : Node() {
    * Sets the [RID] of the navigation map this NavigationAgent node should use and also updates the
    * `agent` on the NavigationServer.
    */
-  public fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
@@ -732,40 +733,40 @@ public open class NavigationAgent2D : Node() {
    * NavigationAgent node will not be aware of the map change. Use [setNavigationMap] to change the
    * navigation map for the NavigationAgent and also update the agent on the NavigationServer.
    */
-  public fun getNavigationMap(): RID {
+  public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setTargetPosition(position: Vector2): Unit {
+  public final fun setTargetPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
-  public fun getTargetPosition(): Vector2 {
+  public final fun getTargetPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setSimplifyPath(enabled: Boolean): Unit {
+  public final fun setSimplifyPath(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
   }
 
-  public fun getSimplifyPath(): Boolean {
+  public final fun getSimplifyPath(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSimplifyEpsilon(epsilon: Float): Unit {
+  public final fun setSimplifyEpsilon(epsilon: Float): Unit {
     TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
   }
 
-  public fun getSimplifyEpsilon(): Float {
+  public final fun getSimplifyEpsilon(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -777,7 +778,7 @@ public open class NavigationAgent2D : Node() {
    * position of the agent's parent. The use of this function once every physics frame is required to
    * update the internal path logic of the NavigationAgent.
    */
-  public fun getNextPathPosition(): Vector2 {
+  public final fun getNextPathPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNextPathPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -788,17 +789,17 @@ public open class NavigationAgent2D : Node() {
    * agent is teleported to a new position this function should be used in the same frame. If called
    * frequently this function can get agents stuck.
    */
-  public fun setVelocityForced(velocity: Vector2): Unit {
+  public final fun setVelocityForced(velocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setVelocityForcedPtr, NIL)
   }
 
-  public fun setVelocity(velocity: Vector2): Unit {
+  public final fun setVelocity(velocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
   }
 
-  public fun getVelocity(): Vector2 {
+  public final fun getVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -808,7 +809,7 @@ public open class NavigationAgent2D : Node() {
    * Returns the distance to the target position, using the agent's global position. The user must
    * set [targetPosition] in order for this to be accurate.
    */
-  public fun distanceToTarget(): Float {
+  public final fun distanceToTarget(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.distanceToTargetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -817,7 +818,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * Returns the path query result for the path the agent is currently following.
    */
-  public fun getCurrentNavigationResult(): NavigationPathQueryResult2D? {
+  public final fun getCurrentNavigationResult(): NavigationPathQueryResult2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationResultPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as NavigationPathQueryResult2D?)
@@ -831,7 +832,7 @@ public open class NavigationAgent2D : Node() {
    * once every physics frame to receive the next path point for the agents movement as this function
    * also updates the internal path logic.
    */
-  public fun getCurrentNavigationPath(): PackedVector2Array {
+  public final fun getCurrentNavigationPath(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathPtr,
         PACKED_VECTOR2_ARRAY)
@@ -841,7 +842,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * Returns which index the agent is currently on in the navigation path's [PackedVector2Array].
    */
-  public fun getCurrentNavigationPathIndex(): Int {
+  public final fun getCurrentNavigationPathIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -852,7 +853,7 @@ public open class NavigationAgent2D : Node() {
    * [targetDesiredDistance] of the [targetPosition]. It may not always be possible to reach the target
    * but it should always be possible to reach the final position. See [getFinalPosition].
    */
-  public fun isTargetReached(): Boolean {
+  public final fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTargetReachedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -861,7 +862,7 @@ public open class NavigationAgent2D : Node() {
   /**
    * Returns `true` if [getFinalPosition] is within [targetDesiredDistance] of the [targetPosition].
    */
-  public fun isTargetReachable(): Boolean {
+  public final fun isTargetReachable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTargetReachablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -874,7 +875,7 @@ public open class NavigationAgent2D : Node() {
    * **Note:** While `true` prefer to stop calling update functions like [getNextPathPosition]. This
    * avoids jittering the standing agent due to calling repeated path updates.
    */
-  public fun isNavigationFinished(): Boolean {
+  public final fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNavigationFinishedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -885,29 +886,29 @@ public open class NavigationAgent2D : Node() {
    * position can change if the agent needs to update the navigation path which makes the agent emit
    * the [signal path_changed] signal.
    */
-  public fun getFinalPosition(): Vector2 {
+  public final fun getFinalPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFinalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setAvoidanceLayers(layers: Long): Unit {
+  public final fun setAvoidanceLayers(layers: Long): Unit {
     TransferContext.writeArguments(LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
   }
 
-  public fun getAvoidanceLayers(): Long {
+  public final fun getAvoidanceLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setAvoidanceMask(mask: Long): Unit {
+  public final fun setAvoidanceMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceMaskPtr, NIL)
   }
 
-  public fun getAvoidanceMask(): Long {
+  public final fun getAvoidanceMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -917,7 +918,7 @@ public open class NavigationAgent2D : Node() {
    * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
    * given a [layerNumber] between 1 and 32.
    */
-  public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
@@ -926,7 +927,7 @@ public open class NavigationAgent2D : Node() {
    * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
+  public final fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -936,7 +937,7 @@ public open class NavigationAgent2D : Node() {
    * Based on [value], enables or disables the specified mask in the [avoidanceMask] bitmask, given
    * a [maskNumber] between 1 and 32.
    */
-  public fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
+  public final fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceMaskValuePtr, NIL)
   }
@@ -945,73 +946,73 @@ public open class NavigationAgent2D : Node() {
    * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a
    * [maskNumber] between 1 and 32.
    */
-  public fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
+  public final fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to maskNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAvoidancePriority(priority: Float): Unit {
+  public final fun setAvoidancePriority(priority: Float): Unit {
     TransferContext.writeArguments(DOUBLE to priority.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidancePriorityPtr, NIL)
   }
 
-  public fun getAvoidancePriority(): Float {
+  public final fun getAvoidancePriority(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidancePriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDebugEnabled(enabled: Boolean): Unit {
+  public final fun setDebugEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugEnabledPtr, NIL)
   }
 
-  public fun getDebugEnabled(): Boolean {
+  public final fun getDebugEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDebugUseCustom(enabled: Boolean): Unit {
+  public final fun setDebugUseCustom(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugUseCustomPtr, NIL)
   }
 
-  public fun getDebugUseCustom(): Boolean {
+  public final fun getDebugUseCustom(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugUseCustomPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDebugPathCustomColor(color: Color): Unit {
+  public final fun setDebugPathCustomColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomColorPtr, NIL)
   }
 
-  public fun getDebugPathCustomColor(): Color {
+  public final fun getDebugPathCustomColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setDebugPathCustomPointSize(pointSize: Float): Unit {
+  public final fun setDebugPathCustomPointSize(pointSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pointSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomPointSizePtr, NIL)
   }
 
-  public fun getDebugPathCustomPointSize(): Float {
+  public final fun getDebugPathCustomPointSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomPointSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDebugPathCustomLineWidth(lineWidth: Float): Unit {
+  public final fun setDebugPathCustomLineWidth(lineWidth: Float): Unit {
     TransferContext.writeArguments(DOUBLE to lineWidth.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomLineWidthPtr, NIL)
   }
 
-  public fun getDebugPathCustomLineWidth(): Float {
+  public final fun getDebugPathCustomLineWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomLineWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

@@ -36,7 +36,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   /**
    * The inner radius of the torus.
    */
-  public var innerRadius: Float
+  public final inline var innerRadius: Float
     @JvmName("innerRadiusProperty")
     get() = getInnerRadius()
     @JvmName("innerRadiusProperty")
@@ -47,7 +47,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   /**
    * The outer radius of the torus.
    */
-  public var outerRadius: Float
+  public final inline var outerRadius: Float
     @JvmName("outerRadiusProperty")
     get() = getOuterRadius()
     @JvmName("outerRadiusProperty")
@@ -58,7 +58,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   /**
    * The number of slices the torus is constructed of.
    */
-  public var sides: Int
+  public final inline var sides: Int
     @JvmName("sidesProperty")
     get() = getSides()
     @JvmName("sidesProperty")
@@ -69,7 +69,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   /**
    * The number of edges each ring of the torus is constructed of.
    */
-  public var ringSides: Int
+  public final inline var ringSides: Int
     @JvmName("ringSidesProperty")
     get() = getRingSides()
     @JvmName("ringSidesProperty")
@@ -81,7 +81,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
    * If `true` the normals of the torus are set to give a smooth effect making the torus seem
    * rounded. If `false` the torus will have a flat shaded look.
    */
-  public var smoothFaces: Boolean
+  public final inline var smoothFaces: Boolean
     @JvmName("smoothFacesProperty")
     get() = getSmoothFaces()
     @JvmName("smoothFacesProperty")
@@ -92,7 +92,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   /**
    * The material used to render the torus.
    */
-  public var material: Material?
+  public final inline var material: Material?
     @JvmName("materialProperty")
     get() = getMaterial()
     @JvmName("materialProperty")
@@ -104,67 +104,67 @@ public open class CSGTorus3D : CSGPrimitive3D() {
     callConstructor(ENGINECLASS_CSGTORUS3D, scriptIndex)
   }
 
-  public fun setInnerRadius(radius: Float): Unit {
+  public final fun setInnerRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setInnerRadiusPtr, NIL)
   }
 
-  public fun getInnerRadius(): Float {
+  public final fun getInnerRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInnerRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setOuterRadius(radius: Float): Unit {
+  public final fun setOuterRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setOuterRadiusPtr, NIL)
   }
 
-  public fun getOuterRadius(): Float {
+  public final fun getOuterRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOuterRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSides(sides: Int): Unit {
+  public final fun setSides(sides: Int): Unit {
     TransferContext.writeArguments(LONG to sides.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
   }
 
-  public fun getSides(): Int {
+  public final fun getSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setRingSides(sides: Int): Unit {
+  public final fun setRingSides(sides: Int): Unit {
     TransferContext.writeArguments(LONG to sides.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRingSidesPtr, NIL)
   }
 
-  public fun getRingSides(): Int {
+  public final fun getRingSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingSidesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
-  public fun getMaterial(): Material? {
+  public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
-  public fun setSmoothFaces(smoothFaces: Boolean): Unit {
+  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
     TransferContext.writeArguments(BOOL to smoothFaces)
     TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
   }
 
-  public fun getSmoothFaces(): Boolean {
+  public final fun getSmoothFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

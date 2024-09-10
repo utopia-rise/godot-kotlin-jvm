@@ -38,7 +38,7 @@ public open class CSGMesh3D : CSGPrimitive3D() {
    * smooth shader. If a flat shader is required for a face, ensure that all vertex normals of the face
    * are approximately equal.
    */
-  public var mesh: Mesh?
+  public final inline var mesh: Mesh?
     @JvmName("meshProperty")
     get() = getMesh()
     @JvmName("meshProperty")
@@ -49,7 +49,7 @@ public open class CSGMesh3D : CSGPrimitive3D() {
   /**
    * The [Material] used in drawing the CSG shape.
    */
-  public var material: Material?
+  public final inline var material: Material?
     @JvmName("materialProperty")
     get() = getMaterial()
     @JvmName("materialProperty")
@@ -61,23 +61,23 @@ public open class CSGMesh3D : CSGPrimitive3D() {
     callConstructor(ENGINECLASS_CSGMESH3D, scriptIndex)
   }
 
-  public fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
-  public fun getMesh(): Mesh? {
+  public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
   }
 
-  public fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
-  public fun getMaterial(): Material? {
+  public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)

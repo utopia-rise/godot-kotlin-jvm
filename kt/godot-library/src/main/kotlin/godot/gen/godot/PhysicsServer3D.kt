@@ -70,61 +70,61 @@ public object PhysicsServer3D : Object() {
     getSingleton(ENGINECLASS_PHYSICSSERVER3D)
   }
 
-  public fun worldBoundaryShapeCreate(): RID {
+  public final fun worldBoundaryShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.worldBoundaryShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun separationRayShapeCreate(): RID {
+  public final fun separationRayShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.separationRayShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun sphereShapeCreate(): RID {
+  public final fun sphereShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.sphereShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun boxShapeCreate(): RID {
+  public final fun boxShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.boxShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun capsuleShapeCreate(): RID {
+  public final fun capsuleShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.capsuleShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun cylinderShapeCreate(): RID {
+  public final fun cylinderShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.cylinderShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun convexPolygonShapeCreate(): RID {
+  public final fun convexPolygonShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.convexPolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun concavePolygonShapeCreate(): RID {
+  public final fun concavePolygonShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.concavePolygonShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun heightmapShapeCreate(): RID {
+  public final fun heightmapShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.heightmapShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun customShapeCreate(): RID {
+  public final fun customShapeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.customShapeCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -134,7 +134,7 @@ public object PhysicsServer3D : Object() {
    * Sets the shape data that defines its shape and size. The data to be passed depends on the kind
    * of shape created [shapeGetType].
    */
-  public fun shapeSetData(shape: RID, `data`: Any?): Unit {
+  public final fun shapeSetData(shape: RID, `data`: Any?): Unit {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeSetDataPtr, NIL)
   }
@@ -143,7 +143,7 @@ public object PhysicsServer3D : Object() {
    * Sets the collision margin for the shape.
    * **Note:** This is not used in Godot Physics.
    */
-  public fun shapeSetMargin(shape: RID, margin: Float): Unit {
+  public final fun shapeSetMargin(shape: RID, margin: Float): Unit {
     TransferContext.writeArguments(_RID to shape, DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.shapeSetMarginPtr, NIL)
   }
@@ -151,7 +151,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the type of shape (see [ShapeType] constants).
    */
-  public fun shapeGetType(shape: RID): ShapeType {
+  public final fun shapeGetType(shape: RID): ShapeType {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeGetTypePtr, LONG)
     return PhysicsServer3D.ShapeType.from(TransferContext.readReturnValue(LONG) as Long)
@@ -160,7 +160,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the shape data.
    */
-  public fun shapeGetData(shape: RID): Any? {
+  public final fun shapeGetData(shape: RID): Any? {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeGetDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -170,7 +170,7 @@ public object PhysicsServer3D : Object() {
    * Returns the collision margin for the shape.
    * **Note:** This is not used in Godot Physics, so will always return `0`.
    */
-  public fun shapeGetMargin(shape: RID): Float {
+  public final fun shapeGetMargin(shape: RID): Float {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeGetMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -181,7 +181,7 @@ public object PhysicsServer3D : Object() {
    * assigned to an area or a body. It can be assigned to an area with [areaSetSpace], or to a body
    * with [bodySetSpace].
    */
-  public fun spaceCreate(): RID {
+  public final fun spaceCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.spaceCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -190,7 +190,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Marks a space as active. It will not have an effect, unless it is assigned to an area or body.
    */
-  public fun spaceSetActive(space: RID, active: Boolean): Unit {
+  public final fun spaceSetActive(space: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to space, BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.spaceSetActivePtr, NIL)
   }
@@ -198,7 +198,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns whether the space is active.
    */
-  public fun spaceIsActive(space: RID): Boolean {
+  public final fun spaceIsActive(space: RID): Boolean {
     TransferContext.writeArguments(_RID to space)
     TransferContext.callMethod(rawPtr, MethodBindings.spaceIsActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -208,7 +208,7 @@ public object PhysicsServer3D : Object() {
    * Sets the value for a space parameter. A list of available parameters is on the [SpaceParameter]
    * constants.
    */
-  public fun spaceSetParam(
+  public final fun spaceSetParam(
     space: RID,
     `param`: SpaceParameter,
     `value`: Float,
@@ -220,7 +220,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the value of a space parameter.
    */
-  public fun spaceGetParam(space: RID, `param`: SpaceParameter): Float {
+  public final fun spaceGetParam(space: RID, `param`: SpaceParameter): Float {
     TransferContext.writeArguments(_RID to space, LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.spaceGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -230,7 +230,7 @@ public object PhysicsServer3D : Object() {
    * Returns the state of a space, a [PhysicsDirectSpaceState3D]. This object can be used to make
    * collision/intersection queries.
    */
-  public fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState3D? {
+  public final fun spaceGetDirectState(space: RID): PhysicsDirectSpaceState3D? {
     TransferContext.writeArguments(_RID to space)
     TransferContext.callMethod(rawPtr, MethodBindings.spaceGetDirectStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?)
@@ -244,7 +244,7 @@ public object PhysicsServer3D : Object() {
    * [areaSetSpace] to add the area to a space. If you want the area to be detectable use
    * [areaSetMonitorable].
    */
-  public fun areaCreate(): RID {
+  public final fun areaCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areaCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -253,7 +253,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Assigns a space to the area.
    */
-  public fun areaSetSpace(area: RID, space: RID): Unit {
+  public final fun areaSetSpace(area: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to area, _RID to space)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetSpacePtr, NIL)
   }
@@ -261,7 +261,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the space assigned to the area.
    */
-  public fun areaGetSpace(area: RID): RID {
+  public final fun areaGetSpace(area: RID): RID {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -272,7 +272,7 @@ public object PhysicsServer3D : Object() {
    * index, so you should track which shape has a given index.
    */
   @JvmOverloads
-  public fun areaAddShape(
+  public final fun areaAddShape(
     area: RID,
     shape: RID,
     transform: Transform3D = Transform3D(),
@@ -286,7 +286,7 @@ public object PhysicsServer3D : Object() {
    * Substitutes a given area shape by another. The old shape is selected by its index, the new one
    * by its [RID].
    */
-  public fun areaSetShape(
+  public final fun areaSetShape(
     area: RID,
     shapeIdx: Int,
     shape: RID,
@@ -298,7 +298,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the transform matrix for an area shape.
    */
-  public fun areaSetShapeTransform(
+  public final fun areaSetShapeTransform(
     area: RID,
     shapeIdx: Int,
     transform: Transform3D,
@@ -307,7 +307,7 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetShapeTransformPtr, NIL)
   }
 
-  public fun areaSetShapeDisabled(
+  public final fun areaSetShapeDisabled(
     area: RID,
     shapeIdx: Int,
     disabled: Boolean,
@@ -319,7 +319,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the number of shapes assigned to an area.
    */
-  public fun areaGetShapeCount(area: RID): Int {
+  public final fun areaGetShapeCount(area: RID): Int {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -328,7 +328,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the [RID] of the nth shape of an area.
    */
-  public fun areaGetShape(area: RID, shapeIdx: Int): RID {
+  public final fun areaGetShape(area: RID, shapeIdx: Int): RID {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetShapePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -337,7 +337,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the transform matrix of a shape within an area.
    */
-  public fun areaGetShapeTransform(area: RID, shapeIdx: Int): Transform3D {
+  public final fun areaGetShapeTransform(area: RID, shapeIdx: Int): Transform3D {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetShapeTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -346,7 +346,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Removes a shape from an area. It does not delete the shape, so it can be reassigned later.
    */
-  public fun areaRemoveShape(area: RID, shapeIdx: Int): Unit {
+  public final fun areaRemoveShape(area: RID, shapeIdx: Int): Unit {
     TransferContext.writeArguments(_RID to area, LONG to shapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.areaRemoveShapePtr, NIL)
   }
@@ -355,7 +355,7 @@ public object PhysicsServer3D : Object() {
    * Removes all shapes from an area. It does not delete the shapes, so they can be reassigned
    * later.
    */
-  public fun areaClearShapes(area: RID): Unit {
+  public final fun areaClearShapes(area: RID): Unit {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, MethodBindings.areaClearShapesPtr, NIL)
   }
@@ -363,7 +363,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Assigns the area to one or many physics layers.
    */
-  public fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
+  public final fun areaSetCollisionLayer(area: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetCollisionLayerPtr, NIL)
   }
@@ -371,7 +371,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the physics layer or layers an area belongs to.
    */
-  public fun areaGetCollisionLayer(area: RID): Long {
+  public final fun areaGetCollisionLayer(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -380,7 +380,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets which physics layers the area will monitor.
    */
-  public fun areaSetCollisionMask(area: RID, mask: Long): Unit {
+  public final fun areaSetCollisionMask(area: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetCollisionMaskPtr, NIL)
   }
@@ -388,7 +388,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the physics layer or layers an area can contact with.
    */
-  public fun areaGetCollisionMask(area: RID): Long {
+  public final fun areaGetCollisionMask(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -398,7 +398,7 @@ public object PhysicsServer3D : Object() {
    * Sets the value for an area parameter. A list of available parameters is on the [AreaParameter]
    * constants.
    */
-  public fun areaSetParam(
+  public final fun areaSetParam(
     area: RID,
     `param`: AreaParameter,
     `value`: Any?,
@@ -410,7 +410,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the transform matrix for an area.
    */
-  public fun areaSetTransform(area: RID, transform: Transform3D): Unit {
+  public final fun areaSetTransform(area: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to area, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetTransformPtr, NIL)
   }
@@ -419,7 +419,7 @@ public object PhysicsServer3D : Object() {
    * Returns an area parameter value. A list of available parameters is on the [AreaParameter]
    * constants.
    */
-  public fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
+  public final fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
     TransferContext.writeArguments(_RID to area, LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetParamPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -428,7 +428,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the transform matrix for an area.
    */
-  public fun areaGetTransform(area: RID): Transform3D {
+  public final fun areaGetTransform(area: RID): Transform3D {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -437,7 +437,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Assigns the area to a descendant of [Object], so it can exist in the node tree.
    */
-  public fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
+  public final fun areaAttachObjectInstanceId(area: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to area, LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.areaAttachObjectInstanceIdPtr, NIL)
   }
@@ -445,7 +445,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets the instance ID of the object the area is assigned to.
    */
-  public fun areaGetObjectInstanceId(area: RID): Long {
+  public final fun areaGetObjectInstanceId(area: RID): Long {
     TransferContext.writeArguments(_RID to area)
     TransferContext.callMethod(rawPtr, MethodBindings.areaGetObjectInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -465,7 +465,7 @@ public object PhysicsServer3D : Object() {
    * By counting (or keeping track of) the shapes that enter and exit, it can be determined if a
    * body (with all its shapes) is entering for the first time or exiting for the last time.
    */
-  public fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
+  public final fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetMonitorCallbackPtr, NIL)
   }
@@ -484,12 +484,12 @@ public object PhysicsServer3D : Object() {
    * By counting (or keeping track of) the shapes that enter and exit, it can be determined if an
    * area (with all its shapes) is entering for the first time or exiting for the last time.
    */
-  public fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
+  public final fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetAreaMonitorCallbackPtr, NIL)
   }
 
-  public fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
+  public final fun areaSetMonitorable(area: RID, monitorable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to monitorable)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetMonitorablePtr, NIL)
   }
@@ -497,7 +497,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets object pickable with rays.
    */
-  public fun areaSetRayPickable(area: RID, enable: Boolean): Unit {
+  public final fun areaSetRayPickable(area: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to area, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.areaSetRayPickablePtr, NIL)
   }
@@ -509,7 +509,7 @@ public object PhysicsServer3D : Object() {
    * Use [bodyAddShape] to add shapes to it, use [bodySetState] to set its transform, and use
    * [bodySetSpace] to add the body to a space.
    */
-  public fun bodyCreate(): RID {
+  public final fun bodyCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.bodyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -518,7 +518,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Assigns a space to the body (see [spaceCreate]).
    */
-  public fun bodySetSpace(body: RID, space: RID): Unit {
+  public final fun bodySetSpace(body: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to space)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetSpacePtr, NIL)
   }
@@ -526,7 +526,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the [RID] of the space assigned to a body.
    */
-  public fun bodyGetSpace(body: RID): RID {
+  public final fun bodyGetSpace(body: RID): RID {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -535,7 +535,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the body mode, from one of the [BodyMode] constants.
    */
-  public fun bodySetMode(body: RID, mode: BodyMode): Unit {
+  public final fun bodySetMode(body: RID, mode: BodyMode): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetModePtr, NIL)
   }
@@ -543,7 +543,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the body mode.
    */
-  public fun bodyGetMode(body: RID): BodyMode {
+  public final fun bodyGetMode(body: RID): BodyMode {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetModePtr, LONG)
     return PhysicsServer3D.BodyMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -552,7 +552,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the physics layer or layers a body belongs to.
    */
-  public fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
+  public final fun bodySetCollisionLayer(body: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetCollisionLayerPtr, NIL)
   }
@@ -560,7 +560,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the physics layer or layers a body belongs to.
    */
-  public fun bodyGetCollisionLayer(body: RID): Long {
+  public final fun bodyGetCollisionLayer(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -569,7 +569,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the physics layer or layers a body can collide with.
    */
-  public fun bodySetCollisionMask(body: RID, mask: Long): Unit {
+  public final fun bodySetCollisionMask(body: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetCollisionMaskPtr, NIL)
   }
@@ -577,7 +577,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the physics layer or layers a body can collide with.
    */
-  public fun bodyGetCollisionMask(body: RID): Long {
+  public final fun bodyGetCollisionMask(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -586,7 +586,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the body's collision priority.
    */
-  public fun bodySetCollisionPriority(body: RID, priority: Float): Unit {
+  public final fun bodySetCollisionPriority(body: RID, priority: Float): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to priority.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetCollisionPriorityPtr, NIL)
   }
@@ -594,7 +594,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the body's collision priority.
    */
-  public fun bodyGetCollisionPriority(body: RID): Float {
+  public final fun bodyGetCollisionPriority(body: RID): Float {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetCollisionPriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -605,7 +605,7 @@ public object PhysicsServer3D : Object() {
    * index, so you should track which shape has a given index.
    */
   @JvmOverloads
-  public fun bodyAddShape(
+  public final fun bodyAddShape(
     body: RID,
     shape: RID,
     transform: Transform3D = Transform3D(),
@@ -619,7 +619,7 @@ public object PhysicsServer3D : Object() {
    * Substitutes a given body shape by another. The old shape is selected by its index, the new one
    * by its [RID].
    */
-  public fun bodySetShape(
+  public final fun bodySetShape(
     body: RID,
     shapeIdx: Int,
     shape: RID,
@@ -631,7 +631,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the transform matrix for a body shape.
    */
-  public fun bodySetShapeTransform(
+  public final fun bodySetShapeTransform(
     body: RID,
     shapeIdx: Int,
     transform: Transform3D,
@@ -640,7 +640,7 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetShapeTransformPtr, NIL)
   }
 
-  public fun bodySetShapeDisabled(
+  public final fun bodySetShapeDisabled(
     body: RID,
     shapeIdx: Int,
     disabled: Boolean,
@@ -652,7 +652,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the number of shapes assigned to a body.
    */
-  public fun bodyGetShapeCount(body: RID): Int {
+  public final fun bodyGetShapeCount(body: RID): Int {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -661,7 +661,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the [RID] of the nth shape of a body.
    */
-  public fun bodyGetShape(body: RID, shapeIdx: Int): RID {
+  public final fun bodyGetShape(body: RID, shapeIdx: Int): RID {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetShapePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -670,7 +670,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the transform matrix of a body shape.
    */
-  public fun bodyGetShapeTransform(body: RID, shapeIdx: Int): Transform3D {
+  public final fun bodyGetShapeTransform(body: RID, shapeIdx: Int): Transform3D {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetShapeTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -679,7 +679,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Removes a shape from a body. The shape is not deleted, so it can be reused afterwards.
    */
-  public fun bodyRemoveShape(body: RID, shapeIdx: Int): Unit {
+  public final fun bodyRemoveShape(body: RID, shapeIdx: Int): Unit {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bodyRemoveShapePtr, NIL)
   }
@@ -687,7 +687,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Removes all shapes from a body.
    */
-  public fun bodyClearShapes(body: RID): Unit {
+  public final fun bodyClearShapes(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyClearShapesPtr, NIL)
   }
@@ -695,7 +695,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Assigns the area to a descendant of [Object], so it can exist in the node tree.
    */
-  public fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
+  public final fun bodyAttachObjectInstanceId(body: RID, id: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyAttachObjectInstanceIdPtr, NIL)
   }
@@ -703,7 +703,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets the instance ID of the object the area is assigned to.
    */
-  public fun bodyGetObjectInstanceId(body: RID): Long {
+  public final fun bodyGetObjectInstanceId(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetObjectInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -714,7 +714,7 @@ public object PhysicsServer3D : Object() {
    * Continuous collision detection tries to predict where a moving body will collide, instead of
    * moving it and correcting its movement if it collided.
    */
-  public fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean): Unit {
+  public final fun bodySetEnableContinuousCollisionDetection(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetEnableContinuousCollisionDetectionPtr,
         NIL)
@@ -723,7 +723,7 @@ public object PhysicsServer3D : Object() {
   /**
    * If `true`, the continuous collision detection mode is enabled.
    */
-  public fun bodyIsContinuousCollisionDetectionEnabled(body: RID): Boolean {
+  public final fun bodyIsContinuousCollisionDetectionEnabled(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyIsContinuousCollisionDetectionEnabledPtr,
         BOOL)
@@ -733,7 +733,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets a body parameter. A list of available parameters is on the [BodyParameter] constants.
    */
-  public fun bodySetParam(
+  public final fun bodySetParam(
     body: RID,
     `param`: BodyParameter,
     `value`: Any?,
@@ -746,7 +746,7 @@ public object PhysicsServer3D : Object() {
    * Returns the value of a body parameter. A list of available parameters is on the [BodyParameter]
    * constants.
    */
-  public fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
+  public final fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
     TransferContext.writeArguments(_RID to body, LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetParamPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -756,7 +756,7 @@ public object PhysicsServer3D : Object() {
    * Restores the default inertia and center of mass based on shapes to cancel any custom values
    * previously set using [bodySetParam].
    */
-  public fun bodyResetMassProperties(body: RID): Unit {
+  public final fun bodyResetMassProperties(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyResetMassPropertiesPtr, NIL)
   }
@@ -764,7 +764,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets a body state (see [BodyState] constants).
    */
-  public fun bodySetState(
+  public final fun bodySetState(
     body: RID,
     state: BodyState,
     `value`: Any?,
@@ -776,7 +776,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns a body state.
    */
-  public fun bodyGetState(body: RID, state: BodyState): Any? {
+  public final fun bodyGetState(body: RID, state: BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetStatePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -789,7 +789,7 @@ public object PhysicsServer3D : Object() {
    * impacts (use the "_force" functions otherwise).
    * This is equivalent to using [bodyApplyImpulse] at the body's center of mass.
    */
-  public fun bodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
+  public final fun bodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyApplyCentralImpulsePtr, NIL)
   }
@@ -802,7 +802,7 @@ public object PhysicsServer3D : Object() {
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public fun bodyApplyImpulse(
+  public final fun bodyApplyImpulse(
     body: RID,
     impulse: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
@@ -817,7 +817,7 @@ public object PhysicsServer3D : Object() {
    * framerate-dependent force. For this reason, it should only be used when simulating one-time
    * impacts (use the "_force" functions otherwise).
    */
-  public fun bodyApplyTorqueImpulse(body: RID, impulse: Vector3): Unit {
+  public final fun bodyApplyTorqueImpulse(body: RID, impulse: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyApplyTorqueImpulsePtr, NIL)
   }
@@ -827,7 +827,7 @@ public object PhysicsServer3D : Object() {
    * be applied every physics update.
    * This is equivalent to using [bodyApplyForce] at the body's center of mass.
    */
-  public fun bodyApplyCentralForce(body: RID, force: Vector3): Unit {
+  public final fun bodyApplyCentralForce(body: RID, force: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyApplyCentralForcePtr, NIL)
   }
@@ -838,7 +838,7 @@ public object PhysicsServer3D : Object() {
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public fun bodyApplyForce(
+  public final fun bodyApplyForce(
     body: RID,
     force: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
@@ -851,7 +851,7 @@ public object PhysicsServer3D : Object() {
    * Applies a rotational force without affecting position. A force is time dependent and meant to
    * be applied every physics update.
    */
-  public fun bodyApplyTorque(body: RID, torque: Vector3): Unit {
+  public final fun bodyApplyTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyApplyTorquePtr, NIL)
   }
@@ -861,7 +861,7 @@ public object PhysicsServer3D : Object() {
    * until cleared with `body_set_constant_force(body, Vector3(0, 0, 0))`.
    * This is equivalent to using [bodyAddConstantForce] at the body's center of mass.
    */
-  public fun bodyAddConstantCentralForce(body: RID, force: Vector3): Unit {
+  public final fun bodyAddConstantCentralForce(body: RID, force: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyAddConstantCentralForcePtr, NIL)
   }
@@ -872,7 +872,7 @@ public object PhysicsServer3D : Object() {
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public fun bodyAddConstantForce(
+  public final fun bodyAddConstantForce(
     body: RID,
     force: Vector3,
     position: Vector3 = Vector3(0, 0, 0),
@@ -885,7 +885,7 @@ public object PhysicsServer3D : Object() {
    * Adds a constant rotational force without affecting position that keeps being applied over time
    * until cleared with `body_set_constant_torque(body, Vector3(0, 0, 0))`.
    */
-  public fun bodyAddConstantTorque(body: RID, torque: Vector3): Unit {
+  public final fun bodyAddConstantTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyAddConstantTorquePtr, NIL)
   }
@@ -894,7 +894,7 @@ public object PhysicsServer3D : Object() {
    * Sets the body's total constant positional forces applied during each physics update.
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
-  public fun bodySetConstantForce(body: RID, force: Vector3): Unit {
+  public final fun bodySetConstantForce(body: RID, force: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetConstantForcePtr, NIL)
   }
@@ -903,7 +903,7 @@ public object PhysicsServer3D : Object() {
    * Returns the body's total constant positional forces applied during each physics update.
    * See [bodyAddConstantForce] and [bodyAddConstantCentralForce].
    */
-  public fun bodyGetConstantForce(body: RID): Vector3 {
+  public final fun bodyGetConstantForce(body: RID): Vector3 {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetConstantForcePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -913,7 +913,7 @@ public object PhysicsServer3D : Object() {
    * Sets the body's total constant rotational forces applied during each physics update.
    * See [bodyAddConstantTorque].
    */
-  public fun bodySetConstantTorque(body: RID, torque: Vector3): Unit {
+  public final fun bodySetConstantTorque(body: RID, torque: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to torque)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetConstantTorquePtr, NIL)
   }
@@ -922,7 +922,7 @@ public object PhysicsServer3D : Object() {
    * Returns the body's total constant rotational forces applied during each physics update.
    * See [bodyAddConstantTorque].
    */
-  public fun bodyGetConstantTorque(body: RID): Vector3 {
+  public final fun bodyGetConstantTorque(body: RID): Vector3 {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetConstantTorquePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -932,12 +932,12 @@ public object PhysicsServer3D : Object() {
    * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector
    * length. This is useful for jumping behavior.
    */
-  public fun bodySetAxisVelocity(body: RID, axisVelocity: Vector3): Unit {
+  public final fun bodySetAxisVelocity(body: RID, axisVelocity: Vector3): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to axisVelocity)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetAxisVelocityPtr, NIL)
   }
 
-  public fun bodySetAxisLock(
+  public final fun bodySetAxisLock(
     body: RID,
     axis: BodyAxis,
     lock: Boolean,
@@ -946,7 +946,7 @@ public object PhysicsServer3D : Object() {
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetAxisLockPtr, NIL)
   }
 
-  public fun bodyIsAxisLocked(body: RID, axis: BodyAxis): Boolean {
+  public final fun bodyIsAxisLocked(body: RID, axis: BodyAxis): Boolean {
     TransferContext.writeArguments(_RID to body, LONG to axis.id)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyIsAxisLockedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -955,7 +955,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds a body to the list of bodies exempt from collisions.
    */
-  public fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
+  public final fun bodyAddCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyAddCollisionExceptionPtr, NIL)
   }
@@ -965,7 +965,7 @@ public object PhysicsServer3D : Object() {
    * Continuous collision detection tries to predict where a moving body will collide, instead of
    * moving it and correcting its movement if it collided.
    */
-  public fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
+  public final fun bodyRemoveCollisionException(body: RID, exceptedBody: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to exceptedBody)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyRemoveCollisionExceptionPtr, NIL)
   }
@@ -974,7 +974,7 @@ public object PhysicsServer3D : Object() {
    * Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies.
    * This is enabled by setting the maximum number of contacts reported to a number greater than 0.
    */
-  public fun bodySetMaxContactsReported(body: RID, amount: Int): Unit {
+  public final fun bodySetMaxContactsReported(body: RID, amount: Int): Unit {
     TransferContext.writeArguments(_RID to body, LONG to amount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetMaxContactsReportedPtr, NIL)
   }
@@ -982,7 +982,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the maximum contacts that can be reported. See [bodySetMaxContactsReported].
    */
-  public fun bodyGetMaxContactsReported(body: RID): Int {
+  public final fun bodyGetMaxContactsReported(body: RID): Int {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetMaxContactsReportedPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -995,7 +995,7 @@ public object PhysicsServer3D : Object() {
    * the linear and angular velocity instead.
    * This method is called when the property [RigidBody3D.customIntegrator] is set.
    */
-  public fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
+  public final fun bodySetOmitForceIntegration(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetOmitForceIntegrationPtr, NIL)
   }
@@ -1004,7 +1004,7 @@ public object PhysicsServer3D : Object() {
    * Returns `true` if the body is omitting the standard force integration. See
    * [bodySetOmitForceIntegration].
    */
-  public fun bodyIsOmittingForceIntegration(body: RID): Boolean {
+  public final fun bodyIsOmittingForceIntegration(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyIsOmittingForceIntegrationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1019,7 +1019,7 @@ public object PhysicsServer3D : Object() {
    * The function [callable] must take the following parameters:
    * 1. `state`: a [PhysicsDirectBodyState3D], used to retrieve the body's state.
    */
-  public fun bodySetStateSyncCallback(body: RID, callable: Callable): Unit {
+  public final fun bodySetStateSyncCallback(body: RID, callable: Callable): Unit {
     TransferContext.writeArguments(_RID to body, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetStateSyncCallbackPtr, NIL)
   }
@@ -1037,7 +1037,7 @@ public object PhysicsServer3D : Object() {
    * If [userdata] is `null`, then [callable] must take only the `state` parameter.
    */
   @JvmOverloads
-  public fun bodySetForceIntegrationCallback(
+  public final fun bodySetForceIntegrationCallback(
     body: RID,
     callable: Callable,
     userdata: Any? = null,
@@ -1049,7 +1049,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the body pickable with rays if [enable] is set.
    */
-  public fun bodySetRayPickable(body: RID, enable: Boolean): Unit {
+  public final fun bodySetRayPickable(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.bodySetRayPickablePtr, NIL)
   }
@@ -1060,7 +1060,7 @@ public object PhysicsServer3D : Object() {
    * [PhysicsTestMotionResult3D] can be passed to return additional information.
    */
   @JvmOverloads
-  public fun bodyTestMotion(
+  public final fun bodyTestMotion(
     body: RID,
     parameters: PhysicsTestMotionParameters3D?,
     result: PhysicsTestMotionResult3D? = null,
@@ -1074,7 +1074,7 @@ public object PhysicsServer3D : Object() {
    * Returns the [PhysicsDirectBodyState3D] of the body. Returns `null` if the body is destroyed or
    * removed from the physics space.
    */
-  public fun bodyGetDirectState(body: RID): PhysicsDirectBodyState3D? {
+  public final fun bodyGetDirectState(body: RID): PhysicsDirectBodyState3D? {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.bodyGetDirectStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectBodyState3D?)
@@ -1083,7 +1083,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Creates a new soft body and returns its internal [RID].
    */
-  public fun softBodyCreate(): RID {
+  public final fun softBodyCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -1093,7 +1093,7 @@ public object PhysicsServer3D : Object() {
    * Requests that the physics server updates the rendering server with the latest positions of the
    * given soft body's points through the [renderingServerHandler] interface.
    */
-  public fun softBodyUpdateRenderingServer(body: RID,
+  public final fun softBodyUpdateRenderingServer(body: RID,
       renderingServerHandler: PhysicsServer3DRenderingServerHandler?): Unit {
     TransferContext.writeArguments(_RID to body, OBJECT to renderingServerHandler)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyUpdateRenderingServerPtr, NIL)
@@ -1102,7 +1102,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Assigns a space to the given soft body (see [spaceCreate]).
    */
-  public fun softBodySetSpace(body: RID, space: RID): Unit {
+  public final fun softBodySetSpace(body: RID, space: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to space)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetSpacePtr, NIL)
   }
@@ -1110,7 +1110,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the [RID] of the space assigned to the given soft body.
    */
-  public fun softBodyGetSpace(body: RID): RID {
+  public final fun softBodyGetSpace(body: RID): RID {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -1119,7 +1119,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the mesh of the given soft body.
    */
-  public fun softBodySetMesh(body: RID, mesh: RID): Unit {
+  public final fun softBodySetMesh(body: RID, mesh: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetMeshPtr, NIL)
   }
@@ -1127,7 +1127,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the bounds of the given soft body in global coordinates.
    */
-  public fun softBodyGetBounds(body: RID): AABB {
+  public final fun softBodyGetBounds(body: RID): AABB {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetBoundsPtr,
         godot.core.VariantType.AABB)
@@ -1137,7 +1137,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the physics layer or layers the given soft body belongs to.
    */
-  public fun softBodySetCollisionLayer(body: RID, layer: Long): Unit {
+  public final fun softBodySetCollisionLayer(body: RID, layer: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetCollisionLayerPtr, NIL)
   }
@@ -1145,7 +1145,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the physics layer or layers that the given soft body belongs to.
    */
-  public fun softBodyGetCollisionLayer(body: RID): Long {
+  public final fun softBodyGetCollisionLayer(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1154,7 +1154,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the physics layer or layers the given soft body can collide with.
    */
-  public fun softBodySetCollisionMask(body: RID, mask: Long): Unit {
+  public final fun softBodySetCollisionMask(body: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to body, LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetCollisionMaskPtr, NIL)
   }
@@ -1162,7 +1162,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the physics layer or layers that the given soft body can collide with.
    */
-  public fun softBodyGetCollisionMask(body: RID): Long {
+  public final fun softBodyGetCollisionMask(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1171,7 +1171,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Adds the given body to the list of bodies exempt from collisions.
    */
-  public fun softBodyAddCollisionException(body: RID, bodyB: RID): Unit {
+  public final fun softBodyAddCollisionException(body: RID, bodyB: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to bodyB)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyAddCollisionExceptionPtr, NIL)
   }
@@ -1179,7 +1179,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Removes the given body from the list of bodies exempt from collisions.
    */
-  public fun softBodyRemoveCollisionException(body: RID, bodyB: RID): Unit {
+  public final fun softBodyRemoveCollisionException(body: RID, bodyB: RID): Unit {
     TransferContext.writeArguments(_RID to body, _RID to bodyB)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyRemoveCollisionExceptionPtr, NIL)
   }
@@ -1189,7 +1189,7 @@ public object PhysicsServer3D : Object() {
    * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
    * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
    */
-  public fun softBodySetState(
+  public final fun softBodySetState(
     body: RID,
     state: BodyState,
     variant: Any?,
@@ -1203,7 +1203,7 @@ public object PhysicsServer3D : Object() {
    * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
    * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
    */
-  public fun softBodyGetState(body: RID, state: BodyState): Any? {
+  public final fun softBodyGetState(body: RID, state: BodyState): Any? {
     TransferContext.writeArguments(_RID to body, LONG to state.id)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetStatePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -1212,7 +1212,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the global transform of the given soft body.
    */
-  public fun softBodySetTransform(body: RID, transform: Transform3D): Unit {
+  public final fun softBodySetTransform(body: RID, transform: Transform3D): Unit {
     TransferContext.writeArguments(_RID to body, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetTransformPtr, NIL)
   }
@@ -1220,7 +1220,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets whether the given soft body will be pickable when using object picking.
    */
-  public fun softBodySetRayPickable(body: RID, enable: Boolean): Unit {
+  public final fun softBodySetRayPickable(body: RID, enable: Boolean): Unit {
     TransferContext.writeArguments(_RID to body, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetRayPickablePtr, NIL)
   }
@@ -1229,7 +1229,7 @@ public object PhysicsServer3D : Object() {
    * Sets the simulation precision of the given soft body. Increasing this value will improve the
    * resulting simulation, but can affect performance. Use with care.
    */
-  public fun softBodySetSimulationPrecision(body: RID, simulationPrecision: Int): Unit {
+  public final fun softBodySetSimulationPrecision(body: RID, simulationPrecision: Int): Unit {
     TransferContext.writeArguments(_RID to body, LONG to simulationPrecision.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetSimulationPrecisionPtr, NIL)
   }
@@ -1237,7 +1237,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the simulation precision of the given soft body.
    */
-  public fun softBodyGetSimulationPrecision(body: RID): Int {
+  public final fun softBodyGetSimulationPrecision(body: RID): Int {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetSimulationPrecisionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1246,7 +1246,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the total mass for the given soft body.
    */
-  public fun softBodySetTotalMass(body: RID, totalMass: Float): Unit {
+  public final fun softBodySetTotalMass(body: RID, totalMass: Float): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to totalMass.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetTotalMassPtr, NIL)
   }
@@ -1254,7 +1254,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the total mass assigned to the given soft body.
    */
-  public fun softBodyGetTotalMass(body: RID): Float {
+  public final fun softBodyGetTotalMass(body: RID): Float {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetTotalMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1265,7 +1265,7 @@ public object PhysicsServer3D : Object() {
    * while lower values will increase the body's ability to bend. The value can be between `0.0` and
    * `1.0` (inclusive).
    */
-  public fun softBodySetLinearStiffness(body: RID, stiffness: Float): Unit {
+  public final fun softBodySetLinearStiffness(body: RID, stiffness: Float): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to stiffness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetLinearStiffnessPtr, NIL)
   }
@@ -1273,7 +1273,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the linear stiffness of the given soft body.
    */
-  public fun softBodyGetLinearStiffness(body: RID): Float {
+  public final fun softBodyGetLinearStiffness(body: RID): Float {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetLinearStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1283,7 +1283,7 @@ public object PhysicsServer3D : Object() {
    * Sets the pressure coefficient of the given soft body. Simulates pressure build-up from inside
    * this body. Higher values increase the strength of this effect.
    */
-  public fun softBodySetPressureCoefficient(body: RID, pressureCoefficient: Float): Unit {
+  public final fun softBodySetPressureCoefficient(body: RID, pressureCoefficient: Float): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to pressureCoefficient.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetPressureCoefficientPtr, NIL)
   }
@@ -1291,7 +1291,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the pressure coefficient of the given soft body.
    */
-  public fun softBodyGetPressureCoefficient(body: RID): Float {
+  public final fun softBodyGetPressureCoefficient(body: RID): Float {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetPressureCoefficientPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1301,7 +1301,7 @@ public object PhysicsServer3D : Object() {
    * Sets the damping coefficient of the given soft body. Higher values will slow down the body more
    * noticeably when forces are applied.
    */
-  public fun softBodySetDampingCoefficient(body: RID, dampingCoefficient: Float): Unit {
+  public final fun softBodySetDampingCoefficient(body: RID, dampingCoefficient: Float): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to dampingCoefficient.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetDampingCoefficientPtr, NIL)
   }
@@ -1309,7 +1309,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the damping coefficient of the given soft body.
    */
-  public fun softBodyGetDampingCoefficient(body: RID): Float {
+  public final fun softBodyGetDampingCoefficient(body: RID): Float {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetDampingCoefficientPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1320,7 +1320,7 @@ public object PhysicsServer3D : Object() {
    * resistance.
    * **Note:** This value is currently unused by Godot's default physics implementation.
    */
-  public fun softBodySetDragCoefficient(body: RID, dragCoefficient: Float): Unit {
+  public final fun softBodySetDragCoefficient(body: RID, dragCoefficient: Float): Unit {
     TransferContext.writeArguments(_RID to body, DOUBLE to dragCoefficient.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodySetDragCoefficientPtr, NIL)
   }
@@ -1328,7 +1328,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the drag coefficient of the given soft body.
    */
-  public fun softBodyGetDragCoefficient(body: RID): Float {
+  public final fun softBodyGetDragCoefficient(body: RID): Float {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetDragCoefficientPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1337,7 +1337,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Moves the given soft body point to a position in global coordinates.
    */
-  public fun softBodyMovePoint(
+  public final fun softBodyMovePoint(
     body: RID,
     pointIndex: Int,
     globalPosition: Vector3,
@@ -1349,7 +1349,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the current position of the given soft body point in global coordinates.
    */
-  public fun softBodyGetPointGlobalPosition(body: RID, pointIndex: Int): Vector3 {
+  public final fun softBodyGetPointGlobalPosition(body: RID, pointIndex: Int): Vector3 {
     TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyGetPointGlobalPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -1358,7 +1358,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Unpins all points of the given soft body.
    */
-  public fun softBodyRemoveAllPinnedPoints(body: RID): Unit {
+  public final fun softBodyRemoveAllPinnedPoints(body: RID): Unit {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyRemoveAllPinnedPointsPtr, NIL)
   }
@@ -1368,7 +1368,7 @@ public object PhysicsServer3D : Object() {
    * **Note:** Pinning a point effectively makes it kinematic, preventing it from being affected by
    * forces, but you can still move it using [softBodyMovePoint].
    */
-  public fun softBodyPinPoint(
+  public final fun softBodyPinPoint(
     body: RID,
     pointIndex: Int,
     pin: Boolean,
@@ -1380,24 +1380,24 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns whether the given soft body point is pinned.
    */
-  public fun softBodyIsPointPinned(body: RID, pointIndex: Int): Boolean {
+  public final fun softBodyIsPointPinned(body: RID, pointIndex: Int): Boolean {
     TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyIsPointPinnedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun jointCreate(): RID {
+  public final fun jointCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.jointCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun jointClear(joint: RID): Unit {
+  public final fun jointClear(joint: RID): Unit {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, MethodBindings.jointClearPtr, NIL)
   }
 
-  public fun jointMakePin(
+  public final fun jointMakePin(
     joint: RID,
     bodyA: RID,
     localA: Vector3,
@@ -1411,7 +1411,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets a pin_joint parameter (see [PinJointParam] constants).
    */
-  public fun pinJointSetParam(
+  public final fun pinJointSetParam(
     joint: RID,
     `param`: PinJointParam,
     `value`: Float,
@@ -1423,7 +1423,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a pin_joint parameter (see [PinJointParam] constants).
    */
-  public fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
+  public final fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.pinJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1432,7 +1432,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets position of the joint in the local space of body a of the joint.
    */
-  public fun pinJointSetLocalA(joint: RID, localA: Vector3): Unit {
+  public final fun pinJointSetLocalA(joint: RID, localA: Vector3): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR3 to localA)
     TransferContext.callMethod(rawPtr, MethodBindings.pinJointSetLocalAPtr, NIL)
   }
@@ -1440,7 +1440,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns position of the joint in the local space of body a of the joint.
    */
-  public fun pinJointGetLocalA(joint: RID): Vector3 {
+  public final fun pinJointGetLocalA(joint: RID): Vector3 {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, MethodBindings.pinJointGetLocalAPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -1449,7 +1449,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets position of the joint in the local space of body b of the joint.
    */
-  public fun pinJointSetLocalB(joint: RID, localB: Vector3): Unit {
+  public final fun pinJointSetLocalB(joint: RID, localB: Vector3): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR3 to localB)
     TransferContext.callMethod(rawPtr, MethodBindings.pinJointSetLocalBPtr, NIL)
   }
@@ -1457,13 +1457,13 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns position of the joint in the local space of body b of the joint.
    */
-  public fun pinJointGetLocalB(joint: RID): Vector3 {
+  public final fun pinJointGetLocalB(joint: RID): Vector3 {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, MethodBindings.pinJointGetLocalBPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun jointMakeHinge(
+  public final fun jointMakeHinge(
     joint: RID,
     bodyA: RID,
     hingeA: Transform3D,
@@ -1477,7 +1477,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets a hinge_joint parameter (see [HingeJointParam] constants).
    */
-  public fun hingeJointSetParam(
+  public final fun hingeJointSetParam(
     joint: RID,
     `param`: HingeJointParam,
     `value`: Float,
@@ -1489,7 +1489,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a hinge_joint parameter (see [HingeJointParam]).
    */
-  public fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Float {
+  public final fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hingeJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1498,7 +1498,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets a hinge_joint flag (see [HingeJointFlag] constants).
    */
-  public fun hingeJointSetFlag(
+  public final fun hingeJointSetFlag(
     joint: RID,
     flag: HingeJointFlag,
     enabled: Boolean,
@@ -1510,13 +1510,13 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a hinge_joint flag (see [HingeJointFlag] constants).
    */
-  public fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
+  public final fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
     TransferContext.writeArguments(_RID to joint, LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hingeJointGetFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun jointMakeSlider(
+  public final fun jointMakeSlider(
     joint: RID,
     bodyA: RID,
     localRefA: Transform3D,
@@ -1530,7 +1530,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a slider_joint parameter (see [SliderJointParam] constants).
    */
-  public fun sliderJointSetParam(
+  public final fun sliderJointSetParam(
     joint: RID,
     `param`: SliderJointParam,
     `value`: Float,
@@ -1542,13 +1542,13 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a slider_joint parameter (see [SliderJointParam] constants).
    */
-  public fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Float {
+  public final fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.sliderJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun jointMakeConeTwist(
+  public final fun jointMakeConeTwist(
     joint: RID,
     bodyA: RID,
     localRefA: Transform3D,
@@ -1562,7 +1562,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
    */
-  public fun coneTwistJointSetParam(
+  public final fun coneTwistJointSetParam(
     joint: RID,
     `param`: ConeTwistJointParam,
     `value`: Float,
@@ -1574,7 +1574,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
    */
-  public fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Float {
+  public final fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Float {
     TransferContext.writeArguments(_RID to joint, LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.coneTwistJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1583,7 +1583,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns the type of the Joint3D.
    */
-  public fun jointGetType(joint: RID): JointType {
+  public final fun jointGetType(joint: RID): JointType {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, MethodBindings.jointGetTypePtr, LONG)
     return PhysicsServer3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1592,7 +1592,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets the priority value of the Joint3D.
    */
-  public fun jointSetSolverPriority(joint: RID, priority: Int): Unit {
+  public final fun jointSetSolverPriority(joint: RID, priority: Int): Unit {
     TransferContext.writeArguments(_RID to joint, LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.jointSetSolverPriorityPtr, NIL)
   }
@@ -1600,7 +1600,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Gets the priority value of the Joint3D.
    */
-  public fun jointGetSolverPriority(joint: RID): Int {
+  public final fun jointGetSolverPriority(joint: RID): Int {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, MethodBindings.jointGetSolverPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1609,7 +1609,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Sets whether the bodies attached to the [Joint3D] will collide with each other.
    */
-  public fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean): Unit {
+  public final fun jointDisableCollisionsBetweenBodies(joint: RID, disable: Boolean): Unit {
     TransferContext.writeArguments(_RID to joint, BOOL to disable)
     TransferContext.callMethod(rawPtr, MethodBindings.jointDisableCollisionsBetweenBodiesPtr, NIL)
   }
@@ -1617,7 +1617,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Returns whether the bodies attached to the [Joint3D] will collide with each other.
    */
-  public fun jointIsDisabledCollisionsBetweenBodies(joint: RID): Boolean {
+  public final fun jointIsDisabledCollisionsBetweenBodies(joint: RID): Boolean {
     TransferContext.writeArguments(_RID to joint)
     TransferContext.callMethod(rawPtr, MethodBindings.jointIsDisabledCollisionsBetweenBodiesPtr,
         BOOL)
@@ -1628,7 +1628,7 @@ public object PhysicsServer3D : Object() {
    * Make the joint a generic six degrees of freedom (6DOF) joint. Use [generic6dofJointSetFlag] and
    * [generic6dofJointSetParam] to set the joint's flags and parameters respectively.
    */
-  public fun jointMakeGeneric6dof(
+  public final fun jointMakeGeneric6dof(
     joint: RID,
     bodyA: RID,
     localRefA: Transform3D,
@@ -1643,7 +1643,7 @@ public object PhysicsServer3D : Object() {
    * Sets the value of a given generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list
    * of available parameters.
    */
-  public fun generic6dofJointSetParam(
+  public final fun generic6dofJointSetParam(
     joint: RID,
     axis: Vector3.Axis,
     `param`: G6DOFJointAxisParam,
@@ -1657,7 +1657,7 @@ public object PhysicsServer3D : Object() {
    * Returns the value of a generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list of
    * available parameters.
    */
-  public fun generic6dofJointGetParam(
+  public final fun generic6dofJointGetParam(
     joint: RID,
     axis: Vector3.Axis,
     `param`: G6DOFJointAxisParam,
@@ -1671,7 +1671,7 @@ public object PhysicsServer3D : Object() {
    * Sets the value of a given generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
    * available flags.
    */
-  public fun generic6dofJointSetFlag(
+  public final fun generic6dofJointSetFlag(
     joint: RID,
     axis: Vector3.Axis,
     flag: G6DOFJointAxisFlag,
@@ -1685,7 +1685,7 @@ public object PhysicsServer3D : Object() {
    * Returns the value of a generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
    * available flags.
    */
-  public fun generic6dofJointGetFlag(
+  public final fun generic6dofJointGetFlag(
     joint: RID,
     axis: Vector3.Axis,
     flag: G6DOFJointAxisFlag,
@@ -1699,7 +1699,7 @@ public object PhysicsServer3D : Object() {
    * Destroys any of the objects created by PhysicsServer3D. If the [RID] passed is not one of the
    * objects that can be created by PhysicsServer3D, an error will be sent to the console.
    */
-  public fun freeRid(rid: RID): Unit {
+  public final fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.freeRidPtr, NIL)
   }
@@ -1707,7 +1707,7 @@ public object PhysicsServer3D : Object() {
   /**
    * Activates or deactivates the 3D physics engine.
    */
-  public fun setActive(active: Boolean): Unit {
+  public final fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
   }
@@ -1716,7 +1716,7 @@ public object PhysicsServer3D : Object() {
    * Returns information about the current state of the 3D physics engine. See [ProcessInfo] for a
    * list of available states.
    */
-  public fun getProcessInfo(processInfo: ProcessInfo): Int {
+  public final fun getProcessInfo(processInfo: ProcessInfo): Int {
     TransferContext.writeArguments(LONG to processInfo.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

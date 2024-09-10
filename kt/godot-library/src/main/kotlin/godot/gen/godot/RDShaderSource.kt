@@ -31,7 +31,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    * Source code for the shader's vertex stage.
    */
-  public var sourceVertex: String
+  public final inline var sourceVertex: String
     @JvmName("sourceVertexProperty")
     get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
     @JvmName("sourceVertexProperty")
@@ -42,7 +42,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    * Source code for the shader's fragment stage.
    */
-  public var sourceFragment: String
+  public final inline var sourceFragment: String
     @JvmName("sourceFragmentProperty")
     get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
     @JvmName("sourceFragmentProperty")
@@ -53,7 +53,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    * Source code for the shader's tessellation control stage.
    */
-  public var sourceTesselationControl: String
+  public final inline var sourceTesselationControl: String
     @JvmName("sourceTesselationControlProperty")
     get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
     @JvmName("sourceTesselationControlProperty")
@@ -64,7 +64,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    * Source code for the shader's tessellation evaluation stage.
    */
-  public var sourceTesselationEvaluation: String
+  public final inline var sourceTesselationEvaluation: String
     @JvmName("sourceTesselationEvaluationProperty")
     get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
     @JvmName("sourceTesselationEvaluationProperty")
@@ -75,7 +75,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    * Source code for the shader's compute stage.
    */
-  public var sourceCompute: String
+  public final inline var sourceCompute: String
     @JvmName("sourceComputeProperty")
     get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
     @JvmName("sourceComputeProperty")
@@ -86,7 +86,7 @@ public open class RDShaderSource : RefCounted() {
   /**
    * The language the shader is written in.
    */
-  public var language: RenderingDevice.ShaderLanguage
+  public final inline var language: RenderingDevice.ShaderLanguage
     @JvmName("languageProperty")
     get() = getLanguage()
     @JvmName("languageProperty")
@@ -103,7 +103,7 @@ public open class RDShaderSource : RefCounted() {
    * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
    * [sourceVertex].
    */
-  public fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
+  public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to source)
     TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
   }
@@ -113,18 +113,18 @@ public open class RDShaderSource : RefCounted() {
    * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
    * [sourceVertex].
    */
-  public fun getStageSource(stage: RenderingDevice.ShaderStage): String {
+  public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
+  public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
     TransferContext.writeArguments(LONG to language.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
-  public fun getLanguage(): RenderingDevice.ShaderLanguage {
+  public final fun getLanguage(): RenderingDevice.ShaderLanguage {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, LONG)
     return RenderingDevice.ShaderLanguage.from(TransferContext.readReturnValue(LONG) as Long)

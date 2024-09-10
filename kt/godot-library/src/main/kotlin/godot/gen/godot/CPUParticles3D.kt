@@ -56,7 +56,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * emission cycle until after all active particles finish processing. You can use the [signal
    * finished] signal to be notified once all active particles finish processing.
    */
-  public var emitting: Boolean
+  public final inline var emitting: Boolean
     @JvmName("emittingProperty")
     get() = isEmitting()
     @JvmName("emittingProperty")
@@ -67,7 +67,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Number of particles emitted in one emission cycle.
    */
-  public var amount: Int
+  public final inline var amount: Int
     @JvmName("amountProperty")
     get() = getAmount()
     @JvmName("amountProperty")
@@ -78,7 +78,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of time each particle will exist.
    */
-  public var lifetime: Double
+  public final inline var lifetime: Double
     @JvmName("lifetimeProperty")
     get() = getLifetime()
     @JvmName("lifetimeProperty")
@@ -90,7 +90,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at
    * the cycle's end.
    */
-  public var oneShot: Boolean
+  public final inline var oneShot: Boolean
     @JvmName("oneShotProperty")
     get() = getOneShot()
     @JvmName("oneShotProperty")
@@ -101,7 +101,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle system starts as if it had already run for this many seconds.
    */
-  public var preprocess: Double
+  public final inline var preprocess: Double
     @JvmName("preprocessProperty")
     get() = getPreProcessTime()
     @JvmName("preprocessProperty")
@@ -113,7 +113,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Particle system's running speed scaling ratio. A value of `0` can be used to pause the
    * particles.
    */
-  public var speedScale: Double
+  public final inline var speedScale: Double
     @JvmName("speedScaleProperty")
     get() = getSpeedScale()
     @JvmName("speedScaleProperty")
@@ -125,7 +125,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a
    * gap in emissions before the next cycle begins.
    */
-  public var explosiveness: Float
+  public final inline var explosiveness: Float
     @JvmName("explosivenessProperty")
     get() = getExplosivenessRatio()
     @JvmName("explosivenessProperty")
@@ -136,7 +136,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Emission lifetime randomness ratio.
    */
-  public var randomness: Float
+  public final inline var randomness: Float
     @JvmName("randomnessProperty")
     get() = getRandomnessRatio()
     @JvmName("randomnessProperty")
@@ -147,7 +147,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle lifetime randomness ratio.
    */
-  public var lifetimeRandomness: Double
+  public final inline var lifetimeRandomness: Double
     @JvmName("lifetimeRandomnessProperty")
     get() = getLifetimeRandomness()
     @JvmName("lifetimeRandomnessProperty")
@@ -160,7 +160,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * make the particles render at 2 frames per second. Note this does not slow down the particle system
    * itself.
    */
-  public var fixedFps: Int
+  public final inline var fixedFps: Int
     @JvmName("fixedFpsProperty")
     get() = getFixedFps()
     @JvmName("fixedFpsProperty")
@@ -172,7 +172,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * If `true`, results in fractional delta calculation which has a smoother particles display
    * effect.
    */
-  public var fractDelta: Boolean
+  public final inline var fractDelta: Boolean
     @JvmName("fractDeltaProperty")
     get() = getFractionalDelta()
     @JvmName("fractDeltaProperty")
@@ -187,7 +187,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    */
   @CoreTypeLocalCopy
-  public var visibilityAabb: AABB
+  public final inline var visibilityAabb: AABB
     @JvmName("visibilityAabbProperty")
     get() = getVisibilityAabb()
     @JvmName("visibilityAabbProperty")
@@ -201,7 +201,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate
    * along the [CPUParticles3D] node (and its parents) when it is moved or rotated.
    */
-  public var localCoords: Boolean
+  public final inline var localCoords: Boolean
     @JvmName("localCoordsProperty")
     get() = getUseLocalCoordinates()
     @JvmName("localCoordsProperty")
@@ -212,7 +212,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particle draw order. Uses [DrawOrder] values.
    */
-  public var drawOrder: DrawOrder
+  public final inline var drawOrder: DrawOrder
     @JvmName("drawOrderProperty")
     get() = getDrawOrder()
     @JvmName("drawOrderProperty")
@@ -223,7 +223,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The [Mesh] used for each particle. If `null`, particles will be spheres.
    */
-  public var mesh: Mesh?
+  public final inline var mesh: Mesh?
     @JvmName("meshProperty")
     get() = getMesh()
     @JvmName("meshProperty")
@@ -234,7 +234,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Particles will be emitted inside this region. See [EmissionShape] for possible values.
    */
-  public var emissionShape: EmissionShape
+  public final inline var emissionShape: EmissionShape
     @JvmName("emissionShapeProperty")
     get() = getEmissionShape()
     @JvmName("emissionShapeProperty")
@@ -245,7 +245,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The sphere's radius if [EmissionShape] is set to [EMISSION_SHAPE_SPHERE].
    */
-  public var emissionSphereRadius: Float
+  public final inline var emissionSphereRadius: Float
     @JvmName("emissionSphereRadiusProperty")
     get() = getEmissionSphereRadius()
     @JvmName("emissionSphereRadiusProperty")
@@ -257,7 +257,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    */
   @CoreTypeLocalCopy
-  public var emissionBoxExtents: Vector3
+  public final inline var emissionBoxExtents: Vector3
     @JvmName("emissionBoxExtentsProperty")
     get() = getEmissionBoxExtents()
     @JvmName("emissionBoxExtentsProperty")
@@ -269,7 +269,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Sets the initial positions to spawn particles when using [EMISSION_SHAPE_POINTS] or
    * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public var emissionPoints: PackedVector3Array
+  public final inline var emissionPoints: PackedVector3Array
     @JvmName("emissionPointsProperty")
     get() = getEmissionPoints()
     @JvmName("emissionPointsProperty")
@@ -281,7 +281,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Sets the direction the particles will be emitted in when using
    * [EMISSION_SHAPE_DIRECTED_POINTS].
    */
-  public var emissionNormals: PackedVector3Array
+  public final inline var emissionNormals: PackedVector3Array
     @JvmName("emissionNormalsProperty")
     get() = getEmissionNormals()
     @JvmName("emissionNormalsProperty")
@@ -297,7 +297,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [emissionColors] will have no visible effect.
    */
-  public var emissionColors: PackedColorArray
+  public final inline var emissionColors: PackedColorArray
     @JvmName("emissionColorsProperty")
     get() = getEmissionColors()
     @JvmName("emissionColorsProperty")
@@ -309,7 +309,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
   @CoreTypeLocalCopy
-  public var emissionRingAxis: Vector3
+  public final inline var emissionRingAxis: Vector3
     @JvmName("emissionRingAxisProperty")
     get() = getEmissionRingAxis()
     @JvmName("emissionRingAxisProperty")
@@ -320,7 +320,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The height of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public var emissionRingHeight: Float
+  public final inline var emissionRingHeight: Float
     @JvmName("emissionRingHeightProperty")
     get() = getEmissionRingHeight()
     @JvmName("emissionRingHeightProperty")
@@ -331,7 +331,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The radius of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public var emissionRingRadius: Float
+  public final inline var emissionRingRadius: Float
     @JvmName("emissionRingRadiusProperty")
     get() = getEmissionRingRadius()
     @JvmName("emissionRingRadiusProperty")
@@ -342,7 +342,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The inner radius of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
-  public var emissionRingInnerRadius: Float
+  public final inline var emissionRingInnerRadius: Float
     @JvmName("emissionRingInnerRadiusProperty")
     get() = getEmissionRingInnerRadius()
     @JvmName("emissionRingInnerRadiusProperty")
@@ -353,7 +353,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Align Y axis of particle with the direction of its velocity.
    */
-  public var particleFlagAlignY: Boolean
+  public final inline var particleFlagAlignY: Boolean
     @JvmName("particleFlagAlignYProperty")
     get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY)
     @JvmName("particleFlagAlignYProperty")
@@ -364,7 +364,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, particles rotate around Y axis by [angleMin].
    */
-  public var particleFlagRotateY: Boolean
+  public final inline var particleFlagRotateY: Boolean
     @JvmName("particleFlagRotateYProperty")
     get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_ROTATE_Y)
     @JvmName("particleFlagRotateYProperty")
@@ -375,7 +375,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If `true`, particles will not move on the Z axis.
    */
-  public var particleFlagDisableZ: Boolean
+  public final inline var particleFlagDisableZ: Boolean
     @JvmName("particleFlagDisableZProperty")
     get() = getParticleFlag(CPUParticles3D.ParticleFlags.PARTICLE_FLAG_DISABLE_Z)
     @JvmName("particleFlagDisableZProperty")
@@ -387,7 +387,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Unit vector specifying the particles' emission direction.
    */
   @CoreTypeLocalCopy
-  public var direction: Vector3
+  public final inline var direction: Vector3
     @JvmName("directionProperty")
     get() = getDirection()
     @JvmName("directionProperty")
@@ -399,7 +399,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Each particle's initial direction range from `+spread` to `-spread` degrees. Applied to X/Z
    * plane and Y/Z planes.
    */
-  public var spread: Float
+  public final inline var spread: Float
     @JvmName("spreadProperty")
     get() = getSpread()
     @JvmName("spreadProperty")
@@ -410,7 +410,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Amount of [spread] in Y/Z plane. A value of `1` restricts particles to X/Z plane.
    */
-  public var flatness: Float
+  public final inline var flatness: Float
     @JvmName("flatnessProperty")
     get() = getFlatness()
     @JvmName("flatnessProperty")
@@ -422,7 +422,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Gravity applied to every particle.
    */
   @CoreTypeLocalCopy
-  public var gravity: Vector3
+  public final inline var gravity: Vector3
     @JvmName("gravityProperty")
     get() = getGravity()
     @JvmName("gravityProperty")
@@ -433,7 +433,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum value of the initial velocity.
    */
-  public var initialVelocityMin: Float
+  public final inline var initialVelocityMin: Float
     @JvmName("initialVelocityMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMinProperty")
@@ -444,7 +444,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum value of the initial velocity.
    */
-  public var initialVelocityMax: Float
+  public final inline var initialVelocityMax: Float
     @JvmName("initialVelocityMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_INITIAL_LINEAR_VELOCITY)
     @JvmName("initialVelocityMaxProperty")
@@ -456,7 +456,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Minimum initial angular velocity (rotation speed) applied to each particle in *degrees* per
    * second.
    */
-  public var angularVelocityMin: Float
+  public final inline var angularVelocityMin: Float
     @JvmName("angularVelocityMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
     @JvmName("angularVelocityMinProperty")
@@ -468,7 +468,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per
    * second.
    */
-  public var angularVelocityMax: Float
+  public final inline var angularVelocityMax: Float
     @JvmName("angularVelocityMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
     @JvmName("angularVelocityMaxProperty")
@@ -480,7 +480,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Each particle's angular velocity (rotation speed) will vary along this [Curve] over its
    * lifetime.
    */
-  public var angularVelocityCurve: Curve?
+  public final inline var angularVelocityCurve: Curve?
     @JvmName("angularVelocityCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANGULAR_VELOCITY)
     @JvmName("angularVelocityCurveProperty")
@@ -491,7 +491,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum orbit velocity.
    */
-  public var orbitVelocityMin: Float
+  public final inline var orbitVelocityMin: Float
     @JvmName("orbitVelocityMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
     @JvmName("orbitVelocityMinProperty")
@@ -502,7 +502,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum orbit velocity.
    */
-  public var orbitVelocityMax: Float
+  public final inline var orbitVelocityMax: Float
     @JvmName("orbitVelocityMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
     @JvmName("orbitVelocityMaxProperty")
@@ -513,7 +513,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's orbital velocity will vary along this [Curve].
    */
-  public var orbitVelocityCurve: Curve?
+  public final inline var orbitVelocityCurve: Curve?
     @JvmName("orbitVelocityCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ORBIT_VELOCITY)
     @JvmName("orbitVelocityCurveProperty")
@@ -524,7 +524,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum linear acceleration.
    */
-  public var linearAccelMin: Float
+  public final inline var linearAccelMin: Float
     @JvmName("linearAccelMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
     @JvmName("linearAccelMinProperty")
@@ -535,7 +535,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum linear acceleration.
    */
-  public var linearAccelMax: Float
+  public final inline var linearAccelMax: Float
     @JvmName("linearAccelMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
     @JvmName("linearAccelMaxProperty")
@@ -546,7 +546,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's linear acceleration will vary along this [Curve].
    */
-  public var linearAccelCurve: Curve?
+  public final inline var linearAccelCurve: Curve?
     @JvmName("linearAccelCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_LINEAR_ACCEL)
     @JvmName("linearAccelCurveProperty")
@@ -557,7 +557,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum radial acceleration.
    */
-  public var radialAccelMin: Float
+  public final inline var radialAccelMin: Float
     @JvmName("radialAccelMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
     @JvmName("radialAccelMinProperty")
@@ -568,7 +568,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum radial acceleration.
    */
-  public var radialAccelMax: Float
+  public final inline var radialAccelMax: Float
     @JvmName("radialAccelMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
     @JvmName("radialAccelMaxProperty")
@@ -579,7 +579,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's radial acceleration will vary along this [Curve].
    */
-  public var radialAccelCurve: Curve?
+  public final inline var radialAccelCurve: Curve?
     @JvmName("radialAccelCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_RADIAL_ACCEL)
     @JvmName("radialAccelCurveProperty")
@@ -590,7 +590,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum tangent acceleration.
    */
-  public var tangentialAccelMin: Float
+  public final inline var tangentialAccelMin: Float
     @JvmName("tangentialAccelMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMinProperty")
@@ -601,7 +601,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum tangent acceleration.
    */
-  public var tangentialAccelMax: Float
+  public final inline var tangentialAccelMax: Float
     @JvmName("tangentialAccelMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelMaxProperty")
@@ -612,7 +612,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's tangential acceleration will vary along this [Curve].
    */
-  public var tangentialAccelCurve: Curve?
+  public final inline var tangentialAccelCurve: Curve?
     @JvmName("tangentialAccelCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_TANGENTIAL_ACCEL)
     @JvmName("tangentialAccelCurveProperty")
@@ -623,7 +623,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum damping.
    */
-  public var dampingMin: Float
+  public final inline var dampingMin: Float
     @JvmName("dampingMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_DAMPING)
     @JvmName("dampingMinProperty")
@@ -634,7 +634,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum damping.
    */
-  public var dampingMax: Float
+  public final inline var dampingMax: Float
     @JvmName("dampingMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_DAMPING)
     @JvmName("dampingMaxProperty")
@@ -645,7 +645,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Damping will vary along this [Curve].
    */
-  public var dampingCurve: Curve?
+  public final inline var dampingCurve: Curve?
     @JvmName("dampingCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_DAMPING)
     @JvmName("dampingCurveProperty")
@@ -656,7 +656,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum angle.
    */
-  public var angleMin: Float
+  public final inline var angleMin: Float
     @JvmName("angleMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANGLE)
     @JvmName("angleMinProperty")
@@ -667,7 +667,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum angle.
    */
-  public var angleMax: Float
+  public final inline var angleMax: Float
     @JvmName("angleMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANGLE)
     @JvmName("angleMaxProperty")
@@ -678,7 +678,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's rotation will be animated along this [Curve].
    */
-  public var angleCurve: Curve?
+  public final inline var angleCurve: Curve?
     @JvmName("angleCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANGLE)
     @JvmName("angleCurveProperty")
@@ -689,7 +689,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum scale.
    */
-  public var scaleAmountMin: Float
+  public final inline var scaleAmountMin: Float
     @JvmName("scaleAmountMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_SCALE)
     @JvmName("scaleAmountMinProperty")
@@ -700,7 +700,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum scale.
    */
-  public var scaleAmountMax: Float
+  public final inline var scaleAmountMax: Float
     @JvmName("scaleAmountMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_SCALE)
     @JvmName("scaleAmountMaxProperty")
@@ -711,7 +711,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's scale will vary along this [Curve].
    */
-  public var scaleAmountCurve: Curve?
+  public final inline var scaleAmountCurve: Curve?
     @JvmName("scaleAmountCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_SCALE)
     @JvmName("scaleAmountCurveProperty")
@@ -722,7 +722,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * If set to `true`, three different scale curves can be specified, one per scale axis.
    */
-  public var splitScale: Boolean
+  public final inline var splitScale: Boolean
     @JvmName("splitScaleProperty")
     get() = getSplitScale()
     @JvmName("splitScaleProperty")
@@ -733,7 +733,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Curve for the scale over life, along the x axis.
    */
-  public var scaleCurveX: Curve?
+  public final inline var scaleCurveX: Curve?
     @JvmName("scaleCurveXProperty")
     get() = getScaleCurveX()
     @JvmName("scaleCurveXProperty")
@@ -744,7 +744,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Curve for the scale over life, along the y axis.
    */
-  public var scaleCurveY: Curve?
+  public final inline var scaleCurveY: Curve?
     @JvmName("scaleCurveYProperty")
     get() = getScaleCurveY()
     @JvmName("scaleCurveYProperty")
@@ -755,7 +755,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Curve for the scale over life, along the z axis.
    */
-  public var scaleCurveZ: Curve?
+  public final inline var scaleCurveZ: Curve?
     @JvmName("scaleCurveZProperty")
     get() = getScaleCurveZ()
     @JvmName("scaleCurveZProperty")
@@ -771,7 +771,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Otherwise, [color] will have no visible effect.
    */
   @CoreTypeLocalCopy
-  public var color: Color
+  public final inline var color: Color
     @JvmName("colorProperty")
     get() = getColor()
     @JvmName("colorProperty")
@@ -787,7 +787,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [colorRamp] will have no visible effect.
    */
-  public var colorRamp: Gradient?
+  public final inline var colorRamp: Gradient?
     @JvmName("colorRampProperty")
     get() = getColorRamp()
     @JvmName("colorRampProperty")
@@ -803,7 +803,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [colorInitialRamp] will have no visible effect.
    */
-  public var colorInitialRamp: Gradient?
+  public final inline var colorInitialRamp: Gradient?
     @JvmName("colorInitialRampProperty")
     get() = getColorInitialRamp()
     @JvmName("colorInitialRampProperty")
@@ -814,7 +814,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum hue variation.
    */
-  public var hueVariationMin: Float
+  public final inline var hueVariationMin: Float
     @JvmName("hueVariationMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
     @JvmName("hueVariationMinProperty")
@@ -825,7 +825,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum hue variation.
    */
-  public var hueVariationMax: Float
+  public final inline var hueVariationMax: Float
     @JvmName("hueVariationMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
     @JvmName("hueVariationMaxProperty")
@@ -836,7 +836,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's hue will vary along this [Curve].
    */
-  public var hueVariationCurve: Curve?
+  public final inline var hueVariationCurve: Curve?
     @JvmName("hueVariationCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_HUE_VARIATION)
     @JvmName("hueVariationCurveProperty")
@@ -847,7 +847,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum particle animation speed.
    */
-  public var animSpeedMin: Float
+  public final inline var animSpeedMin: Float
     @JvmName("animSpeedMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
     @JvmName("animSpeedMinProperty")
@@ -858,7 +858,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum particle animation speed.
    */
-  public var animSpeedMax: Float
+  public final inline var animSpeedMax: Float
     @JvmName("animSpeedMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
     @JvmName("animSpeedMaxProperty")
@@ -869,7 +869,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's animation speed will vary along this [Curve].
    */
-  public var animSpeedCurve: Curve?
+  public final inline var animSpeedCurve: Curve?
     @JvmName("animSpeedCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_SPEED)
     @JvmName("animSpeedCurveProperty")
@@ -880,7 +880,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Minimum animation offset.
    */
-  public var animOffsetMin: Float
+  public final inline var animOffsetMin: Float
     @JvmName("animOffsetMinProperty")
     get() = getParamMin(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
     @JvmName("animOffsetMinProperty")
@@ -891,7 +891,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Maximum animation offset.
    */
-  public var animOffsetMax: Float
+  public final inline var animOffsetMax: Float
     @JvmName("animOffsetMaxProperty")
     get() = getParamMax(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
     @JvmName("animOffsetMaxProperty")
@@ -902,7 +902,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Each particle's animation offset will vary along this [Curve].
    */
-  public var animOffsetCurve: Curve?
+  public final inline var animOffsetCurve: Curve?
     @JvmName("animOffsetCurveProperty")
     get() = getParamCurve(CPUParticles3D.Parameter.PARAM_ANIM_OFFSET)
     @JvmName("animOffsetCurveProperty")
@@ -935,7 +935,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
+  public final fun visibilityAabbMutate(block: AABB.() -> Unit): AABB = visibilityAabb.apply{
       block(this)
       visibilityAabb = this
   }
@@ -959,7 +959,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
+  public final fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
       emissionBoxExtents.apply{
       block(this)
       emissionBoxExtents = this
@@ -984,7 +984,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
+  public final fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
       emissionRingAxis.apply{
       block(this)
       emissionRingAxis = this
@@ -1009,7 +1009,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply{
+  public final fun directionMutate(block: Vector3.() -> Unit): Vector3 = direction.apply{
       block(this)
       direction = this
   }
@@ -1033,7 +1033,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
+  public final fun gravityMutate(block: Vector3.() -> Unit): Vector3 = gravity.apply{
       block(this)
       gravity = this
   }
@@ -1061,173 +1061,173 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
 
 
-  public fun setEmitting(emitting: Boolean): Unit {
+  public final fun setEmitting(emitting: Boolean): Unit {
     TransferContext.writeArguments(BOOL to emitting)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
   }
 
-  public fun setAmount(amount: Int): Unit {
+  public final fun setAmount(amount: Int): Unit {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
   }
 
-  public fun setLifetime(secs: Double): Unit {
+  public final fun setLifetime(secs: Double): Unit {
     TransferContext.writeArguments(DOUBLE to secs)
     TransferContext.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
   }
 
-  public fun setOneShot(enable: Boolean): Unit {
+  public final fun setOneShot(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
   }
 
-  public fun setPreProcessTime(secs: Double): Unit {
+  public final fun setPreProcessTime(secs: Double): Unit {
     TransferContext.writeArguments(DOUBLE to secs)
     TransferContext.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
   }
 
-  public fun setExplosivenessRatio(ratio: Float): Unit {
+  public final fun setExplosivenessRatio(ratio: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
   }
 
-  public fun setRandomnessRatio(ratio: Float): Unit {
+  public final fun setRandomnessRatio(ratio: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
   }
 
-  public fun setVisibilityAabb(aabb: AABB): Unit {
+  public final fun setVisibilityAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
   }
 
-  public fun setLifetimeRandomness(random: Double): Unit {
+  public final fun setLifetimeRandomness(random: Double): Unit {
     TransferContext.writeArguments(DOUBLE to random)
     TransferContext.callMethod(rawPtr, MethodBindings.setLifetimeRandomnessPtr, NIL)
   }
 
-  public fun setUseLocalCoordinates(enable: Boolean): Unit {
+  public final fun setUseLocalCoordinates(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
   }
 
-  public fun setFixedFps(fps: Int): Unit {
+  public final fun setFixedFps(fps: Int): Unit {
     TransferContext.writeArguments(LONG to fps.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
   }
 
-  public fun setFractionalDelta(enable: Boolean): Unit {
+  public final fun setFractionalDelta(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
   }
 
-  public fun setSpeedScale(scale: Double): Unit {
+  public final fun setSpeedScale(scale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to scale)
     TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
-  public fun isEmitting(): Boolean {
+  public final fun isEmitting(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getAmount(): Int {
+  public final fun getAmount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getLifetime(): Double {
+  public final fun getLifetime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getOneShot(): Boolean {
+  public final fun getOneShot(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getPreProcessTime(): Double {
+  public final fun getPreProcessTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getExplosivenessRatio(): Float {
+  public final fun getExplosivenessRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun getRandomnessRatio(): Float {
+  public final fun getRandomnessRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun getVisibilityAabb(): AABB {
+  public final fun getVisibilityAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr,
         godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
   }
 
-  public fun getLifetimeRandomness(): Double {
+  public final fun getLifetimeRandomness(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getUseLocalCoordinates(): Boolean {
+  public final fun getUseLocalCoordinates(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getFixedFps(): Int {
+  public final fun getFixedFps(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getFractionalDelta(): Boolean {
+  public final fun getFractionalDelta(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun getSpeedScale(): Double {
+  public final fun getSpeedScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setDrawOrder(order: DrawOrder): Unit {
+  public final fun setDrawOrder(order: DrawOrder): Unit {
     TransferContext.writeArguments(LONG to order.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
   }
 
-  public fun getDrawOrder(): DrawOrder {
+  public final fun getDrawOrder(): DrawOrder {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
     return CPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
-  public fun getMesh(): Mesh? {
+  public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
@@ -1236,39 +1236,39 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Restarts the particle emitter.
    */
-  public fun restart(): Unit {
+  public final fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
   }
 
-  public fun setDirection(direction: Vector3): Unit {
+  public final fun setDirection(direction: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to direction)
     TransferContext.callMethod(rawPtr, MethodBindings.setDirectionPtr, NIL)
   }
 
-  public fun getDirection(): Vector3 {
+  public final fun getDirection(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setSpread(degrees: Float): Unit {
+  public final fun setSpread(degrees: Float): Unit {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
   }
 
-  public fun getSpread(): Float {
+  public final fun getSpread(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFlatness(amount: Float): Unit {
+  public final fun setFlatness(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFlatnessPtr, NIL)
   }
 
-  public fun getFlatness(): Float {
+  public final fun getFlatness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFlatnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1277,7 +1277,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the minimum value for the given parameter.
    */
-  public fun setParamMin(`param`: Parameter, `value`: Float): Unit {
+  public final fun setParamMin(`param`: Parameter, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
   }
@@ -1285,7 +1285,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the minimum value range for the given parameter.
    */
-  public fun getParamMin(`param`: Parameter): Float {
+  public final fun getParamMin(`param`: Parameter): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1294,7 +1294,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the maximum value for the given parameter.
    */
-  public fun setParamMax(`param`: Parameter, `value`: Float): Unit {
+  public final fun setParamMax(`param`: Parameter, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
   }
@@ -1302,7 +1302,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the maximum value range for the given parameter.
    */
-  public fun getParamMax(`param`: Parameter): Float {
+  public final fun getParamMax(`param`: Parameter): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1311,7 +1311,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Sets the [Curve] of the parameter specified by [Parameter].
    */
-  public fun setParamCurve(`param`: Parameter, curve: Curve?): Unit {
+  public final fun setParamCurve(`param`: Parameter, curve: Curve?): Unit {
     TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
   }
@@ -1319,40 +1319,40 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the [Curve] of the parameter specified by [Parameter].
    */
-  public fun getParamCurve(`param`: Parameter): Curve? {
+  public final fun getParamCurve(`param`: Parameter): Curve? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
-  public fun getColor(): Color {
+  public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setColorRamp(ramp: Gradient?): Unit {
+  public final fun setColorRamp(ramp: Gradient?): Unit {
     TransferContext.writeArguments(OBJECT to ramp)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
   }
 
-  public fun getColorRamp(): Gradient? {
+  public final fun getColorRamp(): Gradient? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
   }
 
-  public fun setColorInitialRamp(ramp: Gradient?): Unit {
+  public final fun setColorInitialRamp(ramp: Gradient?): Unit {
     TransferContext.writeArguments(OBJECT to ramp)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorInitialRampPtr, NIL)
   }
 
-  public fun getColorInitialRamp(): Gradient? {
+  public final fun getColorInitialRamp(): Gradient? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorInitialRampPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
@@ -1361,7 +1361,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Enables or disables the given particle flag (see [ParticleFlags] for options).
    */
-  public fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
+  public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setParticleFlagPtr, NIL)
   }
@@ -1369,173 +1369,173 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Returns the enabled state of the given particle flag (see [ParticleFlags] for options).
    */
-  public fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
+  public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEmissionShape(shape: EmissionShape): Unit {
+  public final fun setEmissionShape(shape: EmissionShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionShapePtr, NIL)
   }
 
-  public fun getEmissionShape(): EmissionShape {
+  public final fun getEmissionShape(): EmissionShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionShapePtr, LONG)
     return CPUParticles3D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setEmissionSphereRadius(radius: Float): Unit {
+  public final fun setEmissionSphereRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionSphereRadiusPtr, NIL)
   }
 
-  public fun getEmissionSphereRadius(): Float {
+  public final fun getEmissionSphereRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEmissionBoxExtents(extents: Vector3): Unit {
+  public final fun setEmissionBoxExtents(extents: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to extents)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionBoxExtentsPtr, NIL)
   }
 
-  public fun getEmissionBoxExtents(): Vector3 {
+  public final fun getEmissionBoxExtents(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionBoxExtentsPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setEmissionPoints(array: PackedVector3Array): Unit {
+  public final fun setEmissionPoints(array: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to array)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPointsPtr, NIL)
   }
 
-  public fun getEmissionPoints(): PackedVector3Array {
+  public final fun getEmissionPoints(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPointsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
-  public fun setEmissionNormals(array: PackedVector3Array): Unit {
+  public final fun setEmissionNormals(array: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to array)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionNormalsPtr, NIL)
   }
 
-  public fun getEmissionNormals(): PackedVector3Array {
+  public final fun getEmissionNormals(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionNormalsPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
-  public fun setEmissionColors(array: PackedColorArray): Unit {
+  public final fun setEmissionColors(array: PackedColorArray): Unit {
     TransferContext.writeArguments(PACKED_COLOR_ARRAY to array)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionColorsPtr, NIL)
   }
 
-  public fun getEmissionColors(): PackedColorArray {
+  public final fun getEmissionColors(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionColorsPtr, PACKED_COLOR_ARRAY)
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
   }
 
-  public fun setEmissionRingAxis(axis: Vector3): Unit {
+  public final fun setEmissionRingAxis(axis: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to axis)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingAxisPtr, NIL)
   }
 
-  public fun getEmissionRingAxis(): Vector3 {
+  public final fun getEmissionRingAxis(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingAxisPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setEmissionRingHeight(height: Float): Unit {
+  public final fun setEmissionRingHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingHeightPtr, NIL)
   }
 
-  public fun getEmissionRingHeight(): Float {
+  public final fun getEmissionRingHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEmissionRingRadius(radius: Float): Unit {
+  public final fun setEmissionRingRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingRadiusPtr, NIL)
   }
 
-  public fun getEmissionRingRadius(): Float {
+  public final fun getEmissionRingRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEmissionRingInnerRadius(innerRadius: Float): Unit {
+  public final fun setEmissionRingInnerRadius(innerRadius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to innerRadius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
   }
 
-  public fun getEmissionRingInnerRadius(): Float {
+  public final fun getEmissionRingInnerRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun getGravity(): Vector3 {
+  public final fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setGravity(accelVec: Vector3): Unit {
+  public final fun setGravity(accelVec: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to accelVec)
     TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
   }
 
-  public fun getSplitScale(): Boolean {
+  public final fun getSplitScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSplitScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSplitScale(splitScale: Boolean): Unit {
+  public final fun setSplitScale(splitScale: Boolean): Unit {
     TransferContext.writeArguments(BOOL to splitScale)
     TransferContext.callMethod(rawPtr, MethodBindings.setSplitScalePtr, NIL)
   }
 
-  public fun getScaleCurveX(): Curve? {
+  public final fun getScaleCurveX(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveXPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setScaleCurveX(scaleCurve: Curve?): Unit {
+  public final fun setScaleCurveX(scaleCurve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to scaleCurve)
     TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveXPtr, NIL)
   }
 
-  public fun getScaleCurveY(): Curve? {
+  public final fun getScaleCurveY(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveYPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setScaleCurveY(scaleCurve: Curve?): Unit {
+  public final fun setScaleCurveY(scaleCurve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to scaleCurve)
     TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveYPtr, NIL)
   }
 
-  public fun getScaleCurveZ(): Curve? {
+  public final fun getScaleCurveZ(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveZPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setScaleCurveZ(scaleCurve: Curve?): Unit {
+  public final fun setScaleCurveZ(scaleCurve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to scaleCurve)
     TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveZPtr, NIL)
   }
@@ -1544,7 +1544,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Sets this node's properties to match a given [GPUParticles3D] node with an assigned
    * [ParticleProcessMaterial].
    */
-  public fun convertFromParticles(particles: Node?): Unit {
+  public final fun convertFromParticles(particles: Node?): Unit {
     TransferContext.writeArguments(OBJECT to particles)
     TransferContext.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
   }

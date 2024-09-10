@@ -34,7 +34,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
    * Animation to use as an output. It is one of the animations provided by
    * [AnimationTree.animPlayer].
    */
-  public var animation: StringName
+  public final inline var animation: StringName
     @JvmName("animationProperty")
     get() = getAnimation()
     @JvmName("animationProperty")
@@ -45,7 +45,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * Determines the playback direction of the animation.
    */
-  public var playMode: PlayMode
+  public final inline var playMode: PlayMode
     @JvmName("playModeProperty")
     get() = getPlayMode()
     @JvmName("playModeProperty")
@@ -57,7 +57,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
    * If `true`, [AnimationNode] provides an animation based on the [Animation] resource with some
    * parameters adjusted.
    */
-  public var useCustomTimeline: Boolean
+  public final inline var useCustomTimeline: Boolean
     @JvmName("useCustomTimelineProperty")
     get() = isUsingCustomTimeline()
     @JvmName("useCustomTimelineProperty")
@@ -68,7 +68,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
    * If [useCustomTimeline] is `true`, offset the start position of the animation.
    */
-  public var timelineLength: Double
+  public final inline var timelineLength: Double
     @JvmName("timelineLengthProperty")
     get() = getTimelineLength()
     @JvmName("timelineLengthProperty")
@@ -82,7 +82,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
    * If `false`, the original animation length is respected. If you set the loop to [loopMode], the
    * animation will loop in [timelineLength].
    */
-  public var stretchTimeScale: Boolean
+  public final inline var stretchTimeScale: Boolean
     @JvmName("stretchTimeScaleProperty")
     get() = isStretchingTimeScale()
     @JvmName("stretchTimeScaleProperty")
@@ -94,7 +94,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
    * If [useCustomTimeline] is `true`, offset the start position of the animation.
    * This is useful for adjusting which foot steps first in 3D walking animations.
    */
-  public var startOffset: Double
+  public final inline var startOffset: Double
     @JvmName("startOffsetProperty")
     get() = getStartOffset()
     @JvmName("startOffsetProperty")
@@ -109,7 +109,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
    * [Animation.trackSetInterpolationLoopWrap] option will not be respected. If you cannot get the
    * expected behavior, consider duplicating the [Animation] resource and changing the loop settings.
    */
-  public var loopMode: Animation.LoopMode
+  public final inline var loopMode: Animation.LoopMode
     @JvmName("loopModeProperty")
     get() = getLoopMode()
     @JvmName("loopModeProperty")
@@ -121,78 +121,78 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     callConstructor(ENGINECLASS_ANIMATIONNODEANIMATION, scriptIndex)
   }
 
-  public fun setAnimation(name: StringName): Unit {
+  public final fun setAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPtr, NIL)
   }
 
-  public fun getAnimation(): StringName {
+  public final fun getAnimation(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setPlayMode(mode: PlayMode): Unit {
+  public final fun setPlayMode(mode: PlayMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPlayModePtr, NIL)
   }
 
-  public fun getPlayMode(): PlayMode {
+  public final fun getPlayMode(): PlayMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlayModePtr, LONG)
     return AnimationNodeAnimation.PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setUseCustomTimeline(useCustomTimeline: Boolean): Unit {
+  public final fun setUseCustomTimeline(useCustomTimeline: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useCustomTimeline)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomTimelinePtr, NIL)
   }
 
-  public fun isUsingCustomTimeline(): Boolean {
+  public final fun isUsingCustomTimeline(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomTimelinePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTimelineLength(timelineLength: Double): Unit {
+  public final fun setTimelineLength(timelineLength: Double): Unit {
     TransferContext.writeArguments(DOUBLE to timelineLength)
     TransferContext.callMethod(rawPtr, MethodBindings.setTimelineLengthPtr, NIL)
   }
 
-  public fun getTimelineLength(): Double {
+  public final fun getTimelineLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimelineLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setStretchTimeScale(stretchTimeScale: Boolean): Unit {
+  public final fun setStretchTimeScale(stretchTimeScale: Boolean): Unit {
     TransferContext.writeArguments(BOOL to stretchTimeScale)
     TransferContext.callMethod(rawPtr, MethodBindings.setStretchTimeScalePtr, NIL)
   }
 
-  public fun isStretchingTimeScale(): Boolean {
+  public final fun isStretchingTimeScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStretchingTimeScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setStartOffset(startOffset: Double): Unit {
+  public final fun setStartOffset(startOffset: Double): Unit {
     TransferContext.writeArguments(DOUBLE to startOffset)
     TransferContext.callMethod(rawPtr, MethodBindings.setStartOffsetPtr, NIL)
   }
 
-  public fun getStartOffset(): Double {
+  public final fun getStartOffset(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStartOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setLoopMode(loopMode: Animation.LoopMode): Unit {
+  public final fun setLoopMode(loopMode: Animation.LoopMode): Unit {
     TransferContext.writeArguments(LONG to loopMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
   }
 
-  public fun getLoopMode(): Animation.LoopMode {
+  public final fun getLoopMode(): Animation.LoopMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)

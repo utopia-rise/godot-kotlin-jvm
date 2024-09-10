@@ -38,7 +38,7 @@ public open class SkinReference internal constructor() : RefCounted() {
   /**
    * Returns the [RID] owned by this SkinReference, as returned by [RenderingServer.skeletonCreate].
    */
-  public fun getSkeleton(): RID {
+  public final fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -51,7 +51,7 @@ public open class SkinReference internal constructor() : RefCounted() {
    * Note that a single [Skin] may have more than one [SkinReference] in the case that it is shared
    * by meshes across multiple [Skeleton3D] nodes.
    */
-  public fun getSkin(): Skin? {
+  public final fun getSkin(): Skin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Skin?)

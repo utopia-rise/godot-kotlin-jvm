@@ -274,19 +274,19 @@ public open class XRInterfaceExtension : XRInterface() {
     throw NotImplementedError("_get_velocity_texture is not implemented for XRInterfaceExtension")
   }
 
-  public fun getColorTexture(): RID {
+  public final fun getColorTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun getDepthTexture(): RID {
+  public final fun getDepthTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun getVelocityTexture(): RID {
+  public final fun getVelocityTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -296,7 +296,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Blits our render results to screen optionally applying lens distortion. This can only be called
    * while processing `_commit_views`.
    */
-  public fun addBlit(
+  public final fun addBlit(
     renderTarget: RID,
     srcRect: Rect2,
     dstRect: Rect2i,
@@ -317,7 +317,7 @@ public open class XRInterfaceExtension : XRInterface() {
    * Returns a valid [RID] for a texture to which we should render the current frame if supported by
    * the interface.
    */
-  public fun getRenderTargetTexture(renderTarget: RID): RID {
+  public final fun getRenderTargetTexture(renderTarget: RID): RID {
     TransferContext.writeArguments(_RID to renderTarget)
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

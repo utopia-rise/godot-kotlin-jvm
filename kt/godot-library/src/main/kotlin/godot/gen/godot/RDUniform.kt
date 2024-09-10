@@ -30,7 +30,7 @@ public open class RDUniform : RefCounted() {
   /**
    * The uniform's data type.
    */
-  public var uniformType: RenderingDevice.UniformType
+  public final inline var uniformType: RenderingDevice.UniformType
     @JvmName("uniformTypeProperty")
     get() = getUniformType()
     @JvmName("uniformTypeProperty")
@@ -41,7 +41,7 @@ public open class RDUniform : RefCounted() {
   /**
    * The uniform's binding.
    */
-  public var binding: Int
+  public final inline var binding: Int
     @JvmName("bindingProperty")
     get() = getBinding()
     @JvmName("bindingProperty")
@@ -53,23 +53,23 @@ public open class RDUniform : RefCounted() {
     callConstructor(ENGINECLASS_RDUNIFORM, scriptIndex)
   }
 
-  public fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
+  public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setUniformTypePtr, NIL)
   }
 
-  public fun getUniformType(): RenderingDevice.UniformType {
+  public final fun getUniformType(): RenderingDevice.UniformType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUniformTypePtr, LONG)
     return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBinding(pMember: Int): Unit {
+  public final fun setBinding(pMember: Int): Unit {
     TransferContext.writeArguments(LONG to pMember.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBindingPtr, NIL)
   }
 
-  public fun getBinding(): Int {
+  public final fun getBinding(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -79,7 +79,7 @@ public open class RDUniform : RefCounted() {
    * Binds the given id to the uniform. The data associated with the id is then used when the
    * uniform is passed to a shader.
    */
-  public fun addId(id: RID): Unit {
+  public final fun addId(id: RID): Unit {
     TransferContext.writeArguments(_RID to id)
     TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
   }
@@ -87,7 +87,7 @@ public open class RDUniform : RefCounted() {
   /**
    * Unbinds all ids currently bound to the uniform.
    */
-  public fun clearIds(): Unit {
+  public final fun clearIds(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearIdsPtr, NIL)
   }
@@ -95,7 +95,7 @@ public open class RDUniform : RefCounted() {
   /**
    * Returns an array of all ids currently bound to the uniform.
    */
-  public fun getIds(): VariantArray<RID> {
+  public final fun getIds(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)

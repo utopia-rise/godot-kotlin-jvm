@@ -63,7 +63,7 @@ public open class CanvasLayer : Node() {
    * CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer
    * is drawn in front is non-deterministic.
    */
-  public var layer: Int
+  public final inline var layer: Int
     @JvmName("layerProperty")
     get() = getLayer()
     @JvmName("layerProperty")
@@ -76,7 +76,7 @@ public open class CanvasLayer : Node() {
    * Unlike [CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying
    * layers.
    */
-  public var visible: Boolean
+  public final inline var visible: Boolean
     @JvmName("visibleProperty")
     get() = isVisible()
     @JvmName("visibleProperty")
@@ -88,7 +88,7 @@ public open class CanvasLayer : Node() {
    * The layer's base offset.
    */
   @CoreTypeLocalCopy
-  public var offset: Vector2
+  public final inline var offset: Vector2
     @JvmName("offsetProperty")
     get() = getOffset()
     @JvmName("offsetProperty")
@@ -99,7 +99,7 @@ public open class CanvasLayer : Node() {
   /**
    * The layer's rotation in radians.
    */
-  public var rotation: Float
+  public final inline var rotation: Float
     @JvmName("rotationProperty")
     get() = getRotation()
     @JvmName("rotationProperty")
@@ -111,7 +111,7 @@ public open class CanvasLayer : Node() {
    * The layer's scale.
    */
   @CoreTypeLocalCopy
-  public var scale: Vector2
+  public final inline var scale: Vector2
     @JvmName("scaleProperty")
     get() = getScale()
     @JvmName("scaleProperty")
@@ -123,7 +123,7 @@ public open class CanvasLayer : Node() {
    * The layer's transform.
    */
   @CoreTypeLocalCopy
-  public var transform: Transform2D
+  public final inline var transform: Transform2D
     @JvmName("transformProperty")
     get() = getTransform()
     @JvmName("transformProperty")
@@ -135,7 +135,7 @@ public open class CanvasLayer : Node() {
    * The custom [Viewport] node assigned to the [CanvasLayer]. If `null`, uses the default viewport
    * instead.
    */
-  public var customViewport: Node?
+  public final inline var customViewport: Node?
     @JvmName("customViewportProperty")
     get() = getCustomViewport()
     @JvmName("customViewportProperty")
@@ -148,7 +148,7 @@ public open class CanvasLayer : Node() {
    * moves instead of being anchored in a fixed position on the screen.
    * Together with [followViewportScale] it can be used for a pseudo 3D effect.
    */
-  public var followViewportEnabled: Boolean
+  public final inline var followViewportEnabled: Boolean
     @JvmName("followViewportEnabledProperty")
     get() = isFollowingViewport()
     @JvmName("followViewportEnabledProperty")
@@ -160,7 +160,7 @@ public open class CanvasLayer : Node() {
    * Scales the layer when using [followViewportEnabled]. Layers moving into the foreground should
    * have increasing scales, while layers moving into the background should have decreasing scales.
    */
-  public var followViewportScale: Float
+  public final inline var followViewportScale: Float
     @JvmName("followViewportScaleProperty")
     get() = getFollowViewportScale()
     @JvmName("followViewportScaleProperty")
@@ -190,7 +190,7 @@ public open class CanvasLayer : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -214,7 +214,7 @@ public open class CanvasLayer : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
+  public final fun scaleMutate(block: Vector2.() -> Unit): Vector2 = scale.apply{
       block(this)
       scale = this
   }
@@ -238,29 +238,29 @@ public open class CanvasLayer : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
       block(this)
       transform = this
   }
 
 
-  public fun setLayer(layer: Int): Unit {
+  public final fun setLayer(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLayerPtr, NIL)
   }
 
-  public fun getLayer(): Int {
+  public final fun getLayer(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setVisible(visible: Boolean): Unit {
+  public final fun setVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
   }
 
-  public fun isVisible(): Boolean {
+  public final fun isVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -270,7 +270,7 @@ public open class CanvasLayer : Node() {
    * Shows any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to
    * `true`.
    */
-  public fun show(): Unit {
+  public final fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.showPtr, NIL)
   }
@@ -279,17 +279,17 @@ public open class CanvasLayer : Node() {
    * Hides any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to
    * `false`.
    */
-  public fun hide(): Unit {
+  public final fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hidePtr, NIL)
   }
 
-  public fun setTransform(transform: Transform2D): Unit {
+  public final fun setTransform(transform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
   }
 
-  public fun getTransform(): Transform2D {
+  public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -299,73 +299,73 @@ public open class CanvasLayer : Node() {
    * Returns the transform from the [CanvasLayer]s coordinate system to the [Viewport]s coordinate
    * system.
    */
-  public fun getFinalTransform(): Transform2D {
+  public final fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFinalTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
-  public fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
-  public fun getOffset(): Vector2 {
+  public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setRotation(radians: Float): Unit {
+  public final fun setRotation(radians: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
   }
 
-  public fun getRotation(): Float {
+  public final fun getRotation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setScale(scale: Vector2): Unit {
+  public final fun setScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)
     TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
   }
 
-  public fun getScale(): Vector2 {
+  public final fun getScale(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setFollowViewport(enable: Boolean): Unit {
+  public final fun setFollowViewport(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFollowViewportPtr, NIL)
   }
 
-  public fun isFollowingViewport(): Boolean {
+  public final fun isFollowingViewport(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFollowingViewportPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFollowViewportScale(scale: Float): Unit {
+  public final fun setFollowViewportScale(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFollowViewportScalePtr, NIL)
   }
 
-  public fun getFollowViewportScale(): Float {
+  public final fun getFollowViewportScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFollowViewportScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setCustomViewport(viewport: Node?): Unit {
+  public final fun setCustomViewport(viewport: Node?): Unit {
     TransferContext.writeArguments(OBJECT to viewport)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomViewportPtr, NIL)
   }
 
-  public fun getCustomViewport(): Node? {
+  public final fun getCustomViewport(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomViewportPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
@@ -374,7 +374,7 @@ public open class CanvasLayer : Node() {
   /**
    * Returns the RID of the canvas used by this layer.
    */
-  public fun getCanvas(): RID {
+  public final fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

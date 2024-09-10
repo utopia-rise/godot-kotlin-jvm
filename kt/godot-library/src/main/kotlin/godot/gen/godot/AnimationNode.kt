@@ -85,7 +85,7 @@ public open class AnimationNode : Resource() {
   /**
    * If `true`, filtering is enabled.
    */
-  public var filterEnabled: Boolean
+  public final inline var filterEnabled: Boolean
     @JvmName("filterEnabledProperty")
     get() = isFilterEnabled()
     @JvmName("filterEnabledProperty")
@@ -178,7 +178,7 @@ public open class AnimationNode : Resource() {
    * Adds an input to the animation node. This is only useful for animation nodes created for use in
    * an [AnimationNodeBlendTree]. If the addition fails, returns `false`.
    */
-  public fun addInput(name: String): Boolean {
+  public final fun addInput(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.addInputPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -187,7 +187,7 @@ public open class AnimationNode : Resource() {
   /**
    * Removes an input, call this only when inactive.
    */
-  public fun removeInput(index: Int): Unit {
+  public final fun removeInput(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeInputPtr, NIL)
   }
@@ -195,7 +195,7 @@ public open class AnimationNode : Resource() {
   /**
    * Sets the name of the input at the given [input] index. If the setting fails, returns `false`.
    */
-  public fun setInputName(input: Int, name: String): Boolean {
+  public final fun setInputName(input: Int, name: String): Boolean {
     TransferContext.writeArguments(LONG to input.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -204,7 +204,7 @@ public open class AnimationNode : Resource() {
   /**
    * Gets the name of an input by index.
    */
-  public fun getInputName(input: Int): String {
+  public final fun getInputName(input: Int): String {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -214,7 +214,7 @@ public open class AnimationNode : Resource() {
    * Amount of inputs in this animation node, only useful for animation nodes that go into
    * [AnimationNodeBlendTree].
    */
-  public fun getInputCount(): Int {
+  public final fun getInputCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -223,7 +223,7 @@ public open class AnimationNode : Resource() {
   /**
    * Returns the input index which corresponds to [name]. If not found, returns `-1`.
    */
-  public fun findInput(name: String): Int {
+  public final fun findInput(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findInputPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -232,7 +232,7 @@ public open class AnimationNode : Resource() {
   /**
    * Adds or removes a path for the filter.
    */
-  public fun setFilterPath(path: NodePath, enable: Boolean): Unit {
+  public final fun setFilterPath(path: NodePath, enable: Boolean): Unit {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFilterPathPtr, NIL)
   }
@@ -240,18 +240,18 @@ public open class AnimationNode : Resource() {
   /**
    * Returns whether the given path is filtered.
    */
-  public fun isPathFiltered(path: NodePath): Boolean {
+  public final fun isPathFiltered(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isPathFilteredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFilterEnabled(enable: Boolean): Unit {
+  public final fun setFilterEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFilterEnabledPtr, NIL)
   }
 
-  public fun isFilterEnabled(): Boolean {
+  public final fun isFilterEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFilterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -264,7 +264,7 @@ public open class AnimationNode : Resource() {
    * [Animation.LoopedFlag].
    */
   @JvmOverloads
-  public fun blendAnimation(
+  public final fun blendAnimation(
     animation: StringName,
     time: Double,
     delta: Double,
@@ -283,7 +283,7 @@ public open class AnimationNode : Resource() {
    * not display your animation node for addition.
    */
   @JvmOverloads
-  public fun blendNode(
+  public final fun blendNode(
     name: StringName,
     node: AnimationNode?,
     time: Double,
@@ -306,7 +306,7 @@ public open class AnimationNode : Resource() {
    * options).
    */
   @JvmOverloads
-  public fun blendInput(
+  public final fun blendInput(
     inputIndex: Int,
     time: Double,
     seek: Boolean,
@@ -325,7 +325,7 @@ public open class AnimationNode : Resource() {
    * Sets a custom parameter. These are used as local memory, because resources can be reused across
    * the tree or scenes.
    */
-  public fun setParameter(name: StringName, `value`: Any?): Unit {
+  public final fun setParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setParameterPtr, NIL)
   }
@@ -334,7 +334,7 @@ public open class AnimationNode : Resource() {
    * Gets the value of a parameter. Parameters are custom local memory used for your animation
    * nodes, given a resource can be reused in multiple trees.
    */
-  public fun getParameter(name: StringName): Any? {
+  public final fun getParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)

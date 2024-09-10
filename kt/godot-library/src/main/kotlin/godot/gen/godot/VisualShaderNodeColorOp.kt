@@ -26,7 +26,7 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
   /**
    * An operator to be applied to the inputs. See [Operator] for options.
    */
-  public var `operator`: Operator
+  public final inline var `operator`: Operator
     @JvmName("operatorProperty")
     get() = getOperator()
     @JvmName("operatorProperty")
@@ -38,12 +38,12 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOLOROP, scriptIndex)
   }
 
-  public fun setOperator(op: Operator): Unit {
+  public final fun setOperator(op: Operator): Unit {
     TransferContext.writeArguments(LONG to op.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
   }
 
-  public fun getOperator(): Operator {
+  public final fun getOperator(): Operator {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
     return VisualShaderNodeColorOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)

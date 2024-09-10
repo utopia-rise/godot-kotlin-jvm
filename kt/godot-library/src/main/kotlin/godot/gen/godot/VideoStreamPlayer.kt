@@ -47,7 +47,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * The embedded audio track to play.
    */
-  public var audioTrack: Int
+  public final inline var audioTrack: Int
     @JvmName("audioTrackProperty")
     get() = getAudioTrack()
     @JvmName("audioTrackProperty")
@@ -58,7 +58,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * The assigned video stream. See description for supported formats.
    */
-  public var stream: VideoStream?
+  public final inline var stream: VideoStream?
     @JvmName("streamProperty")
     get() = getStream()
     @JvmName("streamProperty")
@@ -69,7 +69,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Audio volume in dB.
    */
-  public var volumeDb: Float
+  public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
     get() = getVolumeDb()
     @JvmName("volumeDbProperty")
@@ -80,7 +80,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Audio volume as a linear value.
    */
-  public var volume: Float
+  public final inline var volume: Float
     @JvmName("volumeProperty")
     get() = getVolume()
     @JvmName("volumeProperty")
@@ -91,7 +91,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * If `true`, playback starts when the scene loads.
    */
-  public var autoplay: Boolean
+  public final inline var autoplay: Boolean
     @JvmName("autoplayProperty")
     get() = hasAutoplay()
     @JvmName("autoplayProperty")
@@ -102,7 +102,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * If `true`, the video is paused.
    */
-  public var paused: Boolean
+  public final inline var paused: Boolean
     @JvmName("pausedProperty")
     get() = isPaused()
     @JvmName("pausedProperty")
@@ -114,7 +114,7 @@ public open class VideoStreamPlayer : Control() {
    * If `true`, the video scales to the control size. Otherwise, the control minimum size will be
    * automatically adjusted to match the video stream's dimensions.
    */
-  public var expand: Boolean
+  public final inline var expand: Boolean
     @JvmName("expandProperty")
     get() = hasExpand()
     @JvmName("expandProperty")
@@ -125,7 +125,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * If `true`, the video restarts when it reaches its end.
    */
-  public var loop: Boolean
+  public final inline var loop: Boolean
     @JvmName("loopProperty")
     get() = hasLoop()
     @JvmName("loopProperty")
@@ -136,7 +136,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Amount of time in milliseconds to store in buffer while playing.
    */
-  public var bufferingMsec: Int
+  public final inline var bufferingMsec: Int
     @JvmName("bufferingMsecProperty")
     get() = getBufferingMsec()
     @JvmName("bufferingMsecProperty")
@@ -149,7 +149,7 @@ public open class VideoStreamPlayer : Control() {
    * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except
    * in video formats implemented by a GDExtension add-on.
    */
-  public var streamPosition: Double
+  public final inline var streamPosition: Double
     @JvmName("streamPositionProperty")
     get() = getStreamPosition()
     @JvmName("streamPositionProperty")
@@ -160,7 +160,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Audio bus to use for sound playback.
    */
-  public var bus: StringName
+  public final inline var bus: StringName
     @JvmName("busProperty")
     get() = getBus()
     @JvmName("busProperty")
@@ -172,12 +172,12 @@ public open class VideoStreamPlayer : Control() {
     callConstructor(ENGINECLASS_VIDEOSTREAMPLAYER, scriptIndex)
   }
 
-  public fun setStream(stream: VideoStream?): Unit {
+  public final fun setStream(stream: VideoStream?): Unit {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
   }
 
-  public fun getStream(): VideoStream? {
+  public final fun getStream(): VideoStream? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VideoStream?)
@@ -187,7 +187,7 @@ public open class VideoStreamPlayer : Control() {
    * Starts the video playback from the beginning. If the video is paused, this will not unpause the
    * video.
    */
-  public fun play(): Unit {
+  public final fun play(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
@@ -197,7 +197,7 @@ public open class VideoStreamPlayer : Control() {
    * **Note:** Although the stream position will be set to 0, the first frame of the video stream
    * won't become the current frame.
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
@@ -206,62 +206,62 @@ public open class VideoStreamPlayer : Control() {
    * Returns `true` if the video is playing.
    * **Note:** The video is still considered playing if paused during playback.
    */
-  public fun isPlaying(): Boolean {
+  public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPaused(paused: Boolean): Unit {
+  public final fun setPaused(paused: Boolean): Unit {
     TransferContext.writeArguments(BOOL to paused)
     TransferContext.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
   }
 
-  public fun isPaused(): Boolean {
+  public final fun isPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setLoop(loop: Boolean): Unit {
+  public final fun setLoop(loop: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
-  public fun hasLoop(): Boolean {
+  public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setVolume(volume: Float): Unit {
+  public final fun setVolume(volume: Float): Unit {
     TransferContext.writeArguments(DOUBLE to volume.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumePtr, NIL)
   }
 
-  public fun getVolume(): Float {
+  public final fun getVolume(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumeDb(db: Float): Unit {
+  public final fun setVolumeDb(db: Float): Unit {
     TransferContext.writeArguments(DOUBLE to db.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
   }
 
-  public fun getVolumeDb(): Float {
+  public final fun getVolumeDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAudioTrack(track: Int): Unit {
+  public final fun setAudioTrack(track: Int): Unit {
     TransferContext.writeArguments(LONG to track.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setAudioTrackPtr, NIL)
   }
 
-  public fun getAudioTrack(): Int {
+  public final fun getAudioTrack(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAudioTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -270,7 +270,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.
    */
-  public fun getStreamName(): String {
+  public final fun getStreamName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -282,62 +282,62 @@ public open class VideoStreamPlayer : Control() {
    * will always be zero, as getting the stream length is not implemented yet. The feature may be
    * supported by video formats implemented by a GDExtension add-on.
    */
-  public fun getStreamLength(): Double {
+  public final fun getStreamLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setStreamPosition(position: Double): Unit {
+  public final fun setStreamPosition(position: Double): Unit {
     TransferContext.writeArguments(DOUBLE to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamPositionPtr, NIL)
   }
 
-  public fun getStreamPosition(): Double {
+  public final fun getStreamPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setAutoplay(enabled: Boolean): Unit {
+  public final fun setAutoplay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
   }
 
-  public fun hasAutoplay(): Boolean {
+  public final fun hasAutoplay(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAutoplayPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setExpand(enable: Boolean): Unit {
+  public final fun setExpand(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setExpandPtr, NIL)
   }
 
-  public fun hasExpand(): Boolean {
+  public final fun hasExpand(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasExpandPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setBufferingMsec(msec: Int): Unit {
+  public final fun setBufferingMsec(msec: Int): Unit {
     TransferContext.writeArguments(LONG to msec.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBufferingMsecPtr, NIL)
   }
 
-  public fun getBufferingMsec(): Int {
+  public final fun getBufferingMsec(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferingMsecPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setBus(bus: StringName): Unit {
+  public final fun setBus(bus: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to bus)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
   }
 
-  public fun getBus(): StringName {
+  public final fun getBus(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -346,7 +346,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Returns the current frame as a [Texture2D].
    */
-  public fun getVideoTexture(): Texture2D? {
+  public final fun getVideoTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVideoTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)

@@ -52,7 +52,7 @@ public open class NavigationObstacle3D : Node3D() {
   /**
    * Sets the avoidance radius for the obstacle.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -64,7 +64,7 @@ public open class NavigationObstacle3D : Node3D() {
    * Sets the obstacle height used in 2D avoidance. 2D avoidance using agent's ignore obstacles that
    * are below or above them.
    */
-  public var height: Float
+  public final inline var height: Float
     @JvmName("heightProperty")
     get() = getHeight()
     @JvmName("heightProperty")
@@ -78,7 +78,7 @@ public open class NavigationObstacle3D : Node3D() {
    * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
    * this movement and may get trapped inside the obstacle.
    */
-  public var vertices: PackedVector3Array
+  public final inline var vertices: PackedVector3Array
     @JvmName("verticesProperty")
     get() = getVertices()
     @JvmName("verticesProperty")
@@ -90,7 +90,7 @@ public open class NavigationObstacle3D : Node3D() {
    * If enabled and parsed in a navigation mesh baking process the obstacle will discard source
    * geometry inside its [vertices] and [height] defined shape.
    */
-  public var affectNavigationMesh: Boolean
+  public final inline var affectNavigationMesh: Boolean
     @JvmName("affectNavigationMeshProperty")
     get() = getAffectNavigationMesh()
     @JvmName("affectNavigationMeshProperty")
@@ -105,7 +105,7 @@ public open class NavigationObstacle3D : Node3D() {
    * polygon simplification.
    * Requires [affectNavigationMesh] to be enabled.
    */
-  public var carveNavigationMesh: Boolean
+  public final inline var carveNavigationMesh: Boolean
     @JvmName("carveNavigationMeshProperty")
     get() = getCarveNavigationMesh()
     @JvmName("carveNavigationMeshProperty")
@@ -116,7 +116,7 @@ public open class NavigationObstacle3D : Node3D() {
   /**
    * If `true` the obstacle affects avoidance using agents.
    */
-  public var avoidanceEnabled: Boolean
+  public final inline var avoidanceEnabled: Boolean
     @JvmName("avoidanceEnabledProperty")
     get() = getAvoidanceEnabled()
     @JvmName("avoidanceEnabledProperty")
@@ -130,7 +130,7 @@ public open class NavigationObstacle3D : Node3D() {
    * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
    */
   @CoreTypeLocalCopy
-  public var velocity: Vector3
+  public final inline var velocity: Vector3
     @JvmName("velocityProperty")
     get() = getVelocity()
     @JvmName("velocityProperty")
@@ -142,7 +142,7 @@ public open class NavigationObstacle3D : Node3D() {
    * A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on
    * the their avoidance mask will avoid this obstacle.
    */
-  public var avoidanceLayers: Long
+  public final inline var avoidanceLayers: Long
     @JvmName("avoidanceLayersProperty")
     get() = getAvoidanceLayers()
     @JvmName("avoidanceLayersProperty")
@@ -155,7 +155,7 @@ public open class NavigationObstacle3D : Node3D() {
    * If `false` the obstacle affects 2D avoidance using agent's with both obstacle [vertices] as
    * well as obstacle [radius].
    */
-  public var use3dAvoidance: Boolean
+  public final inline var use3dAvoidance: Boolean
     @JvmName("use3dAvoidanceProperty")
     get() = getUse3dAvoidance()
     @JvmName("use3dAvoidanceProperty")
@@ -187,7 +187,7 @@ public open class NavigationObstacle3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
+  public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply{
       block(this)
       velocity = this
   }
@@ -196,18 +196,18 @@ public open class NavigationObstacle3D : Node3D() {
   /**
    * Returns the [RID] of this obstacle on the [NavigationServer3D].
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setAvoidanceEnabled(enabled: Boolean): Unit {
+  public final fun setAvoidanceEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
   }
 
-  public fun getAvoidanceEnabled(): Boolean {
+  public final fun getAvoidanceEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -217,7 +217,7 @@ public open class NavigationObstacle3D : Node3D() {
    * Sets the [RID] of the navigation map this NavigationObstacle node should use and also updates
    * the `obstacle` on the NavigationServer.
    */
-  public fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
@@ -229,62 +229,62 @@ public open class NavigationObstacle3D : Node3D() {
    * NavigationObstacle node will not be aware of the map change. Use [setNavigationMap] to change the
    * navigation map for the NavigationObstacle and also update the obstacle on the NavigationServer.
    */
-  public fun getNavigationMap(): RID {
+  public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
-  public fun getHeight(): Float {
+  public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVelocity(velocity: Vector3): Unit {
+  public final fun setVelocity(velocity: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
   }
 
-  public fun getVelocity(): Vector3 {
+  public final fun getVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setVertices(vertices: PackedVector3Array): Unit {
+  public final fun setVertices(vertices: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
   }
 
-  public fun getVertices(): PackedVector3Array {
+  public final fun getVertices(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
-  public fun setAvoidanceLayers(layers: Long): Unit {
+  public final fun setAvoidanceLayers(layers: Long): Unit {
     TransferContext.writeArguments(LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
   }
 
-  public fun getAvoidanceLayers(): Long {
+  public final fun getAvoidanceLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -294,7 +294,7 @@ public open class NavigationObstacle3D : Node3D() {
    * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
    * given a [layerNumber] between 1 and 32.
    */
-  public fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
@@ -303,40 +303,40 @@ public open class NavigationObstacle3D : Node3D() {
    * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
+  public final fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setUse3dAvoidance(enabled: Boolean): Unit {
+  public final fun setUse3dAvoidance(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setUse3dAvoidancePtr, NIL)
   }
 
-  public fun getUse3dAvoidance(): Boolean {
+  public final fun getUse3dAvoidance(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUse3dAvoidancePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAffectNavigationMesh(enabled: Boolean): Unit {
+  public final fun setAffectNavigationMesh(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setAffectNavigationMeshPtr, NIL)
   }
 
-  public fun getAffectNavigationMesh(): Boolean {
+  public final fun getAffectNavigationMesh(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAffectNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCarveNavigationMesh(enabled: Boolean): Unit {
+  public final fun setCarveNavigationMesh(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setCarveNavigationMeshPtr, NIL)
   }
 
-  public fun getCarveNavigationMesh(): Boolean {
+  public final fun getCarveNavigationMesh(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCarveNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

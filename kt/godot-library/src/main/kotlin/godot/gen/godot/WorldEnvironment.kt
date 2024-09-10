@@ -32,7 +32,7 @@ public open class WorldEnvironment : Node() {
   /**
    * The [Environment] resource used by this [WorldEnvironment], defining the default properties.
    */
-  public var environment: Environment?
+  public final inline var environment: Environment?
     @JvmName("environmentProperty")
     get() = getEnvironment()
     @JvmName("environmentProperty")
@@ -43,7 +43,7 @@ public open class WorldEnvironment : Node() {
   /**
    * The default [CameraAttributes] resource to use if none set on the [Camera3D].
    */
-  public var cameraAttributes: CameraAttributes?
+  public final inline var cameraAttributes: CameraAttributes?
     @JvmName("cameraAttributesProperty")
     get() = getCameraAttributes()
     @JvmName("cameraAttributesProperty")
@@ -54,7 +54,7 @@ public open class WorldEnvironment : Node() {
   /**
    * The default [Compositor] resource to use if none set on the [Camera3D].
    */
-  public var compositor: Compositor?
+  public final inline var compositor: Compositor?
     @JvmName("compositorProperty")
     get() = getCompositor()
     @JvmName("compositorProperty")
@@ -66,34 +66,34 @@ public open class WorldEnvironment : Node() {
     callConstructor(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
   }
 
-  public fun setEnvironment(env: Environment?): Unit {
+  public final fun setEnvironment(env: Environment?): Unit {
     TransferContext.writeArguments(OBJECT to env)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
   }
 
-  public fun getEnvironment(): Environment? {
+  public final fun getEnvironment(): Environment? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
   }
 
-  public fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
+  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
     TransferContext.writeArguments(OBJECT to cameraAttributes)
     TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
-  public fun getCameraAttributes(): CameraAttributes? {
+  public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
   }
 
-  public fun setCompositor(compositor: Compositor?): Unit {
+  public final fun setCompositor(compositor: Compositor?): Unit {
     TransferContext.writeArguments(OBJECT to compositor)
     TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
   }
 
-  public fun getCompositor(): Compositor? {
+  public final fun getCompositor(): Compositor? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)

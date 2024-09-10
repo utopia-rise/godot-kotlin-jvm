@@ -39,7 +39,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * The operation that is performed on this shape. This is ignored for the first CSG child node as
    * the operation is between this node and the previous child of this nodes parent.
    */
-  public var operation: Operation
+  public final inline var operation: Operation
     @JvmName("operationProperty")
     get() = getOperation()
     @JvmName("operationProperty")
@@ -52,7 +52,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * perfectly aligned. A lower value results in greater precision but may be harder to adjust. The
    * top-level CSG shape's snap value is used for the entire CSG tree.
    */
-  public var snap: Float
+  public final inline var snap: Float
     @JvmName("snapProperty")
     get() = getSnap()
     @JvmName("snapProperty")
@@ -64,7 +64,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Calculate tangents for the CSG shape which allows the use of normal maps. This is only applied
    * on the root shape, this setting is ignored on any child.
    */
-  public var calculateTangents: Boolean
+  public final inline var calculateTangents: Boolean
     @JvmName("calculateTangentsProperty")
     get() = isCalculatingTangents()
     @JvmName("calculateTangentsProperty")
@@ -77,7 +77,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * static body. Note that the collision shape is still active even if the CSG shape itself is hidden.
    * See also [collisionMask] and [collisionPriority].
    */
-  public var useCollision: Boolean
+  public final inline var useCollision: Boolean
     @JvmName("useCollisionProperty")
     get() = isUsingCollision()
     @JvmName("useCollisionProperty")
@@ -95,7 +95,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionLayer: Long
+  public final inline var collisionLayer: Long
     @JvmName("collisionLayerProperty")
     get() = getCollisionLayer()
     @JvmName("collisionLayerProperty")
@@ -109,7 +109,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionMask: Long
+  public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
     get() = getCollisionMask()
     @JvmName("collisionMaskProperty")
@@ -123,7 +123,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * will be. This can for example be used to prevent the player from breaking through the boundaries
    * of a level.
    */
-  public var collisionPriority: Float
+  public final inline var collisionPriority: Float
     @JvmName("collisionPriorityProperty")
     get() = getCollisionPriority()
     @JvmName("collisionPriorityProperty")
@@ -138,62 +138,62 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   /**
    * Returns `true` if this is a root shape and is thus the object that is rendered.
    */
-  public fun isRootShape(): Boolean {
+  public final fun isRootShape(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRootShapePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setOperation(operation: Operation): Unit {
+  public final fun setOperation(operation: Operation): Unit {
     TransferContext.writeArguments(LONG to operation.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOperationPtr, NIL)
   }
 
-  public fun getOperation(): Operation {
+  public final fun getOperation(): Operation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOperationPtr, LONG)
     return CSGShape3D.Operation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSnap(snap: Float): Unit {
+  public final fun setSnap(snap: Float): Unit {
     TransferContext.writeArguments(DOUBLE to snap.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
   }
 
-  public fun getSnap(): Float {
+  public final fun getSnap(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setUseCollision(operation: Boolean): Unit {
+  public final fun setUseCollision(operation: Boolean): Unit {
     TransferContext.writeArguments(BOOL to operation)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseCollisionPtr, NIL)
   }
 
-  public fun isUsingCollision(): Boolean {
+  public final fun isUsingCollision(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollisionLayer(layer: Long): Unit {
+  public final fun setCollisionLayer(layer: Long): Unit {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
   }
 
-  public fun getCollisionLayer(): Long {
+  public final fun getCollisionLayer(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
-  public fun getCollisionMask(): Long {
+  public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -203,7 +203,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Based on [value], enables or disables the specified layer in the [collisionMask], given a
    * [layerNumber] between 1 and 32.
    */
-  public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
@@ -212,7 +212,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getCollisionMaskValue(layerNumber: Int): Boolean {
+  public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -222,7 +222,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
    * [layerNumber] between 1 and 32.
    */
-  public fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerValuePtr, NIL)
   }
@@ -231,29 +231,29 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Returns whether or not the specified layer of the [collisionLayer] is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getCollisionLayerValue(layerNumber: Int): Boolean {
+  public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollisionPriority(priority: Float): Unit {
+  public final fun setCollisionPriority(priority: Float): Unit {
     TransferContext.writeArguments(DOUBLE to priority.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
   }
 
-  public fun getCollisionPriority(): Float {
+  public final fun getCollisionPriority(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setCalculateTangents(enabled: Boolean): Unit {
+  public final fun setCalculateTangents(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setCalculateTangentsPtr, NIL)
   }
 
-  public fun isCalculatingTangents(): Boolean {
+  public final fun isCalculatingTangents(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCalculatingTangentsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -263,7 +263,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Returns an [Array] with two elements, the first is the [Transform3D] of this node and the
    * second is the root [Mesh] of this node. Only works when this node is the root shape.
    */
-  public fun getMeshes(): VariantArray<Any?> {
+  public final fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)

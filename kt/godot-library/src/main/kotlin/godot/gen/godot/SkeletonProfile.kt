@@ -50,7 +50,7 @@ public open class SkeletonProfile : Resource() {
    * A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of
    * the parent of hips that exists at the world origin.
    */
-  public var rootBone: StringName
+  public final inline var rootBone: StringName
     @JvmName("rootBoneProperty")
     get() = getRootBone()
     @JvmName("rootBoneProperty")
@@ -62,7 +62,7 @@ public open class SkeletonProfile : Resource() {
    * A bone name which will use model's height as the coefficient for normalization. For example,
    * [SkeletonProfileHumanoid] defines it as `Hips`.
    */
-  public var scaleBaseBone: StringName
+  public final inline var scaleBaseBone: StringName
     @JvmName("scaleBaseBoneProperty")
     get() = getScaleBaseBone()
     @JvmName("scaleBaseBoneProperty")
@@ -75,7 +75,7 @@ public open class SkeletonProfile : Resource() {
    * [SkeletonProfileHumanoid] has 4 groups.
    * This property exists to separate the bone list into several sections in the editor.
    */
-  public var groupSize: Int
+  public final inline var groupSize: Int
     @JvmName("groupSizeProperty")
     get() = getGroupSize()
     @JvmName("groupSizeProperty")
@@ -89,7 +89,7 @@ public open class SkeletonProfile : Resource() {
    * The size of elements in [BoneMap] updates when changing this property in it's assigned
    * [SkeletonProfile].
    */
-  public var boneSize: Int
+  public final inline var boneSize: Int
     @JvmName("boneSizeProperty")
     get() = getBoneSize()
     @JvmName("boneSizeProperty")
@@ -101,34 +101,34 @@ public open class SkeletonProfile : Resource() {
     callConstructor(ENGINECLASS_SKELETONPROFILE, scriptIndex)
   }
 
-  public fun setRootBone(boneName: StringName): Unit {
+  public final fun setRootBone(boneName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to boneName)
     TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
   }
 
-  public fun getRootBone(): StringName {
+  public final fun getRootBone(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setScaleBaseBone(boneName: StringName): Unit {
+  public final fun setScaleBaseBone(boneName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to boneName)
     TransferContext.callMethod(rawPtr, MethodBindings.setScaleBaseBonePtr, NIL)
   }
 
-  public fun getScaleBaseBone(): StringName {
+  public final fun getScaleBaseBone(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScaleBaseBonePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setGroupSize(size: Int): Unit {
+  public final fun setGroupSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setGroupSizePtr, NIL)
   }
 
-  public fun getGroupSize(): Int {
+  public final fun getGroupSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -138,7 +138,7 @@ public open class SkeletonProfile : Resource() {
    * Returns the name of the group at [groupIdx] that will be the drawing group in the [BoneMap]
    * editor.
    */
-  public fun getGroupName(groupIdx: Int): StringName {
+  public final fun getGroupName(groupIdx: Int): StringName {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -148,7 +148,7 @@ public open class SkeletonProfile : Resource() {
    * Sets the name of the group at [groupIdx] that will be the drawing group in the [BoneMap]
    * editor.
    */
-  public fun setGroupName(groupIdx: Int, groupName: StringName): Unit {
+  public final fun setGroupName(groupIdx: Int, groupName: StringName): Unit {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), STRING_NAME to groupName)
     TransferContext.callMethod(rawPtr, MethodBindings.setGroupNamePtr, NIL)
   }
@@ -157,7 +157,7 @@ public open class SkeletonProfile : Resource() {
    * Returns the texture of the group at [groupIdx] that will be the drawing group background image
    * in the [BoneMap] editor.
    */
-  public fun getTexture(groupIdx: Int): Texture2D? {
+  public final fun getTexture(groupIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
@@ -167,17 +167,17 @@ public open class SkeletonProfile : Resource() {
    * Sets the texture of the group at [groupIdx] that will be the drawing group background image in
    * the [BoneMap] editor.
    */
-  public fun setTexture(groupIdx: Int, texture: Texture2D?): Unit {
+  public final fun setTexture(groupIdx: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun setBoneSize(size: Int): Unit {
+  public final fun setBoneSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneSizePtr, NIL)
   }
 
-  public fun getBoneSize(): Int {
+  public final fun getBoneSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -186,7 +186,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the bone index that matches [boneName] as its name.
    */
-  public fun findBone(boneName: StringName): Int {
+  public final fun findBone(boneName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to boneName)
     TransferContext.callMethod(rawPtr, MethodBindings.findBonePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -196,7 +196,7 @@ public open class SkeletonProfile : Resource() {
    * Returns the name of the bone at [boneIdx] that will be the key name in the [BoneMap].
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
-  public fun getBoneName(boneIdx: Int): StringName {
+  public final fun getBoneName(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -206,7 +206,7 @@ public open class SkeletonProfile : Resource() {
    * Sets the name of the bone at [boneIdx] that will be the key name in the [BoneMap].
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
-  public fun setBoneName(boneIdx: Int, boneName: StringName): Unit {
+  public final fun setBoneName(boneIdx: Int, boneName: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneName)
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneNamePtr, NIL)
   }
@@ -215,7 +215,7 @@ public open class SkeletonProfile : Resource() {
    * Returns the name of the bone which is the parent to the bone at [boneIdx]. The result is empty
    * if the bone has no parent.
    */
-  public fun getBoneParent(boneIdx: Int): StringName {
+  public final fun getBoneParent(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneParentPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -225,7 +225,7 @@ public open class SkeletonProfile : Resource() {
    * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string
    * is passed, then the bone has no parent.
    */
-  public fun setBoneParent(boneIdx: Int, boneParent: StringName): Unit {
+  public final fun setBoneParent(boneIdx: Int, boneParent: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneParent)
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneParentPtr, NIL)
   }
@@ -233,7 +233,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the tail direction of the bone at [boneIdx].
    */
-  public fun getTailDirection(boneIdx: Int): TailDirection {
+  public final fun getTailDirection(boneIdx: Int): TailDirection {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTailDirectionPtr, LONG)
     return SkeletonProfile.TailDirection.from(TransferContext.readReturnValue(LONG) as Long)
@@ -244,7 +244,7 @@ public open class SkeletonProfile : Resource() {
    * **Note:** This only specifies the method of calculation. The actual coordinates required should
    * be stored in an external skeleton, so the calculation itself needs to be done externally.
    */
-  public fun setTailDirection(boneIdx: Int, tailDirection: TailDirection): Unit {
+  public final fun setTailDirection(boneIdx: Int, tailDirection: TailDirection): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to tailDirection.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTailDirectionPtr, NIL)
   }
@@ -252,7 +252,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the name of the bone which is the tail of the bone at [boneIdx].
    */
-  public fun getBoneTail(boneIdx: Int): StringName {
+  public final fun getBoneTail(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneTailPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -261,7 +261,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the bone with name [boneTail] as the tail of the bone at [boneIdx].
    */
-  public fun setBoneTail(boneIdx: Int, boneTail: StringName): Unit {
+  public final fun setBoneTail(boneIdx: Int, boneTail: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneTail)
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneTailPtr, NIL)
   }
@@ -269,7 +269,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the reference pose transform for bone [boneIdx].
    */
-  public fun getReferencePose(boneIdx: Int): Transform3D {
+  public final fun getReferencePose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getReferencePosePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -278,7 +278,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the reference pose transform for bone [boneIdx].
    */
-  public fun setReferencePose(boneIdx: Int, boneName: Transform3D): Unit {
+  public final fun setReferencePose(boneIdx: Int, boneName: Transform3D): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to boneName)
     TransferContext.callMethod(rawPtr, MethodBindings.setReferencePosePtr, NIL)
   }
@@ -288,7 +288,7 @@ public open class SkeletonProfile : Resource() {
    * editor.
    * This is the offset with origin at the top left corner of the square.
    */
-  public fun getHandleOffset(boneIdx: Int): Vector2 {
+  public final fun getHandleOffset(boneIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getHandleOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -299,7 +299,7 @@ public open class SkeletonProfile : Resource() {
    * editor.
    * This is the offset with origin at the top left corner of the square.
    */
-  public fun setHandleOffset(boneIdx: Int, handleOffset: Vector2): Unit {
+  public final fun setHandleOffset(boneIdx: Int, handleOffset: Vector2): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR2 to handleOffset)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandleOffsetPtr, NIL)
   }
@@ -307,7 +307,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns the group of the bone at [boneIdx].
    */
-  public fun getGroup(boneIdx: Int): StringName {
+  public final fun getGroup(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -316,7 +316,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the group of the bone at [boneIdx].
    */
-  public fun setGroup(boneIdx: Int, group: StringName): Unit {
+  public final fun setGroup(boneIdx: Int, group: StringName): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to group)
     TransferContext.callMethod(rawPtr, MethodBindings.setGroupPtr, NIL)
   }
@@ -326,7 +326,7 @@ public open class SkeletonProfile : Resource() {
    * This value is used by the bone map editor. If this method returns `true`, and no bone is
    * assigned, the handle color will be red on the bone map editor.
    */
-  public fun isRequired(boneIdx: Int): Boolean {
+  public final fun isRequired(boneIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isRequiredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -335,7 +335,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the required status for bone [boneIdx] to [required].
    */
-  public fun setRequired(boneIdx: Int, required: Boolean): Unit {
+  public final fun setRequired(boneIdx: Int, required: Boolean): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to required)
     TransferContext.callMethod(rawPtr, MethodBindings.setRequiredPtr, NIL)
   }

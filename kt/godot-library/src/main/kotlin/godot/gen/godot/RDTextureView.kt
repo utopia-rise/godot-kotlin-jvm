@@ -27,7 +27,7 @@ public open class RDTextureView : RefCounted() {
    * Optional override for the data format to return sampled values in. The default value of
    * [RenderingDevice.DATA_FORMAT_MAX] does not override the format.
    */
-  public var formatOverride: RenderingDevice.DataFormat
+  public final inline var formatOverride: RenderingDevice.DataFormat
     @JvmName("formatOverrideProperty")
     get() = getFormatOverride()
     @JvmName("formatOverrideProperty")
@@ -38,7 +38,7 @@ public open class RDTextureView : RefCounted() {
   /**
    * The channel to sample when sampling the red color channel.
    */
-  public var swizzleR: RenderingDevice.TextureSwizzle
+  public final inline var swizzleR: RenderingDevice.TextureSwizzle
     @JvmName("swizzleRProperty")
     get() = getSwizzleR()
     @JvmName("swizzleRProperty")
@@ -49,7 +49,7 @@ public open class RDTextureView : RefCounted() {
   /**
    * The channel to sample when sampling the green color channel.
    */
-  public var swizzleG: RenderingDevice.TextureSwizzle
+  public final inline var swizzleG: RenderingDevice.TextureSwizzle
     @JvmName("swizzleGProperty")
     get() = getSwizzleG()
     @JvmName("swizzleGProperty")
@@ -60,7 +60,7 @@ public open class RDTextureView : RefCounted() {
   /**
    * The channel to sample when sampling the blue color channel.
    */
-  public var swizzleB: RenderingDevice.TextureSwizzle
+  public final inline var swizzleB: RenderingDevice.TextureSwizzle
     @JvmName("swizzleBProperty")
     get() = getSwizzleB()
     @JvmName("swizzleBProperty")
@@ -71,7 +71,7 @@ public open class RDTextureView : RefCounted() {
   /**
    * The channel to sample when sampling the alpha channel.
    */
-  public var swizzleA: RenderingDevice.TextureSwizzle
+  public final inline var swizzleA: RenderingDevice.TextureSwizzle
     @JvmName("swizzleAProperty")
     get() = getSwizzleA()
     @JvmName("swizzleAProperty")
@@ -83,56 +83,56 @@ public open class RDTextureView : RefCounted() {
     callConstructor(ENGINECLASS_RDTEXTUREVIEW, scriptIndex)
   }
 
-  public fun setFormatOverride(pMember: RenderingDevice.DataFormat): Unit {
+  public final fun setFormatOverride(pMember: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFormatOverridePtr, NIL)
   }
 
-  public fun getFormatOverride(): RenderingDevice.DataFormat {
+  public final fun getFormatOverride(): RenderingDevice.DataFormat {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatOverridePtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSwizzleR(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleR(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleRPtr, NIL)
   }
 
-  public fun getSwizzleR(): RenderingDevice.TextureSwizzle {
+  public final fun getSwizzleR(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleRPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSwizzleG(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleG(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleGPtr, NIL)
   }
 
-  public fun getSwizzleG(): RenderingDevice.TextureSwizzle {
+  public final fun getSwizzleG(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleGPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSwizzleB(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleB(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleBPtr, NIL)
   }
 
-  public fun getSwizzleB(): RenderingDevice.TextureSwizzle {
+  public final fun getSwizzleB(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleBPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSwizzleA(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleA(pMember: RenderingDevice.TextureSwizzle): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSwizzleAPtr, NIL)
   }
 
-  public fun getSwizzleA(): RenderingDevice.TextureSwizzle {
+  public final fun getSwizzleA(): RenderingDevice.TextureSwizzle {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwizzleAPtr, LONG)
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)

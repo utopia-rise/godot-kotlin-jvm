@@ -38,7 +38,7 @@ public open class PlaneMesh : PrimitiveMesh() {
    * Size of the generated plane.
    */
   @CoreTypeLocalCopy
-  public var size: Vector2
+  public final inline var size: Vector2
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -49,7 +49,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Number of subdivision along the X axis.
    */
-  public var subdivideWidth: Int
+  public final inline var subdivideWidth: Int
     @JvmName("subdivideWidthProperty")
     get() = getSubdivideWidth()
     @JvmName("subdivideWidthProperty")
@@ -60,7 +60,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Number of subdivision along the Z axis.
    */
-  public var subdivideDepth: Int
+  public final inline var subdivideDepth: Int
     @JvmName("subdivideDepthProperty")
     get() = getSubdivideDepth()
     @JvmName("subdivideDepthProperty")
@@ -72,7 +72,7 @@ public open class PlaneMesh : PrimitiveMesh() {
    * Offset of the generated plane. Useful for particles.
    */
   @CoreTypeLocalCopy
-  public var centerOffset: Vector3
+  public final inline var centerOffset: Vector3
     @JvmName("centerOffsetProperty")
     get() = getCenterOffset()
     @JvmName("centerOffsetProperty")
@@ -83,7 +83,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Direction that the [PlaneMesh] is facing. See [Orientation] for options.
    */
-  public var orientation: Orientation
+  public final inline var orientation: Orientation
     @JvmName("orientationProperty")
     get() = getOrientation()
     @JvmName("orientationProperty")
@@ -113,7 +113,7 @@ public open class PlaneMesh : PrimitiveMesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
+  public final fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
       block(this)
       size = this
   }
@@ -137,62 +137,62 @@ public open class PlaneMesh : PrimitiveMesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun centerOffsetMutate(block: Vector3.() -> Unit): Vector3 = centerOffset.apply{
+  public final fun centerOffsetMutate(block: Vector3.() -> Unit): Vector3 = centerOffset.apply{
       block(this)
       centerOffset = this
   }
 
 
-  public fun setSize(size: Vector2): Unit {
+  public final fun setSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector2 {
+  public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setSubdivideWidth(subdivide: Int): Unit {
+  public final fun setSubdivideWidth(subdivide: Int): Unit {
     TransferContext.writeArguments(LONG to subdivide.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
   }
 
-  public fun getSubdivideWidth(): Int {
+  public final fun getSubdivideWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSubdivideDepth(subdivide: Int): Unit {
+  public final fun setSubdivideDepth(subdivide: Int): Unit {
     TransferContext.writeArguments(LONG to subdivide.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
   }
 
-  public fun getSubdivideDepth(): Int {
+  public final fun getSubdivideDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setCenterOffset(offset: Vector3): Unit {
+  public final fun setCenterOffset(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setCenterOffsetPtr, NIL)
   }
 
-  public fun getCenterOffset(): Vector3 {
+  public final fun getCenterOffset(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setOrientation(orientation: Orientation): Unit {
+  public final fun setOrientation(orientation: Orientation): Unit {
     TransferContext.writeArguments(LONG to orientation.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
   }
 
-  public fun getOrientation(): Orientation {
+  public final fun getOrientation(): Orientation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
     return PlaneMesh.Orientation.from(TransferContext.readReturnValue(LONG) as Long)

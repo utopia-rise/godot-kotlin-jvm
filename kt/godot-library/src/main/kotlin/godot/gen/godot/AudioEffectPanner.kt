@@ -27,7 +27,7 @@ public open class AudioEffectPanner : AudioEffect() {
   /**
    * Pan position. Value can range from -1 (fully left) to 1 (fully right).
    */
-  public var pan: Float
+  public final inline var pan: Float
     @JvmName("panProperty")
     get() = getPan()
     @JvmName("panProperty")
@@ -39,12 +39,12 @@ public open class AudioEffectPanner : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTPANNER, scriptIndex)
   }
 
-  public fun setPan(cpanume: Float): Unit {
+  public final fun setPan(cpanume: Float): Unit {
     TransferContext.writeArguments(DOUBLE to cpanume.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPanPtr, NIL)
   }
 
-  public fun getPan(): Float {
+  public final fun getPan(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

@@ -36,7 +36,7 @@ public open class Joint3D internal constructor() : Node3D() {
    * If left empty and [nodeB] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */
-  public var nodeA: NodePath
+  public final inline var nodeA: NodePath
     @JvmName("nodeAProperty")
     get() = getNodeA()
     @JvmName("nodeAProperty")
@@ -49,7 +49,7 @@ public open class Joint3D internal constructor() : Node3D() {
    * If left empty and [nodeA] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */
-  public var nodeB: NodePath
+  public final inline var nodeB: NodePath
     @JvmName("nodeBProperty")
     get() = getNodeB()
     @JvmName("nodeBProperty")
@@ -61,7 +61,7 @@ public open class Joint3D internal constructor() : Node3D() {
    * The priority used to define which solver is executed first for multiple joints. The lower the
    * value, the higher the priority.
    */
-  public var solverPriority: Int
+  public final inline var solverPriority: Int
     @JvmName("solverPriorityProperty")
     get() = getSolverPriority()
     @JvmName("solverPriorityProperty")
@@ -72,7 +72,7 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * If `true`, the two bodies bound together do not collide with each other.
    */
-  public var excludeNodesFromCollision: Boolean
+  public final inline var excludeNodesFromCollision: Boolean
     @JvmName("excludeNodesFromCollisionProperty")
     get() = getExcludeNodesFromCollision()
     @JvmName("excludeNodesFromCollisionProperty")
@@ -84,45 +84,45 @@ public open class Joint3D internal constructor() : Node3D() {
     callConstructor(ENGINECLASS_JOINT3D, scriptIndex)
   }
 
-  public fun setNodeA(node: NodePath): Unit {
+  public final fun setNodeA(node: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to node)
     TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
   }
 
-  public fun getNodeA(): NodePath {
+  public final fun getNodeA(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setNodeB(node: NodePath): Unit {
+  public final fun setNodeB(node: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to node)
     TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
   }
 
-  public fun getNodeB(): NodePath {
+  public final fun getNodeB(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setSolverPriority(priority: Int): Unit {
+  public final fun setSolverPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSolverPriorityPtr, NIL)
   }
 
-  public fun getSolverPriority(): Int {
+  public final fun getSolverPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSolverPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setExcludeNodesFromCollision(enable: Boolean): Unit {
+  public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
   }
 
-  public fun getExcludeNodesFromCollision(): Boolean {
+  public final fun getExcludeNodesFromCollision(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -131,7 +131,7 @@ public open class Joint3D internal constructor() : Node3D() {
   /**
    * Returns the joint's internal [RID] from the [PhysicsServer3D].
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

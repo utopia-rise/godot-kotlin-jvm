@@ -29,7 +29,7 @@ public open class TorusMesh : PrimitiveMesh() {
   /**
    * The inner radius of the torus.
    */
-  public var innerRadius: Float
+  public final inline var innerRadius: Float
     @JvmName("innerRadiusProperty")
     get() = getInnerRadius()
     @JvmName("innerRadiusProperty")
@@ -40,7 +40,7 @@ public open class TorusMesh : PrimitiveMesh() {
   /**
    * The outer radius of the torus.
    */
-  public var outerRadius: Float
+  public final inline var outerRadius: Float
     @JvmName("outerRadiusProperty")
     get() = getOuterRadius()
     @JvmName("outerRadiusProperty")
@@ -51,7 +51,7 @@ public open class TorusMesh : PrimitiveMesh() {
   /**
    * The number of slices the torus is constructed of.
    */
-  public var rings: Int
+  public final inline var rings: Int
     @JvmName("ringsProperty")
     get() = getRings()
     @JvmName("ringsProperty")
@@ -62,7 +62,7 @@ public open class TorusMesh : PrimitiveMesh() {
   /**
    * The number of edges each ring of the torus is constructed of.
    */
-  public var ringSegments: Int
+  public final inline var ringSegments: Int
     @JvmName("ringSegmentsProperty")
     get() = getRingSegments()
     @JvmName("ringSegmentsProperty")
@@ -74,45 +74,45 @@ public open class TorusMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_TORUSMESH, scriptIndex)
   }
 
-  public fun setInnerRadius(radius: Float): Unit {
+  public final fun setInnerRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setInnerRadiusPtr, NIL)
   }
 
-  public fun getInnerRadius(): Float {
+  public final fun getInnerRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInnerRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setOuterRadius(radius: Float): Unit {
+  public final fun setOuterRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setOuterRadiusPtr, NIL)
   }
 
-  public fun getOuterRadius(): Float {
+  public final fun getOuterRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOuterRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRings(rings: Int): Unit {
+  public final fun setRings(rings: Int): Unit {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
   }
 
-  public fun getRings(): Int {
+  public final fun getRings(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setRingSegments(rings: Int): Unit {
+  public final fun setRingSegments(rings: Int): Unit {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRingSegmentsPtr, NIL)
   }
 
-  public fun getRingSegments(): Int {
+  public final fun getRingSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

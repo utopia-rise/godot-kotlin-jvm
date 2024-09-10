@@ -29,7 +29,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   /**
    * Name of the variable. Must be unique.
    */
-  public var varyingName: String
+  public final inline var varyingName: String
     @JvmName("varyingNameProperty")
     get() = getVaryingName()
     @JvmName("varyingNameProperty")
@@ -40,7 +40,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   /**
    * Type of the variable. Determines where the variable can be accessed.
    */
-  public var varyingType: VisualShader.VaryingType
+  public final inline var varyingType: VisualShader.VaryingType
     @JvmName("varyingTypeProperty")
     get() = getVaryingType()
     @JvmName("varyingTypeProperty")
@@ -52,23 +52,23 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     callConstructor(ENGINECLASS_VISUALSHADERNODEVARYING, scriptIndex)
   }
 
-  public fun setVaryingName(name: String): Unit {
+  public final fun setVaryingName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setVaryingNamePtr, NIL)
   }
 
-  public fun getVaryingName(): String {
+  public final fun getVaryingName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVaryingNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setVaryingType(type: VisualShader.VaryingType): Unit {
+  public final fun setVaryingType(type: VisualShader.VaryingType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setVaryingTypePtr, NIL)
   }
 
-  public fun getVaryingType(): VisualShader.VaryingType {
+  public final fun getVaryingType(): VisualShader.VaryingType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVaryingTypePtr, LONG)
     return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)

@@ -34,7 +34,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
    * The length of the buffer to keep (in seconds). Higher values keep data around for longer, but
    * require more memory.
    */
-  public var bufferLength: Float
+  public final inline var bufferLength: Float
     @JvmName("bufferLengthProperty")
     get() = getBufferLength()
     @JvmName("bufferLengthProperty")
@@ -42,7 +42,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
       setBufferLength(value)
     }
 
-  public var tapBackPos: Float
+  public final inline var tapBackPos: Float
     @JvmName("tapBackPosProperty")
     get() = getTapBackPos()
     @JvmName("tapBackPosProperty")
@@ -56,7 +56,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
    * latency. The effects of this higher latency are especially noticeable with sudden amplitude
    * changes.
    */
-  public var fftSize: FFTSize
+  public final inline var fftSize: FFTSize
     @JvmName("fftSizeProperty")
     get() = getFftSize()
     @JvmName("fftSizeProperty")
@@ -68,34 +68,34 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER, scriptIndex)
   }
 
-  public fun setBufferLength(seconds: Float): Unit {
+  public final fun setBufferLength(seconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
-  public fun getBufferLength(): Float {
+  public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTapBackPos(seconds: Float): Unit {
+  public final fun setTapBackPos(seconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTapBackPosPtr, NIL)
   }
 
-  public fun getTapBackPos(): Float {
+  public final fun getTapBackPos(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFftSize(size: FFTSize): Unit {
+  public final fun setFftSize(size: FFTSize): Unit {
     TransferContext.writeArguments(LONG to size.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
   }
 
-  public fun getFftSize(): FFTSize {
+  public final fun getFftSize(): FFTSize {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
     return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)

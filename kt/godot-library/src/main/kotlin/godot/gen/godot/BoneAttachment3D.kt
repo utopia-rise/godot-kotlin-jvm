@@ -34,7 +34,7 @@ public open class BoneAttachment3D : Node3D() {
   /**
    * The name of the attached bone.
    */
-  public var boneName: String
+  public final inline var boneName: String
     @JvmName("boneNameProperty")
     get() = getBoneName()
     @JvmName("boneNameProperty")
@@ -45,7 +45,7 @@ public open class BoneAttachment3D : Node3D() {
   /**
    * The index of the attached bone.
    */
-  public var boneIdx: Int
+  public final inline var boneIdx: Int
     @JvmName("boneIdxProperty")
     get() = getBoneIdx()
     @JvmName("boneIdxProperty")
@@ -61,7 +61,7 @@ public open class BoneAttachment3D : Node3D() {
    * due to the old design. It may cause unintended behavior when used at the same time with
    * [SkeletonModifier3D].
    */
-  public var overridePose: Boolean
+  public final inline var overridePose: Boolean
     @JvmName("overridePoseProperty")
     get() = getOverridePose()
     @JvmName("overridePoseProperty")
@@ -73,23 +73,23 @@ public open class BoneAttachment3D : Node3D() {
     callConstructor(ENGINECLASS_BONEATTACHMENT3D, scriptIndex)
   }
 
-  public fun setBoneName(boneName: String): Unit {
+  public final fun setBoneName(boneName: String): Unit {
     TransferContext.writeArguments(STRING to boneName)
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneNamePtr, NIL)
   }
 
-  public fun getBoneName(): String {
+  public final fun getBoneName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setBoneIdx(boneIdx: Int): Unit {
+  public final fun setBoneIdx(boneIdx: Int): Unit {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneIdxPtr, NIL)
   }
 
-  public fun getBoneIdx(): Int {
+  public final fun getBoneIdx(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdxPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -100,17 +100,17 @@ public open class BoneAttachment3D : Node3D() {
    * where the [BoneAttachment3D] node updates its position so it is correctly bound when it is *not*
    * set to override the bone pose.
    */
-  public fun onSkeletonUpdate(): Unit {
+  public final fun onSkeletonUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.onSkeletonUpdatePtr, NIL)
   }
 
-  public fun setOverridePose(overridePose: Boolean): Unit {
+  public final fun setOverridePose(overridePose: Boolean): Unit {
     TransferContext.writeArguments(BOOL to overridePose)
     TransferContext.callMethod(rawPtr, MethodBindings.setOverridePosePtr, NIL)
   }
 
-  public fun getOverridePose(): Boolean {
+  public final fun getOverridePose(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOverridePosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -121,7 +121,7 @@ public open class BoneAttachment3D : Node3D() {
    * attempting to use its parent node as the [Skeleton3D]. When set to `true`, the BoneAttachment3D
    * node will use the external [Skeleton3D] node set in [setExternalSkeleton].
    */
-  public fun setUseExternalSkeleton(useExternalSkeleton: Boolean): Unit {
+  public final fun setUseExternalSkeleton(useExternalSkeleton: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useExternalSkeleton)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseExternalSkeletonPtr, NIL)
   }
@@ -130,7 +130,7 @@ public open class BoneAttachment3D : Node3D() {
    * Returns whether the BoneAttachment3D node is using an external [Skeleton3D] rather than
    * attempting to use its parent node as the [Skeleton3D].
    */
-  public fun getUseExternalSkeleton(): Boolean {
+  public final fun getUseExternalSkeleton(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseExternalSkeletonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -140,7 +140,7 @@ public open class BoneAttachment3D : Node3D() {
    * Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See
    * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
    */
-  public fun setExternalSkeleton(externalSkeleton: NodePath): Unit {
+  public final fun setExternalSkeleton(externalSkeleton: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to externalSkeleton)
     TransferContext.callMethod(rawPtr, MethodBindings.setExternalSkeletonPtr, NIL)
   }
@@ -148,7 +148,7 @@ public open class BoneAttachment3D : Node3D() {
   /**
    * Returns the [NodePath] to the external [Skeleton3D] node, if one has been set.
    */
-  public fun getExternalSkeleton(): NodePath {
+  public final fun getExternalSkeleton(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)

@@ -27,7 +27,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   /**
    * A function to be applied to the texture coordinates. See [Function] for options.
    */
-  public var function: Function
+  public final inline var function: Function
     @JvmName("functionProperty")
     get() = getFunction()
     @JvmName("functionProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUVFUNC, scriptIndex)
   }
 
-  public fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function): Unit {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
   }
 
-  public fun getFunction(): Function {
+  public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeUVFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)

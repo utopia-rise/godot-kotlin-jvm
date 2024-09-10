@@ -32,7 +32,7 @@ public open class MissingNode : Node() {
   /**
    * The name of the class this node was supposed to be (see [Object.getClass]).
    */
-  public var originalClass: String
+  public final inline var originalClass: String
     @JvmName("originalClassProperty")
     get() = getOriginalClass()
     @JvmName("originalClassProperty")
@@ -43,7 +43,7 @@ public open class MissingNode : Node() {
   /**
    * Returns the path of the scene this node was instance of originally.
    */
-  public var originalScene: String
+  public final inline var originalScene: String
     @JvmName("originalSceneProperty")
     get() = getOriginalScene()
     @JvmName("originalSceneProperty")
@@ -55,7 +55,7 @@ public open class MissingNode : Node() {
    * If `true`, allows new properties to be set along with existing ones. If `false`, only existing
    * properties' values can be set, and new properties cannot be added.
    */
-  public var recordingProperties: Boolean
+  public final inline var recordingProperties: Boolean
     @JvmName("recordingPropertiesProperty")
     get() = isRecordingProperties()
     @JvmName("recordingPropertiesProperty")
@@ -67,34 +67,34 @@ public open class MissingNode : Node() {
     callConstructor(ENGINECLASS_MISSINGNODE, scriptIndex)
   }
 
-  public fun setOriginalClass(name: String): Unit {
+  public final fun setOriginalClass(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setOriginalClassPtr, NIL)
   }
 
-  public fun getOriginalClass(): String {
+  public final fun getOriginalClass(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalClassPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setOriginalScene(name: String): Unit {
+  public final fun setOriginalScene(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setOriginalScenePtr, NIL)
   }
 
-  public fun getOriginalScene(): String {
+  public final fun getOriginalScene(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalScenePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setRecordingProperties(enable: Boolean): Unit {
+  public final fun setRecordingProperties(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
   }
 
-  public fun isRecordingProperties(): Boolean {
+  public final fun isRecordingProperties(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecordingPropertiesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

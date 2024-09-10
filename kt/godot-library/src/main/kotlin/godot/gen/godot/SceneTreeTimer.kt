@@ -59,7 +59,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
   /**
    * The time remaining (in seconds).
    */
-  public var timeLeft: Double
+  public final inline var timeLeft: Double
     @JvmName("timeLeftProperty")
     get() = getTimeLeft()
     @JvmName("timeLeftProperty")
@@ -71,12 +71,12 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
     callConstructor(ENGINECLASS_SCENETREETIMER, scriptIndex)
   }
 
-  public fun setTimeLeft(time: Double): Unit {
+  public final fun setTimeLeft(time: Double): Unit {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(rawPtr, MethodBindings.setTimeLeftPtr, NIL)
   }
 
-  public fun getTimeLeft(): Double {
+  public final fun getTimeLeft(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)

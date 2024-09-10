@@ -32,7 +32,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
    * A hint applied to the uniform, which controls the values it can take when set through the
    * Inspector.
    */
-  public var hint: Hint
+  public final inline var hint: Hint
     @JvmName("hintProperty")
     get() = getHint()
     @JvmName("hintProperty")
@@ -43,7 +43,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   /**
    * Maximum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
    */
-  public var min: Float
+  public final inline var min: Float
     @JvmName("minProperty")
     get() = getMin()
     @JvmName("minProperty")
@@ -54,7 +54,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   /**
    * Minimum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
    */
-  public var max: Float
+  public final inline var max: Float
     @JvmName("maxProperty")
     get() = getMax()
     @JvmName("maxProperty")
@@ -66,7 +66,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
    * Step (increment) value for the range hint with step. Used if [hint] is set to
    * [HINT_RANGE_STEP].
    */
-  public var step: Float
+  public final inline var step: Float
     @JvmName("stepProperty")
     get() = getStep()
     @JvmName("stepProperty")
@@ -77,7 +77,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
+  public final inline var defaultValueEnabled: Boolean
     @JvmName("defaultValueEnabledProperty")
     get() = isDefaultValueEnabled()
     @JvmName("defaultValueEnabledProperty")
@@ -88,7 +88,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   /**
    * A default value to be assigned within the shader.
    */
-  public var defaultValue: Float
+  public final inline var defaultValue: Float
     @JvmName("defaultValueProperty")
     get() = getDefaultValue()
     @JvmName("defaultValueProperty")
@@ -100,67 +100,67 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATPARAMETER, scriptIndex)
   }
 
-  public fun setHint(hint: Hint): Unit {
+  public final fun setHint(hint: Hint): Unit {
     TransferContext.writeArguments(LONG to hint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
   }
 
-  public fun getHint(): Hint {
+  public final fun getHint(): Hint {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
     return VisualShaderNodeFloatParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMin(`value`: Float): Unit {
+  public final fun setMin(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
-  public fun getMin(): Float {
+  public final fun getMin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMax(`value`: Float): Unit {
+  public final fun setMax(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
-  public fun getMax(): Float {
+  public final fun getMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setStep(`value`: Float): Unit {
+  public final fun setStep(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
   }
 
-  public fun getStep(): Float {
+  public final fun getStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
-  public fun isDefaultValueEnabled(): Boolean {
+  public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultValue(`value`: Float): Unit {
+  public final fun setDefaultValue(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
-  public fun getDefaultValue(): Float {
+  public final fun getDefaultValue(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

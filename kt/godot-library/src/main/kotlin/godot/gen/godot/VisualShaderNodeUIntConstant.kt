@@ -26,7 +26,7 @@ public open class VisualShaderNodeUIntConstant : VisualShaderNodeConstant() {
   /**
    * An unsigned integer constant which represents a state of this node.
    */
-  public var constant: Int
+  public final inline var constant: Int
     @JvmName("constantProperty")
     get() = getConstant()
     @JvmName("constantProperty")
@@ -38,12 +38,12 @@ public open class VisualShaderNodeUIntConstant : VisualShaderNodeConstant() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUINTCONSTANT, scriptIndex)
   }
 
-  public fun setConstant(constant: Int): Unit {
+  public final fun setConstant(constant: Int): Unit {
     TransferContext.writeArguments(LONG to constant.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
-  public fun getConstant(): Int {
+  public final fun getConstant(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

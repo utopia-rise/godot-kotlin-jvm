@@ -141,7 +141,7 @@ public open class ConfigFile : RefCounted() {
    * do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and
    * deletes the section if it ends up empty once the key has been removed.
    */
-  public fun setValue(
+  public final fun setValue(
     section: String,
     key: String,
     `value`: Any?,
@@ -156,7 +156,7 @@ public open class ConfigFile : RefCounted() {
    * set to `null`, an error is also raised.
    */
   @JvmOverloads
-  public fun getValue(
+  public final fun getValue(
     section: String,
     key: String,
     default: Any? = null,
@@ -169,7 +169,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns `true` if the specified section exists.
    */
-  public fun hasSection(section: String): Boolean {
+  public final fun hasSection(section: String): Boolean {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -178,7 +178,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns `true` if the specified section-key pair exists.
    */
-  public fun hasSectionKey(section: String, key: String): Boolean {
+  public final fun hasSectionKey(section: String, key: String): Boolean {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSectionKeyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -187,7 +187,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Returns an array of all defined section identifiers.
    */
-  public fun getSections(): PackedStringArray {
+  public final fun getSections(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -197,7 +197,7 @@ public open class ConfigFile : RefCounted() {
    * Returns an array of all defined key identifiers in the specified section. Raises an error and
    * returns an empty array if the section does not exist.
    */
-  public fun getSectionKeys(section: String): PackedStringArray {
+  public final fun getSectionKeys(section: String): PackedStringArray {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionKeysPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -207,7 +207,7 @@ public open class ConfigFile : RefCounted() {
    * Deletes the specified section along with all the key-value pairs inside. Raises an error if the
    * section does not exist.
    */
-  public fun eraseSection(section: String): Unit {
+  public final fun eraseSection(section: String): Unit {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, MethodBindings.eraseSectionPtr, NIL)
   }
@@ -216,7 +216,7 @@ public open class ConfigFile : RefCounted() {
    * Deletes the specified key in a section. Raises an error if either the section or the key do not
    * exist.
    */
-  public fun eraseSectionKey(section: String, key: String): Unit {
+  public final fun eraseSectionKey(section: String, key: String): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(rawPtr, MethodBindings.eraseSectionKeyPtr, NIL)
   }
@@ -226,7 +226,7 @@ public open class ConfigFile : RefCounted() {
    * the [ConfigFile] object which the method was called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public fun load(path: String): GodotError {
+  public final fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -237,7 +237,7 @@ public open class ConfigFile : RefCounted() {
    * the ConfigFile object which the method was called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public fun parse(`data`: String): GodotError {
+  public final fun parse(`data`: String): GodotError {
     TransferContext.writeArguments(STRING to data)
     TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -248,7 +248,7 @@ public open class ConfigFile : RefCounted() {
    * file uses an INI-style structure.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public fun save(path: String): GodotError {
+  public final fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -257,7 +257,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Obtain the text version of this config file (the same text that would be written to a file).
    */
-  public fun encodeToText(): String {
+  public final fun encodeToText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.encodeToTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -269,7 +269,7 @@ public open class ConfigFile : RefCounted() {
    * called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
+  public final fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.loadEncryptedPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -281,7 +281,7 @@ public open class ConfigFile : RefCounted() {
    * was called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public fun loadEncryptedPass(path: String, password: String): GodotError {
+  public final fun loadEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, MethodBindings.loadEncryptedPassPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -292,7 +292,7 @@ public open class ConfigFile : RefCounted() {
    * parameter, using the provided [key] to encrypt it. The output file uses an INI-style structure.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
+  public final fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.saveEncryptedPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -304,7 +304,7 @@ public open class ConfigFile : RefCounted() {
    * structure.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public fun saveEncryptedPass(path: String, password: String): GodotError {
+  public final fun saveEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, MethodBindings.saveEncryptedPassPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -313,7 +313,7 @@ public open class ConfigFile : RefCounted() {
   /**
    * Removes the entire contents of the config.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }

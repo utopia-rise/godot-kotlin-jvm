@@ -30,7 +30,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   /**
    * The path the texture should be loaded from.
    */
-  public val loadPath: String
+  public final inline val loadPath: String
     @JvmName("loadPathProperty")
     get() = getLoadPath()
 
@@ -41,13 +41,13 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   /**
    * Loads the texture at [path].
    */
-  public fun load(path: String): GodotError {
+  public final fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun getLoadPath(): String {
+  public final fun getLoadPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

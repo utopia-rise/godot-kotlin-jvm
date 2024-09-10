@@ -36,7 +36,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * the opposite direction. Particles will be pushed *away* from the attractor's origin if
    * [directionality] is `0.0`, or towards local +Z if [directionality] is greater than `0.0`.
    */
-  public var strength: Float
+  public final inline var strength: Float
     @JvmName("strengthProperty")
     get() = getStrength()
     @JvmName("strengthProperty")
@@ -49,7 +49,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * as they come closer to the attractor's origin. Zero or negative values will cause particles to be
    * pushed very fast as soon as the touch the attractor's edges.
    */
-  public var attenuation: Float
+  public final inline var attenuation: Float
     @JvmName("attenuationProperty")
     get() = getAttenuation()
     @JvmName("attenuationProperty")
@@ -64,7 +64,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * **Note:** If [directionality] is greater than `0.0`, the direction in which particles are
    * pushed can be changed by rotating the [GPUParticlesAttractor3D] node.
    */
-  public var directionality: Float
+  public final inline var directionality: Float
     @JvmName("directionalityProperty")
     get() = getDirectionality()
     @JvmName("directionalityProperty")
@@ -82,7 +82,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * Particle attraction can also be disabled on a per-process material basis by setting
    * [ParticleProcessMaterial.attractorInteractionEnabled] on the [GPUParticles3D] node.
    */
-  public var cullMask: Long
+  public final inline var cullMask: Long
     @JvmName("cullMaskProperty")
     get() = getCullMask()
     @JvmName("cullMaskProperty")
@@ -94,45 +94,45 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTOR3D, scriptIndex)
   }
 
-  public fun setCullMask(mask: Long): Unit {
+  public final fun setCullMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
   }
 
-  public fun getCullMask(): Long {
+  public final fun getCullMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setStrength(strength: Float): Unit {
+  public final fun setStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
   }
 
-  public fun getStrength(): Float {
+  public final fun getStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAttenuation(attenuation: Float): Unit {
+  public final fun setAttenuation(attenuation: Float): Unit {
     TransferContext.writeArguments(DOUBLE to attenuation.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationPtr, NIL)
   }
 
-  public fun getAttenuation(): Float {
+  public final fun getAttenuation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDirectionality(amount: Float): Unit {
+  public final fun setDirectionality(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalityPtr, NIL)
   }
 
-  public fun getDirectionality(): Float {
+  public final fun getDirectionality(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectionalityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

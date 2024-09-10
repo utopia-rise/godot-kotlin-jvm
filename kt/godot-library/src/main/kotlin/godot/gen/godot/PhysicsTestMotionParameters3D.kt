@@ -43,7 +43,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * [Node3D.globalTransform] for the current body's transform.
    */
   @CoreTypeLocalCopy
-  public var from: Transform3D
+  public final inline var from: Transform3D
     @JvmName("fromProperty")
     get() = getFrom()
     @JvmName("fromProperty")
@@ -55,7 +55,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * Motion vector to define the length and direction of the motion to test.
    */
   @CoreTypeLocalCopy
-  public var motion: Vector3
+  public final inline var motion: Vector3
     @JvmName("motionProperty")
     get() = getMotion()
     @JvmName("motionProperty")
@@ -66,7 +66,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
    * Increases the size of the shapes involved in the collision detection.
    */
-  public var margin: Float
+  public final inline var margin: Float
     @JvmName("marginProperty")
     get() = getMargin()
     @JvmName("marginProperty")
@@ -78,7 +78,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * Maximum number of returned collisions, between `1` and `32`. Always returns the deepest
    * detected collisions.
    */
-  public var maxCollisions: Int
+  public final inline var maxCollisions: Int
     @JvmName("maxCollisionsProperty")
     get() = getMaxCollisions()
     @JvmName("maxCollisionsProperty")
@@ -92,7 +92,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * If set to `false`, shapes of type [PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for
    * separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
-  public var collideSeparationRay: Boolean
+  public final inline var collideSeparationRay: Boolean
     @JvmName("collideSeparationRayProperty")
     get() = isCollideSeparationRayEnabled()
     @JvmName("collideSeparationRayProperty")
@@ -104,7 +104,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * Optional array of body [RID] to exclude from collision. Use [CollisionObject3D.getRid] to get
    * the [RID] associated with a [CollisionObject3D]-derived node.
    */
-  public var excludeBodies: VariantArray<RID>
+  public final inline var excludeBodies: VariantArray<RID>
     @JvmName("excludeBodiesProperty")
     get() = getExcludeBodies()
     @JvmName("excludeBodiesProperty")
@@ -116,7 +116,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * Optional array of object unique instance ID to exclude from collision. See
    * [Object.getInstanceId].
    */
-  public var excludeObjects: VariantArray<Long>
+  public final inline var excludeObjects: VariantArray<Long>
     @JvmName("excludeObjectsProperty")
     get() = getExcludeObjects()
     @JvmName("excludeObjectsProperty")
@@ -130,7 +130,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * If set to `false`, only collisions resulting from the motion are reported, which is generally
    * the desired behavior.
    */
-  public var recoveryAsCollision: Boolean
+  public final inline var recoveryAsCollision: Boolean
     @JvmName("recoveryAsCollisionProperty")
     get() = isRecoveryAsCollisionEnabled()
     @JvmName("recoveryAsCollisionProperty")
@@ -161,7 +161,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fromMutate(block: Transform3D.() -> Unit): Transform3D = from.apply{
+  public final fun fromMutate(block: Transform3D.() -> Unit): Transform3D = from.apply{
       block(this)
       from = this
   }
@@ -185,96 +185,96 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply{
+  public final fun motionMutate(block: Vector3.() -> Unit): Vector3 = motion.apply{
       block(this)
       motion = this
   }
 
 
-  public fun getFrom(): Transform3D {
+  public final fun getFrom(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
-  public fun setFrom(from: Transform3D): Unit {
+  public final fun setFrom(from: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to from)
     TransferContext.callMethod(rawPtr, MethodBindings.setFromPtr, NIL)
   }
 
-  public fun getMotion(): Vector3 {
+  public final fun getMotion(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setMotion(motion: Vector3): Unit {
+  public final fun setMotion(motion: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to motion)
     TransferContext.callMethod(rawPtr, MethodBindings.setMotionPtr, NIL)
   }
 
-  public fun getMargin(): Float {
+  public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMargin(margin: Float): Unit {
+  public final fun setMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
-  public fun getMaxCollisions(): Int {
+  public final fun getMaxCollisions(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxCollisionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMaxCollisions(maxCollisions: Int): Unit {
+  public final fun setMaxCollisions(maxCollisions: Int): Unit {
     TransferContext.writeArguments(LONG to maxCollisions.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxCollisionsPtr, NIL)
   }
 
-  public fun isCollideSeparationRayEnabled(): Boolean {
+  public final fun isCollideSeparationRayEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideSeparationRayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollideSeparationRayEnabled(enabled: Boolean): Unit {
+  public final fun setCollideSeparationRayEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollideSeparationRayEnabledPtr, NIL)
   }
 
-  public fun getExcludeBodies(): VariantArray<RID> {
+  public final fun getExcludeBodies(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeBodiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
-  public fun setExcludeBodies(excludeList: VariantArray<RID>): Unit {
+  public final fun setExcludeBodies(excludeList: VariantArray<RID>): Unit {
     TransferContext.writeArguments(ARRAY to excludeList)
     TransferContext.callMethod(rawPtr, MethodBindings.setExcludeBodiesPtr, NIL)
   }
 
-  public fun getExcludeObjects(): VariantArray<Long> {
+  public final fun getExcludeObjects(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeObjectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
   }
 
-  public fun setExcludeObjects(excludeList: VariantArray<Long>): Unit {
+  public final fun setExcludeObjects(excludeList: VariantArray<Long>): Unit {
     TransferContext.writeArguments(ARRAY to excludeList)
     TransferContext.callMethod(rawPtr, MethodBindings.setExcludeObjectsPtr, NIL)
   }
 
-  public fun isRecoveryAsCollisionEnabled(): Boolean {
+  public final fun isRecoveryAsCollisionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecoveryAsCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setRecoveryAsCollisionEnabled(enabled: Boolean): Unit {
+  public final fun setRecoveryAsCollisionEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setRecoveryAsCollisionEnabledPtr, NIL)
   }

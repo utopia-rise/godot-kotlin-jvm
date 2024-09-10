@@ -28,7 +28,7 @@ public open class AnimationNodeSync : AnimationNode() {
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
    * If `true`, forcing the blended animations to advance frame.
    */
-  public var sync: Boolean
+  public final inline var sync: Boolean
     @JvmName("syncProperty")
     get() = isUsingSync()
     @JvmName("syncProperty")
@@ -40,12 +40,12 @@ public open class AnimationNodeSync : AnimationNode() {
     callConstructor(ENGINECLASS_ANIMATIONNODESYNC, scriptIndex)
   }
 
-  public fun setUseSync(enable: Boolean): Unit {
+  public final fun setUseSync(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
   }
 
-  public fun isUsingSync(): Boolean {
+  public final fun isUsingSync(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

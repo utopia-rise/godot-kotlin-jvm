@@ -38,7 +38,7 @@ public open class CallbackTweener : Tweener() {
    * tween.tween_callback(queue_free).set_delay(2) #this will call queue_free() after 2 seconds
    * [/codeblock]
    */
-  public fun setDelay(delay: Double): CallbackTweener? {
+  public final fun setDelay(delay: Double): CallbackTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?)

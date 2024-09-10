@@ -33,7 +33,7 @@ public open class AnimatableBody3D : StaticBody3D() {
    * animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together
    * with [PhysicsBody3D.moveAndCollide].
    */
-  public var syncToPhysics: Boolean
+  public final inline var syncToPhysics: Boolean
     @JvmName("syncToPhysicsProperty")
     get() = isSyncToPhysicsEnabled()
     @JvmName("syncToPhysicsProperty")
@@ -45,12 +45,12 @@ public open class AnimatableBody3D : StaticBody3D() {
     callConstructor(ENGINECLASS_ANIMATABLEBODY3D, scriptIndex)
   }
 
-  public fun setSyncToPhysics(enable: Boolean): Unit {
+  public final fun setSyncToPhysics(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
   }
 
-  public fun isSyncToPhysicsEnabled(): Boolean {
+  public final fun isSyncToPhysicsEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

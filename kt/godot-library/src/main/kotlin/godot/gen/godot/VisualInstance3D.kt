@@ -50,7 +50,7 @@ public open class VisualInstance3D : Node3D() {
    * [Light3D.lightBakeMode] to [Light3D.BAKE_DISABLED] for lights to exclude them from global
    * illumination.
    */
-  public var layers: Long
+  public final inline var layers: Long
     @JvmName("layersProperty")
     get() = getLayerMask()
     @JvmName("layersProperty")
@@ -66,7 +66,7 @@ public open class VisualInstance3D : Node3D() {
    * (not positioned at the same spot), set the value to be greater than the distance between this
    * [VisualInstance3D] and the other nearby [VisualInstance3D]s.
    */
-  public var sortingOffset: Float
+  public final inline var sortingOffset: Float
     @JvmName("sortingOffsetProperty")
     get() = getSortingOffset()
     @JvmName("sortingOffsetProperty")
@@ -81,7 +81,7 @@ public open class VisualInstance3D : Node3D() {
    * sorting instead allows to better control the drawing order when working with [GPUParticles3D] and
    * [CPUParticles3D].
    */
-  public var sortingUseAabbCenter: Boolean
+  public final inline var sortingUseAabbCenter: Boolean
     @JvmName("sortingUseAabbCenterProperty")
     get() = isSortingUseAabbCenter()
     @JvmName("sortingUseAabbCenterProperty")
@@ -101,7 +101,7 @@ public open class VisualInstance3D : Node3D() {
    * Sets the resource that is instantiated by this [VisualInstance3D], which changes how the engine
    * handles the [VisualInstance3D] under the hood. Equivalent to [RenderingServer.instanceSetBase].
    */
-  public fun setBase(base: RID): Unit {
+  public final fun setBase(base: RID): Unit {
     TransferContext.writeArguments(_RID to base)
     TransferContext.callMethod(rawPtr, MethodBindings.setBasePtr, NIL)
   }
@@ -110,7 +110,7 @@ public open class VisualInstance3D : Node3D() {
    * Returns the RID of the resource associated with this [VisualInstance3D]. For example, if the
    * Node is a [MeshInstance3D], this will return the RID of the associated [Mesh].
    */
-  public fun getBase(): RID {
+  public final fun getBase(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBasePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -121,18 +121,18 @@ public open class VisualInstance3D : Node3D() {
    * [RenderingServer.instanceCreate]. This RID is needed if you want to call [RenderingServer]
    * functions directly on this [VisualInstance3D].
    */
-  public fun getInstance(): RID {
+  public final fun getInstance(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstancePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setLayerMask(mask: Long): Unit {
+  public final fun setLayerMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskPtr, NIL)
   }
 
-  public fun getLayerMask(): Long {
+  public final fun getLayerMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -142,7 +142,7 @@ public open class VisualInstance3D : Node3D() {
    * Based on [value], enables or disables the specified layer in the [layers], given a
    * [layerNumber] between 1 and 20.
    */
-  public fun setLayerMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setLayerMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskValuePtr, NIL)
   }
@@ -151,29 +151,29 @@ public open class VisualInstance3D : Node3D() {
    * Returns whether or not the specified layer of the [layers] is enabled, given a [layerNumber]
    * between 1 and 20.
    */
-  public fun getLayerMaskValue(layerNumber: Int): Boolean {
+  public final fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSortingOffset(offset: Float): Unit {
+  public final fun setSortingOffset(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSortingOffsetPtr, NIL)
   }
 
-  public fun getSortingOffset(): Float {
+  public final fun getSortingOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSortingOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSortingUseAabbCenter(enabled: Boolean): Unit {
+  public final fun setSortingUseAabbCenter(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
   }
 
-  public fun isSortingUseAabbCenter(): Boolean {
+  public final fun isSortingUseAabbCenter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -182,7 +182,7 @@ public open class VisualInstance3D : Node3D() {
   /**
    * Returns the [AABB] (also known as the bounding box) for this [VisualInstance3D].
    */
-  public fun getAabb(): AABB {
+  public final fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)

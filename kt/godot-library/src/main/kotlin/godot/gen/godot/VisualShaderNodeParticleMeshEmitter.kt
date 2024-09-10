@@ -30,7 +30,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   /**
    * The [Mesh] that defines emission shape.
    */
-  public var mesh: Mesh?
+  public final inline var mesh: Mesh?
     @JvmName("meshProperty")
     get() = getMesh()
     @JvmName("meshProperty")
@@ -41,7 +41,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   /**
    * If `true`, the particles will emit from all surfaces of the mesh.
    */
-  public var useAllSurfaces: Boolean
+  public final inline var useAllSurfaces: Boolean
     @JvmName("useAllSurfacesProperty")
     get() = isUseAllSurfaces()
     @JvmName("useAllSurfacesProperty")
@@ -53,7 +53,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
    * Index of the surface that emits particles. [useAllSurfaces] must be `false` for this to take
    * effect.
    */
-  public var surfaceIndex: Int
+  public final inline var surfaceIndex: Int
     @JvmName("surfaceIndexProperty")
     get() = getSurfaceIndex()
     @JvmName("surfaceIndexProperty")
@@ -65,34 +65,34 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER, scriptIndex)
   }
 
-  public fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
-  public fun getMesh(): Mesh? {
+  public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
   }
 
-  public fun setUseAllSurfaces(enabled: Boolean): Unit {
+  public final fun setUseAllSurfaces(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseAllSurfacesPtr, NIL)
   }
 
-  public fun isUseAllSurfaces(): Boolean {
+  public final fun isUseAllSurfaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSurfaceIndex(surfaceIndex: Int): Unit {
+  public final fun setSurfaceIndex(surfaceIndex: Int): Unit {
     TransferContext.writeArguments(LONG to surfaceIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
   }
 
-  public fun getSurfaceIndex(): Int {
+  public final fun getSurfaceIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

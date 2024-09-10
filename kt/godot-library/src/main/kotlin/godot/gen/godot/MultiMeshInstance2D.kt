@@ -33,7 +33,7 @@ public open class MultiMeshInstance2D : Node2D() {
   /**
    * The [MultiMesh] that will be drawn by the [MultiMeshInstance2D].
    */
-  public var multimesh: MultiMesh?
+  public final inline var multimesh: MultiMesh?
     @JvmName("multimeshProperty")
     get() = getMultimesh()
     @JvmName("multimeshProperty")
@@ -45,7 +45,7 @@ public open class MultiMeshInstance2D : Node2D() {
    * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as
    * `TEXTURE` in CanvasItem shader.
    */
-  public var texture: Texture2D?
+  public final inline var texture: Texture2D?
     @JvmName("textureProperty")
     get() = getTexture()
     @JvmName("textureProperty")
@@ -57,23 +57,23 @@ public open class MultiMeshInstance2D : Node2D() {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE2D, scriptIndex)
   }
 
-  public fun setMultimesh(multimesh: MultiMesh?): Unit {
+  public final fun setMultimesh(multimesh: MultiMesh?): Unit {
     TransferContext.writeArguments(OBJECT to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
   }
 
-  public fun getMultimesh(): MultiMesh? {
+  public final fun getMultimesh(): MultiMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)
   }
 
-  public fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun getTexture(): Texture2D? {
+  public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)

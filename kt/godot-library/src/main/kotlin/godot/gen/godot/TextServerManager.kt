@@ -51,7 +51,7 @@ public object TextServerManager : Object() {
   /**
    * Registers a [TextServer] interface.
    */
-  public fun addInterface(_interface: TextServer?): Unit {
+  public final fun addInterface(_interface: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
   }
@@ -59,7 +59,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the number of interfaces currently registered.
    */
-  public fun getInterfaceCount(): Int {
+  public final fun getInterfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -69,7 +69,7 @@ public object TextServerManager : Object() {
    * Removes an interface. All fonts and shaped text caches should be freed before removing an
    * interface.
    */
-  public fun removeInterface(_interface: TextServer?): Unit {
+  public final fun removeInterface(_interface: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
   }
@@ -77,7 +77,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the interface registered at a given index.
    */
-  public fun getInterface(idx: Int): TextServer? {
+  public final fun getInterface(idx: Int): TextServer? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TextServer?)
@@ -86,7 +86,7 @@ public object TextServerManager : Object() {
   /**
    * Returns a list of available interfaces, with the index and name of each interface.
    */
-  public fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -95,7 +95,7 @@ public object TextServerManager : Object() {
   /**
    * Finds an interface by its [name].
    */
-  public fun findInterface(name: String): TextServer? {
+  public final fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TextServer?)
@@ -104,7 +104,7 @@ public object TextServerManager : Object() {
   /**
    * Sets the primary [TextServer] interface.
    */
-  public fun setPrimaryInterface(index: TextServer?): Unit {
+  public final fun setPrimaryInterface(index: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to index)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
@@ -112,7 +112,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the primary [TextServer] interface currently in use.
    */
-  public fun getPrimaryInterface(): TextServer? {
+  public final fun getPrimaryInterface(): TextServer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TextServer?)

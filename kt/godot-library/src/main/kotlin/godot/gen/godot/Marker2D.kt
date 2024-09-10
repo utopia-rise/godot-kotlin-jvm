@@ -29,7 +29,7 @@ public open class Marker2D : Node2D() {
   /**
    * Size of the gizmo cross that appears in the editor.
    */
-  public var gizmoExtents: Float
+  public final inline var gizmoExtents: Float
     @JvmName("gizmoExtentsProperty")
     get() = getGizmoExtents()
     @JvmName("gizmoExtentsProperty")
@@ -41,12 +41,12 @@ public open class Marker2D : Node2D() {
     callConstructor(ENGINECLASS_MARKER2D, scriptIndex)
   }
 
-  public fun setGizmoExtents(extents: Float): Unit {
+  public final fun setGizmoExtents(extents: Float): Unit {
     TransferContext.writeArguments(DOUBLE to extents.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGizmoExtentsPtr, NIL)
   }
 
-  public fun getGizmoExtents(): Float {
+  public final fun getGizmoExtents(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

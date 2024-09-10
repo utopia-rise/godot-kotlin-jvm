@@ -39,7 +39,7 @@ public open class LabelSettings : Resource() {
   /**
    * Vertical space between lines when the text is multiline.
    */
-  public var lineSpacing: Float
+  public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
     get() = getLineSpacing()
     @JvmName("lineSpacingProperty")
@@ -50,7 +50,7 @@ public open class LabelSettings : Resource() {
   /**
    * [Font] used for the text.
    */
-  public var font: Font?
+  public final inline var font: Font?
     @JvmName("fontProperty")
     get() = getFont()
     @JvmName("fontProperty")
@@ -61,7 +61,7 @@ public open class LabelSettings : Resource() {
   /**
    * Size of the text.
    */
-  public var fontSize: Int
+  public final inline var fontSize: Int
     @JvmName("fontSizeProperty")
     get() = getFontSize()
     @JvmName("fontSizeProperty")
@@ -73,7 +73,7 @@ public open class LabelSettings : Resource() {
    * Color of the text.
    */
   @CoreTypeLocalCopy
-  public var fontColor: Color
+  public final inline var fontColor: Color
     @JvmName("fontColorProperty")
     get() = getFontColor()
     @JvmName("fontColorProperty")
@@ -84,7 +84,7 @@ public open class LabelSettings : Resource() {
   /**
    * Text outline size.
    */
-  public var outlineSize: Int
+  public final inline var outlineSize: Int
     @JvmName("outlineSizeProperty")
     get() = getOutlineSize()
     @JvmName("outlineSizeProperty")
@@ -96,7 +96,7 @@ public open class LabelSettings : Resource() {
    * The color of the outline.
    */
   @CoreTypeLocalCopy
-  public var outlineColor: Color
+  public final inline var outlineColor: Color
     @JvmName("outlineColorProperty")
     get() = getOutlineColor()
     @JvmName("outlineColorProperty")
@@ -107,7 +107,7 @@ public open class LabelSettings : Resource() {
   /**
    * Size of the shadow effect.
    */
-  public var shadowSize: Int
+  public final inline var shadowSize: Int
     @JvmName("shadowSizeProperty")
     get() = getShadowSize()
     @JvmName("shadowSizeProperty")
@@ -119,7 +119,7 @@ public open class LabelSettings : Resource() {
    * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
    */
   @CoreTypeLocalCopy
-  public var shadowColor: Color
+  public final inline var shadowColor: Color
     @JvmName("shadowColorProperty")
     get() = getShadowColor()
     @JvmName("shadowColorProperty")
@@ -131,7 +131,7 @@ public open class LabelSettings : Resource() {
    * Offset of the shadow effect, in pixels.
    */
   @CoreTypeLocalCopy
-  public var shadowOffset: Vector2
+  public final inline var shadowOffset: Vector2
     @JvmName("shadowOffsetProperty")
     get() = getShadowOffset()
     @JvmName("shadowOffsetProperty")
@@ -161,7 +161,7 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fontColorMutate(block: Color.() -> Unit): Color = fontColor.apply{
+  public final fun fontColorMutate(block: Color.() -> Unit): Color = fontColor.apply{
       block(this)
       fontColor = this
   }
@@ -185,7 +185,7 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun outlineColorMutate(block: Color.() -> Unit): Color = outlineColor.apply{
+  public final fun outlineColorMutate(block: Color.() -> Unit): Color = outlineColor.apply{
       block(this)
       outlineColor = this
   }
@@ -209,7 +209,7 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
+  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
       block(this)
       shadowColor = this
   }
@@ -233,106 +233,106 @@ public open class LabelSettings : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+  public final fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       block(this)
       shadowOffset = this
   }
 
 
-  public fun setLineSpacing(spacing: Float): Unit {
+  public final fun setLineSpacing(spacing: Float): Unit {
     TransferContext.writeArguments(DOUBLE to spacing.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
   }
 
-  public fun getLineSpacing(): Float {
+  public final fun getLineSpacing(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFont(font: Font?): Unit {
+  public final fun setFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
   }
 
-  public fun getFont(): Font? {
+  public final fun getFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
-  public fun setFontSize(size: Int): Unit {
+  public final fun setFontSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
   }
 
-  public fun getFontSize(): Int {
+  public final fun getFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFontColor(color: Color): Unit {
+  public final fun setFontColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setFontColorPtr, NIL)
   }
 
-  public fun getFontColor(): Color {
+  public final fun getFontColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setOutlineSize(size: Int): Unit {
+  public final fun setOutlineSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
   }
 
-  public fun getOutlineSize(): Int {
+  public final fun getOutlineSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setOutlineColor(color: Color): Unit {
+  public final fun setOutlineColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setOutlineColorPtr, NIL)
   }
 
-  public fun getOutlineColor(): Color {
+  public final fun getOutlineColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setShadowSize(size: Int): Unit {
+  public final fun setShadowSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
   }
 
-  public fun getShadowSize(): Int {
+  public final fun getShadowSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setShadowColor(color: Color): Unit {
+  public final fun setShadowColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
   }
 
-  public fun getShadowColor(): Color {
+  public final fun getShadowColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setShadowOffset(offset: Vector2): Unit {
+  public final fun setShadowOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
   }
 
-  public fun getShadowOffset(): Vector2 {
+  public final fun getShadowOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

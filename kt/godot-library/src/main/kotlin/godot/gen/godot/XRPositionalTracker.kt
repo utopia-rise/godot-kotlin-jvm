@@ -87,7 +87,7 @@ public open class XRPositionalTracker : XRTracker() {
    * The profile associated with this tracker, interface dependent but will indicate the type of
    * controller being tracked.
    */
-  public var profile: String
+  public final inline var profile: String
     @JvmName("profileProperty")
     get() = getTrackerProfile()
     @JvmName("profileProperty")
@@ -98,7 +98,7 @@ public open class XRPositionalTracker : XRTracker() {
   /**
    * Defines which hand this tracker relates to.
    */
-  public var hand: TrackerHand
+  public final inline var hand: TrackerHand
     @JvmName("handProperty")
     get() = getTrackerHand()
     @JvmName("handProperty")
@@ -110,24 +110,24 @@ public open class XRPositionalTracker : XRTracker() {
     callConstructor(ENGINECLASS_XRPOSITIONALTRACKER, scriptIndex)
   }
 
-  public fun getTrackerProfile(): String {
+  public final fun getTrackerProfile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setTrackerProfile(profile: String): Unit {
+  public final fun setTrackerProfile(profile: String): Unit {
     TransferContext.writeArguments(STRING to profile)
     TransferContext.callMethod(rawPtr, MethodBindings.setTrackerProfilePtr, NIL)
   }
 
-  public fun getTrackerHand(): TrackerHand {
+  public final fun getTrackerHand(): TrackerHand {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTrackerHand(hand: TrackerHand): Unit {
+  public final fun setTrackerHand(hand: TrackerHand): Unit {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
   }
@@ -135,7 +135,7 @@ public open class XRPositionalTracker : XRTracker() {
   /**
    * Returns `true` if the tracker is available and is currently tracking the bound [name] pose.
    */
-  public fun hasPose(name: StringName): Boolean {
+  public final fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPosePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -144,7 +144,7 @@ public open class XRPositionalTracker : XRTracker() {
   /**
    * Returns the current [XRPose] state object for the bound [name] pose.
    */
-  public fun getPose(name: StringName): XRPose? {
+  public final fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRPose?)
@@ -155,7 +155,7 @@ public open class XRPositionalTracker : XRTracker() {
    * decide if trackers need to be hidden if we lose tracking or just remain at their last known
    * position.
    */
-  public fun invalidatePose(name: StringName): Unit {
+  public final fun invalidatePose(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.invalidatePosePtr, NIL)
   }
@@ -164,7 +164,7 @@ public open class XRPositionalTracker : XRTracker() {
    * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
    * pose. This method is called by a [XRInterface] implementation and should not be used directly.
    */
-  public fun setPose(
+  public final fun setPose(
     name: StringName,
     transform: Transform3D,
     linearVelocity: Vector3,
@@ -179,7 +179,7 @@ public open class XRPositionalTracker : XRTracker() {
    * Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending
    * on whether the input is a button, trigger or thumbstick/thumbpad.
    */
-  public fun getInput(name: StringName): Any? {
+  public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -189,7 +189,7 @@ public open class XRPositionalTracker : XRTracker() {
    * Changes the value for the given input. This method is called by a [XRInterface] implementation
    * and should not be used directly.
    */
-  public fun setInput(name: StringName, `value`: Any?): Unit {
+  public final fun setInput(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setInputPtr, NIL)
   }

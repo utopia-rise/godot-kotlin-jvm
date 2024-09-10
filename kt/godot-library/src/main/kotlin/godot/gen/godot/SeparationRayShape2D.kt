@@ -32,7 +32,7 @@ public open class SeparationRayShape2D : Shape2D() {
   /**
    * The ray's length.
    */
-  public var length: Float
+  public final inline var length: Float
     @JvmName("lengthProperty")
     get() = getLength()
     @JvmName("lengthProperty")
@@ -45,7 +45,7 @@ public open class SeparationRayShape2D : Shape2D() {
    * If `true`, the shape can return the correct normal and separate in any direction, allowing
    * sliding motion on slopes.
    */
-  public var slideOnSlope: Boolean
+  public final inline var slideOnSlope: Boolean
     @JvmName("slideOnSlopeProperty")
     get() = getSlideOnSlope()
     @JvmName("slideOnSlopeProperty")
@@ -57,23 +57,23 @@ public open class SeparationRayShape2D : Shape2D() {
     callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE2D, scriptIndex)
   }
 
-  public fun setLength(length: Float): Unit {
+  public final fun setLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
-  public fun getLength(): Float {
+  public final fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSlideOnSlope(active: Boolean): Unit {
+  public final fun setSlideOnSlope(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.setSlideOnSlopePtr, NIL)
   }
 
-  public fun getSlideOnSlope(): Boolean {
+  public final fun getSlideOnSlope(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSlideOnSlopePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -28,7 +28,7 @@ public open class DampedSpringJoint2D : Joint2D() {
   /**
    * The spring joint's maximum length. The two attached bodies cannot stretch it past this value.
    */
-  public var length: Float
+  public final inline var length: Float
     @JvmName("lengthProperty")
     get() = getLength()
     @JvmName("lengthProperty")
@@ -40,7 +40,7 @@ public open class DampedSpringJoint2D : Joint2D() {
    * When the bodies attached to the spring joint move they stretch or squash it. The joint always
    * tries to resize towards this length.
    */
-  public var restLength: Float
+  public final inline var restLength: Float
     @JvmName("restLengthProperty")
     get() = getRestLength()
     @JvmName("restLengthProperty")
@@ -53,7 +53,7 @@ public open class DampedSpringJoint2D : Joint2D() {
    * applies an opposing force to the bodies, the product of the stiffness multiplied by the size
    * difference from its resting length.
    */
-  public var stiffness: Float
+  public final inline var stiffness: Float
     @JvmName("stiffnessProperty")
     get() = getStiffness()
     @JvmName("stiffnessProperty")
@@ -66,7 +66,7 @@ public open class DampedSpringJoint2D : Joint2D() {
    * different directions the system tries to align them to the spring axis again. A high [damping]
    * value forces the attached bodies to align faster.
    */
-  public var damping: Float
+  public final inline var damping: Float
     @JvmName("dampingProperty")
     get() = getDamping()
     @JvmName("dampingProperty")
@@ -78,45 +78,45 @@ public open class DampedSpringJoint2D : Joint2D() {
     callConstructor(ENGINECLASS_DAMPEDSPRINGJOINT2D, scriptIndex)
   }
 
-  public fun setLength(length: Float): Unit {
+  public final fun setLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
-  public fun getLength(): Float {
+  public final fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRestLength(restLength: Float): Unit {
+  public final fun setRestLength(restLength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to restLength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRestLengthPtr, NIL)
   }
 
-  public fun getRestLength(): Float {
+  public final fun getRestLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRestLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setStiffness(stiffness: Float): Unit {
+  public final fun setStiffness(stiffness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to stiffness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStiffnessPtr, NIL)
   }
 
-  public fun getStiffness(): Float {
+  public final fun getStiffness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDamping(damping: Float): Unit {
+  public final fun setDamping(damping: Float): Unit {
     TransferContext.writeArguments(DOUBLE to damping.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
   }
 
-  public fun getDamping(): Float {
+  public final fun getDamping(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

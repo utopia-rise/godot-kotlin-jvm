@@ -71,7 +71,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit,
    * clear, make unique and save the states of the [SpriteFrames] resource.
    */
-  public var spriteFrames: SpriteFrames?
+  public final inline var spriteFrames: SpriteFrames?
     @JvmName("spriteFramesProperty")
     get() = getSpriteFrames()
     @JvmName("spriteFramesProperty")
@@ -83,7 +83,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * The current animation from the [spriteFrames] resource. If this value is changed, the [frame]
    * counter and the [frameProgress] are reset.
    */
-  public var animation: StringName
+  public final inline var animation: StringName
     @JvmName("animationProperty")
     get() = getAnimation()
     @JvmName("animationProperty")
@@ -94,7 +94,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * The key of the animation to play when the scene loads.
    */
-  public var autoplay: String
+  public final inline var autoplay: String
     @JvmName("autoplayProperty")
     get() = getAutoplay()
     @JvmName("autoplayProperty")
@@ -106,7 +106,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * The displayed animation frame's index. Setting this property also resets [frameProgress]. If
    * this is not desired, use [setFrameAndProgress].
    */
-  public var frame: Int
+  public final inline var frame: Int
     @JvmName("frameProperty")
     get() = getFrame()
     @JvmName("frameProperty")
@@ -118,7 +118,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * The progress value between `0.0` and `1.0` until the current frame transitions to the next
    * frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`.
    */
-  public var frameProgress: Float
+  public final inline var frameProgress: Float
     @JvmName("frameProgressProperty")
     get() = getFrameProgress()
     @JvmName("frameProgressProperty")
@@ -132,7 +132,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * If set to a negative value, the animation is played in reverse. If set to `0`, the animation
    * will not advance.
    */
-  public var speedScale: Float
+  public final inline var speedScale: Float
     @JvmName("speedScaleProperty")
     get() = getSpeedScale()
     @JvmName("speedScaleProperty")
@@ -144,34 +144,34 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     callConstructor(ENGINECLASS_ANIMATEDSPRITE3D, scriptIndex)
   }
 
-  public fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {
+  public final fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {
     TransferContext.writeArguments(OBJECT to spriteFrames)
     TransferContext.callMethod(rawPtr, MethodBindings.setSpriteFramesPtr, NIL)
   }
 
-  public fun getSpriteFrames(): SpriteFrames? {
+  public final fun getSpriteFrames(): SpriteFrames? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpriteFramesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?)
   }
 
-  public fun setAnimation(name: StringName): Unit {
+  public final fun setAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPtr, NIL)
   }
 
-  public fun getAnimation(): StringName {
+  public final fun getAnimation(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setAutoplay(name: String): Unit {
+  public final fun setAutoplay(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
   }
 
-  public fun getAutoplay(): String {
+  public final fun getAutoplay(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -181,7 +181,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed`
    * are `0`).
    */
-  public fun isPlaying(): Boolean {
+  public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -194,7 +194,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * assigned animation will resume playing if it was paused.
    */
   @JvmOverloads
-  public fun play(
+  public final fun play(
     name: StringName = StringName(""),
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
@@ -209,7 +209,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * its description for more information.
    */
   @JvmOverloads
-  public fun playBackwards(name: StringName = StringName("")): Unit {
+  public final fun playBackwards(name: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.playBackwardsPtr, NIL)
   }
@@ -220,7 +220,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * playback position.
    * See also [stop].
    */
-  public fun pause(): Unit {
+  public final fun pause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
   }
@@ -229,28 +229,28 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * Stops the currently playing animation. The animation position is reset to `0` and the
    * `custom_speed` is reset to `1.0`. See also [pause].
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
-  public fun setFrame(frame: Int): Unit {
+  public final fun setFrame(frame: Int): Unit {
     TransferContext.writeArguments(LONG to frame.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
   }
 
-  public fun getFrame(): Int {
+  public final fun getFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFrameProgress(progress: Float): Unit {
+  public final fun setFrameProgress(progress: Float): Unit {
     TransferContext.writeArguments(DOUBLE to progress.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFrameProgressPtr, NIL)
   }
 
-  public fun getFrameProgress(): Float {
+  public final fun getFrameProgress(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameProgressPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -271,17 +271,17 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * animated_sprite.set_frame_and_progress(current_frame, current_progress)
    * ```
    */
-  public fun setFrameAndProgress(frame: Int, progress: Float): Unit {
+  public final fun setFrameAndProgress(frame: Int, progress: Float): Unit {
     TransferContext.writeArguments(LONG to frame.toLong(), DOUBLE to progress.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFrameAndProgressPtr, NIL)
   }
 
-  public fun setSpeedScale(speedScale: Float): Unit {
+  public final fun setSpeedScale(speedScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to speedScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
-  public fun getSpeedScale(): Float {
+  public final fun getSpeedScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -293,7 +293,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * method.
    * Returns a negative value if the current animation is playing backwards.
    */
-  public fun getPlayingSpeed(): Float {
+  public final fun getPlayingSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

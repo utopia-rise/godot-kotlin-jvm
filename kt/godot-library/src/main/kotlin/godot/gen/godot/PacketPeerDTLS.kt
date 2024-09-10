@@ -42,7 +42,7 @@ public open class PacketPeerDTLS : PacketPeer() {
    * Poll the connection to check for incoming packets. Call this frequently to update the status
    * and keep the connection working.
    */
-  public fun poll(): Unit {
+  public final fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
   }
@@ -54,7 +54,7 @@ public open class PacketPeerDTLS : PacketPeer() {
    * [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
-  public fun connectToPeer(
+  public final fun connectToPeer(
     packetPeer: PacketPeerUDP?,
     hostname: String,
     clientOptions: TLSOptions? = null,
@@ -67,7 +67,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Returns the status of the connection. See [Status] for values.
    */
-  public fun getStatus(): Status {
+  public final fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
     return PacketPeerDTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
@@ -76,7 +76,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Disconnects this peer, terminating the DTLS session.
    */
-  public fun disconnectFromPeer(): Unit {
+  public final fun disconnectFromPeer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.disconnectFromPeerPtr, NIL)
   }

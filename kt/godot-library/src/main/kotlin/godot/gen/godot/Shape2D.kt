@@ -47,7 +47,7 @@ public open class Shape2D internal constructor() : Resource() {
    * When set to `0`, the default value from [ProjectSettings.physics/2d/solver/defaultContactBias]
    * is used.
    */
-  public var customSolverBias: Float
+  public final inline var customSolverBias: Float
     @JvmName("customSolverBiasProperty")
     get() = getCustomSolverBias()
     @JvmName("customSolverBiasProperty")
@@ -59,12 +59,12 @@ public open class Shape2D internal constructor() : Resource() {
     callConstructor(ENGINECLASS_SHAPE2D, scriptIndex)
   }
 
-  public fun setCustomSolverBias(bias: Float): Unit {
+  public final fun setCustomSolverBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
   }
 
-  public fun getCustomSolverBias(): Float {
+  public final fun getCustomSolverBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -75,7 +75,7 @@ public open class Shape2D internal constructor() : Resource() {
    * This method needs the transformation matrix for this shape ([localXform]), the shape to check
    * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
-  public fun collide(
+  public final fun collide(
     localXform: Transform2D,
     withShape: Shape2D?,
     shapeXform: Transform2D,
@@ -92,7 +92,7 @@ public open class Shape2D internal constructor() : Resource() {
    * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object
    * ([shapeMotion]).
    */
-  public fun collideWithMotion(
+  public final fun collideWithMotion(
     localXform: Transform2D,
     localMotion: Vector2,
     withShape: Shape2D?,
@@ -115,7 +115,7 @@ public open class Shape2D internal constructor() : Resource() {
    * This method needs the transformation matrix for this shape ([localXform]), the shape to check
    * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
-  public fun collideAndGetContacts(
+  public final fun collideAndGetContacts(
     localXform: Transform2D,
     withShape: Shape2D?,
     shapeXform: Transform2D,
@@ -140,7 +140,7 @@ public open class Shape2D internal constructor() : Resource() {
    * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object
    * ([shapeMotion]).
    */
-  public fun collideWithMotionAndGetContacts(
+  public final fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
     localMotion: Vector2,
     withShape: Shape2D?,
@@ -157,7 +157,7 @@ public open class Shape2D internal constructor() : Resource() {
    * Draws a solid shape onto a [CanvasItem] with the [RenderingServer] API filled with the
    * specified [color]. The exact drawing method is specific for each shape and cannot be configured.
    */
-  public fun draw(canvasItem: RID, color: Color): Unit {
+  public final fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
   }
@@ -165,7 +165,7 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Returns a [Rect2] representing the shapes boundary.
    */
-  public fun getRect(): Rect2 {
+  public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)

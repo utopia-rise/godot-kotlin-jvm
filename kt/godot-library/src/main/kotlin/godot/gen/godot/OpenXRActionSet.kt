@@ -38,7 +38,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * The localized name of this action set.
    */
-  public var localizedName: String
+  public final inline var localizedName: String
     @JvmName("localizedNameProperty")
     get() = getLocalizedName()
     @JvmName("localizedNameProperty")
@@ -49,7 +49,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * The priority for this action set.
    */
-  public var priority: Int
+  public final inline var priority: Int
     @JvmName("priorityProperty")
     get() = getPriority()
     @JvmName("priorityProperty")
@@ -60,7 +60,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * Collection of actions for this action set.
    */
-  public var actions: VariantArray<Any?>
+  public final inline var actions: VariantArray<Any?>
     @JvmName("actionsProperty")
     get() = getActions()
     @JvmName("actionsProperty")
@@ -72,23 +72,23 @@ public open class OpenXRActionSet : Resource() {
     callConstructor(ENGINECLASS_OPENXRACTIONSET, scriptIndex)
   }
 
-  public fun setLocalizedName(localizedName: String): Unit {
+  public final fun setLocalizedName(localizedName: String): Unit {
     TransferContext.writeArguments(STRING to localizedName)
     TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
   }
 
-  public fun getLocalizedName(): String {
+  public final fun getLocalizedName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setPriority(priority: Int): Unit {
+  public final fun setPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
   }
 
-  public fun getPriority(): Int {
+  public final fun getPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -97,18 +97,18 @@ public open class OpenXRActionSet : Resource() {
   /**
    * Retrieve the number of actions in our action set.
    */
-  public fun getActionCount(): Int {
+  public final fun getActionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setActions(actions: VariantArray<Any?>): Unit {
+  public final fun setActions(actions: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to actions)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionsPtr, NIL)
   }
 
-  public fun getActions(): VariantArray<Any?> {
+  public final fun getActions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -117,7 +117,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * Add an action to this action set.
    */
-  public fun addAction(action: OpenXRAction?): Unit {
+  public final fun addAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
   }
@@ -125,7 +125,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * Remove an action from this action set.
    */
-  public fun removeAction(action: OpenXRAction?): Unit {
+  public final fun removeAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(rawPtr, MethodBindings.removeActionPtr, NIL)
   }

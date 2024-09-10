@@ -29,7 +29,7 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
    * The dimensions of the quad.
    */
   @CoreTypeLocalCopy
-  public var quadSize: Vector2
+  public final inline var quadSize: Vector2
     @JvmName("quadSizeProperty")
     get() = getQuadSize()
     @JvmName("quadSizeProperty")
@@ -59,18 +59,18 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun quadSizeMutate(block: Vector2.() -> Unit): Vector2 = quadSize.apply{
+  public final fun quadSizeMutate(block: Vector2.() -> Unit): Vector2 = quadSize.apply{
       block(this)
       quadSize = this
   }
 
 
-  public fun setQuadSize(size: Vector2): Unit {
+  public final fun setQuadSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setQuadSizePtr, NIL)
   }
 
-  public fun getQuadSize(): Vector2 {
+  public final fun getQuadSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getQuadSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

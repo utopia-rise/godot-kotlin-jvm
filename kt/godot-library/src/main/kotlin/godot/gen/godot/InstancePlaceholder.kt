@@ -48,7 +48,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
    * which properties will be applied (with index 0 being the first).
    */
   @JvmOverloads
-  public fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
+  public final fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
     TransferContext.callMethod(rawPtr, MethodBindings.getStoredValuesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -62,7 +62,8 @@ public open class InstancePlaceholder internal constructor() : Node() {
    * thread.
    */
   @JvmOverloads
-  public fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
+  public final fun createInstance(replace: Boolean = false, customScene: PackedScene? = null):
+      Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
     TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
@@ -72,7 +73,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
    * Gets the path to the [PackedScene] resource file that is loaded by default when calling
    * [createInstance]. Not thread-safe. Use [Object.callDeferred] if calling from a thread.
    */
-  public fun getInstancePath(): String {
+  public final fun getInstancePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstancePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

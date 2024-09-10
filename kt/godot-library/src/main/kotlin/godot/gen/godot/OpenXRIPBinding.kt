@@ -36,7 +36,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * [OpenXRAction] that is bound to these paths.
    */
-  public var action: OpenXRAction?
+  public final inline var action: OpenXRAction?
     @JvmName("actionProperty")
     get() = getAction()
     @JvmName("actionProperty")
@@ -47,7 +47,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Paths that define the inputs or outputs bound on the device.
    */
-  public var paths: PackedStringArray
+  public final inline var paths: PackedStringArray
     @JvmName("pathsProperty")
     get() = getPaths()
     @JvmName("pathsProperty")
@@ -59,12 +59,12 @@ public open class OpenXRIPBinding : Resource() {
     callConstructor(ENGINECLASS_OPENXRIPBINDING, scriptIndex)
   }
 
-  public fun setAction(action: OpenXRAction?): Unit {
+  public final fun setAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
   }
 
-  public fun getAction(): OpenXRAction? {
+  public final fun getAction(): OpenXRAction? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?)
@@ -73,18 +73,18 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Get the number of input/output paths in this binding.
    */
-  public fun getPathCount(): Int {
+  public final fun getPathCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setPaths(paths: PackedStringArray): Unit {
+  public final fun setPaths(paths: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to paths)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathsPtr, NIL)
   }
 
-  public fun getPaths(): PackedStringArray {
+  public final fun getPaths(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -93,7 +93,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Returns `true` if this input/output path is part of this binding.
    */
-  public fun hasPath(path: String): Boolean {
+  public final fun hasPath(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPathPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -102,7 +102,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Add an input/output path to this binding.
    */
-  public fun addPath(path: String): Unit {
+  public final fun addPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.addPathPtr, NIL)
   }
@@ -110,7 +110,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Removes this input/output path from this binding.
    */
-  public fun removePath(path: String): Unit {
+  public final fun removePath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.removePathPtr, NIL)
   }

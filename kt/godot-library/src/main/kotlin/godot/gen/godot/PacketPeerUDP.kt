@@ -47,7 +47,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * address exists).
    */
   @JvmOverloads
-  public fun bind(
+  public final fun bind(
     port: Int,
     bindAddress: String = "*",
     recvBufSize: Int = 65536,
@@ -60,7 +60,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Closes the [PacketPeerUDP]'s underlying UDP socket.
    */
-  public fun close(): Unit {
+  public final fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
@@ -101,7 +101,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * }
    * ```
    */
-  public fun wait(): GodotError {
+  public final fun wait(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.waitPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -110,7 +110,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Returns whether this [PacketPeerUDP] is bound to an address and can receive packets.
    */
-  public fun isBound(): Boolean {
+  public final fun isBound(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBoundPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -127,7 +127,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your
    * application is transferring sensitive information.
    */
-  public fun connectToHost(host: String, port: Int): GodotError {
+  public final fun connectToHost(host: String, port: Int): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -137,7 +137,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * Returns `true` if the UDP socket is open and has been connected to a remote address. See
    * [connectToHost].
    */
-  public fun isSocketConnected(): Boolean {
+  public final fun isSocketConnected(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSocketConnectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -147,7 +147,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * Returns the IP of the remote peer that sent the last packet(that was received with
    * [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
-  public fun getPacketIp(): String {
+  public final fun getPacketIp(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketIpPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -157,7 +157,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * Returns the port of the remote peer that sent the last packet(that was received with
    * [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
-  public fun getPacketPort(): Int {
+  public final fun getPacketPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -166,7 +166,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Returns the local port to which this peer is bound.
    */
-  public fun getLocalPort(): Int {
+  public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -178,7 +178,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address
    * (e.g. `255.255.255.255`).
    */
-  public fun setDestAddress(host: String, port: Int): GodotError {
+  public final fun setDestAddress(host: String, port: Int): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDestAddressPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -190,7 +190,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and
    * this option to be enabled to receive broadcast packets too.
    */
-  public fun setBroadcastEnabled(enabled: Boolean): Unit {
+  public final fun setBroadcastEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setBroadcastEnabledPtr, NIL)
   }
@@ -203,7 +203,7 @@ public open class PacketPeerUDP : PacketPeer() {
    * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for
    * multicast to work.
    */
-  public fun joinMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
+  public final fun joinMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
     TransferContext.callMethod(rawPtr, MethodBindings.joinMulticastGroupPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -213,7 +213,8 @@ public open class PacketPeerUDP : PacketPeer() {
    * Removes the interface identified by [interfaceName] from the multicast group specified by
    * [multicastAddress].
    */
-  public fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
+  public final fun leaveMulticastGroup(multicastAddress: String, interfaceName: String):
+      GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
     TransferContext.callMethod(rawPtr, MethodBindings.leaveMulticastGroupPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

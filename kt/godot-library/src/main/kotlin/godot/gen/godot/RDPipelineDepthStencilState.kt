@@ -34,7 +34,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
    * objects based on their depth. This also allows objects to be partially occluded by other objects.
    * If `false`, objects will appear in the order they were drawn (like in Godot's 2D renderer).
    */
-  public var enableDepthTest: Boolean
+  public final inline var enableDepthTest: Boolean
     @JvmName("enableDepthTestProperty")
     get() = getEnableDepthTest()
     @JvmName("enableDepthTestProperty")
@@ -46,7 +46,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
    * If `true`, writes to the depth buffer whenever the depth test returns true. Only works when
    * enable_depth_test is also true.
    */
-  public var enableDepthWrite: Boolean
+  public final inline var enableDepthWrite: Boolean
     @JvmName("enableDepthWriteProperty")
     get() = getEnableDepthWrite()
     @JvmName("enableDepthWriteProperty")
@@ -57,7 +57,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The method used for comparing the previous and current depth values.
    */
-  public var depthCompareOperator: RenderingDevice.CompareOperator
+  public final inline var depthCompareOperator: RenderingDevice.CompareOperator
     @JvmName("depthCompareOperatorProperty")
     get() = getDepthCompareOperator()
     @JvmName("depthCompareOperatorProperty")
@@ -69,7 +69,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
    * If `true`, each depth value will be tested to see if it is between [depthRangeMin] and
    * [depthRangeMax]. If it is outside of these values, it is discarded.
    */
-  public var enableDepthRange: Boolean
+  public final inline var enableDepthRange: Boolean
     @JvmName("enableDepthRangeProperty")
     get() = getEnableDepthRange()
     @JvmName("enableDepthRangeProperty")
@@ -80,7 +80,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The minimum depth that returns true for [enableDepthRange].
    */
-  public var depthRangeMin: Float
+  public final inline var depthRangeMin: Float
     @JvmName("depthRangeMinProperty")
     get() = getDepthRangeMin()
     @JvmName("depthRangeMinProperty")
@@ -91,7 +91,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The maximum depth that returns true for [enableDepthRange].
    */
-  public var depthRangeMax: Float
+  public final inline var depthRangeMax: Float
     @JvmName("depthRangeMaxProperty")
     get() = getDepthRangeMax()
     @JvmName("depthRangeMaxProperty")
@@ -104,7 +104,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
    * triangles and back-facing triangles. See properties that begin with "front_op" and properties with
    * "back_op" for each.
    */
-  public var enableStencil: Boolean
+  public final inline var enableStencil: Boolean
     @JvmName("enableStencilProperty")
     get() = getEnableStencil()
     @JvmName("enableStencilProperty")
@@ -115,7 +115,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The operation to perform on the stencil buffer for front pixels that fail the stencil test.
    */
-  public var frontOpFail: RenderingDevice.StencilOperation
+  public final inline var frontOpFail: RenderingDevice.StencilOperation
     @JvmName("frontOpFailProperty")
     get() = getFrontOpFail()
     @JvmName("frontOpFailProperty")
@@ -126,7 +126,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The operation to perform on the stencil buffer for front pixels that pass the stencil test.
    */
-  public var frontOpPass: RenderingDevice.StencilOperation
+  public final inline var frontOpPass: RenderingDevice.StencilOperation
     @JvmName("frontOpPassProperty")
     get() = getFrontOpPass()
     @JvmName("frontOpPassProperty")
@@ -138,7 +138,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
    * The operation to perform on the stencil buffer for front pixels that pass the stencil test but
    * fail the depth test.
    */
-  public var frontOpDepthFail: RenderingDevice.StencilOperation
+  public final inline var frontOpDepthFail: RenderingDevice.StencilOperation
     @JvmName("frontOpDepthFailProperty")
     get() = getFrontOpDepthFail()
     @JvmName("frontOpDepthFailProperty")
@@ -149,7 +149,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The method used for comparing the previous front stencil value and [frontOpReference].
    */
-  public var frontOpCompare: RenderingDevice.CompareOperator
+  public final inline var frontOpCompare: RenderingDevice.CompareOperator
     @JvmName("frontOpCompareProperty")
     get() = getFrontOpCompare()
     @JvmName("frontOpCompareProperty")
@@ -160,7 +160,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * Selects which bits from the front stencil value will be compared.
    */
-  public var frontOpCompareMask: Long
+  public final inline var frontOpCompareMask: Long
     @JvmName("frontOpCompareMaskProperty")
     get() = getFrontOpCompareMask()
     @JvmName("frontOpCompareMaskProperty")
@@ -171,7 +171,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * Selects which bits from the front stencil value will be changed.
    */
-  public var frontOpWriteMask: Long
+  public final inline var frontOpWriteMask: Long
     @JvmName("frontOpWriteMaskProperty")
     get() = getFrontOpWriteMask()
     @JvmName("frontOpWriteMaskProperty")
@@ -182,7 +182,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The value the previous front stencil value will be compared to.
    */
-  public var frontOpReference: Long
+  public final inline var frontOpReference: Long
     @JvmName("frontOpReferenceProperty")
     get() = getFrontOpReference()
     @JvmName("frontOpReferenceProperty")
@@ -193,7 +193,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The operation to perform on the stencil buffer for back pixels that fail the stencil test
    */
-  public var backOpFail: RenderingDevice.StencilOperation
+  public final inline var backOpFail: RenderingDevice.StencilOperation
     @JvmName("backOpFailProperty")
     get() = getBackOpFail()
     @JvmName("backOpFailProperty")
@@ -204,7 +204,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The operation to perform on the stencil buffer for back pixels that pass the stencil test.
    */
-  public var backOpPass: RenderingDevice.StencilOperation
+  public final inline var backOpPass: RenderingDevice.StencilOperation
     @JvmName("backOpPassProperty")
     get() = getBackOpPass()
     @JvmName("backOpPassProperty")
@@ -216,7 +216,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
    * The operation to perform on the stencil buffer for back pixels that pass the stencil test but
    * fail the depth test.
    */
-  public var backOpDepthFail: RenderingDevice.StencilOperation
+  public final inline var backOpDepthFail: RenderingDevice.StencilOperation
     @JvmName("backOpDepthFailProperty")
     get() = getBackOpDepthFail()
     @JvmName("backOpDepthFailProperty")
@@ -227,7 +227,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The method used for comparing the previous back stencil value and [backOpReference].
    */
-  public var backOpCompare: RenderingDevice.CompareOperator
+  public final inline var backOpCompare: RenderingDevice.CompareOperator
     @JvmName("backOpCompareProperty")
     get() = getBackOpCompare()
     @JvmName("backOpCompareProperty")
@@ -238,7 +238,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * Selects which bits from the back stencil value will be compared.
    */
-  public var backOpCompareMask: Long
+  public final inline var backOpCompareMask: Long
     @JvmName("backOpCompareMaskProperty")
     get() = getBackOpCompareMask()
     @JvmName("backOpCompareMaskProperty")
@@ -249,7 +249,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * Selects which bits from the back stencil value will be changed.
    */
-  public var backOpWriteMask: Long
+  public final inline var backOpWriteMask: Long
     @JvmName("backOpWriteMaskProperty")
     get() = getBackOpWriteMask()
     @JvmName("backOpWriteMaskProperty")
@@ -260,7 +260,7 @@ public open class RDPipelineDepthStencilState : RefCounted() {
   /**
    * The value the previous back stencil value will be compared to.
    */
-  public var backOpReference: Long
+  public final inline var backOpReference: Long
     @JvmName("backOpReferenceProperty")
     get() = getBackOpReference()
     @JvmName("backOpReferenceProperty")
@@ -272,232 +272,232 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     callConstructor(ENGINECLASS_RDPIPELINEDEPTHSTENCILSTATE, scriptIndex)
   }
 
-  public fun setEnableDepthTest(pMember: Boolean): Unit {
+  public final fun setEnableDepthTest(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthTestPtr, NIL)
   }
 
-  public fun getEnableDepthTest(): Boolean {
+  public final fun getEnableDepthTest(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthTestPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEnableDepthWrite(pMember: Boolean): Unit {
+  public final fun setEnableDepthWrite(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthWritePtr, NIL)
   }
 
-  public fun getEnableDepthWrite(): Boolean {
+  public final fun getEnableDepthWrite(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthWritePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDepthCompareOperator(pMember: RenderingDevice.CompareOperator): Unit {
+  public final fun setDepthCompareOperator(pMember: RenderingDevice.CompareOperator): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthCompareOperatorPtr, NIL)
   }
 
-  public fun getDepthCompareOperator(): RenderingDevice.CompareOperator {
+  public final fun getDepthCompareOperator(): RenderingDevice.CompareOperator {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthCompareOperatorPtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setEnableDepthRange(pMember: Boolean): Unit {
+  public final fun setEnableDepthRange(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthRangePtr, NIL)
   }
 
-  public fun getEnableDepthRange(): Boolean {
+  public final fun getEnableDepthRange(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthRangePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDepthRangeMin(pMember: Float): Unit {
+  public final fun setDepthRangeMin(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMinPtr, NIL)
   }
 
-  public fun getDepthRangeMin(): Float {
+  public final fun getDepthRangeMin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthRangeMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDepthRangeMax(pMember: Float): Unit {
+  public final fun setDepthRangeMax(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMaxPtr, NIL)
   }
 
-  public fun getDepthRangeMax(): Float {
+  public final fun getDepthRangeMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthRangeMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEnableStencil(pMember: Boolean): Unit {
+  public final fun setEnableStencil(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableStencilPtr, NIL)
   }
 
-  public fun getEnableStencil(): Boolean {
+  public final fun getEnableStencil(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableStencilPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFrontOpFail(pMember: RenderingDevice.StencilOperation): Unit {
+  public final fun setFrontOpFail(pMember: RenderingDevice.StencilOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpFailPtr, NIL)
   }
 
-  public fun getFrontOpFail(): RenderingDevice.StencilOperation {
+  public final fun getFrontOpFail(): RenderingDevice.StencilOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFrontOpPass(pMember: RenderingDevice.StencilOperation): Unit {
+  public final fun setFrontOpPass(pMember: RenderingDevice.StencilOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpPassPtr, NIL)
   }
 
-  public fun getFrontOpPass(): RenderingDevice.StencilOperation {
+  public final fun getFrontOpPass(): RenderingDevice.StencilOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpPassPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFrontOpDepthFail(pMember: RenderingDevice.StencilOperation): Unit {
+  public final fun setFrontOpDepthFail(pMember: RenderingDevice.StencilOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpDepthFailPtr, NIL)
   }
 
-  public fun getFrontOpDepthFail(): RenderingDevice.StencilOperation {
+  public final fun getFrontOpDepthFail(): RenderingDevice.StencilOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpDepthFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFrontOpCompare(pMember: RenderingDevice.CompareOperator): Unit {
+  public final fun setFrontOpCompare(pMember: RenderingDevice.CompareOperator): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpComparePtr, NIL)
   }
 
-  public fun getFrontOpCompare(): RenderingDevice.CompareOperator {
+  public final fun getFrontOpCompare(): RenderingDevice.CompareOperator {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpComparePtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFrontOpCompareMask(pMember: Long): Unit {
+  public final fun setFrontOpCompareMask(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpCompareMaskPtr, NIL)
   }
 
-  public fun getFrontOpCompareMask(): Long {
+  public final fun getFrontOpCompareMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpCompareMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setFrontOpWriteMask(pMember: Long): Unit {
+  public final fun setFrontOpWriteMask(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpWriteMaskPtr, NIL)
   }
 
-  public fun getFrontOpWriteMask(): Long {
+  public final fun getFrontOpWriteMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpWriteMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setFrontOpReference(pMember: Long): Unit {
+  public final fun setFrontOpReference(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpReferencePtr, NIL)
   }
 
-  public fun getFrontOpReference(): Long {
+  public final fun getFrontOpReference(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpReferencePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setBackOpFail(pMember: RenderingDevice.StencilOperation): Unit {
+  public final fun setBackOpFail(pMember: RenderingDevice.StencilOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackOpFailPtr, NIL)
   }
 
-  public fun getBackOpFail(): RenderingDevice.StencilOperation {
+  public final fun getBackOpFail(): RenderingDevice.StencilOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackOpFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBackOpPass(pMember: RenderingDevice.StencilOperation): Unit {
+  public final fun setBackOpPass(pMember: RenderingDevice.StencilOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackOpPassPtr, NIL)
   }
 
-  public fun getBackOpPass(): RenderingDevice.StencilOperation {
+  public final fun getBackOpPass(): RenderingDevice.StencilOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackOpPassPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBackOpDepthFail(pMember: RenderingDevice.StencilOperation): Unit {
+  public final fun setBackOpDepthFail(pMember: RenderingDevice.StencilOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackOpDepthFailPtr, NIL)
   }
 
-  public fun getBackOpDepthFail(): RenderingDevice.StencilOperation {
+  public final fun getBackOpDepthFail(): RenderingDevice.StencilOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackOpDepthFailPtr, LONG)
     return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBackOpCompare(pMember: RenderingDevice.CompareOperator): Unit {
+  public final fun setBackOpCompare(pMember: RenderingDevice.CompareOperator): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackOpComparePtr, NIL)
   }
 
-  public fun getBackOpCompare(): RenderingDevice.CompareOperator {
+  public final fun getBackOpCompare(): RenderingDevice.CompareOperator {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackOpComparePtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBackOpCompareMask(pMember: Long): Unit {
+  public final fun setBackOpCompareMask(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackOpCompareMaskPtr, NIL)
   }
 
-  public fun getBackOpCompareMask(): Long {
+  public final fun getBackOpCompareMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackOpCompareMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setBackOpWriteMask(pMember: Long): Unit {
+  public final fun setBackOpWriteMask(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackOpWriteMaskPtr, NIL)
   }
 
-  public fun getBackOpWriteMask(): Long {
+  public final fun getBackOpWriteMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackOpWriteMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setBackOpReference(pMember: Long): Unit {
+  public final fun setBackOpReference(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackOpReferencePtr, NIL)
   }
 
-  public fun getBackOpReference(): Long {
+  public final fun getBackOpReference(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackOpReferencePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

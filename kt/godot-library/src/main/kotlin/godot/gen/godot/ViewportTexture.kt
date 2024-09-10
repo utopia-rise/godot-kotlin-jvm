@@ -37,7 +37,7 @@ public open class ViewportTexture : Texture2D() {
    * its ancestors is renamed or moved. At runtime, this path may not automatically update if the scene
    * root cannot be found.
    */
-  public var viewportPath: NodePath
+  public final inline var viewportPath: NodePath
     @JvmName("viewportPathProperty")
     get() = getViewportPathInScene()
     @JvmName("viewportPathProperty")
@@ -49,12 +49,12 @@ public open class ViewportTexture : Texture2D() {
     callConstructor(ENGINECLASS_VIEWPORTTEXTURE, scriptIndex)
   }
 
-  public fun setViewportPathInScene(path: NodePath): Unit {
+  public final fun setViewportPathInScene(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setViewportPathInScenePtr, NIL)
   }
 
-  public fun getViewportPathInScene(): NodePath {
+  public final fun getViewportPathInScene(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getViewportPathInScenePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)

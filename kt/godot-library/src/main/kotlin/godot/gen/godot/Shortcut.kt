@@ -37,7 +37,7 @@ public open class Shortcut : Resource() {
    * Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent],
    * including an [InputEventAction].
    */
-  public var events: VariantArray<Any?>
+  public final inline var events: VariantArray<Any?>
     @JvmName("eventsProperty")
     get() = getEvents()
     @JvmName("eventsProperty")
@@ -49,12 +49,12 @@ public open class Shortcut : Resource() {
     callConstructor(ENGINECLASS_SHORTCUT, scriptIndex)
   }
 
-  public fun setEvents(events: VariantArray<Any?>): Unit {
+  public final fun setEvents(events: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to events)
     TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
   }
 
-  public fun getEvents(): VariantArray<Any?> {
+  public final fun getEvents(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -63,7 +63,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns whether [events] contains an [InputEvent] which is valid.
    */
-  public fun hasValidEvent(): Boolean {
+  public final fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasValidEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -72,7 +72,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns whether any [InputEvent] in [events] equals [event].
    */
-  public fun matchesEvent(event: InputEvent?): Boolean {
+  public final fun matchesEvent(event: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -81,7 +81,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns the shortcut's first valid [InputEvent] as a [String].
    */
-  public fun getAsText(): String {
+  public final fun getAsText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

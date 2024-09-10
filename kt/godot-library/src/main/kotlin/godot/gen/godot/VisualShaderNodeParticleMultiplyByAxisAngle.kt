@@ -27,7 +27,7 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
   /**
    * If `true`, the angle will be interpreted in degrees instead of radians.
    */
-  public var degreesMode: Boolean
+  public final inline var degreesMode: Boolean
     @JvmName("degreesModeProperty")
     get() = isDegreesMode()
     @JvmName("degreesModeProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE, scriptIndex)
   }
 
-  public fun setDegreesMode(enabled: Boolean): Unit {
+  public final fun setDegreesMode(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDegreesModePtr, NIL)
   }
 
-  public fun isDegreesMode(): Boolean {
+  public final fun isDegreesMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDegreesModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -44,7 +44,7 @@ public open class VehicleBody3D : RigidBody3D() {
    * logic for this if you wish to simulate gears.
    * A negative value will result in the vehicle reversing.
    */
-  public var engineForce: Float
+  public final inline var engineForce: Float
     @JvmName("engineForceProperty")
     get() = getEngineForce()
     @JvmName("engineForceProperty")
@@ -58,7 +58,7 @@ public open class VehicleBody3D : RigidBody3D() {
    * vehicle depends on the [RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000,
    * try a value in the 25 - 30 range for hard braking.
    */
-  public var brake: Float
+  public final inline var brake: Float
     @JvmName("brakeProperty")
     get() = getBrake()
     @JvmName("brakeProperty")
@@ -73,7 +73,7 @@ public open class VehicleBody3D : RigidBody3D() {
    * **Note:** This property is edited in the inspector in degrees. In code the property is set in
    * radians.
    */
-  public var steering: Float
+  public final inline var steering: Float
     @JvmName("steeringProperty")
     get() = getSteering()
     @JvmName("steeringProperty")
@@ -85,34 +85,34 @@ public open class VehicleBody3D : RigidBody3D() {
     callConstructor(ENGINECLASS_VEHICLEBODY3D, scriptIndex)
   }
 
-  public fun setEngineForce(engineForce: Float): Unit {
+  public final fun setEngineForce(engineForce: Float): Unit {
     TransferContext.writeArguments(DOUBLE to engineForce.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
   }
 
-  public fun getEngineForce(): Float {
+  public final fun getEngineForce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBrake(brake: Float): Unit {
+  public final fun setBrake(brake: Float): Unit {
     TransferContext.writeArguments(DOUBLE to brake.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
   }
 
-  public fun getBrake(): Float {
+  public final fun getBrake(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSteering(steering: Float): Unit {
+  public final fun setSteering(steering: Float): Unit {
     TransferContext.writeArguments(DOUBLE to steering.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
   }
 
-  public fun getSteering(): Float {
+  public final fun getSteering(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

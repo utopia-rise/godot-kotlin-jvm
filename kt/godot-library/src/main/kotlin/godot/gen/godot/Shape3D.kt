@@ -34,7 +34,7 @@ public open class Shape3D internal constructor() : Resource() {
    * When set to `0`, the default value from [ProjectSettings.physics/3d/solver/defaultContactBias]
    * is used.
    */
-  public var customSolverBias: Float
+  public final inline var customSolverBias: Float
     @JvmName("customSolverBiasProperty")
     get() = getCustomSolverBias()
     @JvmName("customSolverBiasProperty")
@@ -49,7 +49,7 @@ public open class Shape3D internal constructor() : Resource() {
    * margin, so a higher value for margins is better for performance, at the cost of accuracy around
    * edges as it makes them less sharp.
    */
-  public var margin: Float
+  public final inline var margin: Float
     @JvmName("marginProperty")
     get() = getMargin()
     @JvmName("marginProperty")
@@ -61,23 +61,23 @@ public open class Shape3D internal constructor() : Resource() {
     callConstructor(ENGINECLASS_SHAPE3D, scriptIndex)
   }
 
-  public fun setCustomSolverBias(bias: Float): Unit {
+  public final fun setCustomSolverBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
   }
 
-  public fun getCustomSolverBias(): Float {
+  public final fun getCustomSolverBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMargin(margin: Float): Unit {
+  public final fun setMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
-  public fun getMargin(): Float {
+  public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -86,7 +86,7 @@ public open class Shape3D internal constructor() : Resource() {
   /**
    * Returns the [ArrayMesh] used to draw the debug collision for this [Shape3D].
    */
-  public fun getDebugMesh(): ArrayMesh? {
+  public final fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)

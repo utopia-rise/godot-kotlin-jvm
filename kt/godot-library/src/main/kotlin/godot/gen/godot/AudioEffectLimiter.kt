@@ -31,7 +31,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   /**
    * The waveform's maximum allowed value, in decibels. Value can range from -20 to -0.1.
    */
-  public var ceilingDb: Float
+  public final inline var ceilingDb: Float
     @JvmName("ceilingDbProperty")
     get() = getCeilingDb()
     @JvmName("ceilingDbProperty")
@@ -43,7 +43,7 @@ public open class AudioEffectLimiter : AudioEffect() {
    * Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to
    * 0.
    */
-  public var thresholdDb: Float
+  public final inline var thresholdDb: Float
     @JvmName("thresholdDbProperty")
     get() = getThresholdDb()
     @JvmName("thresholdDbProperty")
@@ -54,7 +54,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   /**
    * Applies a gain to the limited waves, in decibels. Value can range from 0 to 6.
    */
-  public var softClipDb: Float
+  public final inline var softClipDb: Float
     @JvmName("softClipDbProperty")
     get() = getSoftClipDb()
     @JvmName("softClipDbProperty")
@@ -62,7 +62,7 @@ public open class AudioEffectLimiter : AudioEffect() {
       setSoftClipDb(value)
     }
 
-  public var softClipRatio: Float
+  public final inline var softClipRatio: Float
     @JvmName("softClipRatioProperty")
     get() = getSoftClipRatio()
     @JvmName("softClipRatioProperty")
@@ -74,45 +74,45 @@ public open class AudioEffectLimiter : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTLIMITER, scriptIndex)
   }
 
-  public fun setCeilingDb(ceiling: Float): Unit {
+  public final fun setCeilingDb(ceiling: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
   }
 
-  public fun getCeilingDb(): Float {
+  public final fun getCeilingDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setThresholdDb(threshold: Float): Unit {
+  public final fun setThresholdDb(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setThresholdDbPtr, NIL)
   }
 
-  public fun getThresholdDb(): Float {
+  public final fun getThresholdDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThresholdDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSoftClipDb(softClip: Float): Unit {
+  public final fun setSoftClipDb(softClip: Float): Unit {
     TransferContext.writeArguments(DOUBLE to softClip.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipDbPtr, NIL)
   }
 
-  public fun getSoftClipDb(): Float {
+  public final fun getSoftClipDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSoftClipRatio(softClip: Float): Unit {
+  public final fun setSoftClipRatio(softClip: Float): Unit {
     TransferContext.writeArguments(DOUBLE to softClip.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipRatioPtr, NIL)
   }
 
-  public fun getSoftClipRatio(): Float {
+  public final fun getSoftClipRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

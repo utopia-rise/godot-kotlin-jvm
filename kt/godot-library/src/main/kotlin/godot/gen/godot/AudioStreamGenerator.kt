@@ -99,7 +99,7 @@ public open class AudioStreamGenerator : AudioStream() {
    * lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable
    * with no loss in quality.
    */
-  public var mixRate: Float
+  public final inline var mixRate: Float
     @JvmName("mixRateProperty")
     get() = getMixRate()
     @JvmName("mixRateProperty")
@@ -112,7 +112,7 @@ public open class AudioStreamGenerator : AudioStream() {
    * require the script to generate audio data faster, resulting in increased CPU usage and more risk
    * for audio cracking if the CPU can't keep up.
    */
-  public var bufferLength: Float
+  public final inline var bufferLength: Float
     @JvmName("bufferLengthProperty")
     get() = getBufferLength()
     @JvmName("bufferLengthProperty")
@@ -124,23 +124,23 @@ public open class AudioStreamGenerator : AudioStream() {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR, scriptIndex)
   }
 
-  public fun setMixRate(hz: Float): Unit {
+  public final fun setMixRate(hz: Float): Unit {
     TransferContext.writeArguments(DOUBLE to hz.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
   }
 
-  public fun getMixRate(): Float {
+  public final fun getMixRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBufferLength(seconds: Float): Unit {
+  public final fun setBufferLength(seconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
-  public fun getBufferLength(): Float {
+  public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

@@ -57,7 +57,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button is in disabled state and can't be clicked or toggled.
    */
-  public var disabled: Boolean
+  public final inline var disabled: Boolean
     @JvmName("disabledProperty")
     get() = isDisabled()
     @JvmName("disabledProperty")
@@ -69,7 +69,7 @@ public open class BaseButton : Control() {
    * If `true`, the button is in toggle mode. Makes the button flip state between pressed and
    * unpressed each time its area is clicked.
    */
-  public var toggleMode: Boolean
+  public final inline var toggleMode: Boolean
     @JvmName("toggleModeProperty")
     get() = isToggleMode()
     @JvmName("toggleModeProperty")
@@ -83,7 +83,7 @@ public open class BaseButton : Control() {
    * **Note:** Setting [buttonPressed] will result in [signal toggled] to be emitted. If you want to
    * change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
-  public var buttonPressed: Boolean
+  public final inline var buttonPressed: Boolean
     @JvmName("buttonPressedProperty")
     get() = isPressed()
     @JvmName("buttonPressedProperty")
@@ -94,7 +94,7 @@ public open class BaseButton : Control() {
   /**
    * Determines when the button is considered clicked, one of the [ActionMode] constants.
    */
-  public var actionMode: ActionMode
+  public final inline var actionMode: ActionMode
     @JvmName("actionModeProperty")
     get() = getActionMode()
     @JvmName("actionModeProperty")
@@ -107,7 +107,7 @@ public open class BaseButton : Control() {
    * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT |
    * MOUSE_BUTTON_MASK_RIGHT`.
    */
-  public var buttonMask: MouseButtonMask
+  public final inline var buttonMask: MouseButtonMask
     @JvmName("buttonMaskProperty")
     get() = getButtonMask()
     @JvmName("buttonMaskProperty")
@@ -121,7 +121,7 @@ public open class BaseButton : Control() {
    * **Note:** This property only affects the button's visual appearance. Signals will be emitted at
    * the same moment regardless of this property's value.
    */
-  public var keepPressedOutside: Boolean
+  public final inline var keepPressedOutside: Boolean
     @JvmName("keepPressedOutsideProperty")
     get() = isKeepPressedOutside()
     @JvmName("keepPressedOutsideProperty")
@@ -133,7 +133,7 @@ public open class BaseButton : Control() {
    * The [ButtonGroup] associated with the button. Not to be confused with node groups.
    * **Note:** The button will be configured as a radio button if a [ButtonGroup] is assigned to it.
    */
-  public var buttonGroup: ButtonGroup?
+  public final inline var buttonGroup: ButtonGroup?
     @JvmName("buttonGroupProperty")
     get() = getButtonGroup()
     @JvmName("buttonGroupProperty")
@@ -144,7 +144,7 @@ public open class BaseButton : Control() {
   /**
    * [Shortcut] associated to the button.
    */
-  public var shortcut: Shortcut?
+  public final inline var shortcut: Shortcut?
     @JvmName("shortcutProperty")
     get() = getShortcut()
     @JvmName("shortcutProperty")
@@ -156,7 +156,7 @@ public open class BaseButton : Control() {
    * If `true`, the button will highlight for a short amount of time when its shortcut is activated.
    * If `false` and [toggleMode] is `false`, the shortcut will activate without any visual feedback.
    */
-  public var shortcutFeedback: Boolean
+  public final inline var shortcutFeedback: Boolean
     @JvmName("shortcutFeedbackProperty")
     get() = isShortcutFeedback()
     @JvmName("shortcutFeedbackProperty")
@@ -167,7 +167,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button will add information about its shortcut in the tooltip.
    */
-  public var shortcutInTooltip: Boolean
+  public final inline var shortcutInTooltip: Boolean
     @JvmName("shortcutInTooltipProperty")
     get() = isShortcutInTooltipEnabled()
     @JvmName("shortcutInTooltipProperty")
@@ -192,12 +192,12 @@ public open class BaseButton : Control() {
   public open fun _toggled(toggledOn: Boolean): Unit {
   }
 
-  public fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
-  public fun isPressed(): Boolean {
+  public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -209,7 +209,7 @@ public open class BaseButton : Control() {
    * initializing scene). Only works if [toggleMode] is `true`.
    * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
-  public fun setPressedNoSignal(pressed: Boolean): Unit {
+  public final fun setPressedNoSignal(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setPressedNoSignalPtr, NIL)
   }
@@ -217,62 +217,62 @@ public open class BaseButton : Control() {
   /**
    * Returns `true` if the mouse has entered the button and has not left it yet.
    */
-  public fun isHovered(): Boolean {
+  public final fun isHovered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHoveredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setToggleMode(enabled: Boolean): Unit {
+  public final fun setToggleMode(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setToggleModePtr, NIL)
   }
 
-  public fun isToggleMode(): Boolean {
+  public final fun isToggleMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isToggleModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShortcutInTooltip(enabled: Boolean): Unit {
+  public final fun setShortcutInTooltip(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setShortcutInTooltipPtr, NIL)
   }
 
-  public fun isShortcutInTooltipEnabled(): Boolean {
+  public final fun isShortcutInTooltipEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShortcutInTooltipEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDisabled(disabled: Boolean): Unit {
+  public final fun setDisabled(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
-  public fun isDisabled(): Boolean {
+  public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setActionMode(mode: ActionMode): Unit {
+  public final fun setActionMode(mode: ActionMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionModePtr, NIL)
   }
 
-  public fun getActionMode(): ActionMode {
+  public final fun getActionMode(): ActionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionModePtr, LONG)
     return BaseButton.ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setButtonMask(mask: MouseButtonMask): Unit {
+  public final fun setButtonMask(mask: MouseButtonMask): Unit {
     TransferContext.writeArguments(LONG to mask.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
   }
 
-  public fun getButtonMask(): MouseButtonMask {
+  public final fun getButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
     return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
@@ -283,51 +283,51 @@ public open class BaseButton : Control() {
    * own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the
    * button is defined by the [DrawMode] enum.
    */
-  public fun getDrawMode(): DrawMode {
+  public final fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDrawModePtr, LONG)
     return BaseButton.DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setKeepPressedOutside(enabled: Boolean): Unit {
+  public final fun setKeepPressedOutside(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setKeepPressedOutsidePtr, NIL)
   }
 
-  public fun isKeepPressedOutside(): Boolean {
+  public final fun isKeepPressedOutside(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isKeepPressedOutsidePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShortcutFeedback(enabled: Boolean): Unit {
+  public final fun setShortcutFeedback(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setShortcutFeedbackPtr, NIL)
   }
 
-  public fun isShortcutFeedback(): Boolean {
+  public final fun isShortcutFeedback(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShortcutFeedbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShortcut(shortcut: Shortcut?): Unit {
+  public final fun setShortcut(shortcut: Shortcut?): Unit {
     TransferContext.writeArguments(OBJECT to shortcut)
     TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
   }
 
-  public fun getShortcut(): Shortcut? {
+  public final fun getShortcut(): Shortcut? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
   }
 
-  public fun setButtonGroup(buttonGroup: ButtonGroup?): Unit {
+  public final fun setButtonGroup(buttonGroup: ButtonGroup?): Unit {
     TransferContext.writeArguments(OBJECT to buttonGroup)
     TransferContext.callMethod(rawPtr, MethodBindings.setButtonGroupPtr, NIL)
   }
 
-  public fun getButtonGroup(): ButtonGroup? {
+  public final fun getButtonGroup(): ButtonGroup? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonGroupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?)

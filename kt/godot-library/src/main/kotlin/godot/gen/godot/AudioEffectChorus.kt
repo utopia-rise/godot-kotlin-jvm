@@ -30,7 +30,7 @@ public open class AudioEffectChorus : AudioEffect() {
   /**
    * The number of voices in the effect.
    */
-  public var voiceCount: Int
+  public final inline var voiceCount: Int
     @JvmName("voiceCountProperty")
     get() = getVoiceCount()
     @JvmName("voiceCountProperty")
@@ -41,7 +41,7 @@ public open class AudioEffectChorus : AudioEffect() {
   /**
    * The effect's raw signal.
    */
-  public var dry: Float
+  public final inline var dry: Float
     @JvmName("dryProperty")
     get() = getDry()
     @JvmName("dryProperty")
@@ -52,7 +52,7 @@ public open class AudioEffectChorus : AudioEffect() {
   /**
    * The effect's processed signal.
    */
-  public var wet: Float
+  public final inline var wet: Float
     @JvmName("wetProperty")
     get() = getWet()
     @JvmName("wetProperty")
@@ -64,100 +64,100 @@ public open class AudioEffectChorus : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTCHORUS, scriptIndex)
   }
 
-  public fun setVoiceCount(voices: Int): Unit {
+  public final fun setVoiceCount(voices: Int): Unit {
     TransferContext.writeArguments(LONG to voices.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceCountPtr, NIL)
   }
 
-  public fun getVoiceCount(): Int {
+  public final fun getVoiceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setVoiceDelayMs(voiceIdx: Int, delayMs: Float): Unit {
+  public final fun setVoiceDelayMs(voiceIdx: Int, delayMs: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to delayMs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceDelayMsPtr, NIL)
   }
 
-  public fun getVoiceDelayMs(voiceIdx: Int): Float {
+  public final fun getVoiceDelayMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceDelayMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVoiceRateHz(voiceIdx: Int, rateHz: Float): Unit {
+  public final fun setVoiceRateHz(voiceIdx: Int, rateHz: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to rateHz.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceRateHzPtr, NIL)
   }
 
-  public fun getVoiceRateHz(voiceIdx: Int): Float {
+  public final fun getVoiceRateHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceRateHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVoiceDepthMs(voiceIdx: Int, depthMs: Float): Unit {
+  public final fun setVoiceDepthMs(voiceIdx: Int, depthMs: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to depthMs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceDepthMsPtr, NIL)
   }
 
-  public fun getVoiceDepthMs(voiceIdx: Int): Float {
+  public final fun getVoiceDepthMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceDepthMsPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVoiceLevelDb(voiceIdx: Int, levelDb: Float): Unit {
+  public final fun setVoiceLevelDb(voiceIdx: Int, levelDb: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to levelDb.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceLevelDbPtr, NIL)
   }
 
-  public fun getVoiceLevelDb(voiceIdx: Int): Float {
+  public final fun getVoiceLevelDb(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceLevelDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVoiceCutoffHz(voiceIdx: Int, cutoffHz: Float): Unit {
+  public final fun setVoiceCutoffHz(voiceIdx: Int, cutoffHz: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to cutoffHz.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoiceCutoffHzPtr, NIL)
   }
 
-  public fun getVoiceCutoffHz(voiceIdx: Int): Float {
+  public final fun getVoiceCutoffHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceCutoffHzPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVoicePan(voiceIdx: Int, pan: Float): Unit {
+  public final fun setVoicePan(voiceIdx: Int, pan: Float): Unit {
     TransferContext.writeArguments(LONG to voiceIdx.toLong(), DOUBLE to pan.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVoicePanPtr, NIL)
   }
 
-  public fun getVoicePan(voiceIdx: Int): Float {
+  public final fun getVoicePan(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoicePanPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setWet(amount: Float): Unit {
+  public final fun setWet(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
   }
 
-  public fun getWet(): Float {
+  public final fun getWet(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDry(amount: Float): Unit {
+  public final fun setDry(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
   }
 
-  public fun getDry(): Float {
+  public final fun getDry(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

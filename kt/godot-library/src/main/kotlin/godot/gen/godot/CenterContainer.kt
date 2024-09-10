@@ -27,7 +27,7 @@ public open class CenterContainer : Container() {
   /**
    * If `true`, centers children relative to the [CenterContainer]'s top left corner.
    */
-  public var useTopLeft: Boolean
+  public final inline var useTopLeft: Boolean
     @JvmName("useTopLeftProperty")
     get() = isUsingTopLeft()
     @JvmName("useTopLeftProperty")
@@ -39,12 +39,12 @@ public open class CenterContainer : Container() {
     callConstructor(ENGINECLASS_CENTERCONTAINER, scriptIndex)
   }
 
-  public fun setUseTopLeft(enable: Boolean): Unit {
+  public final fun setUseTopLeft(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseTopLeftPtr, NIL)
   }
 
-  public fun isUsingTopLeft(): Boolean {
+  public final fun isUsingTopLeft(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingTopLeftPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

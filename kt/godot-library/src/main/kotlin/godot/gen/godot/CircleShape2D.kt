@@ -30,7 +30,7 @@ public open class CircleShape2D : Shape2D() {
   /**
    * The circle's radius.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -42,12 +42,12 @@ public open class CircleShape2D : Shape2D() {
     callConstructor(ENGINECLASS_CIRCLESHAPE2D, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

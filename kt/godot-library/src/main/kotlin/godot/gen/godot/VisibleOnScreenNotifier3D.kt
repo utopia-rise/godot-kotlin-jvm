@@ -50,7 +50,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    * The [VisibleOnScreenNotifier3D]'s bounding box.
    */
   @CoreTypeLocalCopy
-  public var aabb: AABB
+  public final inline var aabb: AABB
     @JvmName("aabbProperty")
     get() = getAabb()
     @JvmName("aabbProperty")
@@ -80,13 +80,13 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply{
+  public final fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply{
       block(this)
       aabb = this
   }
 
 
-  public fun setAabb(rect: AABB): Unit {
+  public final fun setAabb(rect: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
   }
@@ -97,7 +97,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    * once added to the scene tree, so this method will always return `false` right after it is
    * instantiated.
    */
-  public fun isOnScreen(): Boolean {
+  public final fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

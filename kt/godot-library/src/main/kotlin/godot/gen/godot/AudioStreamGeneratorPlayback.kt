@@ -39,7 +39,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * [pushBuffer] in C# and compiled languages via GDExtension, but [pushFrame] may be *more* efficient
    * in GDScript.
    */
-  public fun pushFrame(frame: Vector2): Boolean {
+  public final fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)
     TransferContext.callMethod(rawPtr, MethodBindings.pushFramePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -49,7 +49,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * Returns `true` if a buffer of the size [amount] can be pushed to the audio sample data buffer
    * without overflowing it, `false` otherwise.
    */
-  public fun canPushBuffer(amount: Int): Boolean {
+  public final fun canPushBuffer(amount: Int): Boolean {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.canPushBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -60,7 +60,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * in C# and compiled languages via GDExtension, but [pushBuffer] may be *less* efficient in
    * GDScript.
    */
-  public fun pushBuffer(frames: PackedVector2Array): Boolean {
+  public final fun pushBuffer(frames: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)
     TransferContext.callMethod(rawPtr, MethodBindings.pushBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -70,7 +70,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * Returns the number of frames that can be pushed to the audio sample data buffer without
    * overflowing it. If the result is `0`, the buffer is full.
    */
-  public fun getFramesAvailable(): Int {
+  public final fun getFramesAvailable(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -80,7 +80,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * Returns the number of times the playback skipped due to a buffer underrun in the audio sample
    * data. This value is reset at the start of the playback.
    */
-  public fun getSkips(): Int {
+  public final fun getSkips(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkipsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -89,7 +89,7 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   /**
    * Clears the audio sample data buffer.
    */
-  public fun clearBuffer(): Unit {
+  public final fun clearBuffer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
   }

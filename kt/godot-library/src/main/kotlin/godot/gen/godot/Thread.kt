@@ -50,7 +50,7 @@ public open class Thread : RefCounted() {
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
   @JvmOverloads
-  public fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
+  public final fun start(callable: Callable, priority: Priority = Thread.Priority.PRIORITY_NORMAL):
       GodotError {
     TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
     TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
@@ -61,7 +61,7 @@ public open class Thread : RefCounted() {
    * Returns the current [Thread]'s ID, uniquely identifying it among all threads. If the [Thread]
    * has not started running or if [waitToFinish] has been called, this returns an empty string.
    */
-  public fun getId(): String {
+  public final fun getId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -72,7 +72,7 @@ public open class Thread : RefCounted() {
    * it is joined using [waitToFinish]. For checking if a [Thread] is still executing its task, use
    * [isAlive].
    */
-  public fun isStarted(): Boolean {
+  public final fun isStarted(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStartedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -83,7 +83,7 @@ public open class Thread : RefCounted() {
    * determining if [waitToFinish] can be called without blocking the calling thread.
    * To check if a [Thread] is joinable, use [isStarted].
    */
-  public fun isAlive(): Boolean {
+  public final fun isAlive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAlivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -97,7 +97,7 @@ public open class Thread : RefCounted() {
    * To determine if this can be called without blocking the calling thread, check if [isAlive] is
    * `false`.
    */
-  public fun waitToFinish(): Any? {
+  public final fun waitToFinish(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.waitToFinishPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -150,7 +150,7 @@ public open class Thread : RefCounted() {
      * **Note:** Even in the case of having disabled the checks in a [WorkerThreadPool] task,
      * there's no need to re-enable them at the end. The engine will do so.
      */
-    public fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
+    public final fun setThreadSafetyChecksEnabled(enabled: Boolean): Unit {
       TransferContext.writeArguments(BOOL to enabled)
       TransferContext.callMethod(0, MethodBindings.setThreadSafetyChecksEnabledPtr, NIL)
     }

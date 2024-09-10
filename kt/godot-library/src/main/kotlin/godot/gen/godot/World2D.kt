@@ -27,7 +27,7 @@ public open class World2D : Resource() {
   /**
    * The [RID] of this world's canvas resource. Used by the [RenderingServer] for 2D drawing.
    */
-  public val canvas: RID
+  public final inline val canvas: RID
     @JvmName("canvasProperty")
     get() = getCanvas()
 
@@ -35,14 +35,14 @@ public open class World2D : Resource() {
    * The [RID] of this world's physics space resource. Used by the [PhysicsServer2D] for 2D physics,
    * treating it as both a space and an area.
    */
-  public val space: RID
+  public final inline val space: RID
     @JvmName("spaceProperty")
     get() = getSpace()
 
   /**
    * The [RID] of this world's navigation map. Used by the [NavigationServer2D].
    */
-  public val navigationMap: RID
+  public final inline val navigationMap: RID
     @JvmName("navigationMapProperty")
     get() = getNavigationMap()
 
@@ -51,7 +51,7 @@ public open class World2D : Resource() {
    * collisions. When using multi-threaded physics, access is limited to [Node.PhysicsProcess] in the
    * main thread.
    */
-  public val directSpaceState: PhysicsDirectSpaceState2D?
+  public final inline val directSpaceState: PhysicsDirectSpaceState2D?
     @JvmName("directSpaceStateProperty")
     get() = getDirectSpaceState()
 
@@ -59,25 +59,25 @@ public open class World2D : Resource() {
     callConstructor(ENGINECLASS_WORLD2D, scriptIndex)
   }
 
-  public fun getCanvas(): RID {
+  public final fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun getSpace(): RID {
+  public final fun getSpace(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun getNavigationMap(): RID {
+  public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun getDirectSpaceState(): PhysicsDirectSpaceState2D? {
+  public final fun getDirectSpaceState(): PhysicsDirectSpaceState2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?)

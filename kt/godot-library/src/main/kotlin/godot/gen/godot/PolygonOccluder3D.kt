@@ -35,7 +35,7 @@ public open class PolygonOccluder3D : Occluder3D() {
    * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
    * error message printed).
    */
-  public var polygon: PackedVector2Array
+  public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
     @JvmName("polygonProperty")
@@ -47,12 +47,12 @@ public open class PolygonOccluder3D : Occluder3D() {
     callConstructor(ENGINECLASS_POLYGONOCCLUDER3D, scriptIndex)
   }
 
-  public fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
-  public fun getPolygon(): PackedVector2Array {
+  public final fun getPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)

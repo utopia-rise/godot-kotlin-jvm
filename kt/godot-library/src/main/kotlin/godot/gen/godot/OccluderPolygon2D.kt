@@ -31,7 +31,7 @@ public open class OccluderPolygon2D : Resource() {
    * If `true`, closes the polygon. A closed OccluderPolygon2D occludes the light coming from any
    * direction. An opened OccluderPolygon2D occludes the light only at its outline's direction.
    */
-  public var closed: Boolean
+  public final inline var closed: Boolean
     @JvmName("closedProperty")
     get() = isClosed()
     @JvmName("closedProperty")
@@ -42,7 +42,7 @@ public open class OccluderPolygon2D : Resource() {
   /**
    * The culling mode to use.
    */
-  public var cullMode: CullMode
+  public final inline var cullMode: CullMode
     @JvmName("cullModeProperty")
     get() = getCullMode()
     @JvmName("cullModeProperty")
@@ -53,7 +53,7 @@ public open class OccluderPolygon2D : Resource() {
   /**
    * A [Vector2] array with the index for polygon's vertices positions.
    */
-  public var polygon: PackedVector2Array
+  public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
     @JvmName("polygonProperty")
@@ -65,34 +65,34 @@ public open class OccluderPolygon2D : Resource() {
     callConstructor(ENGINECLASS_OCCLUDERPOLYGON2D, scriptIndex)
   }
 
-  public fun setClosed(closed: Boolean): Unit {
+  public final fun setClosed(closed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to closed)
     TransferContext.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
   }
 
-  public fun isClosed(): Boolean {
+  public final fun isClosed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCullMode(cullMode: CullMode): Unit {
+  public final fun setCullMode(cullMode: CullMode): Unit {
     TransferContext.writeArguments(LONG to cullMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
   }
 
-  public fun getCullMode(): CullMode {
+  public final fun getCullMode(): CullMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
     return OccluderPolygon2D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
-  public fun getPolygon(): PackedVector2Array {
+  public final fun getPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)

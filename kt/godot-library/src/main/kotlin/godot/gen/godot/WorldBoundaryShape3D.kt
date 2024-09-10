@@ -32,7 +32,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
    * The [Plane] used by the [WorldBoundaryShape3D] for collision.
    */
   @CoreTypeLocalCopy
-  public var plane: Plane
+  public final inline var plane: Plane
     @JvmName("planeProperty")
     get() = getPlane()
     @JvmName("planeProperty")
@@ -62,18 +62,18 @@ public open class WorldBoundaryShape3D : Shape3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun planeMutate(block: Plane.() -> Unit): Plane = plane.apply{
+  public final fun planeMutate(block: Plane.() -> Unit): Plane = plane.apply{
       block(this)
       plane = this
   }
 
 
-  public fun setPlane(plane: Plane): Unit {
+  public final fun setPlane(plane: Plane): Unit {
     TransferContext.writeArguments(PLANE to plane)
     TransferContext.callMethod(rawPtr, MethodBindings.setPlanePtr, NIL)
   }
 
-  public fun getPlane(): Plane {
+  public final fun getPlane(): Plane {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
     return (TransferContext.readReturnValue(PLANE, false) as Plane)

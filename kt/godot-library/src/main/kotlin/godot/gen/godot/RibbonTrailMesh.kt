@@ -34,7 +34,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    * Determines the shape of the ribbon.
    */
-  public var shape: Shape
+  public final inline var shape: Shape
     @JvmName("shapeProperty")
     get() = getShape()
     @JvmName("shapeProperty")
@@ -46,7 +46,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
    * The baseline size of the ribbon. The size of a particular section segment is obtained by
    * multiplying this size by the value of the [curve] at the given distance.
    */
-  public var size: Float
+  public final inline var size: Float
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -57,7 +57,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    * The total number of sections on the ribbon.
    */
-  public var sections: Int
+  public final inline var sections: Int
     @JvmName("sectionsProperty")
     get() = getSections()
     @JvmName("sectionsProperty")
@@ -68,7 +68,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   /**
    * The length of a section of the ribbon.
    */
-  public var sectionLength: Float
+  public final inline var sectionLength: Float
     @JvmName("sectionLengthProperty")
     get() = getSectionLength()
     @JvmName("sectionLengthProperty")
@@ -80,7 +80,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
    * The number of segments in a section. The [curve] is sampled on each segment to determine its
    * size. Higher values result in a more detailed ribbon at the cost of performance.
    */
-  public var sectionSegments: Int
+  public final inline var sectionSegments: Int
     @JvmName("sectionSegmentsProperty")
     get() = getSectionSegments()
     @JvmName("sectionSegmentsProperty")
@@ -93,7 +93,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
    * obtained by multiplying the baseline [size] by the value of this curve at the given distance. For
    * values smaller than `0`, the faces will be inverted.
    */
-  public var curve: Curve?
+  public final inline var curve: Curve?
     @JvmName("curveProperty")
     get() = getCurve()
     @JvmName("curveProperty")
@@ -105,67 +105,67 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_RIBBONTRAILMESH, scriptIndex)
   }
 
-  public fun setSize(size: Float): Unit {
+  public final fun setSize(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Float {
+  public final fun getSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSections(sections: Int): Unit {
+  public final fun setSections(sections: Int): Unit {
     TransferContext.writeArguments(LONG to sections.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSectionsPtr, NIL)
   }
 
-  public fun getSections(): Int {
+  public final fun getSections(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSectionLength(sectionLength: Float): Unit {
+  public final fun setSectionLength(sectionLength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sectionLength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSectionLengthPtr, NIL)
   }
 
-  public fun getSectionLength(): Float {
+  public final fun getSectionLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSectionSegments(sectionSegments: Int): Unit {
+  public final fun setSectionSegments(sectionSegments: Int): Unit {
     TransferContext.writeArguments(LONG to sectionSegments.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSectionSegmentsPtr, NIL)
   }
 
-  public fun getSectionSegments(): Int {
+  public final fun getSectionSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setCurve(curve: Curve?): Unit {
+  public final fun setCurve(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
   }
 
-  public fun getCurve(): Curve? {
+  public final fun getCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setShape(shape: Shape): Unit {
+  public final fun setShape(shape: Shape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
-  public fun getShape(): Shape {
+  public final fun getShape(): Shape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, LONG)
     return RibbonTrailMesh.Shape.from(TransferContext.readReturnValue(LONG) as Long)

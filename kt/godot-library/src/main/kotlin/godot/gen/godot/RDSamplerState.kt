@@ -32,7 +32,7 @@ public open class RDSamplerState : RefCounted() {
    * The sampler's magnification filter. It is the filtering method used when sampling texels that
    * appear bigger than on-screen pixels.
    */
-  public var magFilter: RenderingDevice.SamplerFilter
+  public final inline var magFilter: RenderingDevice.SamplerFilter
     @JvmName("magFilterProperty")
     get() = getMagFilter()
     @JvmName("magFilterProperty")
@@ -44,7 +44,7 @@ public open class RDSamplerState : RefCounted() {
    * The sampler's minification filter. It is the filtering method used when sampling texels that
    * appear smaller than on-screen pixels.
    */
-  public var minFilter: RenderingDevice.SamplerFilter
+  public final inline var minFilter: RenderingDevice.SamplerFilter
     @JvmName("minFilterProperty")
     get() = getMinFilter()
     @JvmName("minFilterProperty")
@@ -55,7 +55,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    * The filtering method to use for mipmaps.
    */
-  public var mipFilter: RenderingDevice.SamplerFilter
+  public final inline var mipFilter: RenderingDevice.SamplerFilter
     @JvmName("mipFilterProperty")
     get() = getMipFilter()
     @JvmName("mipFilterProperty")
@@ -67,7 +67,7 @@ public open class RDSamplerState : RefCounted() {
    * The repeat mode to use along the U axis of UV coordinates. This affects the returned values if
    * sampling outside the UV bounds.
    */
-  public var repeatU: RenderingDevice.SamplerRepeatMode
+  public final inline var repeatU: RenderingDevice.SamplerRepeatMode
     @JvmName("repeatUProperty")
     get() = getRepeatU()
     @JvmName("repeatUProperty")
@@ -79,7 +79,7 @@ public open class RDSamplerState : RefCounted() {
    * The repeat mode to use along the V axis of UV coordinates. This affects the returned values if
    * sampling outside the UV bounds.
    */
-  public var repeatV: RenderingDevice.SamplerRepeatMode
+  public final inline var repeatV: RenderingDevice.SamplerRepeatMode
     @JvmName("repeatVProperty")
     get() = getRepeatV()
     @JvmName("repeatVProperty")
@@ -91,7 +91,7 @@ public open class RDSamplerState : RefCounted() {
    * The repeat mode to use along the W axis of UV coordinates. This affects the returned values if
    * sampling outside the UV bounds. Only effective for 3D samplers.
    */
-  public var repeatW: RenderingDevice.SamplerRepeatMode
+  public final inline var repeatW: RenderingDevice.SamplerRepeatMode
     @JvmName("repeatWProperty")
     get() = getRepeatW()
     @JvmName("repeatWProperty")
@@ -105,7 +105,7 @@ public open class RDSamplerState : RefCounted() {
    * grainy). Recommended values are between `-0.5` and `0.0`. Only effective if the sampler has
    * mipmaps available.
    */
-  public var lodBias: Float
+  public final inline var lodBias: Float
     @JvmName("lodBiasProperty")
     get() = getLodBias()
     @JvmName("lodBiasProperty")
@@ -116,7 +116,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    * If `true`, perform anisotropic sampling. See [anisotropyMax].
    */
-  public var useAnisotropy: Boolean
+  public final inline var useAnisotropy: Boolean
     @JvmName("useAnisotropyProperty")
     get() = getUseAnisotropy()
     @JvmName("useAnisotropyProperty")
@@ -131,7 +131,7 @@ public open class RDSamplerState : RefCounted() {
    * hardware only supports values up to `16.0`.
    * If [anisotropyMax] is `1.0`, forcibly disables anisotropy even if [useAnisotropy] is `true`.
    */
-  public var anisotropyMax: Float
+  public final inline var anisotropyMax: Float
     @JvmName("anisotropyMaxProperty")
     get() = getAnisotropyMax()
     @JvmName("anisotropyMaxProperty")
@@ -145,7 +145,7 @@ public open class RDSamplerState : RefCounted() {
    * shader. For example, compare operations are used for shadow map rendering by comparing depth
    * values from a shadow sampler.
    */
-  public var enableCompare: Boolean
+  public final inline var enableCompare: Boolean
     @JvmName("enableCompareProperty")
     get() = getEnableCompare()
     @JvmName("enableCompareProperty")
@@ -156,7 +156,7 @@ public open class RDSamplerState : RefCounted() {
   /**
    * The compare operation to use. Only effective if [enableCompare] is `true`.
    */
-  public var compareOp: RenderingDevice.CompareOperator
+  public final inline var compareOp: RenderingDevice.CompareOperator
     @JvmName("compareOpProperty")
     get() = getCompareOp()
     @JvmName("compareOpProperty")
@@ -168,7 +168,7 @@ public open class RDSamplerState : RefCounted() {
    * The minimum mipmap LOD bias to display (highest resolution). Only effective if the sampler has
    * mipmaps available.
    */
-  public var minLod: Float
+  public final inline var minLod: Float
     @JvmName("minLodProperty")
     get() = getMinLod()
     @JvmName("minLodProperty")
@@ -180,7 +180,7 @@ public open class RDSamplerState : RefCounted() {
    * The maximum mipmap LOD bias to display (lowest resolution). Only effective if the sampler has
    * mipmaps available.
    */
-  public var maxLod: Float
+  public final inline var maxLod: Float
     @JvmName("maxLodProperty")
     get() = getMaxLod()
     @JvmName("maxLodProperty")
@@ -192,7 +192,7 @@ public open class RDSamplerState : RefCounted() {
    * The border color that will be returned when sampling outside the sampler's bounds and the
    * [repeatU], [repeatV] or [repeatW] modes have repeating disabled.
    */
-  public var borderColor: RenderingDevice.SamplerBorderColor
+  public final inline var borderColor: RenderingDevice.SamplerBorderColor
     @JvmName("borderColorProperty")
     get() = getBorderColor()
     @JvmName("borderColorProperty")
@@ -204,7 +204,7 @@ public open class RDSamplerState : RefCounted() {
    * If `true`, the texture will be sampled with coordinates ranging from 0 to the texture's
    * resolution. Otherwise, the coordinates will be normalized and range from 0 to 1.
    */
-  public var unnormalizedUvw: Boolean
+  public final inline var unnormalizedUvw: Boolean
     @JvmName("unnormalizedUvwProperty")
     get() = getUnnormalizedUvw()
     @JvmName("unnormalizedUvwProperty")
@@ -216,166 +216,166 @@ public open class RDSamplerState : RefCounted() {
     callConstructor(ENGINECLASS_RDSAMPLERSTATE, scriptIndex)
   }
 
-  public fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {
+  public final fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
   }
 
-  public fun getMagFilter(): RenderingDevice.SamplerFilter {
+  public final fun getMagFilter(): RenderingDevice.SamplerFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
     return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMinFilter(pMember: RenderingDevice.SamplerFilter): Unit {
+  public final fun setMinFilter(pMember: RenderingDevice.SamplerFilter): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
   }
 
-  public fun getMinFilter(): RenderingDevice.SamplerFilter {
+  public final fun getMinFilter(): RenderingDevice.SamplerFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
     return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMipFilter(pMember: RenderingDevice.SamplerFilter): Unit {
+  public final fun setMipFilter(pMember: RenderingDevice.SamplerFilter): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMipFilterPtr, NIL)
   }
 
-  public fun getMipFilter(): RenderingDevice.SamplerFilter {
+  public final fun getMipFilter(): RenderingDevice.SamplerFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMipFilterPtr, LONG)
     return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setRepeatU(pMember: RenderingDevice.SamplerRepeatMode): Unit {
+  public final fun setRepeatU(pMember: RenderingDevice.SamplerRepeatMode): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRepeatUPtr, NIL)
   }
 
-  public fun getRepeatU(): RenderingDevice.SamplerRepeatMode {
+  public final fun getRepeatU(): RenderingDevice.SamplerRepeatMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRepeatUPtr, LONG)
     return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setRepeatV(pMember: RenderingDevice.SamplerRepeatMode): Unit {
+  public final fun setRepeatV(pMember: RenderingDevice.SamplerRepeatMode): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRepeatVPtr, NIL)
   }
 
-  public fun getRepeatV(): RenderingDevice.SamplerRepeatMode {
+  public final fun getRepeatV(): RenderingDevice.SamplerRepeatMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRepeatVPtr, LONG)
     return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setRepeatW(pMember: RenderingDevice.SamplerRepeatMode): Unit {
+  public final fun setRepeatW(pMember: RenderingDevice.SamplerRepeatMode): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRepeatWPtr, NIL)
   }
 
-  public fun getRepeatW(): RenderingDevice.SamplerRepeatMode {
+  public final fun getRepeatW(): RenderingDevice.SamplerRepeatMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRepeatWPtr, LONG)
     return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setLodBias(pMember: Float): Unit {
+  public final fun setLodBias(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
   }
 
-  public fun getLodBias(): Float {
+  public final fun getLodBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setUseAnisotropy(pMember: Boolean): Unit {
+  public final fun setUseAnisotropy(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseAnisotropyPtr, NIL)
   }
 
-  public fun getUseAnisotropy(): Boolean {
+  public final fun getUseAnisotropy(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseAnisotropyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAnisotropyMax(pMember: Float): Unit {
+  public final fun setAnisotropyMax(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyMaxPtr, NIL)
   }
 
-  public fun getAnisotropyMax(): Float {
+  public final fun getAnisotropyMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEnableCompare(pMember: Boolean): Unit {
+  public final fun setEnableCompare(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableComparePtr, NIL)
   }
 
-  public fun getEnableCompare(): Boolean {
+  public final fun getEnableCompare(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableComparePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCompareOp(pMember: RenderingDevice.CompareOperator): Unit {
+  public final fun setCompareOp(pMember: RenderingDevice.CompareOperator): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCompareOpPtr, NIL)
   }
 
-  public fun getCompareOp(): RenderingDevice.CompareOperator {
+  public final fun getCompareOp(): RenderingDevice.CompareOperator {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCompareOpPtr, LONG)
     return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMinLod(pMember: Float): Unit {
+  public final fun setMinLod(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMinLodPtr, NIL)
   }
 
-  public fun getMinLod(): Float {
+  public final fun getMinLod(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinLodPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMaxLod(pMember: Float): Unit {
+  public final fun setMaxLod(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxLodPtr, NIL)
   }
 
-  public fun getMaxLod(): Float {
+  public final fun getMaxLod(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxLodPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBorderColor(pMember: RenderingDevice.SamplerBorderColor): Unit {
+  public final fun setBorderColor(pMember: RenderingDevice.SamplerBorderColor): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
   }
 
-  public fun getBorderColor(): RenderingDevice.SamplerBorderColor {
+  public final fun getBorderColor(): RenderingDevice.SamplerBorderColor {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, LONG)
     return RenderingDevice.SamplerBorderColor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setUnnormalizedUvw(pMember: Boolean): Unit {
+  public final fun setUnnormalizedUvw(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setUnnormalizedUvwPtr, NIL)
   }
 
-  public fun getUnnormalizedUvw(): Boolean {
+  public final fun getUnnormalizedUvw(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUnnormalizedUvwPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

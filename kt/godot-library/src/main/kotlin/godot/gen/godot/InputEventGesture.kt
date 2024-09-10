@@ -31,7 +31,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
    * position is relative to the current [Control] that received this gesture.
    */
   @CoreTypeLocalCopy
-  public var position: Vector2
+  public final inline var position: Vector2
     @JvmName("positionProperty")
     get() = getPosition()
     @JvmName("positionProperty")
@@ -62,18 +62,18 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
    * ``````
    */
   @CoreTypeHelper
-  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
+  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
       block(this)
       position = this
   }
 
 
-  public fun setPosition(position: Vector2): Unit {
+  public final fun setPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
-  public fun getPosition(): Vector2 {
+  public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

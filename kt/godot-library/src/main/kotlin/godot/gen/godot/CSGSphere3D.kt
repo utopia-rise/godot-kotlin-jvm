@@ -36,7 +36,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   /**
    * Radius of the sphere.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -47,7 +47,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   /**
    * Number of vertical slices for the sphere.
    */
-  public var radialSegments: Int
+  public final inline var radialSegments: Int
     @JvmName("radialSegmentsProperty")
     get() = getRadialSegments()
     @JvmName("radialSegmentsProperty")
@@ -58,7 +58,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   /**
    * Number of horizontal slices for the sphere.
    */
-  public var rings: Int
+  public final inline var rings: Int
     @JvmName("ringsProperty")
     get() = getRings()
     @JvmName("ringsProperty")
@@ -70,7 +70,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
    * If `true` the normals of the sphere are set to give a smooth effect making the sphere seem
    * rounded. If `false` the sphere will have a flat shaded look.
    */
-  public var smoothFaces: Boolean
+  public final inline var smoothFaces: Boolean
     @JvmName("smoothFacesProperty")
     get() = getSmoothFaces()
     @JvmName("smoothFacesProperty")
@@ -81,7 +81,7 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   /**
    * The material used to render the sphere.
    */
-  public var material: Material?
+  public final inline var material: Material?
     @JvmName("materialProperty")
     get() = getMaterial()
     @JvmName("materialProperty")
@@ -93,56 +93,56 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     callConstructor(ENGINECLASS_CSGSPHERE3D, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRadialSegments(radialSegments: Int): Unit {
+  public final fun setRadialSegments(radialSegments: Int): Unit {
     TransferContext.writeArguments(LONG to radialSegments.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
 
-  public fun getRadialSegments(): Int {
+  public final fun getRadialSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setRings(rings: Int): Unit {
+  public final fun setRings(rings: Int): Unit {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
   }
 
-  public fun getRings(): Int {
+  public final fun getRings(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSmoothFaces(smoothFaces: Boolean): Unit {
+  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
     TransferContext.writeArguments(BOOL to smoothFaces)
     TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
   }
 
-  public fun getSmoothFaces(): Boolean {
+  public final fun getSmoothFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
-  public fun getMaterial(): Material? {
+  public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)

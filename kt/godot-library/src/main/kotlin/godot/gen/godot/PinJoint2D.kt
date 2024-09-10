@@ -31,7 +31,7 @@ public open class PinJoint2D : Joint2D() {
   /**
    * The higher this value, the more the bond to the pinned partner can flex.
    */
-  public var softness: Float
+  public final inline var softness: Float
     @JvmName("softnessProperty")
     get() = getSoftness()
     @JvmName("softnessProperty")
@@ -43,7 +43,7 @@ public open class PinJoint2D : Joint2D() {
    * If `true`, the pin maximum and minimum rotation, defined by [angularLimitLower] and
    * [angularLimitUpper] are applied.
    */
-  public var angularLimitEnabled: Boolean
+  public final inline var angularLimitEnabled: Boolean
     @JvmName("angularLimitEnabledProperty")
     get() = isAngularLimitEnabled()
     @JvmName("angularLimitEnabledProperty")
@@ -54,7 +54,7 @@ public open class PinJoint2D : Joint2D() {
   /**
    * The minimum rotation. Only active if [angularLimitEnabled] is `true`.
    */
-  public var angularLimitLower: Float
+  public final inline var angularLimitLower: Float
     @JvmName("angularLimitLowerProperty")
     get() = getAngularLimitLower()
     @JvmName("angularLimitLowerProperty")
@@ -65,7 +65,7 @@ public open class PinJoint2D : Joint2D() {
   /**
    * The maximum rotation. Only active if [angularLimitEnabled] is `true`.
    */
-  public var angularLimitUpper: Float
+  public final inline var angularLimitUpper: Float
     @JvmName("angularLimitUpperProperty")
     get() = getAngularLimitUpper()
     @JvmName("angularLimitUpperProperty")
@@ -76,7 +76,7 @@ public open class PinJoint2D : Joint2D() {
   /**
    * When activated, a motor turns the pin.
    */
-  public var motorEnabled: Boolean
+  public final inline var motorEnabled: Boolean
     @JvmName("motorEnabledProperty")
     get() = isMotorEnabled()
     @JvmName("motorEnabledProperty")
@@ -87,7 +87,7 @@ public open class PinJoint2D : Joint2D() {
   /**
    * Target speed for the motor. In radians per second.
    */
-  public var motorTargetVelocity: Float
+  public final inline var motorTargetVelocity: Float
     @JvmName("motorTargetVelocityProperty")
     get() = getMotorTargetVelocity()
     @JvmName("motorTargetVelocityProperty")
@@ -99,67 +99,67 @@ public open class PinJoint2D : Joint2D() {
     callConstructor(ENGINECLASS_PINJOINT2D, scriptIndex)
   }
 
-  public fun setSoftness(softness: Float): Unit {
+  public final fun setSoftness(softness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to softness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSoftnessPtr, NIL)
   }
 
-  public fun getSoftness(): Float {
+  public final fun getSoftness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSoftnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAngularLimitLower(angularLimitLower: Float): Unit {
+  public final fun setAngularLimitLower(angularLimitLower: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angularLimitLower.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitLowerPtr, NIL)
   }
 
-  public fun getAngularLimitLower(): Float {
+  public final fun getAngularLimitLower(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitLowerPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAngularLimitUpper(angularLimitUpper: Float): Unit {
+  public final fun setAngularLimitUpper(angularLimitUpper: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angularLimitUpper.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitUpperPtr, NIL)
   }
 
-  public fun getAngularLimitUpper(): Float {
+  public final fun getAngularLimitUpper(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitUpperPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMotorTargetVelocity(motorTargetVelocity: Float): Unit {
+  public final fun setMotorTargetVelocity(motorTargetVelocity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to motorTargetVelocity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMotorTargetVelocityPtr, NIL)
   }
 
-  public fun getMotorTargetVelocity(): Float {
+  public final fun getMotorTargetVelocity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotorTargetVelocityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMotorEnabled(enabled: Boolean): Unit {
+  public final fun setMotorEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setMotorEnabledPtr, NIL)
   }
 
-  public fun isMotorEnabled(): Boolean {
+  public final fun isMotorEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMotorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAngularLimitEnabled(enabled: Boolean): Unit {
+  public final fun setAngularLimitEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitEnabledPtr, NIL)
   }
 
-  public fun isAngularLimitEnabled(): Boolean {
+  public final fun isAngularLimitEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAngularLimitEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

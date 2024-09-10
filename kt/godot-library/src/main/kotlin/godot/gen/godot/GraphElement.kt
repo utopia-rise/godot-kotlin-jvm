@@ -79,7 +79,7 @@ public open class GraphElement : Container() {
    * The offset of the GraphElement, relative to the scroll offset of the [GraphEdit].
    */
   @CoreTypeLocalCopy
-  public var positionOffset: Vector2
+  public final inline var positionOffset: Vector2
     @JvmName("positionOffsetProperty")
     get() = getPositionOffset()
     @JvmName("positionOffsetProperty")
@@ -92,7 +92,7 @@ public open class GraphElement : Container() {
    * **Note:** Dragging the handle will only emit the [signal resize_request] and [signal
    * resize_end] signals, the GraphElement needs to be resized manually.
    */
-  public var resizable: Boolean
+  public final inline var resizable: Boolean
     @JvmName("resizableProperty")
     get() = isResizable()
     @JvmName("resizableProperty")
@@ -103,7 +103,7 @@ public open class GraphElement : Container() {
   /**
    * If `true`, the user can drag the GraphElement.
    */
-  public var draggable: Boolean
+  public final inline var draggable: Boolean
     @JvmName("draggableProperty")
     get() = isDraggable()
     @JvmName("draggableProperty")
@@ -114,7 +114,7 @@ public open class GraphElement : Container() {
   /**
    * If `true`, the user can select the GraphElement.
    */
-  public var selectable: Boolean
+  public final inline var selectable: Boolean
     @JvmName("selectableProperty")
     get() = isSelectable()
     @JvmName("selectableProperty")
@@ -125,7 +125,7 @@ public open class GraphElement : Container() {
   /**
    * If `true`, the GraphElement is selected.
    */
-  public var selected: Boolean
+  public final inline var selected: Boolean
     @JvmName("selectedProperty")
     get() = isSelected()
     @JvmName("selectedProperty")
@@ -155,62 +155,62 @@ public open class GraphElement : Container() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun positionOffsetMutate(block: Vector2.() -> Unit): Vector2 = positionOffset.apply{
+  public final fun positionOffsetMutate(block: Vector2.() -> Unit): Vector2 = positionOffset.apply{
       block(this)
       positionOffset = this
   }
 
 
-  public fun setResizable(resizable: Boolean): Unit {
+  public final fun setResizable(resizable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to resizable)
     TransferContext.callMethod(rawPtr, MethodBindings.setResizablePtr, NIL)
   }
 
-  public fun isResizable(): Boolean {
+  public final fun isResizable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isResizablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDraggable(draggable: Boolean): Unit {
+  public final fun setDraggable(draggable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to draggable)
     TransferContext.callMethod(rawPtr, MethodBindings.setDraggablePtr, NIL)
   }
 
-  public fun isDraggable(): Boolean {
+  public final fun isDraggable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDraggablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSelectable(selectable: Boolean): Unit {
+  public final fun setSelectable(selectable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to selectable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
   }
 
-  public fun isSelectable(): Boolean {
+  public final fun isSelectable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSelected(selected: Boolean): Unit {
+  public final fun setSelected(selected: Boolean): Unit {
     TransferContext.writeArguments(BOOL to selected)
     TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
   }
 
-  public fun isSelected(): Boolean {
+  public final fun isSelected(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPositionOffset(offset: Vector2): Unit {
+  public final fun setPositionOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setPositionOffsetPtr, NIL)
   }
 
-  public fun getPositionOffset(): Vector2 {
+  public final fun getPositionOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

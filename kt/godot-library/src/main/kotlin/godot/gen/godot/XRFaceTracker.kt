@@ -39,7 +39,7 @@ public open class XRFaceTracker : XRTracker() {
   /**
    * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
    */
-  public var blendShapes: PackedFloat32Array
+  public final inline var blendShapes: PackedFloat32Array
     @JvmName("blendShapesProperty")
     get() = getBlendShapes()
     @JvmName("blendShapesProperty")
@@ -54,7 +54,7 @@ public open class XRFaceTracker : XRTracker() {
   /**
    * Returns the requested face blend shape weight.
    */
-  public fun getBlendShape(blendShape: BlendShapeEntry): Float {
+  public final fun getBlendShape(blendShape: BlendShapeEntry): Float {
     TransferContext.writeArguments(LONG to blendShape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -63,18 +63,18 @@ public open class XRFaceTracker : XRTracker() {
   /**
    * Sets a face blend shape weight.
    */
-  public fun setBlendShape(blendShape: BlendShapeEntry, weight: Float): Unit {
+  public final fun setBlendShape(blendShape: BlendShapeEntry, weight: Float): Unit {
     TransferContext.writeArguments(LONG to blendShape.id, DOUBLE to weight.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapePtr, NIL)
   }
 
-  public fun getBlendShapes(): PackedFloat32Array {
+  public final fun getBlendShapes(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
   }
 
-  public fun setBlendShapes(weights: PackedFloat32Array): Unit {
+  public final fun setBlendShapes(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapesPtr, NIL)
   }

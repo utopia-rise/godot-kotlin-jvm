@@ -28,7 +28,7 @@ public open class InputEventShortcut : InputEvent() {
    * The [Shortcut] represented by this event. Its [Shortcut.matchesEvent] method will always return
    * `true` for this event.
    */
-  public var shortcut: Shortcut?
+  public final inline var shortcut: Shortcut?
     @JvmName("shortcutProperty")
     get() = getShortcut()
     @JvmName("shortcutProperty")
@@ -40,12 +40,12 @@ public open class InputEventShortcut : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTSHORTCUT, scriptIndex)
   }
 
-  public fun setShortcut(shortcut: Shortcut?): Unit {
+  public final fun setShortcut(shortcut: Shortcut?): Unit {
     TransferContext.writeArguments(OBJECT to shortcut)
     TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
   }
 
-  public fun getShortcut(): Shortcut? {
+  public final fun getShortcut(): Shortcut? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)

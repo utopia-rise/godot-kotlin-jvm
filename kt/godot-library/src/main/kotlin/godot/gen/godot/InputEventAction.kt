@@ -39,7 +39,7 @@ public open class InputEventAction : InputEvent() {
   /**
    * The action's name. Actions are accessed via this [String].
    */
-  public var action: StringName
+  public final inline var action: StringName
     @JvmName("actionProperty")
     get() = getAction()
     @JvmName("actionProperty")
@@ -50,7 +50,7 @@ public open class InputEventAction : InputEvent() {
   /**
    * If `true`, the action's state is pressed. If `false`, the action's state is released.
    */
-  public var pressed: Boolean
+  public final inline var pressed: Boolean
     @JvmName("pressedProperty")
     get() = isPressed()
     @JvmName("pressedProperty")
@@ -63,7 +63,7 @@ public open class InputEventAction : InputEvent() {
    * `false`. The event strength allows faking analog joypad motion events, by specifying how strongly
    * the joypad axis is bent or pressed.
    */
-  public var strength: Float
+  public final inline var strength: Float
     @JvmName("strengthProperty")
     get() = getStrength()
     @JvmName("strengthProperty")
@@ -76,7 +76,7 @@ public open class InputEventAction : InputEvent() {
    * in the [InputMap]). If `-1`, a unique ID will be used and actions pressed with this ID will need
    * to be released with another [InputEventAction].
    */
-  public var eventIndex: Int
+  public final inline var eventIndex: Int
     @JvmName("eventIndexProperty")
     get() = getEventIndex()
     @JvmName("eventIndexProperty")
@@ -88,39 +88,39 @@ public open class InputEventAction : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
   }
 
-  public fun setAction(action: StringName): Unit {
+  public final fun setAction(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
   }
 
-  public fun getAction(): StringName {
+  public final fun getAction(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
-  public fun setStrength(strength: Float): Unit {
+  public final fun setStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
   }
 
-  public fun getStrength(): Float {
+  public final fun getStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEventIndex(index: Int): Unit {
+  public final fun setEventIndex(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setEventIndexPtr, NIL)
   }
 
-  public fun getEventIndex(): Int {
+  public final fun getEventIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEventIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

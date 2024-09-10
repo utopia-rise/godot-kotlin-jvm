@@ -80,7 +80,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if the server supports a feature.
    */
-  public fun hasFeature(feature: Feature): Boolean {
+  public final fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -89,7 +89,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the name of the server interface.
    */
-  public fun getName(): String {
+  public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -98,7 +98,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns text server features, see [Feature].
    */
-  public fun getFeatures(): Long {
+  public final fun getFeatures(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeaturesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -109,7 +109,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This function should be called before any other TextServer functions used, otherwise
    * it won't have any effect.
    */
-  public fun loadSupportData(filename: String): Boolean {
+  public final fun loadSupportData(filename: String): Boolean {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, MethodBindings.loadSupportDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -118,7 +118,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries) filename.
    */
-  public fun getSupportDataFilename(): String {
+  public final fun getSupportDataFilename(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportDataFilenamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -127,7 +127,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns TextServer database (e.g. ICU break iterators and dictionaries) description.
    */
-  public fun getSupportDataInfo(): String {
+  public final fun getSupportDataInfo(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportDataInfoPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -137,7 +137,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Saves optional TextServer database (e.g. ICU break iterators and dictionaries) to the file.
    * **Note:** This function is used by during project export, to include TextServer database.
    */
-  public fun saveSupportData(filename: String): Boolean {
+  public final fun saveSupportData(filename: String): Boolean {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, MethodBindings.saveSupportDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -146,7 +146,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if locale is right-to-left.
    */
-  public fun isLocaleRightToLeft(locale: String): Boolean {
+  public final fun isLocaleRightToLeft(locale: String): Boolean {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.isLocaleRightToLeftPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -155,7 +155,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Converts readable feature, variation, script, or language name to OpenType tag.
    */
-  public fun nameToTag(name: String): Long {
+  public final fun nameToTag(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.nameToTagPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -164,7 +164,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Converts OpenType tag to readable feature, variation, script, or language name.
    */
-  public fun tagToName(tag: Long): String {
+  public final fun tagToName(tag: Long): String {
     TransferContext.writeArguments(LONG to tag)
     TransferContext.callMethod(rawPtr, MethodBindings.tagToNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -173,7 +173,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if [rid] is valid resource owned by this text server.
    */
-  public fun has(rid: RID): Boolean {
+  public final fun has(rid: RID): Boolean {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -182,7 +182,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Frees an object created by this [TextServer].
    */
-  public fun freeRid(rid: RID): Unit {
+  public final fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.freeRidPtr, NIL)
   }
@@ -191,7 +191,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Creates a new, empty font cache entry resource. To free the resulting resource, use the
    * [freeRid] method.
    */
-  public fun createFont(): RID {
+  public final fun createFont(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createFontPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -201,7 +201,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Creates a new variation existing font which is reusing the same glyph cache and font data. To
    * free the resulting resource, use the [freeRid] method.
    */
-  public fun createFontLinkedVariation(fontRid: RID): RID {
+  public final fun createFontLinkedVariation(fontRid: RID): RID {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.createFontLinkedVariationPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -210,7 +210,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font source data, e.g contents of the dynamic font source file.
    */
-  public fun fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
+  public final fun fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
     TransferContext.writeArguments(_RID to fontRid, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetDataPtr, NIL)
   }
@@ -218,7 +218,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets an active face index in the TrueType / OpenType collection.
    */
-  public fun fontSetFaceIndex(fontRid: RID, faceIndex: Long): Unit {
+  public final fun fontSetFaceIndex(fontRid: RID, faceIndex: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to faceIndex)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetFaceIndexPtr, NIL)
   }
@@ -226,7 +226,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns an active face index in the TrueType / OpenType collection.
    */
-  public fun fontGetFaceIndex(fontRid: RID): Long {
+  public final fun fontGetFaceIndex(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetFaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -235,7 +235,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns number of faces in the TrueType / OpenType collection.
    */
-  public fun fontGetFaceCount(fontRid: RID): Long {
+  public final fun fontGetFaceCount(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetFaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -247,7 +247,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform]
    * instead.
    */
-  public fun fontSetStyle(fontRid: RID, style: FontStyle): Unit {
+  public final fun fontSetStyle(fontRid: RID, style: FontStyle): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to style.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetStylePtr, NIL)
   }
@@ -255,7 +255,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font style flags, see [FontStyle].
    */
-  public fun fontGetStyle(fontRid: RID): FontStyle {
+  public final fun fontGetStyle(fontRid: RID): FontStyle {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetStylePtr, LONG)
     return FontStyleValue(TransferContext.readReturnValue(LONG) as Long)
@@ -264,7 +264,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets the font family name.
    */
-  public fun fontSetName(fontRid: RID, name: String): Unit {
+  public final fun fontSetName(fontRid: RID, name: String): Unit {
     TransferContext.writeArguments(_RID to fontRid, STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetNamePtr, NIL)
   }
@@ -272,7 +272,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font family name.
    */
-  public fun fontGetName(fontRid: RID): String {
+  public final fun fontGetName(fontRid: RID): String {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -282,7 +282,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns [Dictionary] with OpenType font name strings (localized font names, version,
    * description, license information, sample text, etc.).
    */
-  public fun fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
+  public final fun fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetOtNameStringsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -291,7 +291,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets the font style name.
    */
-  public fun fontSetStyleName(fontRid: RID, name: String): Unit {
+  public final fun fontSetStyleName(fontRid: RID, name: String): Unit {
     TransferContext.writeArguments(_RID to fontRid, STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetStyleNamePtr, NIL)
   }
@@ -299,7 +299,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font style name.
    */
-  public fun fontGetStyleName(fontRid: RID): String {
+  public final fun fontGetStyleName(fontRid: RID): String {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetStyleNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -311,7 +311,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This value is used for font matching only and will not affect font rendering. Use
    * [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetEmbolden] instead.
    */
-  public fun fontSetWeight(fontRid: RID, weight: Long): Unit {
+  public final fun fontSetWeight(fontRid: RID, weight: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to weight)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetWeightPtr, NIL)
   }
@@ -320,7 +320,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
    * `400`, bold font weight is `700`.
    */
-  public fun fontGetWeight(fontRid: RID): Long {
+  public final fun fontGetWeight(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetWeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -332,7 +332,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This value is used for font matching only and will not affect font rendering. Use
    * [fontSetFaceIndex], [fontSetVariationCoordinates], or [fontSetTransform] instead.
    */
-  public fun fontSetStretch(fontRid: RID, weight: Long): Unit {
+  public final fun fontSetStretch(fontRid: RID, weight: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to weight)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetStretchPtr, NIL)
   }
@@ -341,7 +341,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
    * and `200&#37;`.
    */
-  public fun fontGetStretch(fontRid: RID): Long {
+  public final fun fontGetStretch(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetStretchPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -350,7 +350,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font anti-aliasing mode.
    */
-  public fun fontSetAntialiasing(fontRid: RID, antialiasing: FontAntialiasing): Unit {
+  public final fun fontSetAntialiasing(fontRid: RID, antialiasing: FontAntialiasing): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to antialiasing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetAntialiasingPtr, NIL)
   }
@@ -358,7 +358,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font anti-aliasing mode.
    */
-  public fun fontGetAntialiasing(fontRid: RID): FontAntialiasing {
+  public final fun fontGetAntialiasing(fontRid: RID): FontAntialiasing {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetAntialiasingPtr, LONG)
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
@@ -368,7 +368,8 @@ public open class TextServer internal constructor() : RefCounted() {
    * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore
    * this property).
    */
-  public fun fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean): Unit {
+  public final fun fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean):
+      Unit {
     TransferContext.writeArguments(_RID to fontRid, BOOL to disableEmbeddedBitmaps)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetDisableEmbeddedBitmapsPtr, NIL)
   }
@@ -376,7 +377,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns whether the font's embedded bitmap loading is disabled.
    */
-  public fun fontGetDisableEmbeddedBitmaps(fontRid: RID): Boolean {
+  public final fun fontGetDisableEmbeddedBitmaps(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetDisableEmbeddedBitmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -385,7 +386,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * If set to `true` font texture mipmap generation is enabled.
    */
-  public fun fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean): Unit {
+  public final fun fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean): Unit {
     TransferContext.writeArguments(_RID to fontRid, BOOL to generateMipmaps)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetGenerateMipmapsPtr, NIL)
   }
@@ -393,7 +394,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if font texture mipmap generation is enabled.
    */
-  public fun fontGetGenerateMipmaps(fontRid: RID): Boolean {
+  public final fun fontGetGenerateMipmaps(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGenerateMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -412,7 +413,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * consider downloading the font file directly from the type foundry instead of relying on Google
    * Fonts.
    */
-  public fun fontSetMultichannelSignedDistanceField(fontRid: RID, msdf: Boolean): Unit {
+  public final fun fontSetMultichannelSignedDistanceField(fontRid: RID, msdf: Boolean): Unit {
     TransferContext.writeArguments(_RID to fontRid, BOOL to msdf)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetMultichannelSignedDistanceFieldPtr,
         NIL)
@@ -422,7 +423,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance
    * field generated from the dynamic font vector data.
    */
-  public fun fontIsMultichannelSignedDistanceField(fontRid: RID): Boolean {
+  public final fun fontIsMultichannelSignedDistanceField(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsMultichannelSignedDistanceFieldPtr,
         BOOL)
@@ -433,7 +434,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets the width of the range around the shape between the minimum and maximum representable
    * signed distance.
    */
-  public fun fontSetMsdfPixelRange(fontRid: RID, msdfPixelRange: Long): Unit {
+  public final fun fontSetMsdfPixelRange(fontRid: RID, msdfPixelRange: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to msdfPixelRange)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetMsdfPixelRangePtr, NIL)
   }
@@ -442,7 +443,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns the width of the range around the shape between the minimum and maximum representable
    * signed distance.
    */
-  public fun fontGetMsdfPixelRange(fontRid: RID): Long {
+  public final fun fontGetMsdfPixelRange(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetMsdfPixelRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -451,7 +452,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets source font size used to generate MSDF textures.
    */
-  public fun fontSetMsdfSize(fontRid: RID, msdfSize: Long): Unit {
+  public final fun fontSetMsdfSize(fontRid: RID, msdfSize: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to msdfSize)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetMsdfSizePtr, NIL)
   }
@@ -459,7 +460,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns source font size used to generate MSDF textures.
    */
-  public fun fontGetMsdfSize(fontRid: RID): Long {
+  public final fun fontGetMsdfSize(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetMsdfSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -469,7 +470,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used
    * for all font sizes.
    */
-  public fun fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit {
+  public final fun fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to fixedSize)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetFixedSizePtr, NIL)
   }
@@ -477,7 +478,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns bitmap font fixed size.
    */
-  public fun fontGetFixedSize(fontRid: RID): Long {
+  public final fun fontGetFixedSize(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetFixedSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -486,7 +487,8 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets bitmap font scaling mode. This property is used only if `fixed_size` is greater than zero.
    */
-  public fun fontSetFixedSizeScaleMode(fontRid: RID, fixedSizeScaleMode: FixedSizeScaleMode): Unit {
+  public final fun fontSetFixedSizeScaleMode(fontRid: RID, fixedSizeScaleMode: FixedSizeScaleMode):
+      Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to fixedSizeScaleMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetFixedSizeScaleModePtr, NIL)
   }
@@ -494,7 +496,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns bitmap font scaling mode.
    */
-  public fun fontGetFixedSizeScaleMode(fontRid: RID): FixedSizeScaleMode {
+  public final fun fontGetFixedSizeScaleMode(fontRid: RID): FixedSizeScaleMode {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetFixedSizeScaleModePtr, LONG)
     return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -503,7 +505,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * If set to `true`, system fonts can be automatically used as fallbacks.
    */
-  public fun fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
+  public final fun fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
     TransferContext.writeArguments(_RID to fontRid, BOOL to allowSystemFallback)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetAllowSystemFallbackPtr, NIL)
   }
@@ -511,7 +513,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if system fonts can be automatically used as fallbacks.
    */
-  public fun fontIsAllowSystemFallback(fontRid: RID): Boolean {
+  public final fun fontIsAllowSystemFallback(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsAllowSystemFallbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -520,7 +522,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * If set to `true` auto-hinting is preferred over font built-in hinting.
    */
-  public fun fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
+  public final fun fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
     TransferContext.writeArguments(_RID to fontRid, BOOL to forceAutohinter)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetForceAutohinterPtr, NIL)
   }
@@ -529,7 +531,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns `true` if auto-hinting is supported and preferred over font built-in hinting. Used by
    * dynamic fonts only.
    */
-  public fun fontIsForceAutohinter(fontRid: RID): Boolean {
+  public final fun fontIsForceAutohinter(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsForceAutohinterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -538,7 +540,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font hinting mode. Used by dynamic fonts only.
    */
-  public fun fontSetHinting(fontRid: RID, hinting: Hinting): Unit {
+  public final fun fontSetHinting(fontRid: RID, hinting: Hinting): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to hinting.id)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetHintingPtr, NIL)
   }
@@ -546,7 +548,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the font hinting mode. Used by dynamic fonts only.
    */
-  public fun fontGetHinting(fontRid: RID): Hinting {
+  public final fun fontGetHinting(fontRid: RID): Hinting {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetHintingPtr, LONG)
     return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
@@ -555,8 +557,8 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font subpixel glyph positioning mode.
    */
-  public fun fontSetSubpixelPositioning(fontRid: RID, subpixelPositioning: SubpixelPositioning):
-      Unit {
+  public final fun fontSetSubpixelPositioning(fontRid: RID,
+      subpixelPositioning: SubpixelPositioning): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to subpixelPositioning.id)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetSubpixelPositioningPtr, NIL)
   }
@@ -564,7 +566,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font subpixel glyph positioning mode.
    */
-  public fun fontGetSubpixelPositioning(fontRid: RID): SubpixelPositioning {
+  public final fun fontGetSubpixelPositioning(fontRid: RID): SubpixelPositioning {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetSubpixelPositioningPtr, LONG)
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
@@ -574,7 +576,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets font embolden strength. If [strength] is not equal to zero, emboldens the font outlines.
    * Negative values reduce the outline thickness.
    */
-  public fun fontSetEmbolden(fontRid: RID, strength: Double): Unit {
+  public final fun fontSetEmbolden(fontRid: RID, strength: Double): Unit {
     TransferContext.writeArguments(_RID to fontRid, DOUBLE to strength)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetEmboldenPtr, NIL)
   }
@@ -582,7 +584,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font embolden strength.
    */
-  public fun fontGetEmbolden(fontRid: RID): Double {
+  public final fun fontGetEmbolden(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetEmboldenPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -592,7 +594,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
    * relative to the font size).
    */
-  public fun fontSetSpacing(
+  public final fun fontSetSpacing(
     fontRid: RID,
     spacing: SpacingType,
     `value`: Long,
@@ -605,7 +607,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
    * font size).
    */
-  public fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
+  public final fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -614,7 +616,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets extra baseline offset (as a fraction of font height).
    */
-  public fun fontSetBaselineOffset(fontRid: RID, baselineOffset: Double): Unit {
+  public final fun fontSetBaselineOffset(fontRid: RID, baselineOffset: Double): Unit {
     TransferContext.writeArguments(_RID to fontRid, DOUBLE to baselineOffset)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetBaselineOffsetPtr, NIL)
   }
@@ -622,7 +624,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns extra baseline offset (as a fraction of font height).
    */
-  public fun fontGetBaselineOffset(fontRid: RID): Double {
+  public final fun fontGetBaselineOffset(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetBaselineOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -634,7 +636,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * For example, to simulate italic typeface by slanting, apply the following transform
    * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
-  public fun fontSetTransform(fontRid: RID, transform: Transform2D): Unit {
+  public final fun fontSetTransform(fontRid: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to fontRid, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetTransformPtr, NIL)
   }
@@ -642,7 +644,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns 2D transform applied to the font outlines.
    */
-  public fun fontGetTransform(fontRid: RID): Transform2D {
+  public final fun fontGetTransform(fontRid: RID): Transform2D {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -652,7 +654,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets variation coordinates for the specified font cache entry. See [fontSupportedVariationList]
    * for more info.
    */
-  public fun fontSetVariationCoordinates(fontRid: RID,
+  public final fun fontSetVariationCoordinates(fontRid: RID,
       variationCoordinates: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(_RID to fontRid, DICTIONARY to variationCoordinates)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetVariationCoordinatesPtr, NIL)
@@ -662,7 +664,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns variation coordinates for the specified font cache entry. See
    * [fontSupportedVariationList] for more info.
    */
-  public fun fontGetVariationCoordinates(fontRid: RID): Dictionary<Any?, Any?> {
+  public final fun fontGetVariationCoordinates(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetVariationCoordinatesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -672,7 +674,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used
    * by dynamic fonts only.
    */
-  public fun fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
+  public final fun fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
     TransferContext.writeArguments(_RID to fontRid, DOUBLE to oversampling)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetOversamplingPtr, NIL)
   }
@@ -681,7 +683,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead.
    * Used by dynamic fonts only.
    */
-  public fun fontGetOversampling(fontRid: RID): Double {
+  public final fun fontGetOversampling(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetOversamplingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -691,7 +693,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline
    * size.
    */
-  public fun fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
+  public final fun fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetSizeCacheListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
@@ -700,7 +702,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Removes all font sizes from the cache entry.
    */
-  public fun fontClearSizeCache(fontRid: RID): Unit {
+  public final fun fontClearSizeCache(fontRid: RID): Unit {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontClearSizeCachePtr, NIL)
   }
@@ -708,7 +710,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Removes specified font size from the cache entry.
    */
-  public fun fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit {
+  public final fun fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontRemoveSizeCachePtr, NIL)
   }
@@ -716,7 +718,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets the font ascent (number of pixels above the baseline).
    */
-  public fun fontSetAscent(
+  public final fun fontSetAscent(
     fontRid: RID,
     size: Long,
     ascent: Double,
@@ -728,7 +730,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the font ascent (number of pixels above the baseline).
    */
-  public fun fontGetAscent(fontRid: RID, size: Long): Double {
+  public final fun fontGetAscent(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetAscentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -737,7 +739,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets the font descent (number of pixels below the baseline).
    */
-  public fun fontSetDescent(
+  public final fun fontSetDescent(
     fontRid: RID,
     size: Long,
     descent: Double,
@@ -749,7 +751,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the font descent (number of pixels below the baseline).
    */
-  public fun fontGetDescent(fontRid: RID, size: Long): Double {
+  public final fun fontGetDescent(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetDescentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -758,7 +760,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets pixel offset of the underline below the baseline.
    */
-  public fun fontSetUnderlinePosition(
+  public final fun fontSetUnderlinePosition(
     fontRid: RID,
     size: Long,
     underlinePosition: Double,
@@ -770,7 +772,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns pixel offset of the underline below the baseline.
    */
-  public fun fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
+  public final fun fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetUnderlinePositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -779,7 +781,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets thickness of the underline in pixels.
    */
-  public fun fontSetUnderlineThickness(
+  public final fun fontSetUnderlineThickness(
     fontRid: RID,
     size: Long,
     underlineThickness: Double,
@@ -791,7 +793,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns thickness of the underline in pixels.
    */
-  public fun fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
+  public final fun fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetUnderlineThicknessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -800,7 +802,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets scaling factor of the color bitmap font.
    */
-  public fun fontSetScale(
+  public final fun fontSetScale(
     fontRid: RID,
     size: Long,
     scale: Double,
@@ -812,7 +814,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns scaling factor of the color bitmap font.
    */
-  public fun fontGetScale(fontRid: RID, size: Long): Double {
+  public final fun fontGetScale(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -821,7 +823,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns number of textures used by font cache entry.
    */
-  public fun fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
+  public final fun fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetTextureCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -832,7 +834,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This function will not remove glyphs associated with the texture, use
    * [fontRemoveGlyph] to remove them manually.
    */
-  public fun fontClearTextures(fontRid: RID, size: Vector2i): Unit {
+  public final fun fontClearTextures(fontRid: RID, size: Vector2i): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontClearTexturesPtr, NIL)
   }
@@ -842,7 +844,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This function will not remove glyphs associated with the texture, remove them
    * manually, using [fontRemoveGlyph].
    */
-  public fun fontRemoveTexture(
+  public final fun fontRemoveTexture(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
@@ -854,7 +856,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font cache texture image data.
    */
-  public fun fontSetTextureImage(
+  public final fun fontSetTextureImage(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
@@ -867,7 +869,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font cache texture image data.
    */
-  public fun fontGetTextureImage(
+  public final fun fontGetTextureImage(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
@@ -880,7 +882,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets array containing glyph packing data.
    */
-  public fun fontSetTextureOffsets(
+  public final fun fontSetTextureOffsets(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
@@ -893,7 +895,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns array containing glyph packing data.
    */
-  public fun fontGetTextureOffsets(
+  public final fun fontGetTextureOffsets(
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
@@ -906,7 +908,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns list of rendered glyphs in the cache entry.
    */
-  public fun fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
+  public final fun fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -917,7 +919,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This function will not remove textures associated with the glyphs, use
    * [fontRemoveTexture] to remove them manually.
    */
-  public fun fontClearGlyphs(fontRid: RID, size: Vector2i): Unit {
+  public final fun fontClearGlyphs(fontRid: RID, size: Vector2i): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontClearGlyphsPtr, NIL)
   }
@@ -927,7 +929,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** This function will not remove textures associated with the glyphs, use
    * [fontRemoveTexture] to remove them manually.
    */
-  public fun fontRemoveGlyph(
+  public final fun fontRemoveGlyph(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -940,7 +942,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns glyph advance (offset of the next glyph).
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
-  public fun fontGetGlyphAdvance(
+  public final fun fontGetGlyphAdvance(
     fontRid: RID,
     size: Long,
     glyph: Long,
@@ -954,7 +956,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets glyph advance (offset of the next glyph).
    * **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
    */
-  public fun fontSetGlyphAdvance(
+  public final fun fontSetGlyphAdvance(
     fontRid: RID,
     size: Long,
     glyph: Long,
@@ -967,7 +969,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns glyph offset from the baseline.
    */
-  public fun fontGetGlyphOffset(
+  public final fun fontGetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -980,7 +982,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets glyph offset from the baseline.
    */
-  public fun fontSetGlyphOffset(
+  public final fun fontSetGlyphOffset(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -993,7 +995,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns size of the glyph.
    */
-  public fun fontGetGlyphSize(
+  public final fun fontGetGlyphSize(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1006,7 +1008,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets size of the glyph.
    */
-  public fun fontSetGlyphSize(
+  public final fun fontSetGlyphSize(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1019,7 +1021,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns rectangle in the cache texture containing the glyph.
    */
-  public fun fontGetGlyphUvRect(
+  public final fun fontGetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1032,7 +1034,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets rectangle in the cache texture containing the glyph.
    */
-  public fun fontSetGlyphUvRect(
+  public final fun fontSetGlyphUvRect(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1045,7 +1047,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns index of the cache texture containing the glyph.
    */
-  public fun fontGetGlyphTextureIdx(
+  public final fun fontGetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1058,7 +1060,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets index of the cache texture containing the glyph.
    */
-  public fun fontSetGlyphTextureIdx(
+  public final fun fontSetGlyphTextureIdx(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1073,7 +1075,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** If there are pending glyphs to render, calling this function might trigger the
    * texture cache update.
    */
-  public fun fontGetGlyphTextureRid(
+  public final fun fontGetGlyphTextureRid(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1088,7 +1090,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** If there are pending glyphs to render, calling this function might trigger the
    * texture cache update.
    */
-  public fun fontGetGlyphTextureSize(
+  public final fun fontGetGlyphTextureSize(
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
@@ -1105,7 +1107,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * `contours`       - [PackedInt32Array], containing indices the end points of each contour.
    * `orientation`    - [bool], contour orientation. If `true`, clockwise contours must be filled.
    */
-  public fun fontGetGlyphContours(
+  public final fun fontGetGlyphContours(
     font: RID,
     size: Long,
     index: Long,
@@ -1118,7 +1120,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns list of the kerning overrides.
    */
-  public fun fontGetKerningList(fontRid: RID, size: Long): VariantArray<Vector2i> {
+  public final fun fontGetKerningList(fontRid: RID, size: Long): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetKerningListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
@@ -1127,7 +1129,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Removes all kerning overrides.
    */
-  public fun fontClearKerningMap(fontRid: RID, size: Long): Unit {
+  public final fun fontClearKerningMap(fontRid: RID, size: Long): Unit {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontClearKerningMapPtr, NIL)
   }
@@ -1135,7 +1137,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Removes kerning override for the pair of glyphs.
    */
-  public fun fontRemoveKerning(
+  public final fun fontRemoveKerning(
     fontRid: RID,
     size: Long,
     glyphPair: Vector2i,
@@ -1147,7 +1149,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets kerning for the pair of glyphs.
    */
-  public fun fontSetKerning(
+  public final fun fontSetKerning(
     fontRid: RID,
     size: Long,
     glyphPair: Vector2i,
@@ -1160,7 +1162,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns kerning for the pair of glyphs.
    */
-  public fun fontGetKerning(
+  public final fun fontGetKerning(
     fontRid: RID,
     size: Long,
     glyphPair: Vector2i,
@@ -1174,7 +1176,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns the glyph index of a [char], optionally modified by the [variationSelector]. See
    * [fontGetCharFromGlyphIndex].
    */
-  public fun fontGetGlyphIndex(
+  public final fun fontGetGlyphIndex(
     fontRid: RID,
     size: Long,
     char: Long,
@@ -1189,7 +1191,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See
    * [fontGetGlyphIndex].
    */
-  public fun fontGetCharFromGlyphIndex(
+  public final fun fontGetCharFromGlyphIndex(
     fontRid: RID,
     size: Long,
     glyphIndex: Long,
@@ -1202,7 +1204,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if a Unicode [char] is available in the font.
    */
-  public fun fontHasChar(fontRid: RID, char: Long): Boolean {
+  public final fun fontHasChar(fontRid: RID, char: Long): Boolean {
     TransferContext.writeArguments(_RID to fontRid, LONG to char)
     TransferContext.callMethod(rawPtr, MethodBindings.fontHasCharPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1211,7 +1213,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns a string containing all the characters available in the font.
    */
-  public fun fontGetSupportedChars(fontRid: RID): String {
+  public final fun fontGetSupportedChars(fontRid: RID): String {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetSupportedCharsPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -1220,7 +1222,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Renders the range of characters to the font cache texture.
    */
-  public fun fontRenderRange(
+  public final fun fontRenderRange(
     fontRid: RID,
     size: Vector2i,
     start: Long,
@@ -1233,7 +1235,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Renders specified glyph to the font cache texture.
    */
-  public fun fontRenderGlyph(
+  public final fun fontRenderGlyph(
     fontRid: RID,
     size: Vector2i,
     index: Long,
@@ -1250,7 +1252,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * texture cache update.
    */
   @JvmOverloads
-  public fun fontDrawGlyph(
+  public final fun fontDrawGlyph(
     fontRid: RID,
     canvas: RID,
     size: Long,
@@ -1271,7 +1273,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * texture cache update.
    */
   @JvmOverloads
-  public fun fontDrawGlyphOutline(
+  public final fun fontDrawGlyphOutline(
     fontRid: RID,
     canvas: RID,
     size: Long,
@@ -1288,7 +1290,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns `true`, if font supports given language
    * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
-  public fun fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
+  public final fun fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsLanguageSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1297,7 +1299,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Adds override for [fontIsLanguageSupported].
    */
-  public fun fontSetLanguageSupportOverride(
+  public final fun fontSetLanguageSupportOverride(
     fontRid: RID,
     language: String,
     supported: Boolean,
@@ -1309,7 +1311,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if support override is enabled for the [language].
    */
-  public fun fontGetLanguageSupportOverride(fontRid: RID, language: String): Boolean {
+  public final fun fontGetLanguageSupportOverride(fontRid: RID, language: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetLanguageSupportOverridePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1318,7 +1320,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Remove language support override.
    */
-  public fun fontRemoveLanguageSupportOverride(fontRid: RID, language: String): Unit {
+  public final fun fontRemoveLanguageSupportOverride(fontRid: RID, language: String): Unit {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.fontRemoveLanguageSupportOverridePtr, NIL)
   }
@@ -1326,7 +1328,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns list of language support overrides.
    */
-  public fun fontGetLanguageSupportOverrides(fontRid: RID): PackedStringArray {
+  public final fun fontGetLanguageSupportOverrides(fontRid: RID): PackedStringArray {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetLanguageSupportOverridesPtr,
         PACKED_STRING_ARRAY)
@@ -1336,7 +1338,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true`, if font supports given script (ISO 15924 code).
    */
-  public fun fontIsScriptSupported(fontRid: RID, script: String): Boolean {
+  public final fun fontIsScriptSupported(fontRid: RID, script: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsScriptSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1345,7 +1347,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Adds override for [fontIsScriptSupported].
    */
-  public fun fontSetScriptSupportOverride(
+  public final fun fontSetScriptSupportOverride(
     fontRid: RID,
     script: String,
     supported: Boolean,
@@ -1357,7 +1359,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if support override is enabled for the [script].
    */
-  public fun fontGetScriptSupportOverride(fontRid: RID, script: String): Boolean {
+  public final fun fontGetScriptSupportOverride(fontRid: RID, script: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetScriptSupportOverridePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1366,7 +1368,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Removes script support override.
    */
-  public fun fontRemoveScriptSupportOverride(fontRid: RID, script: String): Unit {
+  public final fun fontRemoveScriptSupportOverride(fontRid: RID, script: String): Unit {
     TransferContext.writeArguments(_RID to fontRid, STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.fontRemoveScriptSupportOverridePtr, NIL)
   }
@@ -1374,7 +1376,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns list of script support overrides.
    */
-  public fun fontGetScriptSupportOverrides(fontRid: RID): PackedStringArray {
+  public final fun fontGetScriptSupportOverrides(fontRid: RID): PackedStringArray {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetScriptSupportOverridesPtr,
         PACKED_STRING_ARRAY)
@@ -1384,7 +1386,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets font OpenType feature set override.
    */
-  public fun fontSetOpentypeFeatureOverrides(fontRid: RID, overrides: Dictionary<Any?, Any?>):
+  public final fun fontSetOpentypeFeatureOverrides(fontRid: RID, overrides: Dictionary<Any?, Any?>):
       Unit {
     TransferContext.writeArguments(_RID to fontRid, DICTIONARY to overrides)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetOpentypeFeatureOverridesPtr, NIL)
@@ -1393,7 +1395,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns font OpenType feature set override.
    */
-  public fun fontGetOpentypeFeatureOverrides(fontRid: RID): Dictionary<Any?, Any?> {
+  public final fun fontGetOpentypeFeatureOverrides(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetOpentypeFeatureOverridesPtr,
         DICTIONARY)
@@ -1403,7 +1405,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the dictionary of the supported OpenType features.
    */
-  public fun fontSupportedFeatureList(fontRid: RID): Dictionary<Any?, Any?> {
+  public final fun fontSupportedFeatureList(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSupportedFeatureListPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -1412,7 +1414,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the dictionary of the supported OpenType variation coordinates.
    */
-  public fun fontSupportedVariationList(fontRid: RID): Dictionary<Any?, Any?> {
+  public final fun fontSupportedVariationList(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSupportedVariationListPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -1421,7 +1423,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the font oversampling factor, shared by all fonts in the TextServer.
    */
-  public fun fontGetGlobalOversampling(): Double {
+  public final fun fontGetGlobalOversampling(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlobalOversamplingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -1431,7 +1433,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets oversampling factor, shared by all font in the TextServer.
    * **Note:** This value can be automatically changed by display server.
    */
-  public fun fontSetGlobalOversampling(oversampling: Double): Unit {
+  public final fun fontSetGlobalOversampling(oversampling: Double): Unit {
     TransferContext.writeArguments(DOUBLE to oversampling)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetGlobalOversamplingPtr, NIL)
   }
@@ -1440,7 +1442,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns size of the replacement character (box with character hexadecimal code that is drawn in
    * place of invalid characters).
    */
-  public fun getHexCodeBoxSize(size: Long, index: Long): Vector2 {
+  public final fun getHexCodeBoxSize(size: Long, index: Long): Vector2 {
     TransferContext.writeArguments(LONG to size, LONG to index)
     TransferContext.callMethod(rawPtr, MethodBindings.getHexCodeBoxSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -1449,7 +1451,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Draws box displaying character hexadecimal code. Used for replacing missing characters.
    */
-  public fun drawHexCodeBox(
+  public final fun drawHexCodeBox(
     canvas: RID,
     size: Long,
     pos: Vector2,
@@ -1469,7 +1471,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
-  public fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
+  public final fun createShapedText(direction: Direction = TextServer.Direction.DIRECTION_AUTO,
       orientation: Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
     TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, MethodBindings.createShapedTextPtr, _RID)
@@ -1479,7 +1481,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Clears text buffer (removes text and inline objects).
    */
-  public fun shapedTextClear(rid: RID): Unit {
+  public final fun shapedTextClear(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextClearPtr, NIL)
   }
@@ -1491,7 +1493,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
-  public fun shapedTextSetDirection(shaped: RID, direction: Direction =
+  public final fun shapedTextSetDirection(shaped: RID, direction: Direction =
       TextServer.Direction.DIRECTION_AUTO): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to direction.id)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetDirectionPtr, NIL)
@@ -1500,7 +1502,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns direction of the text.
    */
-  public fun shapedTextGetDirection(shaped: RID): Direction {
+  public final fun shapedTextGetDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1509,7 +1511,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns direction of the text, inferred by the BiDi algorithm.
    */
-  public fun shapedTextGetInferredDirection(shaped: RID): Direction {
+  public final fun shapedTextGetInferredDirection(shaped: RID): Direction {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetInferredDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1520,7 +1522,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
    * each range separately.
    */
-  public fun shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>): Unit {
+  public final fun shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(_RID to shaped, ARRAY to override)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetBidiOverridePtr, NIL)
   }
@@ -1529,7 +1531,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets custom punctuation character list, used for word breaking. If set to empty string, server
    * defaults are used.
    */
-  public fun shapedTextSetCustomPunctuation(shaped: RID, punct: String): Unit {
+  public final fun shapedTextSetCustomPunctuation(shaped: RID, punct: String): Unit {
     TransferContext.writeArguments(_RID to shaped, STRING to punct)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetCustomPunctuationPtr, NIL)
   }
@@ -1538,7 +1540,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns custom punctuation character list, used for word breaking. If set to empty string,
    * server defaults are used.
    */
-  public fun shapedTextGetCustomPunctuation(shaped: RID): String {
+  public final fun shapedTextGetCustomPunctuation(shaped: RID): String {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCustomPunctuationPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -1547,7 +1549,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets ellipsis character used for text clipping.
    */
-  public fun shapedTextSetCustomEllipsis(shaped: RID, char: Long): Unit {
+  public final fun shapedTextSetCustomEllipsis(shaped: RID, char: Long): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to char)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetCustomEllipsisPtr, NIL)
   }
@@ -1555,7 +1557,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns ellipsis character used for text clipping.
    */
-  public fun shapedTextGetCustomEllipsis(shaped: RID): Long {
+  public final fun shapedTextGetCustomEllipsis(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCustomEllipsisPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1567,7 +1569,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * (supported by [TextServerAdvanced]).
    */
   @JvmOverloads
-  public fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
+  public final fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
       TextServer.Orientation.ORIENTATION_HORIZONTAL): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetOrientationPtr, NIL)
@@ -1576,7 +1578,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns text orientation.
    */
-  public fun shapedTextGetOrientation(shaped: RID): Orientation {
+  public final fun shapedTextGetOrientation(shaped: RID): Orientation {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetOrientationPtr, LONG)
     return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1586,7 +1588,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise
    * nothing is displayed.
    */
-  public fun shapedTextSetPreserveInvalid(shaped: RID, enabled: Boolean): Unit {
+  public final fun shapedTextSetPreserveInvalid(shaped: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to shaped, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetPreserveInvalidPtr, NIL)
   }
@@ -1596,7 +1598,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * characters.
    * **Note:** If set to `false`, nothing is displayed in place of invalid characters.
    */
-  public fun shapedTextGetPreserveInvalid(shaped: RID): Boolean {
+  public final fun shapedTextGetPreserveInvalid(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetPreserveInvalidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1605,7 +1607,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * If set to `true` text buffer will display control characters.
    */
-  public fun shapedTextSetPreserveControl(shaped: RID, enabled: Boolean): Unit {
+  public final fun shapedTextSetPreserveControl(shaped: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to shaped, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSetPreserveControlPtr, NIL)
   }
@@ -1613,7 +1615,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if text buffer is configured to display control characters.
    */
-  public fun shapedTextGetPreserveControl(shaped: RID): Boolean {
+  public final fun shapedTextGetPreserveControl(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetPreserveControlPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1622,7 +1624,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Sets extra spacing added between glyphs or lines in pixels.
    */
-  public fun shapedTextSetSpacing(
+  public final fun shapedTextSetSpacing(
     shaped: RID,
     spacing: SpacingType,
     `value`: Long,
@@ -1634,7 +1636,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns extra spacing added between glyphs or lines in pixels.
    */
-  public fun shapedTextGetSpacing(shaped: RID, spacing: SpacingType): Long {
+  public final fun shapedTextGetSpacing(shaped: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to spacing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1644,7 +1646,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Adds text span and font to draw it to the text buffer.
    */
   @JvmOverloads
-  public fun shapedTextAddString(
+  public final fun shapedTextAddString(
     shaped: RID,
     text: String,
     fonts: VariantArray<RID>,
@@ -1663,7 +1665,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * as [length] object replacement characters.
    */
   @JvmOverloads
-  public fun shapedTextAddObject(
+  public final fun shapedTextAddObject(
     shaped: RID,
     key: Any?,
     size: Vector2,
@@ -1680,7 +1682,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets new size and alignment of embedded object.
    */
   @JvmOverloads
-  public fun shapedTextResizeObject(
+  public final fun shapedTextResizeObject(
     shaped: RID,
     key: Any?,
     size: Vector2,
@@ -1695,7 +1697,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns number of text spans added using [shapedTextAddString] or [shapedTextAddObject].
    */
-  public fun shapedGetSpanCount(shaped: RID): Long {
+  public final fun shapedGetSpanCount(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedGetSpanCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1704,7 +1706,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns text span metadata.
    */
-  public fun shapedGetSpanMeta(shaped: RID, index: Long): Any? {
+  public final fun shapedGetSpanMeta(shaped: RID, index: Long): Any? {
     TransferContext.writeArguments(_RID to shaped, LONG to index)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedGetSpanMetaPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -1714,7 +1716,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Changes text span font, font size, and OpenType features, without changing the text.
    */
   @JvmOverloads
-  public fun shapedSetSpanUpdateFont(
+  public final fun shapedSetSpanUpdateFont(
     shaped: RID,
     index: Long,
     fonts: VariantArray<RID>,
@@ -1729,7 +1731,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline
    * objects).
    */
-  public fun shapedTextSubstr(
+  public final fun shapedTextSubstr(
     shaped: RID,
     start: Long,
     length: Long,
@@ -1742,7 +1744,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the parent buffer from which the substring originates.
    */
-  public fun shapedTextGetParent(shaped: RID): RID {
+  public final fun shapedTextGetParent(shaped: RID): RID {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetParentPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -1752,7 +1754,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Adjusts text width to fit to specified width, returns new text width.
    */
   @JvmOverloads
-  public fun shapedTextFitToWidth(
+  public final fun shapedTextFitToWidth(
     shaped: RID,
     width: Double,
     justificationFlags: JustificationFlag = TextServer.JustificationFlagValue(3),
@@ -1765,7 +1767,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Aligns shaped text to the given tab-stops.
    */
-  public fun shapedTextTabAlign(shaped: RID, tabStops: PackedFloat32Array): Double {
+  public final fun shapedTextTabAlign(shaped: RID, tabStops: PackedFloat32Array): Double {
     TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextTabAlignPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -1776,7 +1778,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** It is not necessary to call this function manually, buffer will be shaped
    * automatically as soon as any of its output data is requested.
    */
-  public fun shapedTextShape(shaped: RID): Boolean {
+  public final fun shapedTextShape(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextShapePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1785,7 +1787,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if buffer is successfully shaped.
    */
-  public fun shapedTextIsReady(shaped: RID): Boolean {
+  public final fun shapedTextIsReady(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextIsReadyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1794,7 +1796,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns `true` if text buffer contains any visible characters.
    */
-  public fun shapedTextHasVisibleChars(shaped: RID): Boolean {
+  public final fun shapedTextHasVisibleChars(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextHasVisibleCharsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1803,7 +1805,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns an array of glyphs in the visual order.
    */
-  public fun shapedTextGetGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun shapedTextGetGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetGlyphsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -1812,7 +1814,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns text glyphs in the logical order.
    */
-  public fun shapedTextSortLogical(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun shapedTextSortLogical(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSortLogicalPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -1821,7 +1823,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns number of glyphs in the buffer.
    */
-  public fun shapedTextGetGlyphCount(shaped: RID): Long {
+  public final fun shapedTextGetGlyphCount(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetGlyphCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1830,7 +1832,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns substring buffer character range in the parent buffer.
    */
-  public fun shapedTextGetRange(shaped: RID): Vector2i {
+  public final fun shapedTextGetRange(shaped: RID): Vector2i {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetRangePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1840,7 +1842,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Breaks text to the lines and columns. Returns character ranges for each segment.
    */
   @JvmOverloads
-  public fun shapedTextGetLineBreaksAdv(
+  public final fun shapedTextGetLineBreaksAdv(
     shaped: RID,
     width: PackedFloat32Array,
     start: Long = 0,
@@ -1857,7 +1859,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Breaks text to the lines and returns character ranges for each line.
    */
   @JvmOverloads
-  public fun shapedTextGetLineBreaks(
+  public final fun shapedTextGetLineBreaks(
     shaped: RID,
     width: Double,
     start: Long = 0,
@@ -1874,7 +1876,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * characters are used for breaking (see [GraphemeFlag]).
    */
   @JvmOverloads
-  public fun shapedTextGetWordBreaks(
+  public final fun shapedTextGetWordBreaks(
     shaped: RID,
     graphemeFlags: GraphemeFlag = TextServer.GraphemeFlagValue(264),
     skipGraphemeFlags: GraphemeFlag = TextServer.GraphemeFlag.GRAPHEME_IS_VIRTUAL,
@@ -1888,7 +1890,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the position of the overrun trim.
    */
-  public fun shapedTextGetTrimPos(shaped: RID): Long {
+  public final fun shapedTextGetTrimPos(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetTrimPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1897,7 +1899,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns position of the ellipsis.
    */
-  public fun shapedTextGetEllipsisPos(shaped: RID): Long {
+  public final fun shapedTextGetEllipsisPos(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetEllipsisPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1906,7 +1908,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns array of the glyphs in the ellipsis.
    */
-  public fun shapedTextGetEllipsisGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun shapedTextGetEllipsisGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetEllipsisGlyphsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -1915,7 +1917,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns number of glyphs in the ellipsis.
    */
-  public fun shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
+  public final fun shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetEllipsisGlyphCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1925,7 +1927,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Trims text if it exceeds the given width.
    */
   @JvmOverloads
-  public fun shapedTextOverrunTrimToWidth(
+  public final fun shapedTextOverrunTrimToWidth(
     shaped: RID,
     width: Double = 0.0,
     overrunTrimFlags: TextOverrunFlag = TextServer.TextOverrunFlag.OVERRUN_NO_TRIM,
@@ -1937,7 +1939,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns array of inline objects.
    */
-  public fun shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
+  public final fun shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -1946,7 +1948,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public fun shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
+  public final fun shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
@@ -1955,7 +1957,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the character range of the inline object.
    */
-  public fun shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
+  public final fun shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectRangePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1964,7 +1966,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns the glyph index of the inline object.
    */
-  public fun shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
+  public final fun shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectGlyphPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1973,7 +1975,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns size of the text.
    */
-  public fun shapedTextGetSize(shaped: RID): Vector2 {
+  public final fun shapedTextGetSize(shaped: RID): Vector2 {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -1985,7 +1987,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** Overall ascent can be higher than font ascent, if some glyphs are displaced from the
    * baseline.
    */
-  public fun shapedTextGetAscent(shaped: RID): Double {
+  public final fun shapedTextGetAscent(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetAscentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -1997,7 +1999,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** Overall descent can be higher than font descent, if some glyphs are displaced from
    * the baseline.
    */
-  public fun shapedTextGetDescent(shaped: RID): Double {
+  public final fun shapedTextGetDescent(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetDescentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -2006,7 +2008,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns width (for horizontal layout) or height (for vertical) of the text.
    */
-  public fun shapedTextGetWidth(shaped: RID): Double {
+  public final fun shapedTextGetWidth(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -2015,7 +2017,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns pixel offset of the underline below the baseline.
    */
-  public fun shapedTextGetUnderlinePosition(shaped: RID): Double {
+  public final fun shapedTextGetUnderlinePosition(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetUnderlinePositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -2024,7 +2026,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns thickness of the underline.
    */
-  public fun shapedTextGetUnderlineThickness(shaped: RID): Double {
+  public final fun shapedTextGetUnderlineThickness(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetUnderlineThicknessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -2034,7 +2036,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns shapes of the carets corresponding to the character offset [position] in the text.
    * Returned caret shape is 1 pixel wide rectangle.
    */
-  public fun shapedTextGetCarets(shaped: RID, position: Long): Dictionary<Any?, Any?> {
+  public final fun shapedTextGetCarets(shaped: RID, position: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to shaped, LONG to position)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCaretsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -2043,7 +2045,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns selection rectangles for the specified character range.
    */
-  public fun shapedTextGetSelection(
+  public final fun shapedTextGetSelection(
     shaped: RID,
     start: Long,
     end: Long,
@@ -2057,7 +2059,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns grapheme index at the specified pixel offset at the baseline, or `-1` if none is found.
    */
-  public fun shapedTextHitTestGrapheme(shaped: RID, coords: Double): Long {
+  public final fun shapedTextHitTestGrapheme(shaped: RID, coords: Double): Long {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextHitTestGraphemePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2067,7 +2069,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns caret character offset at the specified pixel offset at the baseline. This function
    * always returns a valid position.
    */
-  public fun shapedTextHitTestPosition(shaped: RID, coords: Double): Long {
+  public final fun shapedTextHitTestPosition(shaped: RID, coords: Double): Long {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextHitTestPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2076,7 +2078,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns composite character's bounds as offsets from the start of the line.
    */
-  public fun shapedTextGetGraphemeBounds(shaped: RID, pos: Long): Vector2 {
+  public final fun shapedTextGetGraphemeBounds(shaped: RID, pos: Long): Vector2 {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetGraphemeBoundsPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -2085,7 +2087,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns grapheme end position closest to the [pos].
    */
-  public fun shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
+  public final fun shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextNextGraphemePosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2094,7 +2096,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns grapheme start position closest to the [pos].
    */
-  public fun shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
+  public final fun shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextPrevGraphemePosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2103,7 +2105,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns array of the composite character boundaries.
    */
-  public fun shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
+  public final fun shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCharacterBreaksPtr,
         PACKED_INT_32_ARRAY)
@@ -2113,7 +2115,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns composite character end position closest to the [pos].
    */
-  public fun shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
+  public final fun shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextNextCharacterPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2122,7 +2124,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns composite character start position closest to the [pos].
    */
-  public fun shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
+  public final fun shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextPrevCharacterPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2131,7 +2133,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns composite character position closest to the [pos].
    */
-  public fun shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
+  public final fun shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextClosestCharacterPosPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2143,7 +2145,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * vertical layout).
    */
   @JvmOverloads
-  public fun shapedTextDraw(
+  public final fun shapedTextDraw(
     shaped: RID,
     canvas: RID,
     pos: Vector2,
@@ -2161,7 +2163,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * baseline (for vertical layout).
    */
   @JvmOverloads
-  public fun shapedTextDrawOutline(
+  public final fun shapedTextDrawOutline(
     shaped: RID,
     canvas: RID,
     pos: Vector2,
@@ -2177,7 +2179,7 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Returns dominant direction of in the range of text.
    */
-  public fun shapedTextGetDominantDirectionInRange(
+  public final fun shapedTextGetDominantDirectionInRange(
     shaped: RID,
     start: Long,
     end: Long,
@@ -2193,7 +2195,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * If [language] is omitted, the active locale will be used.
    */
   @JvmOverloads
-  public fun formatNumber(number: String, language: String = ""): String {
+  public final fun formatNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.formatNumberPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2203,7 +2205,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Converts [number] from the numeral systems used in [language] to Western Arabic (0..9).
    */
   @JvmOverloads
-  public fun parseNumber(number: String, language: String = ""): String {
+  public final fun parseNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.parseNumberPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2213,7 +2215,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns percent sign used in the [language].
    */
   @JvmOverloads
-  public fun percentSign(language: String = ""): String {
+  public final fun percentSign(language: String = ""): String {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.percentSignPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2234,7 +2236,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun stringGetWordBreaks(
+  public final fun stringGetWordBreaks(
     string: String,
     language: String = "",
     charsPerLine: Long = 0,
@@ -2253,7 +2255,8 @@ public open class TextServer internal constructor() : RefCounted() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun stringGetCharacterBreaks(string: String, language: String = ""): PackedInt32Array {
+  public final fun stringGetCharacterBreaks(string: String, language: String = ""):
+      PackedInt32Array {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringGetCharacterBreaksPtr,
         PACKED_INT_32_ARRAY)
@@ -2268,7 +2271,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** Always returns `-1` if the server does not support the [FEATURE_UNICODE_SECURITY]
    * feature.
    */
-  public fun isConfusable(string: String, dict: PackedStringArray): Long {
+  public final fun isConfusable(string: String, dict: PackedStringArray): Long {
     TransferContext.writeArguments(STRING to string, PACKED_STRING_ARRAY to dict)
     TransferContext.callMethod(rawPtr, MethodBindings.isConfusablePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -2279,7 +2282,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** Always returns `false` if the server does not support the [FEATURE_UNICODE_SECURITY]
    * feature.
    */
-  public fun spoofCheck(string: String): Boolean {
+  public final fun spoofCheck(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.spoofCheckPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2289,7 +2292,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Strips diacritics from the string.
    * **Note:** The result may be longer or shorter than the original.
    */
-  public fun stripDiacritics(string: String): String {
+  public final fun stripDiacritics(string: String): String {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.stripDiacriticsPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2306,7 +2309,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * - Begin with a Unicode character of class XID_Start or `"_"`.
    * - May contain Unicode characters of class XID_Continue in the other positions.
    */
-  public fun isValidIdentifier(string: String): Boolean {
+  public final fun isValidIdentifier(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.isValidIdentifierPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2316,7 +2319,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns `true` if the given code point is a valid letter, i.e. it belongs to the Unicode
    * category "L".
    */
-  public fun isValidLetter(unicode: Long): Boolean {
+  public final fun isValidLetter(unicode: Long): Boolean {
     TransferContext.writeArguments(LONG to unicode)
     TransferContext.callMethod(rawPtr, MethodBindings.isValidLetterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2329,7 +2332,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** The result may be longer or shorter than the original.
    */
   @JvmOverloads
-  public fun stringToUpper(string: String, language: String = ""): String {
+  public final fun stringToUpper(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringToUpperPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2342,7 +2345,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** The result may be longer or shorter than the original.
    */
   @JvmOverloads
-  public fun stringToLower(string: String, language: String = ""): String {
+  public final fun stringToLower(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringToLowerPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2355,7 +2358,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * **Note:** The result may be longer or shorter than the original.
    */
   @JvmOverloads
-  public fun stringToTitle(string: String, language: String = ""): String {
+  public final fun stringToTitle(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringToTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2365,7 +2368,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Default implementation of the BiDi algorithm override function. See [StructuredTextParser] for
    * more info.
    */
-  public fun parseStructuredText(
+  public final fun parseStructuredText(
     parserType: StructuredTextParser,
     args: VariantArray<Any?>,
     text: String,

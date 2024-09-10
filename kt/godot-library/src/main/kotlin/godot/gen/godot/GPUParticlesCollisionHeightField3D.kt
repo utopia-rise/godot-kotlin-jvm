@@ -44,7 +44,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * as small as possible while covering the parts of the scene you need.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
+  public final inline var size: Vector3
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -57,7 +57,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * lower performance. If [updateMode] is [UPDATE_MODE_ALWAYS], consider using the lowest resolution
    * possible.
    */
-  public var resolution: Resolution
+  public final inline var resolution: Resolution
     @JvmName("resolutionProperty")
     get() = getResolution()
     @JvmName("resolutionProperty")
@@ -68,7 +68,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   /**
    * The update policy to use for the generated heightmap.
    */
-  public var updateMode: UpdateMode
+  public final inline var updateMode: UpdateMode
     @JvmName("updateModeProperty")
     get() = getUpdateMode()
     @JvmName("updateModeProperty")
@@ -84,7 +84,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * the camera moves. Consider lowering [resolution] to improve performance if [followCameraEnabled]
    * is `true`.
    */
-  public var followCameraEnabled: Boolean
+  public final inline var followCameraEnabled: Boolean
     @JvmName("followCameraEnabledProperty")
     get() = isFollowCameraEnabled()
     @JvmName("followCameraEnabledProperty")
@@ -115,51 +115,51 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
 
 
-  public fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector3 {
+  public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setResolution(resolution: Resolution): Unit {
+  public final fun setResolution(resolution: Resolution): Unit {
     TransferContext.writeArguments(LONG to resolution.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
   }
 
-  public fun getResolution(): Resolution {
+  public final fun getResolution(): Resolution {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
     return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setUpdateMode(updateMode: UpdateMode): Unit {
+  public final fun setUpdateMode(updateMode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to updateMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
   }
 
-  public fun getUpdateMode(): UpdateMode {
+  public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
     return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFollowCameraEnabled(enabled: Boolean): Unit {
+  public final fun setFollowCameraEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
   }
 
-  public fun isFollowCameraEnabled(): Boolean {
+  public final fun isFollowCameraEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

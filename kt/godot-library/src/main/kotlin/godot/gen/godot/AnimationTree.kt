@@ -40,7 +40,7 @@ public open class AnimationTree : AnimationMixer() {
   /**
    * The root animation node of this [AnimationTree]. See [AnimationRootNode].
    */
-  public var treeRoot: AnimationRootNode?
+  public final inline var treeRoot: AnimationRootNode?
     @JvmName("treeRootProperty")
     get() = getTreeRoot()
     @JvmName("treeRootProperty")
@@ -52,7 +52,7 @@ public open class AnimationTree : AnimationMixer() {
    * The path to the [Node] used to evaluate the [AnimationNode] [Expression] if one is not
    * explicitly specified internally.
    */
-  public var advanceExpressionBaseNode: NodePath
+  public final inline var advanceExpressionBaseNode: NodePath
     @JvmName("advanceExpressionBaseNodeProperty")
     get() = getAdvanceExpressionBaseNode()
     @JvmName("advanceExpressionBaseNodeProperty")
@@ -63,7 +63,7 @@ public open class AnimationTree : AnimationMixer() {
   /**
    * The path to the [AnimationPlayer] used for animating.
    */
-  public var animPlayer: NodePath
+  public final inline var animPlayer: NodePath
     @JvmName("animPlayerProperty")
     get() = getAnimationPlayer()
     @JvmName("animPlayerProperty")
@@ -75,34 +75,34 @@ public open class AnimationTree : AnimationMixer() {
     callConstructor(ENGINECLASS_ANIMATIONTREE, scriptIndex)
   }
 
-  public fun setTreeRoot(animationNode: AnimationRootNode?): Unit {
+  public final fun setTreeRoot(animationNode: AnimationRootNode?): Unit {
     TransferContext.writeArguments(OBJECT to animationNode)
     TransferContext.callMethod(rawPtr, MethodBindings.setTreeRootPtr, NIL)
   }
 
-  public fun getTreeRoot(): AnimationRootNode? {
+  public final fun getTreeRoot(): AnimationRootNode? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTreeRootPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?)
   }
 
-  public fun setAdvanceExpressionBaseNode(path: NodePath): Unit {
+  public final fun setAdvanceExpressionBaseNode(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionBaseNodePtr, NIL)
   }
 
-  public fun getAdvanceExpressionBaseNode(): NodePath {
+  public final fun getAdvanceExpressionBaseNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionBaseNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setAnimationPlayer(path: NodePath): Unit {
+  public final fun setAnimationPlayer(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPlayerPtr, NIL)
   }
 
-  public fun getAnimationPlayer(): NodePath {
+  public final fun getAnimationPlayer(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -111,7 +111,7 @@ public open class AnimationTree : AnimationMixer() {
   /**
    * Sets the process notification in which to update animations.
    */
-  public fun setProcessCallback(mode: AnimationProcessCallback): Unit {
+  public final fun setProcessCallback(mode: AnimationProcessCallback): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
   }
@@ -119,7 +119,7 @@ public open class AnimationTree : AnimationMixer() {
   /**
    * Returns the process notification in which to update animations.
    */
-  public fun getProcessCallback(): AnimationProcessCallback {
+  public final fun getProcessCallback(): AnimationProcessCallback {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
     return AnimationTree.AnimationProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)

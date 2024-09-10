@@ -42,7 +42,7 @@ public open class Mutex : RefCounted() {
    * **Note:** This function returns without blocking if the thread already has ownership of the
    * mutex.
    */
-  public fun lock(): Unit {
+  public final fun lock(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.lockPtr, NIL)
   }
@@ -51,7 +51,7 @@ public open class Mutex : RefCounted() {
    * Tries locking this [Mutex], but does not block. Returns `true` on success, `false` otherwise.
    * **Note:** This function returns `true` if the thread already has ownership of the mutex.
    */
-  public fun tryLock(): Boolean {
+  public final fun tryLock(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tryLockPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -64,7 +64,7 @@ public open class Mutex : RefCounted() {
    * **Warning:** Calling [unlock] more times that [lock] on a given thread, thus ending up trying
    * to unlock a non-locked mutex, is wrong and may causes crashes or deadlocks.
    */
-  public fun unlock(): Unit {
+  public final fun unlock(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.unlockPtr, NIL)
   }

@@ -32,7 +32,7 @@ public open class RectangleShape2D : Shape2D() {
    * The rectangle's width and height.
    */
   @CoreTypeLocalCopy
-  public var size: Vector2
+  public final inline var size: Vector2
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -62,18 +62,18 @@ public open class RectangleShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
+  public final fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
       block(this)
       size = this
   }
 
 
-  public fun setSize(size: Vector2): Unit {
+  public final fun setSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector2 {
+  public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

@@ -36,7 +36,7 @@ public object PhysicsServer3DManager : Object() {
    * Register a [PhysicsServer3D] implementation by passing a [name] and a [Callable] that returns a
    * [PhysicsServer3D] object.
    */
-  public fun registerServer(name: String, createCallback: Callable): Unit {
+  public final fun registerServer(name: String, createCallback: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
     TransferContext.callMethod(rawPtr, MethodBindings.registerServerPtr, NIL)
   }
@@ -45,7 +45,7 @@ public object PhysicsServer3DManager : Object() {
    * Set the default [PhysicsServer3D] implementation to the one identified by [name], if [priority]
    * is greater than the priority of the current default implementation.
    */
-  public fun setDefaultServer(name: String, priority: Int): Unit {
+  public final fun setDefaultServer(name: String, priority: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultServerPtr, NIL)
   }

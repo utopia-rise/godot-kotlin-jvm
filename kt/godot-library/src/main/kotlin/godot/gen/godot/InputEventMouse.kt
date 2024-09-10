@@ -32,7 +32,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * The mouse button mask identifier, one of or a bitwise combination of the [MouseButton] button
    * masks.
    */
-  public var buttonMask: MouseButtonMask
+  public final inline var buttonMask: MouseButtonMask
     @JvmName("buttonMaskProperty")
     get() = getButtonMask()
     @JvmName("buttonMaskProperty")
@@ -47,7 +47,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * local coordinate system of the [Control].
    */
   @CoreTypeLocalCopy
-  public var position: Vector2
+  public final inline var position: Vector2
     @JvmName("positionProperty")
     get() = getPosition()
     @JvmName("positionProperty")
@@ -62,7 +62,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * [Control] is in using the coordinate system of the [CanvasLayer].
    */
   @CoreTypeLocalCopy
-  public var globalPosition: Vector2
+  public final inline var globalPosition: Vector2
     @JvmName("globalPositionProperty")
     get() = getGlobalPosition()
     @JvmName("globalPositionProperty")
@@ -95,7 +95,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * ``````
    */
   @CoreTypeHelper
-  public open fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
+  public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply{
       block(this)
       position = this
   }
@@ -122,40 +122,40 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * ``````
    */
   @CoreTypeHelper
-  public open fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
+  public final fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply{
       block(this)
       globalPosition = this
   }
 
 
-  public fun setButtonMask(buttonMask: MouseButtonMask): Unit {
+  public final fun setButtonMask(buttonMask: MouseButtonMask): Unit {
     TransferContext.writeArguments(LONG to buttonMask.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
   }
 
-  public fun getButtonMask(): MouseButtonMask {
+  public final fun getButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
     return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPosition(position: Vector2): Unit {
+  public final fun setPosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
-  public fun getPosition(): Vector2 {
+  public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setGlobalPosition(globalPosition: Vector2): Unit {
+  public final fun setGlobalPosition(globalPosition: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to globalPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
   }
 
-  public fun getGlobalPosition(): Vector2 {
+  public final fun getGlobalPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

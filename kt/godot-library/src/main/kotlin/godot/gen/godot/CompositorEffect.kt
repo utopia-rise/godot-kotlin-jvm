@@ -32,7 +32,7 @@ public open class CompositorEffect : Resource() {
   /**
    * If `true` this rendering effect is applied to any viewport it is added to.
    */
-  public var enabled: Boolean
+  public final inline var enabled: Boolean
     @JvmName("enabledProperty")
     get() = getEnabled()
     @JvmName("enabledProperty")
@@ -44,7 +44,7 @@ public open class CompositorEffect : Resource() {
    * The type of effect that is implemented, determines at what stage of rendering the callback is
    * called.
    */
-  public var effectCallbackType: EffectCallbackType
+  public final inline var effectCallbackType: EffectCallbackType
     @JvmName("effectCallbackTypeProperty")
     get() = getEffectCallbackType()
     @JvmName("effectCallbackTypeProperty")
@@ -61,7 +61,7 @@ public open class CompositorEffect : Resource() {
    * var color_buffer = render_scene_buffers.get_texture("render_buffers", "color")
    * [/codeblock]
    */
-  public var accessResolvedColor: Boolean
+  public final inline var accessResolvedColor: Boolean
     @JvmName("accessResolvedColorProperty")
     get() = getAccessResolvedColor()
     @JvmName("accessResolvedColorProperty")
@@ -78,7 +78,7 @@ public open class CompositorEffect : Resource() {
    * var depth_buffer = render_scene_buffers.get_texture("render_buffers", "depth")
    * [/codeblock]
    */
-  public var accessResolvedDepth: Boolean
+  public final inline var accessResolvedDepth: Boolean
     @JvmName("accessResolvedDepthProperty")
     get() = getAccessResolvedDepth()
     @JvmName("accessResolvedDepthProperty")
@@ -94,7 +94,7 @@ public open class CompositorEffect : Resource() {
    * var motion_buffer = render_scene_buffers.get_velocity_texture()
    * [/codeblock]
    */
-  public var needsMotionVectors: Boolean
+  public final inline var needsMotionVectors: Boolean
     @JvmName("needsMotionVectorsProperty")
     get() = getNeedsMotionVectors()
     @JvmName("needsMotionVectorsProperty")
@@ -112,7 +112,7 @@ public open class CompositorEffect : Resource() {
    * "normal_roughness")
    * [/codeblock]
    */
-  public var needsNormalRoughness: Boolean
+  public final inline var needsNormalRoughness: Boolean
     @JvmName("needsNormalRoughnessProperty")
     get() = getNeedsNormalRoughness()
     @JvmName("needsNormalRoughnessProperty")
@@ -124,7 +124,7 @@ public open class CompositorEffect : Resource() {
    * If `true` this triggers specular data being rendered to a separate buffer and combined after
    * effects have been applied, only applicable for the Forward+ renderer.
    */
-  public var needsSeparateSpecular: Boolean
+  public final inline var needsSeparateSpecular: Boolean
     @JvmName("needsSeparateSpecularProperty")
     get() = getNeedsSeparateSpecular()
     @JvmName("needsSeparateSpecularProperty")
@@ -144,78 +144,78 @@ public open class CompositorEffect : Resource() {
   public open fun _renderCallback(effectCallbackType: Int, renderData: RenderData?): Unit {
   }
 
-  public fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
-  public fun getEnabled(): Boolean {
+  public final fun getEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEffectCallbackType(effectCallbackType: EffectCallbackType): Unit {
+  public final fun setEffectCallbackType(effectCallbackType: EffectCallbackType): Unit {
     TransferContext.writeArguments(LONG to effectCallbackType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEffectCallbackTypePtr, NIL)
   }
 
-  public fun getEffectCallbackType(): EffectCallbackType {
+  public final fun getEffectCallbackType(): EffectCallbackType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEffectCallbackTypePtr, LONG)
     return CompositorEffect.EffectCallbackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAccessResolvedColor(enable: Boolean): Unit {
+  public final fun setAccessResolvedColor(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAccessResolvedColorPtr, NIL)
   }
 
-  public fun getAccessResolvedColor(): Boolean {
+  public final fun getAccessResolvedColor(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccessResolvedColorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAccessResolvedDepth(enable: Boolean): Unit {
+  public final fun setAccessResolvedDepth(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAccessResolvedDepthPtr, NIL)
   }
 
-  public fun getAccessResolvedDepth(): Boolean {
+  public final fun getAccessResolvedDepth(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccessResolvedDepthPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setNeedsMotionVectors(enable: Boolean): Unit {
+  public final fun setNeedsMotionVectors(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setNeedsMotionVectorsPtr, NIL)
   }
 
-  public fun getNeedsMotionVectors(): Boolean {
+  public final fun getNeedsMotionVectors(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNeedsMotionVectorsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setNeedsNormalRoughness(enable: Boolean): Unit {
+  public final fun setNeedsNormalRoughness(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setNeedsNormalRoughnessPtr, NIL)
   }
 
-  public fun getNeedsNormalRoughness(): Boolean {
+  public final fun getNeedsNormalRoughness(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNeedsNormalRoughnessPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setNeedsSeparateSpecular(enable: Boolean): Unit {
+  public final fun setNeedsSeparateSpecular(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setNeedsSeparateSpecularPtr, NIL)
   }
 
-  public fun getNeedsSeparateSpecular(): Boolean {
+  public final fun getNeedsSeparateSpecular(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNeedsSeparateSpecularPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -36,7 +36,7 @@ public open class ShaderMaterial : Material() {
   /**
    * The [Shader] program used to render this material.
    */
-  public var shader: Shader?
+  public final inline var shader: Shader?
     @JvmName("shaderProperty")
     get() = getShader()
     @JvmName("shaderProperty")
@@ -48,12 +48,12 @@ public open class ShaderMaterial : Material() {
     callConstructor(ENGINECLASS_SHADERMATERIAL, scriptIndex)
   }
 
-  public fun setShader(shader: Shader?): Unit {
+  public final fun setShader(shader: Shader?): Unit {
     TransferContext.writeArguments(OBJECT to shader)
     TransferContext.callMethod(rawPtr, MethodBindings.setShaderPtr, NIL)
   }
 
-  public fun getShader(): Shader? {
+  public final fun getShader(): Shader? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shader?)
@@ -69,7 +69,7 @@ public open class ShaderMaterial : Material() {
    * [Resource.duplicate]. Per-instance uniforms allow for better shader reuse and are therefore
    * faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.
    */
-  public fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
+  public final fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to param, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setShaderParameterPtr, NIL)
   }
@@ -77,7 +77,7 @@ public open class ShaderMaterial : Material() {
   /**
    * Returns the current value set for this material of a uniform in the shader.
    */
-  public fun getShaderParameter(`param`: StringName): Any? {
+  public final fun getShaderParameter(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(rawPtr, MethodBindings.getShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)

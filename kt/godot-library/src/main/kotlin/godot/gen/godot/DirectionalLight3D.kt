@@ -31,7 +31,7 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * The light's shadow rendering algorithm. See [ShadowMode].
    */
-  public var directionalShadowMode: ShadowMode
+  public final inline var directionalShadowMode: ShadowMode
     @JvmName("directionalShadowModeProperty")
     get() = getShadowMode()
     @JvmName("directionalShadowModeProperty")
@@ -44,7 +44,7 @@ public open class DirectionalLight3D : Light3D() {
    * Enabling shadow blend splitting also has a moderate performance cost. This is ignored when
    * [directionalShadowMode] is [SHADOW_ORTHOGONAL].
    */
-  public var directionalShadowBlendSplits: Boolean
+  public final inline var directionalShadowBlendSplits: Boolean
     @JvmName("directionalShadowBlendSplitsProperty")
     get() = isBlendSplitsEnabled()
     @JvmName("directionalShadowBlendSplitsProperty")
@@ -56,7 +56,7 @@ public open class DirectionalLight3D : Light3D() {
    * Set whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky
    * and in the scene. See [SkyMode] for options.
    */
-  public var skyMode: SkyMode
+  public final inline var skyMode: SkyMode
     @JvmName("skyModeProperty")
     get() = getSkyMode()
     @JvmName("skyModeProperty")
@@ -68,34 +68,34 @@ public open class DirectionalLight3D : Light3D() {
     callConstructor(ENGINECLASS_DIRECTIONALLIGHT3D, scriptIndex)
   }
 
-  public fun setShadowMode(mode: ShadowMode): Unit {
+  public final fun setShadowMode(mode: ShadowMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
   }
 
-  public fun getShadowMode(): ShadowMode {
+  public final fun getShadowMode(): ShadowMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
     return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBlendSplits(enabled: Boolean): Unit {
+  public final fun setBlendSplits(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendSplitsPtr, NIL)
   }
 
-  public fun isBlendSplitsEnabled(): Boolean {
+  public final fun isBlendSplitsEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSkyMode(mode: SkyMode): Unit {
+  public final fun setSkyMode(mode: SkyMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
   }
 
-  public fun getSkyMode(): SkyMode {
+  public final fun getSkyMode(): SkyMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkyModePtr, LONG)
     return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)

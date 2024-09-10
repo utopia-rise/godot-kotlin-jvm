@@ -30,7 +30,7 @@ public open class SphereShape3D : Shape3D() {
   /**
    * The sphere's radius. The shape's diameter is double the radius.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -42,12 +42,12 @@ public open class SphereShape3D : Shape3D() {
     callConstructor(ENGINECLASS_SPHERESHAPE3D, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

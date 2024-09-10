@@ -55,7 +55,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * will be used to create extra channels (WebRTC only supports one transfer mode per channel).
    */
   @JvmOverloads
-  public fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
+  public final fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
       GodotError {
     TransferContext.writeArguments(ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
@@ -71,7 +71,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * will be used to create extra channels (WebRTC only supports one transfer mode per channel).
    */
   @JvmOverloads
-  public fun createClient(peerId: Int, channelsConfig: VariantArray<Any?> =
+  public final fun createClient(peerId: Int, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): GodotError {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
@@ -83,7 +83,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * [peerId] (must be between 1 and 2147483647).
    */
   @JvmOverloads
-  public fun createMesh(peerId: Int, channelsConfig: VariantArray<Any?> =
+  public final fun createMesh(peerId: Int, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): GodotError {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
@@ -98,7 +98,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * and ordered channels (see [WebRTCPeerConnection.createDataChannel]).
    */
   @JvmOverloads
-  public fun addPeer(
+  public final fun addPeer(
     peer: WebRTCPeerConnection?,
     peerId: Int,
     unreliableLifetime: Int = 1,
@@ -113,7 +113,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * MultiplayerPeer.peer_connected] was emitted for it, then [signal
    * MultiplayerPeer.peer_disconnected] will be emitted.
    */
-  public fun removePeer(peerId: Int): Unit {
+  public final fun removePeer(peerId: Int): Unit {
     TransferContext.writeArguments(LONG to peerId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removePeerPtr, NIL)
   }
@@ -121,7 +121,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   /**
    * Returns `true` if the given [peerId] is in the peers map (it might not be connected though).
    */
-  public fun hasPeer(peerId: Int): Boolean {
+  public final fun hasPeer(peerId: Int): Boolean {
     TransferContext.writeArguments(LONG to peerId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.hasPeerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -133,7 +133,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * [WebRTCDataChannel], and `"connected"` a boolean representing if the peer connection is currently
    * connected (all three channels are open).
    */
-  public fun getPeer(peerId: Int): Dictionary<Any?, Any?> {
+  public final fun getPeer(peerId: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to peerId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -143,7 +143,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * Returns a dictionary which keys are the peer ids and values the peer representation as in
    * [getPeer].
    */
-  public fun getPeers(): Dictionary<Any?, Any?> {
+  public final fun getPeers(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)

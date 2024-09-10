@@ -34,7 +34,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * Allows for renaming old interaction profile paths to new paths to maintain backwards
    * compatibility with older action maps.
    */
-  public fun registerProfileRename(oldName: String, newName: String): Unit {
+  public final fun registerProfileRename(oldName: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to oldName, STRING to newName)
     TransferContext.callMethod(rawPtr, MethodBindings.registerProfileRenamePtr, NIL)
   }
@@ -49,7 +49,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * When a top level path ends up being bound by OpenXR, a [XRPositionalTracker] is instantiated to
    * manage the state of the device.
    */
-  public fun registerTopLevelPath(
+  public final fun registerTopLevelPath(
     displayName: String,
     openxrPath: String,
     openxrExtensionName: String,
@@ -67,7 +67,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * extension being enabled/available. If the extension is not available, the profile and all related
    * entries used in an action map are filtered out.
    */
-  public fun registerInteractionProfile(
+  public final fun registerInteractionProfile(
     displayName: String,
     openxrPath: String,
     openxrExtensionName: String,
@@ -87,7 +87,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * `…/input/palm_ext/pose` input paths). [actionType] defines the type of input or output provided by
    * OpenXR.
    */
-  public fun registerIoPath(
+  public final fun registerIoPath(
     interactionProfile: String,
     displayName: String,
     toplevelPath: String,

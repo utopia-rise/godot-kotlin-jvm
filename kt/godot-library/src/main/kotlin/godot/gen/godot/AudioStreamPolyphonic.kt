@@ -32,7 +32,7 @@ public open class AudioStreamPolyphonic : AudioStream() {
   /**
    * Maximum amount of simultaneous streams that can be played.
    */
-  public var polyphony: Int
+  public final inline var polyphony: Int
     @JvmName("polyphonyProperty")
     get() = getPolyphony()
     @JvmName("polyphonyProperty")
@@ -44,12 +44,12 @@ public open class AudioStreamPolyphonic : AudioStream() {
     callConstructor(ENGINECLASS_AUDIOSTREAMPOLYPHONIC, scriptIndex)
   }
 
-  public fun setPolyphony(voices: Int): Unit {
+  public final fun setPolyphony(voices: Int): Unit {
     TransferContext.writeArguments(LONG to voices.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPolyphonyPtr, NIL)
   }
 
-  public fun getPolyphony(): Int {
+  public final fun getPolyphony(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolyphonyPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

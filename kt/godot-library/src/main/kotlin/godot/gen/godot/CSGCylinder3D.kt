@@ -36,7 +36,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   /**
    * The radius of the cylinder.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -47,7 +47,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   /**
    * The height of the cylinder.
    */
-  public var height: Float
+  public final inline var height: Float
     @JvmName("heightProperty")
     get() = getHeight()
     @JvmName("heightProperty")
@@ -59,7 +59,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
    * The number of sides of the cylinder, the higher this number the more detail there will be in
    * the cylinder.
    */
-  public var sides: Int
+  public final inline var sides: Int
     @JvmName("sidesProperty")
     get() = getSides()
     @JvmName("sidesProperty")
@@ -70,7 +70,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   /**
    * If `true` a cone is created, the [radius] will only apply to one side.
    */
-  public var cone: Boolean
+  public final inline var cone: Boolean
     @JvmName("coneProperty")
     get() = isCone()
     @JvmName("coneProperty")
@@ -82,7 +82,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
    * If `true` the normals of the cylinder are set to give a smooth effect making the cylinder seem
    * rounded. If `false` the cylinder will have a flat shaded look.
    */
-  public var smoothFaces: Boolean
+  public final inline var smoothFaces: Boolean
     @JvmName("smoothFacesProperty")
     get() = getSmoothFaces()
     @JvmName("smoothFacesProperty")
@@ -93,7 +93,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   /**
    * The material used to render the cylinder.
    */
-  public var material: Material?
+  public final inline var material: Material?
     @JvmName("materialProperty")
     get() = getMaterial()
     @JvmName("materialProperty")
@@ -105,67 +105,67 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     callConstructor(ENGINECLASS_CSGCYLINDER3D, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
-  public fun getHeight(): Float {
+  public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSides(sides: Int): Unit {
+  public final fun setSides(sides: Int): Unit {
     TransferContext.writeArguments(LONG to sides.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
   }
 
-  public fun getSides(): Int {
+  public final fun getSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setCone(cone: Boolean): Unit {
+  public final fun setCone(cone: Boolean): Unit {
     TransferContext.writeArguments(BOOL to cone)
     TransferContext.callMethod(rawPtr, MethodBindings.setConePtr, NIL)
   }
 
-  public fun isCone(): Boolean {
+  public final fun isCone(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
-  public fun getMaterial(): Material? {
+  public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
-  public fun setSmoothFaces(smoothFaces: Boolean): Unit {
+  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
     TransferContext.writeArguments(BOOL to smoothFaces)
     TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
   }
 
-  public fun getSmoothFaces(): Boolean {
+  public final fun getSmoothFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

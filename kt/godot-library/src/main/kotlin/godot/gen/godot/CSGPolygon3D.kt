@@ -44,7 +44,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * triangulation will fail and no mesh will be generated.
    * **Note:** If only 1 or 2 points are defined in [polygon], no mesh will be generated.
    */
-  public var polygon: PackedVector2Array
+  public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
     @JvmName("polygonProperty")
@@ -55,7 +55,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   /**
    * The [mode] used to extrude the [polygon].
    */
-  public var mode: Mode
+  public final inline var mode: Mode
     @JvmName("modeProperty")
     get() = getMode()
     @JvmName("modeProperty")
@@ -66,7 +66,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   /**
    * When [mode] is [MODE_DEPTH], the depth of the extrusion.
    */
-  public var depth: Float
+  public final inline var depth: Float
     @JvmName("depthProperty")
     get() = getDepth()
     @JvmName("depthProperty")
@@ -78,7 +78,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * When [mode] is [MODE_SPIN], the total number of degrees the [polygon] is rotated when
    * extruding.
    */
-  public var spinDegrees: Float
+  public final inline var spinDegrees: Float
     @JvmName("spinDegreesProperty")
     get() = getSpinDegrees()
     @JvmName("spinDegreesProperty")
@@ -89,7 +89,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   /**
    * When [mode] is [MODE_SPIN], the number of extrusions made.
    */
-  public var spinSides: Int
+  public final inline var spinSides: Int
     @JvmName("spinSidesProperty")
     get() = getSpinSides()
     @JvmName("spinSidesProperty")
@@ -100,7 +100,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   /**
    * When [mode] is [MODE_PATH], the location of the [Path3D] object used to extrude the [polygon].
    */
-  public var pathNode: NodePath
+  public final inline var pathNode: NodePath
     @JvmName("pathNodeProperty")
     get() = getPathNode()
     @JvmName("pathNodeProperty")
@@ -112,7 +112,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * When [mode] is [MODE_PATH], this will determine if the interval should be by distance
    * ([PATH_INTERVAL_DISTANCE]) or subdivision fractions ([PATH_INTERVAL_SUBDIVIDE]).
    */
-  public var pathIntervalType: PathIntervalType
+  public final inline var pathIntervalType: PathIntervalType
     @JvmName("pathIntervalTypeProperty")
     get() = getPathIntervalType()
     @JvmName("pathIntervalTypeProperty")
@@ -123,7 +123,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   /**
    * When [mode] is [MODE_PATH], the path interval or ratio of path points to extrusions.
    */
-  public var pathInterval: Float
+  public final inline var pathInterval: Float
     @JvmName("pathIntervalProperty")
     get() = getPathInterval()
     @JvmName("pathIntervalProperty")
@@ -135,7 +135,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * When [mode] is [MODE_PATH], extrusions that are less than this angle, will be merged together
    * to reduce polygon count.
    */
-  public var pathSimplifyAngle: Float
+  public final inline var pathSimplifyAngle: Float
     @JvmName("pathSimplifyAngleProperty")
     get() = getPathSimplifyAngle()
     @JvmName("pathSimplifyAngleProperty")
@@ -147,7 +147,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * When [mode] is [MODE_PATH], the path rotation method used to rotate the [polygon] as it is
    * extruded.
    */
-  public var pathRotation: PathRotation
+  public final inline var pathRotation: PathRotation
     @JvmName("pathRotationProperty")
     get() = getPathRotation()
     @JvmName("pathRotationProperty")
@@ -159,7 +159,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * When [mode] is [MODE_PATH], if `true` the [Transform3D] of the [CSGPolygon3D] is used as the
    * starting point for the extrusions, not the [Transform3D] of the [pathNode].
    */
-  public var pathLocal: Boolean
+  public final inline var pathLocal: Boolean
     @JvmName("pathLocalProperty")
     get() = isPathLocal()
     @JvmName("pathLocalProperty")
@@ -172,7 +172,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * entire length of the extruded shape. If `false` the top half of the material is repeated every
    * step of the extrusion.
    */
-  public var pathContinuousU: Boolean
+  public final inline var pathContinuousU: Boolean
     @JvmName("pathContinuousUProperty")
     get() = isPathContinuousU()
     @JvmName("pathContinuousUProperty")
@@ -185,7 +185,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * coordinates will tile. When set to 0, texture coordinates will match geometry exactly with no
    * tiling.
    */
-  public var pathUDistance: Float
+  public final inline var pathUDistance: Float
     @JvmName("pathUDistanceProperty")
     get() = getPathUDistance()
     @JvmName("pathUDistanceProperty")
@@ -197,7 +197,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * When [mode] is [MODE_PATH], if `true` the ends of the path are joined, by adding an extrusion
    * between the last and first points of the path.
    */
-  public var pathJoined: Boolean
+  public final inline var pathJoined: Boolean
     @JvmName("pathJoinedProperty")
     get() = isPathJoined()
     @JvmName("pathJoinedProperty")
@@ -208,7 +208,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   /**
    * If `true`, applies smooth shading to the extrusions.
    */
-  public var smoothFaces: Boolean
+  public final inline var smoothFaces: Boolean
     @JvmName("smoothFacesProperty")
     get() = getSmoothFaces()
     @JvmName("smoothFacesProperty")
@@ -221,7 +221,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
    * extruded shape (U along the length of the extrusions and V around the outline of the [polygon]),
    * the bottom-left quarter to the front end face, and the bottom-right quarter to the back end face.
    */
-  public var material: Material?
+  public final inline var material: Material?
     @JvmName("materialProperty")
     get() = getMaterial()
     @JvmName("materialProperty")
@@ -233,177 +233,177 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     callConstructor(ENGINECLASS_CSGPOLYGON3D, scriptIndex)
   }
 
-  public fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
-  public fun getPolygon(): PackedVector2Array {
+  public final fun getPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
-  public fun setMode(mode: Mode): Unit {
+  public final fun setMode(mode: Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
-  public fun getMode(): Mode {
+  public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
     return CSGPolygon3D.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDepth(depth: Float): Unit {
+  public final fun setDepth(depth: Float): Unit {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
-  public fun getDepth(): Float {
+  public final fun getDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSpinDegrees(degrees: Float): Unit {
+  public final fun setSpinDegrees(degrees: Float): Unit {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpinDegreesPtr, NIL)
   }
 
-  public fun getSpinDegrees(): Float {
+  public final fun getSpinDegrees(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpinDegreesPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSpinSides(spinSides: Int): Unit {
+  public final fun setSpinSides(spinSides: Int): Unit {
     TransferContext.writeArguments(LONG to spinSides.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpinSidesPtr, NIL)
   }
 
-  public fun getSpinSides(): Int {
+  public final fun getSpinSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpinSidesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setPathNode(path: NodePath): Unit {
+  public final fun setPathNode(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathNodePtr, NIL)
   }
 
-  public fun getPathNode(): NodePath {
+  public final fun getPathNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setPathIntervalType(intervalType: PathIntervalType): Unit {
+  public final fun setPathIntervalType(intervalType: PathIntervalType): Unit {
     TransferContext.writeArguments(LONG to intervalType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathIntervalTypePtr, NIL)
   }
 
-  public fun getPathIntervalType(): PathIntervalType {
+  public final fun getPathIntervalType(): PathIntervalType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathIntervalTypePtr, LONG)
     return CSGPolygon3D.PathIntervalType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPathInterval(interval: Float): Unit {
+  public final fun setPathInterval(interval: Float): Unit {
     TransferContext.writeArguments(DOUBLE to interval.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPathIntervalPtr, NIL)
   }
 
-  public fun getPathInterval(): Float {
+  public final fun getPathInterval(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathIntervalPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPathSimplifyAngle(degrees: Float): Unit {
+  public final fun setPathSimplifyAngle(degrees: Float): Unit {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPathSimplifyAnglePtr, NIL)
   }
 
-  public fun getPathSimplifyAngle(): Float {
+  public final fun getPathSimplifyAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathSimplifyAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPathRotation(pathRotation: PathRotation): Unit {
+  public final fun setPathRotation(pathRotation: PathRotation): Unit {
     TransferContext.writeArguments(LONG to pathRotation.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathRotationPtr, NIL)
   }
 
-  public fun getPathRotation(): PathRotation {
+  public final fun getPathRotation(): PathRotation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathRotationPtr, LONG)
     return CSGPolygon3D.PathRotation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPathLocal(enable: Boolean): Unit {
+  public final fun setPathLocal(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathLocalPtr, NIL)
   }
 
-  public fun isPathLocal(): Boolean {
+  public final fun isPathLocal(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPathLocalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPathContinuousU(enable: Boolean): Unit {
+  public final fun setPathContinuousU(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathContinuousUPtr, NIL)
   }
 
-  public fun isPathContinuousU(): Boolean {
+  public final fun isPathContinuousU(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPathContinuousUPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPathUDistance(distance: Float): Unit {
+  public final fun setPathUDistance(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPathUDistancePtr, NIL)
   }
 
-  public fun getPathUDistance(): Float {
+  public final fun getPathUDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathUDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPathJoined(enable: Boolean): Unit {
+  public final fun setPathJoined(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathJoinedPtr, NIL)
   }
 
-  public fun isPathJoined(): Boolean {
+  public final fun isPathJoined(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPathJoinedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
-  public fun getMaterial(): Material? {
+  public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
-  public fun setSmoothFaces(smoothFaces: Boolean): Unit {
+  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
     TransferContext.writeArguments(BOOL to smoothFaces)
     TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
   }
 
-  public fun getSmoothFaces(): Boolean {
+  public final fun getSmoothFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

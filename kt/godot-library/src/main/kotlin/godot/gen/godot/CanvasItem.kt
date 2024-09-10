@@ -97,7 +97,7 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** For controls that inherit [Popup], the correct way to make them visible is to call
    * one of the multiple `popup*()` functions instead.
    */
-  public var visible: Boolean
+  public final inline var visible: Boolean
     @JvmName("visibleProperty")
     get() = isVisible()
     @JvmName("visibleProperty")
@@ -110,7 +110,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [selfModulate] which only affects the node itself.
    */
   @CoreTypeLocalCopy
-  public var modulate: Color
+  public final inline var modulate: Color
     @JvmName("modulateProperty")
     get() = getModulate()
     @JvmName("modulateProperty")
@@ -126,7 +126,7 @@ public open class CanvasItem internal constructor() : Node() {
    * similar methods).
    */
   @CoreTypeLocalCopy
-  public var selfModulate: Color
+  public final inline var selfModulate: Color
     @JvmName("selfModulateProperty")
     get() = getSelfModulate()
     @JvmName("selfModulateProperty")
@@ -137,7 +137,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * If `true`, the object draws behind its parent.
    */
-  public var showBehindParent: Boolean
+  public final inline var showBehindParent: Boolean
     @JvmName("showBehindParentProperty")
     get() = isDrawBehindParentEnabled()
     @JvmName("showBehindParentProperty")
@@ -151,7 +151,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [topLevel] set to `true`. The [CanvasItem] will effectively act as if it was placed as a child of
    * a bare [Node].
    */
-  public var topLevel: Boolean
+  public final inline var topLevel: Boolean
     @JvmName("topLevelProperty")
     get() = isSetAsTopLevel()
     @JvmName("topLevelProperty")
@@ -162,7 +162,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Allows the current node to clip child nodes, essentially acting as a mask.
    */
-  public var clipChildren: ClipChildrenMode
+  public final inline var clipChildren: ClipChildrenMode
     @JvmName("clipChildrenProperty")
     get() = getClipChildrenMode()
     @JvmName("clipChildrenProperty")
@@ -173,7 +173,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The rendering layers in which this [CanvasItem] responds to [Light2D] nodes.
    */
-  public var lightMask: Int
+  public final inline var lightMask: Int
     @JvmName("lightMaskProperty")
     get() = getLightMask()
     @JvmName("lightMaskProperty")
@@ -186,7 +186,7 @@ public open class CanvasItem internal constructor() : Node() {
    * will render a [CanvasItem] if it and all its parents share a layer with the [Viewport]'s canvas
    * cull mask.
    */
-  public var visibilityLayer: Long
+  public final inline var visibilityLayer: Long
     @JvmName("visibilityLayerProperty")
     get() = getVisibilityLayer()
     @JvmName("visibilityLayerProperty")
@@ -202,7 +202,7 @@ public open class CanvasItem internal constructor() : Node() {
    * which input events are handled. This can be useful to implement certain UI animations, e.g. a menu
    * where hovered items are scaled and should overlap others.
    */
-  public var zIndex: Int
+  public final inline var zIndex: Int
     @JvmName("zIndexProperty")
     get() = getZIndex()
     @JvmName("zIndexProperty")
@@ -214,7 +214,7 @@ public open class CanvasItem internal constructor() : Node() {
    * If `true`, the node's Z index is relative to its parent's Z index. If this node's Z index is 2
    * and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5.
    */
-  public var zAsRelative: Boolean
+  public final inline var zAsRelative: Boolean
     @JvmName("zAsRelativeProperty")
     get() = isZRelative()
     @JvmName("zAsRelativeProperty")
@@ -232,7 +232,7 @@ public open class CanvasItem internal constructor() : Node() {
    * scene tree.
    * Nodes sort relative to each other only if they are on the same [zIndex].
    */
-  public var ySortEnabled: Boolean
+  public final inline var ySortEnabled: Boolean
     @JvmName("ySortEnabledProperty")
     get() = isYSortEnabled()
     @JvmName("ySortEnabledProperty")
@@ -243,7 +243,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The texture filtering mode to use on this [CanvasItem].
    */
-  public var textureFilter: TextureFilter
+  public final inline var textureFilter: TextureFilter
     @JvmName("textureFilterProperty")
     get() = getTextureFilter()
     @JvmName("textureFilterProperty")
@@ -254,7 +254,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The texture repeating mode to use on this [CanvasItem].
    */
-  public var textureRepeat: TextureRepeat
+  public final inline var textureRepeat: TextureRepeat
     @JvmName("textureRepeatProperty")
     get() = getTextureRepeat()
     @JvmName("textureRepeatProperty")
@@ -265,7 +265,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * The material applied to this [CanvasItem].
    */
-  public var material: Material?
+  public final inline var material: Material?
     @JvmName("materialProperty")
     get() = getMaterial()
     @JvmName("materialProperty")
@@ -276,7 +276,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * If `true`, the parent [CanvasItem]'s [material] property is used as this one's material.
    */
-  public var useParentMaterial: Boolean
+  public final inline var useParentMaterial: Boolean
     @JvmName("useParentMaterialProperty")
     get() = getUseParentMaterial()
     @JvmName("useParentMaterialProperty")
@@ -307,7 +307,7 @@ public open class CanvasItem internal constructor() : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }
@@ -335,7 +335,7 @@ public open class CanvasItem internal constructor() : Node() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun selfModulateMutate(block: Color.() -> Unit): Color = selfModulate.apply{
+  public final fun selfModulateMutate(block: Color.() -> Unit): Color = selfModulate.apply{
       block(this)
       selfModulate = this
   }
@@ -352,18 +352,18 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the canvas item RID used by [RenderingServer] for this item.
    */
-  public fun getCanvasItem(): RID {
+  public final fun getCanvasItem(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasItemPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setVisible(visible: Boolean): Unit {
+  public final fun setVisible(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
   }
 
-  public fun isVisible(): Boolean {
+  public final fun isVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -377,7 +377,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [Window]. If the parent is of any other type (such as [Node], [AnimationPlayer], or [Node3D]), it
    * is assumed to be visible.
    */
-  public fun isVisibleInTree(): Boolean {
+  public final fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVisibleInTreePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -388,7 +388,7 @@ public open class CanvasItem internal constructor() : Node() {
    * `true`. For controls that inherit [Popup], the correct way to make them visible is to call one of
    * the multiple `popup*()` functions instead.
    */
-  public fun show(): Unit {
+  public final fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.showPtr, NIL)
   }
@@ -397,7 +397,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Hide the [CanvasItem] if it's currently visible. This is equivalent to setting [visible] to
    * `false`.
    */
-  public fun hide(): Unit {
+  public final fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hidePtr, NIL)
   }
@@ -407,7 +407,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [NOTIFICATION_DRAW] is sent and [_draw] is called. This only occurs **once** per frame, even if
    * this method has been called multiple times.
    */
-  public fun queueRedraw(): Unit {
+  public final fun queueRedraw(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.queueRedrawPtr, NIL)
   }
@@ -417,94 +417,94 @@ public open class CanvasItem internal constructor() : Node() {
    * Internally, the node is moved to the bottom of parent's child list. The method has no effect on
    * nodes without a parent.
    */
-  public fun moveToFront(): Unit {
+  public final fun moveToFront(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.moveToFrontPtr, NIL)
   }
 
-  public fun setAsTopLevel(enable: Boolean): Unit {
+  public final fun setAsTopLevel(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAsTopLevelPtr, NIL)
   }
 
-  public fun isSetAsTopLevel(): Boolean {
+  public final fun isSetAsTopLevel(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSetAsTopLevelPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setLightMask(lightMask: Int): Unit {
+  public final fun setLightMask(lightMask: Int): Unit {
     TransferContext.writeArguments(LONG to lightMask.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLightMaskPtr, NIL)
   }
 
-  public fun getLightMask(): Int {
+  public final fun getLightMask(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setModulate(modulate: Color): Unit {
+  public final fun setModulate(modulate: Color): Unit {
     TransferContext.writeArguments(COLOR to modulate)
     TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
   }
 
-  public fun getModulate(): Color {
+  public final fun getModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setSelfModulate(selfModulate: Color): Unit {
+  public final fun setSelfModulate(selfModulate: Color): Unit {
     TransferContext.writeArguments(COLOR to selfModulate)
     TransferContext.callMethod(rawPtr, MethodBindings.setSelfModulatePtr, NIL)
   }
 
-  public fun getSelfModulate(): Color {
+  public final fun getSelfModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelfModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setZIndex(zIndex: Int): Unit {
+  public final fun setZIndex(zIndex: Int): Unit {
     TransferContext.writeArguments(LONG to zIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setZIndexPtr, NIL)
   }
 
-  public fun getZIndex(): Int {
+  public final fun getZIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setZAsRelative(enable: Boolean): Unit {
+  public final fun setZAsRelative(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setZAsRelativePtr, NIL)
   }
 
-  public fun isZRelative(): Boolean {
+  public final fun isZRelative(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isZRelativePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setYSortEnabled(enabled: Boolean): Unit {
+  public final fun setYSortEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setYSortEnabledPtr, NIL)
   }
 
-  public fun isYSortEnabled(): Boolean {
+  public final fun isYSortEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isYSortEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDrawBehindParent(enable: Boolean): Unit {
+  public final fun setDrawBehindParent(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setDrawBehindParentPtr, NIL)
   }
 
-  public fun isDrawBehindParentEnabled(): Boolean {
+  public final fun isDrawBehindParentEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawBehindParentEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -518,7 +518,7 @@ public open class CanvasItem internal constructor() : Node() {
    * desired, then pass a positive [width] like `1.0`.
    */
   @JvmOverloads
-  public fun drawLine(
+  public final fun drawLine(
     from: Vector2,
     to: Vector2,
     color: Color,
@@ -540,7 +540,7 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** [antialiased] is only effective if [width] is greater than `0.0`.
    */
   @JvmOverloads
-  public fun drawDashedLine(
+  public final fun drawDashedLine(
     from: Vector2,
     to: Vector2,
     color: Color,
@@ -564,7 +564,7 @@ public open class CanvasItem internal constructor() : Node() {
    * `1.0`.
    */
   @JvmOverloads
-  public fun drawPolyline(
+  public final fun drawPolyline(
     points: PackedVector2Array,
     color: Color,
     width: Float = -1.0f,
@@ -587,7 +587,7 @@ public open class CanvasItem internal constructor() : Node() {
    * `1.0`.
    */
   @JvmOverloads
-  public fun drawPolylineColors(
+  public final fun drawPolylineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
     width: Float = -1.0f,
@@ -610,7 +610,7 @@ public open class CanvasItem internal constructor() : Node() {
    * than [@GDScript.TAU] radians, then a full circle arc is drawn (i.e. arc will not overlap itself).
    */
   @JvmOverloads
-  public fun drawArc(
+  public final fun drawArc(
     center: Vector2,
     radius: Float,
     startAngle: Float,
@@ -635,7 +635,7 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** [antialiased] is only effective if [width] is greater than `0.0`.
    */
   @JvmOverloads
-  public fun drawMultiline(
+  public final fun drawMultiline(
     points: PackedVector2Array,
     color: Color,
     width: Float = -1.0f,
@@ -657,7 +657,7 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** [antialiased] is only effective if [width] is greater than `0.0`.
    */
   @JvmOverloads
-  public fun drawMultilineColors(
+  public final fun drawMultilineColors(
     points: PackedVector2Array,
     colors: PackedColorArray,
     width: Float = -1.0f,
@@ -681,7 +681,7 @@ public open class CanvasItem internal constructor() : Node() {
    * example, corners may be missing or brighter due to overlapping lines (for a translucent [color]).
    */
   @JvmOverloads
-  public fun drawRect(
+  public final fun drawRect(
     rect: Rect2,
     color: Color,
     filled: Boolean = true,
@@ -704,7 +704,7 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** [width] is only effective if [filled] is `false`.
    */
   @JvmOverloads
-  public fun drawCircle(
+  public final fun drawCircle(
     position: Vector2,
     radius: Float,
     color: Color,
@@ -720,7 +720,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a texture at a given position.
    */
   @JvmOverloads
-  public fun drawTexture(
+  public final fun drawTexture(
     texture: Texture2D?,
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -735,7 +735,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [drawTextureRectRegion].
    */
   @JvmOverloads
-  public fun drawTextureRect(
+  public final fun drawTextureRect(
     texture: Texture2D?,
     rect: Rect2,
     tile: Boolean,
@@ -752,7 +752,7 @@ public open class CanvasItem internal constructor() : Node() {
    * and Y coordinates swapped. See also [drawTextureRect].
    */
   @JvmOverloads
-  public fun drawTextureRectRegion(
+  public final fun drawTextureRectRegion(
     texture: Texture2D?,
     rect: Rect2,
     srcRect: Rect2,
@@ -774,7 +774,7 @@ public open class CanvasItem internal constructor() : Node() {
    * generation.
    */
   @JvmOverloads
-  public fun drawMsdfTextureRectRegion(
+  public final fun drawMsdfTextureRectRegion(
     texture: Texture2D?,
     rect: Rect2,
     srcRect: Rect2,
@@ -800,7 +800,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun drawLcdTextureRectRegion(
+  public final fun drawLcdTextureRectRegion(
     texture: Texture2D?,
     rect: Rect2,
     srcRect: Rect2,
@@ -813,7 +813,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a styled rectangle.
    */
-  public fun drawStyleBox(styleBox: StyleBox?, rect: Rect2): Unit {
+  public final fun drawStyleBox(styleBox: StyleBox?, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to styleBox, RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.drawStyleBoxPtr, NIL)
   }
@@ -825,7 +825,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [drawRect].
    */
   @JvmOverloads
-  public fun drawPrimitive(
+  public final fun drawPrimitive(
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array,
@@ -842,7 +842,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [RenderingServer.canvasItemAddTriangleArray] instead.
    */
   @JvmOverloads
-  public fun drawPolygon(
+  public final fun drawPolygon(
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array = PackedVector2Array(),
@@ -857,7 +857,7 @@ public open class CanvasItem internal constructor() : Node() {
    * single color must be specified for the whole polygon.
    */
   @JvmOverloads
-  public fun drawColoredPolygon(
+  public final fun drawColoredPolygon(
     points: PackedVector2Array,
     color: Color,
     uvs: PackedVector2Array = PackedVector2Array(),
@@ -897,7 +897,7 @@ public open class CanvasItem internal constructor() : Node() {
    * See also [Font.drawString].
    */
   @JvmOverloads
-  public fun drawString(
+  public final fun drawString(
     font: Font?,
     pos: Vector2,
     text: String,
@@ -919,7 +919,7 @@ public open class CanvasItem internal constructor() : Node() {
    * equal to 0, the text will be clipped if it exceeds the specified width.
    */
   @JvmOverloads
-  public fun drawMultilineString(
+  public final fun drawMultilineString(
     font: Font?,
     pos: Vector2,
     text: String,
@@ -943,7 +943,7 @@ public open class CanvasItem internal constructor() : Node() {
    * greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
   @JvmOverloads
-  public fun drawStringOutline(
+  public final fun drawStringOutline(
     font: Font?,
     pos: Vector2,
     text: String,
@@ -966,7 +966,7 @@ public open class CanvasItem internal constructor() : Node() {
    * than or equal to 0, the text will be clipped if it exceeds the specified width.
    */
   @JvmOverloads
-  public fun drawMultilineStringOutline(
+  public final fun drawMultilineStringOutline(
     font: Font?,
     pos: Vector2,
     text: String,
@@ -989,7 +989,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a string first character using a custom font.
    */
   @JvmOverloads
-  public fun drawChar(
+  public final fun drawChar(
     font: Font?,
     pos: Vector2,
     char: String,
@@ -1004,7 +1004,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a string first character outline using a custom font.
    */
   @JvmOverloads
-  public fun drawCharOutline(
+  public final fun drawCharOutline(
     font: Font?,
     pos: Vector2,
     char: String,
@@ -1021,7 +1021,7 @@ public open class CanvasItem internal constructor() : Node() {
    * documentation.
    */
   @JvmOverloads
-  public fun drawMesh(
+  public final fun drawMesh(
     mesh: Mesh?,
     texture: Texture2D?,
     transform: Transform2D = Transform2D(),
@@ -1035,7 +1035,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a [MultiMesh] in 2D with the provided texture. See [MultiMeshInstance2D] for related
    * documentation.
    */
-  public fun drawMultimesh(multimesh: MultiMesh?, texture: Texture2D?): Unit {
+  public final fun drawMultimesh(multimesh: MultiMesh?, texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to multimesh, OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.drawMultimeshPtr, NIL)
   }
@@ -1052,7 +1052,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    */
   @JvmOverloads
-  public fun drawSetTransform(
+  public final fun drawSetTransform(
     position: Vector2,
     rotation: Float = 0.0f,
     scale: Vector2 = Vector2(1, 1),
@@ -1065,7 +1065,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed
    * by this.
    */
-  public fun drawSetTransformMatrix(xform: Transform2D): Unit {
+  public final fun drawSetTransformMatrix(xform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform)
     TransferContext.callMethod(rawPtr, MethodBindings.drawSetTransformMatrixPtr, NIL)
   }
@@ -1076,7 +1076,7 @@ public open class CanvasItem internal constructor() : Node() {
    * constantly.
    */
   @JvmOverloads
-  public fun drawAnimationSlice(
+  public final fun drawAnimationSlice(
     animationLength: Double,
     sliceBegin: Double,
     sliceEnd: Double,
@@ -1092,7 +1092,7 @@ public open class CanvasItem internal constructor() : Node() {
    * don't care about this particular use case, usage of this function after submitting the slices is
    * not required.
    */
-  public fun drawEndAnimation(): Unit {
+  public final fun drawEndAnimation(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.drawEndAnimationPtr, NIL)
   }
@@ -1100,7 +1100,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the transform matrix of this item.
    */
-  public fun getTransform(): Transform2D {
+  public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -1111,7 +1111,7 @@ public open class CanvasItem internal constructor() : Node() {
    * [CanvasItem] node. The topmost item is a [CanvasItem] that either has no parent, has
    * non-[CanvasItem] parent or it has [topLevel] enabled.
    */
-  public fun getGlobalTransform(): Transform2D {
+  public final fun getGlobalTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -1121,7 +1121,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the transform from the local coordinate system of this [CanvasItem] to the [Viewport]s
    * coordinate system.
    */
-  public fun getGlobalTransformWithCanvas(): Transform2D {
+  public final fun getGlobalTransformWithCanvas(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalTransformWithCanvasPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -1131,7 +1131,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the transform from the coordinate system of the canvas, this item is in, to the
    * [Viewport]s embedders coordinate system.
    */
-  public fun getViewportTransform(): Transform2D {
+  public final fun getViewportTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getViewportTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -1140,7 +1140,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the viewport's boundaries as a [Rect2].
    */
-  public fun getViewportRect(): Rect2 {
+  public final fun getViewportRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getViewportRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
@@ -1150,7 +1150,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the transform from the coordinate system of the canvas, this item is in, to the
    * [Viewport]s coordinate system.
    */
-  public fun getCanvasTransform(): Transform2D {
+  public final fun getCanvasTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -1161,7 +1161,7 @@ public open class CanvasItem internal constructor() : Node() {
    * position into account). Mostly useful for editor plugins.
    * Equals to [getGlobalTransform] if the window is embedded (see [Viewport.guiEmbedSubwindows]).
    */
-  public fun getScreenTransform(): Transform2D {
+  public final fun getScreenTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -1171,7 +1171,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the mouse's position in this [CanvasItem] using the local coordinate system of this
    * [CanvasItem].
    */
-  public fun getLocalMousePosition(): Vector2 {
+  public final fun getLocalMousePosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalMousePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -1183,7 +1183,7 @@ public open class CanvasItem internal constructor() : Node() {
    * **Note:** For screen-space coordinates (e.g. when using a non-embedded [Popup]), you can use
    * [DisplayServer.mouseGetPosition].
    */
-  public fun getGlobalMousePosition(): Vector2 {
+  public final fun getGlobalMousePosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalMousePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -1192,7 +1192,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the [RID] of the [World2D] canvas where this item is in.
    */
-  public fun getCanvas(): RID {
+  public final fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -1202,7 +1202,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Returns the [CanvasLayer] that contains this node, or `null` if the node is not in any
    * [CanvasLayer].
    */
-  public fun getCanvasLayerNode(): CanvasLayer? {
+  public final fun getCanvasLayerNode(): CanvasLayer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasLayerNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CanvasLayer?)
@@ -1211,29 +1211,29 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns the [World2D] where this item is in.
    */
-  public fun getWorld2d(): World2D? {
+  public final fun getWorld2d(): World2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWorld2dPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as World2D?)
   }
 
-  public fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
-  public fun getMaterial(): Material? {
+  public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
-  public fun setUseParentMaterial(enable: Boolean): Unit {
+  public final fun setUseParentMaterial(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseParentMaterialPtr, NIL)
   }
 
-  public fun getUseParentMaterial(): Boolean {
+  public final fun getUseParentMaterial(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseParentMaterialPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1243,7 +1243,7 @@ public open class CanvasItem internal constructor() : Node() {
    * If [enable] is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its
    * local transform changes.
    */
-  public fun setNotifyLocalTransform(enable: Boolean): Unit {
+  public final fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setNotifyLocalTransformPtr, NIL)
   }
@@ -1251,7 +1251,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns `true` if local transform notifications are communicated to children.
    */
-  public fun isLocalTransformNotificationEnabled(): Boolean {
+  public final fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLocalTransformNotificationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1261,7 +1261,7 @@ public open class CanvasItem internal constructor() : Node() {
    * If [enable] is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global
    * transform changes.
    */
-  public fun setNotifyTransform(enable: Boolean): Unit {
+  public final fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setNotifyTransformPtr, NIL)
   }
@@ -1269,7 +1269,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns `true` if global transform notifications are communicated to children.
    */
-  public fun isTransformNotificationEnabled(): Boolean {
+  public final fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTransformNotificationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1280,7 +1280,7 @@ public open class CanvasItem internal constructor() : Node() {
    * reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform
    * when doing physics operations.
    */
-  public fun forceUpdateTransform(): Unit {
+  public final fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateTransformPtr, NIL)
   }
@@ -1288,7 +1288,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Assigns [screenPoint] as this node's new local transform.
    */
-  public fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
+  public final fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.makeCanvasPositionLocalPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -1297,18 +1297,18 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Transformations issued by [event]'s inputs are applied in local space instead of global space.
    */
-  public fun makeInputLocal(event: InputEvent?): InputEvent? {
+  public final fun makeInputLocal(event: InputEvent?): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.makeInputLocalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as InputEvent?)
   }
 
-  public fun setVisibilityLayer(layer: Long): Unit {
+  public final fun setVisibilityLayer(layer: Long): Unit {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityLayerPtr, NIL)
   }
 
-  public fun getVisibilityLayer(): Long {
+  public final fun getVisibilityLayer(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1318,7 +1318,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Set/clear individual bits on the rendering visibility layer. This simplifies editing this
    * [CanvasItem]'s visibility layer.
    */
-  public fun setVisibilityLayerBit(layer: Long, enabled: Boolean): Unit {
+  public final fun setVisibilityLayerBit(layer: Long, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityLayerBitPtr, NIL)
   }
@@ -1326,40 +1326,40 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Returns an individual bit on the rendering visibility layer.
    */
-  public fun getVisibilityLayerBit(layer: Long): Boolean {
+  public final fun getVisibilityLayerBit(layer: Long): Boolean {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityLayerBitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTextureFilter(mode: TextureFilter): Unit {
+  public final fun setTextureFilter(mode: TextureFilter): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
-  public fun getTextureFilter(): TextureFilter {
+  public final fun getTextureFilter(): TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
     return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTextureRepeat(mode: TextureRepeat): Unit {
+  public final fun setTextureRepeat(mode: TextureRepeat): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 
-  public fun getTextureRepeat(): TextureRepeat {
+  public final fun getTextureRepeat(): TextureRepeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
     return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setClipChildrenMode(mode: ClipChildrenMode): Unit {
+  public final fun setClipChildrenMode(mode: ClipChildrenMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setClipChildrenModePtr, NIL)
   }
 
-  public fun getClipChildrenMode(): ClipChildrenMode {
+  public final fun getClipChildrenMode(): ClipChildrenMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getClipChildrenModePtr, LONG)
     return CanvasItem.ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)

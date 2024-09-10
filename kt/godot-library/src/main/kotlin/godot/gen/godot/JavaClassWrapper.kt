@@ -35,7 +35,7 @@ public object JavaClassWrapper : Object() {
    * **Note:** This method only works on Android. On every other platform, this method does nothing
    * and returns an empty [JavaClass].
    */
-  public fun wrap(name: String): JavaClass? {
+  public final fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as JavaClass?)

@@ -46,7 +46,7 @@ public open class XRNode3D : Node3D() {
    * Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may
    * be configured within a given [XRInterface].
    */
-  public var tracker: StringName
+  public final inline var tracker: StringName
     @JvmName("trackerProperty")
     get() = getTracker()
     @JvmName("trackerProperty")
@@ -60,7 +60,7 @@ public open class XRNode3D : Node3D() {
    * Godot defines number of standard pose names such as `aim` and `grip` but other may be
    * configured within a given [XRInterface].
    */
-  public var pose: StringName
+  public final inline var pose: StringName
     @JvmName("poseProperty")
     get() = getPoseName()
     @JvmName("poseProperty")
@@ -71,7 +71,7 @@ public open class XRNode3D : Node3D() {
   /**
    * Enables showing the node when tracking starts, and hiding the node when tracking is lost.
    */
-  public var showWhenTracked: Boolean
+  public final inline var showWhenTracked: Boolean
     @JvmName("showWhenTrackedProperty")
     get() = getShowWhenTracked()
     @JvmName("showWhenTrackedProperty")
@@ -83,34 +83,34 @@ public open class XRNode3D : Node3D() {
     callConstructor(ENGINECLASS_XRNODE3D, scriptIndex)
   }
 
-  public fun setTracker(trackerName: StringName): Unit {
+  public final fun setTracker(trackerName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(rawPtr, MethodBindings.setTrackerPtr, NIL)
   }
 
-  public fun getTracker(): StringName {
+  public final fun getTracker(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setPoseName(pose: StringName): Unit {
+  public final fun setPoseName(pose: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to pose)
     TransferContext.callMethod(rawPtr, MethodBindings.setPoseNamePtr, NIL)
   }
 
-  public fun getPoseName(): StringName {
+  public final fun getPoseName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPoseNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setShowWhenTracked(show: Boolean): Unit {
+  public final fun setShowWhenTracked(show: Boolean): Unit {
     TransferContext.writeArguments(BOOL to show)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
   }
 
-  public fun getShowWhenTracked(): Boolean {
+  public final fun getShowWhenTracked(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShowWhenTrackedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -119,7 +119,7 @@ public open class XRNode3D : Node3D() {
   /**
    * Returns `true` if the [tracker] has been registered and the [pose] is being tracked.
    */
-  public fun getIsActive(): Boolean {
+  public final fun getIsActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIsActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -128,7 +128,7 @@ public open class XRNode3D : Node3D() {
   /**
    * Returns `true` if the [tracker] has current tracking data for the [pose] being tracked.
    */
-  public fun getHasTrackingData(): Boolean {
+  public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -138,7 +138,7 @@ public open class XRNode3D : Node3D() {
    * Returns the [XRPose] containing the current state of the pose being tracked. This gives access
    * to additional properties of this pose.
    */
-  public fun getPose(): XRPose? {
+  public final fun getPose(): XRPose? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRPose?)
@@ -153,7 +153,7 @@ public open class XRNode3D : Node3D() {
    * [durationSec] is the duration of the pulse in seconds.
    * [delaySec] is a delay in seconds before the pulse is given.
    */
-  public fun triggerHapticPulse(
+  public final fun triggerHapticPulse(
     actionName: String,
     frequency: Double,
     amplitude: Double,

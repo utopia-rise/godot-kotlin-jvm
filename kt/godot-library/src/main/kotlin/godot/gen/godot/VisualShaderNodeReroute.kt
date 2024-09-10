@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class VisualShaderNodeReroute : VisualShaderNode() {
-  public val portType: VisualShaderNode.PortType
+  public final inline val portType: VisualShaderNode.PortType
     @JvmName("portTypeProperty")
     get() = getPortType()
 
@@ -34,7 +34,7 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
   /**
    * Returns the port type of the reroute node.
    */
-  public fun getPortType(): VisualShaderNode.PortType {
+  public final fun getPortType(): VisualShaderNode.PortType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPortTypePtr, LONG)
     return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)

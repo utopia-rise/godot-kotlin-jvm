@@ -37,7 +37,7 @@ public open class BoxMesh : PrimitiveMesh() {
    * The box's width, height and depth.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
+  public final inline var size: Vector3
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -48,7 +48,7 @@ public open class BoxMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the X axis.
    */
-  public var subdivideWidth: Int
+  public final inline var subdivideWidth: Int
     @JvmName("subdivideWidthProperty")
     get() = getSubdivideWidth()
     @JvmName("subdivideWidthProperty")
@@ -59,7 +59,7 @@ public open class BoxMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the Y axis.
    */
-  public var subdivideHeight: Int
+  public final inline var subdivideHeight: Int
     @JvmName("subdivideHeightProperty")
     get() = getSubdivideHeight()
     @JvmName("subdivideHeightProperty")
@@ -70,7 +70,7 @@ public open class BoxMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the Z axis.
    */
-  public var subdivideDepth: Int
+  public final inline var subdivideDepth: Int
     @JvmName("subdivideDepthProperty")
     get() = getSubdivideDepth()
     @JvmName("subdivideDepthProperty")
@@ -100,51 +100,51 @@ public open class BoxMesh : PrimitiveMesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
 
 
-  public fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector3 {
+  public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setSubdivideWidth(subdivide: Int): Unit {
+  public final fun setSubdivideWidth(subdivide: Int): Unit {
     TransferContext.writeArguments(LONG to subdivide.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
   }
 
-  public fun getSubdivideWidth(): Int {
+  public final fun getSubdivideWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSubdivideHeight(divisions: Int): Unit {
+  public final fun setSubdivideHeight(divisions: Int): Unit {
     TransferContext.writeArguments(LONG to divisions.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
   }
 
-  public fun getSubdivideHeight(): Int {
+  public final fun getSubdivideHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSubdivideDepth(divisions: Int): Unit {
+  public final fun setSubdivideDepth(divisions: Int): Unit {
     TransferContext.writeArguments(LONG to divisions.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
   }
 
-  public fun getSubdivideDepth(): Int {
+  public final fun getSubdivideDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

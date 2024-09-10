@@ -260,7 +260,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Returns the selected index of the drop-down list option within a graph. You may use this
    * function to define the specific behavior in the [_getCode] or [_getGlobalCode].
    */
-  public fun getOptionIndex(option: Int): Int {
+  public final fun getOptionIndex(option: Int): Int {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOptionIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

@@ -29,7 +29,7 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   /**
    * If `true`, the node will have a custom default value.
    */
-  public var defaultValueEnabled: Boolean
+  public final inline var defaultValueEnabled: Boolean
     @JvmName("defaultValueEnabledProperty")
     get() = isDefaultValueEnabled()
     @JvmName("defaultValueEnabledProperty")
@@ -41,7 +41,7 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
    * Default value of this parameter, which will be used if not set externally.
    * [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
-  public var defaultValue: Int
+  public final inline var defaultValue: Int
     @JvmName("defaultValueProperty")
     get() = getDefaultValue()
     @JvmName("defaultValueProperty")
@@ -53,23 +53,23 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUINTPARAMETER, scriptIndex)
   }
 
-  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
-  public fun isDefaultValueEnabled(): Boolean {
+  public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultValue(`value`: Int): Unit {
+  public final fun setDefaultValue(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
-  public fun getDefaultValue(): Int {
+  public final fun getDefaultValue(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

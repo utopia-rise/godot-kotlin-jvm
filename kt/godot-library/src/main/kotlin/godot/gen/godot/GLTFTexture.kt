@@ -24,7 +24,7 @@ public open class GLTFTexture : Resource() {
    * The index of the image associated with this texture, see [GLTFState.getImages]. If -1, then
    * this texture does not have an image assigned.
    */
-  public var srcImage: Int
+  public final inline var srcImage: Int
     @JvmName("srcImageProperty")
     get() = getSrcImage()
     @JvmName("srcImageProperty")
@@ -36,7 +36,7 @@ public open class GLTFTexture : Resource() {
    * ID of the texture sampler to use when sampling the image. If -1, then the default texture
    * sampler is used (linear filtering, and repeat wrapping in both axes).
    */
-  public var sampler: Int
+  public final inline var sampler: Int
     @JvmName("samplerProperty")
     get() = getSampler()
     @JvmName("samplerProperty")
@@ -48,24 +48,24 @@ public open class GLTFTexture : Resource() {
     callConstructor(ENGINECLASS_GLTFTEXTURE, scriptIndex)
   }
 
-  public fun getSrcImage(): Int {
+  public final fun getSrcImage(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSrcImagePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSrcImage(srcImage: Int): Unit {
+  public final fun setSrcImage(srcImage: Int): Unit {
     TransferContext.writeArguments(LONG to srcImage.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSrcImagePtr, NIL)
   }
 
-  public fun getSampler(): Int {
+  public final fun getSampler(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSamplerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSampler(sampler: Int): Unit {
+  public final fun setSampler(sampler: Int): Unit {
     TransferContext.writeArguments(LONG to sampler.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSamplerPtr, NIL)
   }

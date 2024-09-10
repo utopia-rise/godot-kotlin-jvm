@@ -36,7 +36,7 @@ public open class RegExMatch : RefCounted() {
   /**
    * The source string used with the search pattern to find this matching result.
    */
-  public val subject: String
+  public final inline val subject: String
     @JvmName("subjectProperty")
     get() = getSubject()
 
@@ -45,14 +45,14 @@ public open class RegExMatch : RefCounted() {
    * are included. If multiple groups have the same name, that name would refer to the first matching
    * one.
    */
-  public val names: Dictionary<Any?, Any?>
+  public final inline val names: Dictionary<Any?, Any?>
     @JvmName("namesProperty")
     get() = getNames()
 
   /**
    * An [Array] of the match and its capturing groups.
    */
-  public val strings: PackedStringArray
+  public final inline val strings: PackedStringArray
     @JvmName("stringsProperty")
     get() = getStrings()
 
@@ -60,7 +60,7 @@ public open class RegExMatch : RefCounted() {
     callConstructor(ENGINECLASS_REGEXMATCH, scriptIndex)
   }
 
-  public fun getSubject(): String {
+  public final fun getSubject(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubjectPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -69,19 +69,19 @@ public open class RegExMatch : RefCounted() {
   /**
    * Returns the number of capturing groups.
    */
-  public fun getGroupCount(): Int {
+  public final fun getGroupCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getNames(): Dictionary<Any?, Any?> {
+  public final fun getNames(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
-  public fun getStrings(): PackedStringArray {
+  public final fun getStrings(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStringsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -94,7 +94,7 @@ public open class RegExMatch : RefCounted() {
    * Returns an empty string if the group did not match or doesn't exist.
    */
   @JvmOverloads
-  public fun getString(name: Any? = 0): String {
+  public final fun getString(name: Any? = 0): String {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -107,7 +107,7 @@ public open class RegExMatch : RefCounted() {
    * Returns -1 if the group did not match or doesn't exist.
    */
   @JvmOverloads
-  public fun getStart(name: Any? = 0): Int {
+  public final fun getStart(name: Any? = 0): Int {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getStartPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -120,7 +120,7 @@ public open class RegExMatch : RefCounted() {
    * Returns -1 if the group did not match or doesn't exist.
    */
   @JvmOverloads
-  public fun getEnd(name: Any? = 0): Int {
+  public final fun getEnd(name: Any? = 0): Int {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getEndPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

@@ -108,7 +108,7 @@ public open class PackedScene : Resource() {
    * Packs the [path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will
    * be cleared. See [Node.owner].
    */
-  public fun pack(path: Node?): GodotError {
+  public final fun pack(path: Node?): GodotError {
     TransferContext.writeArguments(OBJECT to path)
     TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -119,7 +119,7 @@ public open class PackedScene : Resource() {
    * [Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
    */
   @JvmOverloads
-  public fun instantiate(editState: GenEditState =
+  public final fun instantiate(editState: GenEditState =
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)
     TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, OBJECT)
@@ -129,7 +129,7 @@ public open class PackedScene : Resource() {
   /**
    * Returns `true` if the scene file has nodes.
    */
-  public fun canInstantiate(): Boolean {
+  public final fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -138,7 +138,7 @@ public open class PackedScene : Resource() {
   /**
    * Returns the [SceneState] representing the scene file contents.
    */
-  public fun getState(): SceneState? {
+  public final fun getState(): SceneState? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SceneState?)

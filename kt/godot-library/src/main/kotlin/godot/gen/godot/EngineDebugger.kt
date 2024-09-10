@@ -43,7 +43,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if the debugger is active otherwise `false`.
    */
-  public fun isActive(): Boolean {
+  public final fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -52,7 +52,7 @@ public object EngineDebugger : Object() {
   /**
    * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
    */
-  public fun registerProfiler(name: StringName, profiler: EngineProfiler?): Unit {
+  public final fun registerProfiler(name: StringName, profiler: EngineProfiler?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
     TransferContext.callMethod(rawPtr, MethodBindings.registerProfilerPtr, NIL)
   }
@@ -60,7 +60,7 @@ public object EngineDebugger : Object() {
   /**
    * Unregisters a profiler with given [name].
    */
-  public fun unregisterProfiler(name: StringName): Unit {
+  public final fun unregisterProfiler(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterProfilerPtr, NIL)
   }
@@ -68,7 +68,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a profiler with the given name is present and active otherwise `false`.
    */
-  public fun isProfiling(name: StringName): Boolean {
+  public final fun isProfiling(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.isProfilingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -77,7 +77,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a profiler with the given name is present otherwise `false`.
    */
-  public fun hasProfiler(name: StringName): Boolean {
+  public final fun hasProfiler(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasProfilerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -86,7 +86,7 @@ public object EngineDebugger : Object() {
   /**
    * Calls the `add` callable of the profiler with given [name] and [data].
    */
-  public fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
+  public final fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.profilerAddFrameDataPtr, NIL)
   }
@@ -96,7 +96,7 @@ public object EngineDebugger : Object() {
    * the same profiler depending on [enable] argument.
    */
   @JvmOverloads
-  public fun profilerEnable(
+  public final fun profilerEnable(
     name: StringName,
     enable: Boolean,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
@@ -111,7 +111,7 @@ public object EngineDebugger : Object() {
    * Callable must accept a message string and a data array as argument. If the message and data are
    * valid then callable must return `true` otherwise `false`.
    */
-  public fun registerMessageCapture(name: StringName, callable: Callable): Unit {
+  public final fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.registerMessageCapturePtr, NIL)
   }
@@ -119,7 +119,7 @@ public object EngineDebugger : Object() {
   /**
    * Unregisters the message capture with given [name].
    */
-  public fun unregisterMessageCapture(name: StringName): Unit {
+  public final fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterMessageCapturePtr, NIL)
   }
@@ -127,7 +127,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a capture with the given name is present otherwise `false`.
    */
-  public fun hasCapture(name: StringName): Boolean {
+  public final fun hasCapture(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCapturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -138,7 +138,7 @@ public object EngineDebugger : Object() {
    * events every now and then when the script might get too busy, so that bugs like infinite loops can
    * be caught
    */
-  public fun linePoll(): Unit {
+  public final fun linePoll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.linePollPtr, NIL)
   }
@@ -146,7 +146,7 @@ public object EngineDebugger : Object() {
   /**
    * Sends a message with given [message] and [data] array.
    */
-  public fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
+  public final fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.sendMessagePtr, NIL)
   }
@@ -156,7 +156,7 @@ public object EngineDebugger : Object() {
    * continue based on [canContinue] and whether the break was due to a breakpoint.
    */
   @JvmOverloads
-  public fun debug(canContinue: Boolean = true, isErrorBreakpoint: Boolean = false): Unit {
+  public final fun debug(canContinue: Boolean = true, isErrorBreakpoint: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to canContinue, BOOL to isErrorBreakpoint)
     TransferContext.callMethod(rawPtr, MethodBindings.debugPtr, NIL)
   }
@@ -166,7 +166,7 @@ public object EngineDebugger : Object() {
    * continue based on [canContinue] and whether the break was due to a breakpoint.
    */
   @JvmOverloads
-  public fun scriptDebug(
+  public final fun scriptDebug(
     language: ScriptLanguage?,
     canContinue: Boolean = true,
     isErrorBreakpoint: Boolean = false,
@@ -178,7 +178,7 @@ public object EngineDebugger : Object() {
   /**
    * Sets the current debugging lines that remain.
    */
-  public fun setLinesLeft(lines: Int): Unit {
+  public final fun setLinesLeft(lines: Int): Unit {
     TransferContext.writeArguments(LONG to lines.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLinesLeftPtr, NIL)
   }
@@ -186,7 +186,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns the number of lines that remain.
    */
-  public fun getLinesLeft(): Int {
+  public final fun getLinesLeft(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinesLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -195,7 +195,7 @@ public object EngineDebugger : Object() {
   /**
    * Sets the current debugging depth.
    */
-  public fun setDepth(depth: Int): Unit {
+  public final fun setDepth(depth: Int): Unit {
     TransferContext.writeArguments(LONG to depth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
@@ -203,7 +203,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns the current debug depth.
    */
-  public fun getDepth(): Int {
+  public final fun getDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -212,7 +212,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if the given [source] and [line] represent an existing breakpoint.
    */
-  public fun isBreakpoint(line: Int, source: StringName): Boolean {
+  public final fun isBreakpoint(line: Int, source: StringName): Boolean {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(rawPtr, MethodBindings.isBreakpointPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -221,7 +221,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if the debugger is skipping breakpoints otherwise `false`.
    */
-  public fun isSkippingBreakpoints(): Boolean {
+  public final fun isSkippingBreakpoints(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSkippingBreakpointsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -230,7 +230,7 @@ public object EngineDebugger : Object() {
   /**
    * Inserts a new breakpoint with the given [source] and [line].
    */
-  public fun insertBreakpoint(line: Int, source: StringName): Unit {
+  public final fun insertBreakpoint(line: Int, source: StringName): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(rawPtr, MethodBindings.insertBreakpointPtr, NIL)
   }
@@ -238,7 +238,7 @@ public object EngineDebugger : Object() {
   /**
    * Removes a breakpoint with the given [source] and [line].
    */
-  public fun removeBreakpoint(line: Int, source: StringName): Unit {
+  public final fun removeBreakpoint(line: Int, source: StringName): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(rawPtr, MethodBindings.removeBreakpointPtr, NIL)
   }
@@ -246,7 +246,7 @@ public object EngineDebugger : Object() {
   /**
    * Clears all breakpoints.
    */
-  public fun clearBreakpoints(): Unit {
+  public final fun clearBreakpoints(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBreakpointsPtr, NIL)
   }

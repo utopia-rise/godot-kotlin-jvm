@@ -27,7 +27,7 @@ public open class FBXState : GLTFState() {
    * If `true`, the import process used auxiliary nodes called geometry helper nodes. These nodes
    * help preserve the pivots and transformations of the original 3D model during import.
    */
-  public var allowGeometryHelperNodes: Boolean
+  public final inline var allowGeometryHelperNodes: Boolean
     @JvmName("allowGeometryHelperNodesProperty")
     get() = getAllowGeometryHelperNodes()
     @JvmName("allowGeometryHelperNodesProperty")
@@ -39,13 +39,13 @@ public open class FBXState : GLTFState() {
     callConstructor(ENGINECLASS_FBXSTATE, scriptIndex)
   }
 
-  public fun getAllowGeometryHelperNodes(): Boolean {
+  public final fun getAllowGeometryHelperNodes(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAllowGeometryHelperNodes(allow: Boolean): Unit {
+  public final fun setAllowGeometryHelperNodes(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
   }

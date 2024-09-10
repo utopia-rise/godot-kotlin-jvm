@@ -116,7 +116,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the specified [feature] is supported by the current [DisplayServer], `false`
    * otherwise.
    */
-  public fun hasFeature(feature: Feature): Boolean {
+  public final fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -130,7 +130,7 @@ public object DisplayServer : Object() {
    * `Android`, `iOS`, `web` (HTML5), and `headless` (when started with the `--headless`
    * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url]).
    */
-  public fun getName(): String {
+  public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -145,7 +145,8 @@ public object DisplayServer : Object() {
    * search result in the `Help` menu.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun helpSetSearchCallbacks(searchCallback: Callable, actionCallback: Callable): Unit {
+  public final fun helpSetSearchCallbacks(searchCallback: Callable, actionCallback: Callable):
+      Unit {
     TransferContext.writeArguments(CALLABLE to searchCallback, CALLABLE to actionCallback)
     TransferContext.callMethod(rawPtr, MethodBindings.helpSetSearchCallbacksPtr, NIL)
   }
@@ -154,7 +155,7 @@ public object DisplayServer : Object() {
    * Registers callables to emit when the menu is respectively about to show or closed. Callback
    * methods should have zero arguments.
    */
-  public fun globalMenuSetPopupCallbacks(
+  public final fun globalMenuSetPopupCallbacks(
     menuRoot: String,
     openCallback: Callable,
     closeCallback: Callable,
@@ -178,7 +179,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddSubmenuItem(
+  public final fun globalMenuAddSubmenuItem(
     menuRoot: String,
     label: String,
     submenu: String,
@@ -209,7 +210,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddItem(
+  public final fun globalMenuAddItem(
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
@@ -243,7 +244,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddCheckItem(
+  public final fun globalMenuAddCheckItem(
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
@@ -277,7 +278,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddIconItem(
+  public final fun globalMenuAddIconItem(
     menuRoot: String,
     icon: Texture2D?,
     label: String,
@@ -313,7 +314,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddIconCheckItem(
+  public final fun globalMenuAddIconCheckItem(
     menuRoot: String,
     icon: Texture2D?,
     label: String,
@@ -351,7 +352,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddRadioCheckItem(
+  public final fun globalMenuAddRadioCheckItem(
     menuRoot: String,
     label: String,
     callback: Callable = Callable(),
@@ -389,7 +390,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddIconRadioCheckItem(
+  public final fun globalMenuAddIconRadioCheckItem(
     menuRoot: String,
     icon: Texture2D?,
     label: String,
@@ -429,7 +430,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddMultistateItem(
+  public final fun globalMenuAddMultistateItem(
     menuRoot: String,
     label: String,
     maxStates: Int,
@@ -460,7 +461,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun globalMenuAddSeparator(menuRoot: String, index: Int = -1): Int {
+  public final fun globalMenuAddSeparator(menuRoot: String, index: Int = -1): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddSeparatorPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -471,7 +472,7 @@ public object DisplayServer : Object() {
    * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Int {
+  public final fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTextPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -482,7 +483,7 @@ public object DisplayServer : Object() {
    * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
+  public final fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
     TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTagPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -492,7 +493,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the item at index [idx] is checked.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuIsItemChecked(menuRoot: String, idx: Int): Boolean {
+  public final fun globalMenuIsItemChecked(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -503,7 +504,7 @@ public object DisplayServer : Object() {
    * or radio button.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuIsItemCheckable(menuRoot: String, idx: Int): Boolean {
+  public final fun globalMenuIsItemCheckable(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -515,7 +516,7 @@ public object DisplayServer : Object() {
    * radio groups.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Int): Boolean {
+  public final fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemRadioCheckablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -525,7 +526,7 @@ public object DisplayServer : Object() {
    * Returns the callback of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemCallback(menuRoot: String, idx: Int): Callable {
+  public final fun globalMenuGetItemCallback(menuRoot: String, idx: Int): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCallbackPtr, CALLABLE)
     return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
@@ -535,7 +536,7 @@ public object DisplayServer : Object() {
    * Returns the callback of the item accelerator at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Int): Callable {
+  public final fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Int): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemKeyCallbackPtr, CALLABLE)
     return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
@@ -546,7 +547,7 @@ public object DisplayServer : Object() {
    * [globalMenuSetItemTag], which provides a simple way of assigning context data to items.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemTag(menuRoot: String, idx: Int): Any? {
+  public final fun globalMenuGetItemTag(menuRoot: String, idx: Int): Any? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTagPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -556,7 +557,7 @@ public object DisplayServer : Object() {
    * Returns the text of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemText(menuRoot: String, idx: Int): String {
+  public final fun globalMenuGetItemText(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -567,7 +568,7 @@ public object DisplayServer : Object() {
    * on how to add a submenu.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemSubmenu(menuRoot: String, idx: Int): String {
+  public final fun globalMenuGetItemSubmenu(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemSubmenuPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -578,7 +579,7 @@ public object DisplayServer : Object() {
    * keys that activate the item, no matter which control is focused.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemAccelerator(menuRoot: String, idx: Int): Key {
+  public final fun globalMenuGetItemAccelerator(menuRoot: String, idx: Int): Key {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemAcceleratorPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
@@ -590,7 +591,7 @@ public object DisplayServer : Object() {
    * See [globalMenuSetItemDisabled] for more info on how to disable an item.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuIsItemDisabled(menuRoot: String, idx: Int): Boolean {
+  public final fun globalMenuIsItemDisabled(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -601,7 +602,7 @@ public object DisplayServer : Object() {
    * See [globalMenuSetItemHidden] for more info on how to hide an item.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
+  public final fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemHiddenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -611,7 +612,7 @@ public object DisplayServer : Object() {
    * Returns the tooltip associated with the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemTooltip(menuRoot: String, idx: Int): String {
+  public final fun globalMenuGetItemTooltip(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -621,7 +622,7 @@ public object DisplayServer : Object() {
    * Returns the state of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemState(menuRoot: String, idx: Int): Int {
+  public final fun globalMenuGetItemState(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemStatePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -631,7 +632,7 @@ public object DisplayServer : Object() {
    * Returns number of states of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemMaxStates(menuRoot: String, idx: Int): Int {
+  public final fun globalMenuGetItemMaxStates(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemMaxStatesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -641,7 +642,7 @@ public object DisplayServer : Object() {
    * Returns the icon of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemIcon(menuRoot: String, idx: Int): Texture2D? {
+  public final fun globalMenuGetItemIcon(menuRoot: String, idx: Int): Texture2D? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
@@ -651,7 +652,7 @@ public object DisplayServer : Object() {
    * Returns the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Int): Int {
+  public final fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndentationLevelPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -661,7 +662,7 @@ public object DisplayServer : Object() {
    * Sets the checkstate status of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemChecked(
+  public final fun globalMenuSetItemChecked(
     menuRoot: String,
     idx: Int,
     checked: Boolean,
@@ -675,7 +676,7 @@ public object DisplayServer : Object() {
    * plain text.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemCheckable(
+  public final fun globalMenuSetItemCheckable(
     menuRoot: String,
     idx: Int,
     checkable: Boolean,
@@ -691,7 +692,7 @@ public object DisplayServer : Object() {
    * radio groups.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemRadioCheckable(
+  public final fun globalMenuSetItemRadioCheckable(
     menuRoot: String,
     idx: Int,
     checkable: Boolean,
@@ -707,7 +708,7 @@ public object DisplayServer : Object() {
    * created.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemCallback(
+  public final fun globalMenuSetItemCallback(
     menuRoot: String,
     idx: Int,
     callback: Callable,
@@ -723,7 +724,7 @@ public object DisplayServer : Object() {
    * created.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemHoverCallbacks(
+  public final fun globalMenuSetItemHoverCallbacks(
     menuRoot: String,
     idx: Int,
     callback: Callable,
@@ -740,7 +741,7 @@ public object DisplayServer : Object() {
    * item was created.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemKeyCallback(
+  public final fun globalMenuSetItemKeyCallback(
     menuRoot: String,
     idx: Int,
     keyCallback: Callable,
@@ -754,7 +755,7 @@ public object DisplayServer : Object() {
    * [globalMenuGetItemTag], which provides a simple way of assigning context data to items.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemTag(
+  public final fun globalMenuSetItemTag(
     menuRoot: String,
     idx: Int,
     tag: Any?,
@@ -767,7 +768,7 @@ public object DisplayServer : Object() {
    * Sets the text of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemText(
+  public final fun globalMenuSetItemText(
     menuRoot: String,
     idx: Int,
     text: String,
@@ -781,7 +782,7 @@ public object DisplayServer : Object() {
    * would be shown when the item is clicked.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemSubmenu(
+  public final fun globalMenuSetItemSubmenu(
     menuRoot: String,
     idx: Int,
     submenu: String,
@@ -796,7 +797,7 @@ public object DisplayServer : Object() {
    * ([kbd]Ctrl + A[/kbd]).
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemAccelerator(
+  public final fun globalMenuSetItemAccelerator(
     menuRoot: String,
     idx: Int,
     keycode: Key,
@@ -810,7 +811,7 @@ public object DisplayServer : Object() {
    * action can't be invoked.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemDisabled(
+  public final fun globalMenuSetItemDisabled(
     menuRoot: String,
     idx: Int,
     disabled: Boolean,
@@ -824,7 +825,7 @@ public object DisplayServer : Object() {
    * its action cannot be invoked.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemHidden(
+  public final fun globalMenuSetItemHidden(
     menuRoot: String,
     idx: Int,
     hidden: Boolean,
@@ -837,7 +838,7 @@ public object DisplayServer : Object() {
    * Sets the [String] tooltip of the item at the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemTooltip(
+  public final fun globalMenuSetItemTooltip(
     menuRoot: String,
     idx: Int,
     tooltip: String,
@@ -850,7 +851,7 @@ public object DisplayServer : Object() {
    * Sets the state of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemState(
+  public final fun globalMenuSetItemState(
     menuRoot: String,
     idx: Int,
     state: Int,
@@ -863,7 +864,7 @@ public object DisplayServer : Object() {
    * Sets number of state of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemMaxStates(
+  public final fun globalMenuSetItemMaxStates(
     menuRoot: String,
     idx: Int,
     maxStates: Int,
@@ -877,7 +878,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented only on macOS.
    * **Note:** This method is not supported by macOS "_dock" menu items.
    */
-  public fun globalMenuSetItemIcon(
+  public final fun globalMenuSetItemIcon(
     menuRoot: String,
     idx: Int,
     icon: Texture2D?,
@@ -890,7 +891,7 @@ public object DisplayServer : Object() {
    * Sets the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuSetItemIndentationLevel(
+  public final fun globalMenuSetItemIndentationLevel(
     menuRoot: String,
     idx: Int,
     level: Int,
@@ -903,7 +904,7 @@ public object DisplayServer : Object() {
    * Returns number of items in the global menu with ID [menuRoot].
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetItemCount(menuRoot: String): Int {
+  public final fun globalMenuGetItemCount(menuRoot: String): Int {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -914,7 +915,7 @@ public object DisplayServer : Object() {
    * **Note:** The indices of items after the removed item will be shifted by one.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuRemoveItem(menuRoot: String, idx: Int): Unit {
+  public final fun globalMenuRemoveItem(menuRoot: String, idx: Int): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuRemoveItemPtr, NIL)
   }
@@ -931,7 +932,7 @@ public object DisplayServer : Object() {
    * "_help" - Help menu (macOS).
    * [/codeblock]
    */
-  public fun globalMenuClear(menuRoot: String): Unit {
+  public final fun globalMenuClear(menuRoot: String): Unit {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuClearPtr, NIL)
   }
@@ -940,7 +941,7 @@ public object DisplayServer : Object() {
    * Returns Dictionary of supported system menu IDs and names.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun globalMenuGetSystemMenuRoots(): Dictionary<Any?, Any?> {
+  public final fun globalMenuGetSystemMenuRoots(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetSystemMenuRootsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -952,7 +953,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsIsSpeaking(): Boolean {
+  public final fun ttsIsSpeaking(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsIsSpeakingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -964,7 +965,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsIsPaused(): Boolean {
+  public final fun ttsIsPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsIsPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -986,7 +987,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -998,7 +999,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
+  public final fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesForLanguagePtr,
         PACKED_STRING_ARRAY)
@@ -1025,7 +1026,7 @@ public object DisplayServer : Object() {
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmOverloads
-  public fun ttsSpeak(
+  public final fun ttsSpeak(
     text: String,
     voice: String,
     volume: Int = 50,
@@ -1044,7 +1045,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsPause(): Unit {
+  public final fun ttsPause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsPausePtr, NIL)
   }
@@ -1055,7 +1056,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsResume(): Unit {
+  public final fun ttsResume(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsResumePtr, NIL)
   }
@@ -1066,7 +1067,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsStop(): Unit {
+  public final fun ttsStop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsStopPtr, NIL)
   }
@@ -1083,7 +1084,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
-  public fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
+  public final fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
     TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.ttsSetUtteranceCallbackPtr, NIL)
   }
@@ -1092,7 +1093,7 @@ public object DisplayServer : Object() {
    * Returns `true` if OS supports dark mode.
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
-  public fun isDarkModeSupported(): Boolean {
+  public final fun isDarkModeSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDarkModeSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1102,7 +1103,7 @@ public object DisplayServer : Object() {
    * Returns `true` if OS is using dark mode.
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
-  public fun isDarkMode(): Boolean {
+  public final fun isDarkMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDarkModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1112,7 +1113,7 @@ public object DisplayServer : Object() {
    * Returns OS theme accent color. Returns `Color(0, 0, 0, 0)`, if accent color is unknown.
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun getAccentColor(): Color {
+  public final fun getAccentColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccentColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -1123,7 +1124,7 @@ public object DisplayServer : Object() {
    * the base color is unknown.
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun getBaseColor(): Color {
+  public final fun getBaseColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -1134,7 +1135,7 @@ public object DisplayServer : Object() {
    * method should have zero arguments.
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
-  public fun setSystemThemeChangeCallback(callable: Callable): Unit {
+  public final fun setSystemThemeChangeCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSystemThemeChangeCallbackPtr, NIL)
   }
@@ -1142,7 +1143,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the current mouse mode. See also [mouseGetMode].
    */
-  public fun mouseSetMode(mouseMode: MouseMode): Unit {
+  public final fun mouseSetMode(mouseMode: MouseMode): Unit {
     TransferContext.writeArguments(LONG to mouseMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.mouseSetModePtr, NIL)
   }
@@ -1150,7 +1151,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the current mouse mode. See also [mouseSetMode].
    */
-  public fun mouseGetMode(): MouseMode {
+  public final fun mouseGetMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mouseGetModePtr, LONG)
     return DisplayServer.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1162,7 +1163,7 @@ public object DisplayServer : Object() {
    * **Note:** [warpMouse] is only supported on Windows, macOS, and Linux (X11/Wayland). It has no
    * effect on Android, iOS, and Web.
    */
-  public fun warpMouse(position: Vector2i): Unit {
+  public final fun warpMouse(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
   }
@@ -1170,7 +1171,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the mouse cursor's current position in screen coordinates.
    */
-  public fun mouseGetPosition(): Vector2i {
+  public final fun mouseGetPosition(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mouseGetPositionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1181,7 +1182,7 @@ public object DisplayServer : Object() {
    * multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to
    * [Input.getMouseButtonMask].
    */
-  public fun mouseGetButtonState(): MouseButtonMask {
+  public final fun mouseGetButtonState(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mouseGetButtonStatePtr, LONG)
     return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
@@ -1190,7 +1191,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the user's clipboard content to the given string.
    */
-  public fun clipboardSet(clipboard: String): Unit {
+  public final fun clipboardSet(clipboard: String): Unit {
     TransferContext.writeArguments(STRING to clipboard)
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardSetPtr, NIL)
   }
@@ -1198,7 +1199,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the user's clipboard as a string if possible.
    */
-  public fun clipboardGet(): String {
+  public final fun clipboardGet(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -1209,7 +1210,7 @@ public object DisplayServer : Object() {
    * **Note:** This method uses the copied pixel data, e.g. from a image editing software or a web
    * browser, not an image file copied from file explorer.
    */
-  public fun clipboardGetImage(): Image? {
+  public final fun clipboardGetImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
@@ -1218,7 +1219,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if there is a text content on the user's clipboard.
    */
-  public fun clipboardHas(): Boolean {
+  public final fun clipboardHas(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1227,7 +1228,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if there is an image content on the user's clipboard.
    */
-  public fun clipboardHasImage(): Boolean {
+  public final fun clipboardHasImage(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasImagePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1242,7 +1243,7 @@ public object DisplayServer : Object() {
    * clipboard mechanism.
    * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
-  public fun clipboardSetPrimary(clipboardPrimary: String): Unit {
+  public final fun clipboardSetPrimary(clipboardPrimary: String): Unit {
     TransferContext.writeArguments(STRING to clipboardPrimary)
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardSetPrimaryPtr, NIL)
   }
@@ -1256,7 +1257,7 @@ public object DisplayServer : Object() {
    * mechanism.
    * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
-  public fun clipboardGetPrimary(): String {
+  public final fun clipboardGetPrimary(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPrimaryPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -1269,7 +1270,7 @@ public object DisplayServer : Object() {
    * **Note:** Currently only implemented on Android. Other platforms will return an empty array
    * even if they do have display cutouts or notches.
    */
-  public fun getDisplayCutouts(): VariantArray<Rect2> {
+  public final fun getDisplayCutouts(): VariantArray<Rect2> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayCutoutsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Rect2>)
@@ -1279,7 +1280,7 @@ public object DisplayServer : Object() {
    * Returns the unobscured area of the display where interactive controls should be rendered. See
    * also [getDisplayCutouts].
    */
-  public fun getDisplaySafeArea(): Rect2i {
+  public final fun getDisplaySafeArea(): Rect2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplaySafeAreaPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
@@ -1288,7 +1289,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the number of displays available.
    */
-  public fun getScreenCount(): Int {
+  public final fun getScreenCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1297,7 +1298,7 @@ public object DisplayServer : Object() {
   /**
    * Returns index of the primary screen.
    */
-  public fun getPrimaryScreen(): Int {
+  public final fun getPrimaryScreen(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1307,7 +1308,7 @@ public object DisplayServer : Object() {
    * Returns the index of the screen containing the window with the keyboard focus, or the primary
    * screen if there's no focused window.
    */
-  public fun getKeyboardFocusScreen(): Int {
+  public final fun getKeyboardFocusScreen(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getKeyboardFocusScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1316,7 +1317,7 @@ public object DisplayServer : Object() {
   /**
    * Returns index of the screen which contains specified rectangle.
    */
-  public fun getScreenFromRect(rect: Rect2): Int {
+  public final fun getScreenFromRect(rect: Rect2): Int {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenFromRectPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1338,7 +1339,7 @@ public object DisplayServer : Object() {
    * **Note:** On Linux (Wayland) this method always returns `(0, 0)`.
    */
   @JvmOverloads
-  public fun screenGetPosition(screen: Int = -1): Vector2i {
+  public final fun screenGetPosition(screen: Int = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetPositionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1348,7 +1349,7 @@ public object DisplayServer : Object() {
    * Returns the screen's size in pixels. See also [screenGetPosition] and [screenGetUsableRect].
    */
   @JvmOverloads
-  public fun screenGetSize(screen: Int = -1): Vector2i {
+  public final fun screenGetSize(screen: Int = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1359,7 +1360,7 @@ public object DisplayServer : Object() {
    * [screenGetSize].
    */
   @JvmOverloads
-  public fun screenGetUsableRect(screen: Int = -1): Rect2i {
+  public final fun screenGetUsableRect(screen: Int = -1): Rect2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetUsableRectPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
@@ -1383,7 +1384,7 @@ public object DisplayServer : Object() {
    * Returns `72` on unsupported platforms.
    */
   @JvmOverloads
-  public fun screenGetDpi(screen: Int = -1): Int {
+  public final fun screenGetDpi(screen: Int = -1): Int {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetDpiPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1399,7 +1400,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented only on macOS and Linux (Wayland).
    */
   @JvmOverloads
-  public fun screenGetScale(screen: Int = -1): Float {
+  public final fun screenGetScale(screen: Int = -1): Float {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1409,7 +1410,7 @@ public object DisplayServer : Object() {
    * Returns `true` if touch events are available (Android or iOS), the capability is detected on
    * the Web platform or if [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
    */
-  public fun isTouchscreenAvailable(): Boolean {
+  public final fun isTouchscreenAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTouchscreenAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1421,7 +1422,7 @@ public object DisplayServer : Object() {
    * the system, and `1.0` in all other cases.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun screenGetMaxScale(): Float {
+  public final fun screenGetMaxScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetMaxScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1441,7 +1442,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun screenGetRefreshRate(screen: Int = -1): Float {
+  public final fun screenGetRefreshRate(screen: Int = -1): Float {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetRefreshRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -1453,7 +1454,7 @@ public object DisplayServer : Object() {
    * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
    * granted it will return desktop wallpaper color.
    */
-  public fun screenGetPixel(position: Vector2i): Color {
+  public final fun screenGetPixel(position: Vector2i): Color {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetPixelPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -1466,7 +1467,7 @@ public object DisplayServer : Object() {
    * granted it will return desktop wallpaper color.
    */
   @JvmOverloads
-  public fun screenGetImage(screen: Int = -1): Image? {
+  public final fun screenGetImage(screen: Int = -1): Image? {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
@@ -1478,7 +1479,7 @@ public object DisplayServer : Object() {
    * [ProjectSettings.display/window/handheld/orientation] is not set to [SCREEN_SENSOR].
    */
   @JvmOverloads
-  public fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1): Unit {
+  public final fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1): Unit {
     TransferContext.writeArguments(LONG to orientation.id, LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenSetOrientationPtr, NIL)
   }
@@ -1488,7 +1489,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Android and iOS.
    */
   @JvmOverloads
-  public fun screenGetOrientation(screen: Int = -1): ScreenOrientation {
+  public final fun screenGetOrientation(screen: Int = -1): ScreenOrientation {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetOrientationPtr, LONG)
     return DisplayServer.ScreenOrientation.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1498,7 +1499,7 @@ public object DisplayServer : Object() {
    * Sets whether the screen should never be turned off by the operating system's power-saving
    * measures. See also [screenIsKeptOn].
    */
-  public fun screenSetKeepOn(enable: Boolean): Unit {
+  public final fun screenSetKeepOn(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.screenSetKeepOnPtr, NIL)
   }
@@ -1507,7 +1508,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the screen should never be turned off by the operating system's power-saving
    * measures. See also [screenSetKeepOn].
    */
-  public fun screenIsKeptOn(): Boolean {
+  public final fun screenIsKeptOn(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.screenIsKeptOnPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1517,7 +1518,7 @@ public object DisplayServer : Object() {
    * Returns the list of Godot window IDs belonging to this process.
    * **Note:** Native dialogs are not included in this list.
    */
-  public fun getWindowList(): PackedInt32Array {
+  public final fun getWindowList(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWindowListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -1537,7 +1538,7 @@ public object DisplayServer : Object() {
    * +-------------+ +-------+
    * [/codeblock]
    */
-  public fun getWindowAtScreenPosition(position: Vector2i): Int {
+  public final fun getWindowAtScreenPosition(position: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getWindowAtScreenPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1548,7 +1549,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS, and Windows.
    */
   @JvmOverloads
-  public fun windowGetNativeHandle(handleType: HandleType, windowId: Int = 0): Long {
+  public final fun windowGetNativeHandle(handleType: HandleType, windowId: Int = 0): Long {
     TransferContext.writeArguments(LONG to handleType.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetNativeHandlePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1557,7 +1558,7 @@ public object DisplayServer : Object() {
   /**
    * Returns ID of the active popup window, or [INVALID_WINDOW_ID] if there is none.
    */
-  public fun windowGetActivePopup(): Int {
+  public final fun windowGetActivePopup(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetActivePopupPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1567,7 +1568,7 @@ public object DisplayServer : Object() {
    * Sets the bounding box of control, or menu item that was used to open the popup window, in the
    * screen coordinate system. Clicking this area will not auto-close this popup.
    */
-  public fun windowSetPopupSafeRect(window: Int, rect: Rect2i): Unit {
+  public final fun windowSetPopupSafeRect(window: Int, rect: Rect2i): Unit {
     TransferContext.writeArguments(LONG to window.toLong(), RECT2I to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetPopupSafeRectPtr, NIL)
   }
@@ -1576,7 +1577,7 @@ public object DisplayServer : Object() {
    * Returns the bounding box of control, or menu item that was used to open the popup window, in
    * the screen coordinate system.
    */
-  public fun windowGetPopupSafeRect(window: Int): Rect2i {
+  public final fun windowGetPopupSafeRect(window: Int): Rect2i {
     TransferContext.writeArguments(LONG to window.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPopupSafeRectPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
@@ -1589,7 +1590,7 @@ public object DisplayServer : Object() {
    * certain window managers. Try to change the window title only a few times per second at most.
    */
   @JvmOverloads
-  public fun windowSetTitle(title: String, windowId: Int = 0): Unit {
+  public final fun windowSetTitle(title: String, windowId: Int = 0): Unit {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetTitlePtr, NIL)
   }
@@ -1600,7 +1601,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmOverloads
-  public fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
+  public final fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetTitleSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1640,7 +1641,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
   @JvmOverloads
-  public fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Int = 0): Unit {
+  public final fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Int = 0): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to region, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetMousePassthroughPtr, NIL)
   }
@@ -1651,7 +1652,7 @@ public object DisplayServer : Object() {
    * [windowSetCurrentScreen].
    */
   @JvmOverloads
-  public fun windowGetCurrentScreen(windowId: Int = 0): Int {
+  public final fun windowGetCurrentScreen(windowId: Int = 0): Int {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetCurrentScreenPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -1662,7 +1663,7 @@ public object DisplayServer : Object() {
    * [windowGetCurrentScreen].
    */
   @JvmOverloads
-  public fun windowSetCurrentScreen(screen: Int, windowId: Int = 0): Unit {
+  public final fun windowSetCurrentScreen(screen: Int, windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to screen.toLong(), LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetCurrentScreenPtr, NIL)
   }
@@ -1671,7 +1672,7 @@ public object DisplayServer : Object() {
    * Returns the position of the client area of the given window on the screen.
    */
   @JvmOverloads
-  public fun windowGetPosition(windowId: Int = 0): Vector2i {
+  public final fun windowGetPosition(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1682,7 +1683,7 @@ public object DisplayServer : Object() {
    * operating system. See also [windowGetPosition].
    */
   @JvmOverloads
-  public fun windowGetPositionWithDecorations(windowId: Int = 0): Vector2i {
+  public final fun windowGetPositionWithDecorations(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionWithDecorationsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1705,7 +1706,7 @@ public object DisplayServer : Object() {
    * **Note:** On Linux (Wayland): this method is a no-op.
    */
   @JvmOverloads
-  public fun windowSetPosition(position: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetPosition(position: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetPositionPtr, NIL)
   }
@@ -1716,7 +1717,7 @@ public object DisplayServer : Object() {
    * [windowGetSizeWithDecorations], [windowSetSize] and [windowGetPosition].
    */
   @JvmOverloads
-  public fun windowGetSize(windowId: Int = 0): Vector2i {
+  public final fun windowGetSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1728,7 +1729,7 @@ public object DisplayServer : Object() {
    * **Note:** It's recommended to change this value using [Window.size] instead.
    */
   @JvmOverloads
-  public fun windowSetSize(size: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetSize(size: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to size, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetSizePtr, NIL)
   }
@@ -1740,7 +1741,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
-  public fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetRectChangedCallbackPtr, NIL)
   }
@@ -1752,7 +1753,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
-  public fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetWindowEventCallbackPtr, NIL)
   }
@@ -1764,7 +1765,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
-  public fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetInputEventCallbackPtr, NIL)
   }
@@ -1776,7 +1777,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
-  public fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetInputTextCallbackPtr, NIL)
   }
@@ -1790,7 +1791,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Windows, macOS, Linux (X11/Wayland), and Web.
    */
   @JvmOverloads
-  public fun windowSetDropFilesCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetDropFilesCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetDropFilesCallbackPtr, NIL)
   }
@@ -1799,7 +1800,7 @@ public object DisplayServer : Object() {
    * Returns the [Object.getInstanceId] of the [Window] the [windowId] is attached to.
    */
   @JvmOverloads
-  public fun windowGetAttachedInstanceId(windowId: Int = 0): Long {
+  public final fun windowGetAttachedInstanceId(windowId: Int = 0): Long {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetAttachedInstanceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -1809,7 +1810,7 @@ public object DisplayServer : Object() {
    * Returns the window's maximum size (in pixels). See also [windowSetMaxSize].
    */
   @JvmOverloads
-  public fun windowGetMaxSize(windowId: Int = 0): Vector2i {
+  public final fun windowGetMaxSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetMaxSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1824,7 +1825,7 @@ public object DisplayServer : Object() {
    * restrictions and therefore bypass this limit.
    */
   @JvmOverloads
-  public fun windowSetMaxSize(maxSize: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetMaxSize(maxSize: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to maxSize, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetMaxSizePtr, NIL)
   }
@@ -1833,7 +1834,7 @@ public object DisplayServer : Object() {
    * Returns the window's minimum size (in pixels). See also [windowSetMinSize].
    */
   @JvmOverloads
-  public fun windowGetMinSize(windowId: Int = 0): Vector2i {
+  public final fun windowGetMinSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetMinSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1850,7 +1851,7 @@ public object DisplayServer : Object() {
    * restrictions and therefore bypass this limit.
    */
   @JvmOverloads
-  public fun windowSetMinSize(minSize: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetMinSize(minSize: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to minSize, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetMinSizePtr, NIL)
   }
@@ -1860,7 +1861,7 @@ public object DisplayServer : Object() {
    * by the operating system. See also [windowGetSize].
    */
   @JvmOverloads
-  public fun windowGetSizeWithDecorations(windowId: Int = 0): Vector2i {
+  public final fun windowGetSizeWithDecorations(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizeWithDecorationsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -1870,7 +1871,7 @@ public object DisplayServer : Object() {
    * Returns the mode of the given window.
    */
   @JvmOverloads
-  public fun windowGetMode(windowId: Int = 0): WindowMode {
+  public final fun windowGetMode(windowId: Int = 0): WindowMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetModePtr, LONG)
     return DisplayServer.WindowMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1883,7 +1884,7 @@ public object DisplayServer : Object() {
    * make sure to set it back to `false` when not wanted.
    */
   @JvmOverloads
-  public fun windowSetMode(mode: WindowMode, windowId: Int = 0): Unit {
+  public final fun windowSetMode(mode: WindowMode, windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to mode.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetModePtr, NIL)
   }
@@ -1893,7 +1894,7 @@ public object DisplayServer : Object() {
    * their behavior.
    */
   @JvmOverloads
-  public fun windowSetFlag(
+  public final fun windowSetFlag(
     flag: WindowFlags,
     enabled: Boolean,
     windowId: Int = 0,
@@ -1906,7 +1907,7 @@ public object DisplayServer : Object() {
    * Returns the current value of the given window's [flag].
    */
   @JvmOverloads
-  public fun windowGetFlag(flag: WindowFlags, windowId: Int = 0): Boolean {
+  public final fun windowGetFlag(flag: WindowFlags, windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to flag.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1918,7 +1919,7 @@ public object DisplayServer : Object() {
    * **Note:** This flag is implemented only on macOS.
    */
   @JvmOverloads
-  public fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to offset, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetWindowButtonsOffsetPtr, NIL)
   }
@@ -1928,7 +1929,7 @@ public object DisplayServer : Object() {
    * use (contains no buttons or other elements) when [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set.
    */
   @JvmOverloads
-  public fun windowGetSafeTitleMargins(windowId: Int = 0): Vector3i {
+  public final fun windowGetSafeTitleMargins(windowId: Int = 0): Vector3i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSafeTitleMarginsPtr, VECTOR3I)
     return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
@@ -1940,7 +1941,7 @@ public object DisplayServer : Object() {
    * if the window is currently focused. The exact behavior varies depending on the operating system.
    */
   @JvmOverloads
-  public fun windowRequestAttention(windowId: Int = 0): Unit {
+  public final fun windowRequestAttention(windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowRequestAttentionPtr, NIL)
   }
@@ -1950,7 +1951,7 @@ public object DisplayServer : Object() {
    * windows.
    */
   @JvmOverloads
-  public fun windowMoveToForeground(windowId: Int = 0): Unit {
+  public final fun windowMoveToForeground(windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowMoveToForegroundPtr, NIL)
   }
@@ -1959,7 +1960,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the window specified by [windowId] is focused.
    */
   @JvmOverloads
-  public fun windowIsFocused(windowId: Int = 0): Boolean {
+  public final fun windowIsFocused(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowIsFocusedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1971,7 +1972,7 @@ public object DisplayServer : Object() {
    * `false`.
    */
   @JvmOverloads
-  public fun windowCanDraw(windowId: Int = 0): Boolean {
+  public final fun windowCanDraw(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowCanDrawPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1984,7 +1985,7 @@ public object DisplayServer : Object() {
    * **Note:** It's recommended to change this value using [Window.transient] instead.
    * **Note:** The behavior might be different depending on the platform.
    */
-  public fun windowSetTransient(windowId: Int, parentWindowId: Int): Unit {
+  public final fun windowSetTransient(windowId: Int, parentWindowId: Int): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong(), LONG to parentWindowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetTransientPtr, NIL)
   }
@@ -1996,7 +1997,7 @@ public object DisplayServer : Object() {
    * screen) as the parent window.
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun windowSetExclusive(windowId: Int, exclusive: Boolean): Unit {
+  public final fun windowSetExclusive(windowId: Int, exclusive: Boolean): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong(), BOOL to exclusive)
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetExclusivePtr, NIL)
   }
@@ -2006,7 +2007,7 @@ public object DisplayServer : Object() {
    * be enabled for the window specified by [windowId]. See also [windowSetImePosition].
    */
   @JvmOverloads
-  public fun windowSetImeActive(active: Boolean, windowId: Int = 0): Unit {
+  public final fun windowSetImeActive(active: Boolean, windowId: Int = 0): Unit {
     TransferContext.writeArguments(BOOL to active, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetImeActivePtr, NIL)
   }
@@ -2017,7 +2018,7 @@ public object DisplayServer : Object() {
    * `true` for the specified [windowId].
    */
   @JvmOverloads
-  public fun windowSetImePosition(position: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetImePosition(position: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetImePositionPtr, NIL)
   }
@@ -2033,7 +2034,7 @@ public object DisplayServer : Object() {
    * rendering methods, not Compatibility.
    */
   @JvmOverloads
-  public fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0): Unit {
+  public final fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetVsyncModePtr, NIL)
   }
@@ -2042,7 +2043,7 @@ public object DisplayServer : Object() {
    * Returns the V-Sync mode of the given window.
    */
   @JvmOverloads
-  public fun windowGetVsyncMode(windowId: Int = 0): VSyncMode {
+  public final fun windowGetVsyncMode(windowId: Int = 0): VSyncMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetVsyncModePtr, LONG)
     return DisplayServer.VSyncMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -2052,7 +2053,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the given window can be maximized (the maximize button is enabled).
    */
   @JvmOverloads
-  public fun windowIsMaximizeAllowed(windowId: Int = 0): Boolean {
+  public final fun windowIsMaximizeAllowed(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowIsMaximizeAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2062,7 +2063,7 @@ public object DisplayServer : Object() {
    * Returns `true`, if double-click on a window title should maximize it.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun windowMaximizeOnTitleDblClick(): Boolean {
+  public final fun windowMaximizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowMaximizeOnTitleDblClickPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2072,7 +2073,7 @@ public object DisplayServer : Object() {
    * Returns `true`, if double-click on a window title should minimize it.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun windowMinimizeOnTitleDblClick(): Boolean {
+  public final fun windowMinimizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowMinimizeOnTitleDblClickPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2084,7 +2085,7 @@ public object DisplayServer : Object() {
    * `y` being the length of the selection.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun imeGetSelection(): Vector2i {
+  public final fun imeGetSelection(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.imeGetSelectionPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -2095,7 +2096,7 @@ public object DisplayServer : Object() {
    * [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] window.
    * **Note:** This method is implemented only on macOS.
    */
-  public fun imeGetText(): String {
+  public final fun imeGetText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.imeGetTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2114,7 +2115,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Android, iOS and Web.
    */
   @JvmOverloads
-  public fun virtualKeyboardShow(
+  public final fun virtualKeyboardShow(
     existingText: String,
     position: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     type: VirtualKeyboardType = DisplayServer.VirtualKeyboardType.KEYBOARD_TYPE_DEFAULT,
@@ -2129,7 +2130,7 @@ public object DisplayServer : Object() {
   /**
    * Hides the virtual keyboard if it is shown, does nothing otherwise.
    */
-  public fun virtualKeyboardHide(): Unit {
+  public final fun virtualKeyboardHide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardHidePtr, NIL)
   }
@@ -2138,7 +2139,7 @@ public object DisplayServer : Object() {
    * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it
    * is currently hidden.
    */
-  public fun virtualKeyboardGetHeight(): Int {
+  public final fun virtualKeyboardGetHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardGetHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -2148,7 +2149,7 @@ public object DisplayServer : Object() {
    * Sets the default mouse cursor shape. The cursor's appearance will vary depending on the user's
    * operating system and mouse cursor theme. See also [cursorGetShape] and [cursorSetCustomImage].
    */
-  public fun cursorSetShape(shape: CursorShape): Unit {
+  public final fun cursorSetShape(shape: CursorShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.cursorSetShapePtr, NIL)
   }
@@ -2156,7 +2157,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the default mouse cursor shape set by [cursorSetShape].
    */
-  public fun cursorGetShape(): CursorShape {
+  public final fun cursorGetShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.cursorGetShapePtr, LONG)
     return DisplayServer.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
@@ -2171,7 +2172,7 @@ public object DisplayServer : Object() {
    * [cursorSetShape].
    */
   @JvmOverloads
-  public fun cursorSetCustomImage(
+  public final fun cursorSetCustomImage(
     cursor: Resource?,
     shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0),
@@ -2187,7 +2188,7 @@ public object DisplayServer : Object() {
    * **Note:** This doesn't affect native dialogs such as the ones spawned by
    * [DisplayServer.dialogShow].
    */
-  public fun getSwapCancelOk(): Boolean {
+  public final fun getSwapCancelOk(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwapCancelOkPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2198,7 +2199,7 @@ public object DisplayServer : Object() {
    * operating system's focus stealing protection for the specified PID.
    * **Note:** This method is implemented only on Windows.
    */
-  public fun enableForStealingFocus(processId: Long): Unit {
+  public final fun enableForStealingFocus(processId: Long): Unit {
     TransferContext.writeArguments(LONG to processId)
     TransferContext.callMethod(rawPtr, MethodBindings.enableForStealingFocusPtr, NIL)
   }
@@ -2209,7 +2210,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG]
    * feature. Supported platforms include macOS and Windows.
    */
-  public fun dialogShow(
+  public final fun dialogShow(
     title: String,
     description: String,
     buttons: PackedStringArray,
@@ -2226,7 +2227,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented if the display server has the
    * [FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS and Windows.
    */
-  public fun dialogInputText(
+  public final fun dialogInputText(
     title: String,
     description: String,
     existingText: String,
@@ -2253,7 +2254,7 @@ public object DisplayServer : Object() {
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
    */
-  public fun fileDialogShow(
+  public final fun fileDialogShow(
     title: String,
     currentDirectory: String,
     filename: String,
@@ -2288,7 +2289,7 @@ public object DisplayServer : Object() {
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
    */
-  public fun fileDialogWithOptionsShow(
+  public final fun fileDialogWithOptionsShow(
     title: String,
     currentDirectory: String,
     root: String,
@@ -2308,7 +2309,7 @@ public object DisplayServer : Object() {
    * Returns the number of keyboard layouts.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
-  public fun keyboardGetLayoutCount(): Int {
+  public final fun keyboardGetLayoutCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -2318,7 +2319,7 @@ public object DisplayServer : Object() {
    * Returns active keyboard layout index.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.
    */
-  public fun keyboardGetCurrentLayout(): Int {
+  public final fun keyboardGetCurrentLayout(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetCurrentLayoutPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -2328,7 +2329,7 @@ public object DisplayServer : Object() {
    * Sets the active keyboard layout.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
-  public fun keyboardSetCurrentLayout(index: Int): Unit {
+  public final fun keyboardSetCurrentLayout(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardSetCurrentLayoutPtr, NIL)
   }
@@ -2337,7 +2338,7 @@ public object DisplayServer : Object() {
    * Returns the ISO-639/BCP-47 language code of the keyboard layout at position [index].
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
-  public fun keyboardGetLayoutLanguage(index: Int): String {
+  public final fun keyboardGetLayoutLanguage(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2347,7 +2348,7 @@ public object DisplayServer : Object() {
    * Returns the localized name of the keyboard layout at position [index].
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
-  public fun keyboardGetLayoutName(index: Int): String {
+  public final fun keyboardGetLayoutName(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2357,7 +2358,7 @@ public object DisplayServer : Object() {
    * Converts a physical (US QWERTY) [keycode] to one in the active keyboard layout.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
-  public fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
+  public final fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetKeycodeFromPhysicalPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
@@ -2368,7 +2369,7 @@ public object DisplayServer : Object() {
    * keyboard layout.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
-  public fun keyboardGetLabelFromPhysical(keycode: Key): Key {
+  public final fun keyboardGetLabelFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
@@ -2378,7 +2379,7 @@ public object DisplayServer : Object() {
    * Perform window manager processing, including input flushing. See also
    * [forceProcessAndDropEvents], [Input.flushBufferedEvents] and [Input.useAccumulatedInput].
    */
-  public fun processEvents(): Unit {
+  public final fun processEvents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.processEventsPtr, NIL)
   }
@@ -2387,7 +2388,7 @@ public object DisplayServer : Object() {
    * Forces window manager processing while ignoring all [InputEvent]s. See also [processEvents].
    * **Note:** This method is implemented on Windows and macOS.
    */
-  public fun forceProcessAndDropEvents(): Unit {
+  public final fun forceProcessAndDropEvents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceProcessAndDropEventsPtr, NIL)
   }
@@ -2401,7 +2402,7 @@ public object DisplayServer : Object() {
    * use [setIcon] instead.
    * **Note:** Requires support for [FEATURE_NATIVE_ICON].
    */
-  public fun setNativeIcon(filename: String): Unit {
+  public final fun setNativeIcon(filename: String): Unit {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, MethodBindings.setNativeIconPtr, NIL)
   }
@@ -2411,7 +2412,7 @@ public object DisplayServer : Object() {
    * in the operating system's native format, use [setNativeIcon] instead.
    * **Note:** Requires support for [FEATURE_ICON].
    */
-  public fun setIcon(image: Image?): Unit {
+  public final fun setIcon(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
   }
@@ -2422,7 +2423,7 @@ public object DisplayServer : Object() {
    * [callback] should take two arguments: the pressed mouse button (one of the [MouseButton]
    * constants) and the click position in screen coordinates (a [Vector2i]).
    */
-  public fun createStatusIndicator(
+  public final fun createStatusIndicator(
     icon: Texture2D?,
     tooltip: String,
     callback: Callable,
@@ -2436,7 +2437,7 @@ public object DisplayServer : Object() {
    * Sets the application status indicator icon.
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun statusIndicatorSetIcon(id: Int, icon: Texture2D?): Unit {
+  public final fun statusIndicatorSetIcon(id: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetIconPtr, NIL)
   }
@@ -2445,7 +2446,7 @@ public object DisplayServer : Object() {
    * Sets the application status indicator tooltip.
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun statusIndicatorSetTooltip(id: Int, tooltip: String): Unit {
+  public final fun statusIndicatorSetTooltip(id: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), STRING to tooltip)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetTooltipPtr, NIL)
   }
@@ -2460,7 +2461,7 @@ public object DisplayServer : Object() {
    * **Note:** Native popup is only supported if [NativeMenu] supports the
    * [NativeMenu.FEATURE_POPUP_MENU] feature.
    */
-  public fun statusIndicatorSetMenu(id: Int, menuRid: RID): Unit {
+  public final fun statusIndicatorSetMenu(id: Int, menuRid: RID): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), _RID to menuRid)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetMenuPtr, NIL)
   }
@@ -2471,7 +2472,7 @@ public object DisplayServer : Object() {
    * screen coordinates.
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun statusIndicatorSetCallback(id: Int, callback: Callable): Unit {
+  public final fun statusIndicatorSetCallback(id: Int, callback: Callable): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetCallbackPtr, NIL)
   }
@@ -2481,7 +2482,7 @@ public object DisplayServer : Object() {
    * indicator is not visible, returns an empty [Rect2].
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun statusIndicatorGetRect(id: Int): Rect2 {
+  public final fun statusIndicatorGetRect(id: Int): Rect2 {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorGetRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
@@ -2490,7 +2491,7 @@ public object DisplayServer : Object() {
   /**
    * Removes the application status indicator.
    */
-  public fun deleteStatusIndicator(id: Int): Unit {
+  public final fun deleteStatusIndicator(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.deleteStatusIndicatorPtr, NIL)
   }
@@ -2499,7 +2500,7 @@ public object DisplayServer : Object() {
    * Returns the total number of available tablet drivers.
    * **Note:** This method is implemented only on Windows.
    */
-  public fun tabletGetDriverCount(): Int {
+  public final fun tabletGetDriverCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -2509,7 +2510,7 @@ public object DisplayServer : Object() {
    * Returns the tablet driver name for the given index.
    * **Note:** This method is implemented only on Windows.
    */
-  public fun tabletGetDriverName(idx: Int): String {
+  public final fun tabletGetDriverName(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2519,7 +2520,7 @@ public object DisplayServer : Object() {
    * Returns current active tablet driver name.
    * **Note:** This method is implemented only on Windows.
    */
-  public fun tabletGetCurrentDriver(): String {
+  public final fun tabletGetCurrentDriver(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetCurrentDriverPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -2533,7 +2534,7 @@ public object DisplayServer : Object() {
    * - `dummy`: Dummy driver, tablet input is disabled.
    * **Note:** This method is implemented only on Windows.
    */
-  public fun tabletSetCurrentDriver(name: String): Unit {
+  public final fun tabletSetCurrentDriver(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.tabletSetCurrentDriverPtr, NIL)
   }
@@ -2543,7 +2544,7 @@ public object DisplayServer : Object() {
    * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`, or if
    * transparency is not supported by the renderer or OS compositor.
    */
-  public fun isWindowTransparencyAvailable(): Boolean {
+  public final fun isWindowTransparencyAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isWindowTransparencyAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -2555,7 +2556,7 @@ public object DisplayServer : Object() {
    * [unregisterAdditionalOutput].
    * This can be used to prevent Godot from skipping rendering when no normal windows are visible.
    */
-  public fun registerAdditionalOutput(_object: Object?): Unit {
+  public final fun registerAdditionalOutput(_object: Object?): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, MethodBindings.registerAdditionalOutputPtr, NIL)
   }
@@ -2564,7 +2565,7 @@ public object DisplayServer : Object() {
    * Unregisters an [Object] representing an additional output, that was registered via
    * [registerAdditionalOutput].
    */
-  public fun unregisterAdditionalOutput(_object: Object?): Unit {
+  public final fun unregisterAdditionalOutput(_object: Object?): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
   }
@@ -2572,7 +2573,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if any additional outputs have been registered via [registerAdditionalOutput].
    */
-  public fun hasAdditionalOutputs(): Boolean {
+  public final fun hasAdditionalOutputs(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAdditionalOutputsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

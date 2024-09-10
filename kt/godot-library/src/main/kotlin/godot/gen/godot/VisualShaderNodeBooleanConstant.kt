@@ -27,7 +27,7 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
   /**
    * A boolean constant which represents a state of this node.
    */
-  public var constant: Boolean
+  public final inline var constant: Boolean
     @JvmName("constantProperty")
     get() = getConstant()
     @JvmName("constantProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT, scriptIndex)
   }
 
-  public fun setConstant(constant: Boolean): Unit {
+  public final fun setConstant(constant: Boolean): Unit {
     TransferContext.writeArguments(BOOL to constant)
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
-  public fun getConstant(): Boolean {
+  public final fun getConstant(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

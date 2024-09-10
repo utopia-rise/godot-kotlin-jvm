@@ -30,7 +30,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
+  public final inline var defaultValueEnabled: Boolean
     @JvmName("defaultValueEnabledProperty")
     get() = isDefaultValueEnabled()
     @JvmName("defaultValueEnabledProperty")
@@ -42,7 +42,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
    * A default value to be assigned within the shader.
    */
   @CoreTypeLocalCopy
-  public var defaultValue: Transform3D
+  public final inline var defaultValue: Transform3D
     @JvmName("defaultValueProperty")
     get() = getDefaultValue()
     @JvmName("defaultValueProperty")
@@ -72,30 +72,30 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultValueMutate(block: Transform3D.() -> Unit): Transform3D =
+  public final fun defaultValueMutate(block: Transform3D.() -> Unit): Transform3D =
       defaultValue.apply{
       block(this)
       defaultValue = this
   }
 
 
-  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
-  public fun isDefaultValueEnabled(): Boolean {
+  public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultValue(`value`: Transform3D): Unit {
+  public final fun setDefaultValue(`value`: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
-  public fun getDefaultValue(): Transform3D {
+  public final fun getDefaultValue(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)

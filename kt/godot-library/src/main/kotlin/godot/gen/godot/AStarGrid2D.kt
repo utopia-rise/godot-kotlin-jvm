@@ -77,7 +77,7 @@ public open class AStarGrid2D : RefCounted() {
    * before finding the next path.
    */
   @CoreTypeLocalCopy
-  public var region: Rect2i
+  public final inline var region: Rect2i
     @JvmName("regionProperty")
     get() = getRegion()
     @JvmName("regionProperty")
@@ -90,7 +90,7 @@ public open class AStarGrid2D : RefCounted() {
    * needs to be called before finding the next path.
    */
   @CoreTypeLocalCopy
-  public var size: Vector2i
+  public final inline var size: Vector2i
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -103,7 +103,7 @@ public open class AStarGrid2D : RefCounted() {
    * by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeLocalCopy
-  public var offset: Vector2
+  public final inline var offset: Vector2
     @JvmName("offsetProperty")
     get() = getOffset()
     @JvmName("offsetProperty")
@@ -116,7 +116,7 @@ public open class AStarGrid2D : RefCounted() {
    * returned by [getPointPath]. If changed, [update] needs to be called before finding the next path.
    */
   @CoreTypeLocalCopy
-  public var cellSize: Vector2
+  public final inline var cellSize: Vector2
     @JvmName("cellSizeProperty")
     get() = getCellSize()
     @JvmName("cellSizeProperty")
@@ -128,7 +128,7 @@ public open class AStarGrid2D : RefCounted() {
    * The cell shape. Affects how the positions are placed in the grid. If changed, [update] needs to
    * be called before finding the next path.
    */
-  public var cellShape: CellShape
+  public final inline var cellShape: CellShape
     @JvmName("cellShapeProperty")
     get() = getCellShape()
     @JvmName("cellShapeProperty")
@@ -142,7 +142,7 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** Currently, toggling it on disables the consideration of weight scaling in
    * pathfinding.
    */
-  public var jumpingEnabled: Boolean
+  public final inline var jumpingEnabled: Boolean
     @JvmName("jumpingEnabledProperty")
     get() = isJumpingEnabled()
     @JvmName("jumpingEnabledProperty")
@@ -154,7 +154,7 @@ public open class AStarGrid2D : RefCounted() {
    * The default [Heuristic] which will be used to calculate the cost between two points if
    * [_computeCost] was not overridden.
    */
-  public var defaultComputeHeuristic: Heuristic
+  public final inline var defaultComputeHeuristic: Heuristic
     @JvmName("defaultComputeHeuristicProperty")
     get() = getDefaultComputeHeuristic()
     @JvmName("defaultComputeHeuristicProperty")
@@ -166,7 +166,7 @@ public open class AStarGrid2D : RefCounted() {
    * The default [Heuristic] which will be used to calculate the cost between the point and the end
    * point if [_estimateCost] was not overridden.
    */
-  public var defaultEstimateHeuristic: Heuristic
+  public final inline var defaultEstimateHeuristic: Heuristic
     @JvmName("defaultEstimateHeuristicProperty")
     get() = getDefaultEstimateHeuristic()
     @JvmName("defaultEstimateHeuristicProperty")
@@ -178,7 +178,7 @@ public open class AStarGrid2D : RefCounted() {
    * A specific [DiagonalMode] mode which will force the path to avoid or accept the specified
    * diagonals.
    */
-  public var diagonalMode: DiagonalMode
+  public final inline var diagonalMode: DiagonalMode
     @JvmName("diagonalModeProperty")
     get() = getDiagonalMode()
     @JvmName("diagonalModeProperty")
@@ -209,7 +209,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply{
+  public final fun regionMutate(block: Rect2i.() -> Unit): Rect2i = region.apply{
       block(this)
       region = this
   }
@@ -234,7 +234,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
+  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
       block(this)
       size = this
   }
@@ -259,7 +259,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -284,7 +284,7 @@ public open class AStarGrid2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply{
+  public final fun cellSizeMutate(block: Vector2.() -> Unit): Vector2 = cellSize.apply{
       block(this)
       cellSize = this
   }
@@ -306,56 +306,56 @@ public open class AStarGrid2D : RefCounted() {
     throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
   }
 
-  public fun setRegion(region: Rect2i): Unit {
+  public final fun setRegion(region: Rect2i): Unit {
     TransferContext.writeArguments(RECT2I to region)
     TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
   }
 
-  public fun getRegion(): Rect2i {
+  public final fun getRegion(): Rect2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2I)
     return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
   }
 
-  public fun setSize(size: Vector2i): Unit {
+  public final fun setSize(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector2i {
+  public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
-  public fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
-  public fun getOffset(): Vector2 {
+  public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setCellSize(cellSize: Vector2): Unit {
+  public final fun setCellSize(cellSize: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to cellSize)
     TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
   }
 
-  public fun getCellSize(): Vector2 {
+  public final fun getCellSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setCellShape(cellShape: CellShape): Unit {
+  public final fun setCellShape(cellShape: CellShape): Unit {
     TransferContext.writeArguments(LONG to cellShape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCellShapePtr, NIL)
   }
 
-  public fun getCellShape(): CellShape {
+  public final fun getCellShape(): CellShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellShapePtr, LONG)
     return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
@@ -365,7 +365,7 @@ public open class AStarGrid2D : RefCounted() {
    * Returns `true` if the [x] and [y] is a valid grid coordinate (id), i.e. if it is inside
    * [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
    */
-  public fun isInBounds(x: Int, y: Int): Boolean {
+  public final fun isInBounds(x: Int, y: Int): Boolean {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInBoundsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -375,7 +375,7 @@ public open class AStarGrid2D : RefCounted() {
    * Returns `true` if the [id] vector is a valid grid coordinate, i.e. if it is inside [region].
    * Equivalent to `region.has_point(id)`.
    */
-  public fun isInBoundsv(id: Vector2i): Boolean {
+  public final fun isInBoundsv(id: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, MethodBindings.isInBoundsvPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -384,7 +384,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Indicates that the grid parameters were changed and [update] needs to be called.
    */
-  public fun isDirty(): Boolean {
+  public final fun isDirty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDirtyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -396,50 +396,50 @@ public open class AStarGrid2D : RefCounted() {
    * [isDirty] will return `true` if this is the case and this needs to be called.
    * **Note:** All point data (solidity and weight scale) will be cleared.
    */
-  public fun update(): Unit {
+  public final fun update(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
 
-  public fun setJumpingEnabled(enabled: Boolean): Unit {
+  public final fun setJumpingEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setJumpingEnabledPtr, NIL)
   }
 
-  public fun isJumpingEnabled(): Boolean {
+  public final fun isJumpingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isJumpingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDiagonalMode(mode: DiagonalMode): Unit {
+  public final fun setDiagonalMode(mode: DiagonalMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiagonalModePtr, NIL)
   }
 
-  public fun getDiagonalMode(): DiagonalMode {
+  public final fun getDiagonalMode(): DiagonalMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiagonalModePtr, LONG)
     return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
+  public final fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
     TransferContext.writeArguments(LONG to heuristic.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultComputeHeuristicPtr, NIL)
   }
 
-  public fun getDefaultComputeHeuristic(): Heuristic {
+  public final fun getDefaultComputeHeuristic(): Heuristic {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
     return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
+  public final fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
     TransferContext.writeArguments(LONG to heuristic.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultEstimateHeuristicPtr, NIL)
   }
 
-  public fun getDefaultEstimateHeuristic(): Heuristic {
+  public final fun getDefaultEstimateHeuristic(): Heuristic {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
     return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
@@ -451,7 +451,7 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
-  public fun setPointSolid(id: Vector2i, solid: Boolean = true): Unit {
+  public final fun setPointSolid(id: Vector2i, solid: Boolean = true): Unit {
     TransferContext.writeArguments(VECTOR2I to id, BOOL to solid)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointSolidPtr, NIL)
   }
@@ -459,7 +459,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns `true` if a point is disabled for pathfinding. By default, all points are enabled.
    */
-  public fun isPointSolid(id: Vector2i): Boolean {
+  public final fun isPointSolid(id: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, MethodBindings.isPointSolidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -471,7 +471,7 @@ public open class AStarGrid2D : RefCounted() {
    * a neighboring point to this point.
    * **Note:** Calling [update] is not needed after the call of this function.
    */
-  public fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
+  public final fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
     TransferContext.writeArguments(VECTOR2I to id, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPointWeightScalePtr, NIL)
   }
@@ -479,7 +479,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
-  public fun getPointWeightScale(id: Vector2i): Float {
+  public final fun getPointWeightScale(id: Vector2i): Float {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointWeightScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -490,7 +490,7 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   @JvmOverloads
-  public fun fillSolidRegion(region: Rect2i, solid: Boolean = true): Unit {
+  public final fun fillSolidRegion(region: Rect2i, solid: Boolean = true): Unit {
     TransferContext.writeArguments(RECT2I to region, BOOL to solid)
     TransferContext.callMethod(rawPtr, MethodBindings.fillSolidRegionPtr, NIL)
   }
@@ -499,7 +499,7 @@ public open class AStarGrid2D : RefCounted() {
    * Fills the given [region] on the grid with the specified value for the weight scale.
    * **Note:** Calling [update] is not needed after the call of this function.
    */
-  public fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
+  public final fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
     TransferContext.writeArguments(RECT2I to region, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.fillWeightScaleRegionPtr, NIL)
   }
@@ -507,7 +507,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Clears the grid and sets the [region] to `Rect2i(0, 0, 0, 0)`.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -515,7 +515,7 @@ public open class AStarGrid2D : RefCounted() {
   /**
    * Returns the position of the point associated with the given [id].
    */
-  public fun getPointPosition(id: Vector2i): Vector2 {
+  public final fun getPointPosition(id: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -530,7 +530,7 @@ public open class AStarGrid2D : RefCounted() {
    * array and will print an error message.
    */
   @JvmOverloads
-  public fun getPointPath(
+  public final fun getPointPath(
     fromId: Vector2i,
     toId: Vector2i,
     allowPartialPath: Boolean = false,
@@ -547,7 +547,7 @@ public open class AStarGrid2D : RefCounted() {
    * the point closest to the target that can be reached.
    */
   @JvmOverloads
-  public fun getIdPath(
+  public final fun getIdPath(
     fromId: Vector2i,
     toId: Vector2i,
     allowPartialPath: Boolean = false,

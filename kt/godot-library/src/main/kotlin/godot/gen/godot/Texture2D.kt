@@ -124,7 +124,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns the texture width in pixels.
    */
-  public fun getWidth(): Int {
+  public final fun getWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -133,7 +133,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns the texture height in pixels.
    */
-  public fun getHeight(): Int {
+  public final fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -142,7 +142,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns the texture size in pixels.
    */
-  public fun getSize(): Vector2 {
+  public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -151,7 +151,7 @@ public open class Texture2D : Texture() {
   /**
    * Returns `true` if this [Texture2D] has an alpha channel.
    */
-  public fun hasAlpha(): Boolean {
+  public final fun hasAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -162,7 +162,7 @@ public open class Texture2D : Texture() {
    * [position].
    */
   @JvmOverloads
-  public fun draw(
+  public final fun draw(
     canvasItem: RID,
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -176,7 +176,7 @@ public open class Texture2D : Texture() {
    * Draws the texture using a [CanvasItem] with the [RenderingServer] API.
    */
   @JvmOverloads
-  public fun drawRect(
+  public final fun drawRect(
     canvasItem: RID,
     rect: Rect2,
     tile: Boolean,
@@ -191,7 +191,7 @@ public open class Texture2D : Texture() {
    * Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API.
    */
   @JvmOverloads
-  public fun drawRectRegion(
+  public final fun drawRectRegion(
     canvasItem: RID,
     rect: Rect2,
     srcRect: Rect2,
@@ -210,7 +210,7 @@ public open class Texture2D : Texture() {
    * **Note:** This will fetch the texture data from the GPU, which might cause performance problems
    * when overused.
    */
-  public fun getImage(): Image? {
+  public final fun getImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
@@ -219,7 +219,7 @@ public open class Texture2D : Texture() {
   /**
    * Creates a placeholder version of this resource ([PlaceholderTexture2D]).
    */
-  public fun createPlaceholder(): Resource? {
+  public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)

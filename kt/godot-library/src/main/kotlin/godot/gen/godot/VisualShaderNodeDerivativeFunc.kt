@@ -26,7 +26,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   /**
    * A type of operands and returned value. See [OpType] for options.
    */
-  public var opType: OpType
+  public final inline var opType: OpType
     @JvmName("opTypeProperty")
     get() = getOpType()
     @JvmName("opTypeProperty")
@@ -37,7 +37,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   /**
    * A derivative function type. See [Function] for options.
    */
-  public var function: Function
+  public final inline var function: Function
     @JvmName("functionProperty")
     get() = getFunction()
     @JvmName("functionProperty")
@@ -49,7 +49,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
    * Sets the level of precision to use for the derivative function. See [Precision] for options.
    * When using the GL Compatibility renderer, this setting has no effect.
    */
-  public var precision: Precision
+  public final inline var precision: Precision
     @JvmName("precisionProperty")
     get() = getPrecision()
     @JvmName("precisionProperty")
@@ -61,34 +61,34 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC, scriptIndex)
   }
 
-  public fun setOpType(type: OpType): Unit {
+  public final fun setOpType(type: OpType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
   }
 
-  public fun getOpType(): OpType {
+  public final fun getOpType(): OpType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeDerivativeFunc.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function): Unit {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
   }
 
-  public fun getFunction(): Function {
+  public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeDerivativeFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPrecision(precision: Precision): Unit {
+  public final fun setPrecision(precision: Precision): Unit {
     TransferContext.writeArguments(LONG to precision.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrecisionPtr, NIL)
   }
 
-  public fun getPrecision(): Precision {
+  public final fun getPrecision(): Precision {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrecisionPtr, LONG)
     return VisualShaderNodeDerivativeFunc.Precision.from(TransferContext.readReturnValue(LONG) as Long)

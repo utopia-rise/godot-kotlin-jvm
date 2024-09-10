@@ -30,7 +30,7 @@ public open class VideoStream : Resource() {
    * For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv`
    * extension.
    */
-  public var `file`: String
+  public final inline var `file`: String
     @JvmName("fileProperty")
     get() = getFile()
     @JvmName("fileProperty")
@@ -50,12 +50,12 @@ public open class VideoStream : Resource() {
     throw NotImplementedError("_instantiate_playback is not implemented for VideoStream")
   }
 
-  public fun setFile(`file`: String): Unit {
+  public final fun setFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, MethodBindings.setFilePtr, NIL)
   }
 
-  public fun getFile(): String {
+  public final fun getFile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFilePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

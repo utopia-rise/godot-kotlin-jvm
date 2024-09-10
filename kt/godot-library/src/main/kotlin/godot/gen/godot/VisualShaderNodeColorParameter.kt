@@ -30,7 +30,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
+  public final inline var defaultValueEnabled: Boolean
     @JvmName("defaultValueEnabledProperty")
     get() = isDefaultValueEnabled()
     @JvmName("defaultValueEnabledProperty")
@@ -42,7 +42,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
    * A default value to be assigned within the shader.
    */
   @CoreTypeLocalCopy
-  public var defaultValue: Color
+  public final inline var defaultValue: Color
     @JvmName("defaultValueProperty")
     get() = getDefaultValue()
     @JvmName("defaultValueProperty")
@@ -72,29 +72,29 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultValueMutate(block: Color.() -> Unit): Color = defaultValue.apply{
+  public final fun defaultValueMutate(block: Color.() -> Unit): Color = defaultValue.apply{
       block(this)
       defaultValue = this
   }
 
 
-  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
-  public fun isDefaultValueEnabled(): Boolean {
+  public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultValue(`value`: Color): Unit {
+  public final fun setDefaultValue(`value`: Color): Unit {
     TransferContext.writeArguments(COLOR to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
-  public fun getDefaultValue(): Color {
+  public final fun getDefaultValue(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)

@@ -32,7 +32,7 @@ public open class CylinderShape3D : Shape3D() {
   /**
    * The cylinder's height.
    */
-  public var height: Float
+  public final inline var height: Float
     @JvmName("heightProperty")
     get() = getHeight()
     @JvmName("heightProperty")
@@ -43,7 +43,7 @@ public open class CylinderShape3D : Shape3D() {
   /**
    * The cylinder's radius.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -55,23 +55,23 @@ public open class CylinderShape3D : Shape3D() {
     callConstructor(ENGINECLASS_CYLINDERSHAPE3D, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
-  public fun getHeight(): Float {
+  public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

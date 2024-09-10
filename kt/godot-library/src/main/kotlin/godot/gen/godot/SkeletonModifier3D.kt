@@ -42,7 +42,7 @@ public open class SkeletonModifier3D : Node3D() {
   /**
    * If `true`, the [SkeletonModifier3D] will be processing.
    */
-  public var active: Boolean
+  public final inline var active: Boolean
     @JvmName("activeProperty")
     get() = isActive()
     @JvmName("activeProperty")
@@ -55,7 +55,7 @@ public open class SkeletonModifier3D : Node3D() {
    * **Note:** This value is used by [Skeleton3D] to blend, so the [SkeletonModifier3D] should
    * always apply only 100&#37; of the result without interpolation.
    */
-  public var influence: Float
+  public final inline var influence: Float
     @JvmName("influenceProperty")
     get() = getInfluence()
     @JvmName("influenceProperty")
@@ -79,29 +79,29 @@ public open class SkeletonModifier3D : Node3D() {
   /**
    * Get parent [Skeleton3D] node if found.
    */
-  public fun getSkeleton(): Skeleton3D? {
+  public final fun getSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?)
   }
 
-  public fun setActive(active: Boolean): Unit {
+  public final fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
   }
 
-  public fun isActive(): Boolean {
+  public final fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setInfluence(influence: Float): Unit {
+  public final fun setInfluence(influence: Float): Unit {
     TransferContext.writeArguments(DOUBLE to influence.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setInfluencePtr, NIL)
   }
 
-  public fun getInfluence(): Float {
+  public final fun getInfluence(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInfluencePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

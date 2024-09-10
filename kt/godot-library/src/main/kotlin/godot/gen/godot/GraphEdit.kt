@@ -179,7 +179,7 @@ public open class GraphEdit : Control() {
    * The scroll offset.
    */
   @CoreTypeLocalCopy
-  public var scrollOffset: Vector2
+  public final inline var scrollOffset: Vector2
     @JvmName("scrollOffsetProperty")
     get() = getScrollOffset()
     @JvmName("scrollOffsetProperty")
@@ -190,7 +190,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the grid is visible.
    */
-  public var showGrid: Boolean
+  public final inline var showGrid: Boolean
     @JvmName("showGridProperty")
     get() = isShowingGrid()
     @JvmName("showGridProperty")
@@ -201,7 +201,7 @@ public open class GraphEdit : Control() {
   /**
    * The pattern used for drawing the grid.
    */
-  public var gridPattern: GridPattern
+  public final inline var gridPattern: GridPattern
     @JvmName("gridPatternProperty")
     get() = getGridPattern()
     @JvmName("gridPatternProperty")
@@ -212,7 +212,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, enables snapping.
    */
-  public var snappingEnabled: Boolean
+  public final inline var snappingEnabled: Boolean
     @JvmName("snappingEnabledProperty")
     get() = isSnappingEnabled()
     @JvmName("snappingEnabledProperty")
@@ -223,7 +223,7 @@ public open class GraphEdit : Control() {
   /**
    * The snapping distance in pixels, also determines the grid line distance.
    */
-  public var snappingDistance: Int
+  public final inline var snappingDistance: Int
     @JvmName("snappingDistanceProperty")
     get() = getSnappingDistance()
     @JvmName("snappingDistanceProperty")
@@ -234,7 +234,7 @@ public open class GraphEdit : Control() {
   /**
    * Defines the control scheme for panning with mouse wheel.
    */
-  public var panningScheme: PanningScheme
+  public final inline var panningScheme: PanningScheme
     @JvmName("panningSchemeProperty")
     get() = getPanningScheme()
     @JvmName("panningSchemeProperty")
@@ -246,7 +246,7 @@ public open class GraphEdit : Control() {
    * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right
    * end.
    */
-  public var rightDisconnects: Boolean
+  public final inline var rightDisconnects: Boolean
     @JvmName("rightDisconnectsProperty")
     get() = isRightDisconnectsEnabled()
     @JvmName("rightDisconnectsProperty")
@@ -257,7 +257,7 @@ public open class GraphEdit : Control() {
   /**
    * The curvature of the lines between the nodes. 0 results in straight lines.
    */
-  public var connectionLinesCurvature: Float
+  public final inline var connectionLinesCurvature: Float
     @JvmName("connectionLinesCurvatureProperty")
     get() = getConnectionLinesCurvature()
     @JvmName("connectionLinesCurvatureProperty")
@@ -268,7 +268,7 @@ public open class GraphEdit : Control() {
   /**
    * The thickness of the lines between the nodes.
    */
-  public var connectionLinesThickness: Float
+  public final inline var connectionLinesThickness: Float
     @JvmName("connectionLinesThicknessProperty")
     get() = getConnectionLinesThickness()
     @JvmName("connectionLinesThicknessProperty")
@@ -279,7 +279,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the lines between nodes will use antialiasing.
    */
-  public var connectionLinesAntialiased: Boolean
+  public final inline var connectionLinesAntialiased: Boolean
     @JvmName("connectionLinesAntialiasedProperty")
     get() = isConnectionLinesAntialiased()
     @JvmName("connectionLinesAntialiasedProperty")
@@ -290,7 +290,7 @@ public open class GraphEdit : Control() {
   /**
    * The current zoom value.
    */
-  public var zoom: Float
+  public final inline var zoom: Float
     @JvmName("zoomProperty")
     get() = getZoom()
     @JvmName("zoomProperty")
@@ -301,7 +301,7 @@ public open class GraphEdit : Control() {
   /**
    * The lower zoom limit.
    */
-  public var zoomMin: Float
+  public final inline var zoomMin: Float
     @JvmName("zoomMinProperty")
     get() = getZoomMin()
     @JvmName("zoomMinProperty")
@@ -312,7 +312,7 @@ public open class GraphEdit : Control() {
   /**
    * The upper zoom limit.
    */
-  public var zoomMax: Float
+  public final inline var zoomMax: Float
     @JvmName("zoomMaxProperty")
     get() = getZoomMax()
     @JvmName("zoomMaxProperty")
@@ -323,7 +323,7 @@ public open class GraphEdit : Control() {
   /**
    * The step of each zoom level.
    */
-  public var zoomStep: Float
+  public final inline var zoomStep: Float
     @JvmName("zoomStepProperty")
     get() = getZoomStep()
     @JvmName("zoomStepProperty")
@@ -334,7 +334,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the minimap is visible.
    */
-  public var minimapEnabled: Boolean
+  public final inline var minimapEnabled: Boolean
     @JvmName("minimapEnabledProperty")
     get() = isMinimapEnabled()
     @JvmName("minimapEnabledProperty")
@@ -347,7 +347,7 @@ public open class GraphEdit : Control() {
    * scaled to fit this rectangle.
    */
   @CoreTypeLocalCopy
-  public var minimapSize: Vector2
+  public final inline var minimapSize: Vector2
     @JvmName("minimapSizeProperty")
     get() = getMinimapSize()
     @JvmName("minimapSizeProperty")
@@ -358,7 +358,7 @@ public open class GraphEdit : Control() {
   /**
    * The opacity of the minimap rectangle.
    */
-  public var minimapOpacity: Float
+  public final inline var minimapOpacity: Float
     @JvmName("minimapOpacityProperty")
     get() = getMinimapOpacity()
     @JvmName("minimapOpacityProperty")
@@ -369,7 +369,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the menu toolbar is visible.
    */
-  public var showMenu: Boolean
+  public final inline var showMenu: Boolean
     @JvmName("showMenuProperty")
     get() = isShowingMenu()
     @JvmName("showMenuProperty")
@@ -381,7 +381,7 @@ public open class GraphEdit : Control() {
    * If `true`, the label with the current zoom level is visible. The zoom level is displayed in
    * percents.
    */
-  public var showZoomLabel: Boolean
+  public final inline var showZoomLabel: Boolean
     @JvmName("showZoomLabelProperty")
     get() = isShowingZoomLabel()
     @JvmName("showZoomLabelProperty")
@@ -392,7 +392,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, buttons that allow to change and reset the zoom level are visible.
    */
-  public var showZoomButtons: Boolean
+  public final inline var showZoomButtons: Boolean
     @JvmName("showZoomButtonsProperty")
     get() = isShowingZoomButtons()
     @JvmName("showZoomButtonsProperty")
@@ -403,7 +403,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, buttons that allow to configure grid and snapping options are visible.
    */
-  public var showGridButtons: Boolean
+  public final inline var showGridButtons: Boolean
     @JvmName("showGridButtonsProperty")
     get() = isShowingGridButtons()
     @JvmName("showGridButtonsProperty")
@@ -414,7 +414,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the button to toggle the minimap is visible.
    */
-  public var showMinimapButton: Boolean
+  public final inline var showMinimapButton: Boolean
     @JvmName("showMinimapButtonProperty")
     get() = isShowingMinimapButton()
     @JvmName("showMinimapButtonProperty")
@@ -425,7 +425,7 @@ public open class GraphEdit : Control() {
   /**
    * If `true`, the button to automatically arrange graph nodes is visible.
    */
-  public var showArrangeButton: Boolean
+  public final inline var showArrangeButton: Boolean
     @JvmName("showArrangeButtonProperty")
     get() = isShowingArrangeButton()
     @JvmName("showArrangeButtonProperty")
@@ -455,7 +455,7 @@ public open class GraphEdit : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
+  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       block(this)
       scrollOffset = this
   }
@@ -480,7 +480,7 @@ public open class GraphEdit : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun minimapSizeMutate(block: Vector2.() -> Unit): Vector2 = minimapSize.apply{
+  public final fun minimapSizeMutate(block: Vector2.() -> Unit): Vector2 = minimapSize.apply{
       block(this)
       minimapSize = this
   }
@@ -578,7 +578,7 @@ public open class GraphEdit : Control() {
    * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
    * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
    */
-  public fun connectNode(
+  public final fun connectNode(
     fromNode: StringName,
     fromPort: Int,
     toNode: StringName,
@@ -593,7 +593,7 @@ public open class GraphEdit : Control() {
    * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of
    * the [toNode] [GraphNode].
    */
-  public fun isNodeConnected(
+  public final fun isNodeConnected(
     fromNode: StringName,
     fromPort: Int,
     toNode: StringName,
@@ -608,7 +608,7 @@ public open class GraphEdit : Control() {
    * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
    * the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
    */
-  public fun disconnectNode(
+  public final fun disconnectNode(
     fromNode: StringName,
     fromPort: Int,
     toNode: StringName,
@@ -623,7 +623,7 @@ public open class GraphEdit : Control() {
    * with the color provided in the [theme_item activity] theme property. The color is linearly
    * interpolated between the connection color and the activity color using [amount] as weight.
    */
-  public fun setConnectionActivity(
+  public final fun setConnectionActivity(
     fromNode: StringName,
     fromPort: Int,
     toNode: StringName,
@@ -639,7 +639,7 @@ public open class GraphEdit : Control() {
    * the form `{ from_port: 0, from_node: "GraphNode name 0", to_port: 1, to_node: "GraphNode name 1"
    * }`.
    */
-  public fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -658,7 +658,7 @@ public open class GraphEdit : Control() {
    * ```
    */
   @JvmOverloads
-  public fun getClosestConnectionAtPoint(point: Vector2, maxDistance: Float = 4.0f):
+  public final fun getClosestConnectionAtPoint(point: Vector2, maxDistance: Float = 4.0f):
       Dictionary<Any?, Any?> {
     TransferContext.writeArguments(VECTOR2 to point, DOUBLE to maxDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestConnectionAtPointPtr, DICTIONARY)
@@ -670,7 +670,8 @@ public open class GraphEdit : Control() {
    * connection consists in a structure of the form `{ from_port: 0, from_node: "GraphNode name 0",
    * to_port: 1, to_node: "GraphNode name 1" }`.
    */
-  public fun getConnectionsIntersectingWithRect(rect: Rect2): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun getConnectionsIntersectingWithRect(rect: Rect2):
+      VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionsIntersectingWithRectPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -679,7 +680,7 @@ public open class GraphEdit : Control() {
   /**
    * Removes all connections between nodes.
    */
-  public fun clearConnections(): Unit {
+  public final fun clearConnections(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearConnectionsPtr, NIL)
   }
@@ -692,18 +693,18 @@ public open class GraphEdit : Control() {
    * **Note:** This method suppresses any other connection request signals apart from [signal
    * connection_drag_ended].
    */
-  public fun forceConnectionDragEnd(): Unit {
+  public final fun forceConnectionDragEnd(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceConnectionDragEndPtr, NIL)
   }
 
-  public fun getScrollOffset(): Vector2 {
+  public final fun getScrollOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setScrollOffset(offset: Vector2): Unit {
+  public final fun setScrollOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
   }
@@ -712,7 +713,7 @@ public open class GraphEdit : Control() {
    * Allows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it
    * has the specified type. See also [removeValidRightDisconnectType].
    */
-  public fun addValidRightDisconnectType(type: Int): Unit {
+  public final fun addValidRightDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addValidRightDisconnectTypePtr, NIL)
   }
@@ -722,7 +723,7 @@ public open class GraphEdit : Control() {
    * has the specified type. Use this to disable disconnection previously allowed with
    * [addValidRightDisconnectType].
    */
-  public fun removeValidRightDisconnectType(type: Int): Unit {
+  public final fun removeValidRightDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeValidRightDisconnectTypePtr, NIL)
   }
@@ -731,7 +732,7 @@ public open class GraphEdit : Control() {
    * Allows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it has
    * the specified type. See also [removeValidLeftDisconnectType].
    */
-  public fun addValidLeftDisconnectType(type: Int): Unit {
+  public final fun addValidLeftDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addValidLeftDisconnectTypePtr, NIL)
   }
@@ -741,7 +742,7 @@ public open class GraphEdit : Control() {
    * has the specified type. Use this to disable disconnection previously allowed with
    * [addValidLeftDisconnectType].
    */
-  public fun removeValidLeftDisconnectType(type: Int): Unit {
+  public final fun removeValidLeftDisconnectType(type: Int): Unit {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeValidLeftDisconnectTypePtr, NIL)
   }
@@ -751,7 +752,7 @@ public open class GraphEdit : Control() {
    * for the left and the right port of each slot with the [GraphNode.setSlot] method.
    * See also [isValidConnectionType] and [removeValidConnectionType].
    */
-  public fun addValidConnectionType(fromType: Int, toType: Int): Unit {
+  public final fun addValidConnectionType(fromType: Int, toType: Int): Unit {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addValidConnectionTypePtr, NIL)
   }
@@ -762,7 +763,7 @@ public open class GraphEdit : Control() {
    * each slot with the [GraphNode.setSlot] method.
    * See also [isValidConnectionType].
    */
-  public fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
+  public final fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeValidConnectionTypePtr, NIL)
   }
@@ -773,7 +774,7 @@ public open class GraphEdit : Control() {
    * [GraphNode.setSlot] method.
    * See also [addValidConnectionType] and [removeValidConnectionType].
    */
-  public fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
+  public final fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isValidConnectionTypePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -782,7 +783,7 @@ public open class GraphEdit : Control() {
   /**
    * Returns the points which would make up a connection between [fromNode] and [toNode].
    */
-  public fun getConnectionLine(fromNode: Vector2, toNode: Vector2): PackedVector2Array {
+  public final fun getConnectionLine(fromNode: Vector2, toNode: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinePtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
@@ -791,7 +792,7 @@ public open class GraphEdit : Control() {
   /**
    * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
    */
-  public fun attachGraphElementToFrame(element: StringName, frame: StringName): Unit {
+  public final fun attachGraphElementToFrame(element: StringName, frame: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to element, STRING_NAME to frame)
     TransferContext.callMethod(rawPtr, MethodBindings.attachGraphElementToFramePtr, NIL)
   }
@@ -799,7 +800,7 @@ public open class GraphEdit : Control() {
   /**
    * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
    */
-  public fun detachGraphElementFromFrame(element: StringName): Unit {
+  public final fun detachGraphElementFromFrame(element: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to element)
     TransferContext.callMethod(rawPtr, MethodBindings.detachGraphElementFromFramePtr, NIL)
   }
@@ -807,7 +808,7 @@ public open class GraphEdit : Control() {
   /**
    * Returns the [GraphFrame] that contains the [GraphElement] with the given name.
    */
-  public fun getElementFrame(element: StringName): GraphFrame? {
+  public final fun getElementFrame(element: StringName): GraphFrame? {
     TransferContext.writeArguments(STRING_NAME to element)
     TransferContext.callMethod(rawPtr, MethodBindings.getElementFramePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as GraphFrame?)
@@ -816,249 +817,249 @@ public open class GraphEdit : Control() {
   /**
    * Returns an array of node names that are attached to the [GraphFrame] with the given name.
    */
-  public fun getAttachedNodesOfFrame(frame: StringName): VariantArray<StringName> {
+  public final fun getAttachedNodesOfFrame(frame: StringName): VariantArray<StringName> {
     TransferContext.writeArguments(STRING_NAME to frame)
     TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesOfFramePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
   }
 
-  public fun setPanningScheme(scheme: PanningScheme): Unit {
+  public final fun setPanningScheme(scheme: PanningScheme): Unit {
     TransferContext.writeArguments(LONG to scheme.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPanningSchemePtr, NIL)
   }
 
-  public fun getPanningScheme(): PanningScheme {
+  public final fun getPanningScheme(): PanningScheme {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPanningSchemePtr, LONG)
     return GraphEdit.PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setZoom(zoom: Float): Unit {
+  public final fun setZoom(zoom: Float): Unit {
     TransferContext.writeArguments(DOUBLE to zoom.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setZoomPtr, NIL)
   }
 
-  public fun getZoom(): Float {
+  public final fun getZoom(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setZoomMin(zoomMin: Float): Unit {
+  public final fun setZoomMin(zoomMin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to zoomMin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setZoomMinPtr, NIL)
   }
 
-  public fun getZoomMin(): Float {
+  public final fun getZoomMin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setZoomMax(zoomMax: Float): Unit {
+  public final fun setZoomMax(zoomMax: Float): Unit {
     TransferContext.writeArguments(DOUBLE to zoomMax.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setZoomMaxPtr, NIL)
   }
 
-  public fun getZoomMax(): Float {
+  public final fun getZoomMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setZoomStep(zoomStep: Float): Unit {
+  public final fun setZoomStep(zoomStep: Float): Unit {
     TransferContext.writeArguments(DOUBLE to zoomStep.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setZoomStepPtr, NIL)
   }
 
-  public fun getZoomStep(): Float {
+  public final fun getZoomStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setShowGrid(enable: Boolean): Unit {
+  public final fun setShowGrid(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowGridPtr, NIL)
   }
 
-  public fun isShowingGrid(): Boolean {
+  public final fun isShowingGrid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setGridPattern(pattern: GridPattern): Unit {
+  public final fun setGridPattern(pattern: GridPattern): Unit {
     TransferContext.writeArguments(LONG to pattern.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setGridPatternPtr, NIL)
   }
 
-  public fun getGridPattern(): GridPattern {
+  public final fun getGridPattern(): GridPattern {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGridPatternPtr, LONG)
     return GraphEdit.GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSnappingEnabled(enable: Boolean): Unit {
+  public final fun setSnappingEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSnappingEnabledPtr, NIL)
   }
 
-  public fun isSnappingEnabled(): Boolean {
+  public final fun isSnappingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSnappingEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSnappingDistance(pixels: Int): Unit {
+  public final fun setSnappingDistance(pixels: Int): Unit {
     TransferContext.writeArguments(LONG to pixels.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSnappingDistancePtr, NIL)
   }
 
-  public fun getSnappingDistance(): Int {
+  public final fun getSnappingDistance(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSnappingDistancePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setConnectionLinesCurvature(curvature: Float): Unit {
+  public final fun setConnectionLinesCurvature(curvature: Float): Unit {
     TransferContext.writeArguments(DOUBLE to curvature.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesCurvaturePtr, NIL)
   }
 
-  public fun getConnectionLinesCurvature(): Float {
+  public final fun getConnectionLinesCurvature(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesCurvaturePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setConnectionLinesThickness(pixels: Float): Unit {
+  public final fun setConnectionLinesThickness(pixels: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pixels.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesThicknessPtr, NIL)
   }
 
-  public fun getConnectionLinesThickness(): Float {
+  public final fun getConnectionLinesThickness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesThicknessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setConnectionLinesAntialiased(pixels: Boolean): Unit {
+  public final fun setConnectionLinesAntialiased(pixels: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pixels)
     TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesAntialiasedPtr, NIL)
   }
 
-  public fun isConnectionLinesAntialiased(): Boolean {
+  public final fun isConnectionLinesAntialiased(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConnectionLinesAntialiasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMinimapSize(size: Vector2): Unit {
+  public final fun setMinimapSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setMinimapSizePtr, NIL)
   }
 
-  public fun getMinimapSize(): Vector2 {
+  public final fun getMinimapSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimapSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setMinimapOpacity(opacity: Float): Unit {
+  public final fun setMinimapOpacity(opacity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to opacity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMinimapOpacityPtr, NIL)
   }
 
-  public fun getMinimapOpacity(): Float {
+  public final fun getMinimapOpacity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimapOpacityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMinimapEnabled(enable: Boolean): Unit {
+  public final fun setMinimapEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setMinimapEnabledPtr, NIL)
   }
 
-  public fun isMinimapEnabled(): Boolean {
+  public final fun isMinimapEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMinimapEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShowMenu(hidden: Boolean): Unit {
+  public final fun setShowMenu(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowMenuPtr, NIL)
   }
 
-  public fun isShowingMenu(): Boolean {
+  public final fun isShowingMenu(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShowZoomLabel(enable: Boolean): Unit {
+  public final fun setShowZoomLabel(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomLabelPtr, NIL)
   }
 
-  public fun isShowingZoomLabel(): Boolean {
+  public final fun isShowingZoomLabel(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomLabelPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShowGridButtons(hidden: Boolean): Unit {
+  public final fun setShowGridButtons(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowGridButtonsPtr, NIL)
   }
 
-  public fun isShowingGridButtons(): Boolean {
+  public final fun isShowingGridButtons(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridButtonsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShowZoomButtons(hidden: Boolean): Unit {
+  public final fun setShowZoomButtons(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomButtonsPtr, NIL)
   }
 
-  public fun isShowingZoomButtons(): Boolean {
+  public final fun isShowingZoomButtons(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomButtonsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShowMinimapButton(hidden: Boolean): Unit {
+  public final fun setShowMinimapButton(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowMinimapButtonPtr, NIL)
   }
 
-  public fun isShowingMinimapButton(): Boolean {
+  public final fun isShowingMinimapButton(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingMinimapButtonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShowArrangeButton(hidden: Boolean): Unit {
+  public final fun setShowArrangeButton(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowArrangeButtonPtr, NIL)
   }
 
-  public fun isShowingArrangeButton(): Boolean {
+  public final fun isShowingArrangeButton(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingArrangeButtonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setRightDisconnects(enable: Boolean): Unit {
+  public final fun setRightDisconnects(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setRightDisconnectsPtr, NIL)
   }
 
-  public fun isRightDisconnectsEnabled(): Boolean {
+  public final fun isRightDisconnectsEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1071,7 +1072,7 @@ public open class GraphEdit : Control() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getMenuHbox(): HBoxContainer? {
+  public final fun getMenuHbox(): HBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMenuHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
@@ -1081,7 +1082,7 @@ public open class GraphEdit : Control() {
    * Rearranges selected nodes in a layout with minimum crossings between connections and uniform
    * horizontal and vertical gap between nodes.
    */
-  public fun arrangeNodes(): Unit {
+  public final fun arrangeNodes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.arrangeNodesPtr, NIL)
   }
@@ -1089,7 +1090,7 @@ public open class GraphEdit : Control() {
   /**
    * Sets the specified [node] as the one selected.
    */
-  public fun setSelected(node: Node?): Unit {
+  public final fun setSelected(node: Node?): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
   }

@@ -105,7 +105,7 @@ public open class AudioStream : Resource() {
   /**
    * Returns the length of the audio stream in seconds.
    */
-  public fun getLength(): Double {
+  public final fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -115,7 +115,7 @@ public open class AudioStream : Resource() {
    * Returns `true` if this audio stream only supports one channel (*monophony*), or `false` if the
    * audio stream supports two or more channels (*polyphony*).
    */
-  public fun isMonophonic(): Boolean {
+  public final fun isMonophonic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMonophonicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -127,7 +127,7 @@ public open class AudioStream : Resource() {
    * held AudioStream subresource. An example of this can be found in the source code for
    * `AudioStreamRandomPitch::instantiate_playback`.
    */
-  public fun instantiatePlayback(): AudioStreamPlayback? {
+  public final fun instantiatePlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.instantiatePlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
@@ -137,7 +137,7 @@ public open class AudioStream : Resource() {
    * Returns if the current [AudioStream] can be used as a sample. Only static streams can be
    * sampled.
    */
-  public fun canBeSampled(): Boolean {
+  public final fun canBeSampled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canBeSampledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -146,7 +146,7 @@ public open class AudioStream : Resource() {
   /**
    * Generates an [AudioSample] based on the current stream.
    */
-  public fun generateSample(): AudioSample? {
+  public final fun generateSample(): AudioSample? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateSamplePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioSample?)
@@ -155,7 +155,7 @@ public open class AudioStream : Resource() {
   /**
    * Returns `true` if the stream is a collection of other streams, `false` otherwise.
    */
-  public fun isMetaStream(): Boolean {
+  public final fun isMetaStream(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMetaStreamPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

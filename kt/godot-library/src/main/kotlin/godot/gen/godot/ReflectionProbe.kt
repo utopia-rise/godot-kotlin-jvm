@@ -57,7 +57,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Sets how frequently the [ReflectionProbe] is updated. Can be [UPDATE_ONCE] or [UPDATE_ALWAYS].
    */
-  public var updateMode: UpdateMode
+  public final inline var updateMode: UpdateMode
     @JvmName("updateModeProperty")
     get() = getUpdateMode()
     @JvmName("updateModeProperty")
@@ -68,7 +68,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * Defines the reflection intensity. Intensity modulates the strength of the reflection.
    */
-  public var intensity: Float
+  public final inline var intensity: Float
     @JvmName("intensityProperty")
     get() = getIntensity()
     @JvmName("intensityProperty")
@@ -83,7 +83,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * means that decreasing [maxDistance] will not always cull objects from reflections, especially if
    * the reflection probe's box defined by its [size] is already large.
    */
-  public var maxDistance: Float
+  public final inline var maxDistance: Float
     @JvmName("maxDistanceProperty")
     get() = getMaxDistance()
     @JvmName("maxDistanceProperty")
@@ -99,7 +99,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * [ReflectionProbe] node.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
+  public final inline var size: Vector3
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -113,7 +113,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * the number of objects that "get in the way" of the reflection.
    */
   @CoreTypeLocalCopy
-  public var originOffset: Vector3
+  public final inline var originOffset: Vector3
     @JvmName("originOffsetProperty")
     get() = getOriginOffset()
     @JvmName("originOffsetProperty")
@@ -127,7 +127,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * **Note:** To better fit rectangle-shaped rooms that are not aligned to the grid, you can rotate
    * the [ReflectionProbe] node.
    */
-  public var boxProjection: Boolean
+  public final inline var boxProjection: Boolean
     @JvmName("boxProjectionProperty")
     get() = isBoxProjectionEnabled()
     @JvmName("boxProjectionProperty")
@@ -138,7 +138,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   /**
    * If `true`, reflections will ignore sky contribution.
    */
-  public var interior: Boolean
+  public final inline var interior: Boolean
     @JvmName("interiorProperty")
     get() = isSetAsInterior()
     @JvmName("interiorProperty")
@@ -150,7 +150,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * If `true`, computes shadows in the reflection probe. This makes the reflection probe slower to
    * render; you may want to disable this if using the [UPDATE_ALWAYS] [updateMode].
    */
-  public var enableShadows: Boolean
+  public final inline var enableShadows: Boolean
     @JvmName("enableShadowsProperty")
     get() = areShadowsEnabled()
     @JvmName("enableShadowsProperty")
@@ -166,7 +166,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * This can also be used to prevent an object from reflecting upon itself (for instance, a
    * [ReflectionProbe] centered on a vehicle).
    */
-  public var cullMask: Long
+  public final inline var cullMask: Long
     @JvmName("cullMaskProperty")
     get() = getCullMask()
     @JvmName("cullMaskProperty")
@@ -180,7 +180,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * reflections applied from this probe. See also [cullMask], which can be used to exclude objects
    * from appearing in the reflection while still making them affected by the [ReflectionProbe].
    */
-  public var reflectionMask: Long
+  public final inline var reflectionMask: Long
     @JvmName("reflectionMaskProperty")
     get() = getReflectionMask()
     @JvmName("reflectionMaskProperty")
@@ -197,7 +197,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
    * as "manual" LOD or hierarchical LOD).
    */
-  public var meshLodThreshold: Float
+  public final inline var meshLodThreshold: Float
     @JvmName("meshLodThresholdProperty")
     get() = getMeshLodThreshold()
     @JvmName("meshLodThresholdProperty")
@@ -210,7 +210,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * color will smoothly blend with other [ReflectionProbe]s and the rest of the scene (outside the
    * [ReflectionProbe]'s box defined by its [size]).
    */
-  public var ambientMode: AmbientMode
+  public final inline var ambientMode: AmbientMode
     @JvmName("ambientModeProperty")
     get() = getAmbientMode()
     @JvmName("ambientModeProperty")
@@ -223,7 +223,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * effective if [ambientMode] is [AMBIENT_COLOR].
    */
   @CoreTypeLocalCopy
-  public var ambientColor: Color
+  public final inline var ambientColor: Color
     @JvmName("ambientColorProperty")
     get() = getAmbientColor()
     @JvmName("ambientColorProperty")
@@ -235,7 +235,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * The custom ambient color energy to use within the [ReflectionProbe]'s box defined by its
    * [size]. Only effective if [ambientMode] is [AMBIENT_COLOR].
    */
-  public var ambientColorEnergy: Float
+  public final inline var ambientColorEnergy: Float
     @JvmName("ambientColorEnergyProperty")
     get() = getAmbientColorEnergy()
     @JvmName("ambientColorEnergyProperty")
@@ -269,7 +269,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
@@ -295,7 +295,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
+  public final fun originOffsetMutate(block: Vector3.() -> Unit): Vector3 = originOffset.apply{
       block(this)
       originOffset = this
   }
@@ -320,161 +320,161 @@ public open class ReflectionProbe : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun ambientColorMutate(block: Color.() -> Unit): Color = ambientColor.apply{
+  public final fun ambientColorMutate(block: Color.() -> Unit): Color = ambientColor.apply{
       block(this)
       ambientColor = this
   }
 
 
-  public fun setIntensity(intensity: Float): Unit {
+  public final fun setIntensity(intensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
   }
 
-  public fun getIntensity(): Float {
+  public final fun getIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAmbientMode(ambient: AmbientMode): Unit {
+  public final fun setAmbientMode(ambient: AmbientMode): Unit {
     TransferContext.writeArguments(LONG to ambient.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAmbientModePtr, NIL)
   }
 
-  public fun getAmbientMode(): AmbientMode {
+  public final fun getAmbientMode(): AmbientMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmbientModePtr, LONG)
     return ReflectionProbe.AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAmbientColor(ambient: Color): Unit {
+  public final fun setAmbientColor(ambient: Color): Unit {
     TransferContext.writeArguments(COLOR to ambient)
     TransferContext.callMethod(rawPtr, MethodBindings.setAmbientColorPtr, NIL)
   }
 
-  public fun getAmbientColor(): Color {
+  public final fun getAmbientColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmbientColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setAmbientColorEnergy(ambientEnergy: Float): Unit {
+  public final fun setAmbientColorEnergy(ambientEnergy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ambientEnergy.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAmbientColorEnergyPtr, NIL)
   }
 
-  public fun getAmbientColorEnergy(): Float {
+  public final fun getAmbientColorEnergy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmbientColorEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMaxDistance(maxDistance: Float): Unit {
+  public final fun setMaxDistance(maxDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to maxDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
   }
 
-  public fun getMaxDistance(): Float {
+  public final fun getMaxDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMeshLodThreshold(ratio: Float): Unit {
+  public final fun setMeshLodThreshold(ratio: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshLodThresholdPtr, NIL)
   }
 
-  public fun getMeshLodThreshold(): Float {
+  public final fun getMeshLodThreshold(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector3 {
+  public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setOriginOffset(originOffset: Vector3): Unit {
+  public final fun setOriginOffset(originOffset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to originOffset)
     TransferContext.callMethod(rawPtr, MethodBindings.setOriginOffsetPtr, NIL)
   }
 
-  public fun getOriginOffset(): Vector3 {
+  public final fun getOriginOffset(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginOffsetPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setAsInterior(enable: Boolean): Unit {
+  public final fun setAsInterior(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAsInteriorPtr, NIL)
   }
 
-  public fun isSetAsInterior(): Boolean {
+  public final fun isSetAsInterior(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSetAsInteriorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEnableBoxProjection(enable: Boolean): Unit {
+  public final fun setEnableBoxProjection(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableBoxProjectionPtr, NIL)
   }
 
-  public fun isBoxProjectionEnabled(): Boolean {
+  public final fun isBoxProjectionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBoxProjectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEnableShadows(enable: Boolean): Unit {
+  public final fun setEnableShadows(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableShadowsPtr, NIL)
   }
 
-  public fun areShadowsEnabled(): Boolean {
+  public final fun areShadowsEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areShadowsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCullMask(layers: Long): Unit {
+  public final fun setCullMask(layers: Long): Unit {
     TransferContext.writeArguments(LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
   }
 
-  public fun getCullMask(): Long {
+  public final fun getCullMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setReflectionMask(layers: Long): Unit {
+  public final fun setReflectionMask(layers: Long): Unit {
     TransferContext.writeArguments(LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.setReflectionMaskPtr, NIL)
   }
 
-  public fun getReflectionMask(): Long {
+  public final fun getReflectionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReflectionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setUpdateMode(mode: UpdateMode): Unit {
+  public final fun setUpdateMode(mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
   }
 
-  public fun getUpdateMode(): UpdateMode {
+  public final fun getUpdateMode(): UpdateMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
     return ReflectionProbe.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)

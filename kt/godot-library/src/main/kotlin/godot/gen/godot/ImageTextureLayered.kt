@@ -37,7 +37,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * other images *must* have the same width, height, image format and mipmapping setting.
    * Each [Image] represents one `layer`.
    */
-  public fun createFromImages(images: VariantArray<Image>): GodotError {
+  public final fun createFromImages(images: VariantArray<Image>): GodotError {
     TransferContext.writeArguments(ARRAY to images)
     TransferContext.callMethod(rawPtr, MethodBindings.createFromImagesPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -51,7 +51,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * supported [Image.Format].
    * The update is immediate: it's synchronized with drawing.
    */
-  public fun updateLayer(image: Image?, layer: Int): Unit {
+  public final fun updateLayer(image: Image?, layer: Int): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.updateLayerPtr, NIL)
   }

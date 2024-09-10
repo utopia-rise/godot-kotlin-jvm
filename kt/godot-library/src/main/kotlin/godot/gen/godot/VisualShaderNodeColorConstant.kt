@@ -30,7 +30,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
    * A [Color] constant which represents a state of this node.
    */
   @CoreTypeLocalCopy
-  public var constant: Color
+  public final inline var constant: Color
     @JvmName("constantProperty")
     get() = getConstant()
     @JvmName("constantProperty")
@@ -60,18 +60,18 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantMutate(block: Color.() -> Unit): Color = constant.apply{
+  public final fun constantMutate(block: Color.() -> Unit): Color = constant.apply{
       block(this)
       constant = this
   }
 
 
-  public fun setConstant(constant: Color): Unit {
+  public final fun setConstant(constant: Color): Unit {
     TransferContext.writeArguments(COLOR to constant)
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
-  public fun getConstant(): Color {
+  public final fun getConstant(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)

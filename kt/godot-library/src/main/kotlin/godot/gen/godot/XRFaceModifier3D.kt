@@ -35,7 +35,7 @@ public open class XRFaceModifier3D : Node3D() {
   /**
    * The [XRFaceTracker] path.
    */
-  public var faceTracker: StringName
+  public final inline var faceTracker: StringName
     @JvmName("faceTrackerProperty")
     get() = getFaceTracker()
     @JvmName("faceTrackerProperty")
@@ -46,7 +46,7 @@ public open class XRFaceModifier3D : Node3D() {
   /**
    * The [NodePath] of the face [MeshInstance3D].
    */
-  public var target: NodePath
+  public final inline var target: NodePath
     @JvmName("targetProperty")
     get() = getTarget()
     @JvmName("targetProperty")
@@ -58,23 +58,23 @@ public open class XRFaceModifier3D : Node3D() {
     callConstructor(ENGINECLASS_XRFACEMODIFIER3D, scriptIndex)
   }
 
-  public fun setFaceTracker(trackerName: StringName): Unit {
+  public final fun setFaceTracker(trackerName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(rawPtr, MethodBindings.setFaceTrackerPtr, NIL)
   }
 
-  public fun getFaceTracker(): StringName {
+  public final fun getFaceTracker(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setTarget(target: NodePath): Unit {
+  public final fun setTarget(target: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to target)
     TransferContext.callMethod(rawPtr, MethodBindings.setTargetPtr, NIL)
   }
 
-  public fun getTarget(): NodePath {
+  public final fun getTarget(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)

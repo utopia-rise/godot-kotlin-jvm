@@ -57,7 +57,7 @@ public open class VoxelGI : VisualInstance3D() {
    * Number of times to subdivide the grid that the [VoxelGI] operates on. A higher number results
    * in finer detail and thus higher visual quality, while lower numbers result in better performance.
    */
-  public var subdiv: Subdiv
+  public final inline var subdiv: Subdiv
     @JvmName("subdivProperty")
     get() = getSubdiv()
     @JvmName("subdivProperty")
@@ -72,7 +72,7 @@ public open class VoxelGI : VisualInstance3D() {
    * **Note:** Size is clamped to 1.0 unit or more on each axis.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
+  public final inline var size: Vector3
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -86,7 +86,7 @@ public open class VoxelGI : VisualInstance3D() {
    * range present when baking. If exposure is too high, the [VoxelGI] will have banding artifacts or
    * may have over-exposure artifacts.
    */
-  public var cameraAttributes: CameraAttributes?
+  public final inline var cameraAttributes: CameraAttributes?
     @JvmName("cameraAttributesProperty")
     get() = getCameraAttributes()
     @JvmName("cameraAttributesProperty")
@@ -97,7 +97,7 @@ public open class VoxelGI : VisualInstance3D() {
   /**
    * The [VoxelGIData] resource that holds the data for this [VoxelGI].
    */
-  public var `data`: VoxelGIData?
+  public final inline var `data`: VoxelGIData?
     @JvmName("dataProperty")
     get() = getProbeData()
     @JvmName("dataProperty")
@@ -130,51 +130,51 @@ public open class VoxelGI : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
 
 
-  public fun setProbeData(`data`: VoxelGIData?): Unit {
+  public final fun setProbeData(`data`: VoxelGIData?): Unit {
     TransferContext.writeArguments(OBJECT to data)
     TransferContext.callMethod(rawPtr, MethodBindings.setProbeDataPtr, NIL)
   }
 
-  public fun getProbeData(): VoxelGIData? {
+  public final fun getProbeData(): VoxelGIData? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProbeDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VoxelGIData?)
   }
 
-  public fun setSubdiv(subdiv: Subdiv): Unit {
+  public final fun setSubdiv(subdiv: Subdiv): Unit {
     TransferContext.writeArguments(LONG to subdiv.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSubdivPtr, NIL)
   }
 
-  public fun getSubdiv(): Subdiv {
+  public final fun getSubdiv(): Subdiv {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivPtr, LONG)
     return VoxelGI.Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
-  public fun getSize(): Vector3 {
+  public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
+  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
     TransferContext.writeArguments(OBJECT to cameraAttributes)
     TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
-  public fun getCameraAttributes(): CameraAttributes? {
+  public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
@@ -194,7 +194,7 @@ public open class VoxelGI : VisualInstance3D() {
    * [VoxelGI], use `call_deferred("bake")` instead of calling [bake] directly.
    */
   @JvmOverloads
-  public fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
+  public final fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
     TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
   }
@@ -202,7 +202,7 @@ public open class VoxelGI : VisualInstance3D() {
   /**
    * Calls [bake] with `create_visual_debug` enabled.
    */
-  public fun debugBake(): Unit {
+  public final fun debugBake(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.debugBakePtr, NIL)
   }

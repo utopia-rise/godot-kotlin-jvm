@@ -26,7 +26,7 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: OpType
+  public final inline var opType: OpType
     @JvmName("opTypeProperty")
     get() = getOpType()
     @JvmName("opTypeProperty")
@@ -38,12 +38,12 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEMULTIPLYADD, scriptIndex)
   }
 
-  public fun setOpType(type: OpType): Unit {
+  public final fun setOpType(type: OpType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
   }
 
-  public fun getOpType(): OpType {
+  public final fun getOpType(): OpType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeMultiplyAdd.OpType.from(TransferContext.readReturnValue(LONG) as Long)

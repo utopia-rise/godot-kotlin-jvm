@@ -51,7 +51,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's texture for the normal state.
    */
-  public var textureNormal: Texture2D?
+  public final inline var textureNormal: Texture2D?
     @JvmName("textureNormalProperty")
     get() = getTextureNormal()
     @JvmName("textureNormalProperty")
@@ -62,7 +62,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's texture for the pressed state.
    */
-  public var texturePressed: Texture2D?
+  public final inline var texturePressed: Texture2D?
     @JvmName("texturePressedProperty")
     get() = getTexturePressed()
     @JvmName("texturePressedProperty")
@@ -73,7 +73,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's bitmask.
    */
-  public var bitmask: BitMap?
+  public final inline var bitmask: BitMap?
     @JvmName("bitmaskProperty")
     get() = getBitmask()
     @JvmName("bitmaskProperty")
@@ -84,7 +84,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's shape.
    */
-  public var shape: Shape2D?
+  public final inline var shape: Shape2D?
     @JvmName("shapeProperty")
     get() = getShape()
     @JvmName("shapeProperty")
@@ -96,7 +96,7 @@ public open class TouchScreenButton : Node2D() {
    * If `true`, the button's shape is centered in the provided texture. If no texture is used, this
    * property has no effect.
    */
-  public var shapeCentered: Boolean
+  public final inline var shapeCentered: Boolean
     @JvmName("shapeCenteredProperty")
     get() = isShapeCentered()
     @JvmName("shapeCenteredProperty")
@@ -107,7 +107,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * If `true`, the button's shape is visible in the editor.
    */
-  public var shapeVisible: Boolean
+  public final inline var shapeVisible: Boolean
     @JvmName("shapeVisibleProperty")
     get() = isShapeVisible()
     @JvmName("shapeVisibleProperty")
@@ -121,7 +121,7 @@ public open class TouchScreenButton : Node2D() {
    * button.
    * **Note:** This is a "pass-by" (not "bypass") press mode.
    */
-  public var passbyPress: Boolean
+  public final inline var passbyPress: Boolean
     @JvmName("passbyPressProperty")
     get() = isPassbyPressEnabled()
     @JvmName("passbyPressProperty")
@@ -132,7 +132,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's action. Actions can be handled with [InputEventAction].
    */
-  public var action: String
+  public final inline var action: String
     @JvmName("actionProperty")
     get() = getAction()
     @JvmName("actionProperty")
@@ -143,7 +143,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * The button's visibility mode. See [VisibilityMode] for possible values.
    */
-  public var visibilityMode: VisibilityMode
+  public final inline var visibilityMode: VisibilityMode
     @JvmName("visibilityModeProperty")
     get() = getVisibilityMode()
     @JvmName("visibilityModeProperty")
@@ -155,100 +155,100 @@ public open class TouchScreenButton : Node2D() {
     callConstructor(ENGINECLASS_TOUCHSCREENBUTTON, scriptIndex)
   }
 
-  public fun setTextureNormal(texture: Texture2D?): Unit {
+  public final fun setTextureNormal(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
   }
 
-  public fun getTextureNormal(): Texture2D? {
+  public final fun getTextureNormal(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setTexturePressed(texture: Texture2D?): Unit {
+  public final fun setTexturePressed(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
   }
 
-  public fun getTexturePressed(): Texture2D? {
+  public final fun getTexturePressed(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setBitmask(bitmask: BitMap?): Unit {
+  public final fun setBitmask(bitmask: BitMap?): Unit {
     TransferContext.writeArguments(OBJECT to bitmask)
     TransferContext.callMethod(rawPtr, MethodBindings.setBitmaskPtr, NIL)
   }
 
-  public fun getBitmask(): BitMap? {
+  public final fun getBitmask(): BitMap? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBitmaskPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as BitMap?)
   }
 
-  public fun setShape(shape: Shape2D?): Unit {
+  public final fun setShape(shape: Shape2D?): Unit {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
-  public fun getShape(): Shape2D? {
+  public final fun getShape(): Shape2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shape2D?)
   }
 
-  public fun setShapeCentered(bool: Boolean): Unit {
+  public final fun setShapeCentered(bool: Boolean): Unit {
     TransferContext.writeArguments(BOOL to bool)
     TransferContext.callMethod(rawPtr, MethodBindings.setShapeCenteredPtr, NIL)
   }
 
-  public fun isShapeCentered(): Boolean {
+  public final fun isShapeCentered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShapeCenteredPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setShapeVisible(bool: Boolean): Unit {
+  public final fun setShapeVisible(bool: Boolean): Unit {
     TransferContext.writeArguments(BOOL to bool)
     TransferContext.callMethod(rawPtr, MethodBindings.setShapeVisiblePtr, NIL)
   }
 
-  public fun isShapeVisible(): Boolean {
+  public final fun isShapeVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShapeVisiblePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAction(action: String): Unit {
+  public final fun setAction(action: String): Unit {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
   }
 
-  public fun getAction(): String {
+  public final fun getAction(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setVisibilityMode(mode: VisibilityMode): Unit {
+  public final fun setVisibilityMode(mode: VisibilityMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityModePtr, NIL)
   }
 
-  public fun getVisibilityMode(): VisibilityMode {
+  public final fun getVisibilityMode(): VisibilityMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityModePtr, LONG)
     return TouchScreenButton.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPassbyPress(enabled: Boolean): Unit {
+  public final fun setPassbyPress(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setPassbyPressPtr, NIL)
   }
 
-  public fun isPassbyPressEnabled(): Boolean {
+  public final fun isPassbyPressEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPassbyPressEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -257,7 +257,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * Returns `true` if this button is currently pressed.
    */
-  public fun isPressed(): Boolean {
+  public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

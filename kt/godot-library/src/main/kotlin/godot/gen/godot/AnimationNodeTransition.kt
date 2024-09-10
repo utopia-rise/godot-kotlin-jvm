@@ -68,7 +68,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
    * depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
    */
-  public var xfadeTime: Double
+  public final inline var xfadeTime: Double
     @JvmName("xfadeTimeProperty")
     get() = getXfadeTime()
     @JvmName("xfadeTimeProperty")
@@ -80,7 +80,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * Determines how cross-fading between animations is eased. If empty, the transition will be
    * linear.
    */
-  public var xfadeCurve: Curve?
+  public final inline var xfadeCurve: Curve?
     @JvmName("xfadeCurveProperty")
     get() = getXfadeCurve()
     @JvmName("xfadeCurveProperty")
@@ -92,7 +92,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * If `true`, allows transition to the self state. When the reset option is enabled in input, the
    * animation is restarted. If `false`, nothing happens on the transition to the self state.
    */
-  public var allowTransitionToSelf: Boolean
+  public final inline var allowTransitionToSelf: Boolean
     @JvmName("allowTransitionToSelfProperty")
     get() = isAllowTransitionToSelf()
     @JvmName("allowTransitionToSelfProperty")
@@ -103,7 +103,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * The number of enabled input ports for this animation node.
    */
-  public var inputCount: Int
+  public final inline var inputCount: Int
     @JvmName("inputCountProperty")
     get() = getInputCount()
     @JvmName("inputCountProperty")
@@ -115,7 +115,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     callConstructor(ENGINECLASS_ANIMATIONNODETRANSITION, scriptIndex)
   }
 
-  public fun setInputCount(inputCount: Int): Unit {
+  public final fun setInputCount(inputCount: Int): Unit {
     TransferContext.writeArguments(LONG to inputCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setInputCountPtr, NIL)
   }
@@ -125,7 +125,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * next input after playing the animation once. If enabled for the last input state, it loops to the
    * first.
    */
-  public fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
+  public final fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setInputAsAutoAdvancePtr, NIL)
   }
@@ -133,7 +133,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Returns `true` if auto-advance is enabled for the given [input] index.
    */
-  public fun isInputSetAsAutoAdvance(input: Int): Boolean {
+  public final fun isInputSetAsAutoAdvance(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputSetAsAutoAdvancePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -143,7 +143,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
    * is looping.
    */
-  public fun setInputBreakLoopAtEnd(input: Int, enable: Boolean): Unit {
+  public final fun setInputBreakLoopAtEnd(input: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setInputBreakLoopAtEndPtr, NIL)
   }
@@ -151,7 +151,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Returns whether the animation breaks the loop at the end of the loop cycle for transition.
    */
-  public fun isInputLoopBrokenAtEnd(input: Int): Boolean {
+  public final fun isInputLoopBrokenAtEnd(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputLoopBrokenAtEndPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -160,7 +160,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * If `true`, the destination animation is restarted when the animation transitions.
    */
-  public fun setInputReset(input: Int, enable: Boolean): Unit {
+  public final fun setInputReset(input: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setInputResetPtr, NIL)
   }
@@ -168,40 +168,40 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Returns whether the animation restarts when the animation transitions from the other animation.
    */
-  public fun isInputReset(input: Int): Boolean {
+  public final fun isInputReset(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputResetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setXfadeTime(time: Double): Unit {
+  public final fun setXfadeTime(time: Double): Unit {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
   }
 
-  public fun getXfadeTime(): Double {
+  public final fun getXfadeTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setXfadeCurve(curve: Curve?): Unit {
+  public final fun setXfadeCurve(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
   }
 
-  public fun getXfadeCurve(): Curve? {
+  public final fun getXfadeCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setAllowTransitionToSelf(enable: Boolean): Unit {
+  public final fun setAllowTransitionToSelf(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
   }
 
-  public fun isAllowTransitionToSelf(): Boolean {
+  public final fun isAllowTransitionToSelf(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

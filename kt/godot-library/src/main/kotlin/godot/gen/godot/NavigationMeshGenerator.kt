@@ -59,7 +59,7 @@ public object NavigationMeshGenerator : Object() {
   /**
    * Bakes the [navigationMesh] with source geometry collected starting from the [rootNode].
    */
-  public fun bake(navigationMesh: NavigationMesh?, rootNode: Node?): Unit {
+  public final fun bake(navigationMesh: NavigationMesh?, rootNode: Node?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
     TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
   }
@@ -67,7 +67,7 @@ public object NavigationMeshGenerator : Object() {
   /**
    * Removes all polygons and vertices from the provided [navigationMesh] resource.
    */
-  public fun clear(navigationMesh: NavigationMesh?): Unit {
+  public final fun clear(navigationMesh: NavigationMesh?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -85,7 +85,7 @@ public object NavigationMeshGenerator : Object() {
    * arrays entirely in code.
    */
   @JvmOverloads
-  public fun parseSourceGeometryData(
+  public final fun parseSourceGeometryData(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     rootNode: Node?,
@@ -100,7 +100,7 @@ public object NavigationMeshGenerator : Object() {
    * the process is finished the optional [callback] will be called.
    */
   @JvmOverloads
-  public fun bakeFromSourceGeometryData(
+  public final fun bakeFromSourceGeometryData(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     callback: Callable = Callable(),

@@ -37,7 +37,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [CopyMode] constants.
    */
-  public var copyMode: CopyMode
+  public final inline var copyMode: CopyMode
     @JvmName("copyModeProperty")
     get() = getCopyMode()
     @JvmName("copyModeProperty")
@@ -49,7 +49,7 @@ public open class BackBufferCopy : Node2D() {
    * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
   @CoreTypeLocalCopy
-  public var rect: Rect2
+  public final inline var rect: Rect2
     @JvmName("rectProperty")
     get() = getRect()
     @JvmName("rectProperty")
@@ -79,29 +79,29 @@ public open class BackBufferCopy : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
+  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
       block(this)
       rect = this
   }
 
 
-  public fun setRect(rect: Rect2): Unit {
+  public final fun setRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
   }
 
-  public fun getRect(): Rect2 {
+  public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
-  public fun setCopyMode(copyMode: CopyMode): Unit {
+  public final fun setCopyMode(copyMode: CopyMode): Unit {
     TransferContext.writeArguments(LONG to copyMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
   }
 
-  public fun getCopyMode(): CopyMode {
+  public final fun getCopyMode(): CopyMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
     return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)

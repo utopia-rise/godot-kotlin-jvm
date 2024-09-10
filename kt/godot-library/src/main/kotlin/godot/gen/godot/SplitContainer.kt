@@ -38,7 +38,7 @@ public open class SplitContainer : Container() {
    * The initial offset of the splitting between the two [Control]s, with `0` being at the end of
    * the first [Control].
    */
-  public var splitOffset: Int
+  public final inline var splitOffset: Int
     @JvmName("splitOffsetProperty")
     get() = getSplitOffset()
     @JvmName("splitOffsetProperty")
@@ -49,7 +49,7 @@ public open class SplitContainer : Container() {
   /**
    * If `true`, the area of the first [Control] will be collapsed and the dragger will be disabled.
    */
-  public var collapsed: Boolean
+  public final inline var collapsed: Boolean
     @JvmName("collapsedProperty")
     get() = isCollapsed()
     @JvmName("collapsedProperty")
@@ -60,7 +60,7 @@ public open class SplitContainer : Container() {
   /**
    * Determines the dragger's visibility. See [DraggerVisibility] for details.
    */
-  public var draggerVisibility: DraggerVisibility
+  public final inline var draggerVisibility: DraggerVisibility
     @JvmName("draggerVisibilityProperty")
     get() = getDraggerVisibility()
     @JvmName("draggerVisibilityProperty")
@@ -72,7 +72,7 @@ public open class SplitContainer : Container() {
    * If `true`, the [SplitContainer] will arrange its children vertically, rather than horizontally.
    * Can't be changed when using [HSplitContainer] and [VSplitContainer].
    */
-  public var vertical: Boolean
+  public final inline var vertical: Boolean
     @JvmName("verticalProperty")
     get() = isVertical()
     @JvmName("verticalProperty")
@@ -84,12 +84,12 @@ public open class SplitContainer : Container() {
     callConstructor(ENGINECLASS_SPLITCONTAINER, scriptIndex)
   }
 
-  public fun setSplitOffset(offset: Int): Unit {
+  public final fun setSplitOffset(offset: Int): Unit {
     TransferContext.writeArguments(LONG to offset.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSplitOffsetPtr, NIL)
   }
 
-  public fun getSplitOffset(): Int {
+  public final fun getSplitOffset(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -99,39 +99,39 @@ public open class SplitContainer : Container() {
    * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum
    * values.
    */
-  public fun clampSplitOffset(): Unit {
+  public final fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clampSplitOffsetPtr, NIL)
   }
 
-  public fun setCollapsed(collapsed: Boolean): Unit {
+  public final fun setCollapsed(collapsed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to collapsed)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
   }
 
-  public fun isCollapsed(): Boolean {
+  public final fun isCollapsed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDraggerVisibility(mode: DraggerVisibility): Unit {
+  public final fun setDraggerVisibility(mode: DraggerVisibility): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDraggerVisibilityPtr, NIL)
   }
 
-  public fun getDraggerVisibility(): DraggerVisibility {
+  public final fun getDraggerVisibility(): DraggerVisibility {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDraggerVisibilityPtr, LONG)
     return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setVertical(vertical: Boolean): Unit {
+  public final fun setVertical(vertical: Boolean): Unit {
     TransferContext.writeArguments(BOOL to vertical)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
   }
 
-  public fun isVertical(): Boolean {
+  public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

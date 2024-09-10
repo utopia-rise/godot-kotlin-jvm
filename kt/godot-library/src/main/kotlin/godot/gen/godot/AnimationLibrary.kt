@@ -63,7 +63,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Adds the [animation] to the library, accessible by the key [name].
    */
-  public fun addAnimation(name: StringName, animation: Animation?): GodotError {
+  public final fun addAnimation(name: StringName, animation: Animation?): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.addAnimationPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -72,7 +72,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Removes the [Animation] with the key [name].
    */
-  public fun removeAnimation(name: StringName): Unit {
+  public final fun removeAnimation(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.removeAnimationPtr, NIL)
   }
@@ -80,7 +80,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Changes the key of the [Animation] associated with the key [name] to [newname].
    */
-  public fun renameAnimation(name: StringName, newname: StringName): Unit {
+  public final fun renameAnimation(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
     TransferContext.callMethod(rawPtr, MethodBindings.renameAnimationPtr, NIL)
   }
@@ -88,7 +88,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Returns `true` if the library stores an [Animation] with [name] as the key.
    */
-  public fun hasAnimation(name: StringName): Boolean {
+  public final fun hasAnimation(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -98,7 +98,7 @@ public open class AnimationLibrary : Resource() {
    * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
    * returned and an error is logged.
    */
-  public fun getAnimation(name: StringName): Animation? {
+  public final fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Animation?)
@@ -107,7 +107,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Returns the keys for the [Animation]s stored in the library.
    */
-  public fun getAnimationList(): VariantArray<StringName> {
+  public final fun getAnimationList(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)

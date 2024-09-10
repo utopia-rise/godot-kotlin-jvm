@@ -41,7 +41,7 @@ public open class StaticBody2D : PhysicsBody2D() {
    * If a material is assigned to this property, it will be used instead of any other physics
    * material, such as an inherited one.
    */
-  public var physicsMaterialOverride: PhysicsMaterial?
+  public final inline var physicsMaterialOverride: PhysicsMaterial?
     @JvmName("physicsMaterialOverrideProperty")
     get() = getPhysicsMaterialOverride()
     @JvmName("physicsMaterialOverrideProperty")
@@ -54,7 +54,7 @@ public open class StaticBody2D : PhysicsBody2D() {
    * as if it were moving.
    */
   @CoreTypeLocalCopy
-  public var constantLinearVelocity: Vector2
+  public final inline var constantLinearVelocity: Vector2
     @JvmName("constantLinearVelocityProperty")
     get() = getConstantLinearVelocity()
     @JvmName("constantLinearVelocityProperty")
@@ -66,7 +66,7 @@ public open class StaticBody2D : PhysicsBody2D() {
    * The body's constant angular velocity. This does not rotate the body, but affects touching
    * bodies, as if it were rotating.
    */
-  public var constantAngularVelocity: Float
+  public final inline var constantAngularVelocity: Float
     @JvmName("constantAngularVelocityProperty")
     get() = getConstantAngularVelocity()
     @JvmName("constantAngularVelocityProperty")
@@ -97,41 +97,41 @@ public open class StaticBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantLinearVelocityMutate(block: Vector2.() -> Unit): Vector2 =
+  public final fun constantLinearVelocityMutate(block: Vector2.() -> Unit): Vector2 =
       constantLinearVelocity.apply{
       block(this)
       constantLinearVelocity = this
   }
 
 
-  public fun setConstantLinearVelocity(vel: Vector2): Unit {
+  public final fun setConstantLinearVelocity(vel: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to vel)
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantLinearVelocityPtr, NIL)
   }
 
-  public fun setConstantAngularVelocity(vel: Float): Unit {
+  public final fun setConstantAngularVelocity(vel: Float): Unit {
     TransferContext.writeArguments(DOUBLE to vel.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantAngularVelocityPtr, NIL)
   }
 
-  public fun getConstantLinearVelocity(): Vector2 {
+  public final fun getConstantLinearVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun getConstantAngularVelocity(): Float {
+  public final fun getConstantAngularVelocity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
+  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
     TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
   }
 
-  public fun getPhysicsMaterialOverride(): PhysicsMaterial? {
+  public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)

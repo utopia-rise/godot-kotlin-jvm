@@ -37,7 +37,7 @@ public open class AudioEffectRecord : AudioEffect() {
    * Specifies the format in which the sample will be recorded. See [AudioStreamWAV.Format] for
    * available formats.
    */
-  public var format: AudioStreamWAV.Format
+  public final inline var format: AudioStreamWAV.Format
     @JvmName("formatProperty")
     get() = getFormat()
     @JvmName("formatProperty")
@@ -53,7 +53,7 @@ public open class AudioEffectRecord : AudioEffect() {
    * If `true`, the sound will be recorded. Note that restarting the recording will remove the
    * previously recorded sample.
    */
-  public fun setRecordingActive(record: Boolean): Unit {
+  public final fun setRecordingActive(record: Boolean): Unit {
     TransferContext.writeArguments(BOOL to record)
     TransferContext.callMethod(rawPtr, MethodBindings.setRecordingActivePtr, NIL)
   }
@@ -61,18 +61,18 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * Returns whether the recording is active or not.
    */
-  public fun isRecordingActive(): Boolean {
+  public final fun isRecordingActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecordingActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFormat(format: AudioStreamWAV.Format): Unit {
+  public final fun setFormat(format: AudioStreamWAV.Format): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
   }
 
-  public fun getFormat(): AudioStreamWAV.Format {
+  public final fun getFormat(): AudioStreamWAV.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
@@ -81,7 +81,7 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * Returns the recorded sample.
    */
-  public fun getRecording(): AudioStreamWAV? {
+  public final fun getRecording(): AudioStreamWAV? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRecordingPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamWAV?)

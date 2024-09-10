@@ -40,7 +40,7 @@ public open class ResourcePreloader : Node() {
    * already exists, the new resource will be renamed to "[name] N" where N is an incrementing number
    * starting from 2.
    */
-  public fun addResource(name: StringName, resource: Resource?): Unit {
+  public final fun addResource(name: StringName, resource: Resource?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to resource)
     TransferContext.callMethod(rawPtr, MethodBindings.addResourcePtr, NIL)
   }
@@ -48,7 +48,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Removes the resource associated to [name] from the preloader.
    */
-  public fun removeResource(name: StringName): Unit {
+  public final fun removeResource(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.removeResourcePtr, NIL)
   }
@@ -56,7 +56,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Renames a resource inside the preloader from [name] to [newname].
    */
-  public fun renameResource(name: StringName, newname: StringName): Unit {
+  public final fun renameResource(name: StringName, newname: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
     TransferContext.callMethod(rawPtr, MethodBindings.renameResourcePtr, NIL)
   }
@@ -64,7 +64,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Returns `true` if the preloader contains a resource associated to [name].
    */
-  public fun hasResource(name: StringName): Boolean {
+  public final fun hasResource(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasResourcePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -73,7 +73,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Returns the resource associated to [name].
    */
-  public fun getResource(name: StringName): Resource? {
+  public final fun getResource(name: StringName): Resource? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getResourcePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
@@ -82,7 +82,7 @@ public open class ResourcePreloader : Node() {
   /**
    * Returns the list of resources inside the preloader.
    */
-  public fun getResourceList(): PackedStringArray {
+  public final fun getResourceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResourceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)

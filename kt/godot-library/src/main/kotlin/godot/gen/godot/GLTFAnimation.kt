@@ -29,7 +29,7 @@ public open class GLTFAnimation : Resource() {
   /**
    * The original name of the animation.
    */
-  public var originalName: String
+  public final inline var originalName: String
     @JvmName("originalNameProperty")
     get() = getOriginalName()
     @JvmName("originalNameProperty")
@@ -37,7 +37,7 @@ public open class GLTFAnimation : Resource() {
       setOriginalName(value)
     }
 
-  public var loop: Boolean
+  public final inline var loop: Boolean
     @JvmName("loopProperty")
     get() = getLoop()
     @JvmName("loopProperty")
@@ -49,24 +49,24 @@ public open class GLTFAnimation : Resource() {
     callConstructor(ENGINECLASS_GLTFANIMATION, scriptIndex)
   }
 
-  public fun getOriginalName(): String {
+  public final fun getOriginalName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setOriginalName(originalName: String): Unit {
+  public final fun setOriginalName(originalName: String): Unit {
     TransferContext.writeArguments(STRING to originalName)
     TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
   }
 
-  public fun getLoop(): Boolean {
+  public final fun getLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setLoop(loop: Boolean): Unit {
+  public final fun setLoop(loop: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
@@ -79,7 +79,7 @@ public open class GLTFAnimation : Resource() {
    * name in the GLTF file), and the return value can be anything you set. If nothing was set, the
    * return value is null.
    */
-  public fun getAdditionalData(extensionName: StringName): Any? {
+  public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -92,7 +92,7 @@ public open class GLTFAnimation : Resource() {
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the GLTF file), and the second argument can be anything you want.
    */
-  public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }

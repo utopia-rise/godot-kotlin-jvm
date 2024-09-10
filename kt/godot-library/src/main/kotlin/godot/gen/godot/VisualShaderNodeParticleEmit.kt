@@ -28,7 +28,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   /**
    * Flags used to override the properties defined in the sub-emitter's process material.
    */
-  public var flags: EmitFlags
+  public final inline var flags: EmitFlags
     @JvmName("flagsProperty")
     get() = getFlags()
     @JvmName("flagsProperty")
@@ -40,12 +40,12 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT, scriptIndex)
   }
 
-  public fun setFlags(flags: EmitFlags): Unit {
+  public final fun setFlags(flags: EmitFlags): Unit {
     TransferContext.writeArguments(LONG to flags.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
   }
 
-  public fun getFlags(): EmitFlags {
+  public final fun getFlags(): EmitFlags {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
     return VisualShaderNodeParticleEmit.EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)

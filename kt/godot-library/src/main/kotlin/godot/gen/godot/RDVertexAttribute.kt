@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class RDVertexAttribute : RefCounted() {
-  public var location: Long
+  public final inline var location: Long
     @JvmName("locationProperty")
     get() = getLocation()
     @JvmName("locationProperty")
@@ -31,7 +31,7 @@ public open class RDVertexAttribute : RefCounted() {
       setLocation(value)
     }
 
-  public var offset: Long
+  public final inline var offset: Long
     @JvmName("offsetProperty")
     get() = getOffset()
     @JvmName("offsetProperty")
@@ -39,7 +39,7 @@ public open class RDVertexAttribute : RefCounted() {
       setOffset(value)
     }
 
-  public var format: RenderingDevice.DataFormat
+  public final inline var format: RenderingDevice.DataFormat
     @JvmName("formatProperty")
     get() = getFormat()
     @JvmName("formatProperty")
@@ -47,7 +47,7 @@ public open class RDVertexAttribute : RefCounted() {
       setFormat(value)
     }
 
-  public var stride: Long
+  public final inline var stride: Long
     @JvmName("strideProperty")
     get() = getStride()
     @JvmName("strideProperty")
@@ -55,7 +55,7 @@ public open class RDVertexAttribute : RefCounted() {
       setStride(value)
     }
 
-  public var frequency: RenderingDevice.VertexFrequency
+  public final inline var frequency: RenderingDevice.VertexFrequency
     @JvmName("frequencyProperty")
     get() = getFrequency()
     @JvmName("frequencyProperty")
@@ -67,56 +67,56 @@ public open class RDVertexAttribute : RefCounted() {
     callConstructor(ENGINECLASS_RDVERTEXATTRIBUTE, scriptIndex)
   }
 
-  public fun setLocation(pMember: Long): Unit {
+  public final fun setLocation(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
   }
 
-  public fun getLocation(): Long {
+  public final fun getLocation(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setOffset(pMember: Long): Unit {
+  public final fun setOffset(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
-  public fun getOffset(): Long {
+  public final fun getOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
+  public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
   }
 
-  public fun getFormat(): RenderingDevice.DataFormat {
+  public final fun getFormat(): RenderingDevice.DataFormat {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setStride(pMember: Long): Unit {
+  public final fun setStride(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setStridePtr, NIL)
   }
 
-  public fun getStride(): Long {
+  public final fun getStride(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStridePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setFrequency(pMember: RenderingDevice.VertexFrequency): Unit {
+  public final fun setFrequency(pMember: RenderingDevice.VertexFrequency): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrequencyPtr, NIL)
   }
 
-  public fun getFrequency(): RenderingDevice.VertexFrequency {
+  public final fun getFrequency(): RenderingDevice.VertexFrequency {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrequencyPtr, LONG)
     return RenderingDevice.VertexFrequency.from(TransferContext.readReturnValue(LONG) as Long)

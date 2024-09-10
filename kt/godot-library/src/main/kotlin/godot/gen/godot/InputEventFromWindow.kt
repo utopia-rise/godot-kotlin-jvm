@@ -27,7 +27,7 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   /**
    * The ID of a [Window] that received this event.
    */
-  public var windowId: Long
+  public final inline var windowId: Long
     @JvmName("windowIdProperty")
     get() = getWindowId()
     @JvmName("windowIdProperty")
@@ -39,12 +39,12 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTFROMWINDOW, scriptIndex)
   }
 
-  public fun setWindowId(id: Long): Unit {
+  public final fun setWindowId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
   }
 
-  public fun getWindowId(): Long {
+  public final fun getWindowId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWindowIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

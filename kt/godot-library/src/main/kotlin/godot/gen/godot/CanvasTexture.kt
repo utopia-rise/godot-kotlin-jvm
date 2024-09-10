@@ -40,7 +40,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    * The diffuse (color) texture to use. This is the main texture you want to set in most cases.
    */
-  public var diffuseTexture: Texture2D?
+  public final inline var diffuseTexture: Texture2D?
     @JvmName("diffuseTextureProperty")
     get() = getDiffuseTexture()
     @JvmName("diffuseTextureProperty")
@@ -55,7 +55,7 @@ public open class CanvasTexture : Texture2D() {
    * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
    * page[/url] for a comparison of normal map coordinates expected by popular engines.
    */
-  public var normalTexture: Texture2D?
+  public final inline var normalTexture: Texture2D?
     @JvmName("normalTextureProperty")
     get() = getNormalTexture()
     @JvmName("normalTextureProperty")
@@ -69,7 +69,7 @@ public open class CanvasTexture : Texture2D() {
    * colored [specularTexture] allows controlling specular shininess on a per-channel basis. Only has a
    * visible effect if [Light2D]s are affecting this [CanvasTexture].
    */
-  public var specularTexture: Texture2D?
+  public final inline var specularTexture: Texture2D?
     @JvmName("specularTextureProperty")
     get() = getSpecularTexture()
     @JvmName("specularTextureProperty")
@@ -83,7 +83,7 @@ public open class CanvasTexture : Texture2D() {
    * [CanvasTexture].
    */
   @CoreTypeLocalCopy
-  public var specularColor: Color
+  public final inline var specularColor: Color
     @JvmName("specularColorProperty")
     get() = getSpecularColor()
     @JvmName("specularColorProperty")
@@ -97,7 +97,7 @@ public open class CanvasTexture : Texture2D() {
    * value of `1.0` disables specular reflections entirely. Only has a visible effect if [Light2D]s are
    * affecting this [CanvasTexture].
    */
-  public var specularShininess: Float
+  public final inline var specularShininess: Float
     @JvmName("specularShininessProperty")
     get() = getSpecularShininess()
     @JvmName("specularShininessProperty")
@@ -108,7 +108,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    * The texture filtering mode to use when drawing this [CanvasTexture].
    */
-  public var textureFilter: CanvasItem.TextureFilter
+  public final inline var textureFilter: CanvasItem.TextureFilter
     @JvmName("textureFilterProperty")
     get() = getTextureFilter()
     @JvmName("textureFilterProperty")
@@ -119,7 +119,7 @@ public open class CanvasTexture : Texture2D() {
   /**
    * The texture repeat mode to use when drawing this [CanvasTexture].
    */
-  public var textureRepeat: CanvasItem.TextureRepeat
+  public final inline var textureRepeat: CanvasItem.TextureRepeat
     @JvmName("textureRepeatProperty")
     get() = getTextureRepeat()
     @JvmName("textureRepeatProperty")
@@ -151,84 +151,84 @@ public open class CanvasTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun specularColorMutate(block: Color.() -> Unit): Color = specularColor.apply{
+  public final fun specularColorMutate(block: Color.() -> Unit): Color = specularColor.apply{
       block(this)
       specularColor = this
   }
 
 
-  public fun setDiffuseTexture(texture: Texture2D?): Unit {
+  public final fun setDiffuseTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseTexturePtr, NIL)
   }
 
-  public fun getDiffuseTexture(): Texture2D? {
+  public final fun getDiffuseTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setNormalTexture(texture: Texture2D?): Unit {
+  public final fun setNormalTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setNormalTexturePtr, NIL)
   }
 
-  public fun getNormalTexture(): Texture2D? {
+  public final fun getNormalTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNormalTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setSpecularTexture(texture: Texture2D?): Unit {
+  public final fun setSpecularTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setSpecularTexturePtr, NIL)
   }
 
-  public fun getSpecularTexture(): Texture2D? {
+  public final fun getSpecularTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setSpecularColor(color: Color): Unit {
+  public final fun setSpecularColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setSpecularColorPtr, NIL)
   }
 
-  public fun getSpecularColor(): Color {
+  public final fun getSpecularColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setSpecularShininess(shininess: Float): Unit {
+  public final fun setSpecularShininess(shininess: Float): Unit {
     TransferContext.writeArguments(DOUBLE to shininess.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpecularShininessPtr, NIL)
   }
 
-  public fun getSpecularShininess(): Float {
+  public final fun getSpecularShininess(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularShininessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTextureFilter(filter: CanvasItem.TextureFilter): Unit {
+  public final fun setTextureFilter(filter: CanvasItem.TextureFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
-  public fun getTextureFilter(): CanvasItem.TextureFilter {
+  public final fun getTextureFilter(): CanvasItem.TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
     return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTextureRepeat(repeat: CanvasItem.TextureRepeat): Unit {
+  public final fun setTextureRepeat(repeat: CanvasItem.TextureRepeat): Unit {
     TransferContext.writeArguments(LONG to repeat.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 
-  public fun getTextureRepeat(): CanvasItem.TextureRepeat {
+  public final fun getTextureRepeat(): CanvasItem.TextureRepeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
     return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)

@@ -33,7 +33,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
    * The specialization constant's value. Only [bool], [int] and [float] types are valid for
    * specialization constants.
    */
-  public var `value`: Any?
+  public final inline var `value`: Any?
     @JvmName("valueProperty")
     get() = getValue()
     @JvmName("valueProperty")
@@ -45,7 +45,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
    * The identifier of the specialization constant. This is a value starting from `0` and that
    * increments for every different specialization constant for a given shader.
    */
-  public var constantId: Long
+  public final inline var constantId: Long
     @JvmName("constantIdProperty")
     get() = getConstantId()
     @JvmName("constantIdProperty")
@@ -57,23 +57,23 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     callConstructor(ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT, scriptIndex)
   }
 
-  public fun setValue(`value`: Any?): Unit {
+  public final fun setValue(`value`: Any?): Unit {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
   }
 
-  public fun getValue(): Any? {
+  public final fun getValue(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
-  public fun setConstantId(constantId: Long): Unit {
+  public final fun setConstantId(constantId: Long): Unit {
     TransferContext.writeArguments(LONG to constantId)
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantIdPtr, NIL)
   }
 
-  public fun getConstantId(): Long {
+  public final fun getConstantId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

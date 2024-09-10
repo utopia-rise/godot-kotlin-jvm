@@ -40,7 +40,7 @@ public open class JSONRPC : Object() {
     callConstructor(ENGINECLASS_JSONRPC, scriptIndex)
   }
 
-  public fun setScope(scope: String, target: Object?): Unit {
+  public final fun setScope(scope: String, target: Object?): Unit {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
     TransferContext.callMethod(rawPtr, MethodBindings.setScopePtr, NIL)
   }
@@ -55,13 +55,13 @@ public open class JSONRPC : Object() {
    * notification.
    */
   @JvmOverloads
-  public fun processAction(action: Any?, recurse: Boolean = false): Any? {
+  public final fun processAction(action: Any?, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
     TransferContext.callMethod(rawPtr, MethodBindings.processActionPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
-  public fun processString(action: String): String {
+  public final fun processString(action: String): String {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, MethodBindings.processStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -76,7 +76,7 @@ public open class JSONRPC : Object() {
    * - [id]: Uniquely identifies this request. The server is expected to send a response with the
    * same ID.
    */
-  public fun makeRequest(
+  public final fun makeRequest(
     method: String,
     params: Any?,
     id: Any?,
@@ -92,7 +92,7 @@ public open class JSONRPC : Object() {
    * - [result]: The return value of the function which was called.
    * - [id]: The ID of the request this response is targeted to.
    */
-  public fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
+  public final fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
     TransferContext.callMethod(rawPtr, MethodBindings.makeResponsePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -104,7 +104,7 @@ public open class JSONRPC : Object() {
    * - [method]: Name of the method being called.
    * - [params]: An array or dictionary of parameters being passed to the method.
    */
-  public fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
+  public final fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
     TransferContext.callMethod(rawPtr, MethodBindings.makeNotificationPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -118,7 +118,7 @@ public open class JSONRPC : Object() {
    * - [id]: The request this error is a response to.
    */
   @JvmOverloads
-  public fun makeResponseError(
+  public final fun makeResponseError(
     code: Int,
     message: String,
     id: Any? = null,

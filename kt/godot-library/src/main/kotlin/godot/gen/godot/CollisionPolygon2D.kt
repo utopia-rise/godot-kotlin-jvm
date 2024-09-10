@@ -37,7 +37,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * Collision build mode. Use one of the [BuildMode] constants.
    */
-  public var buildMode: BuildMode
+  public final inline var buildMode: BuildMode
     @JvmName("buildModeProperty")
     get() = getBuildMode()
     @JvmName("buildModeProperty")
@@ -51,7 +51,7 @@ public open class CollisionPolygon2D : Node2D() {
    * **Note:** The returned vertices are in the local coordinate space of the given
    * [CollisionPolygon2D].
    */
-  public var polygon: PackedVector2Array
+  public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
     @JvmName("polygonProperty")
@@ -62,7 +62,7 @@ public open class CollisionPolygon2D : Node2D() {
   /**
    * If `true`, no collisions will be detected.
    */
-  public var disabled: Boolean
+  public final inline var disabled: Boolean
     @JvmName("disabledProperty")
     get() = isDisabled()
     @JvmName("disabledProperty")
@@ -76,7 +76,7 @@ public open class CollisionPolygon2D : Node2D() {
    * **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D]
    * node.
    */
-  public var oneWayCollision: Boolean
+  public final inline var oneWayCollision: Boolean
     @JvmName("oneWayCollisionProperty")
     get() = isOneWayCollisionEnabled()
     @JvmName("oneWayCollisionProperty")
@@ -88,7 +88,7 @@ public open class CollisionPolygon2D : Node2D() {
    * The margin used for one-way collision (in pixels). Higher values will make the shape thicker,
    * and work better for colliders that enter the polygon at a high velocity.
    */
-  public var oneWayCollisionMargin: Float
+  public final inline var oneWayCollisionMargin: Float
     @JvmName("oneWayCollisionMarginProperty")
     get() = getOneWayCollisionMargin()
     @JvmName("oneWayCollisionMarginProperty")
@@ -100,56 +100,56 @@ public open class CollisionPolygon2D : Node2D() {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON2D, scriptIndex)
   }
 
-  public fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
-  public fun getPolygon(): PackedVector2Array {
+  public final fun getPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
-  public fun setBuildMode(buildMode: BuildMode): Unit {
+  public final fun setBuildMode(buildMode: BuildMode): Unit {
     TransferContext.writeArguments(LONG to buildMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBuildModePtr, NIL)
   }
 
-  public fun getBuildMode(): BuildMode {
+  public final fun getBuildMode(): BuildMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBuildModePtr, LONG)
     return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDisabled(disabled: Boolean): Unit {
+  public final fun setDisabled(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
-  public fun isDisabled(): Boolean {
+  public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setOneWayCollision(enabled: Boolean): Unit {
+  public final fun setOneWayCollision(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
   }
 
-  public fun isOneWayCollisionEnabled(): Boolean {
+  public final fun isOneWayCollisionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setOneWayCollisionMargin(margin: Float): Unit {
+  public final fun setOneWayCollisionMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
   }
 
-  public fun getOneWayCollisionMargin(): Float {
+  public final fun getOneWayCollisionMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

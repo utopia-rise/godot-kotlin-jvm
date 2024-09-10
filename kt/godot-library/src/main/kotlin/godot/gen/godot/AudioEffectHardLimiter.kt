@@ -31,7 +31,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   /**
    * Gain to apply before limiting, in decibels.
    */
-  public var preGainDb: Float
+  public final inline var preGainDb: Float
     @JvmName("preGainDbProperty")
     get() = getPreGainDb()
     @JvmName("preGainDbProperty")
@@ -44,7 +44,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
    * The default value of `-0.3` prevents potential inter-sample peaks (ISP) from crossing over 0
    * dB, which can cause slight distortion on some older hardware.
    */
-  public var ceilingDb: Float
+  public final inline var ceilingDb: Float
     @JvmName("ceilingDbProperty")
     get() = getCeilingDb()
     @JvmName("ceilingDbProperty")
@@ -55,7 +55,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   /**
    * Time it takes in seconds for the gain reduction to fully release.
    */
-  public var release: Float
+  public final inline var release: Float
     @JvmName("releaseProperty")
     get() = getRelease()
     @JvmName("releaseProperty")
@@ -67,34 +67,34 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTHARDLIMITER, scriptIndex)
   }
 
-  public fun setCeilingDb(ceiling: Float): Unit {
+  public final fun setCeilingDb(ceiling: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
   }
 
-  public fun getCeilingDb(): Float {
+  public final fun getCeilingDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPreGainDb(pPreGain: Float): Unit {
+  public final fun setPreGainDb(pPreGain: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pPreGain.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPreGainDbPtr, NIL)
   }
 
-  public fun getPreGainDb(): Float {
+  public final fun getPreGainDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreGainDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRelease(pRelease: Float): Unit {
+  public final fun setRelease(pRelease: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pRelease.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setReleasePtr, NIL)
   }
 
-  public fun getRelease(): Float {
+  public final fun getRelease(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReleasePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

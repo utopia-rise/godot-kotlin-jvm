@@ -39,7 +39,7 @@ public open class SpringArm3D : Node3D() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionMask: Long
+  public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
     get() = getCollisionMask()
     @JvmName("collisionMaskProperty")
@@ -52,7 +52,7 @@ public open class SpringArm3D : Node3D() {
    * When the shape is set, the SpringArm3D will cast the [Shape3D] on its z axis instead of
    * performing a ray cast.
    */
-  public var shape: Shape3D?
+  public final inline var shape: Shape3D?
     @JvmName("shapeProperty")
     get() = getShape()
     @JvmName("shapeProperty")
@@ -66,7 +66,7 @@ public open class SpringArm3D : Node3D() {
    * To know more about how to perform a shape cast or a ray cast, please consult the
    * [PhysicsDirectSpaceState3D] documentation.
    */
-  public var springLength: Float
+  public final inline var springLength: Float
     @JvmName("springLengthProperty")
     get() = getLength()
     @JvmName("springLengthProperty")
@@ -82,7 +82,7 @@ public open class SpringArm3D : Node3D() {
    * margin, the [Camera3D] would be placed on the exact point of collision, while with the margin the
    * [Camera3D] would be placed close to the point of collision.
    */
-  public var margin: Float
+  public final inline var margin: Float
     @JvmName("marginProperty")
     get() = getMargin()
     @JvmName("marginProperty")
@@ -97,29 +97,29 @@ public open class SpringArm3D : Node3D() {
   /**
    * Returns the spring arm's current length.
    */
-  public fun getHitLength(): Float {
+  public final fun getHitLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHitLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setLength(length: Float): Unit {
+  public final fun setLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
-  public fun getLength(): Float {
+  public final fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setShape(shape: Shape3D?): Unit {
+  public final fun setShape(shape: Shape3D?): Unit {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
-  public fun getShape(): Shape3D? {
+  public final fun getShape(): Shape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
@@ -129,7 +129,7 @@ public open class SpringArm3D : Node3D() {
    * Adds the [PhysicsBody3D] object with the given [RID] to the list of [PhysicsBody3D] objects
    * excluded from the collision check.
    */
-  public fun addExcludedObject(RID: RID): Unit {
+  public final fun addExcludedObject(RID: RID): Unit {
     TransferContext.writeArguments(_RID to RID)
     TransferContext.callMethod(rawPtr, MethodBindings.addExcludedObjectPtr, NIL)
   }
@@ -138,7 +138,7 @@ public open class SpringArm3D : Node3D() {
    * Removes the given [RID] from the list of [PhysicsBody3D] objects excluded from the collision
    * check.
    */
-  public fun removeExcludedObject(RID: RID): Boolean {
+  public final fun removeExcludedObject(RID: RID): Boolean {
     TransferContext.writeArguments(_RID to RID)
     TransferContext.callMethod(rawPtr, MethodBindings.removeExcludedObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -147,28 +147,28 @@ public open class SpringArm3D : Node3D() {
   /**
    * Clears the list of [PhysicsBody3D] objects excluded from the collision check.
    */
-  public fun clearExcludedObjects(): Unit {
+  public final fun clearExcludedObjects(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearExcludedObjectsPtr, NIL)
   }
 
-  public fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
-  public fun getCollisionMask(): Long {
+  public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setMargin(margin: Float): Unit {
+  public final fun setMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
-  public fun getMargin(): Float {
+  public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

@@ -30,7 +30,7 @@ public open class LightOccluder2D : Node2D() {
   /**
    * The [OccluderPolygon2D] used to compute the shadow.
    */
-  public var occluder: OccluderPolygon2D?
+  public final inline var occluder: OccluderPolygon2D?
     @JvmName("occluderProperty")
     get() = getOccluderPolygon()
     @JvmName("occluderProperty")
@@ -42,7 +42,7 @@ public open class LightOccluder2D : Node2D() {
    * If enabled, the occluder will be part of a real-time generated signed distance field that can
    * be used in custom shaders.
    */
-  public var sdfCollision: Boolean
+  public final inline var sdfCollision: Boolean
     @JvmName("sdfCollisionProperty")
     get() = isSetAsSdfCollision()
     @JvmName("sdfCollisionProperty")
@@ -54,7 +54,7 @@ public open class LightOccluder2D : Node2D() {
    * The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from
    * Light2D(s) that have the same light mask(s).
    */
-  public var occluderLightMask: Int
+  public final inline var occluderLightMask: Int
     @JvmName("occluderLightMaskProperty")
     get() = getOccluderLightMask()
     @JvmName("occluderLightMaskProperty")
@@ -66,34 +66,34 @@ public open class LightOccluder2D : Node2D() {
     callConstructor(ENGINECLASS_LIGHTOCCLUDER2D, scriptIndex)
   }
 
-  public fun setOccluderPolygon(polygon: OccluderPolygon2D?): Unit {
+  public final fun setOccluderPolygon(polygon: OccluderPolygon2D?): Unit {
     TransferContext.writeArguments(OBJECT to polygon)
     TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPolygonPtr, NIL)
   }
 
-  public fun getOccluderPolygon(): OccluderPolygon2D? {
+  public final fun getOccluderPolygon(): OccluderPolygon2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPolygonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?)
   }
 
-  public fun setOccluderLightMask(mask: Int): Unit {
+  public final fun setOccluderLightMask(mask: Int): Unit {
     TransferContext.writeArguments(LONG to mask.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setOccluderLightMaskPtr, NIL)
   }
 
-  public fun getOccluderLightMask(): Int {
+  public final fun getOccluderLightMask(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOccluderLightMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setAsSdfCollision(enable: Boolean): Unit {
+  public final fun setAsSdfCollision(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAsSdfCollisionPtr, NIL)
   }
 
-  public fun isSetAsSdfCollision(): Boolean {
+  public final fun isSetAsSdfCollision(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSetAsSdfCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

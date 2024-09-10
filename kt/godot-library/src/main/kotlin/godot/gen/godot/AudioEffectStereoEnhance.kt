@@ -29,7 +29,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
    * whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix
    * audio to mono.
    */
-  public var panPullout: Float
+  public final inline var panPullout: Float
     @JvmName("panPulloutProperty")
     get() = getPanPullout()
     @JvmName("panPulloutProperty")
@@ -37,7 +37,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
       setPanPullout(value)
     }
 
-  public var timePulloutMs: Float
+  public final inline var timePulloutMs: Float
     @JvmName("timePulloutMsProperty")
     get() = getTimePullout()
     @JvmName("timePulloutMsProperty")
@@ -45,7 +45,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
       setTimePullout(value)
     }
 
-  public var surround: Float
+  public final inline var surround: Float
     @JvmName("surroundProperty")
     get() = getSurround()
     @JvmName("surroundProperty")
@@ -57,34 +57,34 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE, scriptIndex)
   }
 
-  public fun setPanPullout(amount: Float): Unit {
+  public final fun setPanPullout(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
   }
 
-  public fun getPanPullout(): Float {
+  public final fun getPanPullout(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTimePullout(amount: Float): Unit {
+  public final fun setTimePullout(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
   }
 
-  public fun getTimePullout(): Float {
+  public final fun getTimePullout(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSurround(amount: Float): Unit {
+  public final fun setSurround(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSurroundPtr, NIL)
   }
 
-  public fun getSurround(): Float {
+  public final fun getSurround(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

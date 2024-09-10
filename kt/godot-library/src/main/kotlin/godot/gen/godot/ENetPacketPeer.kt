@@ -46,7 +46,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * during [ENetConnection.service] once the disconnection is complete.
    */
   @JvmOverloads
-  public fun peerDisconnect(`data`: Int = 0): Unit {
+  public final fun peerDisconnect(`data`: Int = 0): Unit {
     TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.peerDisconnectPtr, NIL)
   }
@@ -57,7 +57,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * disconnection is complete.
    */
   @JvmOverloads
-  public fun peerDisconnectLater(`data`: Int = 0): Unit {
+  public final fun peerDisconnectLater(`data`: Int = 0): Unit {
     TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.peerDisconnectLaterPtr, NIL)
   }
@@ -68,7 +68,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * immediately upon return from this function.
    */
   @JvmOverloads
-  public fun peerDisconnectNow(`data`: Int = 0): Unit {
+  public final fun peerDisconnectNow(`data`: Int = 0): Unit {
     TransferContext.writeArguments(LONG to data.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.peerDisconnectNowPtr, NIL)
   }
@@ -77,7 +77,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Sends a ping request to a peer. ENet automatically pings all connected peers at regular
    * intervals, however, this function may be called to ensure more frequent ping requests.
    */
-  public fun ping(): Unit {
+  public final fun ping(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pingPtr, NIL)
   }
@@ -88,7 +88,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * periods of low traffic so that the throttle has reasonable responsiveness during traffic spikes.
    * The default ping interval is `500` milliseconds.
    */
-  public fun pingInterval(pingInterval: Int): Unit {
+  public final fun pingInterval(pingInterval: Int): Unit {
     TransferContext.writeArguments(LONG to pingInterval.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.pingIntervalPtr, NIL)
   }
@@ -97,7 +97,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Forcefully disconnects a peer. The foreign host represented by the peer is not notified of the
    * disconnection and will timeout on its connection to the local host.
    */
-  public fun reset(): Unit {
+  public final fun reset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
   }
@@ -106,7 +106,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Queues a [packet] to be sent over the specified [channel]. See `FLAG_*` constants for available
    * packet flags.
    */
-  public fun send(
+  public final fun send(
     channel: Int,
     packet: PackedByteArray,
     flags: Int,
@@ -133,7 +133,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * taken into account to determine a sensible limit for the throttle probability above which it
    * should not raise even in the best of conditions.
    */
-  public fun throttleConfigure(
+  public final fun throttleConfigure(
     interval: Int,
     acceleration: Int,
     deceleration: Int,
@@ -152,7 +152,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * [timeoutMax] parameter, on the other hand, defines a fixed timeout for which any packet must be
    * acknowledged or the peer will be dropped.
    */
-  public fun setTimeout(
+  public final fun setTimeout(
     timeout: Int,
     timeoutMin: Int,
     timeoutMax: Int,
@@ -164,7 +164,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   /**
    * Returns the IP address of this peer.
    */
-  public fun getRemoteAddress(): String {
+  public final fun getRemoteAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRemoteAddressPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -173,7 +173,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   /**
    * Returns the remote port of this peer.
    */
-  public fun getRemotePort(): Int {
+  public final fun getRemotePort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRemotePortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -182,7 +182,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   /**
    * Returns the requested [statistic] for this peer. See [PeerStatistic].
    */
-  public fun getStatistic(statistic: PeerStatistic): Double {
+  public final fun getStatistic(statistic: PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStatisticPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -191,7 +191,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   /**
    * Returns the current peer state. See [PeerState].
    */
-  public fun getState(): PeerState {
+  public final fun getState(): PeerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
     return ENetPacketPeer.PeerState.from(TransferContext.readReturnValue(LONG) as Long)
@@ -200,7 +200,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   /**
    * Returns the number of channels allocated for communication with peer.
    */
-  public fun getChannels(): Int {
+  public final fun getChannels(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getChannelsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -210,7 +210,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns `true` if the peer is currently active (i.e. the associated [ENetConnection] is still
    * valid).
    */
-  public fun isActive(): Boolean {
+  public final fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

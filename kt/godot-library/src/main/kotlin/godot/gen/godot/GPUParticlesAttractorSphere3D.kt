@@ -33,7 +33,7 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
    * **Note:** Stretched ellipses can be obtained by using non-uniform scaling on the
    * [GPUParticlesAttractorSphere3D] node.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -45,12 +45,12 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORSPHERE3D, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

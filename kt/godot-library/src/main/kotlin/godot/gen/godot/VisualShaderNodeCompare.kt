@@ -27,7 +27,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * The type to be used in the comparison. See [ComparisonType] for options.
    */
-  public var type: ComparisonType
+  public final inline var type: ComparisonType
     @JvmName("typeProperty")
     get() = getComparisonType()
     @JvmName("typeProperty")
@@ -38,7 +38,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * A comparison function. See [Function] for options.
    */
-  public var function: Function
+  public final inline var function: Function
     @JvmName("functionProperty")
     get() = getFunction()
     @JvmName("functionProperty")
@@ -49,7 +49,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   /**
    * Extra condition which is applied if [type] is set to [CTYPE_VECTOR_3D].
    */
-  public var condition: Condition
+  public final inline var condition: Condition
     @JvmName("conditionProperty")
     get() = getCondition()
     @JvmName("conditionProperty")
@@ -61,34 +61,34 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOMPARE, scriptIndex)
   }
 
-  public fun setComparisonType(type: ComparisonType): Unit {
+  public final fun setComparisonType(type: ComparisonType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setComparisonTypePtr, NIL)
   }
 
-  public fun getComparisonType(): ComparisonType {
+  public final fun getComparisonType(): ComparisonType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getComparisonTypePtr, LONG)
     return VisualShaderNodeCompare.ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function): Unit {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
   }
 
-  public fun getFunction(): Function {
+  public final fun getFunction(): Function {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
     return VisualShaderNodeCompare.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setCondition(condition: Condition): Unit {
+  public final fun setCondition(condition: Condition): Unit {
     TransferContext.writeArguments(LONG to condition.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setConditionPtr, NIL)
   }
 
-  public fun getCondition(): Condition {
+  public final fun getCondition(): Condition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConditionPtr, LONG)
     return VisualShaderNodeCompare.Condition.from(TransferContext.readReturnValue(LONG) as Long)

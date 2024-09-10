@@ -27,7 +27,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   /**
    * Defines in what manner the particles will be accelerated.
    */
-  public var mode: Mode
+  public final inline var mode: Mode
     @JvmName("modeProperty")
     get() = getMode()
     @JvmName("modeProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEACCELERATOR, scriptIndex)
   }
 
-  public fun setMode(mode: Mode): Unit {
+  public final fun setMode(mode: Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
-  public fun getMode(): Mode {
+  public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
     return VisualShaderNodeParticleAccelerator.Mode.from(TransferContext.readReturnValue(LONG) as Long)

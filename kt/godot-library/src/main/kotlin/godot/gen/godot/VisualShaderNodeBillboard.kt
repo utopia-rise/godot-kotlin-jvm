@@ -29,7 +29,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
    * Controls how the object faces the camera. See [BillboardType].
    */
-  public var billboardType: BillboardType
+  public final inline var billboardType: BillboardType
     @JvmName("billboardTypeProperty")
     get() = getBillboardType()
     @JvmName("billboardTypeProperty")
@@ -41,7 +41,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
    * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when
    * billboarding.
    */
-  public var keepScale: Boolean
+  public final inline var keepScale: Boolean
     @JvmName("keepScaleProperty")
     get() = isKeepScaleEnabled()
     @JvmName("keepScaleProperty")
@@ -53,23 +53,23 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBILLBOARD, scriptIndex)
   }
 
-  public fun setBillboardType(billboardType: BillboardType): Unit {
+  public final fun setBillboardType(billboardType: BillboardType): Unit {
     TransferContext.writeArguments(LONG to billboardType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBillboardTypePtr, NIL)
   }
 
-  public fun getBillboardType(): BillboardType {
+  public final fun getBillboardType(): BillboardType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBillboardTypePtr, LONG)
     return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setKeepScaleEnabled(enabled: Boolean): Unit {
+  public final fun setKeepScaleEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setKeepScaleEnabledPtr, NIL)
   }
 
-  public fun isKeepScaleEnabled(): Boolean {
+  public final fun isKeepScaleEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isKeepScaleEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

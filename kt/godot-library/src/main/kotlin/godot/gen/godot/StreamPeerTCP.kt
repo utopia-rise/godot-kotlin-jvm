@@ -43,7 +43,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * some NAT punchthrough techniques, or when forcing the source network interface.
    */
   @JvmOverloads
-  public fun bind(port: Int, host: String = "*"): GodotError {
+  public final fun bind(port: Int, host: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to host)
     TransferContext.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -53,7 +53,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK]
    * on success.
    */
-  public fun connectToHost(host: String, port: Int): GodotError {
+  public final fun connectToHost(host: String, port: Int): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -62,7 +62,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Poll the socket, updating its state. See [getStatus].
    */
-  public fun poll(): GodotError {
+  public final fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -71,7 +71,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the status of the connection, see [Status].
    */
-  public fun getStatus(): Status {
+  public final fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
     return StreamPeerTCP.Status.from(TransferContext.readReturnValue(LONG) as Long)
@@ -80,7 +80,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the IP of this peer.
    */
-  public fun getConnectedHost(): String {
+  public final fun getConnectedHost(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectedHostPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -89,7 +89,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the port of this peer.
    */
-  public fun getConnectedPort(): Int {
+  public final fun getConnectedPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectedPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -98,7 +98,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the local port to which this peer is bound.
    */
-  public fun getLocalPort(): Int {
+  public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -107,7 +107,7 @@ public open class StreamPeerTCP : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  public fun disconnectFromHost(): Unit {
+  public final fun disconnectFromHost(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.disconnectFromHostPtr, NIL)
   }
@@ -119,7 +119,7 @@ public open class StreamPeerTCP : StreamPeer() {
    * **Note:** It's recommended to leave this disabled for applications that send large packets or
    * need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
-  public fun setNoDelay(enabled: Boolean): Unit {
+  public final fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setNoDelayPtr, NIL)
   }

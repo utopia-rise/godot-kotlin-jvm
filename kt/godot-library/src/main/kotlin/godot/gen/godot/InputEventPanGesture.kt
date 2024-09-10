@@ -33,7 +33,7 @@ public open class InputEventPanGesture : InputEventGesture() {
    * Panning amount since last pan event.
    */
   @CoreTypeLocalCopy
-  public var delta: Vector2
+  public final inline var delta: Vector2
     @JvmName("deltaProperty")
     get() = getDelta()
     @JvmName("deltaProperty")
@@ -63,18 +63,18 @@ public open class InputEventPanGesture : InputEventGesture() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun deltaMutate(block: Vector2.() -> Unit): Vector2 = delta.apply{
+  public final fun deltaMutate(block: Vector2.() -> Unit): Vector2 = delta.apply{
       block(this)
       delta = this
   }
 
 
-  public fun setDelta(delta: Vector2): Unit {
+  public final fun setDelta(delta: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to delta)
     TransferContext.callMethod(rawPtr, MethodBindings.setDeltaPtr, NIL)
   }
 
-  public fun getDelta(): Vector2 {
+  public final fun getDelta(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDeltaPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

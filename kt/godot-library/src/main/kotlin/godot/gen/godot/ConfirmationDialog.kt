@@ -39,7 +39,7 @@ public open class ConfirmationDialog : AcceptDialog() {
   /**
    * The text displayed by the cancel button (see [getCancelButton]).
    */
-  public var cancelButtonText: String
+  public final inline var cancelButtonText: String
     @JvmName("cancelButtonTextProperty")
     get() = getCancelButtonText()
     @JvmName("cancelButtonTextProperty")
@@ -56,18 +56,18 @@ public open class ConfirmationDialog : AcceptDialog() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getCancelButton(): Button? {
+  public final fun getCancelButton(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
   }
 
-  public fun setCancelButtonText(text: String): Unit {
+  public final fun setCancelButtonText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
   }
 
-  public fun getCancelButtonText(): String {
+  public final fun getCancelButtonText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

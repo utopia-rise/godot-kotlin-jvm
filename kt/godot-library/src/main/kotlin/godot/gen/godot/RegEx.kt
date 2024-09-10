@@ -97,7 +97,7 @@ public open class RegEx : RefCounted() {
    * This method resets the state of the object, as if it was freshly created. Namely, it unassigns
    * the regular expression of this object.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -106,7 +106,7 @@ public open class RegEx : RefCounted() {
    * Compiles and assign the search pattern to use. Returns [OK] if the compilation is successful.
    * If an error is encountered, details are printed to standard output and an error is returned.
    */
-  public fun compile(pattern: String): GodotError {
+  public final fun compile(pattern: String): GodotError {
     TransferContext.writeArguments(STRING to pattern)
     TransferContext.callMethod(rawPtr, MethodBindings.compilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -122,7 +122,7 @@ public open class RegEx : RefCounted() {
    * be checked for the word boundary `\b`.
    */
   @JvmOverloads
-  public fun search(
+  public final fun search(
     subject: String,
     offset: Int = 0,
     end: Int = -1,
@@ -142,7 +142,7 @@ public open class RegEx : RefCounted() {
    * be checked for the word boundary `\b`.
    */
   @JvmOverloads
-  public fun searchAll(
+  public final fun searchAll(
     subject: String,
     offset: Int = 0,
     end: Int = -1,
@@ -163,7 +163,7 @@ public open class RegEx : RefCounted() {
    * be checked for the word boundary `\b`.
    */
   @JvmOverloads
-  public fun sub(
+  public final fun sub(
     subject: String,
     replacement: String,
     all: Boolean = false,
@@ -178,7 +178,7 @@ public open class RegEx : RefCounted() {
   /**
    * Returns whether this object has a valid search pattern assigned.
    */
-  public fun isValid(): Boolean {
+  public final fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -187,7 +187,7 @@ public open class RegEx : RefCounted() {
   /**
    * Returns the original search pattern that was compiled.
    */
-  public fun getPattern(): String {
+  public final fun getPattern(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPatternPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -196,7 +196,7 @@ public open class RegEx : RefCounted() {
   /**
    * Returns the number of capturing groups in compiled pattern.
    */
-  public fun getGroupCount(): Int {
+  public final fun getGroupCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -206,7 +206,7 @@ public open class RegEx : RefCounted() {
    * Returns an array of names of named capturing groups in the compiled pattern. They are ordered
    * by appearance.
    */
-  public fun getNames(): PackedStringArray {
+  public final fun getNames(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -216,7 +216,7 @@ public open class RegEx : RefCounted() {
     /**
      * Creates and compiles a new [RegEx] object.
      */
-    public fun createFromString(pattern: String): RegEx? {
+    public final fun createFromString(pattern: String): RegEx? {
       TransferContext.writeArguments(STRING to pattern)
       TransferContext.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as RegEx?)

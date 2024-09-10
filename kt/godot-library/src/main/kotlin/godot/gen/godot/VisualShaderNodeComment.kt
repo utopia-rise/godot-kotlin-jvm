@@ -28,7 +28,7 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
    * This property only exists to preserve data authored in earlier versions of Godot. It has
    * currently no function.
    */
-  public var description: String
+  public final inline var description: String
     @JvmName("descriptionProperty")
     get() = getDescription()
     @JvmName("descriptionProperty")
@@ -40,12 +40,12 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT, scriptIndex)
   }
 
-  public fun setDescription(description: String): Unit {
+  public final fun setDescription(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
     TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
   }
 
-  public fun getDescription(): String {
+  public final fun getDescription(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

@@ -57,7 +57,7 @@ public open class CanvasGroup : Node2D() {
    * [CanvasGroup] both of which can reduce performance. This should be kept as small as possible and
    * should only be expanded when an increased size is needed (e.g. for custom shader effects).
    */
-  public var fitMargin: Float
+  public final inline var fitMargin: Float
     @JvmName("fitMarginProperty")
     get() = getFitMargin()
     @JvmName("fitMarginProperty")
@@ -73,7 +73,7 @@ public open class CanvasGroup : Node2D() {
    * this should be left as small as possible, but should be increased if artifacts appear along the
    * edges of the canvas group.
    */
-  public var clearMargin: Float
+  public final inline var clearMargin: Float
     @JvmName("clearMarginProperty")
     get() = getClearMargin()
     @JvmName("clearMarginProperty")
@@ -86,7 +86,7 @@ public open class CanvasGroup : Node2D() {
    * mipmaps can be used in a custom [ShaderMaterial] attached to the [CanvasGroup]. Generating mipmaps
    * has a performance cost so this should not be enabled unless required.
    */
-  public var useMipmaps: Boolean
+  public final inline var useMipmaps: Boolean
     @JvmName("useMipmapsProperty")
     get() = isUsingMipmaps()
     @JvmName("useMipmapsProperty")
@@ -98,34 +98,34 @@ public open class CanvasGroup : Node2D() {
     callConstructor(ENGINECLASS_CANVASGROUP, scriptIndex)
   }
 
-  public fun setFitMargin(fitMargin: Float): Unit {
+  public final fun setFitMargin(fitMargin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fitMargin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
   }
 
-  public fun getFitMargin(): Float {
+  public final fun getFitMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setClearMargin(clearMargin: Float): Unit {
+  public final fun setClearMargin(clearMargin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to clearMargin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
   }
 
-  public fun getClearMargin(): Float {
+  public final fun getClearMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setUseMipmaps(useMipmaps: Boolean): Unit {
+  public final fun setUseMipmaps(useMipmaps: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useMipmaps)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
   }
 
-  public fun isUsingMipmaps(): Boolean {
+  public final fun isUsingMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

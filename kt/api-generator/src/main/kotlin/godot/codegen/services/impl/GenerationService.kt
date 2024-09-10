@@ -418,29 +418,12 @@ class GenerationService(
     private fun generateProperty(enrichedClass: EnrichedClass, property: EnrichedProperty): PropertySpec? {
         if (!property.hasValidGetterInClass && !property.hasValidSetterInClass) return null
 
-        val modifiers = mutableListOf<KModifier>()
-
-        if (classGraphService.doAncestorsHaveProperty(
-                enrichedClass,
-                property
-            )
-        ) {
-            modifiers.add(KModifier.OVERRIDE)
-        } else if (property.getterMethod?.internal?.isVirtual == true || property.setterMethod?.internal?.isVirtual == true) {
-            modifiers.add(KModifier.OPEN)
-        }
-
         // We can't really on the property alone because some of them don't have a getter so we have to rely on the setter first parameter
         val argumentIndex = if (property.isIndexed) 1 else 0
         val propertyTypeName = (property.getterMethod ?: property.setterMethod!!.arguments[argumentIndex]).getCastedType()
 
         val propertyType = propertyTypeName.typeName
-        val propertySpecBuilder = PropertySpec
-            .builder(
-                property.name,
-                propertyType,
-                modifiers
-            )
+        val propertySpecBuilder = PropertySpec.builder(property.name, propertyType).addModifiers(KModifier.FINAL)
 
         if (property.hasValidGetterInClass) {
             val methodName = property.getter
@@ -469,6 +452,7 @@ class GenerationService(
                             .addMember("\"${property.name}Property\"")
                             .build()
                     )
+                    .addModifiers(KModifier.INLINE)
                     .build()
             )
         } else {
@@ -511,6 +495,7 @@ class GenerationService(
                         }
 
                     )
+                    .addModifiers(KModifier.INLINE)
                     .addAnnotation(
                         AnnotationSpec.builder(JvmName::class)
                             .addMember("\"${property.name}Property\"")
@@ -532,13 +517,8 @@ class GenerationService(
     private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty): FunSpec {
         val parameterTypeName = property.getCastedType()
         val parameterName = property.name
-        val propertyFunSpec = FunSpec.builder("${parameterName}Mutate")
+        val propertyFunSpec = FunSpec.builder("${parameterName}Mutate").addModifiers(KModifier.FINAL)
 
-        if (classGraphService.doAncestorsHaveProperty(enrichedClass, property)) {
-            propertyFunSpec.addModifiers(KModifier.OVERRIDE)
-        } else {
-            propertyFunSpec.addModifiers(KModifier.OPEN)
-        }
 
         return propertyFunSpec
             .addParameter(
@@ -591,14 +571,16 @@ class GenerationService(
     private fun generateMethod(enrichedClass: EnrichedClass, method: EnrichedMethod, isStatic: Boolean = false): FunSpec {
         val modifiers = mutableListOf<KModifier>()
 
-        if (classGraphService.doAncestorsHaveMethod(
-                enrichedClass,
-                method
-            )
-        ) {
+        // This method already exist in the Kotlin class Any. We have to override it because Godot uses the same name in Object.
+        if (method.name == "toString") {
             modifiers.add(KModifier.OVERRIDE)
-        } else if (method.internal.isVirtual) {
+        }
+
+        // Godot doesn't override its methods, they are either final or meant to be implemented by script or extension.
+        if (method.internal.isVirtual) {
             modifiers.add(KModifier.OPEN)
+        } else {
+            modifiers.add(KModifier.FINAL)
         }
 
         val generatedFunBuilder = FunSpec

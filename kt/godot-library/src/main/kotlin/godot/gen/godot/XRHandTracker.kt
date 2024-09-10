@@ -39,7 +39,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * If `true`, the hand tracking data is valid.
    */
-  public var hasTrackingData: Boolean
+  public final inline var hasTrackingData: Boolean
     @JvmName("hasTrackingDataProperty")
     get() = getHasTrackingData()
     @JvmName("hasTrackingDataProperty")
@@ -50,7 +50,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * The source of the hand tracking data.
    */
-  public var handTrackingSource: HandTrackingSource
+  public final inline var handTrackingSource: HandTrackingSource
     @JvmName("handTrackingSourceProperty")
     get() = getHandTrackingSource()
     @JvmName("handTrackingSourceProperty")
@@ -62,23 +62,23 @@ public open class XRHandTracker : XRPositionalTracker() {
     callConstructor(ENGINECLASS_XRHANDTRACKER, scriptIndex)
   }
 
-  public fun setHasTrackingData(hasData: Boolean): Unit {
+  public final fun setHasTrackingData(hasData: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hasData)
     TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
 
-  public fun getHasTrackingData(): Boolean {
+  public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHandTrackingSource(source: HandTrackingSource): Unit {
+  public final fun setHandTrackingSource(source: HandTrackingSource): Unit {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackingSourcePtr, NIL)
   }
 
-  public fun getHandTrackingSource(): HandTrackingSource {
+  public final fun getHandTrackingSource(): HandTrackingSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
     return XRHandTracker.HandTrackingSource.from(TransferContext.readReturnValue(LONG) as Long)
@@ -87,7 +87,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets flags about the validity of the tracking data for the given hand joint.
    */
-  public fun setHandJointFlags(joint: HandJoint, flags: HandJointFlags): Unit {
+  public final fun setHandJointFlags(joint: HandJoint, flags: HandJointFlags): Unit {
     TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandJointFlagsPtr, NIL)
   }
@@ -96,7 +96,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Returns flags about the validity of the tracking data for the given hand joint (see
    * [XRHandTracker.HandJointFlags]).
    */
-  public fun getHandJointFlags(joint: HandJoint): HandJointFlags {
+  public final fun getHandJointFlags(joint: HandJoint): HandJointFlags {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
     return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
@@ -105,7 +105,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the transform for the given hand joint.
    */
-  public fun setHandJointTransform(joint: HandJoint, transform: Transform3D): Unit {
+  public final fun setHandJointTransform(joint: HandJoint, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandJointTransformPtr, NIL)
   }
@@ -113,7 +113,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Returns the transform for the given hand joint.
    */
-  public fun getHandJointTransform(joint: HandJoint): Transform3D {
+  public final fun getHandJointTransform(joint: HandJoint): Transform3D {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -122,7 +122,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the radius of the given hand joint.
    */
-  public fun setHandJointRadius(joint: HandJoint, radius: Float): Unit {
+  public final fun setHandJointRadius(joint: HandJoint, radius: Float): Unit {
     TransferContext.writeArguments(LONG to joint.id, DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHandJointRadiusPtr, NIL)
   }
@@ -130,7 +130,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Returns the radius of the given hand joint.
    */
-  public fun getHandJointRadius(joint: HandJoint): Float {
+  public final fun getHandJointRadius(joint: HandJoint): Float {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -139,7 +139,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the linear velocity for the given hand joint.
    */
-  public fun setHandJointLinearVelocity(joint: HandJoint, linearVelocity: Vector3): Unit {
+  public final fun setHandJointLinearVelocity(joint: HandJoint, linearVelocity: Vector3): Unit {
     TransferContext.writeArguments(LONG to joint.id, VECTOR3 to linearVelocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandJointLinearVelocityPtr, NIL)
   }
@@ -147,7 +147,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Returns the linear velocity for the given hand joint.
    */
-  public fun getHandJointLinearVelocity(joint: HandJoint): Vector3 {
+  public final fun getHandJointLinearVelocity(joint: HandJoint): Vector3 {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -156,7 +156,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Sets the angular velocity for the given hand joint.
    */
-  public fun setHandJointAngularVelocity(joint: HandJoint, angularVelocity: Vector3): Unit {
+  public final fun setHandJointAngularVelocity(joint: HandJoint, angularVelocity: Vector3): Unit {
     TransferContext.writeArguments(LONG to joint.id, VECTOR3 to angularVelocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandJointAngularVelocityPtr, NIL)
   }
@@ -164,7 +164,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   /**
    * Returns the angular velocity for the given hand joint.
    */
-  public fun getHandJointAngularVelocity(joint: HandJoint): Vector3 {
+  public final fun getHandJointAngularVelocity(joint: HandJoint): Vector3 {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)

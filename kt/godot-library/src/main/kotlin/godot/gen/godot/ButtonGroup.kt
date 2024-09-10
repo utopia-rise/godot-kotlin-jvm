@@ -39,7 +39,7 @@ public open class ButtonGroup : Resource() {
   /**
    * If `true`, it is possible to unpress all buttons in this [ButtonGroup].
    */
-  public var allowUnpress: Boolean
+  public final inline var allowUnpress: Boolean
     @JvmName("allowUnpressProperty")
     get() = isAllowUnpress()
     @JvmName("allowUnpressProperty")
@@ -54,7 +54,7 @@ public open class ButtonGroup : Resource() {
   /**
    * Returns the current pressed button.
    */
-  public fun getPressedButton(): BaseButton? {
+  public final fun getPressedButton(): BaseButton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as BaseButton?)
@@ -64,18 +64,18 @@ public open class ButtonGroup : Resource() {
    * Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see
    * [BaseButton.buttonGroup]).
    */
-  public fun getButtons(): VariantArray<BaseButton> {
+  public final fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>)
   }
 
-  public fun setAllowUnpress(enabled: Boolean): Unit {
+  public final fun setAllowUnpress(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
   }
 
-  public fun isAllowUnpress(): Boolean {
+  public final fun isAllowUnpress(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

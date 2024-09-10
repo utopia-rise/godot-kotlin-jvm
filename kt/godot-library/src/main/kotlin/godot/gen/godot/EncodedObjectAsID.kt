@@ -31,7 +31,7 @@ public open class EncodedObjectAsID : RefCounted() {
    * The [Object] identifier stored in this [EncodedObjectAsID] instance. The object instance can be
    * retrieved with [@GlobalScope.instanceFromId].
    */
-  public var objectId: Long
+  public final inline var objectId: Long
     @JvmName("objectIdProperty")
     get() = getObjectId()
     @JvmName("objectIdProperty")
@@ -43,12 +43,12 @@ public open class EncodedObjectAsID : RefCounted() {
     callConstructor(ENGINECLASS_ENCODEDOBJECTASID, scriptIndex)
   }
 
-  public fun setObjectId(id: Long): Unit {
+  public final fun setObjectId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
   }
 
-  public fun getObjectId(): Long {
+  public final fun getObjectId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

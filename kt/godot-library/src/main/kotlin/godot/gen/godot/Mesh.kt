@@ -51,7 +51,7 @@ public open class Mesh : Resource() {
    * Sets a hint to be used for lightmap resolution.
    */
   @CoreTypeLocalCopy
-  public var lightmapSizeHint: Vector2i
+  public final inline var lightmapSizeHint: Vector2i
     @JvmName("lightmapSizeHintProperty")
     get() = getLightmapSizeHint()
     @JvmName("lightmapSizeHintProperty")
@@ -81,7 +81,7 @@ public open class Mesh : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun lightmapSizeHintMutate(block: Vector2i.() -> Unit): Vector2i =
+  public final fun lightmapSizeHintMutate(block: Vector2i.() -> Unit): Vector2i =
       lightmapSizeHint.apply{
       block(this)
       lightmapSizeHint = this
@@ -186,12 +186,12 @@ public open class Mesh : Resource() {
     throw NotImplementedError("_get_aabb is not implemented for Mesh")
   }
 
-  public fun setLightmapSizeHint(size: Vector2i): Unit {
+  public final fun setLightmapSizeHint(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
   }
 
-  public fun getLightmapSizeHint(): Vector2i {
+  public final fun getLightmapSizeHint(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -201,7 +201,7 @@ public open class Mesh : Resource() {
    * Returns the smallest [AABB] enclosing this mesh in local space. Not affected by `custom_aabb`.
    * **Note:** This is only implemented for [ArrayMesh] and [PrimitiveMesh].
    */
-  public fun getAabb(): AABB {
+  public final fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
@@ -211,7 +211,7 @@ public open class Mesh : Resource() {
    * Returns all the vertices that make up the faces of the mesh. Each three vertices represent one
    * triangle.
    */
-  public fun getFaces(): PackedVector3Array {
+  public final fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
@@ -221,7 +221,7 @@ public open class Mesh : Resource() {
    * Returns the number of surfaces that the [Mesh] holds. This is equivalent to
    * [MeshInstance3D.getSurfaceOverrideMaterialCount].
    */
-  public fun getSurfaceCount(): Int {
+  public final fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -231,7 +231,7 @@ public open class Mesh : Resource() {
    * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface (see
    * [ArrayMesh.addSurfaceFromArrays]).
    */
-  public fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
+  public final fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -240,7 +240,7 @@ public open class Mesh : Resource() {
   /**
    * Returns the blend shape arrays for the requested surface.
    */
-  public fun surfaceGetBlendShapeArrays(surfIdx: Int): VariantArray<VariantArray<Any?>> {
+  public final fun surfaceGetBlendShapeArrays(surfIdx: Int): VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetBlendShapeArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
@@ -253,7 +253,7 @@ public open class Mesh : Resource() {
    * to the [MeshInstance3D]'s Surface Material Override properties, use
    * [MeshInstance3D.setSurfaceOverrideMaterial] instead.
    */
-  public fun surfaceSetMaterial(surfIdx: Int, material: Material?): Unit {
+  public final fun surfaceSetMaterial(surfIdx: Int, material: Material?): Unit {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetMaterialPtr, NIL)
   }
@@ -265,7 +265,7 @@ public open class Mesh : Resource() {
    * to the [MeshInstance3D]'s Surface Material Override properties, use
    * [MeshInstance3D.getSurfaceOverrideMaterial] instead.
    */
-  public fun surfaceGetMaterial(surfIdx: Int): Material? {
+  public final fun surfaceGetMaterial(surfIdx: Int): Material? {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
@@ -274,7 +274,7 @@ public open class Mesh : Resource() {
   /**
    * Creates a placeholder version of this resource ([PlaceholderMesh]).
    */
-  public fun createPlaceholder(): Resource? {
+  public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
@@ -283,7 +283,7 @@ public open class Mesh : Resource() {
   /**
    * Calculate a [ConcavePolygonShape3D] from the mesh.
    */
-  public fun createTrimeshShape(): ConcavePolygonShape3D? {
+  public final fun createTrimeshShape(): ConcavePolygonShape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createTrimeshShapePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ConcavePolygonShape3D?)
@@ -297,7 +297,7 @@ public open class Mesh : Resource() {
    * vertices. Disabled by default.
    */
   @JvmOverloads
-  public fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
+  public final fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
       ConvexPolygonShape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr, MethodBindings.createConvexShapePtr, OBJECT)
@@ -309,7 +309,7 @@ public open class Mesh : Resource() {
    * **Note:** This method typically returns the vertices in reverse order (e.g. clockwise to
    * counterclockwise).
    */
-  public fun createOutline(margin: Float): Mesh? {
+  public final fun createOutline(margin: Float): Mesh? {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.createOutlinePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
@@ -319,7 +319,7 @@ public open class Mesh : Resource() {
    * Generate a [TriangleMesh] from the mesh. Considers only surfaces using one of these primitive
    * types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
    */
-  public fun generateTriangleMesh(): TriangleMesh? {
+  public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)

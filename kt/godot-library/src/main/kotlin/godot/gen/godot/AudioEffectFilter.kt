@@ -29,7 +29,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    * Threshold frequency for the filter, in Hz.
    */
-  public var cutoffHz: Float
+  public final inline var cutoffHz: Float
     @JvmName("cutoffHzProperty")
     get() = getCutoff()
     @JvmName("cutoffHzProperty")
@@ -40,7 +40,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    * Amount of boost in the frequency range near the cutoff frequency.
    */
-  public var resonance: Float
+  public final inline var resonance: Float
     @JvmName("resonanceProperty")
     get() = getResonance()
     @JvmName("resonanceProperty")
@@ -51,7 +51,7 @@ public open class AudioEffectFilter : AudioEffect() {
   /**
    * Gain amount of the frequencies after the filter.
    */
-  public var gain: Float
+  public final inline var gain: Float
     @JvmName("gainProperty")
     get() = getGain()
     @JvmName("gainProperty")
@@ -59,7 +59,7 @@ public open class AudioEffectFilter : AudioEffect() {
       setGain(value)
     }
 
-  public var db: FilterDB
+  public final inline var db: FilterDB
     @JvmName("dbProperty")
     get() = getDb()
     @JvmName("dbProperty")
@@ -71,45 +71,45 @@ public open class AudioEffectFilter : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTFILTER, scriptIndex)
   }
 
-  public fun setCutoff(freq: Float): Unit {
+  public final fun setCutoff(freq: Float): Unit {
     TransferContext.writeArguments(DOUBLE to freq.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCutoffPtr, NIL)
   }
 
-  public fun getCutoff(): Float {
+  public final fun getCutoff(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCutoffPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setResonance(amount: Float): Unit {
+  public final fun setResonance(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setResonancePtr, NIL)
   }
 
-  public fun getResonance(): Float {
+  public final fun getResonance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResonancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGain(amount: Float): Unit {
+  public final fun setGain(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
   }
 
-  public fun getGain(): Float {
+  public final fun getGain(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDb(amount: FilterDB): Unit {
+  public final fun setDb(amount: FilterDB): Unit {
     TransferContext.writeArguments(LONG to amount.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setDbPtr, NIL)
   }
 
-  public fun getDb(): FilterDB {
+  public final fun getDb(): FilterDB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDbPtr, LONG)
     return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)

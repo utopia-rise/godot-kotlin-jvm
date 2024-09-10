@@ -36,7 +36,7 @@ public open class SkeletonModification2D : Resource() {
    * If `true`, the modification's [_execute] function will be called by the
    * [SkeletonModificationStack2D].
    */
-  public var enabled: Boolean
+  public final inline var enabled: Boolean
     @JvmName("enabledProperty")
     get() = getEnabled()
     @JvmName("enabledProperty")
@@ -48,7 +48,7 @@ public open class SkeletonModification2D : Resource() {
    * The execution mode for the modification. This tells the modification stack when to execute the
    * modification. Some modifications have settings that are only available in certain execution modes.
    */
-  public var executionMode: Int
+  public final inline var executionMode: Int
     @JvmName("executionModeProperty")
     get() = getExecutionMode()
     @JvmName("executionModeProperty")
@@ -82,12 +82,12 @@ public open class SkeletonModification2D : Resource() {
   public open fun _drawEditorGizmo(): Unit {
   }
 
-  public fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
-  public fun getEnabled(): Boolean {
+  public final fun getEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -97,7 +97,7 @@ public open class SkeletonModification2D : Resource() {
    * Returns the [SkeletonModificationStack2D] that this modification is bound to. Through the
    * modification stack, you can access the Skeleton2D the modification is operating on.
    */
-  public fun getModificationStack(): SkeletonModificationStack2D? {
+  public final fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
@@ -108,7 +108,7 @@ public open class SkeletonModification2D : Resource() {
    * rarely be used, as the [SkeletonModificationStack2D] the modification is bound to should handle
    * setting the modification up.
    */
-  public fun setIsSetup(isSetup: Boolean): Unit {
+  public final fun setIsSetup(isSetup: Boolean): Unit {
     TransferContext.writeArguments(BOOL to isSetup)
     TransferContext.callMethod(rawPtr, MethodBindings.setIsSetupPtr, NIL)
   }
@@ -116,18 +116,18 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Returns whether this modification has been successfully setup or not.
    */
-  public fun getIsSetup(): Boolean {
+  public final fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setExecutionMode(executionMode: Int): Unit {
+  public final fun setExecutionMode(executionMode: Int): Unit {
     TransferContext.writeArguments(LONG to executionMode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
   }
 
-  public fun getExecutionMode(): Int {
+  public final fun getExecutionMode(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -137,7 +137,7 @@ public open class SkeletonModification2D : Resource() {
    * Takes an angle and clamps it so it is within the passed-in [min] and [max] range. [invert] will
    * inversely clamp the angle, clamping it to the range outside of the given bounds.
    */
-  public fun clampAngle(
+  public final fun clampAngle(
     angle: Float,
     min: Float,
     max: Float,
@@ -152,7 +152,7 @@ public open class SkeletonModification2D : Resource() {
    * Sets whether this modification will call [_drawEditorGizmo] in the Godot editor to draw
    * modification-specific gizmos.
    */
-  public fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
+  public final fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawGizmo)
     TransferContext.callMethod(rawPtr, MethodBindings.setEditorDrawGizmoPtr, NIL)
   }
@@ -161,7 +161,7 @@ public open class SkeletonModification2D : Resource() {
    * Returns whether this modification will call [_drawEditorGizmo] in the Godot editor to draw
    * modification-specific gizmos.
    */
-  public fun getEditorDrawGizmo(): Boolean {
+  public final fun getEditorDrawGizmo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

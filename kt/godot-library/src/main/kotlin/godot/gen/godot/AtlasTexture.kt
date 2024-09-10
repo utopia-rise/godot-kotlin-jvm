@@ -37,7 +37,7 @@ public open class AtlasTexture : Texture2D() {
    * The texture that contains the atlas. Can be any type inheriting from [Texture2D], including
    * another [AtlasTexture].
    */
-  public var atlas: Texture2D?
+  public final inline var atlas: Texture2D?
     @JvmName("atlasProperty")
     get() = getAtlas()
     @JvmName("atlasProperty")
@@ -50,7 +50,7 @@ public open class AtlasTexture : Texture2D() {
    * from [atlas] size will be used for that axis instead.
    */
   @CoreTypeLocalCopy
-  public var region: Rect2
+  public final inline var region: Rect2
     @JvmName("regionProperty")
     get() = getRegion()
     @JvmName("regionProperty")
@@ -64,7 +64,7 @@ public open class AtlasTexture : Texture2D() {
    * margin.
    */
   @CoreTypeLocalCopy
-  public var margin: Rect2
+  public final inline var margin: Rect2
     @JvmName("marginProperty")
     get() = getMargin()
     @JvmName("marginProperty")
@@ -76,7 +76,7 @@ public open class AtlasTexture : Texture2D() {
    * If `true`, the area outside of the [region] is clipped to avoid bleeding of the surrounding
    * texture pixels.
    */
-  public var filterClip: Boolean
+  public final inline var filterClip: Boolean
     @JvmName("filterClipProperty")
     get() = hasFilterClip()
     @JvmName("filterClipProperty")
@@ -107,7 +107,7 @@ public open class AtlasTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionMutate(block: Rect2.() -> Unit): Rect2 = region.apply{
+  public final fun regionMutate(block: Rect2.() -> Unit): Rect2 = region.apply{
       block(this)
       region = this
   }
@@ -133,51 +133,51 @@ public open class AtlasTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun marginMutate(block: Rect2.() -> Unit): Rect2 = margin.apply{
+  public final fun marginMutate(block: Rect2.() -> Unit): Rect2 = margin.apply{
       block(this)
       margin = this
   }
 
 
-  public fun setAtlas(atlas: Texture2D?): Unit {
+  public final fun setAtlas(atlas: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to atlas)
     TransferContext.callMethod(rawPtr, MethodBindings.setAtlasPtr, NIL)
   }
 
-  public fun getAtlas(): Texture2D? {
+  public final fun getAtlas(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAtlasPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setRegion(region: Rect2): Unit {
+  public final fun setRegion(region: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to region)
     TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
   }
 
-  public fun getRegion(): Rect2 {
+  public final fun getRegion(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
-  public fun setMargin(margin: Rect2): Unit {
+  public final fun setMargin(margin: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to margin)
     TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
-  public fun getMargin(): Rect2 {
+  public final fun getMargin(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
-  public fun setFilterClip(enable: Boolean): Unit {
+  public final fun setFilterClip(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setFilterClipPtr, NIL)
   }
 
-  public fun hasFilterClip(): Boolean {
+  public final fun hasFilterClip(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasFilterClipPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

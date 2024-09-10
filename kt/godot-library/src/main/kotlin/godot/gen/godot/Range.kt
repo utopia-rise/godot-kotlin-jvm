@@ -49,7 +49,7 @@ public open class Range : Control() {
   /**
    * Minimum value. Range is clamped if [value] is less than [minValue].
    */
-  public var minValue: Double
+  public final inline var minValue: Double
     @JvmName("minValueProperty")
     get() = getMin()
     @JvmName("minValueProperty")
@@ -60,7 +60,7 @@ public open class Range : Control() {
   /**
    * Maximum value. Range is clamped if [value] is greater than [maxValue].
    */
-  public var maxValue: Double
+  public final inline var maxValue: Double
     @JvmName("maxValueProperty")
     get() = getMax()
     @JvmName("maxValueProperty")
@@ -73,7 +73,7 @@ public open class Range : Control() {
    * [rounded] is also `true`, [value] will first be rounded to a multiple of this property's value,
    * then rounded to the nearest integer.
    */
-  public var step: Double
+  public final inline var step: Double
     @JvmName("stepProperty")
     get() = getStep()
     @JvmName("stepProperty")
@@ -85,7 +85,7 @@ public open class Range : Control() {
    * Page size. Used mainly for [ScrollBar]. ScrollBar's length is its size multiplied by [page]
    * over the difference between [minValue] and [maxValue].
    */
-  public var page: Double
+  public final inline var page: Double
     @JvmName("pageProperty")
     get() = getPage()
     @JvmName("pageProperty")
@@ -97,7 +97,7 @@ public open class Range : Control() {
    * Range's current value. Changing this property (even via code) will trigger [signal
    * value_changed] signal. Use [setValueNoSignal] if you want to avoid it.
    */
-  public var `value`: Double
+  public final inline var `value`: Double
     @JvmName("valueProperty")
     get() = getValue()
     @JvmName("valueProperty")
@@ -108,7 +108,7 @@ public open class Range : Control() {
   /**
    * The value mapped between 0 and 1.
    */
-  public var ratio: Double
+  public final inline var ratio: Double
     @JvmName("ratioProperty")
     get() = getAsRatio()
     @JvmName("ratioProperty")
@@ -120,7 +120,7 @@ public open class Range : Control() {
    * If `true`, and [minValue] is greater than 0, [value] will be represented exponentially rather
    * than linearly.
    */
-  public var expEdit: Boolean
+  public final inline var expEdit: Boolean
     @JvmName("expEditProperty")
     get() = isRatioExp()
     @JvmName("expEditProperty")
@@ -131,7 +131,7 @@ public open class Range : Control() {
   /**
    * If `true`, [value] will always be rounded to the nearest integer.
    */
-  public var rounded: Boolean
+  public final inline var rounded: Boolean
     @JvmName("roundedProperty")
     get() = isUsingRoundedValues()
     @JvmName("roundedProperty")
@@ -142,7 +142,7 @@ public open class Range : Control() {
   /**
    * If `true`, [value] may be greater than [maxValue].
    */
-  public var allowGreater: Boolean
+  public final inline var allowGreater: Boolean
     @JvmName("allowGreaterProperty")
     get() = isGreaterAllowed()
     @JvmName("allowGreaterProperty")
@@ -153,7 +153,7 @@ public open class Range : Control() {
   /**
    * If `true`, [value] may be less than [minValue].
    */
-  public var allowLesser: Boolean
+  public final inline var allowLesser: Boolean
     @JvmName("allowLesserProperty")
     get() = isLesserAllowed()
     @JvmName("allowLesserProperty")
@@ -172,43 +172,43 @@ public open class Range : Control() {
   public open fun _valueChanged(newValue: Double): Unit {
   }
 
-  public fun getValue(): Double {
+  public final fun getValue(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getMin(): Double {
+  public final fun getMin(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getMax(): Double {
+  public final fun getMax(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getStep(): Double {
+  public final fun getStep(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getPage(): Double {
+  public final fun getPage(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPagePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun getAsRatio(): Double {
+  public final fun getAsRatio(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAsRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setValue(`value`: Double): Unit {
+  public final fun setValue(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
   }
@@ -217,75 +217,75 @@ public open class Range : Control() {
    * Sets the [Range]'s current value to the specified [value], without emitting the [signal
    * value_changed] signal.
    */
-  public fun setValueNoSignal(`value`: Double): Unit {
+  public final fun setValueNoSignal(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setValueNoSignalPtr, NIL)
   }
 
-  public fun setMin(minimum: Double): Unit {
+  public final fun setMin(minimum: Double): Unit {
     TransferContext.writeArguments(DOUBLE to minimum)
     TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
-  public fun setMax(maximum: Double): Unit {
+  public final fun setMax(maximum: Double): Unit {
     TransferContext.writeArguments(DOUBLE to maximum)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
-  public fun setStep(step: Double): Unit {
+  public final fun setStep(step: Double): Unit {
     TransferContext.writeArguments(DOUBLE to step)
     TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
   }
 
-  public fun setPage(pagesize: Double): Unit {
+  public final fun setPage(pagesize: Double): Unit {
     TransferContext.writeArguments(DOUBLE to pagesize)
     TransferContext.callMethod(rawPtr, MethodBindings.setPagePtr, NIL)
   }
 
-  public fun setAsRatio(`value`: Double): Unit {
+  public final fun setAsRatio(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setAsRatioPtr, NIL)
   }
 
-  public fun setUseRoundedValues(enabled: Boolean): Unit {
+  public final fun setUseRoundedValues(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseRoundedValuesPtr, NIL)
   }
 
-  public fun isUsingRoundedValues(): Boolean {
+  public final fun isUsingRoundedValues(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingRoundedValuesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setExpRatio(enabled: Boolean): Unit {
+  public final fun setExpRatio(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setExpRatioPtr, NIL)
   }
 
-  public fun isRatioExp(): Boolean {
+  public final fun isRatioExp(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRatioExpPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAllowGreater(allow: Boolean): Unit {
+  public final fun setAllowGreater(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowGreaterPtr, NIL)
   }
 
-  public fun isGreaterAllowed(): Boolean {
+  public final fun isGreaterAllowed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isGreaterAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAllowLesser(allow: Boolean): Unit {
+  public final fun setAllowLesser(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowLesserPtr, NIL)
   }
 
-  public fun isLesserAllowed(): Boolean {
+  public final fun isLesserAllowed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLesserAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -296,7 +296,7 @@ public open class Range : Control() {
    * any of range's member variables change, it will share the new value with all other ranges in its
    * group.
    */
-  public fun share(with: Node?): Unit {
+  public final fun share(with: Node?): Unit {
     TransferContext.writeArguments(OBJECT to with)
     TransferContext.callMethod(rawPtr, MethodBindings.sharePtr, NIL)
   }
@@ -304,7 +304,7 @@ public open class Range : Control() {
   /**
    * Stops the [Range] from sharing its member variables with any other.
    */
-  public fun unshare(): Unit {
+  public final fun unshare(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.unsharePtr, NIL)
   }

@@ -29,7 +29,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
    * A 4D vector (represented as a [Quaternion]) constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
-  public var constant: Quaternion
+  public final inline var constant: Quaternion
     @JvmName("constantProperty")
     get() = getConstant()
     @JvmName("constantProperty")
@@ -59,18 +59,18 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantMutate(block: Quaternion.() -> Unit): Quaternion = constant.apply{
+  public final fun constantMutate(block: Quaternion.() -> Unit): Quaternion = constant.apply{
       block(this)
       constant = this
   }
 
 
-  public fun setConstant(constant: Quaternion): Unit {
+  public final fun setConstant(constant: Quaternion): Unit {
     TransferContext.writeArguments(QUATERNION to constant)
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
-  public fun getConstant(): Quaternion {
+  public final fun getConstant(): Quaternion {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)

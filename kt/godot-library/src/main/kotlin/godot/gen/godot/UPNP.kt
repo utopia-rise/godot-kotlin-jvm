@@ -109,7 +109,7 @@ public open class UPNP : RefCounted() {
   /**
    * Multicast interface to use for discovery. Uses the default multicast interface if empty.
    */
-  public var discoverMulticastIf: String
+  public final inline var discoverMulticastIf: String
     @JvmName("discoverMulticastIfProperty")
     get() = getDiscoverMulticastIf()
     @JvmName("discoverMulticastIfProperty")
@@ -122,7 +122,7 @@ public open class UPNP : RefCounted() {
    * discovery will be done from the source port 1900 (same as destination port). Otherwise, the value
    * will be used as the port.
    */
-  public var discoverLocalPort: Int
+  public final inline var discoverLocalPort: Int
     @JvmName("discoverLocalPortProperty")
     get() = getDiscoverLocalPort()
     @JvmName("discoverLocalPortProperty")
@@ -133,7 +133,7 @@ public open class UPNP : RefCounted() {
   /**
    * If `true`, IPv6 is used for [UPNPDevice] discovery.
    */
-  public var discoverIpv6: Boolean
+  public final inline var discoverIpv6: Boolean
     @JvmName("discoverIpv6Property")
     get() = isDiscoverIpv6()
     @JvmName("discoverIpv6Property")
@@ -148,7 +148,7 @@ public open class UPNP : RefCounted() {
   /**
    * Returns the number of discovered [UPNPDevice]s.
    */
-  public fun getDeviceCount(): Int {
+  public final fun getDeviceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDeviceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -157,7 +157,7 @@ public open class UPNP : RefCounted() {
   /**
    * Returns the [UPNPDevice] at the given [index].
    */
-  public fun getDevice(index: Int): UPNPDevice? {
+  public final fun getDevice(index: Int): UPNPDevice? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
@@ -166,7 +166,7 @@ public open class UPNP : RefCounted() {
   /**
    * Adds the given [UPNPDevice] to the list of discovered devices.
    */
-  public fun addDevice(device: UPNPDevice?): Unit {
+  public final fun addDevice(device: UPNPDevice?): Unit {
     TransferContext.writeArguments(OBJECT to device)
     TransferContext.callMethod(rawPtr, MethodBindings.addDevicePtr, NIL)
   }
@@ -174,7 +174,7 @@ public open class UPNP : RefCounted() {
   /**
    * Sets the device at [index] from the list of discovered devices to [device].
    */
-  public fun setDevice(index: Int, device: UPNPDevice?): Unit {
+  public final fun setDevice(index: Int, device: UPNPDevice?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to device)
     TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
   }
@@ -182,7 +182,7 @@ public open class UPNP : RefCounted() {
   /**
    * Removes the device at [index] from the list of discovered devices.
    */
-  public fun removeDevice(index: Int): Unit {
+  public final fun removeDevice(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeDevicePtr, NIL)
   }
@@ -190,7 +190,7 @@ public open class UPNP : RefCounted() {
   /**
    * Clears the list of discovered devices.
    */
-  public fun clearDevices(): Unit {
+  public final fun clearDevices(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearDevicesPtr, NIL)
   }
@@ -199,7 +199,7 @@ public open class UPNP : RefCounted() {
    * Returns the default gateway. That is the first discovered [UPNPDevice] that is also a valid IGD
    * (InternetGatewayDevice).
    */
-  public fun getGateway(): UPNPDevice? {
+  public final fun getGateway(): UPNPDevice? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGatewayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
@@ -213,7 +213,7 @@ public open class UPNP : RefCounted() {
    * See [UPNPResult] for possible return values.
    */
   @JvmOverloads
-  public fun discover(
+  public final fun discover(
     timeout: Int = 2000,
     ttl: Int = 2,
     deviceFilter: String = "InternetGatewayDevice",
@@ -227,7 +227,7 @@ public open class UPNP : RefCounted() {
    * Returns the external [IP] address of the default gateway (see [getGateway]) as string. Returns
    * an empty string on error.
    */
-  public fun queryExternalAddress(): String {
+  public final fun queryExternalAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -259,7 +259,7 @@ public open class UPNP : RefCounted() {
    * See [UPNPResult] for possible return values.
    */
   @JvmOverloads
-  public fun addPortMapping(
+  public final fun addPortMapping(
     port: Int,
     portInternal: Int = 0,
     desc: String = "",
@@ -279,40 +279,40 @@ public open class UPNP : RefCounted() {
    * possible return values.
    */
   @JvmOverloads
-  public fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
+  public final fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
     TransferContext.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setDiscoverMulticastIf(mIf: String): Unit {
+  public final fun setDiscoverMulticastIf(mIf: String): Unit {
     TransferContext.writeArguments(STRING to mIf)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverMulticastIfPtr, NIL)
   }
 
-  public fun getDiscoverMulticastIf(): String {
+  public final fun getDiscoverMulticastIf(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setDiscoverLocalPort(port: Int): Unit {
+  public final fun setDiscoverLocalPort(port: Int): Unit {
     TransferContext.writeArguments(LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverLocalPortPtr, NIL)
   }
 
-  public fun getDiscoverLocalPort(): Int {
+  public final fun getDiscoverLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setDiscoverIpv6(ipv6: Boolean): Unit {
+  public final fun setDiscoverIpv6(ipv6: Boolean): Unit {
     TransferContext.writeArguments(BOOL to ipv6)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverIpv6Ptr, NIL)
   }
 
-  public fun isDiscoverIpv6(): Boolean {
+  public final fun isDiscoverIpv6(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

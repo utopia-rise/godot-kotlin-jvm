@@ -39,7 +39,7 @@ public open class AudioStreamWAV : AudioStream() {
    * **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8,
    * subtract 128 from each byte.
    */
-  public var `data`: PackedByteArray
+  public final inline var `data`: PackedByteArray
     @JvmName("dataProperty")
     get() = getData()
     @JvmName("dataProperty")
@@ -50,7 +50,7 @@ public open class AudioStreamWAV : AudioStream() {
   /**
    * Audio format. See [Format] constants for values.
    */
-  public var format: Format
+  public final inline var format: Format
     @JvmName("formatProperty")
     get() = getFormat()
     @JvmName("formatProperty")
@@ -62,7 +62,7 @@ public open class AudioStreamWAV : AudioStream() {
    * The loop mode. This information will be imported automatically from the WAV file if present.
    * See [LoopMode] constants for values.
    */
-  public var loopMode: LoopMode
+  public final inline var loopMode: LoopMode
     @JvmName("loopModeProperty")
     get() = getLoopMode()
     @JvmName("loopModeProperty")
@@ -74,7 +74,7 @@ public open class AudioStreamWAV : AudioStream() {
    * The loop start point (in number of samples, relative to the beginning of the stream). This
    * information will be imported automatically from the WAV file if present.
    */
-  public var loopBegin: Int
+  public final inline var loopBegin: Int
     @JvmName("loopBeginProperty")
     get() = getLoopBegin()
     @JvmName("loopBeginProperty")
@@ -86,7 +86,7 @@ public open class AudioStreamWAV : AudioStream() {
    * The loop end point (in number of samples, relative to the beginning of the stream). This
    * information will be imported automatically from the WAV file if present.
    */
-  public var loopEnd: Int
+  public final inline var loopEnd: Int
     @JvmName("loopEndProperty")
     get() = getLoopEnd()
     @JvmName("loopEndProperty")
@@ -106,7 +106,7 @@ public open class AudioStreamWAV : AudioStream() {
    * sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in
    * quality.
    */
-  public var mixRate: Int
+  public final inline var mixRate: Int
     @JvmName("mixRateProperty")
     get() = getMixRate()
     @JvmName("mixRateProperty")
@@ -117,7 +117,7 @@ public open class AudioStreamWAV : AudioStream() {
   /**
    * If `true`, audio is stereo.
    */
-  public var stereo: Boolean
+  public final inline var stereo: Boolean
     @JvmName("stereoProperty")
     get() = isStereo()
     @JvmName("stereoProperty")
@@ -129,78 +129,78 @@ public open class AudioStreamWAV : AudioStream() {
     callConstructor(ENGINECLASS_AUDIOSTREAMWAV, scriptIndex)
   }
 
-  public fun setData(`data`: PackedByteArray): Unit {
+  public final fun setData(`data`: PackedByteArray): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
   }
 
-  public fun getData(): PackedByteArray {
+  public final fun getData(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
-  public fun setFormat(format: Format): Unit {
+  public final fun setFormat(format: Format): Unit {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
   }
 
-  public fun getFormat(): Format {
+  public final fun getFormat(): Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setLoopMode(loopMode: LoopMode): Unit {
+  public final fun setLoopMode(loopMode: LoopMode): Unit {
     TransferContext.writeArguments(LONG to loopMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
   }
 
-  public fun getLoopMode(): LoopMode {
+  public final fun getLoopMode(): LoopMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
     return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setLoopBegin(loopBegin: Int): Unit {
+  public final fun setLoopBegin(loopBegin: Int): Unit {
     TransferContext.writeArguments(LONG to loopBegin.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopBeginPtr, NIL)
   }
 
-  public fun getLoopBegin(): Int {
+  public final fun getLoopBegin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopBeginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setLoopEnd(loopEnd: Int): Unit {
+  public final fun setLoopEnd(loopEnd: Int): Unit {
     TransferContext.writeArguments(LONG to loopEnd.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopEndPtr, NIL)
   }
 
-  public fun getLoopEnd(): Int {
+  public final fun getLoopEnd(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopEndPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMixRate(mixRate: Int): Unit {
+  public final fun setMixRate(mixRate: Int): Unit {
     TransferContext.writeArguments(LONG to mixRate.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
   }
 
-  public fun getMixRate(): Int {
+  public final fun getMixRate(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setStereo(stereo: Boolean): Unit {
+  public final fun setStereo(stereo: Boolean): Unit {
     TransferContext.writeArguments(BOOL to stereo)
     TransferContext.callMethod(rawPtr, MethodBindings.setStereoPtr, NIL)
   }
 
-  public fun isStereo(): Boolean {
+  public final fun isStereo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStereoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -211,7 +211,7 @@ public open class AudioStreamWAV : AudioStream() {
    * be saved.
    * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
    */
-  public fun saveToWav(path: String): GodotError {
+  public final fun saveToWav(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.saveToWavPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

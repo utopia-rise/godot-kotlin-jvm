@@ -81,7 +81,7 @@ public open class Animation : Resource() {
    * **Note:** Length is not delimited by the last key, as this one may be before or after the end
    * to ensure correct interpolation and looping.
    */
-  public var length: Float
+  public final inline var length: Float
     @JvmName("lengthProperty")
     get() = getLength()
     @JvmName("lengthProperty")
@@ -94,7 +94,7 @@ public open class Animation : Resource() {
    * is used for correct interpolation of animation cycles, and for hinting the player that it must
    * restart the animation.
    */
-  public var loopMode: LoopMode
+  public final inline var loopMode: LoopMode
     @JvmName("loopModeProperty")
     get() = getLoopMode()
     @JvmName("loopModeProperty")
@@ -105,7 +105,7 @@ public open class Animation : Resource() {
   /**
    * The animation step value.
    */
-  public var step: Float
+  public final inline var step: Float
     @JvmName("stepProperty")
     get() = getStep()
     @JvmName("stepProperty")
@@ -117,7 +117,7 @@ public open class Animation : Resource() {
    * Returns `true` if the capture track is included. This is a cached readonly value for
    * performance.
    */
-  public val captureIncluded: Boolean
+  public final inline val captureIncluded: Boolean
     @JvmName("captureIncludedProperty")
     get() = isCaptureIncluded()
 
@@ -129,7 +129,7 @@ public open class Animation : Resource() {
    * Adds a track to the Animation.
    */
   @JvmOverloads
-  public fun addTrack(type: TrackType, atPosition: Int = -1): Int {
+  public final fun addTrack(type: TrackType, atPosition: Int = -1): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to atPosition.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -138,7 +138,7 @@ public open class Animation : Resource() {
   /**
    * Removes a track by specifying the track index.
    */
-  public fun removeTrack(trackIdx: Int): Unit {
+  public final fun removeTrack(trackIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeTrackPtr, NIL)
   }
@@ -146,7 +146,7 @@ public open class Animation : Resource() {
   /**
    * Returns the amount of tracks in the animation.
    */
-  public fun getTrackCount(): Int {
+  public final fun getTrackCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -155,7 +155,7 @@ public open class Animation : Resource() {
   /**
    * Gets the type of a track.
    */
-  public fun trackGetType(trackIdx: Int): TrackType {
+  public final fun trackGetType(trackIdx: Int): TrackType {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetTypePtr, LONG)
     return Animation.TrackType.from(TransferContext.readReturnValue(LONG) as Long)
@@ -164,7 +164,7 @@ public open class Animation : Resource() {
   /**
    * Gets the path of a track. For more information on the path format, see [trackSetPath].
    */
-  public fun trackGetPath(trackIdx: Int): NodePath {
+  public final fun trackGetPath(trackIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -176,7 +176,7 @@ public open class Animation : Resource() {
    * properties or bones must append their name after the path, separated by `":"`.
    * For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    */
-  public fun trackSetPath(trackIdx: Int, path: NodePath): Unit {
+  public final fun trackSetPath(trackIdx: Int, path: NodePath): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.trackSetPathPtr, NIL)
   }
@@ -184,7 +184,7 @@ public open class Animation : Resource() {
   /**
    * Returns the index of the specified track. If the track is not found, return -1.
    */
-  public fun findTrack(path: NodePath, type: TrackType): Int {
+  public final fun findTrack(path: NodePath, type: TrackType): Int {
     TransferContext.writeArguments(NODE_PATH to path, LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.findTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -193,7 +193,7 @@ public open class Animation : Resource() {
   /**
    * Moves a track up.
    */
-  public fun trackMoveUp(trackIdx: Int): Unit {
+  public final fun trackMoveUp(trackIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackMoveUpPtr, NIL)
   }
@@ -201,7 +201,7 @@ public open class Animation : Resource() {
   /**
    * Moves a track down.
    */
-  public fun trackMoveDown(trackIdx: Int): Unit {
+  public final fun trackMoveDown(trackIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackMoveDownPtr, NIL)
   }
@@ -209,7 +209,7 @@ public open class Animation : Resource() {
   /**
    * Changes the index position of track [trackIdx] to the one defined in [toIdx].
    */
-  public fun trackMoveTo(trackIdx: Int, toIdx: Int): Unit {
+  public final fun trackMoveTo(trackIdx: Int, toIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to toIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackMoveToPtr, NIL)
   }
@@ -217,7 +217,7 @@ public open class Animation : Resource() {
   /**
    * Swaps the track [trackIdx]'s index position with the track [withIdx].
    */
-  public fun trackSwap(trackIdx: Int, withIdx: Int): Unit {
+  public final fun trackSwap(trackIdx: Int, withIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to withIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackSwapPtr, NIL)
   }
@@ -225,7 +225,7 @@ public open class Animation : Resource() {
   /**
    * Sets the given track as imported or not.
    */
-  public fun trackSetImported(trackIdx: Int, imported: Boolean): Unit {
+  public final fun trackSetImported(trackIdx: Int, imported: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to imported)
     TransferContext.callMethod(rawPtr, MethodBindings.trackSetImportedPtr, NIL)
   }
@@ -233,7 +233,7 @@ public open class Animation : Resource() {
   /**
    * Returns `true` if the given track is imported. Else, return `false`.
    */
-  public fun trackIsImported(trackIdx: Int): Boolean {
+  public final fun trackIsImported(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackIsImportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -242,7 +242,7 @@ public open class Animation : Resource() {
   /**
    * Enables/disables the given track. Tracks are enabled by default.
    */
-  public fun trackSetEnabled(trackIdx: Int, enabled: Boolean): Unit {
+  public final fun trackSetEnabled(trackIdx: Int, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.trackSetEnabledPtr, NIL)
   }
@@ -250,7 +250,7 @@ public open class Animation : Resource() {
   /**
    * Returns `true` if the track at index [trackIdx] is enabled.
    */
-  public fun trackIsEnabled(trackIdx: Int): Boolean {
+  public final fun trackIsEnabled(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackIsEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -259,7 +259,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a key in a given 3D position track. Returns the key index.
    */
-  public fun positionTrackInsertKey(
+  public final fun positionTrackInsertKey(
     trackIdx: Int,
     time: Double,
     position: Vector3,
@@ -272,7 +272,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a key in a given 3D rotation track. Returns the key index.
    */
-  public fun rotationTrackInsertKey(
+  public final fun rotationTrackInsertKey(
     trackIdx: Int,
     time: Double,
     rotation: Quaternion,
@@ -285,7 +285,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a key in a given 3D scale track. Returns the key index.
    */
-  public fun scaleTrackInsertKey(
+  public final fun scaleTrackInsertKey(
     trackIdx: Int,
     time: Double,
     scale: Vector3,
@@ -298,7 +298,7 @@ public open class Animation : Resource() {
   /**
    * Inserts a key in a given blend shape track. Returns the key index.
    */
-  public fun blendShapeTrackInsertKey(
+  public final fun blendShapeTrackInsertKey(
     trackIdx: Int,
     time: Double,
     amount: Float,
@@ -313,7 +313,7 @@ public open class Animation : Resource() {
    * the index of a 3D position track.
    */
   @JvmOverloads
-  public fun positionTrackInterpolate(
+  public final fun positionTrackInterpolate(
     trackIdx: Int,
     timeSec: Double,
     backward: Boolean = false,
@@ -328,7 +328,7 @@ public open class Animation : Resource() {
    * the index of a 3D rotation track.
    */
   @JvmOverloads
-  public fun rotationTrackInterpolate(
+  public final fun rotationTrackInterpolate(
     trackIdx: Int,
     timeSec: Double,
     backward: Boolean = false,
@@ -343,7 +343,7 @@ public open class Animation : Resource() {
    * index of a 3D scale track.
    */
   @JvmOverloads
-  public fun scaleTrackInterpolate(
+  public final fun scaleTrackInterpolate(
     trackIdx: Int,
     timeSec: Double,
     backward: Boolean = false,
@@ -358,7 +358,7 @@ public open class Animation : Resource() {
    * be the index of a blend shape track.
    */
   @JvmOverloads
-  public fun blendShapeTrackInterpolate(
+  public final fun blendShapeTrackInterpolate(
     trackIdx: Int,
     timeSec: Double,
     backward: Boolean = false,
@@ -372,7 +372,7 @@ public open class Animation : Resource() {
    * Inserts a generic key in a given track. Returns the key index.
    */
   @JvmOverloads
-  public fun trackInsertKey(
+  public final fun trackInsertKey(
     trackIdx: Int,
     time: Double,
     key: Any?,
@@ -386,7 +386,7 @@ public open class Animation : Resource() {
   /**
    * Removes a key by index in a given track.
    */
-  public fun trackRemoveKey(trackIdx: Int, keyIdx: Int): Unit {
+  public final fun trackRemoveKey(trackIdx: Int, keyIdx: Int): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackRemoveKeyPtr, NIL)
   }
@@ -394,7 +394,7 @@ public open class Animation : Resource() {
   /**
    * Removes a key at [time] in a given track.
    */
-  public fun trackRemoveKeyAtTime(trackIdx: Int, time: Double): Unit {
+  public final fun trackRemoveKeyAtTime(trackIdx: Int, time: Double): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
     TransferContext.callMethod(rawPtr, MethodBindings.trackRemoveKeyAtTimePtr, NIL)
   }
@@ -402,7 +402,7 @@ public open class Animation : Resource() {
   /**
    * Sets the value of an existing key.
    */
-  public fun trackSetKeyValue(
+  public final fun trackSetKeyValue(
     trackIdx: Int,
     key: Int,
     `value`: Any?,
@@ -415,7 +415,7 @@ public open class Animation : Resource() {
    * Sets the transition curve (easing) for a specific key (see the built-in math function
    * [@GlobalScope.ease]).
    */
-  public fun trackSetKeyTransition(
+  public final fun trackSetKeyTransition(
     trackIdx: Int,
     keyIdx: Int,
     transition: Float,
@@ -427,7 +427,7 @@ public open class Animation : Resource() {
   /**
    * Sets the time of an existing key.
    */
-  public fun trackSetKeyTime(
+  public final fun trackSetKeyTime(
     trackIdx: Int,
     keyIdx: Int,
     time: Double,
@@ -440,7 +440,7 @@ public open class Animation : Resource() {
    * Returns the transition curve (easing) for a specific key (see the built-in math function
    * [@GlobalScope.ease]).
    */
-  public fun trackGetKeyTransition(trackIdx: Int, keyIdx: Int): Float {
+  public final fun trackGetKeyTransition(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyTransitionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -449,7 +449,7 @@ public open class Animation : Resource() {
   /**
    * Returns the number of keys in a given track.
    */
-  public fun trackGetKeyCount(trackIdx: Int): Int {
+  public final fun trackGetKeyCount(trackIdx: Int): Int {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -458,7 +458,7 @@ public open class Animation : Resource() {
   /**
    * Returns the value of a given key in a given track.
    */
-  public fun trackGetKeyValue(trackIdx: Int, keyIdx: Int): Any? {
+  public final fun trackGetKeyValue(trackIdx: Int, keyIdx: Int): Any? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -467,7 +467,7 @@ public open class Animation : Resource() {
   /**
    * Returns the time at which the key is located.
    */
-  public fun trackGetKeyTime(trackIdx: Int, keyIdx: Int): Double {
+  public final fun trackGetKeyTime(trackIdx: Int, keyIdx: Int): Double {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetKeyTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -484,7 +484,7 @@ public open class Animation : Resource() {
    * if [backward] is `true`, the first key found is retrieved after the position.
    */
   @JvmOverloads
-  public fun trackFindKey(
+  public final fun trackFindKey(
     trackIdx: Int,
     time: Double,
     findMode: FindMode = Animation.FindMode.FIND_MODE_NEAREST,
@@ -499,7 +499,8 @@ public open class Animation : Resource() {
   /**
    * Sets the interpolation type of a given track.
    */
-  public fun trackSetInterpolationType(trackIdx: Int, interpolation: InterpolationType): Unit {
+  public final fun trackSetInterpolationType(trackIdx: Int, interpolation: InterpolationType):
+      Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, MethodBindings.trackSetInterpolationTypePtr, NIL)
   }
@@ -507,7 +508,7 @@ public open class Animation : Resource() {
   /**
    * Returns the interpolation type of a given track.
    */
-  public fun trackGetInterpolationType(trackIdx: Int): InterpolationType {
+  public final fun trackGetInterpolationType(trackIdx: Int): InterpolationType {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetInterpolationTypePtr, LONG)
     return Animation.InterpolationType.from(TransferContext.readReturnValue(LONG) as Long)
@@ -516,7 +517,7 @@ public open class Animation : Resource() {
   /**
    * If `true`, the track at [trackIdx] wraps the interpolation loop.
    */
-  public fun trackSetInterpolationLoopWrap(trackIdx: Int, interpolation: Boolean): Unit {
+  public final fun trackSetInterpolationLoopWrap(trackIdx: Int, interpolation: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to interpolation)
     TransferContext.callMethod(rawPtr, MethodBindings.trackSetInterpolationLoopWrapPtr, NIL)
   }
@@ -525,7 +526,7 @@ public open class Animation : Resource() {
    * Returns `true` if the track at [trackIdx] wraps the interpolation loop. New tracks wrap the
    * interpolation loop by default.
    */
-  public fun trackGetInterpolationLoopWrap(trackIdx: Int): Boolean {
+  public final fun trackGetInterpolationLoopWrap(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackGetInterpolationLoopWrapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -534,7 +535,7 @@ public open class Animation : Resource() {
   /**
    * Returns `true` if the track is compressed, `false` otherwise. See also [compress].
    */
-  public fun trackIsCompressed(trackIdx: Int): Boolean {
+  public final fun trackIsCompressed(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.trackIsCompressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -543,7 +544,7 @@ public open class Animation : Resource() {
   /**
    * Sets the update mode (see [UpdateMode]) of a value track.
    */
-  public fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
+  public final fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.valueTrackSetUpdateModePtr, NIL)
   }
@@ -551,7 +552,7 @@ public open class Animation : Resource() {
   /**
    * Returns the update mode of a value track.
    */
-  public fun valueTrackGetUpdateMode(trackIdx: Int): UpdateMode {
+  public final fun valueTrackGetUpdateMode(trackIdx: Int): UpdateMode {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.valueTrackGetUpdateModePtr, LONG)
     return Animation.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -565,7 +566,7 @@ public open class Animation : Resource() {
    * result with [trackFindKey].
    */
   @JvmOverloads
-  public fun valueTrackInterpolate(
+  public final fun valueTrackInterpolate(
     trackIdx: Int,
     timeSec: Double,
     backward: Boolean = false,
@@ -578,7 +579,7 @@ public open class Animation : Resource() {
   /**
    * Returns the method name of a method track.
    */
-  public fun methodTrackGetName(trackIdx: Int, keyIdx: Int): StringName {
+  public final fun methodTrackGetName(trackIdx: Int, keyIdx: Int): StringName {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.methodTrackGetNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -587,7 +588,7 @@ public open class Animation : Resource() {
   /**
    * Returns the arguments values to be called on a method track for a given key in a given track.
    */
-  public fun methodTrackGetParams(trackIdx: Int, keyIdx: Int): VariantArray<Any?> {
+  public final fun methodTrackGetParams(trackIdx: Int, keyIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.methodTrackGetParamsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -600,7 +601,7 @@ public open class Animation : Resource() {
    * right-side one, while [value] is the actual value at this point.
    */
   @JvmOverloads
-  public fun bezierTrackInsertKey(
+  public final fun bezierTrackInsertKey(
     trackIdx: Int,
     time: Double,
     `value`: Float,
@@ -616,7 +617,7 @@ public open class Animation : Resource() {
    * Sets the value of the key identified by [keyIdx] to the given value. The [trackIdx] must be the
    * index of a Bezier Track.
    */
-  public fun bezierTrackSetKeyValue(
+  public final fun bezierTrackSetKeyValue(
     trackIdx: Int,
     keyIdx: Int,
     `value`: Float,
@@ -630,7 +631,7 @@ public open class Animation : Resource() {
    * be the index of a Bezier Track.
    */
   @JvmOverloads
-  public fun bezierTrackSetKeyInHandle(
+  public final fun bezierTrackSetKeyInHandle(
     trackIdx: Int,
     keyIdx: Int,
     inHandle: Vector2,
@@ -645,7 +646,7 @@ public open class Animation : Resource() {
    * be the index of a Bezier Track.
    */
   @JvmOverloads
-  public fun bezierTrackSetKeyOutHandle(
+  public final fun bezierTrackSetKeyOutHandle(
     trackIdx: Int,
     keyIdx: Int,
     outHandle: Vector2,
@@ -659,7 +660,7 @@ public open class Animation : Resource() {
    * Returns the value of the key identified by [keyIdx]. The [trackIdx] must be the index of a
    * Bezier Track.
    */
-  public fun bezierTrackGetKeyValue(trackIdx: Int, keyIdx: Int): Float {
+  public final fun bezierTrackGetKeyValue(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackGetKeyValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -669,7 +670,7 @@ public open class Animation : Resource() {
    * Returns the in handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
    * Bezier Track.
    */
-  public fun bezierTrackGetKeyInHandle(trackIdx: Int, keyIdx: Int): Vector2 {
+  public final fun bezierTrackGetKeyInHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackGetKeyInHandlePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -679,7 +680,7 @@ public open class Animation : Resource() {
    * Returns the out handle of the key identified by [keyIdx]. The [trackIdx] must be the index of a
    * Bezier Track.
    */
-  public fun bezierTrackGetKeyOutHandle(trackIdx: Int, keyIdx: Int): Vector2 {
+  public final fun bezierTrackGetKeyOutHandle(trackIdx: Int, keyIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackGetKeyOutHandlePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -689,7 +690,7 @@ public open class Animation : Resource() {
    * Returns the interpolated value at the given [time] (in seconds). The [trackIdx] must be the
    * index of a Bezier Track.
    */
-  public fun bezierTrackInterpolate(trackIdx: Int, time: Double): Float {
+  public final fun bezierTrackInterpolate(trackIdx: Int, time: Double): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time)
     TransferContext.callMethod(rawPtr, MethodBindings.bezierTrackInterpolatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -702,7 +703,7 @@ public open class Animation : Resource() {
    * at the beginning of the audio stream, while [endOffset] is at the ending.
    */
   @JvmOverloads
-  public fun audioTrackInsertKey(
+  public final fun audioTrackInsertKey(
     trackIdx: Int,
     time: Double,
     stream: Resource?,
@@ -718,7 +719,7 @@ public open class Animation : Resource() {
    * Sets the stream of the key identified by [keyIdx] to value [stream]. The [trackIdx] must be the
    * index of an Audio Track.
    */
-  public fun audioTrackSetKeyStream(
+  public final fun audioTrackSetKeyStream(
     trackIdx: Int,
     keyIdx: Int,
     stream: Resource?,
@@ -731,7 +732,7 @@ public open class Animation : Resource() {
    * Sets the start offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must
    * be the index of an Audio Track.
    */
-  public fun audioTrackSetKeyStartOffset(
+  public final fun audioTrackSetKeyStartOffset(
     trackIdx: Int,
     keyIdx: Int,
     offset: Float,
@@ -744,7 +745,7 @@ public open class Animation : Resource() {
    * Sets the end offset of the key identified by [keyIdx] to value [offset]. The [trackIdx] must be
    * the index of an Audio Track.
    */
-  public fun audioTrackSetKeyEndOffset(
+  public final fun audioTrackSetKeyEndOffset(
     trackIdx: Int,
     keyIdx: Int,
     offset: Float,
@@ -757,7 +758,7 @@ public open class Animation : Resource() {
    * Returns the audio stream of the key identified by [keyIdx]. The [trackIdx] must be the index of
    * an Audio Track.
    */
-  public fun audioTrackGetKeyStream(trackIdx: Int, keyIdx: Int): Resource? {
+  public final fun audioTrackGetKeyStream(trackIdx: Int, keyIdx: Int): Resource? {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.audioTrackGetKeyStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
@@ -768,7 +769,7 @@ public open class Animation : Resource() {
    * an Audio Track.
    * Start offset is the number of seconds cut off at the beginning of the audio stream.
    */
-  public fun audioTrackGetKeyStartOffset(trackIdx: Int, keyIdx: Int): Float {
+  public final fun audioTrackGetKeyStartOffset(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.audioTrackGetKeyStartOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -779,7 +780,7 @@ public open class Animation : Resource() {
    * an Audio Track.
    * End offset is the number of seconds cut off at the ending of the audio stream.
    */
-  public fun audioTrackGetKeyEndOffset(trackIdx: Int, keyIdx: Int): Float {
+  public final fun audioTrackGetKeyEndOffset(trackIdx: Int, keyIdx: Int): Float {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.audioTrackGetKeyEndOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -789,7 +790,7 @@ public open class Animation : Resource() {
    * Sets whether the track will be blended with other animations. If `true`, the audio playback
    * volume changes depending on the blend value.
    */
-  public fun audioTrackSetUseBlend(trackIdx: Int, enable: Boolean): Unit {
+  public final fun audioTrackSetUseBlend(trackIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.audioTrackSetUseBlendPtr, NIL)
   }
@@ -797,7 +798,7 @@ public open class Animation : Resource() {
   /**
    * Returns `true` if the track at [trackIdx] will be blended with other animations.
    */
-  public fun audioTrackIsUseBlend(trackIdx: Int): Boolean {
+  public final fun audioTrackIsUseBlend(trackIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to trackIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.audioTrackIsUseBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -807,7 +808,7 @@ public open class Animation : Resource() {
    * Inserts a key with value [animation] at the given [time] (in seconds). The [trackIdx] must be
    * the index of an Animation Track.
    */
-  public fun animationTrackInsertKey(
+  public final fun animationTrackInsertKey(
     trackIdx: Int,
     time: Double,
     animation: StringName,
@@ -821,7 +822,7 @@ public open class Animation : Resource() {
    * Sets the key identified by [keyIdx] to value [animation]. The [trackIdx] must be the index of
    * an Animation Track.
    */
-  public fun animationTrackSetKeyAnimation(
+  public final fun animationTrackSetKeyAnimation(
     trackIdx: Int,
     keyIdx: Int,
     animation: StringName,
@@ -834,40 +835,40 @@ public open class Animation : Resource() {
    * Returns the animation name at the key identified by [keyIdx]. The [trackIdx] must be the index
    * of an Animation Track.
    */
-  public fun animationTrackGetKeyAnimation(trackIdx: Int, keyIdx: Int): StringName {
+  public final fun animationTrackGetKeyAnimation(trackIdx: Int, keyIdx: Int): StringName {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.animationTrackGetKeyAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setLength(timeSec: Float): Unit {
+  public final fun setLength(timeSec: Float): Unit {
     TransferContext.writeArguments(DOUBLE to timeSec.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
-  public fun getLength(): Float {
+  public final fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setLoopMode(loopMode: LoopMode): Unit {
+  public final fun setLoopMode(loopMode: LoopMode): Unit {
     TransferContext.writeArguments(LONG to loopMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
   }
 
-  public fun getLoopMode(): LoopMode {
+  public final fun getLoopMode(): LoopMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setStep(sizeSec: Float): Unit {
+  public final fun setStep(sizeSec: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sizeSec.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
   }
 
-  public fun getStep(): Float {
+  public final fun getStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -876,7 +877,7 @@ public open class Animation : Resource() {
   /**
    * Clear the animation (clear all tracks and reset all).
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -884,7 +885,7 @@ public open class Animation : Resource() {
   /**
    * Adds a new track to [toAnimation] that is a copy of the given track from this animation.
    */
-  public fun copyTrack(trackIdx: Int, toAnimation: Animation?): Unit {
+  public final fun copyTrack(trackIdx: Int, toAnimation: Animation?): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), OBJECT to toAnimation)
     TransferContext.callMethod(rawPtr, MethodBindings.copyTrackPtr, NIL)
   }
@@ -899,7 +900,7 @@ public open class Animation : Resource() {
    * editor), so only use compressed animations if you actually need them.
    */
   @JvmOverloads
-  public fun compress(
+  public final fun compress(
     pageSize: Long = 8192,
     fps: Long = 120,
     splitTolerance: Float = 4.0f,
@@ -908,7 +909,7 @@ public open class Animation : Resource() {
     TransferContext.callMethod(rawPtr, MethodBindings.compressPtr, NIL)
   }
 
-  public fun isCaptureIncluded(): Boolean {
+  public final fun isCaptureIncluded(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCaptureIncludedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

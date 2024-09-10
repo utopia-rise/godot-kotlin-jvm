@@ -29,7 +29,7 @@ public open class OptimizedTranslation : Translation() {
   /**
    * Generates and sets an optimized translation from the given [Translation] resource.
    */
-  public fun generate(from: Translation?): Unit {
+  public final fun generate(from: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to from)
     TransferContext.callMethod(rawPtr, MethodBindings.generatePtr, NIL)
   }

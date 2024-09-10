@@ -41,7 +41,7 @@ public open class Material : Resource() {
    * objects are drawn after all opaque objects and all dynamic opaque meshes are drawn before other
    * opaque meshes.
    */
-  public var renderPriority: Int
+  public final inline var renderPriority: Int
     @JvmName("renderPriorityProperty")
     get() = getRenderPriority()
     @JvmName("renderPriorityProperty")
@@ -57,7 +57,7 @@ public open class Material : Resource() {
    * camera.
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
    */
-  public var nextPass: Material?
+  public final inline var nextPass: Material?
     @JvmName("nextPassProperty")
     get() = getNextPass()
     @JvmName("nextPassProperty")
@@ -101,23 +101,23 @@ public open class Material : Resource() {
     throw NotImplementedError("_can_use_render_priority is not implemented for Material")
   }
 
-  public fun setNextPass(nextPass: Material?): Unit {
+  public final fun setNextPass(nextPass: Material?): Unit {
     TransferContext.writeArguments(OBJECT to nextPass)
     TransferContext.callMethod(rawPtr, MethodBindings.setNextPassPtr, NIL)
   }
 
-  public fun getNextPass(): Material? {
+  public final fun getNextPass(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNextPassPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
-  public fun setRenderPriority(priority: Int): Unit {
+  public final fun setRenderPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
   }
 
-  public fun getRenderPriority(): Int {
+  public final fun getRenderPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -127,7 +127,7 @@ public open class Material : Resource() {
    * Only available when running in the editor. Opens a popup that visualizes the generated shader
    * code, including all variants and internal shader code.
    */
-  public fun inspectNativeShaderCode(): Unit {
+  public final fun inspectNativeShaderCode(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
@@ -135,7 +135,7 @@ public open class Material : Resource() {
   /**
    * Creates a placeholder version of this resource ([PlaceholderMaterial]).
    */
-  public fun createPlaceholder(): Resource? {
+  public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)

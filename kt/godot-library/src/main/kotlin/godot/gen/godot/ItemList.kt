@@ -103,7 +103,7 @@ public open class ItemList : Control() {
   /**
    * Allows single or multiple item selection. See the [SelectMode] constants.
    */
-  public var selectMode: SelectMode
+  public final inline var selectMode: SelectMode
     @JvmName("selectModeProperty")
     get() = getSelectMode()
     @JvmName("selectModeProperty")
@@ -114,7 +114,7 @@ public open class ItemList : Control() {
   /**
    * If `true`, the currently selected item can be selected again.
    */
-  public var allowReselect: Boolean
+  public final inline var allowReselect: Boolean
     @JvmName("allowReselectProperty")
     get() = getAllowReselect()
     @JvmName("allowReselectProperty")
@@ -125,7 +125,7 @@ public open class ItemList : Control() {
   /**
    * If `true`, right mouse button click can select items.
    */
-  public var allowRmbSelect: Boolean
+  public final inline var allowRmbSelect: Boolean
     @JvmName("allowRmbSelectProperty")
     get() = getAllowRmbSelect()
     @JvmName("allowRmbSelectProperty")
@@ -136,7 +136,7 @@ public open class ItemList : Control() {
   /**
    * If `true`, allows navigating the [ItemList] with letter keys through incremental search.
    */
-  public var allowSearch: Boolean
+  public final inline var allowSearch: Boolean
     @JvmName("allowSearchProperty")
     get() = getAllowSearch()
     @JvmName("allowSearchProperty")
@@ -150,7 +150,7 @@ public open class ItemList : Control() {
    * **Note:** This property takes effect only when [iconMode] is [ICON_MODE_TOP]. To make the text
    * wrap, [fixedColumnWidth] should be greater than zero.
    */
-  public var maxTextLines: Int
+  public final inline var maxTextLines: Int
     @JvmName("maxTextLinesProperty")
     get() = getMaxTextLines()
     @JvmName("maxTextLinesProperty")
@@ -161,7 +161,7 @@ public open class ItemList : Control() {
   /**
    * If `true`, the control will automatically resize the height to fit its content.
    */
-  public var autoHeight: Boolean
+  public final inline var autoHeight: Boolean
     @JvmName("autoHeightProperty")
     get() = hasAutoHeight()
     @JvmName("autoHeightProperty")
@@ -173,7 +173,7 @@ public open class ItemList : Control() {
    * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See
    * [TextServer.OverrunBehavior] for a description of all modes.
    */
-  public var textOverrunBehavior: TextServer.OverrunBehavior
+  public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
     get() = getTextOverrunBehavior()
     @JvmName("textOverrunBehaviorProperty")
@@ -184,7 +184,7 @@ public open class ItemList : Control() {
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Int
+  public final inline var itemCount: Int
     @JvmName("itemCountProperty")
     get() = getItemCount()
     @JvmName("itemCountProperty")
@@ -197,7 +197,7 @@ public open class ItemList : Control() {
    * If greater than zero, the content will be split among the specified columns.
    * A value of zero means unlimited columns, i.e. all items will be put in the same row.
    */
-  public var maxColumns: Int
+  public final inline var maxColumns: Int
     @JvmName("maxColumnsProperty")
     get() = getMaxColumns()
     @JvmName("maxColumnsProperty")
@@ -209,7 +209,7 @@ public open class ItemList : Control() {
    * Whether all columns will have the same width.
    * If `true`, the width is equal to the largest column width of all columns.
    */
-  public var sameColumnWidth: Boolean
+  public final inline var sameColumnWidth: Boolean
     @JvmName("sameColumnWidthProperty")
     get() = isSameColumnWidth()
     @JvmName("sameColumnWidthProperty")
@@ -222,7 +222,7 @@ public open class ItemList : Control() {
    * A value of zero disables the adjustment, each item will have a width equal to the width of its
    * content and the columns will have an uneven width.
    */
-  public var fixedColumnWidth: Int
+  public final inline var fixedColumnWidth: Int
     @JvmName("fixedColumnWidthProperty")
     get() = getFixedColumnWidth()
     @JvmName("fixedColumnWidthProperty")
@@ -233,7 +233,7 @@ public open class ItemList : Control() {
   /**
    * The icon position, whether above or to the left of the text. See the [IconMode] constants.
    */
-  public var iconMode: IconMode
+  public final inline var iconMode: IconMode
     @JvmName("iconModeProperty")
     get() = getIconMode()
     @JvmName("iconModeProperty")
@@ -244,7 +244,7 @@ public open class ItemList : Control() {
   /**
    * The scale of icon applied after [fixedIconSize] and transposing takes effect.
    */
-  public var iconScale: Float
+  public final inline var iconScale: Float
     @JvmName("iconScaleProperty")
     get() = getIconScale()
     @JvmName("iconScaleProperty")
@@ -257,7 +257,7 @@ public open class ItemList : Control() {
    * If either X or Y component is not greater than zero, icon size won't be affected.
    */
   @CoreTypeLocalCopy
-  public var fixedIconSize: Vector2i
+  public final inline var fixedIconSize: Vector2i
     @JvmName("fixedIconSizeProperty")
     get() = getFixedIconSize()
     @JvmName("fixedIconSizeProperty")
@@ -288,7 +288,7 @@ public open class ItemList : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fixedIconSizeMutate(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply{
+  public final fun fixedIconSizeMutate(block: Vector2i.() -> Unit): Vector2i = fixedIconSize.apply{
       block(this)
       fixedIconSize = this
   }
@@ -300,7 +300,7 @@ public open class ItemList : Control() {
    * If selectable is `true`, the list item will be selectable.
    */
   @JvmOverloads
-  public fun addItem(
+  public final fun addItem(
     text: String,
     icon: Texture2D? = null,
     selectable: Boolean = true,
@@ -314,7 +314,7 @@ public open class ItemList : Control() {
    * Adds an item to the item list with no text, only an icon. Returns the index of an added item.
    */
   @JvmOverloads
-  public fun addIconItem(icon: Texture2D?, selectable: Boolean = true): Int {
+  public final fun addIconItem(icon: Texture2D?, selectable: Boolean = true): Int {
     TransferContext.writeArguments(OBJECT to icon, BOOL to selectable)
     TransferContext.callMethod(rawPtr, MethodBindings.addIconItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -323,7 +323,7 @@ public open class ItemList : Control() {
   /**
    * Sets text of the item associated with the specified index.
    */
-  public fun setItemText(idx: Int, text: String): Unit {
+  public final fun setItemText(idx: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemTextPtr, NIL)
   }
@@ -331,7 +331,7 @@ public open class ItemList : Control() {
   /**
    * Returns the text associated with the specified index.
    */
-  public fun getItemText(idx: Int): String {
+  public final fun getItemText(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -340,7 +340,7 @@ public open class ItemList : Control() {
   /**
    * Sets (or replaces) the icon's [Texture2D] associated with the specified index.
    */
-  public fun setItemIcon(idx: Int, icon: Texture2D?): Unit {
+  public final fun setItemIcon(idx: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -348,7 +348,7 @@ public open class ItemList : Control() {
   /**
    * Returns the icon associated with the specified index.
    */
-  public fun getItemIcon(idx: Int): Texture2D? {
+  public final fun getItemIcon(idx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
@@ -357,7 +357,7 @@ public open class ItemList : Control() {
   /**
    * Sets item's text base writing direction.
    */
-  public fun setItemTextDirection(idx: Int, direction: Control.TextDirection): Unit {
+  public final fun setItemTextDirection(idx: Int, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to direction.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemTextDirectionPtr, NIL)
   }
@@ -365,7 +365,7 @@ public open class ItemList : Control() {
   /**
    * Returns item's text base writing direction.
    */
-  public fun getItemTextDirection(idx: Int): Control.TextDirection {
+  public final fun getItemTextDirection(idx: Int): Control.TextDirection {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
@@ -375,7 +375,7 @@ public open class ItemList : Control() {
    * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
    * empty current locale is used instead.
    */
-  public fun setItemLanguage(idx: Int, language: String): Unit {
+  public final fun setItemLanguage(idx: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemLanguagePtr, NIL)
   }
@@ -383,7 +383,7 @@ public open class ItemList : Control() {
   /**
    * Returns item's text language code.
    */
-  public fun getItemLanguage(idx: Int): String {
+  public final fun getItemLanguage(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -392,7 +392,7 @@ public open class ItemList : Control() {
   /**
    * Sets whether the item icon will be drawn transposed.
    */
-  public fun setItemIconTransposed(idx: Int, transposed: Boolean): Unit {
+  public final fun setItemIconTransposed(idx: Int, transposed: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to transposed)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconTransposedPtr, NIL)
   }
@@ -400,7 +400,7 @@ public open class ItemList : Control() {
   /**
    * Returns `true` if the item icon will be drawn transposed, i.e. the X and Y axes are swapped.
    */
-  public fun isItemIconTransposed(idx: Int): Boolean {
+  public final fun isItemIconTransposed(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemIconTransposedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -409,7 +409,7 @@ public open class ItemList : Control() {
   /**
    * Sets the region of item's icon used. The whole icon will be used if the region has no area.
    */
-  public fun setItemIconRegion(idx: Int, rect: Rect2): Unit {
+  public final fun setItemIconRegion(idx: Int, rect: Rect2): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconRegionPtr, NIL)
   }
@@ -417,7 +417,7 @@ public open class ItemList : Control() {
   /**
    * Returns the region of item's icon used. The whole icon will be used if the region has no area.
    */
-  public fun getItemIconRegion(idx: Int): Rect2 {
+  public final fun getItemIconRegion(idx: Int): Rect2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconRegionPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
@@ -426,7 +426,7 @@ public open class ItemList : Control() {
   /**
    * Sets a modulating [Color] of the item associated with the specified index.
    */
-  public fun setItemIconModulate(idx: Int, modulate: Color): Unit {
+  public final fun setItemIconModulate(idx: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to modulate)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconModulatePtr, NIL)
   }
@@ -434,7 +434,7 @@ public open class ItemList : Control() {
   /**
    * Returns a [Color] modulating item's icon at the specified index.
    */
-  public fun getItemIconModulate(idx: Int): Color {
+  public final fun getItemIconModulate(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -443,7 +443,7 @@ public open class ItemList : Control() {
   /**
    * Allows or disallows selection of the item associated with the specified index.
    */
-  public fun setItemSelectable(idx: Int, selectable: Boolean): Unit {
+  public final fun setItemSelectable(idx: Int, selectable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to selectable)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemSelectablePtr, NIL)
   }
@@ -451,7 +451,7 @@ public open class ItemList : Control() {
   /**
    * Returns `true` if the item at the specified index is selectable.
    */
-  public fun isItemSelectable(idx: Int): Boolean {
+  public final fun isItemSelectable(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemSelectablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -462,7 +462,7 @@ public open class ItemList : Control() {
    * Disabled items cannot be selected and do not trigger activation signals (when double-clicking
    * or pressing [kbd]Enter[/kbd]).
    */
-  public fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
+  public final fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemDisabledPtr, NIL)
   }
@@ -470,7 +470,7 @@ public open class ItemList : Control() {
   /**
    * Returns `true` if the item at the specified index is disabled.
    */
-  public fun isItemDisabled(idx: Int): Boolean {
+  public final fun isItemDisabled(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -479,7 +479,7 @@ public open class ItemList : Control() {
   /**
    * Sets a value (of any type) to be stored with the item associated with the specified index.
    */
-  public fun setItemMetadata(idx: Int, metadata: Any?): Unit {
+  public final fun setItemMetadata(idx: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemMetadataPtr, NIL)
   }
@@ -487,7 +487,7 @@ public open class ItemList : Control() {
   /**
    * Returns the metadata value of the specified index.
    */
-  public fun getItemMetadata(idx: Int): Any? {
+  public final fun getItemMetadata(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -496,7 +496,7 @@ public open class ItemList : Control() {
   /**
    * Sets the background color of the item specified by [idx] index to the specified [Color].
    */
-  public fun setItemCustomBgColor(idx: Int, customBgColor: Color): Unit {
+  public final fun setItemCustomBgColor(idx: Int, customBgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customBgColor)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemCustomBgColorPtr, NIL)
   }
@@ -504,7 +504,7 @@ public open class ItemList : Control() {
   /**
    * Returns the custom background color of the item specified by [idx] index.
    */
-  public fun getItemCustomBgColor(idx: Int): Color {
+  public final fun getItemCustomBgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCustomBgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -513,7 +513,7 @@ public open class ItemList : Control() {
   /**
    * Sets the foreground color of the item specified by [idx] index to the specified [Color].
    */
-  public fun setItemCustomFgColor(idx: Int, customFgColor: Color): Unit {
+  public final fun setItemCustomFgColor(idx: Int, customFgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customFgColor)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemCustomFgColorPtr, NIL)
   }
@@ -521,7 +521,7 @@ public open class ItemList : Control() {
   /**
    * Returns the custom foreground color of the item specified by [idx] index.
    */
-  public fun getItemCustomFgColor(idx: Int): Color {
+  public final fun getItemCustomFgColor(idx: Int): Color {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCustomFgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -534,7 +534,7 @@ public open class ItemList : Control() {
    * before it redraws in the next frame.
    */
   @JvmOverloads
-  public fun getItemRect(idx: Int, expand: Boolean = true): Rect2 {
+  public final fun getItemRect(idx: Int, expand: Boolean = true): Rect2 {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to expand)
     TransferContext.callMethod(rawPtr, MethodBindings.getItemRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
@@ -543,7 +543,7 @@ public open class ItemList : Control() {
   /**
    * Sets whether the tooltip hint is enabled for specified item index.
    */
-  public fun setItemTooltipEnabled(idx: Int, enable: Boolean): Unit {
+  public final fun setItemTooltipEnabled(idx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemTooltipEnabledPtr, NIL)
   }
@@ -551,7 +551,7 @@ public open class ItemList : Control() {
   /**
    * Returns `true` if the tooltip is enabled for specified item index.
    */
-  public fun isItemTooltipEnabled(idx: Int): Boolean {
+  public final fun isItemTooltipEnabled(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemTooltipEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -560,7 +560,7 @@ public open class ItemList : Control() {
   /**
    * Sets the tooltip hint for the item associated with the specified index.
    */
-  public fun setItemTooltip(idx: Int, tooltip: String): Unit {
+  public final fun setItemTooltip(idx: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemTooltipPtr, NIL)
   }
@@ -568,7 +568,7 @@ public open class ItemList : Control() {
   /**
    * Returns the tooltip hint associated with the specified index.
    */
-  public fun getItemTooltip(idx: Int): String {
+  public final fun getItemTooltip(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -579,7 +579,7 @@ public open class ItemList : Control() {
    * **Note:** This method does not trigger the item selection signal.
    */
   @JvmOverloads
-  public fun select(idx: Int, single: Boolean = true): Unit {
+  public final fun select(idx: Int, single: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to single)
     TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
@@ -587,7 +587,7 @@ public open class ItemList : Control() {
   /**
    * Ensures the item associated with the specified index is not selected.
    */
-  public fun deselect(idx: Int): Unit {
+  public final fun deselect(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
   }
@@ -595,7 +595,7 @@ public open class ItemList : Control() {
   /**
    * Ensures there are no items selected.
    */
-  public fun deselectAll(): Unit {
+  public final fun deselectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.deselectAllPtr, NIL)
   }
@@ -603,7 +603,7 @@ public open class ItemList : Control() {
   /**
    * Returns `true` if the item at the specified index is currently selected.
    */
-  public fun isSelected(idx: Int): Boolean {
+  public final fun isSelected(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -612,7 +612,7 @@ public open class ItemList : Control() {
   /**
    * Returns an array with the indexes of the selected items.
    */
-  public fun getSelectedItems(): PackedInt32Array {
+  public final fun getSelectedItems(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectedItemsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -621,17 +621,17 @@ public open class ItemList : Control() {
   /**
    * Moves item from index [fromIdx] to [toIdx].
    */
-  public fun moveItem(fromIdx: Int, toIdx: Int): Unit {
+  public final fun moveItem(fromIdx: Int, toIdx: Int): Unit {
     TransferContext.writeArguments(LONG to fromIdx.toLong(), LONG to toIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.moveItemPtr, NIL)
   }
 
-  public fun setItemCount(count: Int): Unit {
+  public final fun setItemCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
   }
 
-  public fun getItemCount(): Int {
+  public final fun getItemCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -640,7 +640,7 @@ public open class ItemList : Control() {
   /**
    * Removes the item specified by [idx] index from the list.
    */
-  public fun removeItem(idx: Int): Unit {
+  public final fun removeItem(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
   }
@@ -648,7 +648,7 @@ public open class ItemList : Control() {
   /**
    * Removes all items from the list.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -656,138 +656,138 @@ public open class ItemList : Control() {
   /**
    * Sorts items in the list by their text.
    */
-  public fun sortItemsByText(): Unit {
+  public final fun sortItemsByText(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.sortItemsByTextPtr, NIL)
   }
 
-  public fun setFixedColumnWidth(width: Int): Unit {
+  public final fun setFixedColumnWidth(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFixedColumnWidthPtr, NIL)
   }
 
-  public fun getFixedColumnWidth(): Int {
+  public final fun getFixedColumnWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFixedColumnWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSameColumnWidth(enable: Boolean): Unit {
+  public final fun setSameColumnWidth(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSameColumnWidthPtr, NIL)
   }
 
-  public fun isSameColumnWidth(): Boolean {
+  public final fun isSameColumnWidth(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSameColumnWidthPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMaxTextLines(lines: Int): Unit {
+  public final fun setMaxTextLines(lines: Int): Unit {
     TransferContext.writeArguments(LONG to lines.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextLinesPtr, NIL)
   }
 
-  public fun getMaxTextLines(): Int {
+  public final fun getMaxTextLines(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextLinesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMaxColumns(amount: Int): Unit {
+  public final fun setMaxColumns(amount: Int): Unit {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxColumnsPtr, NIL)
   }
 
-  public fun getMaxColumns(): Int {
+  public final fun getMaxColumns(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxColumnsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSelectMode(mode: SelectMode): Unit {
+  public final fun setSelectMode(mode: SelectMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
   }
 
-  public fun getSelectMode(): SelectMode {
+  public final fun getSelectMode(): SelectMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
     return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setIconMode(mode: IconMode): Unit {
+  public final fun setIconMode(mode: IconMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setIconModePtr, NIL)
   }
 
-  public fun getIconMode(): IconMode {
+  public final fun getIconMode(): IconMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIconModePtr, LONG)
     return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFixedIconSize(size: Vector2i): Unit {
+  public final fun setFixedIconSize(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setFixedIconSizePtr, NIL)
   }
 
-  public fun getFixedIconSize(): Vector2i {
+  public final fun getFixedIconSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFixedIconSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
-  public fun setIconScale(scale: Float): Unit {
+  public final fun setIconScale(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setIconScalePtr, NIL)
   }
 
-  public fun getIconScale(): Float {
+  public final fun getIconScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIconScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAllowRmbSelect(allow: Boolean): Unit {
+  public final fun setAllowRmbSelect(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
   }
 
-  public fun getAllowRmbSelect(): Boolean {
+  public final fun getAllowRmbSelect(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAllowReselect(allow: Boolean): Unit {
+  public final fun setAllowReselect(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
   }
 
-  public fun getAllowReselect(): Boolean {
+  public final fun getAllowReselect(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAllowSearch(allow: Boolean): Unit {
+  public final fun setAllowSearch(allow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
   }
 
-  public fun getAllowSearch(): Boolean {
+  public final fun getAllowSearch(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAutoHeight(enable: Boolean): Unit {
+  public final fun setAutoHeight(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoHeightPtr, NIL)
   }
 
-  public fun hasAutoHeight(): Boolean {
+  public final fun hasAutoHeight(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAutoHeightPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -796,7 +796,7 @@ public open class ItemList : Control() {
   /**
    * Returns `true` if one or more items are selected.
    */
-  public fun isAnythingSelected(): Boolean {
+  public final fun isAnythingSelected(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAnythingSelectedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -810,7 +810,7 @@ public open class ItemList : Control() {
    * before it redraws in the next frame.
    */
   @JvmOverloads
-  public fun getItemAtPosition(position: Vector2, exact: Boolean = false): Int {
+  public final fun getItemAtPosition(position: Vector2, exact: Boolean = false): Int {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to exact)
     TransferContext.callMethod(rawPtr, MethodBindings.getItemAtPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -819,7 +819,7 @@ public open class ItemList : Control() {
   /**
    * Ensure current selection is visible, adjusting the scroll position as necessary.
    */
-  public fun ensureCurrentIsVisible(): Unit {
+  public final fun ensureCurrentIsVisible(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ensureCurrentIsVisiblePtr, NIL)
   }
@@ -829,18 +829,18 @@ public open class ItemList : Control() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getVScrollBar(): VScrollBar? {
+  public final fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
   }
 
-  public fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
     TransferContext.writeArguments(LONG to overrunBehavior.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
-  public fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+  public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
@@ -851,7 +851,7 @@ public open class ItemList : Control() {
    * of the items, or other relevant settings like [autoHeight], change. The method can be used to
    * trigger the update ahead of next drawing pass.
    */
-  public fun forceUpdateListSize(): Unit {
+  public final fun forceUpdateListSize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateListSizePtr, NIL)
   }

@@ -34,7 +34,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   /**
    * The number of [PhysicalBone2D] nodes linked in this modification.
    */
-  public var physicalBoneChainLength: Int
+  public final inline var physicalBoneChainLength: Int
     @JvmName("physicalBoneChainLengthProperty")
     get() = getPhysicalBoneChainLength()
     @JvmName("physicalBoneChainLengthProperty")
@@ -46,12 +46,12 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES, scriptIndex)
   }
 
-  public fun setPhysicalBoneChainLength(length: Int): Unit {
+  public final fun setPhysicalBoneChainLength(length: Int): Unit {
     TransferContext.writeArguments(LONG to length.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneChainLengthPtr, NIL)
   }
 
-  public fun getPhysicalBoneChainLength(): Int {
+  public final fun getPhysicalBoneChainLength(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -62,7 +62,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * **Note:** This is just the index used for this modification, not the bone index used in the
    * [Skeleton2D].
    */
-  public fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: NodePath): Unit {
+  public final fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to physicalbone2dNode)
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneNodePtr, NIL)
   }
@@ -70,7 +70,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   /**
    * Returns the [PhysicalBone2D] node at [jointIdx].
    */
-  public fun getPhysicalBoneNode(jointIdx: Int): NodePath {
+  public final fun getPhysicalBoneNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -80,7 +80,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * Empties the list of [PhysicalBone2D] nodes and populates it with all [PhysicalBone2D] nodes
    * that are children of the [Skeleton2D].
    */
-  public fun fetchPhysicalBones(): Unit {
+  public final fun fetchPhysicalBones(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.fetchPhysicalBonesPtr, NIL)
   }
@@ -91,7 +91,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * [PhysicalBone2D] nodes with those names to start simulating.
    */
   @JvmOverloads
-  public fun startSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
+  public final fun startSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()):
+      Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr, MethodBindings.startSimulationPtr, NIL)
   }
@@ -102,7 +103,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * [PhysicalBone2D] nodes with those names to stop simulating.
    */
   @JvmOverloads
-  public fun stopSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()): Unit {
+  public final fun stopSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()):
+      Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr, MethodBindings.stopSimulationPtr, NIL)
   }

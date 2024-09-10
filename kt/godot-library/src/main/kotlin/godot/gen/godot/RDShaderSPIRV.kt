@@ -34,7 +34,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    * The SPIR-V bytecode for the vertex shader stage.
    */
-  public var bytecodeVertex: PackedByteArray
+  public final inline var bytecodeVertex: PackedByteArray
     @JvmName("bytecodeVertexProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
     @JvmName("bytecodeVertexProperty")
@@ -45,7 +45,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    * The SPIR-V bytecode for the fragment shader stage.
    */
-  public var bytecodeFragment: PackedByteArray
+  public final inline var bytecodeFragment: PackedByteArray
     @JvmName("bytecodeFragmentProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
     @JvmName("bytecodeFragmentProperty")
@@ -56,7 +56,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    * The SPIR-V bytecode for the tessellation control shader stage.
    */
-  public var bytecodeTesselationControl: PackedByteArray
+  public final inline var bytecodeTesselationControl: PackedByteArray
     @JvmName("bytecodeTesselationControlProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
     @JvmName("bytecodeTesselationControlProperty")
@@ -67,7 +67,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    * The SPIR-V bytecode for the tessellation evaluation shader stage.
    */
-  public var bytecodeTesselationEvaluation: PackedByteArray
+  public final inline var bytecodeTesselationEvaluation: PackedByteArray
     @JvmName("bytecodeTesselationEvaluationProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
     @JvmName("bytecodeTesselationEvaluationProperty")
@@ -78,7 +78,7 @@ public open class RDShaderSPIRV : Resource() {
   /**
    * The SPIR-V bytecode for the compute shader stage.
    */
-  public var bytecodeCompute: PackedByteArray
+  public final inline var bytecodeCompute: PackedByteArray
     @JvmName("bytecodeComputeProperty")
     get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
     @JvmName("bytecodeComputeProperty")
@@ -90,7 +90,7 @@ public open class RDShaderSPIRV : Resource() {
    * The compilation error message for the vertex shader stage (set by the SPIR-V compiler and
    * Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorVertex: String
+  public final inline var compileErrorVertex: String
     @JvmName("compileErrorVertexProperty")
     get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
     @JvmName("compileErrorVertexProperty")
@@ -102,7 +102,7 @@ public open class RDShaderSPIRV : Resource() {
    * The compilation error message for the fragment shader stage (set by the SPIR-V compiler and
    * Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorFragment: String
+  public final inline var compileErrorFragment: String
     @JvmName("compileErrorFragmentProperty")
     get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
     @JvmName("compileErrorFragmentProperty")
@@ -114,7 +114,7 @@ public open class RDShaderSPIRV : Resource() {
    * The compilation error message for the tessellation control shader stage (set by the SPIR-V
    * compiler and Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorTesselationControl: String
+  public final inline var compileErrorTesselationControl: String
     @JvmName("compileErrorTesselationControlProperty")
     get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
     @JvmName("compileErrorTesselationControlProperty")
@@ -126,7 +126,7 @@ public open class RDShaderSPIRV : Resource() {
    * The compilation error message for the tessellation evaluation shader stage (set by the SPIR-V
    * compiler and Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorTesselationEvaluation: String
+  public final inline var compileErrorTesselationEvaluation: String
     @JvmName("compileErrorTesselationEvaluationProperty")
     get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
     @JvmName("compileErrorTesselationEvaluationProperty")
@@ -138,7 +138,7 @@ public open class RDShaderSPIRV : Resource() {
    * The compilation error message for the compute shader stage (set by the SPIR-V compiler and
    * Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorCompute: String
+  public final inline var compileErrorCompute: String
     @JvmName("compileErrorComputeProperty")
     get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
     @JvmName("compileErrorComputeProperty")
@@ -155,7 +155,8 @@ public open class RDShaderSPIRV : Resource() {
    * [bytecodeCompute], [bytecodeFragment], [bytecodeTesselationControl],
    * [bytecodeTesselationEvaluation], [bytecodeVertex].
    */
-  public fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray): Unit {
+  public final fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray):
+      Unit {
     TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
     TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
   }
@@ -164,7 +165,7 @@ public open class RDShaderSPIRV : Resource() {
    * Equivalent to getting one of [bytecodeCompute], [bytecodeFragment],
    * [bytecodeTesselationControl], [bytecodeTesselationEvaluation], [bytecodeVertex].
    */
-  public fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
+  public final fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -175,7 +176,8 @@ public open class RDShaderSPIRV : Resource() {
    * to setting one of [compileErrorCompute], [compileErrorFragment], [compileErrorTesselationControl],
    * [compileErrorTesselationEvaluation], [compileErrorVertex].
    */
-  public fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String): Unit {
+  public final fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String):
+      Unit {
     TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
     TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
   }
@@ -185,7 +187,7 @@ public open class RDShaderSPIRV : Resource() {
    * of [compileErrorCompute], [compileErrorFragment], [compileErrorTesselationControl],
    * [compileErrorTesselationEvaluation], [compileErrorVertex].
    */
-  public fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
+  public final fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

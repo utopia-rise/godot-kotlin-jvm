@@ -96,7 +96,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * If `true`, `.` and `..` are included when navigating the directory.
    * Affects [listDirBegin] and [getDirectories].
    */
-  public var includeNavigational: Boolean
+  public final inline var includeNavigational: Boolean
     @JvmName("includeNavigationalProperty")
     get() = getIncludeNavigational()
     @JvmName("includeNavigationalProperty")
@@ -108,7 +108,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * If `true`, hidden files are included when navigating the directory.
    * Affects [listDirBegin], [getDirectories] and [getFiles].
    */
-  public var includeHidden: Boolean
+  public final inline var includeHidden: Boolean
     @JvmName("includeHiddenProperty")
     get() = getIncludeHidden()
     @JvmName("includeHiddenProperty")
@@ -129,7 +129,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * can vary between operating systems. If you want a list of all files or folders sorted
    * alphabetically, use [getFiles] or [getDirectories].
    */
-  public fun listDirBegin(): GodotError {
+  public final fun listDirBegin(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.listDirBeginPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -141,7 +141,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * fully processed, the method returns an empty [String] and closes the stream automatically (i.e.
    * [listDirEnd] would not be mandatory in such a case).
    */
-  public fun getNext(): String {
+  public final fun getNext(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -151,7 +151,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns whether the current item processed with the last [getNext] call is a directory (`.` and
    * `..` are considered directories).
    */
-  public fun currentIsDir(): Boolean {
+  public final fun currentIsDir(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.currentIsDirPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -161,7 +161,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Closes the current stream opened with [listDirBegin] (whether it has been fully processed with
    * [getNext] does not matter).
    */
-  public fun listDirEnd(): Unit {
+  public final fun listDirEnd(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.listDirEndPtr, NIL)
   }
@@ -177,7 +177,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * In an exported project, the list of returned files will also vary depending on whether
    * [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`.
    */
-  public fun getFiles(): PackedStringArray {
+  public final fun getFiles(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -188,7 +188,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * The array is sorted alphabetically.
    * Affected by [includeHidden] and [includeNavigational].
    */
-  public fun getDirectories(): PackedStringArray {
+  public final fun getDirectories(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectoriesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -198,7 +198,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns the currently opened directory's drive index. See [getDriveName] to convert returned
    * index to the name of the drive.
    */
-  public fun getCurrentDrive(): Int {
+  public final fun getCurrentDrive(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDrivePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -213,7 +213,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * inside `res://`, you can't change it to `user://` directory. If you need to open a directory in
    * another access scope, use [open] to create a new instance instead.
    */
-  public fun changeDir(toDir: String): GodotError {
+  public final fun changeDir(toDir: String): GodotError {
     TransferContext.writeArguments(STRING to toDir)
     TransferContext.callMethod(rawPtr, MethodBindings.changeDirPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -224,7 +224,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * `C:\tmp\folder`).
    */
   @JvmOverloads
-  public fun getCurrentDir(includeDrive: Boolean = true): String {
+  public final fun getCurrentDir(includeDrive: Boolean = true): String {
     TransferContext.writeArguments(BOOL to includeDrive)
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -236,7 +236,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * path recursively, see [makeDirRecursive]).
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public fun makeDir(path: String): GodotError {
+  public final fun makeDir(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.makeDirPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -247,7 +247,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [makeDir] recursively. The argument can be relative to the current directory, or an absolute path.
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public fun makeDirRecursive(path: String): GodotError {
+  public final fun makeDirRecursive(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.makeDirRecursivePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -258,7 +258,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * or an absolute path.
    * For a static equivalent, use [FileAccess.fileExists].
    */
-  public fun fileExists(path: String): Boolean {
+  public final fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.fileExistsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -268,7 +268,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns whether the target directory exists. The argument can be relative to the current
    * directory, or an absolute path.
    */
-  public fun dirExists(path: String): Boolean {
+  public final fun dirExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.dirExistsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -278,7 +278,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns the available space on the current directory's disk, in bytes. Returns `0` if the
    * platform-specific method to query the available space fails.
    */
-  public fun getSpaceLeft(): Long {
+  public final fun getSpaceLeft(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpaceLeftPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -293,7 +293,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns one of the [Error] code constants ([OK] on success).
    */
   @JvmOverloads
-  public fun copy(
+  public final fun copy(
     from: String,
     to: String,
     chmodFlags: Int = -1,
@@ -309,7 +309,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * exists and is not access-protected, it will be overwritten.
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public fun rename(from: String, to: String): GodotError {
+  public final fun rename(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
     TransferContext.callMethod(rawPtr, MethodBindings.renamePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -322,7 +322,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * If you don't want to delete the file/directory permanently, use [OS.moveToTrash] instead.
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public fun remove(path: String): GodotError {
+  public final fun remove(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.removePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -333,7 +333,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * reparse point.
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
-  public fun isLink(path: String): Boolean {
+  public final fun isLink(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isLinkPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -343,7 +343,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Returns target of the symbolic link.
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
-  public fun readLink(path: String): String {
+  public final fun readLink(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.readLinkPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -355,29 +355,29 @@ public open class DirAccess internal constructor() : RefCounted() {
    * privileges or Developer Mode is enabled.
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
-  public fun createLink(source: String, target: String): GodotError {
+  public final fun createLink(source: String, target: String): GodotError {
     TransferContext.writeArguments(STRING to source, STRING to target)
     TransferContext.callMethod(rawPtr, MethodBindings.createLinkPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setIncludeNavigational(enable: Boolean): Unit {
+  public final fun setIncludeNavigational(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setIncludeNavigationalPtr, NIL)
   }
 
-  public fun getIncludeNavigational(): Boolean {
+  public final fun getIncludeNavigational(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIncludeNavigationalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setIncludeHidden(enable: Boolean): Unit {
+  public final fun setIncludeHidden(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setIncludeHiddenPtr, NIL)
   }
 
-  public fun getIncludeHidden(): Boolean {
+  public final fun getIncludeHidden(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIncludeHiddenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -388,7 +388,7 @@ public open class DirAccess internal constructor() : RefCounted() {
    * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and
    * Windows. On other platforms, it always returns `true`.
    */
-  public fun isCaseSensitive(path: String): Boolean {
+  public final fun isCaseSensitive(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isCaseSensitivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -403,7 +403,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * Returns `null` if opening the directory failed. You can use [getOpenError] to check the error
      * that occurred.
      */
-    public fun `open`(path: String): DirAccess? {
+    public final fun `open`(path: String): DirAccess? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as DirAccess?)
@@ -412,7 +412,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Returns the result of the last [open] call in the current thread.
      */
-    public fun getOpenError(): GodotError {
+    public final fun getOpenError(): GodotError {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -423,7 +423,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * directories, at the given [path]. The array is sorted alphabetically.
      * Use [getFiles] if you want more control of what gets included.
      */
-    public fun getFilesAt(path: String): PackedStringArray {
+    public final fun getFilesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getFilesAtPtr, PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -434,7 +434,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * files, at the given [path]. The array is sorted alphabetically.
      * Use [getDirectories] if you want more control of what gets included.
      */
-    public fun getDirectoriesAt(path: String): PackedStringArray {
+    public final fun getDirectoriesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getDirectoriesAtPtr, PACKED_STRING_ARRAY)
       return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -446,7 +446,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
      * On other platforms, the method returns 0.
      */
-    public fun getDriveCount(): Int {
+    public final fun getDriveCount(): Int {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDriveCountPtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -459,7 +459,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * On other platforms, or if the requested drive does not exist, the method returns an empty
      * String.
      */
-    public fun getDriveName(idx: Int): String {
+    public final fun getDriveName(idx: Int): String {
       TransferContext.writeArguments(LONG to idx.toLong())
       TransferContext.callMethod(0, MethodBindings.getDriveNamePtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
@@ -468,7 +468,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [makeDir]. Supports only absolute paths.
      */
-    public fun makeDirAbsolute(path: String): GodotError {
+    public final fun makeDirAbsolute(path: String): GodotError {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.makeDirAbsolutePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -477,7 +477,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [makeDirRecursive]. Supports only absolute paths.
      */
-    public fun makeDirRecursiveAbsolute(path: String): GodotError {
+    public final fun makeDirRecursiveAbsolute(path: String): GodotError {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.makeDirRecursiveAbsolutePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -486,7 +486,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [dirExists]. Supports only absolute paths.
      */
-    public fun dirExistsAbsolute(path: String): Boolean {
+    public final fun dirExistsAbsolute(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.dirExistsAbsolutePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -496,7 +496,7 @@ public open class DirAccess internal constructor() : RefCounted() {
      * Static version of [copy]. Supports only absolute paths.
      */
     @JvmOverloads
-    public fun copyAbsolute(
+    public final fun copyAbsolute(
       from: String,
       to: String,
       chmodFlags: Int = -1,
@@ -509,7 +509,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [rename]. Supports only absolute paths.
      */
-    public fun renameAbsolute(from: String, to: String): GodotError {
+    public final fun renameAbsolute(from: String, to: String): GodotError {
       TransferContext.writeArguments(STRING to from, STRING to to)
       TransferContext.callMethod(0, MethodBindings.renameAbsolutePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -518,7 +518,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [remove]. Supports only absolute paths.
      */
-    public fun removeAbsolute(path: String): GodotError {
+    public final fun removeAbsolute(path: String): GodotError {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.removeAbsolutePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

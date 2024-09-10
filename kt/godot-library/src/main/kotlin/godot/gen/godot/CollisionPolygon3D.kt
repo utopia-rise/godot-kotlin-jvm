@@ -36,7 +36,7 @@ public open class CollisionPolygon3D : Node3D() {
    * Length that the resulting collision extends in either direction perpendicular to its 2D
    * polygon.
    */
-  public var depth: Float
+  public final inline var depth: Float
     @JvmName("depthProperty")
     get() = getDepth()
     @JvmName("depthProperty")
@@ -47,7 +47,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * If `true`, no collision will be produced.
    */
-  public var disabled: Boolean
+  public final inline var disabled: Boolean
     @JvmName("disabledProperty")
     get() = isDisabled()
     @JvmName("disabledProperty")
@@ -58,7 +58,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * Array of vertices which define the 2D polygon in the local XY plane.
    */
-  public var polygon: PackedVector2Array
+  public final inline var polygon: PackedVector2Array
     @JvmName("polygonProperty")
     get() = getPolygon()
     @JvmName("polygonProperty")
@@ -69,7 +69,7 @@ public open class CollisionPolygon3D : Node3D() {
   /**
    * The collision margin for the generated [Shape3D]. See [Shape3D.margin] for more details.
    */
-  public var margin: Float
+  public final inline var margin: Float
     @JvmName("marginProperty")
     get() = getMargin()
     @JvmName("marginProperty")
@@ -81,45 +81,45 @@ public open class CollisionPolygon3D : Node3D() {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON3D, scriptIndex)
   }
 
-  public fun setDepth(depth: Float): Unit {
+  public final fun setDepth(depth: Float): Unit {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
-  public fun getDepth(): Float {
+  public final fun getDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
-  public fun getPolygon(): PackedVector2Array {
+  public final fun getPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
-  public fun setDisabled(disabled: Boolean): Unit {
+  public final fun setDisabled(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
-  public fun isDisabled(): Boolean {
+  public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMargin(margin: Float): Unit {
+  public final fun setMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
-  public fun getMargin(): Float {
+  public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

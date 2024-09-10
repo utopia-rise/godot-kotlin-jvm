@@ -30,7 +30,7 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   /**
    * The radius of the cylinder.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -41,7 +41,7 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   /**
    * The aspect ratio of the slice. Used to set the height relative to the width.
    */
-  public var aspectRatio: Float
+  public final inline var aspectRatio: Float
     @JvmName("aspectRatioProperty")
     get() = getAspectRatio()
     @JvmName("aspectRatioProperty")
@@ -52,7 +52,7 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   /**
    * The central angle of the cylinder. Used to set the width.
    */
-  public var centralAngle: Float
+  public final inline var centralAngle: Float
     @JvmName("centralAngleProperty")
     get() = getCentralAngle()
     @JvmName("centralAngleProperty")
@@ -63,7 +63,7 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   /**
    * The number of segments to use in the fallback mesh.
    */
-  public var fallbackSegments: Long
+  public final inline var fallbackSegments: Long
     @JvmName("fallbackSegmentsProperty")
     get() = getFallbackSegments()
     @JvmName("fallbackSegmentsProperty")
@@ -75,45 +75,45 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
     callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYERCYLINDER, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAspectRatio(aspectRatio: Float): Unit {
+  public final fun setAspectRatio(aspectRatio: Float): Unit {
     TransferContext.writeArguments(DOUBLE to aspectRatio.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAspectRatioPtr, NIL)
   }
 
-  public fun getAspectRatio(): Float {
+  public final fun getAspectRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAspectRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setCentralAngle(angle: Float): Unit {
+  public final fun setCentralAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCentralAnglePtr, NIL)
   }
 
-  public fun getCentralAngle(): Float {
+  public final fun getCentralAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCentralAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFallbackSegments(segments: Long): Unit {
+  public final fun setFallbackSegments(segments: Long): Unit {
     TransferContext.writeArguments(LONG to segments)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
   }
 
-  public fun getFallbackSegments(): Long {
+  public final fun getFallbackSegments(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

@@ -41,7 +41,7 @@ public open class Parallax2D : Node2D() {
    * further, and a value of `0` stops the objects completely.
    */
   @CoreTypeLocalCopy
-  public var scrollScale: Vector2
+  public final inline var scrollScale: Vector2
     @JvmName("scrollScaleProperty")
     get() = getScrollScale()
     @JvmName("scrollScaleProperty")
@@ -55,7 +55,7 @@ public open class Parallax2D : Node2D() {
    * **Note:** Values will loop if [repeatSize] is set higher than `0`.
    */
   @CoreTypeLocalCopy
-  public var scrollOffset: Vector2
+  public final inline var scrollOffset: Vector2
     @JvmName("scrollOffsetProperty")
     get() = getScrollOffset()
     @JvmName("scrollOffsetProperty")
@@ -70,7 +70,7 @@ public open class Parallax2D : Node2D() {
    * repeated.
    */
   @CoreTypeLocalCopy
-  public var repeatSize: Vector2
+  public final inline var repeatSize: Vector2
     @JvmName("repeatSizeProperty")
     get() = getRepeatSize()
     @JvmName("repeatSizeProperty")
@@ -82,7 +82,7 @@ public open class Parallax2D : Node2D() {
    * Velocity at which the offset scrolls automatically, in pixels per second.
    */
   @CoreTypeLocalCopy
-  public var autoscroll: Vector2
+  public final inline var autoscroll: Vector2
     @JvmName("autoscrollProperty")
     get() = getAutoscroll()
     @JvmName("autoscrollProperty")
@@ -94,7 +94,7 @@ public open class Parallax2D : Node2D() {
    * Overrides the amount of times the texture repeats. Each texture copy spreads evenly from the
    * original by [repeatSize]. Useful for when zooming out with a camera.
    */
-  public var repeatTimes: Int
+  public final inline var repeatTimes: Int
     @JvmName("repeatTimesProperty")
     get() = getRepeatTimes()
     @JvmName("repeatTimesProperty")
@@ -107,7 +107,7 @@ public open class Parallax2D : Node2D() {
    * [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
    */
   @CoreTypeLocalCopy
-  public var limitBegin: Vector2
+  public final inline var limitBegin: Vector2
     @JvmName("limitBeginProperty")
     get() = getLimitBegin()
     @JvmName("limitBeginProperty")
@@ -121,7 +121,7 @@ public open class Parallax2D : Node2D() {
    * to work.
    */
   @CoreTypeLocalCopy
-  public var limitEnd: Vector2
+  public final inline var limitEnd: Vector2
     @JvmName("limitEndProperty")
     get() = getLimitEnd()
     @JvmName("limitEndProperty")
@@ -134,7 +134,7 @@ public open class Parallax2D : Node2D() {
    * in a [CanvasLayer] separate from the current camera, it may be desired to match the value with
    * [CanvasLayer.followViewportEnabled].
    */
-  public var followViewport: Boolean
+  public final inline var followViewport: Boolean
     @JvmName("followViewportProperty")
     get() = getFollowViewport()
     @JvmName("followViewportProperty")
@@ -145,7 +145,7 @@ public open class Parallax2D : Node2D() {
   /**
    * If `true`, [Parallax2D]'s position is not affected by the position of the camera.
    */
-  public var ignoreCameraScroll: Boolean
+  public final inline var ignoreCameraScroll: Boolean
     @JvmName("ignoreCameraScrollProperty")
     get() = isIgnoreCameraScroll()
     @JvmName("ignoreCameraScrollProperty")
@@ -158,7 +158,7 @@ public open class Parallax2D : Node2D() {
    * [ignoreCameraScroll] is `true`.
    */
   @CoreTypeLocalCopy
-  public var screenOffset: Vector2
+  public final inline var screenOffset: Vector2
     @JvmName("screenOffsetProperty")
     get() = getScreenOffset()
     @JvmName("screenOffsetProperty")
@@ -192,7 +192,7 @@ public open class Parallax2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollScale.apply{
+  public final fun scrollScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollScale.apply{
       block(this)
       scrollScale = this
   }
@@ -218,7 +218,7 @@ public open class Parallax2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
+  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       block(this)
       scrollOffset = this
   }
@@ -245,7 +245,7 @@ public open class Parallax2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun repeatSizeMutate(block: Vector2.() -> Unit): Vector2 = repeatSize.apply{
+  public final fun repeatSizeMutate(block: Vector2.() -> Unit): Vector2 = repeatSize.apply{
       block(this)
       repeatSize = this
   }
@@ -269,7 +269,7 @@ public open class Parallax2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun autoscrollMutate(block: Vector2.() -> Unit): Vector2 = autoscroll.apply{
+  public final fun autoscrollMutate(block: Vector2.() -> Unit): Vector2 = autoscroll.apply{
       block(this)
       autoscroll = this
   }
@@ -294,7 +294,7 @@ public open class Parallax2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun limitBeginMutate(block: Vector2.() -> Unit): Vector2 = limitBegin.apply{
+  public final fun limitBeginMutate(block: Vector2.() -> Unit): Vector2 = limitBegin.apply{
       block(this)
       limitBegin = this
   }
@@ -320,7 +320,7 @@ public open class Parallax2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun limitEndMutate(block: Vector2.() -> Unit): Vector2 = limitEnd.apply{
+  public final fun limitEndMutate(block: Vector2.() -> Unit): Vector2 = limitEnd.apply{
       block(this)
       limitEnd = this
   }
@@ -345,117 +345,117 @@ public open class Parallax2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun screenOffsetMutate(block: Vector2.() -> Unit): Vector2 = screenOffset.apply{
+  public final fun screenOffsetMutate(block: Vector2.() -> Unit): Vector2 = screenOffset.apply{
       block(this)
       screenOffset = this
   }
 
 
-  public fun setScrollScale(scale: Vector2): Unit {
+  public final fun setScrollScale(scale: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to scale)
     TransferContext.callMethod(rawPtr, MethodBindings.setScrollScalePtr, NIL)
   }
 
-  public fun getScrollScale(): Vector2 {
+  public final fun getScrollScale(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScrollScalePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setRepeatSize(repeatSize: Vector2): Unit {
+  public final fun setRepeatSize(repeatSize: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to repeatSize)
     TransferContext.callMethod(rawPtr, MethodBindings.setRepeatSizePtr, NIL)
   }
 
-  public fun getRepeatSize(): Vector2 {
+  public final fun getRepeatSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRepeatSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setRepeatTimes(repeatTimes: Int): Unit {
+  public final fun setRepeatTimes(repeatTimes: Int): Unit {
     TransferContext.writeArguments(LONG to repeatTimes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRepeatTimesPtr, NIL)
   }
 
-  public fun getRepeatTimes(): Int {
+  public final fun getRepeatTimes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRepeatTimesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setAutoscroll(autoscroll: Vector2): Unit {
+  public final fun setAutoscroll(autoscroll: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to autoscroll)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoscrollPtr, NIL)
   }
 
-  public fun getAutoscroll(): Vector2 {
+  public final fun getAutoscroll(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoscrollPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setScrollOffset(offset: Vector2): Unit {
+  public final fun setScrollOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
   }
 
-  public fun getScrollOffset(): Vector2 {
+  public final fun getScrollOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setScreenOffset(offset: Vector2): Unit {
+  public final fun setScreenOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setScreenOffsetPtr, NIL)
   }
 
-  public fun getScreenOffset(): Vector2 {
+  public final fun getScreenOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setLimitBegin(offset: Vector2): Unit {
+  public final fun setLimitBegin(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
   }
 
-  public fun getLimitBegin(): Vector2 {
+  public final fun getLimitBegin(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setLimitEnd(offset: Vector2): Unit {
+  public final fun setLimitEnd(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
   }
 
-  public fun getLimitEnd(): Vector2 {
+  public final fun getLimitEnd(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setFollowViewport(follow: Boolean): Unit {
+  public final fun setFollowViewport(follow: Boolean): Unit {
     TransferContext.writeArguments(BOOL to follow)
     TransferContext.callMethod(rawPtr, MethodBindings.setFollowViewportPtr, NIL)
   }
 
-  public fun getFollowViewport(): Boolean {
+  public final fun getFollowViewport(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFollowViewportPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setIgnoreCameraScroll(ignore: Boolean): Unit {
+  public final fun setIgnoreCameraScroll(ignore: Boolean): Unit {
     TransferContext.writeArguments(BOOL to ignore)
     TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraScrollPtr, NIL)
   }
 
-  public fun isIgnoreCameraScroll(): Boolean {
+  public final fun isIgnoreCameraScroll(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraScrollPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -32,7 +32,7 @@ public open class PointLight2D : Light2D() {
   /**
    * [Texture2D] used for the light's appearance.
    */
-  public var texture: Texture2D?
+  public final inline var texture: Texture2D?
     @JvmName("textureProperty")
     get() = getTexture()
     @JvmName("textureProperty")
@@ -44,7 +44,7 @@ public open class PointLight2D : Light2D() {
    * The offset of the light's [texture].
    */
   @CoreTypeLocalCopy
-  public var offset: Vector2
+  public final inline var offset: Vector2
     @JvmName("offsetProperty")
     get() = getTextureOffset()
     @JvmName("offsetProperty")
@@ -55,7 +55,7 @@ public open class PointLight2D : Light2D() {
   /**
    * The [texture]'s scale factor.
    */
-  public var textureScale: Float
+  public final inline var textureScale: Float
     @JvmName("textureScaleProperty")
     get() = getTextureScale()
     @JvmName("textureScaleProperty")
@@ -67,7 +67,7 @@ public open class PointLight2D : Light2D() {
    * The height of the light. Used with 2D normal mapping. The units are in pixels, e.g. if the
    * height is 100, then it will illuminate an object 100 pixels away at a 45° angle to the plane.
    */
-  public var height: Float
+  public final inline var height: Float
     @JvmName("heightProperty")
     get() = getHeight()
     @JvmName("heightProperty")
@@ -97,40 +97,40 @@ public open class PointLight2D : Light2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
 
 
-  public fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun getTexture(): Texture2D? {
+  public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setTextureOffset(textureOffset: Vector2): Unit {
+  public final fun setTextureOffset(textureOffset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to textureOffset)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
   }
 
-  public fun getTextureOffset(): Vector2 {
+  public final fun getTextureOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setTextureScale(textureScale: Float): Unit {
+  public final fun setTextureScale(textureScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to textureScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
   }
 
-  public fun getTextureScale(): Float {
+  public final fun getTextureScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

@@ -36,7 +36,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * coordinates. Without customized query parameters this is the same path as returned by
    * [NavigationServer3D.mapGetPath].
    */
-  public var path: PackedVector3Array
+  public final inline var path: PackedVector3Array
     @JvmName("pathProperty")
     get() = getPath()
     @JvmName("pathProperty")
@@ -47,7 +47,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   /**
    * The type of navigation primitive (region or link) that each point of the path goes through.
    */
-  public var pathTypes: PackedInt32Array
+  public final inline var pathTypes: PackedInt32Array
     @JvmName("pathTypesProperty")
     get() = getPathTypes()
     @JvmName("pathTypesProperty")
@@ -58,7 +58,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   /**
    * The [RID]s of the regions and links that each point of the path goes through.
    */
-  public var pathRids: VariantArray<RID>
+  public final inline var pathRids: VariantArray<RID>
     @JvmName("pathRidsProperty")
     get() = getPathRids()
     @JvmName("pathRidsProperty")
@@ -70,7 +70,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
    * through.
    */
-  public var pathOwnerIds: PackedInt64Array
+  public final inline var pathOwnerIds: PackedInt64Array
     @JvmName("pathOwnerIdsProperty")
     get() = getPathOwnerIds()
     @JvmName("pathOwnerIdsProperty")
@@ -82,45 +82,45 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D, scriptIndex)
   }
 
-  public fun setPath(path: PackedVector3Array): Unit {
+  public final fun setPath(path: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
   }
 
-  public fun getPath(): PackedVector3Array {
+  public final fun getPath(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
-  public fun setPathTypes(pathTypes: PackedInt32Array): Unit {
+  public final fun setPathTypes(pathTypes: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to pathTypes)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathTypesPtr, NIL)
   }
 
-  public fun getPathTypes(): PackedInt32Array {
+  public final fun getPathTypes(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
-  public fun setPathRids(pathRids: VariantArray<RID>): Unit {
+  public final fun setPathRids(pathRids: VariantArray<RID>): Unit {
     TransferContext.writeArguments(ARRAY to pathRids)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathRidsPtr, NIL)
   }
 
-  public fun getPathRids(): VariantArray<RID> {
+  public final fun getPathRids(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathRidsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
   }
 
-  public fun setPathOwnerIds(pathOwnerIds: PackedInt64Array): Unit {
+  public final fun setPathOwnerIds(pathOwnerIds: PackedInt64Array): Unit {
     TransferContext.writeArguments(PACKED_INT_64_ARRAY to pathOwnerIds)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
   }
 
-  public fun getPathOwnerIds(): PackedInt64Array {
+  public final fun getPathOwnerIds(): PackedInt64Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
@@ -130,7 +130,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * Reset the result object to its initial state. This is useful to reuse the object across
    * multiple queries.
    */
-  public fun reset(): Unit {
+  public final fun reset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
   }

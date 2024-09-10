@@ -39,7 +39,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Collection of [OpenXRActionSet]s that are part of this action map.
    */
-  public var actionSets: VariantArray<Any?>
+  public final inline var actionSets: VariantArray<Any?>
     @JvmName("actionSetsProperty")
     get() = getActionSets()
     @JvmName("actionSetsProperty")
@@ -50,7 +50,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Collection of [OpenXRInteractionProfile]s that are part of this action map.
    */
-  public var interactionProfiles: VariantArray<Any?>
+  public final inline var interactionProfiles: VariantArray<Any?>
     @JvmName("interactionProfilesProperty")
     get() = getInteractionProfiles()
     @JvmName("interactionProfilesProperty")
@@ -62,12 +62,12 @@ public open class OpenXRActionMap : Resource() {
     callConstructor(ENGINECLASS_OPENXRACTIONMAP, scriptIndex)
   }
 
-  public fun setActionSets(actionSets: VariantArray<Any?>): Unit {
+  public final fun setActionSets(actionSets: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to actionSets)
     TransferContext.callMethod(rawPtr, MethodBindings.setActionSetsPtr, NIL)
   }
 
-  public fun getActionSets(): VariantArray<Any?> {
+  public final fun getActionSets(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -76,7 +76,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Retrieve the number of actions sets in our action map.
    */
-  public fun getActionSetCount(): Int {
+  public final fun getActionSetCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionSetCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -85,7 +85,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Retrieve an action set by name.
    */
-  public fun findActionSet(name: String): OpenXRActionSet? {
+  public final fun findActionSet(name: String): OpenXRActionSet? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findActionSetPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?)
@@ -94,7 +94,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Retrieve the action set at this index.
    */
-  public fun getActionSet(idx: Int): OpenXRActionSet? {
+  public final fun getActionSet(idx: Int): OpenXRActionSet? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getActionSetPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OpenXRActionSet?)
@@ -103,7 +103,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Add an action set.
    */
-  public fun addActionSet(actionSet: OpenXRActionSet?): Unit {
+  public final fun addActionSet(actionSet: OpenXRActionSet?): Unit {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(rawPtr, MethodBindings.addActionSetPtr, NIL)
   }
@@ -111,17 +111,17 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Remove an action set.
    */
-  public fun removeActionSet(actionSet: OpenXRActionSet?): Unit {
+  public final fun removeActionSet(actionSet: OpenXRActionSet?): Unit {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(rawPtr, MethodBindings.removeActionSetPtr, NIL)
   }
 
-  public fun setInteractionProfiles(interactionProfiles: VariantArray<Any?>): Unit {
+  public final fun setInteractionProfiles(interactionProfiles: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to interactionProfiles)
     TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilesPtr, NIL)
   }
 
-  public fun getInteractionProfiles(): VariantArray<Any?> {
+  public final fun getInteractionProfiles(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -130,7 +130,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Retrieve the number of interaction profiles in our action map.
    */
-  public fun getInteractionProfileCount(): Int {
+  public final fun getInteractionProfileCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfileCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -139,7 +139,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Find an interaction profile by its name (path).
    */
-  public fun findInteractionProfile(name: String): OpenXRInteractionProfile? {
+  public final fun findInteractionProfile(name: String): OpenXRInteractionProfile? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findInteractionProfilePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?)
@@ -148,7 +148,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Get the interaction profile at this index.
    */
-  public fun getInteractionProfile(idx: Int): OpenXRInteractionProfile? {
+  public final fun getInteractionProfile(idx: Int): OpenXRInteractionProfile? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OpenXRInteractionProfile?)
@@ -157,7 +157,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Add an interaction profile.
    */
-  public fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
+  public final fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
     TransferContext.writeArguments(OBJECT to interactionProfile)
     TransferContext.callMethod(rawPtr, MethodBindings.addInteractionProfilePtr, NIL)
   }
@@ -165,7 +165,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Remove an interaction profile.
    */
-  public fun removeInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
+  public final fun removeInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
     TransferContext.writeArguments(OBJECT to interactionProfile)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInteractionProfilePtr, NIL)
   }
@@ -173,7 +173,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Setup this action set with our default actions.
    */
-  public fun createDefaultActionSets(): Unit {
+  public final fun createDefaultActionSets(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createDefaultActionSetsPtr, NIL)
   }

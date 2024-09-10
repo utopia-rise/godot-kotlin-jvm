@@ -29,7 +29,7 @@ import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
-  public var joints: PackedInt32Array
+  public final inline var joints: PackedInt32Array
     @JvmName("jointsProperty")
     get() = getJoints()
     @JvmName("jointsProperty")
@@ -37,7 +37,7 @@ public open class GLTFSkeleton : Resource() {
       setJoints(value)
     }
 
-  public var roots: PackedInt32Array
+  public final inline var roots: PackedInt32Array
     @JvmName("rootsProperty")
     get() = getRoots()
     @JvmName("rootsProperty")
@@ -45,7 +45,7 @@ public open class GLTFSkeleton : Resource() {
       setRoots(value)
     }
 
-  public var uniqueNames: VariantArray<String>
+  public final inline var uniqueNames: VariantArray<String>
     @JvmName("uniqueNamesProperty")
     get() = getUniqueNames()
     @JvmName("uniqueNamesProperty")
@@ -53,7 +53,7 @@ public open class GLTFSkeleton : Resource() {
       setUniqueNames(value)
     }
 
-  public var godotBoneNode: Dictionary<Any?, Any?>
+  public final inline var godotBoneNode: Dictionary<Any?, Any?>
     @JvmName("godotBoneNodeProperty")
     get() = getGodotBoneNode()
     @JvmName("godotBoneNodeProperty")
@@ -65,41 +65,41 @@ public open class GLTFSkeleton : Resource() {
     callConstructor(ENGINECLASS_GLTFSKELETON, scriptIndex)
   }
 
-  public fun getJoints(): PackedInt32Array {
+  public final fun getJoints(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
-  public fun setJoints(joints: PackedInt32Array): Unit {
+  public final fun setJoints(joints: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to joints)
     TransferContext.callMethod(rawPtr, MethodBindings.setJointsPtr, NIL)
   }
 
-  public fun getRoots(): PackedInt32Array {
+  public final fun getRoots(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
-  public fun setRoots(roots: PackedInt32Array): Unit {
+  public final fun setRoots(roots: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to roots)
     TransferContext.callMethod(rawPtr, MethodBindings.setRootsPtr, NIL)
   }
 
-  public fun getGodotSkeleton(): Skeleton3D? {
+  public final fun getGodotSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGodotSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?)
   }
 
-  public fun getUniqueNames(): VariantArray<String> {
+  public final fun getUniqueNames(): VariantArray<String> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUniqueNamesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>)
   }
 
-  public fun setUniqueNames(uniqueNames: VariantArray<String>): Unit {
+  public final fun setUniqueNames(uniqueNames: VariantArray<String>): Unit {
     TransferContext.writeArguments(ARRAY to uniqueNames)
     TransferContext.callMethod(rawPtr, MethodBindings.setUniqueNamesPtr, NIL)
   }
@@ -109,7 +109,7 @@ public open class GLTFSkeleton : Resource() {
    * property is unused during import, and only set during export. In a GLTF file, a bone is a node, so
    * Godot converts skeleton bones to GLTF nodes.
    */
-  public fun getGodotBoneNode(): Dictionary<Any?, Any?> {
+  public final fun getGodotBoneNode(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGodotBoneNodePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -120,18 +120,18 @@ public open class GLTFSkeleton : Resource() {
    * is unused during import, and only set during export. In a GLTF file, a bone is a node, so Godot
    * converts skeleton bones to GLTF nodes.
    */
-  public fun setGodotBoneNode(godotBoneNode: Dictionary<Any?, Any?>): Unit {
+  public final fun setGodotBoneNode(godotBoneNode: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to godotBoneNode)
     TransferContext.callMethod(rawPtr, MethodBindings.setGodotBoneNodePtr, NIL)
   }
 
-  public fun getBoneAttachmentCount(): Int {
+  public final fun getBoneAttachmentCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneAttachmentCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun getBoneAttachment(idx: Int): BoneAttachment3D? {
+  public final fun getBoneAttachment(idx: Int): BoneAttachment3D? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneAttachmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as BoneAttachment3D?)

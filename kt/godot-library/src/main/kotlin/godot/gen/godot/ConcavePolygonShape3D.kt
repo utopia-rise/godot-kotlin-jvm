@@ -42,7 +42,7 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {
-  public var `data`: PackedVector3Array
+  public final inline var `data`: PackedVector3Array
     @JvmName("dataProperty")
     get() = getFaces()
     @JvmName("dataProperty")
@@ -54,7 +54,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they
    * occur only along the face normals.
    */
-  public var backfaceCollision: Boolean
+  public final inline var backfaceCollision: Boolean
     @JvmName("backfaceCollisionProperty")
     get() = isBackfaceCollisionEnabled()
     @JvmName("backfaceCollisionProperty")
@@ -70,7 +70,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * Sets the faces of the trimesh shape from an array of vertices. The [faces] array should be
    * composed of triples such that each triple of vertices defines a triangle.
    */
-  public fun setFaces(faces: PackedVector3Array): Unit {
+  public final fun setFaces(faces: PackedVector3Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces)
     TransferContext.callMethod(rawPtr, MethodBindings.setFacesPtr, NIL)
   }
@@ -79,18 +79,18 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * Returns the faces of the trimesh shape as an array of vertices. The array (of length divisible
    * by three) is naturally divided into triples; each triple of vertices defines a triangle.
    */
-  public fun getFaces(): PackedVector3Array {
+  public final fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
-  public fun setBackfaceCollisionEnabled(enabled: Boolean): Unit {
+  public final fun setBackfaceCollisionEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
   }
 
-  public fun isBackfaceCollisionEnabled(): Boolean {
+  public final fun isBackfaceCollisionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

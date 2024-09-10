@@ -42,7 +42,7 @@ public open class Shader : Resource() {
    * Returns the shader's code as the user has written it, not the full generated code used
    * internally.
    */
-  public var code: String
+  public final inline var code: String
     @JvmName("codeProperty")
     get() = getCode()
     @JvmName("codeProperty")
@@ -57,18 +57,18 @@ public open class Shader : Resource() {
   /**
    * Returns the shader mode for the shader.
    */
-  public fun getMode(): Mode {
+  public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
     return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setCode(code: String): Unit {
+  public final fun setCode(code: String): Unit {
     TransferContext.writeArguments(STRING to code)
     TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
   }
 
-  public fun getCode(): String {
+  public final fun getCode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -81,7 +81,7 @@ public open class Shader : Resource() {
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
-  public fun setDefaultTextureParameter(
+  public final fun setDefaultTextureParameter(
     name: StringName,
     texture: Texture2D?,
     index: Int = 0,
@@ -96,7 +96,7 @@ public open class Shader : Resource() {
    * **Note:** If the sampler array is used use [index] to access the specified texture.
    */
   @JvmOverloads
-  public fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
+  public final fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultTextureParameterPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
@@ -110,7 +110,7 @@ public open class Shader : Resource() {
    * If argument [getGroups] is true, parameter grouping hints will be provided.
    */
   @JvmOverloads
-  public fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
+  public final fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
     TransferContext.writeArguments(BOOL to getGroups)
     TransferContext.callMethod(rawPtr, MethodBindings.getShaderUniformListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)

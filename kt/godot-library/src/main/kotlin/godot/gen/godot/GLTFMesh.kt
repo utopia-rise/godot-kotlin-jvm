@@ -36,7 +36,7 @@ public open class GLTFMesh : Resource() {
   /**
    * The original name of the mesh.
    */
-  public var originalName: String
+  public final inline var originalName: String
     @JvmName("originalNameProperty")
     get() = getOriginalName()
     @JvmName("originalNameProperty")
@@ -47,7 +47,7 @@ public open class GLTFMesh : Resource() {
   /**
    * The [ImporterMesh] object representing the mesh itself.
    */
-  public var mesh: ImporterMesh?
+  public final inline var mesh: ImporterMesh?
     @JvmName("meshProperty")
     get() = getMesh()
     @JvmName("meshProperty")
@@ -58,7 +58,7 @@ public open class GLTFMesh : Resource() {
   /**
    * An array of floats representing the blend weights of the mesh.
    */
-  public var blendWeights: PackedFloat32Array
+  public final inline var blendWeights: PackedFloat32Array
     @JvmName("blendWeightsProperty")
     get() = getBlendWeights()
     @JvmName("blendWeightsProperty")
@@ -69,7 +69,7 @@ public open class GLTFMesh : Resource() {
   /**
    * An array of Material objects representing the materials used in the mesh.
    */
-  public var instanceMaterials: VariantArray<Material>
+  public final inline var instanceMaterials: VariantArray<Material>
     @JvmName("instanceMaterialsProperty")
     get() = getInstanceMaterials()
     @JvmName("instanceMaterialsProperty")
@@ -81,46 +81,46 @@ public open class GLTFMesh : Resource() {
     callConstructor(ENGINECLASS_GLTFMESH, scriptIndex)
   }
 
-  public fun getOriginalName(): String {
+  public final fun getOriginalName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setOriginalName(originalName: String): Unit {
+  public final fun setOriginalName(originalName: String): Unit {
     TransferContext.writeArguments(STRING to originalName)
     TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
   }
 
-  public fun getMesh(): ImporterMesh? {
+  public final fun getMesh(): ImporterMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
   }
 
-  public fun setMesh(mesh: ImporterMesh?): Unit {
+  public final fun setMesh(mesh: ImporterMesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
-  public fun getBlendWeights(): PackedFloat32Array {
+  public final fun getBlendWeights(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
   }
 
-  public fun setBlendWeights(blendWeights: PackedFloat32Array): Unit {
+  public final fun setBlendWeights(blendWeights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to blendWeights)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendWeightsPtr, NIL)
   }
 
-  public fun getInstanceMaterials(): VariantArray<Material> {
+  public final fun getInstanceMaterials(): VariantArray<Material> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>)
   }
 
-  public fun setInstanceMaterials(instanceMaterials: VariantArray<Material>): Unit {
+  public final fun setInstanceMaterials(instanceMaterials: VariantArray<Material>): Unit {
     TransferContext.writeArguments(ARRAY to instanceMaterials)
     TransferContext.callMethod(rawPtr, MethodBindings.setInstanceMaterialsPtr, NIL)
   }
@@ -132,7 +132,7 @@ public open class GLTFMesh : Resource() {
    * name in the GLTF file), and the return value can be anything you set. If nothing was set, the
    * return value is null.
    */
-  public fun getAdditionalData(extensionName: StringName): Any? {
+  public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -144,7 +144,7 @@ public open class GLTFMesh : Resource() {
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the GLTF file), and the second argument can be anything you want.
    */
-  public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }

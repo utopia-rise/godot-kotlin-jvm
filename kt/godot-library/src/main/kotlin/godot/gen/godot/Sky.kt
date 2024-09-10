@@ -29,7 +29,7 @@ public open class Sky : Resource() {
    * [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial],
    * [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader.
    */
-  public var skyMaterial: Material?
+  public final inline var skyMaterial: Material?
     @JvmName("skyMaterialProperty")
     get() = getMaterial()
     @JvmName("skyMaterialProperty")
@@ -42,7 +42,7 @@ public open class Sky : Resource() {
    * with increasingly blurry versions of the sky corresponding to different levels of roughness.
    * Radiance maps can be expensive to calculate. See [ProcessMode] for options.
    */
-  public var processMode: ProcessMode
+  public final inline var processMode: ProcessMode
     @JvmName("processModeProperty")
     get() = getProcessMode()
     @JvmName("processModeProperty")
@@ -57,7 +57,7 @@ public open class Sky : Resource() {
    * **Note:** Some hardware will have trouble with higher radiance sizes, especially
    * [RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
-  public var radianceSize: RadianceSize
+  public final inline var radianceSize: RadianceSize
     @JvmName("radianceSizeProperty")
     get() = getRadianceSize()
     @JvmName("radianceSizeProperty")
@@ -69,34 +69,34 @@ public open class Sky : Resource() {
     callConstructor(ENGINECLASS_SKY, scriptIndex)
   }
 
-  public fun setRadianceSize(size: RadianceSize): Unit {
+  public final fun setRadianceSize(size: RadianceSize): Unit {
     TransferContext.writeArguments(LONG to size.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
   }
 
-  public fun getRadianceSize(): RadianceSize {
+  public final fun getRadianceSize(): RadianceSize {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadianceSizePtr, LONG)
     return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setProcessMode(mode: ProcessMode): Unit {
+  public final fun setProcessMode(mode: ProcessMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
   }
 
-  public fun getProcessMode(): ProcessMode {
+  public final fun getProcessMode(): ProcessMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
     return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
-  public fun getMaterial(): Material? {
+  public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)

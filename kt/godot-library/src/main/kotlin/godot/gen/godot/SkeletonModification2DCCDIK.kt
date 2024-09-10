@@ -45,7 +45,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * The NodePath to the node that is the target for the CCDIK modification. This node is what the
    * CCDIK chain will attempt to rotate the bone chain to.
    */
-  public var targetNodepath: NodePath
+  public final inline var targetNodepath: NodePath
     @JvmName("targetNodepathProperty")
     get() = getTargetNode()
     @JvmName("targetNodepathProperty")
@@ -57,7 +57,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * The end position of the CCDIK chain. Typically, this should be a child of a [Bone2D] node
    * attached to the final [Bone2D] in the CCDIK chain.
    */
-  public var tipNodepath: NodePath
+  public final inline var tipNodepath: NodePath
     @JvmName("tipNodepathProperty")
     get() = getTipNode()
     @JvmName("tipNodepathProperty")
@@ -68,7 +68,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * The number of CCDIK joints in the CCDIK modification.
    */
-  public var ccdikDataChainLength: Int
+  public final inline var ccdikDataChainLength: Int
     @JvmName("ccdikDataChainLengthProperty")
     get() = getCcdikDataChainLength()
     @JvmName("ccdikDataChainLengthProperty")
@@ -80,34 +80,34 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DCCDIK, scriptIndex)
   }
 
-  public fun setTargetNode(targetNodepath: NodePath): Unit {
+  public final fun setTargetNode(targetNodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to targetNodepath)
     TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
   }
 
-  public fun getTargetNode(): NodePath {
+  public final fun getTargetNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setTipNode(tipNodepath: NodePath): Unit {
+  public final fun setTipNode(tipNodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to tipNodepath)
     TransferContext.callMethod(rawPtr, MethodBindings.setTipNodePtr, NIL)
   }
 
-  public fun getTipNode(): NodePath {
+  public final fun getTipNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTipNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setCcdikDataChainLength(length: Int): Unit {
+  public final fun setCcdikDataChainLength(length: Int): Unit {
     TransferContext.writeArguments(LONG to length.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikDataChainLengthPtr, NIL)
   }
 
-  public fun getCcdikDataChainLength(): Int {
+  public final fun getCcdikDataChainLength(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikDataChainLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -116,7 +116,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Sets the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
    */
-  public fun setCcdikJointBone2dNode(jointIdx: Int, bone2dNodepath: NodePath): Unit {
+  public final fun setCcdikJointBone2dNode(jointIdx: Int, bone2dNodepath: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to bone2dNodepath)
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikJointBone2dNodePtr, NIL)
   }
@@ -124,7 +124,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Returns the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
    */
-  public fun getCcdikJointBone2dNode(jointIdx: Int): NodePath {
+  public final fun getCcdikJointBone2dNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikJointBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -134,7 +134,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * Sets the bone index, [boneIdx], of the CCDIK joint at [jointIdx]. When possible, this will also
    * update the `bone2d_node` of the CCDIK joint based on data provided by the linked skeleton.
    */
-  public fun setCcdikJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
+  public final fun setCcdikJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikJointBoneIndexPtr, NIL)
   }
@@ -142,7 +142,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Returns the index of the [Bone2D] node assigned to the CCDIK joint at [jointIdx].
    */
-  public fun getCcdikJointBoneIndex(jointIdx: Int): Int {
+  public final fun getCcdikJointBoneIndex(jointIdx: Int): Int {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikJointBoneIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -152,7 +152,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * Sets whether the joint at [jointIdx] is set to rotate from the joint, `true`, or to rotate from
    * the tip, `false`.
    */
-  public fun setCcdikJointRotateFromJoint(jointIdx: Int, rotateFromJoint: Boolean): Unit {
+  public final fun setCcdikJointRotateFromJoint(jointIdx: Int, rotateFromJoint: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to rotateFromJoint)
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikJointRotateFromJointPtr, NIL)
   }
@@ -161,7 +161,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * Returns whether the joint at [jointIdx] is set to rotate from the joint, `true`, or to rotate
    * from the tip, `false`. The default is to rotate from the tip.
    */
-  public fun getCcdikJointRotateFromJoint(jointIdx: Int): Boolean {
+  public final fun getCcdikJointRotateFromJoint(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikJointRotateFromJointPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -171,7 +171,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * Determines whether angle constraints on the CCDIK joint at [jointIdx] are enabled. When `true`,
    * constraints will be enabled and taken into account when solving.
    */
-  public fun setCcdikJointEnableConstraint(jointIdx: Int, enableConstraint: Boolean): Unit {
+  public final fun setCcdikJointEnableConstraint(jointIdx: Int, enableConstraint: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to enableConstraint)
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikJointEnableConstraintPtr, NIL)
   }
@@ -179,7 +179,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Returns whether angle constraints on the CCDIK joint at [jointIdx] are enabled.
    */
-  public fun getCcdikJointEnableConstraint(jointIdx: Int): Boolean {
+  public final fun getCcdikJointEnableConstraint(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikJointEnableConstraintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -188,7 +188,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Sets the minimum angle constraint for the joint at [jointIdx].
    */
-  public fun setCcdikJointConstraintAngleMin(jointIdx: Int, angleMin: Float): Unit {
+  public final fun setCcdikJointConstraintAngleMin(jointIdx: Int, angleMin: Float): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), DOUBLE to angleMin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikJointConstraintAngleMinPtr, NIL)
   }
@@ -196,7 +196,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Returns the minimum angle constraint for the joint at [jointIdx].
    */
-  public fun getCcdikJointConstraintAngleMin(jointIdx: Int): Float {
+  public final fun getCcdikJointConstraintAngleMin(jointIdx: Int): Float {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikJointConstraintAngleMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -205,7 +205,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Sets the maximum angle constraint for the joint at [jointIdx].
    */
-  public fun setCcdikJointConstraintAngleMax(jointIdx: Int, angleMax: Float): Unit {
+  public final fun setCcdikJointConstraintAngleMax(jointIdx: Int, angleMax: Float): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), DOUBLE to angleMax.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikJointConstraintAngleMaxPtr, NIL)
   }
@@ -213,7 +213,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
   /**
    * Returns the maximum angle constraint for the joint at [jointIdx].
    */
-  public fun getCcdikJointConstraintAngleMax(jointIdx: Int): Float {
+  public final fun getCcdikJointConstraintAngleMax(jointIdx: Int): Float {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikJointConstraintAngleMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -225,7 +225,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * inputted minimum and maximum angles. For this reason, it is referred to as an inverted joint
    * constraint, as it constraints the joint to the outside of the inputted values.
    */
-  public fun setCcdikJointConstraintAngleInvert(jointIdx: Int, invert: Boolean): Unit {
+  public final fun setCcdikJointConstraintAngleInvert(jointIdx: Int, invert: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to invert)
     TransferContext.callMethod(rawPtr, MethodBindings.setCcdikJointConstraintAngleInvertPtr, NIL)
   }
@@ -234,7 +234,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * Returns whether the CCDIK joint at [jointIdx] uses an inverted joint constraint. See
    * [setCcdikJointConstraintAngleInvert] for details.
    */
-  public fun getCcdikJointConstraintAngleInvert(jointIdx: Int): Boolean {
+  public final fun getCcdikJointConstraintAngleInvert(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCcdikJointConstraintAngleInvertPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -37,7 +37,7 @@ public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D
     throw NotImplementedError("_get_closest_point_to_object_volume is not implemented for PhysicsDirectSpaceState3DExtension")
   }
 
-  public fun isBodyExcludedFromQuery(body: RID): Boolean {
+  public final fun isBodyExcludedFromQuery(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.isBodyExcludedFromQueryPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

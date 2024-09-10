@@ -29,7 +29,7 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
    * A [Vector2] constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
-  public var constant: Vector2
+  public final inline var constant: Vector2
     @JvmName("constantProperty")
     get() = getConstant()
     @JvmName("constantProperty")
@@ -59,18 +59,18 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantMutate(block: Vector2.() -> Unit): Vector2 = constant.apply{
+  public final fun constantMutate(block: Vector2.() -> Unit): Vector2 = constant.apply{
       block(this)
       constant = this
   }
 
 
-  public fun setConstant(constant: Vector2): Unit {
+  public final fun setConstant(constant: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to constant)
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
-  public fun getConstant(): Vector2 {
+  public final fun getConstant(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

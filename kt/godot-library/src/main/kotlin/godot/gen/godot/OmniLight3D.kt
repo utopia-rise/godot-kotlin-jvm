@@ -37,7 +37,7 @@ public open class OmniLight3D : Light3D() {
   /**
    * See [ShadowMode].
    */
-  public var omniShadowMode: ShadowMode
+  public final inline var omniShadowMode: ShadowMode
     @JvmName("omniShadowModeProperty")
     get() = getShadowMode()
     @JvmName("omniShadowModeProperty")
@@ -49,12 +49,12 @@ public open class OmniLight3D : Light3D() {
     callConstructor(ENGINECLASS_OMNILIGHT3D, scriptIndex)
   }
 
-  public fun setShadowMode(mode: ShadowMode): Unit {
+  public final fun setShadowMode(mode: ShadowMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
   }
 
-  public fun getShadowMode(): ShadowMode {
+  public final fun getShadowMode(): ShadowMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
     return OmniLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)

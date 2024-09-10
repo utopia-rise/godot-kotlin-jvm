@@ -26,7 +26,7 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
+  public final inline var defaultValueEnabled: Boolean
     @JvmName("defaultValueEnabledProperty")
     get() = isDefaultValueEnabled()
     @JvmName("defaultValueEnabledProperty")
@@ -37,7 +37,7 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
   /**
    * A default value to be assigned within the shader.
    */
-  public var defaultValue: Boolean
+  public final inline var defaultValue: Boolean
     @JvmName("defaultValueProperty")
     get() = getDefaultValue()
     @JvmName("defaultValueProperty")
@@ -49,23 +49,23 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
     callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANPARAMETER, scriptIndex)
   }
 
-  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
-  public fun isDefaultValueEnabled(): Boolean {
+  public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultValue(`value`: Boolean): Unit {
+  public final fun setDefaultValue(`value`: Boolean): Unit {
     TransferContext.writeArguments(BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
-  public fun getDefaultValue(): Boolean {
+  public final fun getDefaultValue(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

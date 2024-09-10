@@ -39,7 +39,7 @@ public open class TileMapPattern : Resource() {
    * Sets the tile identifiers for the cell at coordinates [coords]. See [TileMap.setCell].
    */
   @JvmOverloads
-  public fun setCell(
+  public final fun setCell(
     coords: Vector2i,
     sourceId: Int = -1,
     atlasCoords: Vector2i = Vector2i(-1, -1),
@@ -52,7 +52,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns whether the pattern has a tile at the given coordinates.
    */
-  public fun hasCell(coords: Vector2i): Boolean {
+  public final fun hasCell(coords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCellPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -61,7 +61,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Remove the cell at the given coordinates.
    */
-  public fun removeCell(coords: Vector2i, updateSize: Boolean): Unit {
+  public final fun removeCell(coords: Vector2i, updateSize: Boolean): Unit {
     TransferContext.writeArguments(VECTOR2I to coords, BOOL to updateSize)
     TransferContext.callMethod(rawPtr, MethodBindings.removeCellPtr, NIL)
   }
@@ -69,7 +69,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns the tile source ID of the cell at [coords].
    */
-  public fun getCellSourceId(coords: Vector2i): Int {
+  public final fun getCellSourceId(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSourceIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -78,7 +78,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns the tile atlas coordinates ID of the cell at [coords].
    */
-  public fun getCellAtlasCoords(coords: Vector2i): Vector2i {
+  public final fun getCellAtlasCoords(coords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellAtlasCoordsPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -87,7 +87,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns the tile alternative ID of the cell at [coords].
    */
-  public fun getCellAlternativeTile(coords: Vector2i): Int {
+  public final fun getCellAlternativeTile(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellAlternativeTilePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -96,7 +96,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns the list of used cell coordinates in the pattern.
    */
-  public fun getUsedCells(): VariantArray<Vector2i> {
+  public final fun getUsedCells(): VariantArray<Vector2i> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
@@ -105,7 +105,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns the size, in cells, of the pattern.
    */
-  public fun getSize(): Vector2i {
+  public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -114,7 +114,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Sets the size of the pattern.
    */
-  public fun setSize(size: Vector2i): Unit {
+  public final fun setSize(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
@@ -122,7 +122,7 @@ public open class TileMapPattern : Resource() {
   /**
    * Returns whether the pattern is empty or not.
    */
-  public fun isEmpty(): Boolean {
+  public final fun isEmpty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

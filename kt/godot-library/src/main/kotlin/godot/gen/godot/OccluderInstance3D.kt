@@ -61,7 +61,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * Alternatively, you can select a primitive occluder to use: [QuadOccluder3D], [BoxOccluder3D] or
    * [SphereOccluder3D].
    */
-  public var occluder: Occluder3D?
+  public final inline var occluder: Occluder3D?
     @JvmName("occluderProperty")
     get() = getOccluder()
     @JvmName("occluderProperty")
@@ -78,7 +78,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * objects and fixtures from the baking process by moving them to a separate visual layer and
    * excluding this layer in [bakeMask].
    */
-  public var bakeMask: Long
+  public final inline var bakeMask: Long
     @JvmName("bakeMaskProperty")
     get() = getBakeMask()
     @JvmName("bakeMaskProperty")
@@ -103,7 +103,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * **Note:** This uses the [url=https://meshoptimizer.org/]meshoptimizer[/url] library under the
    * hood, similar to LOD generation.
    */
-  public var bakeSimplificationDistance: Float
+  public final inline var bakeSimplificationDistance: Float
     @JvmName("bakeSimplificationDistanceProperty")
     get() = getBakeSimplificationDistance()
     @JvmName("bakeSimplificationDistanceProperty")
@@ -115,12 +115,12 @@ public open class OccluderInstance3D : VisualInstance3D() {
     callConstructor(ENGINECLASS_OCCLUDERINSTANCE3D, scriptIndex)
   }
 
-  public fun setBakeMask(mask: Long): Unit {
+  public final fun setBakeMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
   }
 
-  public fun getBakeMask(): Long {
+  public final fun getBakeMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -130,7 +130,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * Based on [value], enables or disables the specified layer in the [bakeMask], given a
    * [layerNumber] between 1 and 32.
    */
-  public fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskValuePtr, NIL)
   }
@@ -139,29 +139,29 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber]
    * between 1 and 32.
    */
-  public fun getBakeMaskValue(layerNumber: Int): Boolean {
+  public final fun getBakeMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setBakeSimplificationDistance(simplificationDistance: Float): Unit {
+  public final fun setBakeSimplificationDistance(simplificationDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to simplificationDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
   }
 
-  public fun getBakeSimplificationDistance(): Float {
+  public final fun getBakeSimplificationDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setOccluder(occluder: Occluder3D?): Unit {
+  public final fun setOccluder(occluder: Occluder3D?): Unit {
     TransferContext.writeArguments(OBJECT to occluder)
     TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPtr, NIL)
   }
 
-  public fun getOccluder(): Occluder3D? {
+  public final fun getOccluder(): Occluder3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Occluder3D?)

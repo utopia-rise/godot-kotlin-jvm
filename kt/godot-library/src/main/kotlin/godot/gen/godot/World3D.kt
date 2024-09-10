@@ -28,7 +28,7 @@ public open class World3D : Resource() {
   /**
    * The World3D's [Environment].
    */
-  public var environment: Environment?
+  public final inline var environment: Environment?
     @JvmName("environmentProperty")
     get() = getEnvironment()
     @JvmName("environmentProperty")
@@ -39,7 +39,7 @@ public open class World3D : Resource() {
   /**
    * The World3D's fallback environment will be used if [environment] fails or is missing.
    */
-  public var fallbackEnvironment: Environment?
+  public final inline var fallbackEnvironment: Environment?
     @JvmName("fallbackEnvironmentProperty")
     get() = getFallbackEnvironment()
     @JvmName("fallbackEnvironmentProperty")
@@ -50,7 +50,7 @@ public open class World3D : Resource() {
   /**
    * The default [CameraAttributes] resource to use if none set on the [Camera3D].
    */
-  public var cameraAttributes: CameraAttributes?
+  public final inline var cameraAttributes: CameraAttributes?
     @JvmName("cameraAttributesProperty")
     get() = getCameraAttributes()
     @JvmName("cameraAttributesProperty")
@@ -61,21 +61,21 @@ public open class World3D : Resource() {
   /**
    * The World3D's physics space.
    */
-  public val space: RID
+  public final inline val space: RID
     @JvmName("spaceProperty")
     get() = getSpace()
 
   /**
    * The [RID] of this world's navigation map. Used by the [NavigationServer3D].
    */
-  public val navigationMap: RID
+  public final inline val navigationMap: RID
     @JvmName("navigationMapProperty")
     get() = getNavigationMap()
 
   /**
    * The World3D's visual scenario.
    */
-  public val scenario: RID
+  public final inline val scenario: RID
     @JvmName("scenarioProperty")
     get() = getScenario()
 
@@ -84,7 +84,7 @@ public open class World3D : Resource() {
    * collisions. When using multi-threaded physics, access is limited to [Node.PhysicsProcess] in the
    * main thread.
    */
-  public val directSpaceState: PhysicsDirectSpaceState3D?
+  public final inline val directSpaceState: PhysicsDirectSpaceState3D?
     @JvmName("directSpaceStateProperty")
     get() = getDirectSpaceState()
 
@@ -92,58 +92,58 @@ public open class World3D : Resource() {
     callConstructor(ENGINECLASS_WORLD3D, scriptIndex)
   }
 
-  public fun getSpace(): RID {
+  public final fun getSpace(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun getNavigationMap(): RID {
+  public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun getScenario(): RID {
+  public final fun getScenario(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScenarioPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setEnvironment(env: Environment?): Unit {
+  public final fun setEnvironment(env: Environment?): Unit {
     TransferContext.writeArguments(OBJECT to env)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
   }
 
-  public fun getEnvironment(): Environment? {
+  public final fun getEnvironment(): Environment? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
   }
 
-  public fun setFallbackEnvironment(env: Environment?): Unit {
+  public final fun setFallbackEnvironment(env: Environment?): Unit {
     TransferContext.writeArguments(OBJECT to env)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackEnvironmentPtr, NIL)
   }
 
-  public fun getFallbackEnvironment(): Environment? {
+  public final fun getFallbackEnvironment(): Environment? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackEnvironmentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
   }
 
-  public fun setCameraAttributes(attributes: CameraAttributes?): Unit {
+  public final fun setCameraAttributes(attributes: CameraAttributes?): Unit {
     TransferContext.writeArguments(OBJECT to attributes)
     TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
-  public fun getCameraAttributes(): CameraAttributes? {
+  public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
   }
 
-  public fun getDirectSpaceState(): PhysicsDirectSpaceState3D? {
+  public final fun getDirectSpaceState(): PhysicsDirectSpaceState3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?)

@@ -42,7 +42,7 @@ public open class Curve2D : Resource() {
    * recomputed the next time the [getBakedPoints] or [getBakedLength] function is called. The smaller
    * the distance, the more points in the cache and the more memory it will consume, so use with care.
    */
-  public var bakeInterval: Float
+  public final inline var bakeInterval: Float
     @JvmName("bakeIntervalProperty")
     get() = getBakeInterval()
     @JvmName("bakeIntervalProperty")
@@ -53,7 +53,7 @@ public open class Curve2D : Resource() {
   /**
    * The number of points describing the curve.
    */
-  public var pointCount: Int
+  public final inline var pointCount: Int
     @JvmName("pointCountProperty")
     get() = getPointCount()
     @JvmName("pointCountProperty")
@@ -65,13 +65,13 @@ public open class Curve2D : Resource() {
     callConstructor(ENGINECLASS_CURVE2D, scriptIndex)
   }
 
-  public fun getPointCount(): Int {
+  public final fun getPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setPointCount(count: Int): Unit {
+  public final fun setPointCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
   }
@@ -85,7 +85,7 @@ public open class Curve2D : Resource() {
    * in the line. See [pointCount].
    */
   @JvmOverloads
-  public fun addPoint(
+  public final fun addPoint(
     position: Vector2,
     _in: Vector2 = Vector2(0, 0),
     `out`: Vector2 = Vector2(0, 0),
@@ -99,7 +99,7 @@ public open class Curve2D : Resource() {
    * Sets the position for the vertex [idx]. If the index is out of bounds, the function sends an
    * error to the console.
    */
-  public fun setPointPosition(idx: Int, position: Vector2): Unit {
+  public final fun setPointPosition(idx: Int, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
   }
@@ -108,7 +108,7 @@ public open class Curve2D : Resource() {
    * Returns the position of the vertex [idx]. If the index is out of bounds, the function sends an
    * error to the console, and returns `(0, 0)`.
    */
-  public fun getPointPosition(idx: Int): Vector2 {
+  public final fun getPointPosition(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -118,7 +118,7 @@ public open class Curve2D : Resource() {
    * Sets the position of the control point leading to the vertex [idx]. If the index is out of
    * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
-  public fun setPointIn(idx: Int, position: Vector2): Unit {
+  public final fun setPointIn(idx: Int, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointInPtr, NIL)
   }
@@ -128,7 +128,7 @@ public open class Curve2D : Resource() {
    * relative to the vertex [idx]. If the index is out of bounds, the function sends an error to the
    * console, and returns `(0, 0)`.
    */
-  public fun getPointIn(idx: Int): Vector2 {
+  public final fun getPointIn(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointInPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -138,7 +138,7 @@ public open class Curve2D : Resource() {
    * Sets the position of the control point leading out of the vertex [idx]. If the index is out of
    * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
-  public fun setPointOut(idx: Int, position: Vector2): Unit {
+  public final fun setPointOut(idx: Int, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointOutPtr, NIL)
   }
@@ -148,7 +148,7 @@ public open class Curve2D : Resource() {
    * position is relative to the vertex [idx]. If the index is out of bounds, the function sends an
    * error to the console, and returns `(0, 0)`.
    */
-  public fun getPointOut(idx: Int): Vector2 {
+  public final fun getPointOut(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointOutPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -158,7 +158,7 @@ public open class Curve2D : Resource() {
    * Deletes the point [idx] from the curve. Sends an error to the console if [idx] is out of
    * bounds.
    */
-  public fun removePoint(idx: Int): Unit {
+  public final fun removePoint(idx: Int): Unit {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
@@ -166,7 +166,7 @@ public open class Curve2D : Resource() {
   /**
    * Removes all points from the curve.
    */
-  public fun clearPoints(): Unit {
+  public final fun clearPoints(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPointsPtr, NIL)
   }
@@ -178,7 +178,7 @@ public open class Curve2D : Resource() {
    * If [idx] is out of bounds it is truncated to the first or last vertex, and [t] is ignored. If
    * the curve has no points, the function sends an error to the console, and returns `(0, 0)`.
    */
-  public fun sample(idx: Int, t: Float): Vector2 {
+  public final fun sample(idx: Int, t: Float): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.samplePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -188,18 +188,18 @@ public open class Curve2D : Resource() {
    * Returns the position at the vertex [fofs]. It calls [sample] using the integer part of [fofs]
    * as `idx`, and its fractional part as `t`.
    */
-  public fun samplef(fofs: Float): Vector2 {
+  public final fun samplef(fofs: Float): Vector2 {
     TransferContext.writeArguments(DOUBLE to fofs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.samplefPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setBakeInterval(distance: Float): Unit {
+  public final fun setBakeInterval(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBakeIntervalPtr, NIL)
   }
 
-  public fun getBakeInterval(): Float {
+  public final fun getBakeInterval(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeIntervalPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -209,7 +209,7 @@ public open class Curve2D : Resource() {
    * Returns the total length of the curve, based on the cached points. Given enough density (see
    * [bakeInterval]), it should be approximate enough.
    */
-  public fun getBakedLength(): Float {
+  public final fun getBakedLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakedLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -224,7 +224,7 @@ public open class Curve2D : Resource() {
    * enough).
    */
   @JvmOverloads
-  public fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector2 {
+  public final fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector2 {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, MethodBindings.sampleBakedPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -244,7 +244,8 @@ public open class Curve2D : Resource() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun sampleBakedWithRotation(offset: Float = 0.0f, cubic: Boolean = false): Transform2D {
+  public final fun sampleBakedWithRotation(offset: Float = 0.0f, cubic: Boolean = false):
+      Transform2D {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, MethodBindings.sampleBakedWithRotationPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
@@ -253,7 +254,7 @@ public open class Curve2D : Resource() {
   /**
    * Returns the cache of points as a [PackedVector2Array].
    */
-  public fun getBakedPoints(): PackedVector2Array {
+  public final fun getBakedPoints(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakedPointsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
@@ -263,7 +264,7 @@ public open class Curve2D : Resource() {
    * Returns the closest point on baked segments (in curve's local space) to [toPoint].
    * [toPoint] must be in this curve's local space.
    */
-  public fun getClosestPoint(toPoint: Vector2): Vector2 {
+  public final fun getClosestPoint(toPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -273,7 +274,7 @@ public open class Curve2D : Resource() {
    * Returns the closest offset to [toPoint]. This offset is meant to be used in [sampleBaked].
    * [toPoint] must be in this curve's local space.
    */
-  public fun getClosestOffset(toPoint: Vector2): Float {
+  public final fun getClosestOffset(toPoint: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -291,7 +292,8 @@ public open class Curve2D : Resource() {
    * real curve, before the segment has to be subdivided.
    */
   @JvmOverloads
-  public fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f): PackedVector2Array {
+  public final fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f):
+      PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.tessellatePtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
@@ -306,7 +308,7 @@ public open class Curve2D : Resource() {
    * segment has to be subdivided.
    */
   @JvmOverloads
-  public fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 20.0f):
+  public final fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 20.0f):
       PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.tessellateEvenLengthPtr, PACKED_VECTOR2_ARRAY)

@@ -50,7 +50,7 @@ public open class TextMesh : PrimitiveMesh() {
    * If disabling translation is desired, it should be done manually with
    * [Object.setMessageTranslation].
    */
-  public var text: String
+  public final inline var text: String
     @JvmName("textProperty")
     get() = getText()
     @JvmName("textProperty")
@@ -61,7 +61,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Font configuration used to display text.
    */
-  public var font: Font?
+  public final inline var font: Font?
     @JvmName("fontProperty")
     get() = getFont()
     @JvmName("fontProperty")
@@ -72,7 +72,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Font size of the [TextMesh]'s text.
    */
-  public var fontSize: Int
+  public final inline var fontSize: Int
     @JvmName("fontSizeProperty")
     get() = getFontSize()
     @JvmName("fontSizeProperty")
@@ -84,7 +84,7 @@ public open class TextMesh : PrimitiveMesh() {
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
    * Set it to one of the [HorizontalAlignment] constants.
    */
-  public var horizontalAlignment: HorizontalAlignment
+  public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
     get() = getHorizontalAlignment()
     @JvmName("horizontalAlignmentProperty")
@@ -96,7 +96,7 @@ public open class TextMesh : PrimitiveMesh() {
    * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
    * [VerticalAlignment] constants.
    */
-  public var verticalAlignment: VerticalAlignment
+  public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
     get() = getVerticalAlignment()
     @JvmName("verticalAlignmentProperty")
@@ -107,7 +107,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * If `true`, all the text displays as UPPERCASE.
    */
-  public var uppercase: Boolean
+  public final inline var uppercase: Boolean
     @JvmName("uppercaseProperty")
     get() = isUppercase()
     @JvmName("uppercaseProperty")
@@ -118,7 +118,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Vertical space between lines in multiline [TextMesh].
    */
-  public var lineSpacing: Float
+  public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
     get() = getLineSpacing()
     @JvmName("lineSpacingProperty")
@@ -131,7 +131,7 @@ public open class TextMesh : PrimitiveMesh() {
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
    * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
-  public var autowrapMode: TextServer.AutowrapMode
+  public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
     get() = getAutowrapMode()
     @JvmName("autowrapModeProperty")
@@ -142,7 +142,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
-  public var justificationFlags: TextServer.JustificationFlag
+  public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -153,7 +153,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * The size of one pixel's width on the text to scale it in 3D.
    */
-  public var pixelSize: Float
+  public final inline var pixelSize: Float
     @JvmName("pixelSizeProperty")
     get() = getPixelSize()
     @JvmName("pixelSizeProperty")
@@ -164,7 +164,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Step (in pixels) used to approximate Bézier curves.
    */
-  public var curveStep: Float
+  public final inline var curveStep: Float
     @JvmName("curveStepProperty")
     get() = getCurveStep()
     @JvmName("curveStepProperty")
@@ -176,7 +176,7 @@ public open class TextMesh : PrimitiveMesh() {
    * Depths of the mesh, if set to `0.0` only front surface, is generated, and UV layout is changed
    * to use full texture for the front face only.
    */
-  public var depth: Float
+  public final inline var depth: Float
     @JvmName("depthProperty")
     get() = getDepth()
     @JvmName("depthProperty")
@@ -187,7 +187,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Text width (in pixels), used for fill alignment.
    */
-  public var width: Float
+  public final inline var width: Float
     @JvmName("widthProperty")
     get() = getWidth()
     @JvmName("widthProperty")
@@ -199,7 +199,7 @@ public open class TextMesh : PrimitiveMesh() {
    * The text drawing offset (in pixels).
    */
   @CoreTypeLocalCopy
-  public var offset: Vector2
+  public final inline var offset: Vector2
     @JvmName("offsetProperty")
     get() = getOffset()
     @JvmName("offsetProperty")
@@ -210,7 +210,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Base text writing direction.
    */
-  public var textDirection: TextServer.Direction
+  public final inline var textDirection: TextServer.Direction
     @JvmName("textDirectionProperty")
     get() = getTextDirection()
     @JvmName("textDirectionProperty")
@@ -221,7 +221,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Language code used for text shaping algorithms, if left empty current locale is used instead.
    */
-  public var language: String
+  public final inline var language: String
     @JvmName("languageProperty")
     get() = getLanguage()
     @JvmName("languageProperty")
@@ -232,7 +232,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: TextServer.StructuredTextParser
+  public final inline var structuredTextBidiOverride: TextServer.StructuredTextParser
     @JvmName("structuredTextBidiOverrideProperty")
     get() = getStructuredTextBidiOverride()
     @JvmName("structuredTextBidiOverrideProperty")
@@ -243,7 +243,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * Set additional options for BiDi override.
    */
-  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
+  public final inline var structuredTextBidiOverrideOptions: VariantArray<Any?>
     @JvmName("structuredTextBidiOverrideOptionsProperty")
     get() = getStructuredTextBidiOverrideOptions()
     @JvmName("structuredTextBidiOverrideOptionsProperty")
@@ -273,206 +273,206 @@ public open class TextMesh : PrimitiveMesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
 
 
-  public fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
-  public fun getHorizontalAlignment(): HorizontalAlignment {
+  public final fun getHorizontalAlignment(): HorizontalAlignment {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
+  public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
-  public fun getVerticalAlignment(): VerticalAlignment {
+  public final fun getVerticalAlignment(): VerticalAlignment {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setText(text: String): Unit {
+  public final fun setText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
-  public fun getText(): String {
+  public final fun getText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setFont(font: Font?): Unit {
+  public final fun setFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
   }
 
-  public fun getFont(): Font? {
+  public final fun getFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
-  public fun setFontSize(fontSize: Int): Unit {
+  public final fun setFontSize(fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
   }
 
-  public fun getFontSize(): Int {
+  public final fun getFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setLineSpacing(lineSpacing: Float): Unit {
+  public final fun setLineSpacing(lineSpacing: Float): Unit {
     TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
   }
 
-  public fun getLineSpacing(): Float {
+  public final fun getLineSpacing(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
     TransferContext.writeArguments(LONG to autowrapMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
-  public fun getAutowrapMode(): TextServer.AutowrapMode {
+  public final fun getAutowrapMode(): TextServer.AutowrapMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public fun getJustificationFlags(): TextServer.JustificationFlag {
+  public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
     return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDepth(depth: Float): Unit {
+  public final fun setDepth(depth: Float): Unit {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
-  public fun getDepth(): Float {
+  public final fun getDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setWidth(width: Float): Unit {
+  public final fun setWidth(width: Float): Unit {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
-  public fun getWidth(): Float {
+  public final fun getWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPixelSize(pixelSize: Float): Unit {
+  public final fun setPixelSize(pixelSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
   }
 
-  public fun getPixelSize(): Float {
+  public final fun getPixelSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
-  public fun getOffset(): Vector2 {
+  public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setCurveStep(curveStep: Float): Unit {
+  public final fun setCurveStep(curveStep: Float): Unit {
     TransferContext.writeArguments(DOUBLE to curveStep.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCurveStepPtr, NIL)
   }
 
-  public fun getCurveStep(): Float {
+  public final fun getCurveStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurveStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTextDirection(direction: TextServer.Direction): Unit {
+  public final fun setTextDirection(direction: TextServer.Direction): Unit {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
-  public fun getTextDirection(): TextServer.Direction {
+  public final fun getTextDirection(): TextServer.Direction {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String): Unit {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
-  public fun getLanguage(): String {
+  public final fun getLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
     TransferContext.writeArguments(LONG to parser.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
-  public fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+  public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
-  public fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+  public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
         ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
-  public fun setUppercase(enable: Boolean): Unit {
+  public final fun setUppercase(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
   }
 
-  public fun isUppercase(): Boolean {
+  public final fun isUppercase(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

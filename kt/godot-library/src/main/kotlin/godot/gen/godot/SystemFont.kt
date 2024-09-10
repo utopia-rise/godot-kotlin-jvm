@@ -39,7 +39,7 @@ public open class SystemFont : Font() {
   /**
    * Array of font family names to search, first matching font found is used.
    */
-  public var fontNames: PackedStringArray
+  public final inline var fontNames: PackedStringArray
     @JvmName("fontNamesProperty")
     get() = getFontNames()
     @JvmName("fontNamesProperty")
@@ -50,7 +50,7 @@ public open class SystemFont : Font() {
   /**
    * If set to `true`, italic or oblique font is preferred.
    */
-  public var fontItalic: Boolean
+  public final inline var fontItalic: Boolean
     @JvmName("fontItalicProperty")
     get() = getFontItalic()
     @JvmName("fontItalicProperty")
@@ -62,7 +62,7 @@ public open class SystemFont : Font() {
    * Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight
    * is `400`, bold font weight is `700`.
    */
-  public var fontWeight: Int
+  public final inline var fontWeight: Int
     @JvmName("fontWeightProperty")
     get() = getFontWeight()
     @JvmName("fontWeightProperty")
@@ -74,7 +74,7 @@ public open class SystemFont : Font() {
    * Preferred font stretch amount, compared to a normal width. A percentage value between `50&#37;`
    * and `200&#37;`.
    */
-  public var fontStretch: Int
+  public final inline var fontStretch: Int
     @JvmName("fontStretchProperty")
     get() = getFontStretch()
     @JvmName("fontStretchProperty")
@@ -85,7 +85,7 @@ public open class SystemFont : Font() {
   /**
    * Font anti-aliasing mode.
    */
-  public var antialiasing: TextServer.FontAntialiasing
+  public final inline var antialiasing: TextServer.FontAntialiasing
     @JvmName("antialiasingProperty")
     get() = getAntialiasing()
     @JvmName("antialiasingProperty")
@@ -96,7 +96,7 @@ public open class SystemFont : Font() {
   /**
    * If set to `true`, generate mipmaps for the font textures.
    */
-  public var generateMipmaps: Boolean
+  public final inline var generateMipmaps: Boolean
     @JvmName("generateMipmapsProperty")
     get() = getGenerateMipmaps()
     @JvmName("generateMipmapsProperty")
@@ -108,7 +108,7 @@ public open class SystemFont : Font() {
    * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore
    * this property).
    */
-  public var disableEmbeddedBitmaps: Boolean
+  public final inline var disableEmbeddedBitmaps: Boolean
     @JvmName("disableEmbeddedBitmapsProperty")
     get() = getDisableEmbeddedBitmaps()
     @JvmName("disableEmbeddedBitmapsProperty")
@@ -119,7 +119,7 @@ public open class SystemFont : Font() {
   /**
    * If set to `true`, system fonts can be automatically used as fallbacks.
    */
-  public var allowSystemFallback: Boolean
+  public final inline var allowSystemFallback: Boolean
     @JvmName("allowSystemFallbackProperty")
     get() = isAllowSystemFallback()
     @JvmName("allowSystemFallbackProperty")
@@ -130,7 +130,7 @@ public open class SystemFont : Font() {
   /**
    * If set to `true`, auto-hinting is supported and preferred over font built-in hinting.
    */
-  public var forceAutohinter: Boolean
+  public final inline var forceAutohinter: Boolean
     @JvmName("forceAutohinterProperty")
     get() = isForceAutohinter()
     @JvmName("forceAutohinterProperty")
@@ -141,7 +141,7 @@ public open class SystemFont : Font() {
   /**
    * Font hinting mode.
    */
-  public var hinting: TextServer.Hinting
+  public final inline var hinting: TextServer.Hinting
     @JvmName("hintingProperty")
     get() = getHinting()
     @JvmName("hintingProperty")
@@ -154,7 +154,7 @@ public open class SystemFont : Font() {
    * kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use
    * [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
    */
-  public var subpixelPositioning: TextServer.SubpixelPositioning
+  public final inline var subpixelPositioning: TextServer.SubpixelPositioning
     @JvmName("subpixelPositioningProperty")
     get() = getSubpixelPositioning()
     @JvmName("subpixelPositioningProperty")
@@ -166,7 +166,7 @@ public open class SystemFont : Font() {
    * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
    * field generated from the dynamic font vector data.
    */
-  public var multichannelSignedDistanceField: Boolean
+  public final inline var multichannelSignedDistanceField: Boolean
     @JvmName("multichannelSignedDistanceFieldProperty")
     get() = isMultichannelSignedDistanceField()
     @JvmName("multichannelSignedDistanceFieldProperty")
@@ -180,7 +180,7 @@ public open class SystemFont : Font() {
    * largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to
    * look correct.
    */
-  public var msdfPixelRange: Int
+  public final inline var msdfPixelRange: Int
     @JvmName("msdfPixelRangeProperty")
     get() = getMsdfPixelRange()
     @JvmName("msdfPixelRangeProperty")
@@ -193,7 +193,7 @@ public open class SystemFont : Font() {
    * are slower to render and require more memory. Only increase this value if you notice a visible
    * lack of precision in glyph rendering.
    */
-  public var msdfSize: Int
+  public final inline var msdfSize: Int
     @JvmName("msdfSizeProperty")
     get() = getMsdfSize()
     @JvmName("msdfSizeProperty")
@@ -204,7 +204,7 @@ public open class SystemFont : Font() {
   /**
    * Font oversampling factor, if set to `0.0` global oversampling factor is used instead.
    */
-  public var oversampling: Float
+  public final inline var oversampling: Float
     @JvmName("oversamplingProperty")
     get() = getOversampling()
     @JvmName("oversamplingProperty")
@@ -216,155 +216,156 @@ public open class SystemFont : Font() {
     callConstructor(ENGINECLASS_SYSTEMFONT, scriptIndex)
   }
 
-  public fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
+  public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
     TransferContext.writeArguments(LONG to antialiasing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasingPtr, NIL)
   }
 
-  public fun getAntialiasing(): TextServer.FontAntialiasing {
+  public final fun getAntialiasing(): TextServer.FontAntialiasing {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasingPtr, LONG)
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean): Unit {
+  public final fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disableEmbeddedBitmaps)
     TransferContext.callMethod(rawPtr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
   }
 
-  public fun getDisableEmbeddedBitmaps(): Boolean {
+  public final fun getDisableEmbeddedBitmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setGenerateMipmaps(generateMipmaps: Boolean): Unit {
+  public final fun setGenerateMipmaps(generateMipmaps: Boolean): Unit {
     TransferContext.writeArguments(BOOL to generateMipmaps)
     TransferContext.callMethod(rawPtr, MethodBindings.setGenerateMipmapsPtr, NIL)
   }
 
-  public fun getGenerateMipmaps(): Boolean {
+  public final fun getGenerateMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGenerateMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAllowSystemFallback(allowSystemFallback: Boolean): Unit {
+  public final fun setAllowSystemFallback(allowSystemFallback: Boolean): Unit {
     TransferContext.writeArguments(BOOL to allowSystemFallback)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowSystemFallbackPtr, NIL)
   }
 
-  public fun isAllowSystemFallback(): Boolean {
+  public final fun isAllowSystemFallback(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setForceAutohinter(forceAutohinter: Boolean): Unit {
+  public final fun setForceAutohinter(forceAutohinter: Boolean): Unit {
     TransferContext.writeArguments(BOOL to forceAutohinter)
     TransferContext.callMethod(rawPtr, MethodBindings.setForceAutohinterPtr, NIL)
   }
 
-  public fun isForceAutohinter(): Boolean {
+  public final fun isForceAutohinter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isForceAutohinterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHinting(hinting: TextServer.Hinting): Unit {
+  public final fun setHinting(hinting: TextServer.Hinting): Unit {
     TransferContext.writeArguments(LONG to hinting.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHintingPtr, NIL)
   }
 
-  public fun getHinting(): TextServer.Hinting {
+  public final fun getHinting(): TextServer.Hinting {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHintingPtr, LONG)
     return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning): Unit {
+  public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning):
+      Unit {
     TransferContext.writeArguments(LONG to subpixelPositioning.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSubpixelPositioningPtr, NIL)
   }
 
-  public fun getSubpixelPositioning(): TextServer.SubpixelPositioning {
+  public final fun getSubpixelPositioning(): TextServer.SubpixelPositioning {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubpixelPositioningPtr, LONG)
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMultichannelSignedDistanceField(msdf: Boolean): Unit {
+  public final fun setMultichannelSignedDistanceField(msdf: Boolean): Unit {
     TransferContext.writeArguments(BOOL to msdf)
     TransferContext.callMethod(rawPtr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
   }
 
-  public fun isMultichannelSignedDistanceField(): Boolean {
+  public final fun isMultichannelSignedDistanceField(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMsdfPixelRange(msdfPixelRange: Int): Unit {
+  public final fun setMsdfPixelRange(msdfPixelRange: Int): Unit {
     TransferContext.writeArguments(LONG to msdfPixelRange.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
 
-  public fun getMsdfPixelRange(): Int {
+  public final fun getMsdfPixelRange(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMsdfSize(msdfSize: Int): Unit {
+  public final fun setMsdfSize(msdfSize: Int): Unit {
     TransferContext.writeArguments(LONG to msdfSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMsdfSizePtr, NIL)
   }
 
-  public fun getMsdfSize(): Int {
+  public final fun getMsdfSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMsdfSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setOversampling(oversampling: Float): Unit {
+  public final fun setOversampling(oversampling: Float): Unit {
     TransferContext.writeArguments(DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
   }
 
-  public fun getOversampling(): Float {
+  public final fun getOversampling(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun getFontNames(): PackedStringArray {
+  public final fun getFontNames(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
-  public fun setFontNames(names: PackedStringArray): Unit {
+  public final fun setFontNames(names: PackedStringArray): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to names)
     TransferContext.callMethod(rawPtr, MethodBindings.setFontNamesPtr, NIL)
   }
 
-  public fun getFontItalic(): Boolean {
+  public final fun getFontItalic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontItalicPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFontItalic(italic: Boolean): Unit {
+  public final fun setFontItalic(italic: Boolean): Unit {
     TransferContext.writeArguments(BOOL to italic)
     TransferContext.callMethod(rawPtr, MethodBindings.setFontItalicPtr, NIL)
   }
 
-  public fun setFontWeight(weight: Int): Unit {
+  public final fun setFontWeight(weight: Int): Unit {
     TransferContext.writeArguments(LONG to weight.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFontWeightPtr, NIL)
   }
 
-  public fun setFontStretch(stretch: Int): Unit {
+  public final fun setFontStretch(stretch: Int): Unit {
     TransferContext.writeArguments(LONG to stretch.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFontStretchPtr, NIL)
   }

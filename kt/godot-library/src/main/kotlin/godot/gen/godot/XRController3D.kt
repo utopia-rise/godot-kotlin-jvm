@@ -77,7 +77,7 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns `true` if the button with the given [name] is pressed.
    */
-  public fun isButtonPressed(name: StringName): Boolean {
+  public final fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.isButtonPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -87,7 +87,7 @@ public open class XRController3D : XRNode3D() {
    * Returns a [Variant] for the input with the given [name]. This works for any input type, the
    * variant will be typed according to the actions configuration.
    */
-  public fun getInput(name: StringName): Any? {
+  public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -97,7 +97,7 @@ public open class XRController3D : XRNode3D() {
    * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
    * sensors.
    */
-  public fun getFloat(name: StringName): Float {
+  public final fun getFloat(name: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -107,7 +107,7 @@ public open class XRController3D : XRNode3D() {
    * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
    * thumbpads found on many controllers.
    */
-  public fun getVector2(name: StringName): Vector2 {
+  public final fun getVector2(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getVector2Ptr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -116,7 +116,7 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns the hand holding this controller, if known. See [XRPositionalTracker.TrackerHand].
    */
-  public fun getTrackerHand(): XRPositionalTracker.TrackerHand {
+  public final fun getTrackerHand(): XRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
     return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)

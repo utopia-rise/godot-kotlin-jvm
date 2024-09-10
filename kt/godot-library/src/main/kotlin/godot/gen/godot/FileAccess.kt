@@ -93,7 +93,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set
    * [bigEndian] *after* opening the file, not before.
    */
-  public var bigEndian: Boolean
+  public final inline var bigEndian: Boolean
     @JvmName("bigEndianProperty")
     get() = isBigEndian()
     @JvmName("bigEndianProperty")
@@ -110,7 +110,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * If the file is extended, NUL characters are appended. If the file is truncated, all data from the
    * end file to the original length of the file is lost.
    */
-  public fun resize(length: Long): GodotError {
+  public final fun resize(length: Long): GodotError {
     TransferContext.writeArguments(LONG to length)
     TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -124,7 +124,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance
    * due to constant disk writes.
    */
-  public fun flush(): Unit {
+  public final fun flush(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.flushPtr, NIL)
   }
@@ -132,7 +132,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the path as a [String] for the current open file.
    */
-  public fun getPath(): String {
+  public final fun getPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -141,7 +141,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the absolute path as a [String] for the current open file.
    */
-  public fun getPathAbsolute(): String {
+  public final fun getPathAbsolute(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathAbsolutePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -150,7 +150,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns `true` if the file is currently opened.
    */
-  public fun isOpen(): Boolean {
+  public final fun isOpen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOpenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -160,7 +160,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Changes the file reading/writing cursor to the specified position (in bytes from the beginning
    * of the file).
    */
-  public fun seek(position: Long): Unit {
+  public final fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
@@ -172,7 +172,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * end of the file.
    */
   @JvmOverloads
-  public fun seekEnd(position: Long = 0): Unit {
+  public final fun seekEnd(position: Long = 0): Unit {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, MethodBindings.seekEndPtr, NIL)
   }
@@ -180,7 +180,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the file cursor's position.
    */
-  public fun getPosition(): Long {
+  public final fun getPosition(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -189,7 +189,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the size of the file in bytes.
    */
-  public fun getLength(): Long {
+  public final fun getLength(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -213,7 +213,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * }
    * ```
    */
-  public fun eofReached(): Boolean {
+  public final fun eofReached(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.eofReachedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -223,7 +223,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Returns the next 8 bits from the file as an integer. See [store8] for details on what values
    * can be stored and retrieved this way.
    */
-  public fun get8(): Int {
+  public final fun get8(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get8Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -233,7 +233,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Returns the next 16 bits from the file as an integer. See [store16] for details on what values
    * can be stored and retrieved this way.
    */
-  public fun get16(): Int {
+  public final fun get16(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get16Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -243,7 +243,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Returns the next 32 bits from the file as an integer. See [store32] for details on what values
    * can be stored and retrieved this way.
    */
-  public fun get32(): Long {
+  public final fun get32(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get32Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -253,7 +253,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Returns the next 64 bits from the file as an integer. See [store64] for details on what values
    * can be stored and retrieved this way.
    */
-  public fun get64(): Long {
+  public final fun get64(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.get64Ptr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -262,7 +262,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the next 32 bits from the file as a floating-point number.
    */
-  public fun getFloat(): Float {
+  public final fun getFloat(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -271,7 +271,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the next 64 bits from the file as a floating-point number.
    */
-  public fun getDouble(): Double {
+  public final fun getDouble(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDoublePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -280,7 +280,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the next bits from the file as a floating-point number.
    */
-  public fun getReal(): Float {
+  public final fun getReal(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRealPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -289,7 +289,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns next [length] bytes of the file as a [PackedByteArray].
    */
-  public fun getBuffer(length: Long): PackedByteArray {
+  public final fun getBuffer(length: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to length)
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -301,7 +301,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * whitespace.
    * Text is interpreted as being UTF-8 encoded.
    */
-  public fun getLine(): String {
+  public final fun getLine(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -326,7 +326,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * of the end of a text value.
    */
   @JvmOverloads
-  public fun getCsvLine(delim: String = ","): PackedStringArray {
+  public final fun getCsvLine(delim: String = ","): PackedStringArray {
     TransferContext.writeArguments(STRING to delim)
     TransferContext.callMethod(rawPtr, MethodBindings.getCsvLinePtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -338,19 +338,19 @@ public open class FileAccess internal constructor() : RefCounted() {
    * UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
   @JvmOverloads
-  public fun getAsText(skipCr: Boolean = false): String {
+  public final fun getAsText(skipCr: Boolean = false): String {
     TransferContext.writeArguments(BOOL to skipCr)
     TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun isBigEndian(): Boolean {
+  public final fun isBigEndian(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBigEndianPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setBigEndian(bigEndian: Boolean): Unit {
+  public final fun setBigEndian(bigEndian: Boolean): Unit {
     TransferContext.writeArguments(BOOL to bigEndian)
     TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
   }
@@ -359,7 +359,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Returns the last error that happened when trying to perform operations. Compare with the
    * `ERR_FILE_*` constants from [Error].
    */
-  public fun getError(): GodotError {
+  public final fun getError(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -374,7 +374,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * remote code execution.
    */
   @JvmOverloads
-  public fun getVar(allowObjects: Boolean = false): Any? {
+  public final fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -387,7 +387,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an
    * example).
    */
-  public fun store8(`value`: Int): Unit {
+  public final fun store8(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.store8Ptr, NIL)
   }
@@ -433,7 +433,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * }
    * ```
    */
-  public fun store16(`value`: Int): Unit {
+  public final fun store16(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.store16Ptr, NIL)
   }
@@ -445,7 +445,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * To store a signed integer, use [store64], or convert it manually (see [store16] for an
    * example).
    */
-  public fun store32(`value`: Long): Unit {
+  public final fun store32(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, MethodBindings.store32Ptr, NIL)
   }
@@ -455,7 +455,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * **Note:** The [value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int]
    * value).
    */
-  public fun store64(`value`: Long): Unit {
+  public final fun store64(`value`: Long): Unit {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(rawPtr, MethodBindings.store64Ptr, NIL)
   }
@@ -463,7 +463,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number as 32 bits in the file.
    */
-  public fun storeFloat(`value`: Float): Unit {
+  public final fun storeFloat(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.storeFloatPtr, NIL)
   }
@@ -471,7 +471,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number as 64 bits in the file.
    */
-  public fun storeDouble(`value`: Double): Unit {
+  public final fun storeDouble(`value`: Double): Unit {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(rawPtr, MethodBindings.storeDoublePtr, NIL)
   }
@@ -479,7 +479,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number in the file.
    */
-  public fun storeReal(`value`: Float): Unit {
+  public final fun storeReal(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.storeRealPtr, NIL)
   }
@@ -487,7 +487,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores the given array of bytes in the file.
    */
-  public fun storeBuffer(buffer: PackedByteArray): Unit {
+  public final fun storeBuffer(buffer: PackedByteArray): Unit {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.storeBufferPtr, NIL)
   }
@@ -496,7 +496,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Appends [line] to the file followed by a line return character (`\n`), encoding the text as
    * UTF-8.
    */
-  public fun storeLine(line: String): Unit {
+  public final fun storeLine(line: String): Unit {
     TransferContext.writeArguments(STRING to line)
     TransferContext.callMethod(rawPtr, MethodBindings.storeLinePtr, NIL)
   }
@@ -508,7 +508,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Text will be encoded as UTF-8.
    */
   @JvmOverloads
-  public fun storeCsvLine(values: PackedStringArray, delim: String = ","): Unit {
+  public final fun storeCsvLine(values: PackedStringArray, delim: String = ","): Unit {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to values, STRING to delim)
     TransferContext.callMethod(rawPtr, MethodBindings.storeCsvLinePtr, NIL)
   }
@@ -521,7 +521,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * [storePascalString] instead. For retrieving strings from a text file, you can use
    * `get_buffer(length).get_string_from_utf8()` (if you know the length) or [getAsText].
    */
-  public fun storeString(string: String): Unit {
+  public final fun storeString(string: String): Unit {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.storeStringPtr, NIL)
   }
@@ -537,7 +537,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * usage flags.
    */
   @JvmOverloads
-  public fun storeVar(`value`: Any?, fullObjects: Boolean = false): Unit {
+  public final fun storeVar(`value`: Any?, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.storeVarPtr, NIL)
   }
@@ -547,7 +547,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * the string).
    * Text will be encoded as UTF-8.
    */
-  public fun storePascalString(string: String): Unit {
+  public final fun storePascalString(string: String): Unit {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.storePascalStringPtr, NIL)
   }
@@ -556,7 +556,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Returns a [String] saved in Pascal format from the file.
    * Text is interpreted as being UTF-8 encoded.
    */
-  public fun getPascalString(): String {
+  public final fun getPascalString(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPascalStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -570,7 +570,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * done using it, this can be done with the `using` statement or calling the `Dispose` method
    * directly.
    */
-  public fun close(): Unit {
+  public final fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
@@ -750,7 +750,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
      * occurred.
      */
-    public fun `open`(path: String, flags: ModeFlags): FileAccess? {
+    public final fun `open`(path: String, flags: ModeFlags): FileAccess? {
       TransferContext.writeArguments(STRING to path, LONG to flags.id)
       TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as FileAccess?)
@@ -763,7 +763,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
      * occurred.
      */
-    public fun openEncrypted(
+    public final fun openEncrypted(
       path: String,
       modeFlags: ModeFlags,
       key: PackedByteArray,
@@ -779,7 +779,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
      * occurred.
      */
-    public fun openEncryptedWithPass(
+    public final fun openEncryptedWithPass(
       path: String,
       modeFlags: ModeFlags,
       pass: String,
@@ -798,7 +798,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * occurred.
      */
     @JvmOverloads
-    public fun openCompressed(
+    public final fun openCompressed(
       path: String,
       modeFlags: ModeFlags,
       compressionMode: CompressionMode = FileAccess.CompressionMode.COMPRESSION_FASTLZ,
@@ -811,7 +811,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     /**
      * Returns the result of the last [open] call in the current thread.
      */
-    public fun getOpenError(): GodotError {
+    public final fun getOpenError(): GodotError {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -822,7 +822,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an empty [PackedByteArray] if an error occurred while opening the file. You can use
      * [getOpenError] to check the error that occurred.
      */
-    public fun getFileAsBytes(path: String): PackedByteArray {
+    public final fun getFileAsBytes(path: String): PackedByteArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getFileAsBytesPtr, PACKED_BYTE_ARRAY)
       return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -834,7 +834,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an empty [String] if an error occurred while opening the file. You can use
      * [getOpenError] to check the error that occurred.
      */
-    public fun getFileAsString(path: String): String {
+    public final fun getFileAsString(path: String): String {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getFileAsStringPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
@@ -844,7 +844,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an MD5 String representing the file at the given path or an empty [String] on
      * failure.
      */
-    public fun getMd5(path: String): String {
+    public final fun getMd5(path: String): String {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getMd5Ptr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
@@ -854,7 +854,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns an SHA-256 [String] representing the file at the given path or an empty [String] on
      * failure.
      */
-    public fun getSha256(path: String): String {
+    public final fun getSha256(path: String): String {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getSha256Ptr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)
@@ -867,7 +867,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
      * For a non-static, relative equivalent, use [DirAccess.fileExists].
      */
-    public fun fileExists(path: String): Boolean {
+    public final fun fileExists(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.fileExistsPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -877,7 +877,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This
      * Unix timestamp can be converted to another format using the [Time] singleton.
      */
-    public fun getModifiedTime(`file`: String): Long {
+    public final fun getModifiedTime(`file`: String): Long {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getModifiedTimePtr, LONG)
       return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -887,7 +887,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns file UNIX permissions.
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
-    public fun getUnixPermissions(`file`: String): UnixPermissionFlags {
+    public final fun getUnixPermissions(`file`: String): UnixPermissionFlags {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getUnixPermissionsPtr, LONG)
       return UnixPermissionFlagsValue(TransferContext.readReturnValue(LONG) as Long)
@@ -897,7 +897,8 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Sets file UNIX permissions.
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
-    public fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags): GodotError {
+    public final fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags):
+        GodotError {
       TransferContext.writeArguments(STRING to file, LONG to permissions.flag)
       TransferContext.callMethod(0, MethodBindings.setUnixPermissionsPtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -907,7 +908,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `true`, if file `hidden` attribute is set.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
-    public fun getHiddenAttribute(`file`: String): Boolean {
+    public final fun getHiddenAttribute(`file`: String): Boolean {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getHiddenAttributePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -917,7 +918,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Sets file **hidden** attribute.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
-    public fun setHiddenAttribute(`file`: String, hidden: Boolean): GodotError {
+    public final fun setHiddenAttribute(`file`: String, hidden: Boolean): GodotError {
       TransferContext.writeArguments(STRING to file, BOOL to hidden)
       TransferContext.callMethod(0, MethodBindings.setHiddenAttributePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -927,7 +928,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Sets file **read only** attribute.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
-    public fun setReadOnlyAttribute(`file`: String, ro: Boolean): GodotError {
+    public final fun setReadOnlyAttribute(`file`: String, ro: Boolean): GodotError {
       TransferContext.writeArguments(STRING to file, BOOL to ro)
       TransferContext.callMethod(0, MethodBindings.setReadOnlyAttributePtr, LONG)
       return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -937,7 +938,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Returns `true`, if file `read only` attribute is set.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
-    public fun getReadOnlyAttribute(`file`: String): Boolean {
+    public final fun getReadOnlyAttribute(`file`: String): Boolean {
       TransferContext.writeArguments(STRING to file)
       TransferContext.callMethod(0, MethodBindings.getReadOnlyAttributePtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)

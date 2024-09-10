@@ -37,7 +37,7 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class NavigationMeshSourceGeometryData3D : Resource() {
-  public var vertices: PackedFloat32Array
+  public final inline var vertices: PackedFloat32Array
     @JvmName("verticesProperty")
     get() = getVertices()
     @JvmName("verticesProperty")
@@ -45,7 +45,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
       setVertices(value)
     }
 
-  public var indices: PackedInt32Array
+  public final inline var indices: PackedInt32Array
     @JvmName("indicesProperty")
     get() = getIndices()
     @JvmName("indicesProperty")
@@ -53,7 +53,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
       setIndices(value)
     }
 
-  public var projectedObstructions: VariantArray<Any?>
+  public final inline var projectedObstructions: VariantArray<Any?>
     @JvmName("projectedObstructionsProperty")
     get() = getProjectedObstructions()
     @JvmName("projectedObstructionsProperty")
@@ -71,7 +71,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * **Warning:** Inappropriate data can crash the baking process of the involved third-party
    * libraries.
    */
-  public fun setVertices(vertices: PackedFloat32Array): Unit {
+  public final fun setVertices(vertices: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to vertices)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
   }
@@ -79,7 +79,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Returns the parsed source geometry data vertices array.
    */
-  public fun getVertices(): PackedFloat32Array {
+  public final fun getVertices(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_FLOAT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
@@ -91,7 +91,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * **Warning:** Inappropriate data can crash the baking process of the involved third-party
    * libraries.
    */
-  public fun setIndices(indices: PackedInt32Array): Unit {
+  public final fun setIndices(indices: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to indices)
     TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
   }
@@ -99,7 +99,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Returns the parsed source geometry data indices array.
    */
-  public fun getIndices(): PackedInt32Array {
+  public final fun getIndices(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -109,7 +109,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Appends arrays of [vertices] and [indices] at the end of the existing arrays. Adds the existing
    * index as an offset to the appended indices.
    */
-  public fun appendArrays(vertices: PackedFloat32Array, indices: PackedInt32Array): Unit {
+  public final fun appendArrays(vertices: PackedFloat32Array, indices: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
     TransferContext.callMethod(rawPtr, MethodBindings.appendArraysPtr, NIL)
   }
@@ -117,7 +117,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Clears the internal data.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -125,7 +125,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Returns `true` when parsed source geometry data exists.
    */
-  public fun hasData(): Boolean {
+  public final fun hasData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -136,7 +136,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * have valid triangulated mesh data to be considered. Since [NavigationMesh] resources have no
    * transform, all vertex positions need to be offset by the node's transform using [xform].
    */
-  public fun addMesh(mesh: Mesh?, xform: Transform3D): Unit {
+  public final fun addMesh(mesh: Mesh?, xform: Transform3D): Unit {
     TransferContext.writeArguments(OBJECT to mesh, TRANSFORM3D to xform)
     TransferContext.callMethod(rawPtr, MethodBindings.addMeshPtr, NIL)
   }
@@ -147,7 +147,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * triangulated mesh data to be considered. Since [NavigationMesh] resources have no transform, all
    * vertex positions need to be offset by the node's transform using [xform].
    */
-  public fun addMeshArray(meshArray: VariantArray<Any?>, xform: Transform3D): Unit {
+  public final fun addMeshArray(meshArray: VariantArray<Any?>, xform: Transform3D): Unit {
     TransferContext.writeArguments(ARRAY to meshArray, TRANSFORM3D to xform)
     TransferContext.callMethod(rawPtr, MethodBindings.addMeshArrayPtr, NIL)
   }
@@ -158,7 +158,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * order. Since [NavigationMesh] resources have no transform, all vertex positions need to be offset
    * by the node's transform using [xform].
    */
-  public fun addFaces(faces: PackedVector3Array, xform: Transform3D): Unit {
+  public final fun addFaces(faces: PackedVector3Array, xform: Transform3D): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces, TRANSFORM3D to xform)
     TransferContext.callMethod(rawPtr, MethodBindings.addFacesPtr, NIL)
   }
@@ -167,7 +167,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Adds the geometry data of another [NavigationMeshSourceGeometryData3D] to the navigation mesh
    * baking data.
    */
-  public fun merge(otherGeometry: NavigationMeshSourceGeometryData3D?): Unit {
+  public final fun merge(otherGeometry: NavigationMeshSourceGeometryData3D?): Unit {
     TransferContext.writeArguments(OBJECT to otherGeometry)
     TransferContext.callMethod(rawPtr, MethodBindings.mergePtr, NIL)
   }
@@ -178,7 +178,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * [carve] is `true` the carved shape will not be affected by additional offsets (e.g. agent radius)
    * of the navigation mesh baking process.
    */
-  public fun addProjectedObstruction(
+  public final fun addProjectedObstruction(
     vertices: PackedVector3Array,
     elevation: Float,
     height: Float,
@@ -191,7 +191,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   /**
    * Clears all projected obstructions.
    */
-  public fun clearProjectedObstructions(): Unit {
+  public final fun clearProjectedObstructions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearProjectedObstructionsPtr, NIL)
   }
@@ -208,7 +208,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * "carve" : bool
    * ```
    */
-  public fun setProjectedObstructions(projectedObstructions: VariantArray<Any?>): Unit {
+  public final fun setProjectedObstructions(projectedObstructions: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to projectedObstructions)
     TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
   }
@@ -222,7 +222,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * - `carve` - A [bool] that defines how the obstacle affects the navigation mesh baking. If
    * `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */
-  public fun getProjectedObstructions(): VariantArray<Any?> {
+  public final fun getProjectedObstructions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)

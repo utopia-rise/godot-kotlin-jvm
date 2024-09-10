@@ -46,7 +46,7 @@ public open class Label3D : GeometryInstance3D() {
    * The size of one pixel's width on the label to scale it in 3D. To make the font look more
    * detailed when up close, increase [fontSize] while decreasing [pixelSize] at the same time.
    */
-  public var pixelSize: Float
+  public final inline var pixelSize: Float
     @JvmName("pixelSizeProperty")
     get() = getPixelSize()
     @JvmName("pixelSizeProperty")
@@ -58,7 +58,7 @@ public open class Label3D : GeometryInstance3D() {
    * The text drawing offset (in pixels).
    */
   @CoreTypeLocalCopy
-  public var offset: Vector2
+  public final inline var offset: Vector2
     @JvmName("offsetProperty")
     get() = getOffset()
     @JvmName("offsetProperty")
@@ -70,7 +70,7 @@ public open class Label3D : GeometryInstance3D() {
    * The billboard mode to use for the label. See [BaseMaterial3D.BillboardMode] for possible
    * values.
    */
-  public var billboard: BaseMaterial3D.BillboardMode
+  public final inline var billboard: BaseMaterial3D.BillboardMode
     @JvmName("billboardProperty")
     get() = getBillboardMode()
     @JvmName("billboardProperty")
@@ -81,7 +81,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * If `true`, the [Light3D] in the [Environment] has effects on the label.
    */
-  public var shaded: Boolean
+  public final inline var shaded: Boolean
     @JvmName("shadedProperty")
     get() = getDrawFlag(Label3D.DrawFlags.FLAG_SHADED)
     @JvmName("shadedProperty")
@@ -93,7 +93,7 @@ public open class Label3D : GeometryInstance3D() {
    * If `true`, text can be seen from the back as well, if `false`, it is invisible when looking at
    * it from behind.
    */
-  public var doubleSided: Boolean
+  public final inline var doubleSided: Boolean
     @JvmName("doubleSidedProperty")
     get() = getDrawFlag(Label3D.DrawFlags.FLAG_DOUBLE_SIDED)
     @JvmName("doubleSidedProperty")
@@ -104,7 +104,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * If `true`, depth testing is disabled and the object will be drawn in render order.
    */
-  public var noDepthTest: Boolean
+  public final inline var noDepthTest: Boolean
     @JvmName("noDepthTestProperty")
     get() = getDrawFlag(Label3D.DrawFlags.FLAG_DISABLE_DEPTH_TEST)
     @JvmName("noDepthTestProperty")
@@ -115,7 +115,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * If `true`, the label is rendered at the same size regardless of distance.
    */
-  public var fixedSize: Boolean
+  public final inline var fixedSize: Boolean
     @JvmName("fixedSizeProperty")
     get() = getDrawFlag(Label3D.DrawFlags.FLAG_FIXED_SIZE)
     @JvmName("fixedSizeProperty")
@@ -126,7 +126,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The alpha cutting mode to use for the sprite. See [AlphaCutMode] for possible values.
    */
-  public var alphaCut: AlphaCutMode
+  public final inline var alphaCut: AlphaCutMode
     @JvmName("alphaCutProperty")
     get() = getAlphaCutMode()
     @JvmName("alphaCutProperty")
@@ -137,7 +137,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Threshold at which the alpha scissor will discard values.
    */
-  public var alphaScissorThreshold: Float
+  public final inline var alphaScissorThreshold: Float
     @JvmName("alphaScissorThresholdProperty")
     get() = getAlphaScissorThreshold()
     @JvmName("alphaScissorThresholdProperty")
@@ -148,7 +148,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The hashing scale for Alpha Hash. Recommended values between `0` and `2`.
    */
-  public var alphaHashScale: Float
+  public final inline var alphaHashScale: Float
     @JvmName("alphaHashScaleProperty")
     get() = getAlphaHashScale()
     @JvmName("alphaHashScaleProperty")
@@ -159,7 +159,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The type of alpha antialiasing to apply. See [BaseMaterial3D.AlphaAntiAliasing].
    */
-  public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
+  public final inline var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
     @JvmName("alphaAntialiasingModeProperty")
     get() = getAlphaAntialiasing()
     @JvmName("alphaAntialiasingModeProperty")
@@ -170,7 +170,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Threshold at which antialiasing will be applied on the alpha channel.
    */
-  public var alphaAntialiasingEdge: Float
+  public final inline var alphaAntialiasingEdge: Float
     @JvmName("alphaAntialiasingEdgeProperty")
     get() = getAlphaAntialiasingEdge()
     @JvmName("alphaAntialiasingEdgeProperty")
@@ -181,7 +181,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
    */
-  public var textureFilter: BaseMaterial3D.TextureFilter
+  public final inline var textureFilter: BaseMaterial3D.TextureFilter
     @JvmName("textureFilterProperty")
     get() = getTextureFilter()
     @JvmName("textureFilterProperty")
@@ -197,7 +197,7 @@ public open class Label3D : GeometryInstance3D() {
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
    */
-  public var renderPriority: Int
+  public final inline var renderPriority: Int
     @JvmName("renderPriorityProperty")
     get() = getRenderPriority()
     @JvmName("renderPriorityProperty")
@@ -213,7 +213,7 @@ public open class Label3D : GeometryInstance3D() {
    * transparent objects are sorted relative to opaque objects. This is because opaque objects are not
    * sorted, while transparent objects are sorted from back to front (subject to priority).
    */
-  public var outlineRenderPriority: Int
+  public final inline var outlineRenderPriority: Int
     @JvmName("outlineRenderPriorityProperty")
     get() = getOutlineRenderPriority()
     @JvmName("outlineRenderPriorityProperty")
@@ -225,7 +225,7 @@ public open class Label3D : GeometryInstance3D() {
    * Text [Color] of the [Label3D].
    */
   @CoreTypeLocalCopy
-  public var modulate: Color
+  public final inline var modulate: Color
     @JvmName("modulateProperty")
     get() = getModulate()
     @JvmName("modulateProperty")
@@ -237,7 +237,7 @@ public open class Label3D : GeometryInstance3D() {
    * The tint of text outline.
    */
   @CoreTypeLocalCopy
-  public var outlineModulate: Color
+  public final inline var outlineModulate: Color
     @JvmName("outlineModulateProperty")
     get() = getOutlineModulate()
     @JvmName("outlineModulateProperty")
@@ -248,7 +248,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The text to display on screen.
    */
-  public var text: String
+  public final inline var text: String
     @JvmName("textProperty")
     get() = getText()
     @JvmName("textProperty")
@@ -259,7 +259,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Font configuration used to display text.
    */
-  public var font: Font?
+  public final inline var font: Font?
     @JvmName("fontProperty")
     get() = getFont()
     @JvmName("fontProperty")
@@ -273,7 +273,7 @@ public open class Label3D : GeometryInstance3D() {
    * Higher font sizes require more time to render new characters, which can cause stuttering during
    * gameplay.
    */
-  public var fontSize: Int
+  public final inline var fontSize: Int
     @JvmName("fontSizeProperty")
     get() = getFontSize()
     @JvmName("fontSizeProperty")
@@ -284,7 +284,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Text outline size.
    */
-  public var outlineSize: Int
+  public final inline var outlineSize: Int
     @JvmName("outlineSizeProperty")
     get() = getOutlineSize()
     @JvmName("outlineSizeProperty")
@@ -296,7 +296,7 @@ public open class Label3D : GeometryInstance3D() {
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
    * Set it to one of the [HorizontalAlignment] constants.
    */
-  public var horizontalAlignment: HorizontalAlignment
+  public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
     get() = getHorizontalAlignment()
     @JvmName("horizontalAlignmentProperty")
@@ -308,7 +308,7 @@ public open class Label3D : GeometryInstance3D() {
    * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
    * [VerticalAlignment] constants.
    */
-  public var verticalAlignment: VerticalAlignment
+  public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
     get() = getVerticalAlignment()
     @JvmName("verticalAlignmentProperty")
@@ -319,7 +319,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * If `true`, all the text displays as UPPERCASE.
    */
-  public var uppercase: Boolean
+  public final inline var uppercase: Boolean
     @JvmName("uppercaseProperty")
     get() = isUppercase()
     @JvmName("uppercaseProperty")
@@ -330,7 +330,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Vertical space between lines in multiline [Label3D].
    */
-  public var lineSpacing: Float
+  public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
     get() = getLineSpacing()
     @JvmName("lineSpacingProperty")
@@ -343,7 +343,7 @@ public open class Label3D : GeometryInstance3D() {
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
    * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
-  public var autowrapMode: TextServer.AutowrapMode
+  public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
     get() = getAutowrapMode()
     @JvmName("autowrapModeProperty")
@@ -354,7 +354,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
-  public var justificationFlags: TextServer.JustificationFlag
+  public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
     get() = getJustificationFlags()
     @JvmName("justificationFlagsProperty")
@@ -365,7 +365,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Text width (in pixels), used for autowrap and fill alignment.
    */
-  public var width: Float
+  public final inline var width: Float
     @JvmName("widthProperty")
     get() = getWidth()
     @JvmName("widthProperty")
@@ -376,7 +376,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Base text writing direction.
    */
-  public var textDirection: TextServer.Direction
+  public final inline var textDirection: TextServer.Direction
     @JvmName("textDirectionProperty")
     get() = getTextDirection()
     @JvmName("textDirectionProperty")
@@ -388,7 +388,7 @@ public open class Label3D : GeometryInstance3D() {
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale
    * is used instead.
    */
-  public var language: String
+  public final inline var language: String
     @JvmName("languageProperty")
     get() = getLanguage()
     @JvmName("languageProperty")
@@ -399,7 +399,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: TextServer.StructuredTextParser
+  public final inline var structuredTextBidiOverride: TextServer.StructuredTextParser
     @JvmName("structuredTextBidiOverrideProperty")
     get() = getStructuredTextBidiOverride()
     @JvmName("structuredTextBidiOverrideProperty")
@@ -410,7 +410,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Set additional options for BiDi override.
    */
-  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
+  public final inline var structuredTextBidiOverrideOptions: VariantArray<Any?>
     @JvmName("structuredTextBidiOverrideOptionsProperty")
     get() = getStructuredTextBidiOverrideOptions()
     @JvmName("structuredTextBidiOverrideOptionsProperty")
@@ -440,7 +440,7 @@ public open class Label3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
+  public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply{
       block(this)
       offset = this
   }
@@ -464,7 +464,7 @@ public open class Label3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }
@@ -488,239 +488,239 @@ public open class Label3D : GeometryInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun outlineModulateMutate(block: Color.() -> Unit): Color = outlineModulate.apply{
+  public final fun outlineModulateMutate(block: Color.() -> Unit): Color = outlineModulate.apply{
       block(this)
       outlineModulate = this
   }
 
 
-  public fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
-  public fun getHorizontalAlignment(): HorizontalAlignment {
+  public final fun getHorizontalAlignment(): HorizontalAlignment {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
+  public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
-  public fun getVerticalAlignment(): VerticalAlignment {
+  public final fun getVerticalAlignment(): VerticalAlignment {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setModulate(modulate: Color): Unit {
+  public final fun setModulate(modulate: Color): Unit {
     TransferContext.writeArguments(COLOR to modulate)
     TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
   }
 
-  public fun getModulate(): Color {
+  public final fun getModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setOutlineModulate(modulate: Color): Unit {
+  public final fun setOutlineModulate(modulate: Color): Unit {
     TransferContext.writeArguments(COLOR to modulate)
     TransferContext.callMethod(rawPtr, MethodBindings.setOutlineModulatePtr, NIL)
   }
 
-  public fun getOutlineModulate(): Color {
+  public final fun getOutlineModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setText(text: String): Unit {
+  public final fun setText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
-  public fun getText(): String {
+  public final fun getText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setTextDirection(direction: TextServer.Direction): Unit {
+  public final fun setTextDirection(direction: TextServer.Direction): Unit {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
-  public fun getTextDirection(): TextServer.Direction {
+  public final fun getTextDirection(): TextServer.Direction {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String): Unit {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
-  public fun getLanguage(): String {
+  public final fun getLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
     TransferContext.writeArguments(LONG to parser.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
-  public fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+  public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
-  public fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+  public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
         ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
-  public fun setUppercase(enable: Boolean): Unit {
+  public final fun setUppercase(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
   }
 
-  public fun isUppercase(): Boolean {
+  public final fun isUppercase(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setRenderPriority(priority: Int): Unit {
+  public final fun setRenderPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
   }
 
-  public fun getRenderPriority(): Int {
+  public final fun getRenderPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setOutlineRenderPriority(priority: Int): Unit {
+  public final fun setOutlineRenderPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setOutlineRenderPriorityPtr, NIL)
   }
 
-  public fun getOutlineRenderPriority(): Int {
+  public final fun getOutlineRenderPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFont(font: Font?): Unit {
+  public final fun setFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
   }
 
-  public fun getFont(): Font? {
+  public final fun getFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
-  public fun setFontSize(size: Int): Unit {
+  public final fun setFontSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
   }
 
-  public fun getFontSize(): Int {
+  public final fun getFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setOutlineSize(outlineSize: Int): Unit {
+  public final fun setOutlineSize(outlineSize: Int): Unit {
     TransferContext.writeArguments(LONG to outlineSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
   }
 
-  public fun getOutlineSize(): Int {
+  public final fun getOutlineSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setLineSpacing(lineSpacing: Float): Unit {
+  public final fun setLineSpacing(lineSpacing: Float): Unit {
     TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
   }
 
-  public fun getLineSpacing(): Float {
+  public final fun getLineSpacing(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
     TransferContext.writeArguments(LONG to autowrapMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
-  public fun getAutowrapMode(): TextServer.AutowrapMode {
+  public final fun getAutowrapMode(): TextServer.AutowrapMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
-  public fun getJustificationFlags(): TextServer.JustificationFlag {
+  public final fun getJustificationFlags(): TextServer.JustificationFlag {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
     return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setWidth(width: Float): Unit {
+  public final fun setWidth(width: Float): Unit {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
-  public fun getWidth(): Float {
+  public final fun getWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPixelSize(pixelSize: Float): Unit {
+  public final fun setPixelSize(pixelSize: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
   }
 
-  public fun getPixelSize(): Float {
+  public final fun getPixelSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
-  public fun getOffset(): Vector2 {
+  public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -729,7 +729,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * If `true`, the specified flag will be enabled. See [Label3D.DrawFlags] for a list of flags.
    */
-  public fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
+  public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
   }
@@ -737,84 +737,84 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Returns the value of the specified flag.
    */
-  public fun getDrawFlag(flag: DrawFlags): Boolean {
+  public final fun getDrawFlag(flag: DrawFlags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
+  public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
   }
 
-  public fun getBillboardMode(): BaseMaterial3D.BillboardMode {
+  public final fun getBillboardMode(): BaseMaterial3D.BillboardMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
     return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAlphaCutMode(mode: AlphaCutMode): Unit {
+  public final fun setAlphaCutMode(mode: AlphaCutMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
   }
 
-  public fun getAlphaCutMode(): AlphaCutMode {
+  public final fun getAlphaCutMode(): AlphaCutMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
     return Label3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAlphaScissorThreshold(threshold: Float): Unit {
+  public final fun setAlphaScissorThreshold(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
 
-  public fun getAlphaScissorThreshold(): Float {
+  public final fun getAlphaScissorThreshold(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAlphaHashScale(threshold: Float): Unit {
+  public final fun setAlphaHashScale(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
 
-  public fun getAlphaHashScale(): Float {
+  public final fun getAlphaHashScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
+  public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
     TransferContext.writeArguments(LONG to alphaAa.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
-  public fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
+  public final fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
     return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAlphaAntialiasingEdge(edge: Float): Unit {
+  public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
     TransferContext.writeArguments(DOUBLE to edge.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
 
-  public fun getAlphaAntialiasingEdge(): Float {
+  public final fun getAlphaAntialiasingEdge(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
+  public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
-  public fun getTextureFilter(): BaseMaterial3D.TextureFilter {
+  public final fun getTextureFilter(): BaseMaterial3D.TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
     return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
@@ -824,7 +824,7 @@ public open class Label3D : GeometryInstance3D() {
    * Returns a [TriangleMesh] with the label's vertices following its current configuration (such as
    * its [pixelSize]).
    */
-  public fun generateTriangleMesh(): TriangleMesh? {
+  public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)

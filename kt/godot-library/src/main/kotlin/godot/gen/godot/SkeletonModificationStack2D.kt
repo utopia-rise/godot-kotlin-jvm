@@ -39,7 +39,7 @@ public open class SkeletonModificationStack2D : Resource() {
    * If `true`, the modification's in the stack will be called. This is handled automatically
    * through the [Skeleton2D] node.
    */
-  public var enabled: Boolean
+  public final inline var enabled: Boolean
     @JvmName("enabledProperty")
     get() = getEnabled()
     @JvmName("enabledProperty")
@@ -52,7 +52,7 @@ public open class SkeletonModificationStack2D : Resource() {
    * modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1`
    * will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses.
    */
-  public var strength: Float
+  public final inline var strength: Float
     @JvmName("strengthProperty")
     get() = getStrength()
     @JvmName("strengthProperty")
@@ -63,7 +63,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * The number of modifications in the stack.
    */
-  public var modificationCount: Int
+  public final inline var modificationCount: Int
     @JvmName("modificationCountProperty")
     get() = getModificationCount()
     @JvmName("modificationCountProperty")
@@ -79,7 +79,7 @@ public open class SkeletonModificationStack2D : Resource() {
    * Sets up the modification stack so it can execute. This function should be called by
    * [Skeleton2D] and shouldn't be manually called unless you know what you are doing.
    */
-  public fun setup(): Unit {
+  public final fun setup(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, NIL)
   }
@@ -91,7 +91,7 @@ public open class SkeletonModificationStack2D : Resource() {
    * example, modifications on a spine should operate before modifications on the arms in order to get
    * proper results.
    */
-  public fun execute(delta: Float, executionMode: Int): Unit {
+  public final fun execute(delta: Float, executionMode: Int): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.executePtr, NIL)
   }
@@ -99,7 +99,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Enables all [SkeletonModification2D]s in the stack.
    */
-  public fun enableAllModifications(enabled: Boolean): Unit {
+  public final fun enableAllModifications(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.enableAllModificationsPtr, NIL)
   }
@@ -107,7 +107,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Returns the [SkeletonModification2D] at the passed-in index, [modIdx].
    */
-  public fun getModification(modIdx: Int): SkeletonModification2D? {
+  public final fun getModification(modIdx: Int): SkeletonModification2D? {
     TransferContext.writeArguments(LONG to modIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getModificationPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModification2D?)
@@ -116,7 +116,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Adds the passed-in [SkeletonModification2D] to the stack.
    */
-  public fun addModification(modification: SkeletonModification2D?): Unit {
+  public final fun addModification(modification: SkeletonModification2D?): Unit {
     TransferContext.writeArguments(OBJECT to modification)
     TransferContext.callMethod(rawPtr, MethodBindings.addModificationPtr, NIL)
   }
@@ -124,7 +124,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Deletes the [SkeletonModification2D] at the index position [modIdx], if it exists.
    */
-  public fun deleteModification(modIdx: Int): Unit {
+  public final fun deleteModification(modIdx: Int): Unit {
     TransferContext.writeArguments(LONG to modIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.deleteModificationPtr, NIL)
   }
@@ -132,17 +132,17 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Sets the modification at [modIdx] to the passed-in modification, [modification].
    */
-  public fun setModification(modIdx: Int, modification: SkeletonModification2D?): Unit {
+  public final fun setModification(modIdx: Int, modification: SkeletonModification2D?): Unit {
     TransferContext.writeArguments(LONG to modIdx.toLong(), OBJECT to modification)
     TransferContext.callMethod(rawPtr, MethodBindings.setModificationPtr, NIL)
   }
 
-  public fun setModificationCount(count: Int): Unit {
+  public final fun setModificationCount(count: Int): Unit {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setModificationCountPtr, NIL)
   }
 
-  public fun getModificationCount(): Int {
+  public final fun getModificationCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModificationCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -151,29 +151,29 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Returns a boolean that indicates whether the modification stack is setup and can execute.
    */
-  public fun getIsSetup(): Boolean {
+  public final fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
-  public fun getEnabled(): Boolean {
+  public final fun getEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setStrength(strength: Float): Unit {
+  public final fun setStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
   }
 
-  public fun getStrength(): Float {
+  public final fun getStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -182,7 +182,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to.
    */
-  public fun getSkeleton(): Skeleton2D? {
+  public final fun getSkeleton(): Skeleton2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Skeleton2D?)

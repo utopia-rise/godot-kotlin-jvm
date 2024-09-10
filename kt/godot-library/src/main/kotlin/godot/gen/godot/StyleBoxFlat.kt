@@ -53,7 +53,7 @@ public open class StyleBoxFlat : StyleBox() {
    * The background color of the stylebox.
    */
   @CoreTypeLocalCopy
-  public var bgColor: Color
+  public final inline var bgColor: Color
     @JvmName("bgColorProperty")
     get() = getBgColor()
     @JvmName("bgColorProperty")
@@ -64,7 +64,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Toggles drawing of the inner part of the stylebox.
    */
-  public var drawCenter: Boolean
+  public final inline var drawCenter: Boolean
     @JvmName("drawCenterProperty")
     get() = isDrawCenterEnabled()
     @JvmName("drawCenterProperty")
@@ -83,7 +83,7 @@ public open class StyleBoxFlat : StyleBox() {
    * margin does not increase the size of the clickable area for [Control]s.
    */
   @CoreTypeLocalCopy
-  public var skew: Vector2
+  public final inline var skew: Vector2
     @JvmName("skewProperty")
     get() = getSkew()
     @JvmName("skewProperty")
@@ -94,7 +94,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the left border.
    */
-  public var borderWidthLeft: Int
+  public final inline var borderWidthLeft: Int
     @JvmName("borderWidthLeftProperty")
     get() = getBorderWidth(Side.SIDE_LEFT)
     @JvmName("borderWidthLeftProperty")
@@ -105,7 +105,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the top border.
    */
-  public var borderWidthTop: Int
+  public final inline var borderWidthTop: Int
     @JvmName("borderWidthTopProperty")
     get() = getBorderWidth(Side.SIDE_TOP)
     @JvmName("borderWidthTopProperty")
@@ -116,7 +116,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the right border.
    */
-  public var borderWidthRight: Int
+  public final inline var borderWidthRight: Int
     @JvmName("borderWidthRightProperty")
     get() = getBorderWidth(Side.SIDE_RIGHT)
     @JvmName("borderWidthRightProperty")
@@ -127,7 +127,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the bottom border.
    */
-  public var borderWidthBottom: Int
+  public final inline var borderWidthBottom: Int
     @JvmName("borderWidthBottomProperty")
     get() = getBorderWidth(Side.SIDE_BOTTOM)
     @JvmName("borderWidthBottomProperty")
@@ -139,7 +139,7 @@ public open class StyleBoxFlat : StyleBox() {
    * Sets the color of the border.
    */
   @CoreTypeLocalCopy
-  public var borderColor: Color
+  public final inline var borderColor: Color
     @JvmName("borderColorProperty")
     get() = getBorderColor()
     @JvmName("borderColorProperty")
@@ -150,7 +150,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * If `true`, the border will fade into the background color.
    */
-  public var borderBlend: Boolean
+  public final inline var borderBlend: Boolean
     @JvmName("borderBlendProperty")
     get() = getBorderBlend()
     @JvmName("borderBlendProperty")
@@ -161,7 +161,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The top-left corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusTopLeft: Int
+  public final inline var cornerRadiusTopLeft: Int
     @JvmName("cornerRadiusTopLeftProperty")
     get() = getCornerRadius(Corner.CORNER_TOP_LEFT)
     @JvmName("cornerRadiusTopLeftProperty")
@@ -172,7 +172,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The top-right corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusTopRight: Int
+  public final inline var cornerRadiusTopRight: Int
     @JvmName("cornerRadiusTopRightProperty")
     get() = getCornerRadius(Corner.CORNER_TOP_RIGHT)
     @JvmName("cornerRadiusTopRightProperty")
@@ -183,7 +183,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The bottom-right corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusBottomRight: Int
+  public final inline var cornerRadiusBottomRight: Int
     @JvmName("cornerRadiusBottomRightProperty")
     get() = getCornerRadius(Corner.CORNER_BOTTOM_RIGHT)
     @JvmName("cornerRadiusBottomRightProperty")
@@ -194,7 +194,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The bottom-left corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusBottomLeft: Int
+  public final inline var cornerRadiusBottomLeft: Int
     @JvmName("cornerRadiusBottomLeftProperty")
     get() = getCornerRadius(Corner.CORNER_BOTTOM_LEFT)
     @JvmName("cornerRadiusBottomLeftProperty")
@@ -211,7 +211,7 @@ public open class StyleBoxFlat : StyleBox() {
    * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is
    * useful for some artistic effects.
    */
-  public var cornerDetail: Int
+  public final inline var cornerDetail: Int
     @JvmName("cornerDetailProperty")
     get() = getCornerDetail()
     @JvmName("cornerDetailProperty")
@@ -226,7 +226,7 @@ public open class StyleBoxFlat : StyleBox() {
    * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
    * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginLeft: Float
+  public final inline var expandMarginLeft: Float
     @JvmName("expandMarginLeftProperty")
     get() = getExpandMargin(Side.SIDE_LEFT)
     @JvmName("expandMarginLeftProperty")
@@ -241,7 +241,7 @@ public open class StyleBoxFlat : StyleBox() {
    * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
    * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginTop: Float
+  public final inline var expandMarginTop: Float
     @JvmName("expandMarginTopProperty")
     get() = getExpandMargin(Side.SIDE_TOP)
     @JvmName("expandMarginTopProperty")
@@ -256,7 +256,7 @@ public open class StyleBoxFlat : StyleBox() {
    * of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the
    * user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginRight: Float
+  public final inline var expandMarginRight: Float
     @JvmName("expandMarginRightProperty")
     get() = getExpandMargin(Side.SIDE_RIGHT)
     @JvmName("expandMarginRightProperty")
@@ -271,7 +271,7 @@ public open class StyleBoxFlat : StyleBox() {
    * size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as
    * the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginBottom: Float
+  public final inline var expandMarginBottom: Float
     @JvmName("expandMarginBottomProperty")
     get() = getExpandMargin(Side.SIDE_BOTTOM)
     @JvmName("expandMarginBottomProperty")
@@ -283,7 +283,7 @@ public open class StyleBoxFlat : StyleBox() {
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    */
   @CoreTypeLocalCopy
-  public var shadowColor: Color
+  public final inline var shadowColor: Color
     @JvmName("shadowColorProperty")
     get() = getShadowColor()
     @JvmName("shadowColorProperty")
@@ -294,7 +294,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow size in pixels.
    */
-  public var shadowSize: Int
+  public final inline var shadowSize: Int
     @JvmName("shadowSizeProperty")
     get() = getShadowSize()
     @JvmName("shadowSizeProperty")
@@ -306,7 +306,7 @@ public open class StyleBoxFlat : StyleBox() {
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    */
   @CoreTypeLocalCopy
-  public var shadowOffset: Vector2
+  public final inline var shadowOffset: Vector2
     @JvmName("shadowOffsetProperty")
     get() = getShadowOffset()
     @JvmName("shadowOffsetProperty")
@@ -321,7 +321,7 @@ public open class StyleBoxFlat : StyleBox() {
    * recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual
    * glitches.
    */
-  public var antiAliasing: Boolean
+  public final inline var antiAliasing: Boolean
     @JvmName("antiAliasingProperty")
     get() = isAntiAliased()
     @JvmName("antiAliasingProperty")
@@ -336,7 +336,7 @@ public open class StyleBoxFlat : StyleBox() {
    * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on
    * small boxes with large-radius corners.
    */
-  public var antiAliasingSize: Float
+  public final inline var antiAliasingSize: Float
     @JvmName("antiAliasingSizeProperty")
     get() = getAaSize()
     @JvmName("antiAliasingSizeProperty")
@@ -366,7 +366,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun bgColorMutate(block: Color.() -> Unit): Color = bgColor.apply{
+  public final fun bgColorMutate(block: Color.() -> Unit): Color = bgColor.apply{
       block(this)
       bgColor = this
   }
@@ -397,7 +397,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply{
+  public final fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply{
       block(this)
       skew = this
   }
@@ -421,7 +421,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
+  public final fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
       block(this)
       borderColor = this
   }
@@ -445,7 +445,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
+  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
       block(this)
       shadowColor = this
   }
@@ -469,29 +469,29 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+  public final fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       block(this)
       shadowOffset = this
   }
 
 
-  public fun setBgColor(color: Color): Unit {
+  public final fun setBgColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
   }
 
-  public fun getBgColor(): Color {
+  public final fun getBgColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setBorderColor(color: Color): Unit {
+  public final fun setBorderColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
   }
 
-  public fun getBorderColor(): Color {
+  public final fun getBorderColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -500,7 +500,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the border width to [width] pixels for all sides.
    */
-  public fun setBorderWidthAll(width: Int): Unit {
+  public final fun setBorderWidthAll(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthAllPtr, NIL)
   }
@@ -508,7 +508,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the smallest border width out of all four borders.
    */
-  public fun getBorderWidthMin(): Int {
+  public final fun getBorderWidthMin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -517,7 +517,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the specified [Side]'s border width to [width] pixels.
    */
-  public fun setBorderWidth(margin: Side, width: Int): Unit {
+  public final fun setBorderWidth(margin: Side, width: Int): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to width.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
   }
@@ -525,18 +525,18 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the specified [Side]'s border width.
    */
-  public fun getBorderWidth(margin: Side): Int {
+  public final fun getBorderWidth(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setBorderBlend(blend: Boolean): Unit {
+  public final fun setBorderBlend(blend: Boolean): Unit {
     TransferContext.writeArguments(BOOL to blend)
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderBlendPtr, NIL)
   }
 
-  public fun getBorderBlend(): Boolean {
+  public final fun getBorderBlend(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderBlendPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -545,7 +545,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius to [radius] pixels for all corners.
    */
-  public fun setCornerRadiusAll(radius: Int): Unit {
+  public final fun setCornerRadiusAll(radius: Int): Unit {
     TransferContext.writeArguments(LONG to radius.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusAllPtr, NIL)
   }
@@ -554,7 +554,7 @@ public open class StyleBoxFlat : StyleBox() {
    * Sets the corner radius to [radius] pixels for the given [corner]. See [Corner] for possible
    * values.
    */
-  public fun setCornerRadius(corner: Corner, radius: Int): Unit {
+  public final fun setCornerRadius(corner: Corner, radius: Int): Unit {
     TransferContext.writeArguments(LONG to corner.id, LONG to radius.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
   }
@@ -562,7 +562,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the given [corner]'s radius. See [Corner] for possible values.
    */
-  public fun getCornerRadius(corner: Corner): Int {
+  public final fun getCornerRadius(corner: Corner): Int {
     TransferContext.writeArguments(LONG to corner.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -571,7 +571,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for the specified [Side].
    */
-  public fun setExpandMargin(margin: Side, size: Float): Unit {
+  public final fun setExpandMargin(margin: Side, size: Float): Unit {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
   }
@@ -579,7 +579,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for all sides.
    */
-  public fun setExpandMarginAll(size: Float): Unit {
+  public final fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
   }
@@ -587,95 +587,95 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the size of the specified [Side]'s expand margin.
    */
-  public fun getExpandMargin(margin: Side): Float {
+  public final fun getExpandMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDrawCenter(drawCenter: Boolean): Unit {
+  public final fun setDrawCenter(drawCenter: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawCenter)
     TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
   }
 
-  public fun isDrawCenterEnabled(): Boolean {
+  public final fun isDrawCenterEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSkew(skew: Vector2): Unit {
+  public final fun setSkew(skew: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to skew)
     TransferContext.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
   }
 
-  public fun getSkew(): Vector2 {
+  public final fun getSkew(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkewPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setShadowColor(color: Color): Unit {
+  public final fun setShadowColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
   }
 
-  public fun getShadowColor(): Color {
+  public final fun getShadowColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setShadowSize(size: Int): Unit {
+  public final fun setShadowSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
   }
 
-  public fun getShadowSize(): Int {
+  public final fun getShadowSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setShadowOffset(offset: Vector2): Unit {
+  public final fun setShadowOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
   }
 
-  public fun getShadowOffset(): Vector2 {
+  public final fun getShadowOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
-  public fun setAntiAliased(antiAliased: Boolean): Unit {
+  public final fun setAntiAliased(antiAliased: Boolean): Unit {
     TransferContext.writeArguments(BOOL to antiAliased)
     TransferContext.callMethod(rawPtr, MethodBindings.setAntiAliasedPtr, NIL)
   }
 
-  public fun isAntiAliased(): Boolean {
+  public final fun isAntiAliased(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAntiAliasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAaSize(size: Float): Unit {
+  public final fun setAaSize(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAaSizePtr, NIL)
   }
 
-  public fun getAaSize(): Float {
+  public final fun getAaSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAaSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setCornerDetail(detail: Int): Unit {
+  public final fun setCornerDetail(detail: Int): Unit {
     TransferContext.writeArguments(LONG to detail.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCornerDetailPtr, NIL)
   }
 
-  public fun getCornerDetail(): Int {
+  public final fun getCornerDetail(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCornerDetailPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

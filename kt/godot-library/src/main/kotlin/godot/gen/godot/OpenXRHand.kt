@@ -38,7 +38,7 @@ public open class OpenXRHand : Node3D() {
   /**
    * Specifies whether this node tracks the left or right hand of the player.
    */
-  public var hand: Hands
+  public final inline var hand: Hands
     @JvmName("handProperty")
     get() = getHand()
     @JvmName("handProperty")
@@ -49,7 +49,7 @@ public open class OpenXRHand : Node3D() {
   /**
    * Set the motion range (if supported) limiting the hand motion.
    */
-  public var motionRange: MotionRange
+  public final inline var motionRange: MotionRange
     @JvmName("motionRangeProperty")
     get() = getMotionRange()
     @JvmName("motionRangeProperty")
@@ -60,7 +60,7 @@ public open class OpenXRHand : Node3D() {
   /**
    * Set a [Skeleton3D] node for which the pose positions will be updated.
    */
-  public var handSkeleton: NodePath
+  public final inline var handSkeleton: NodePath
     @JvmName("handSkeletonProperty")
     get() = getHandSkeleton()
     @JvmName("handSkeletonProperty")
@@ -71,7 +71,7 @@ public open class OpenXRHand : Node3D() {
   /**
    * Set the type of skeleton rig the [handSkeleton] is compliant with.
    */
-  public var skeletonRig: SkeletonRig
+  public final inline var skeletonRig: SkeletonRig
     @JvmName("skeletonRigProperty")
     get() = getSkeletonRig()
     @JvmName("skeletonRigProperty")
@@ -82,7 +82,7 @@ public open class OpenXRHand : Node3D() {
   /**
    * Specify the type of updates to perform on the bone.
    */
-  public var boneUpdate: BoneUpdate
+  public final inline var boneUpdate: BoneUpdate
     @JvmName("boneUpdateProperty")
     get() = getBoneUpdate()
     @JvmName("boneUpdateProperty")
@@ -94,56 +94,56 @@ public open class OpenXRHand : Node3D() {
     callConstructor(ENGINECLASS_OPENXRHAND, scriptIndex)
   }
 
-  public fun setHand(hand: Hands): Unit {
+  public final fun setHand(hand: Hands): Unit {
     TransferContext.writeArguments(LONG to hand.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
   }
 
-  public fun getHand(): Hands {
+  public final fun getHand(): Hands {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHandPtr, LONG)
     return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setHandSkeleton(handSkeleton: NodePath): Unit {
+  public final fun setHandSkeleton(handSkeleton: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to handSkeleton)
     TransferContext.callMethod(rawPtr, MethodBindings.setHandSkeletonPtr, NIL)
   }
 
-  public fun getHandSkeleton(): NodePath {
+  public final fun getHandSkeleton(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setMotionRange(motionRange: MotionRange): Unit {
+  public final fun setMotionRange(motionRange: MotionRange): Unit {
     TransferContext.writeArguments(LONG to motionRange.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
   }
 
-  public fun getMotionRange(): MotionRange {
+  public final fun getMotionRange(): MotionRange {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
     return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
+  public final fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
     TransferContext.writeArguments(LONG to skeletonRig.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonRigPtr, NIL)
   }
 
-  public fun getSkeletonRig(): SkeletonRig {
+  public final fun getSkeletonRig(): SkeletonRig {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonRigPtr, LONG)
     return OpenXRHand.SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+  public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
     TransferContext.writeArguments(LONG to boneUpdate.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
-  public fun getBoneUpdate(): BoneUpdate {
+  public final fun getBoneUpdate(): BoneUpdate {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
     return OpenXRHand.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)

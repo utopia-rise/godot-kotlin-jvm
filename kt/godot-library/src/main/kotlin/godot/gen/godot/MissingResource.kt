@@ -32,7 +32,7 @@ public open class MissingResource : Resource() {
   /**
    * The name of the class this resource was supposed to be (see [Object.getClass]).
    */
-  public var originalClass: String
+  public final inline var originalClass: String
     @JvmName("originalClassProperty")
     get() = getOriginalClass()
     @JvmName("originalClassProperty")
@@ -44,7 +44,7 @@ public open class MissingResource : Resource() {
    * If set to `true`, allows new properties to be added on top of the existing ones with
    * [Object.set].
    */
-  public var recordingProperties: Boolean
+  public final inline var recordingProperties: Boolean
     @JvmName("recordingPropertiesProperty")
     get() = isRecordingProperties()
     @JvmName("recordingPropertiesProperty")
@@ -56,23 +56,23 @@ public open class MissingResource : Resource() {
     callConstructor(ENGINECLASS_MISSINGRESOURCE, scriptIndex)
   }
 
-  public fun setOriginalClass(name: String): Unit {
+  public final fun setOriginalClass(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setOriginalClassPtr, NIL)
   }
 
-  public fun getOriginalClass(): String {
+  public final fun getOriginalClass(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalClassPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setRecordingProperties(enable: Boolean): Unit {
+  public final fun setRecordingProperties(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
   }
 
-  public fun isRecordingProperties(): Boolean {
+  public final fun isRecordingProperties(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecordingPropertiesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

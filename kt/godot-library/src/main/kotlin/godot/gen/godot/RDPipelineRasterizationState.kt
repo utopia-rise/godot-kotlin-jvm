@@ -32,7 +32,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
    * If `true`, clamps depth values according to the minimum and maximum depth of the associated
    * viewport.
    */
-  public var enableDepthClamp: Boolean
+  public final inline var enableDepthClamp: Boolean
     @JvmName("enableDepthClampProperty")
     get() = getEnableDepthClamp()
     @JvmName("enableDepthClampProperty")
@@ -43,7 +43,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    * If `true`, primitives are discarded immediately before the rasterization stage.
    */
-  public var discardPrimitives: Boolean
+  public final inline var discardPrimitives: Boolean
     @JvmName("discardPrimitivesProperty")
     get() = getDiscardPrimitives()
     @JvmName("discardPrimitivesProperty")
@@ -54,7 +54,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    * If `true`, performs wireframe rendering for triangles instead of flat or textured rendering.
    */
-  public var wireframe: Boolean
+  public final inline var wireframe: Boolean
     @JvmName("wireframeProperty")
     get() = getWireframe()
     @JvmName("wireframeProperty")
@@ -66,7 +66,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
    * The cull mode to use when drawing polygons, which determines whether front faces or backfaces
    * are hidden.
    */
-  public var cullMode: RenderingDevice.PolygonCullMode
+  public final inline var cullMode: RenderingDevice.PolygonCullMode
     @JvmName("cullModeProperty")
     get() = getCullMode()
     @JvmName("cullModeProperty")
@@ -77,7 +77,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    * The winding order to use to determine which face of a triangle is considered its front face.
    */
-  public var frontFace: RenderingDevice.PolygonFrontFace
+  public final inline var frontFace: RenderingDevice.PolygonFrontFace
     @JvmName("frontFaceProperty")
     get() = getFrontFace()
     @JvmName("frontFaceProperty")
@@ -89,7 +89,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
    * If `true`, each generated depth value will by offset by some amount. The specific amount is
    * generated per polygon based on the values of [depthBiasSlopeFactor] and [depthBiasConstantFactor].
    */
-  public var depthBiasEnabled: Boolean
+  public final inline var depthBiasEnabled: Boolean
     @JvmName("depthBiasEnabledProperty")
     get() = getDepthBiasEnabled()
     @JvmName("depthBiasEnabledProperty")
@@ -100,7 +100,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   /**
    * A constant offset added to each depth value. Applied after [depthBiasSlopeFactor].
    */
-  public var depthBiasConstantFactor: Float
+  public final inline var depthBiasConstantFactor: Float
     @JvmName("depthBiasConstantFactorProperty")
     get() = getDepthBiasConstantFactor()
     @JvmName("depthBiasConstantFactorProperty")
@@ -112,7 +112,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
    * A limit for how much each depth value can be offset. If negative, it serves as a minimum value,
    * but if positive, it serves as a maximum value.
    */
-  public var depthBiasClamp: Float
+  public final inline var depthBiasClamp: Float
     @JvmName("depthBiasClampProperty")
     get() = getDepthBiasClamp()
     @JvmName("depthBiasClampProperty")
@@ -124,7 +124,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
    * A constant scale applied to the slope of each polygons' depth. Applied before
    * [depthBiasConstantFactor].
    */
-  public var depthBiasSlopeFactor: Float
+  public final inline var depthBiasSlopeFactor: Float
     @JvmName("depthBiasSlopeFactorProperty")
     get() = getDepthBiasSlopeFactor()
     @JvmName("depthBiasSlopeFactorProperty")
@@ -136,7 +136,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
    * The line width to use when drawing lines (in pixels). Thick lines may not be supported on all
    * hardware.
    */
-  public var lineWidth: Float
+  public final inline var lineWidth: Float
     @JvmName("lineWidthProperty")
     get() = getLineWidth()
     @JvmName("lineWidthProperty")
@@ -148,7 +148,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
    * The number of control points to use when drawing a patch with tessellation enabled. Higher
    * values result in higher quality at the cost of performance.
    */
-  public var patchControlPoints: Long
+  public final inline var patchControlPoints: Long
     @JvmName("patchControlPointsProperty")
     get() = getPatchControlPoints()
     @JvmName("patchControlPointsProperty")
@@ -160,122 +160,122 @@ public open class RDPipelineRasterizationState : RefCounted() {
     callConstructor(ENGINECLASS_RDPIPELINERASTERIZATIONSTATE, scriptIndex)
   }
 
-  public fun setEnableDepthClamp(pMember: Boolean): Unit {
+  public final fun setEnableDepthClamp(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthClampPtr, NIL)
   }
 
-  public fun getEnableDepthClamp(): Boolean {
+  public final fun getEnableDepthClamp(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthClampPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDiscardPrimitives(pMember: Boolean): Unit {
+  public final fun setDiscardPrimitives(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiscardPrimitivesPtr, NIL)
   }
 
-  public fun getDiscardPrimitives(): Boolean {
+  public final fun getDiscardPrimitives(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiscardPrimitivesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setWireframe(pMember: Boolean): Unit {
+  public final fun setWireframe(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setWireframePtr, NIL)
   }
 
-  public fun getWireframe(): Boolean {
+  public final fun getWireframe(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWireframePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCullMode(pMember: RenderingDevice.PolygonCullMode): Unit {
+  public final fun setCullMode(pMember: RenderingDevice.PolygonCullMode): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
   }
 
-  public fun getCullMode(): RenderingDevice.PolygonCullMode {
+  public final fun getCullMode(): RenderingDevice.PolygonCullMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
     return RenderingDevice.PolygonCullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFrontFace(pMember: RenderingDevice.PolygonFrontFace): Unit {
+  public final fun setFrontFace(pMember: RenderingDevice.PolygonFrontFace): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrontFacePtr, NIL)
   }
 
-  public fun getFrontFace(): RenderingDevice.PolygonFrontFace {
+  public final fun getFrontFace(): RenderingDevice.PolygonFrontFace {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrontFacePtr, LONG)
     return RenderingDevice.PolygonFrontFace.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDepthBiasEnabled(pMember: Boolean): Unit {
+  public final fun setDepthBiasEnabled(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasEnabledPtr, NIL)
   }
 
-  public fun getDepthBiasEnabled(): Boolean {
+  public final fun getDepthBiasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDepthBiasConstantFactor(pMember: Float): Unit {
+  public final fun setDepthBiasConstantFactor(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasConstantFactorPtr, NIL)
   }
 
-  public fun getDepthBiasConstantFactor(): Float {
+  public final fun getDepthBiasConstantFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasConstantFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDepthBiasClamp(pMember: Float): Unit {
+  public final fun setDepthBiasClamp(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasClampPtr, NIL)
   }
 
-  public fun getDepthBiasClamp(): Float {
+  public final fun getDepthBiasClamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasClampPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDepthBiasSlopeFactor(pMember: Float): Unit {
+  public final fun setDepthBiasSlopeFactor(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasSlopeFactorPtr, NIL)
   }
 
-  public fun getDepthBiasSlopeFactor(): Float {
+  public final fun getDepthBiasSlopeFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasSlopeFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setLineWidth(pMember: Float): Unit {
+  public final fun setLineWidth(pMember: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLineWidthPtr, NIL)
   }
 
-  public fun getLineWidth(): Float {
+  public final fun getLineWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPatchControlPoints(pMember: Long): Unit {
+  public final fun setPatchControlPoints(pMember: Long): Unit {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setPatchControlPointsPtr, NIL)
   }
 
-  public fun getPatchControlPoints(): Long {
+  public final fun getPatchControlPoints(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPatchControlPointsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

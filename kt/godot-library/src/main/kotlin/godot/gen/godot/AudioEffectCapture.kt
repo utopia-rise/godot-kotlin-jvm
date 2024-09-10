@@ -41,7 +41,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect
    * if already initialized.
    */
-  public var bufferLength: Float
+  public final inline var bufferLength: Float
     @JvmName("bufferLengthProperty")
     get() = getBufferLength()
     @JvmName("bufferLengthProperty")
@@ -57,7 +57,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * Returns `true` if at least [frames] audio frames are available to read in the internal ring
    * buffer.
    */
-  public fun canGetBuffer(frames: Int): Boolean {
+  public final fun canGetBuffer(frames: Int): Boolean {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.canGetBufferPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -70,7 +70,7 @@ public open class AudioEffectCapture : AudioEffect() {
    * The samples are signed floating-point PCM between `-1` and `1`. You will have to scale them if
    * you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)
    */
-  public fun getBuffer(frames: Int): PackedVector2Array {
+  public final fun getBuffer(frames: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to frames.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
@@ -81,17 +81,17 @@ public open class AudioEffectCapture : AudioEffect() {
    * **Note:** Calling this during a capture can cause the loss of samples which causes popping in
    * the playback.
    */
-  public fun clearBuffer(): Unit {
+  public final fun clearBuffer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
   }
 
-  public fun setBufferLength(bufferLengthSeconds: Float): Unit {
+  public final fun setBufferLength(bufferLengthSeconds: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bufferLengthSeconds.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
-  public fun getBufferLength(): Float {
+  public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -100,7 +100,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the number of frames available to read using [getBuffer].
    */
-  public fun getFramesAvailable(): Int {
+  public final fun getFramesAvailable(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -109,7 +109,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the number of audio frames discarded from the audio bus due to full buffer.
    */
-  public fun getDiscardedFrames(): Long {
+  public final fun getDiscardedFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiscardedFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -118,7 +118,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the total size of the internal ring buffer in frames.
    */
-  public fun getBufferLengthFrames(): Int {
+  public final fun getBufferLengthFrames(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -127,7 +127,7 @@ public open class AudioEffectCapture : AudioEffect() {
   /**
    * Returns the number of audio frames inserted from the audio bus.
    */
-  public fun getPushedFrames(): Long {
+  public final fun getPushedFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPushedFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

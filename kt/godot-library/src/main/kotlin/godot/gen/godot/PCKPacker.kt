@@ -55,7 +55,7 @@ public open class PCKPacker : RefCounted() {
    * automatically, so it should be part of [pckName] (even though it's not required).
    */
   @JvmOverloads
-  public fun pckStart(
+  public final fun pckStart(
     pckName: String,
     alignment: Int = 32,
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
@@ -71,7 +71,7 @@ public open class PCKPacker : RefCounted() {
    * start with `res://`).
    */
   @JvmOverloads
-  public fun addFile(
+  public final fun addFile(
     pckPath: String,
     sourcePath: String,
     encrypt: Boolean = false,
@@ -86,7 +86,7 @@ public open class PCKPacker : RefCounted() {
    * `true`, a list of files added will be printed to the console for easier debugging.
    */
   @JvmOverloads
-  public fun flush(verbose: Boolean = false): GodotError {
+  public final fun flush(verbose: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to verbose)
     TransferContext.callMethod(rawPtr, MethodBindings.flushPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

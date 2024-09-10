@@ -26,7 +26,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   /**
    * A vector type that this operation is performed on.
    */
-  public var opType: OpType
+  public final inline var opType: OpType
     @JvmName("opTypeProperty")
     get() = getOpType()
     @JvmName("opTypeProperty")
@@ -38,12 +38,12 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORBASE, scriptIndex)
   }
 
-  public fun setOpType(type: OpType): Unit {
+  public final fun setOpType(type: OpType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
   }
 
-  public fun getOpType(): OpType {
+  public final fun getOpType(): OpType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeVectorBase.OpType.from(TransferContext.readReturnValue(LONG) as Long)

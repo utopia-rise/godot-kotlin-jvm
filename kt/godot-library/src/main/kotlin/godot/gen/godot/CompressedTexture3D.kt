@@ -35,7 +35,7 @@ public open class CompressedTexture3D : Texture3D() {
   /**
    * The [CompressedTexture3D]'s file path to a `.ctex3d` file.
    */
-  public val loadPath: String
+  public final inline val loadPath: String
     @JvmName("loadPathProperty")
     get() = getLoadPath()
 
@@ -46,13 +46,13 @@ public open class CompressedTexture3D : Texture3D() {
   /**
    * Loads the texture from the specified [path].
    */
-  public fun load(path: String): GodotError {
+  public final fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun getLoadPath(): String {
+  public final fun getLoadPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

@@ -32,7 +32,7 @@ public open class CurveXYZTexture : Texture2D() {
    * high-frequency data better (such as sudden direction changes), at the cost of increased generation
    * time and memory usage.
    */
-  public var width: Int
+  public final inline var width: Int
     @JvmName("widthProperty")
     get() = getWidth()
     @JvmName("widthProperty")
@@ -43,7 +43,7 @@ public open class CurveXYZTexture : Texture2D() {
   /**
    * The [Curve] that is rendered onto the texture's red channel.
    */
-  public var curveX: Curve?
+  public final inline var curveX: Curve?
     @JvmName("curveXProperty")
     get() = getCurveX()
     @JvmName("curveXProperty")
@@ -54,7 +54,7 @@ public open class CurveXYZTexture : Texture2D() {
   /**
    * The [Curve] that is rendered onto the texture's green channel.
    */
-  public var curveY: Curve?
+  public final inline var curveY: Curve?
     @JvmName("curveYProperty")
     get() = getCurveY()
     @JvmName("curveYProperty")
@@ -65,7 +65,7 @@ public open class CurveXYZTexture : Texture2D() {
   /**
    * The [Curve] that is rendered onto the texture's blue channel.
    */
-  public var curveZ: Curve?
+  public final inline var curveZ: Curve?
     @JvmName("curveZProperty")
     get() = getCurveZ()
     @JvmName("curveZProperty")
@@ -77,39 +77,39 @@ public open class CurveXYZTexture : Texture2D() {
     callConstructor(ENGINECLASS_CURVEXYZTEXTURE, scriptIndex)
   }
 
-  public fun setWidth(width: Int): Unit {
+  public final fun setWidth(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
-  public fun setCurveX(curve: Curve?): Unit {
+  public final fun setCurveX(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurveXPtr, NIL)
   }
 
-  public fun getCurveX(): Curve? {
+  public final fun getCurveX(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurveXPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setCurveY(curve: Curve?): Unit {
+  public final fun setCurveY(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurveYPtr, NIL)
   }
 
-  public fun getCurveY(): Curve? {
+  public final fun getCurveY(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurveYPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setCurveZ(curve: Curve?): Unit {
+  public final fun setCurveZ(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurveZPtr, NIL)
   }
 
-  public fun getCurveZ(): Curve? {
+  public final fun getCurveZ(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurveZPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)

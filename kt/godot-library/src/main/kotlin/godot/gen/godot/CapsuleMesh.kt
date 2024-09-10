@@ -29,7 +29,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Radius of the capsule mesh.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -40,7 +40,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Total height of the capsule mesh (including the hemispherical ends).
    */
-  public var height: Float
+  public final inline var height: Float
     @JvmName("heightProperty")
     get() = getHeight()
     @JvmName("heightProperty")
@@ -51,7 +51,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Number of radial segments on the capsule mesh.
    */
-  public var radialSegments: Int
+  public final inline var radialSegments: Int
     @JvmName("radialSegmentsProperty")
     get() = getRadialSegments()
     @JvmName("radialSegmentsProperty")
@@ -62,7 +62,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Number of rings along the height of the capsule.
    */
-  public var rings: Int
+  public final inline var rings: Int
     @JvmName("ringsProperty")
     get() = getRings()
     @JvmName("ringsProperty")
@@ -74,45 +74,45 @@ public open class CapsuleMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_CAPSULEMESH, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
-  public fun getHeight(): Float {
+  public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRadialSegments(segments: Int): Unit {
+  public final fun setRadialSegments(segments: Int): Unit {
     TransferContext.writeArguments(LONG to segments.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
 
-  public fun getRadialSegments(): Int {
+  public final fun getRadialSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setRings(rings: Int): Unit {
+  public final fun setRings(rings: Int): Unit {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
   }
 
-  public fun getRings(): Int {
+  public final fun getRings(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

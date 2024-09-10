@@ -46,7 +46,7 @@ public open class GraphFrame : GraphElement() {
   /**
    * Title of the frame.
    */
-  public var title: String
+  public final inline var title: String
     @JvmName("titleProperty")
     get() = getTitle()
     @JvmName("titleProperty")
@@ -58,7 +58,7 @@ public open class GraphFrame : GraphElement() {
    * If `true`, the frame's rect will be adjusted automatically to enclose all attached
    * [GraphElement]s.
    */
-  public var autoshrinkEnabled: Boolean
+  public final inline var autoshrinkEnabled: Boolean
     @JvmName("autoshrinkEnabledProperty")
     get() = isAutoshrinkEnabled()
     @JvmName("autoshrinkEnabledProperty")
@@ -70,7 +70,7 @@ public open class GraphFrame : GraphElement() {
    * The margin around the attached nodes that is used to calculate the size of the frame when
    * [autoshrinkEnabled] is `true`.
    */
-  public var autoshrinkMargin: Int
+  public final inline var autoshrinkMargin: Int
     @JvmName("autoshrinkMarginProperty")
     get() = getAutoshrinkMargin()
     @JvmName("autoshrinkMarginProperty")
@@ -81,7 +81,7 @@ public open class GraphFrame : GraphElement() {
   /**
    * The margin inside the frame that can be used to drag the frame.
    */
-  public var dragMargin: Int
+  public final inline var dragMargin: Int
     @JvmName("dragMarginProperty")
     get() = getDragMargin()
     @JvmName("dragMarginProperty")
@@ -92,7 +92,7 @@ public open class GraphFrame : GraphElement() {
   /**
    * If `true`, the tint color will be used to tint the frame.
    */
-  public var tintColorEnabled: Boolean
+  public final inline var tintColorEnabled: Boolean
     @JvmName("tintColorEnabledProperty")
     get() = isTintColorEnabled()
     @JvmName("tintColorEnabledProperty")
@@ -104,7 +104,7 @@ public open class GraphFrame : GraphElement() {
    * The color of the frame when [tintColorEnabled] is `true`.
    */
   @CoreTypeLocalCopy
-  public var tintColor: Color
+  public final inline var tintColor: Color
     @JvmName("tintColorProperty")
     get() = getTintColor()
     @JvmName("tintColorProperty")
@@ -134,18 +134,18 @@ public open class GraphFrame : GraphElement() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun tintColorMutate(block: Color.() -> Unit): Color = tintColor.apply{
+  public final fun tintColorMutate(block: Color.() -> Unit): Color = tintColor.apply{
       block(this)
       tintColor = this
   }
 
 
-  public fun setTitle(title: String): Unit {
+  public final fun setTitle(title: String): Unit {
     TransferContext.writeArguments(STRING to title)
     TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
   }
 
-  public fun getTitle(): String {
+  public final fun getTitle(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -156,62 +156,62 @@ public open class GraphFrame : GraphElement() {
    * the title by default.
    * This can be used to add custom controls to the title bar such as option or close buttons.
    */
-  public fun getTitlebarHbox(): HBoxContainer? {
+  public final fun getTitlebarHbox(): HBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
   }
 
-  public fun setAutoshrinkEnabled(shrink: Boolean): Unit {
+  public final fun setAutoshrinkEnabled(shrink: Boolean): Unit {
     TransferContext.writeArguments(BOOL to shrink)
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
   }
 
-  public fun isAutoshrinkEnabled(): Boolean {
+  public final fun isAutoshrinkEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAutoshrinkMargin(autoshrinkMargin: Int): Unit {
+  public final fun setAutoshrinkMargin(autoshrinkMargin: Int): Unit {
     TransferContext.writeArguments(LONG to autoshrinkMargin.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkMarginPtr, NIL)
   }
 
-  public fun getAutoshrinkMargin(): Int {
+  public final fun getAutoshrinkMargin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoshrinkMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setDragMargin(dragMargin: Int): Unit {
+  public final fun setDragMargin(dragMargin: Int): Unit {
     TransferContext.writeArguments(LONG to dragMargin.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
   }
 
-  public fun getDragMargin(): Int {
+  public final fun getDragMargin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setTintColorEnabled(enable: Boolean): Unit {
+  public final fun setTintColorEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
   }
 
-  public fun isTintColorEnabled(): Boolean {
+  public final fun isTintColorEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTintColor(color: Color): Unit {
+  public final fun setTintColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
   }
 
-  public fun getTintColor(): Color {
+  public final fun getTintColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)

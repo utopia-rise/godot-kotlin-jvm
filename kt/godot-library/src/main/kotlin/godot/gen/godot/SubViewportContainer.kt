@@ -36,7 +36,7 @@ public open class SubViewportContainer : Container() {
    * If `true`, the sub-viewport will be automatically resized to the control's size.
    * **Note:** If `true`, this will prohibit changing [SubViewport.size] of its children manually.
    */
-  public var stretch: Boolean
+  public final inline var stretch: Boolean
     @JvmName("stretchProperty")
     get() = isStretchEnabled()
     @JvmName("stretchProperty")
@@ -51,7 +51,7 @@ public open class SubViewportContainer : Container() {
    * 640×360 while occupying the same size in the container.
    * **Note:** [stretch] must be `true` for this property to work.
    */
-  public var stretchShrink: Int
+  public final inline var stretchShrink: Int
     @JvmName("stretchShrinkProperty")
     get() = getStretchShrink()
     @JvmName("stretchShrinkProperty")
@@ -72,23 +72,23 @@ public open class SubViewportContainer : Container() {
     throw NotImplementedError("_propagate_input_event is not implemented for SubViewportContainer")
   }
 
-  public fun setStretch(enable: Boolean): Unit {
+  public final fun setStretch(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setStretchPtr, NIL)
   }
 
-  public fun isStretchEnabled(): Boolean {
+  public final fun isStretchEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setStretchShrink(amount: Int): Unit {
+  public final fun setStretchShrink(amount: Int): Unit {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
   }
 
-  public fun getStretchShrink(): Int {
+  public final fun getStretchShrink(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

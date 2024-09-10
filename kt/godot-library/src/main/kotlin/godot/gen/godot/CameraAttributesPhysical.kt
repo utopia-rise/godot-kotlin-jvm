@@ -39,7 +39,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * Distance from camera of object that will be in focus, measured in meters. Internally this will
    * be clamped to be at least 1 millimeter larger than [frustumFocalLength].
    */
-  public var frustumFocusDistance: Float
+  public final inline var frustumFocusDistance: Float
     @JvmName("frustumFocusDistanceProperty")
     get() = getFocusDistance()
     @JvmName("frustumFocusDistanceProperty")
@@ -55,7 +55,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * attached to a [Camera3D] as its [Camera3D.attributes], it will override the [Camera3D.fov]
    * property and the [Camera3D.keepAspect] property.
    */
-  public var frustumFocalLength: Float
+  public final inline var frustumFocalLength: Float
     @JvmName("frustumFocalLengthProperty")
     get() = getFocalLength()
     @JvmName("frustumFocalLengthProperty")
@@ -68,7 +68,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * attached to a [Camera3D] as its [Camera3D.attributes], it will override the [Camera3D.near]
    * property.
    */
-  public var frustumNear: Float
+  public final inline var frustumNear: Float
     @JvmName("frustumNearProperty")
     get() = getNear()
     @JvmName("frustumNearProperty")
@@ -81,7 +81,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * attached to a [Camera3D] as its [Camera3D.attributes], it will override the [Camera3D.far]
    * property.
    */
-  public var frustumFar: Float
+  public final inline var frustumFar: Float
     @JvmName("frustumFarProperty")
     get() = getFar()
     @JvmName("frustumFarProperty")
@@ -99,7 +99,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is
    * enabled.
    */
-  public var exposureAperture: Float
+  public final inline var exposureAperture: Float
     @JvmName("exposureApertureProperty")
     get() = getAperture()
     @JvmName("exposureApertureProperty")
@@ -114,7 +114,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * Only available when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is
    * enabled.
    */
-  public var exposureShutterSpeed: Float
+  public final inline var exposureShutterSpeed: Float
     @JvmName("exposureShutterSpeedProperty")
     get() = getShutterSpeed()
     @JvmName("exposureShutterSpeedProperty")
@@ -128,7 +128,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * limits the auto-exposure from exposing above a certain brightness, resulting in a cut off point
    * where the scene will remain dark.
    */
-  public var autoExposureMinExposureValue: Float
+  public final inline var autoExposureMinExposureValue: Float
     @JvmName("autoExposureMinExposureValueProperty")
     get() = getAutoExposureMinExposureValue()
     @JvmName("autoExposureMinExposureValueProperty")
@@ -142,7 +142,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * auto-exposure from exposing below a certain brightness, resulting in a cut off point where the
    * scene will remain bright.
    */
-  public var autoExposureMaxExposureValue: Float
+  public final inline var autoExposureMaxExposureValue: Float
     @JvmName("autoExposureMaxExposureValueProperty")
     get() = getAutoExposureMaxExposureValue()
     @JvmName("autoExposureMaxExposureValueProperty")
@@ -154,67 +154,67 @@ public open class CameraAttributesPhysical : CameraAttributes() {
     callConstructor(ENGINECLASS_CAMERAATTRIBUTESPHYSICAL, scriptIndex)
   }
 
-  public fun setAperture(aperture: Float): Unit {
+  public final fun setAperture(aperture: Float): Unit {
     TransferContext.writeArguments(DOUBLE to aperture.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAperturePtr, NIL)
   }
 
-  public fun getAperture(): Float {
+  public final fun getAperture(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAperturePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setShutterSpeed(shutterSpeed: Float): Unit {
+  public final fun setShutterSpeed(shutterSpeed: Float): Unit {
     TransferContext.writeArguments(DOUBLE to shutterSpeed.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setShutterSpeedPtr, NIL)
   }
 
-  public fun getShutterSpeed(): Float {
+  public final fun getShutterSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShutterSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFocalLength(focalLength: Float): Unit {
+  public final fun setFocalLength(focalLength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to focalLength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFocalLengthPtr, NIL)
   }
 
-  public fun getFocalLength(): Float {
+  public final fun getFocalLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFocalLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFocusDistance(focusDistance: Float): Unit {
+  public final fun setFocusDistance(focusDistance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to focusDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFocusDistancePtr, NIL)
   }
 
-  public fun getFocusDistance(): Float {
+  public final fun getFocusDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFocusDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setNear(near: Float): Unit {
+  public final fun setNear(near: Float): Unit {
     TransferContext.writeArguments(DOUBLE to near.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setNearPtr, NIL)
   }
 
-  public fun getNear(): Float {
+  public final fun getNear(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNearPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFar(far: Float): Unit {
+  public final fun setFar(far: Float): Unit {
     TransferContext.writeArguments(DOUBLE to far.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFarPtr, NIL)
   }
 
-  public fun getFar(): Float {
+  public final fun getFar(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFarPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -224,29 +224,29 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * Returns the vertical field of view that corresponds to the [frustumFocalLength]. This value is
    * calculated internally whenever [frustumFocalLength] is changed.
    */
-  public fun getFov(): Float {
+  public final fun getFov(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAutoExposureMaxExposureValue(exposureValueMax: Float): Unit {
+  public final fun setAutoExposureMaxExposureValue(exposureValueMax: Float): Unit {
     TransferContext.writeArguments(DOUBLE to exposureValueMax.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMaxExposureValuePtr, NIL)
   }
 
-  public fun getAutoExposureMaxExposureValue(): Float {
+  public final fun getAutoExposureMaxExposureValue(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxExposureValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAutoExposureMinExposureValue(exposureValueMin: Float): Unit {
+  public final fun setAutoExposureMinExposureValue(exposureValueMin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to exposureValueMin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMinExposureValuePtr, NIL)
   }
 
-  public fun getAutoExposureMinExposureValue(): Float {
+  public final fun getAutoExposureMinExposureValue(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinExposureValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

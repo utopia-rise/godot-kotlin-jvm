@@ -44,7 +44,7 @@ public open class Environment : Resource() {
   /**
    * The background mode. See [BGMode] for possible values.
    */
-  public var backgroundMode: BGMode
+  public final inline var backgroundMode: BGMode
     @JvmName("backgroundModeProperty")
     get() = getBackground()
     @JvmName("backgroundModeProperty")
@@ -57,7 +57,7 @@ public open class Environment : Resource() {
    * background mode.
    */
   @CoreTypeLocalCopy
-  public var backgroundColor: Color
+  public final inline var backgroundColor: Color
     @JvmName("backgroundColorProperty")
     get() = getBgColor()
     @JvmName("backgroundColorProperty")
@@ -69,7 +69,7 @@ public open class Environment : Resource() {
    * Multiplier for background energy. Increase to make background brighter, decrease to make
    * background dimmer.
    */
-  public var backgroundEnergyMultiplier: Float
+  public final inline var backgroundEnergyMultiplier: Float
     @JvmName("backgroundEnergyMultiplierProperty")
     get() = getBgEnergyMultiplier()
     @JvmName("backgroundEnergyMultiplierProperty")
@@ -82,7 +82,7 @@ public open class Environment : Resource() {
    * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default value
    * is roughly equivalent to the sky at midday.
    */
-  public var backgroundIntensity: Float
+  public final inline var backgroundIntensity: Float
     @JvmName("backgroundIntensityProperty")
     get() = getBgIntensity()
     @JvmName("backgroundIntensityProperty")
@@ -93,7 +93,7 @@ public open class Environment : Resource() {
   /**
    * The maximum layer ID to display. Only effective when using the [BG_CANVAS] background mode.
    */
-  public var backgroundCanvasMaxLayer: Int
+  public final inline var backgroundCanvasMaxLayer: Int
     @JvmName("backgroundCanvasMaxLayerProperty")
     get() = getCanvasMaxLayer()
     @JvmName("backgroundCanvasMaxLayerProperty")
@@ -104,7 +104,7 @@ public open class Environment : Resource() {
   /**
    * The ID of the camera feed to show in the background.
    */
-  public var backgroundCameraFeedId: Int
+  public final inline var backgroundCameraFeedId: Int
     @JvmName("backgroundCameraFeedIdProperty")
     get() = getCameraFeedId()
     @JvmName("backgroundCameraFeedIdProperty")
@@ -115,7 +115,7 @@ public open class Environment : Resource() {
   /**
    * The [Sky] resource used for this [Environment].
    */
-  public var sky: Sky?
+  public final inline var sky: Sky?
     @JvmName("skyProperty")
     get() = getSky()
     @JvmName("skyProperty")
@@ -127,7 +127,7 @@ public open class Environment : Resource() {
    * If set to a value greater than `0.0`, overrides the field of view to use for sky rendering. If
    * set to `0.0`, the same FOV as the current [Camera3D] is used for sky rendering.
    */
-  public var skyCustomFov: Float
+  public final inline var skyCustomFov: Float
     @JvmName("skyCustomFovProperty")
     get() = getSkyCustomFov()
     @JvmName("skyCustomFovProperty")
@@ -139,7 +139,7 @@ public open class Environment : Resource() {
    * The rotation to use for sky rendering.
    */
   @CoreTypeLocalCopy
-  public var skyRotation: Vector3
+  public final inline var skyRotation: Vector3
     @JvmName("skyRotationProperty")
     get() = getSkyRotation()
     @JvmName("skyRotationProperty")
@@ -150,7 +150,7 @@ public open class Environment : Resource() {
   /**
    * The ambient light source to use for rendering materials and global illumination.
    */
-  public var ambientLightSource: AmbientSource
+  public final inline var ambientLightSource: AmbientSource
     @JvmName("ambientLightSourceProperty")
     get() = getAmbientSource()
     @JvmName("ambientLightSourceProperty")
@@ -163,7 +163,7 @@ public open class Environment : Resource() {
    * `1.0` (exclusive).
    */
   @CoreTypeLocalCopy
-  public var ambientLightColor: Color
+  public final inline var ambientLightColor: Color
     @JvmName("ambientLightColorProperty")
     get() = getAmbientLightColor()
     @JvmName("ambientLightColorProperty")
@@ -180,7 +180,7 @@ public open class Environment : Resource() {
    * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0`
    * (inclusive).
    */
-  public var ambientLightSkyContribution: Float
+  public final inline var ambientLightSkyContribution: Float
     @JvmName("ambientLightSkyContributionProperty")
     get() = getAmbientLightSkyContribution()
     @JvmName("ambientLightSkyContributionProperty")
@@ -192,7 +192,7 @@ public open class Environment : Resource() {
    * The ambient light's energy. The higher the value, the stronger the light. Only effective if
    * [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
-  public var ambientLightEnergy: Float
+  public final inline var ambientLightEnergy: Float
     @JvmName("ambientLightEnergyProperty")
     get() = getAmbientLightEnergy()
     @JvmName("ambientLightEnergyProperty")
@@ -203,7 +203,7 @@ public open class Environment : Resource() {
   /**
    * The reflected (specular) light source.
    */
-  public var reflectedLightSource: ReflectionSource
+  public final inline var reflectedLightSource: ReflectionSource
     @JvmName("reflectedLightSourceProperty")
     get() = getReflectionSource()
     @JvmName("reflectedLightSourceProperty")
@@ -215,7 +215,7 @@ public open class Environment : Resource() {
    * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be
    * suitable for rendering on an LDR display. (Godot doesn't support rendering on HDR displays yet.)
    */
-  public var tonemapMode: ToneMapper
+  public final inline var tonemapMode: ToneMapper
     @JvmName("tonemapModeProperty")
     get() = getTonemapper()
     @JvmName("tonemapModeProperty")
@@ -227,7 +227,7 @@ public open class Environment : Resource() {
    * The default exposure used for tonemapping. Higher values result in a brighter image. See also
    * [tonemapWhite].
    */
-  public var tonemapExposure: Float
+  public final inline var tonemapExposure: Float
     @JvmName("tonemapExposureProperty")
     get() = getTonemapExposure()
     @JvmName("tonemapExposureProperty")
@@ -240,7 +240,7 @@ public open class Environment : Resource() {
    * highlights look less blown out, and will also slightly darken the whole scene as a result. Only
    * effective if the [tonemapMode] isn't set to [TONE_MAPPER_LINEAR]. See also [tonemapExposure].
    */
-  public var tonemapWhite: Float
+  public final inline var tonemapWhite: Float
     @JvmName("tonemapWhiteProperty")
     get() = getTonemapWhite()
     @JvmName("tonemapWhiteProperty")
@@ -254,7 +254,7 @@ public open class Environment : Resource() {
    * occluded by others.
    * **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
-  public var ssrEnabled: Boolean
+  public final inline var ssrEnabled: Boolean
     @JvmName("ssrEnabledProperty")
     get() = isSsrEnabled()
     @JvmName("ssrEnabledProperty")
@@ -265,7 +265,7 @@ public open class Environment : Resource() {
   /**
    * The maximum number of steps for screen-space reflections. Higher values are slower.
    */
-  public var ssrMaxSteps: Int
+  public final inline var ssrMaxSteps: Int
     @JvmName("ssrMaxStepsProperty")
     get() = getSsrMaxSteps()
     @JvmName("ssrMaxStepsProperty")
@@ -278,7 +278,7 @@ public open class Environment : Resource() {
    * to the screen-space reflection. Only positive values are valid (negative values will be clamped to
    * `0.0`).
    */
-  public var ssrFadeIn: Float
+  public final inline var ssrFadeIn: Float
     @JvmName("ssrFadeInProperty")
     get() = getSsrFadeIn()
     @JvmName("ssrFadeInProperty")
@@ -291,7 +291,7 @@ public open class Environment : Resource() {
    * reflection to the "global" reflection. Only positive values are valid (negative values will be
    * clamped to `0.0`).
    */
-  public var ssrFadeOut: Float
+  public final inline var ssrFadeOut: Float
     @JvmName("ssrFadeOutProperty")
     get() = getSsrFadeOut()
     @JvmName("ssrFadeOutProperty")
@@ -302,7 +302,7 @@ public open class Environment : Resource() {
   /**
    * The depth tolerance for screen-space reflections.
    */
-  public var ssrDepthTolerance: Float
+  public final inline var ssrDepthTolerance: Float
     @JvmName("ssrDepthToleranceProperty")
     get() = getSsrDepthTolerance()
     @JvmName("ssrDepthToleranceProperty")
@@ -318,7 +318,7 @@ public open class Environment : Resource() {
    * Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
    * **Note:** SSAO is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
-  public var ssaoEnabled: Boolean
+  public final inline var ssaoEnabled: Boolean
     @JvmName("ssaoEnabledProperty")
     get() = isSsaoEnabled()
     @JvmName("ssaoEnabledProperty")
@@ -331,7 +331,7 @@ public open class Environment : Resource() {
    * occlusion. Higher values will result in occlusion over a greater distance at the cost of
    * performance and quality.
    */
-  public var ssaoRadius: Float
+  public final inline var ssaoRadius: Float
     @JvmName("ssaoRadiusProperty")
     get() = getSsaoRadius()
     @JvmName("ssaoRadiusProperty")
@@ -343,7 +343,7 @@ public open class Environment : Resource() {
    * The primary screen-space ambient occlusion intensity. Acts as a multiplier for the screen-space
    * ambient occlusion effect. A higher value results in darker occlusion.
    */
-  public var ssaoIntensity: Float
+  public final inline var ssaoIntensity: Float
     @JvmName("ssaoIntensityProperty")
     get() = getSsaoIntensity()
     @JvmName("ssaoIntensityProperty")
@@ -355,7 +355,7 @@ public open class Environment : Resource() {
    * The distribution of occlusion. A higher value results in darker occlusion, similar to
    * [ssaoIntensity], but with a sharper falloff.
    */
-  public var ssaoPower: Float
+  public final inline var ssaoPower: Float
     @JvmName("ssaoPowerProperty")
     get() = getSsaoPower()
     @JvmName("ssaoPowerProperty")
@@ -368,7 +368,7 @@ public open class Environment : Resource() {
    * effect. A high value makes the detail pass more prominent, but it may contribute to aliasing in
    * your final image.
    */
-  public var ssaoDetail: Float
+  public final inline var ssaoDetail: Float
     @JvmName("ssaoDetailProperty")
     get() = getSsaoDetail()
     @JvmName("ssaoDetailProperty")
@@ -381,7 +381,7 @@ public open class Environment : Resource() {
    * as an angle from the horizon mapped into the `0.0-1.0` range. A value of `1.0` results in no
    * occlusion.
    */
-  public var ssaoHorizon: Float
+  public final inline var ssaoHorizon: Float
     @JvmName("ssaoHorizonProperty")
     get() = getSsaoHorizon()
     @JvmName("ssaoHorizonProperty")
@@ -394,7 +394,7 @@ public open class Environment : Resource() {
    * objects. Setting too high will result in aliasing around the edges of objects. Setting too low
    * will make object edges appear blurry.
    */
-  public var ssaoSharpness: Float
+  public final inline var ssaoSharpness: Float
     @JvmName("ssaoSharpnessProperty")
     get() = getSsaoSharpness()
     @JvmName("ssaoSharpnessProperty")
@@ -407,7 +407,7 @@ public open class Environment : Resource() {
    * only applies to indirect light, which means its effects can't be seen in direct light. Values
    * higher than `0` will make the SSAO effect visible in direct light.
    */
-  public var ssaoLightAffect: Float
+  public final inline var ssaoLightAffect: Float
     @JvmName("ssaoLightAffectProperty")
     get() = getSsaoDirectLightAffect()
     @JvmName("ssaoLightAffectProperty")
@@ -419,7 +419,7 @@ public open class Environment : Resource() {
    * The screen-space ambient occlusion intensity on materials that have an AO texture defined.
    * Values higher than `0` will make the SSAO effect visible in areas darkened by AO textures.
    */
-  public var ssaoAoChannelAffect: Float
+  public final inline var ssaoAoChannelAffect: Float
     @JvmName("ssaoAoChannelAffectProperty")
     get() = getSsaoAoChannelAffect()
     @JvmName("ssaoAoChannelAffectProperty")
@@ -436,7 +436,7 @@ public open class Environment : Resource() {
    * light's [Light3D.lightIndirectEnergy].
    * **Note:** SSIL is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
-  public var ssilEnabled: Boolean
+  public final inline var ssilEnabled: Boolean
     @JvmName("ssilEnabledProperty")
     get() = isSsilEnabled()
     @JvmName("ssilEnabledProperty")
@@ -449,7 +449,7 @@ public open class Environment : Resource() {
    * effect. A larger value will result in light bouncing further in a scene, but may result in
    * under-sampling artifacts which look like long spikes surrounding light sources.
    */
-  public var ssilRadius: Float
+  public final inline var ssilRadius: Float
     @JvmName("ssilRadiusProperty")
     get() = getSsilRadius()
     @JvmName("ssilRadiusProperty")
@@ -461,7 +461,7 @@ public open class Environment : Resource() {
    * The brightness multiplier for the screen-space indirect lighting effect. A higher value will
    * result in brighter light.
    */
-  public var ssilIntensity: Float
+  public final inline var ssilIntensity: Float
     @JvmName("ssilIntensityProperty")
     get() = getSsilIntensity()
     @JvmName("ssilIntensityProperty")
@@ -474,7 +474,7 @@ public open class Environment : Resource() {
    * objects. Setting too high will result in aliasing around the edges of objects. Setting too low
    * will make object edges appear blurry.
    */
-  public var ssilSharpness: Float
+  public final inline var ssilSharpness: Float
     @JvmName("ssilSharpnessProperty")
     get() = getSsilSharpness()
     @JvmName("ssilSharpnessProperty")
@@ -490,7 +490,7 @@ public open class Environment : Resource() {
    * such as when the scene mostly contains emissive objects that emit light from faces that cannot be
    * seen from the camera.
    */
-  public var ssilNormalRejection: Float
+  public final inline var ssilNormalRejection: Float
     @JvmName("ssilNormalRejectionProperty")
     get() = getSsilNormalRejection()
     @JvmName("ssilNormalRejectionProperty")
@@ -514,7 +514,7 @@ public open class Environment : Resource() {
    * walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge
    * the loops to close the mesh.
    */
-  public var sdfgiEnabled: Boolean
+  public final inline var sdfgiEnabled: Boolean
     @JvmName("sdfgiEnabledProperty")
     get() = isSdfgiEnabled()
     @JvmName("sdfgiEnabledProperty")
@@ -527,7 +527,7 @@ public open class Environment : Resource() {
    * however introduce dark blotches in certain spots, which may be undesired in mostly outdoor scenes.
    * [sdfgiUseOcclusion] has a performance impact and should only be enabled when needed.
    */
-  public var sdfgiUseOcclusion: Boolean
+  public final inline var sdfgiUseOcclusion: Boolean
     @JvmName("sdfgiUseOcclusionProperty")
     get() = isSdfgiUsingOcclusion()
     @JvmName("sdfgiUseOcclusionProperty")
@@ -539,7 +539,7 @@ public open class Environment : Resource() {
    * If `true`, SDFGI takes the environment lighting into account. This should be set to `false` for
    * interior scenes.
    */
-  public var sdfgiReadSkyLight: Boolean
+  public final inline var sdfgiReadSkyLight: Boolean
     @JvmName("sdfgiReadSkyLightProperty")
     get() = isSdfgiReadingSkyLight()
     @JvmName("sdfgiReadSkyLightProperty")
@@ -557,7 +557,7 @@ public open class Environment : Resource() {
    * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in
    * reflections as light will only bounce one time.
    */
-  public var sdfgiBounceFeedback: Float
+  public final inline var sdfgiBounceFeedback: Float
     @JvmName("sdfgiBounceFeedbackProperty")
     get() = getSdfgiBounceFeedback()
     @JvmName("sdfgiBounceFeedbackProperty")
@@ -571,7 +571,7 @@ public open class Environment : Resource() {
    * using SDFGI on small-scale levels, [sdfgiCascades] can often be decreased between `1` and `4` to
    * improve performance.
    */
-  public var sdfgiCascades: Int
+  public final inline var sdfgiCascades: Int
     @JvmName("sdfgiCascadesProperty")
     get() = getSdfgiCascades()
     @JvmName("sdfgiCascadesProperty")
@@ -587,7 +587,7 @@ public open class Environment : Resource() {
    * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing
    * its value will automatically change those properties as well.
    */
-  public var sdfgiMinCellSize: Float
+  public final inline var sdfgiMinCellSize: Float
     @JvmName("sdfgiMinCellSizeProperty")
     get() = getSdfgiMinCellSize()
     @JvmName("sdfgiMinCellSizeProperty")
@@ -599,7 +599,7 @@ public open class Environment : Resource() {
    * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiMaxDistance]. Changing its
    * value will automatically change those properties as well.
    */
-  public var sdfgiCascade0Distance: Float
+  public final inline var sdfgiCascade0Distance: Float
     @JvmName("sdfgiCascade0DistanceProperty")
     get() = getSdfgiCascade0Distance()
     @JvmName("sdfgiCascade0DistanceProperty")
@@ -613,7 +613,7 @@ public open class Environment : Resource() {
    * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing
    * its value will automatically change those properties as well.
    */
-  public var sdfgiMaxDistance: Float
+  public final inline var sdfgiMaxDistance: Float
     @JvmName("sdfgiMaxDistanceProperty")
     get() = getSdfgiMaxDistance()
     @JvmName("sdfgiMaxDistanceProperty")
@@ -627,7 +627,7 @@ public open class Environment : Resource() {
    * vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast
    * your camera may move on the Y axis).
    */
-  public var sdfgiYScale: SDFGIYScale
+  public final inline var sdfgiYScale: SDFGIYScale
     @JvmName("sdfgiYScaleProperty")
     get() = getSdfgiYScale()
     @JvmName("sdfgiYScaleProperty")
@@ -639,7 +639,7 @@ public open class Environment : Resource() {
    * The energy multiplier to use for SDFGI. Higher values will result in brighter indirect lighting
    * and reflections. See also [sdfgiBounceFeedback].
    */
-  public var sdfgiEnergy: Float
+  public final inline var sdfgiEnergy: Float
     @JvmName("sdfgiEnergyProperty")
     get() = getSdfgiEnergy()
     @JvmName("sdfgiEnergyProperty")
@@ -651,7 +651,7 @@ public open class Environment : Resource() {
    * The normal bias to use for SDFGI probes. Increasing this value can reduce visible streaking
    * artifacts on sloped surfaces, at the cost of increased light leaking.
    */
-  public var sdfgiNormalBias: Float
+  public final inline var sdfgiNormalBias: Float
     @JvmName("sdfgiNormalBiasProperty")
     get() = getSdfgiNormalBias()
     @JvmName("sdfgiNormalBiasProperty")
@@ -663,7 +663,7 @@ public open class Environment : Resource() {
    * The constant bias to use for SDFGI probes. Increasing this value can reduce visible streaking
    * artifacts on sloped surfaces, at the cost of increased light leaking.
    */
-  public var sdfgiProbeBias: Float
+  public final inline var sdfgiProbeBias: Float
     @JvmName("sdfgiProbeBiasProperty")
     get() = getSdfgiProbeBias()
     @JvmName("sdfgiProbeBiasProperty")
@@ -681,7 +681,7 @@ public open class Environment : Resource() {
    * [glowNormalized], [glowStrength], [glowBlendMode], [glowMix], [glowMap], and [glowMapStrength].
    * This implementation is optimized to run on low-end devices and is less flexible as a result.
    */
-  public var glowEnabled: Boolean
+  public final inline var glowEnabled: Boolean
     @JvmName("glowEnabledProperty")
     get() = isGlowEnabled()
     @JvmName("glowEnabledProperty")
@@ -695,7 +695,7 @@ public open class Environment : Resource() {
    * **Note:** [glowNormalized] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
-  public var glowNormalized: Boolean
+  public final inline var glowNormalized: Boolean
     @JvmName("glowNormalizedProperty")
     get() = isGlowNormalized()
     @JvmName("glowNormalizedProperty")
@@ -708,7 +708,7 @@ public open class Environment : Resource() {
    * (which only supports a lower dynamic range up to `2.0`), this should be increased to `1.5` to
    * compensate.
    */
-  public var glowIntensity: Float
+  public final inline var glowIntensity: Float
     @JvmName("glowIntensityProperty")
     get() = getGlowIntensity()
     @JvmName("glowIntensityProperty")
@@ -723,7 +723,7 @@ public open class Environment : Resource() {
    * **Note:** [glowStrength] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
-  public var glowStrength: Float
+  public final inline var glowStrength: Float
     @JvmName("glowStrengthProperty")
     get() = getGlowStrength()
     @JvmName("glowStrengthProperty")
@@ -738,7 +738,7 @@ public open class Environment : Resource() {
    * **Note:** [glowMix] has no effect when using the Compatibility rendering method, due to this
    * rendering method using a simpler glow implementation optimized for low-end devices.
    */
-  public var glowMix: Float
+  public final inline var glowMix: Float
     @JvmName("glowMixProperty")
     get() = getGlowMix()
     @JvmName("glowMixProperty")
@@ -750,7 +750,7 @@ public open class Environment : Resource() {
    * The bloom's intensity. If set to a value higher than `0`, this will make glow visible in areas
    * darker than the [glowHdrThreshold].
    */
-  public var glowBloom: Float
+  public final inline var glowBloom: Float
     @JvmName("glowBloomProperty")
     get() = getGlowBloom()
     @JvmName("glowBloomProperty")
@@ -763,7 +763,7 @@ public open class Environment : Resource() {
    * **Note:** [glowBlendMode] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
-  public var glowBlendMode: GlowBlendMode
+  public final inline var glowBlendMode: GlowBlendMode
     @JvmName("glowBlendModeProperty")
     get() = getGlowBlendMode()
     @JvmName("glowBlendModeProperty")
@@ -777,7 +777,7 @@ public open class Environment : Resource() {
    * visible. A value of `0.9` works well in this case. This value also needs to be decreased below
    * `1.0` when using glow in 2D, as 2D rendering is performed in SDR.
    */
-  public var glowHdrThreshold: Float
+  public final inline var glowHdrThreshold: Float
     @JvmName("glowHdrThresholdProperty")
     get() = getGlowHdrBleedThreshold()
     @JvmName("glowHdrThresholdProperty")
@@ -788,7 +788,7 @@ public open class Environment : Resource() {
   /**
    * The bleed scale of the HDR glow.
    */
-  public var glowHdrScale: Float
+  public final inline var glowHdrScale: Float
     @JvmName("glowHdrScaleProperty")
     get() = getGlowHdrBleedScale()
     @JvmName("glowHdrScaleProperty")
@@ -800,7 +800,7 @@ public open class Environment : Resource() {
    * The higher threshold of the HDR glow. Areas brighter than this threshold will be clamped for
    * the purposes of the glow effect.
    */
-  public var glowHdrLuminanceCap: Float
+  public final inline var glowHdrLuminanceCap: Float
     @JvmName("glowHdrLuminanceCapProperty")
     get() = getGlowHdrLuminanceCap()
     @JvmName("glowHdrLuminanceCapProperty")
@@ -816,7 +816,7 @@ public open class Environment : Resource() {
    * **Note:** [glowMapStrength] has no effect when using the Compatibility rendering method, due to
    * this rendering method using a simpler glow implementation optimized for low-end devices.
    */
-  public var glowMapStrength: Float
+  public final inline var glowMapStrength: Float
     @JvmName("glowMapStrengthProperty")
     get() = getGlowMapStrength()
     @JvmName("glowMapStrengthProperty")
@@ -833,7 +833,7 @@ public open class Environment : Resource() {
    * **Note:** [glowMap] has no effect when using the Compatibility rendering method, due to this
    * rendering method using a simpler glow implementation optimized for low-end devices.
    */
-  public var glowMap: Texture?
+  public final inline var glowMap: Texture?
     @JvmName("glowMapProperty")
     get() = getGlowMap()
     @JvmName("glowMapProperty")
@@ -844,7 +844,7 @@ public open class Environment : Resource() {
   /**
    * If `true`, fog effects are enabled.
    */
-  public var fogEnabled: Boolean
+  public final inline var fogEnabled: Boolean
     @JvmName("fogEnabledProperty")
     get() = isFogEnabled()
     @JvmName("fogEnabledProperty")
@@ -855,7 +855,7 @@ public open class Environment : Resource() {
   /**
    * The fog mode. See [FogMode] for possible values.
    */
-  public var fogMode: FogMode
+  public final inline var fogMode: FogMode
     @JvmName("fogModeProperty")
     get() = getFogMode()
     @JvmName("fogModeProperty")
@@ -867,7 +867,7 @@ public open class Environment : Resource() {
    * The fog's color.
    */
   @CoreTypeLocalCopy
-  public var fogLightColor: Color
+  public final inline var fogLightColor: Color
     @JvmName("fogLightColorProperty")
     get() = getFogLightColor()
     @JvmName("fogLightColorProperty")
@@ -878,7 +878,7 @@ public open class Environment : Resource() {
   /**
    * The fog's brightness. Higher values result in brighter fog.
    */
-  public var fogLightEnergy: Float
+  public final inline var fogLightEnergy: Float
     @JvmName("fogLightEnergyProperty")
     get() = getFogLightEnergy()
     @JvmName("fogLightEnergyProperty")
@@ -890,7 +890,7 @@ public open class Environment : Resource() {
    * If set above `0.0`, renders the scene's directional light(s) in the fog color depending on the
    * view angle. This can be used to give the impression that the sun is "piercing" through the fog.
    */
-  public var fogSunScatter: Float
+  public final inline var fogSunScatter: Float
     @JvmName("fogSunScatterProperty")
     get() = getFogSunScatter()
     @JvmName("fogSunScatterProperty")
@@ -907,7 +907,7 @@ public open class Environment : Resource() {
    * (relative to the camera). At `1.0` the fog will fully obscure the scene, at `0.0` the fog will not
    * be visible.
    */
-  public var fogDensity: Float
+  public final inline var fogDensity: Float
     @JvmName("fogDensityProperty")
     get() = getFogDensity()
     @JvmName("fogDensityProperty")
@@ -924,7 +924,7 @@ public open class Environment : Resource() {
    * high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely
    * from the [Sky]. If set to `0.0`, aerial perspective is disabled.
    */
-  public var fogAerialPerspective: Float
+  public final inline var fogAerialPerspective: Float
     @JvmName("fogAerialPerspectiveProperty")
     get() = getFogAerialPerspective()
     @JvmName("fogAerialPerspectiveProperty")
@@ -938,7 +938,7 @@ public open class Environment : Resource() {
    * affecting sky rendering at all.
    * **Note:** [fogSkyAffect] has no visual effect if [fogAerialPerspective] is `1.0`.
    */
-  public var fogSkyAffect: Float
+  public final inline var fogSkyAffect: Float
     @JvmName("fogSkyAffectProperty")
     get() = getFogSkyAffect()
     @JvmName("fogSkyAffectProperty")
@@ -949,7 +949,7 @@ public open class Environment : Resource() {
   /**
    * The height at which the height fog effect begins.
    */
-  public var fogHeight: Float
+  public final inline var fogHeight: Float
     @JvmName("fogHeightProperty")
     get() = getFogHeight()
     @JvmName("fogHeightProperty")
@@ -961,7 +961,7 @@ public open class Environment : Resource() {
    * The density used to increase fog as height decreases. To make fog increase as height increases,
    * use a negative value.
    */
-  public var fogHeightDensity: Float
+  public final inline var fogHeightDensity: Float
     @JvmName("fogHeightDensityProperty")
     get() = getFogHeightDensity()
     @JvmName("fogHeightDensityProperty")
@@ -973,7 +973,7 @@ public open class Environment : Resource() {
    * The fog depth's intensity curve. A number of presets are available in the Inspector by
    * right-clicking the curve. Only available when [fogMode] is set to [FOG_MODE_DEPTH].
    */
-  public var fogDepthCurve: Float
+  public final inline var fogDepthCurve: Float
     @JvmName("fogDepthCurveProperty")
     get() = getFogDepthCurve()
     @JvmName("fogDepthCurveProperty")
@@ -985,7 +985,7 @@ public open class Environment : Resource() {
    * The fog's depth starting distance from the camera. Only available when [fogMode] is set to
    * [FOG_MODE_DEPTH].
    */
-  public var fogDepthBegin: Float
+  public final inline var fogDepthBegin: Float
     @JvmName("fogDepthBeginProperty")
     get() = getFogDepthBegin()
     @JvmName("fogDepthBeginProperty")
@@ -998,7 +998,7 @@ public open class Environment : Resource() {
    * the current camera's [Camera3D.far] value. Only available when [fogMode] is set to
    * [FOG_MODE_DEPTH].
    */
-  public var fogDepthEnd: Float
+  public final inline var fogDepthEnd: Float
     @JvmName("fogDepthEndProperty")
     get() = getFogDepthEnd()
     @JvmName("fogDepthEndProperty")
@@ -1015,7 +1015,7 @@ public open class Environment : Resource() {
    * **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or
    * Compatibility.
    */
-  public var volumetricFogEnabled: Boolean
+  public final inline var volumetricFogEnabled: Boolean
     @JvmName("volumetricFogEnabledProperty")
     get() = isVolumetricFogEnabled()
     @JvmName("volumetricFogEnabledProperty")
@@ -1033,7 +1033,7 @@ public open class Environment : Resource() {
    * the lowest non-zero value (`0.0001`) then increase lights' [Light3D.lightVolumetricFogEnergy] to
    * values between `10000` and `100000` to compensate for the very low density.
    */
-  public var volumetricFogDensity: Float
+  public final inline var volumetricFogDensity: Float
     @JvmName("volumetricFogDensityProperty")
     get() = getVolumetricFogDensity()
     @JvmName("volumetricFogDensityProperty")
@@ -1046,7 +1046,7 @@ public open class Environment : Resource() {
    * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
   @CoreTypeLocalCopy
-  public var volumetricFogAlbedo: Color
+  public final inline var volumetricFogAlbedo: Color
     @JvmName("volumetricFogAlbedoProperty")
     get() = getVolumetricFogAlbedo()
     @JvmName("volumetricFogAlbedoProperty")
@@ -1061,7 +1061,7 @@ public open class Environment : Resource() {
    * shadows.
    */
   @CoreTypeLocalCopy
-  public var volumetricFogEmission: Color
+  public final inline var volumetricFogEmission: Color
     @JvmName("volumetricFogEmissionProperty")
     get() = getVolumetricFogEmission()
     @JvmName("volumetricFogEmissionProperty")
@@ -1072,7 +1072,7 @@ public open class Environment : Resource() {
   /**
    * The brightness of the emitted light from the volumetric fog.
    */
-  public var volumetricFogEmissionEnergy: Float
+  public final inline var volumetricFogEmissionEnergy: Float
     @JvmName("volumetricFogEmissionEnergyProperty")
     get() = getVolumetricFogEmissionEnergy()
     @JvmName("volumetricFogEmissionEnergyProperty")
@@ -1090,7 +1090,7 @@ public open class Environment : Resource() {
    * using [volumetricFogGiInject]. Global illumination from [LightmapGI], [ReflectionProbe] and SSIL
    * (see [ssilEnabled]) will be ignored by volumetric fog.
    */
-  public var volumetricFogGiInject: Float
+  public final inline var volumetricFogGiInject: Float
     @JvmName("volumetricFogGiInjectProperty")
     get() = getVolumetricFogGiInject()
     @JvmName("volumetricFogGiInjectProperty")
@@ -1104,7 +1104,7 @@ public open class Environment : Resource() {
    * equally in all directions. A value close to `-1.0` means light is scattered mostly backward. Fog
    * and mist scatter light slightly forward, while smoke scatters light equally in all directions.
    */
-  public var volumetricFogAnisotropy: Float
+  public final inline var volumetricFogAnisotropy: Float
     @JvmName("volumetricFogAnisotropyProperty")
     get() = getVolumetricFogAnisotropy()
     @JvmName("volumetricFogAnisotropyProperty")
@@ -1118,7 +1118,7 @@ public open class Environment : Resource() {
    * this as low as possible. See also
    * [ProjectSettings.rendering/environment/volumetricFog/volumeDepth].
    */
-  public var volumetricFogLength: Float
+  public final inline var volumetricFogLength: Float
     @JvmName("volumetricFogLengthProperty")
     get() = getVolumetricFogLength()
     @JvmName("volumetricFogLengthProperty")
@@ -1130,7 +1130,7 @@ public open class Environment : Resource() {
    * The distribution of size down the length of the froxel buffer. A higher value compresses the
    * froxels closer to the camera and places more detail closer to the camera.
    */
-  public var volumetricFogDetailSpread: Float
+  public final inline var volumetricFogDetailSpread: Float
     @JvmName("volumetricFogDetailSpreadProperty")
     get() = getVolumetricFogDetailSpread()
     @JvmName("volumetricFogDetailSpreadProperty")
@@ -1145,7 +1145,7 @@ public open class Environment : Resource() {
    * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
    * [volumetricFogAlbedo] is a fully black color.
    */
-  public var volumetricFogAmbientInject: Float
+  public final inline var volumetricFogAmbientInject: Float
     @JvmName("volumetricFogAmbientInjectProperty")
     get() = getVolumetricFogAmbientInject()
     @JvmName("volumetricFogAmbientInjectProperty")
@@ -1161,7 +1161,7 @@ public open class Environment : Resource() {
    * `0.0`. If you notice [FogVolume]s are disappearing when looking towards the sky, set
    * [volumetricFogSkyAffect] to `1.0`.
    */
-  public var volumetricFogSkyAffect: Float
+  public final inline var volumetricFogSkyAffect: Float
     @JvmName("volumetricFogSkyAffectProperty")
     get() = getVolumetricFogSkyAffect()
     @JvmName("volumetricFogSkyAffectProperty")
@@ -1177,7 +1177,7 @@ public open class Environment : Resource() {
    * [FogVolume]s or [Light3D]s too fast. Short-lived dynamic lighting effects should have
    * [Light3D.lightVolumetricFogEnergy] set to `0.0` to avoid ghosting.
    */
-  public var volumetricFogTemporalReprojectionEnabled: Boolean
+  public final inline var volumetricFogTemporalReprojectionEnabled: Boolean
     @JvmName("volumetricFogTemporalReprojectionEnabledProperty")
     get() = isVolumetricFogTemporalReprojectionEnabled()
     @JvmName("volumetricFogTemporalReprojectionEnabledProperty")
@@ -1190,7 +1190,7 @@ public open class Environment : Resource() {
    * smoother volumetric fog, but makes "ghosting" much worse. A lower value reduces ghosting but can
    * result in the per-frame temporal jitter becoming visible.
    */
-  public var volumetricFogTemporalReprojectionAmount: Float
+  public final inline var volumetricFogTemporalReprojectionAmount: Float
     @JvmName("volumetricFogTemporalReprojectionAmountProperty")
     get() = getVolumetricFogTemporalReprojectionAmount()
     @JvmName("volumetricFogTemporalReprojectionAmountProperty")
@@ -1202,7 +1202,7 @@ public open class Environment : Resource() {
    * If `true`, enables the `adjustment_*` properties provided by this resource. If `false`,
    * modifications to the `adjustment_*` properties will have no effect on the rendered scene.
    */
-  public var adjustmentEnabled: Boolean
+  public final inline var adjustmentEnabled: Boolean
     @JvmName("adjustmentEnabledProperty")
     get() = isAdjustmentEnabled()
     @JvmName("adjustmentEnabledProperty")
@@ -1214,7 +1214,7 @@ public open class Environment : Resource() {
    * The global brightness value of the rendered scene. Effective only if [adjustmentEnabled] is
    * `true`.
    */
-  public var adjustmentBrightness: Float
+  public final inline var adjustmentBrightness: Float
     @JvmName("adjustmentBrightnessProperty")
     get() = getAdjustmentBrightness()
     @JvmName("adjustmentBrightnessProperty")
@@ -1226,7 +1226,7 @@ public open class Environment : Resource() {
    * The global contrast value of the rendered scene (default value is 1). Effective only if
    * [adjustmentEnabled] is `true`.
    */
-  public var adjustmentContrast: Float
+  public final inline var adjustmentContrast: Float
     @JvmName("adjustmentContrastProperty")
     get() = getAdjustmentContrast()
     @JvmName("adjustmentContrastProperty")
@@ -1238,7 +1238,7 @@ public open class Environment : Resource() {
    * The global color saturation value of the rendered scene (default value is 1). Effective only if
    * [adjustmentEnabled] is `true`.
    */
-  public var adjustmentSaturation: Float
+  public final inline var adjustmentSaturation: Float
     @JvmName("adjustmentSaturationProperty")
     get() = getAdjustmentSaturation()
     @JvmName("adjustmentSaturationProperty")
@@ -1251,7 +1251,7 @@ public open class Environment : Resource() {
    * grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more
    * complex LUT. Effective only if [adjustmentEnabled] is `true`.
    */
-  public var adjustmentColorCorrection: Texture?
+  public final inline var adjustmentColorCorrection: Texture?
     @JvmName("adjustmentColorCorrectionProperty")
     get() = getAdjustmentColorCorrection()
     @JvmName("adjustmentColorCorrectionProperty")
@@ -1282,7 +1282,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply{
+  public final fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply{
       block(this)
       backgroundColor = this
   }
@@ -1306,7 +1306,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
+  public final fun skyRotationMutate(block: Vector3.() -> Unit): Vector3 = skyRotation.apply{
       block(this)
       skyRotation = this
   }
@@ -1331,7 +1331,8 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun ambientLightColorMutate(block: Color.() -> Unit): Color = ambientLightColor.apply{
+  public final fun ambientLightColorMutate(block: Color.() -> Unit): Color =
+      ambientLightColor.apply{
       block(this)
       ambientLightColor = this
   }
@@ -1355,7 +1356,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply{
+  public final fun fogLightColorMutate(block: Color.() -> Unit): Color = fogLightColor.apply{
       block(this)
       fogLightColor = this
   }
@@ -1380,7 +1381,7 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color =
+  public final fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color =
       volumetricFogAlbedo.apply{
       block(this)
       volumetricFogAlbedo = this
@@ -1408,547 +1409,547 @@ public open class Environment : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color =
+  public final fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color =
       volumetricFogEmission.apply{
       block(this)
       volumetricFogEmission = this
   }
 
 
-  public fun setBackground(mode: BGMode): Unit {
+  public final fun setBackground(mode: BGMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setBackgroundPtr, NIL)
   }
 
-  public fun getBackground(): BGMode {
+  public final fun getBackground(): BGMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBackgroundPtr, LONG)
     return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSky(sky: Sky?): Unit {
+  public final fun setSky(sky: Sky?): Unit {
     TransferContext.writeArguments(OBJECT to sky)
     TransferContext.callMethod(rawPtr, MethodBindings.setSkyPtr, NIL)
   }
 
-  public fun getSky(): Sky? {
+  public final fun getSky(): Sky? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Sky?)
   }
 
-  public fun setSkyCustomFov(scale: Float): Unit {
+  public final fun setSkyCustomFov(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSkyCustomFovPtr, NIL)
   }
 
-  public fun getSkyCustomFov(): Float {
+  public final fun getSkyCustomFov(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkyCustomFovPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSkyRotation(eulerRadians: Vector3): Unit {
+  public final fun setSkyRotation(eulerRadians: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to eulerRadians)
     TransferContext.callMethod(rawPtr, MethodBindings.setSkyRotationPtr, NIL)
   }
 
-  public fun getSkyRotation(): Vector3 {
+  public final fun getSkyRotation(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkyRotationPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setBgColor(color: Color): Unit {
+  public final fun setBgColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
   }
 
-  public fun getBgColor(): Color {
+  public final fun getBgColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setBgEnergyMultiplier(energy: Float): Unit {
+  public final fun setBgEnergyMultiplier(energy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBgEnergyMultiplierPtr, NIL)
   }
 
-  public fun getBgEnergyMultiplier(): Float {
+  public final fun getBgEnergyMultiplier(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBgEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBgIntensity(energy: Float): Unit {
+  public final fun setBgIntensity(energy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBgIntensityPtr, NIL)
   }
 
-  public fun getBgIntensity(): Float {
+  public final fun getBgIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBgIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setCanvasMaxLayer(layer: Int): Unit {
+  public final fun setCanvasMaxLayer(layer: Int): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCanvasMaxLayerPtr, NIL)
   }
 
-  public fun getCanvasMaxLayer(): Int {
+  public final fun getCanvasMaxLayer(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasMaxLayerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setCameraFeedId(id: Int): Unit {
+  public final fun setCameraFeedId(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCameraFeedIdPtr, NIL)
   }
 
-  public fun getCameraFeedId(): Int {
+  public final fun getCameraFeedId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setAmbientLightColor(color: Color): Unit {
+  public final fun setAmbientLightColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightColorPtr, NIL)
   }
 
-  public fun getAmbientLightColor(): Color {
+  public final fun getAmbientLightColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setAmbientSource(source: AmbientSource): Unit {
+  public final fun setAmbientSource(source: AmbientSource): Unit {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAmbientSourcePtr, NIL)
   }
 
-  public fun getAmbientSource(): AmbientSource {
+  public final fun getAmbientSource(): AmbientSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmbientSourcePtr, LONG)
     return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAmbientLightEnergy(energy: Float): Unit {
+  public final fun setAmbientLightEnergy(energy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightEnergyPtr, NIL)
   }
 
-  public fun getAmbientLightEnergy(): Float {
+  public final fun getAmbientLightEnergy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAmbientLightSkyContribution(ratio: Float): Unit {
+  public final fun setAmbientLightSkyContribution(ratio: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightSkyContributionPtr, NIL)
   }
 
-  public fun getAmbientLightSkyContribution(): Float {
+  public final fun getAmbientLightSkyContribution(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightSkyContributionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setReflectionSource(source: ReflectionSource): Unit {
+  public final fun setReflectionSource(source: ReflectionSource): Unit {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setReflectionSourcePtr, NIL)
   }
 
-  public fun getReflectionSource(): ReflectionSource {
+  public final fun getReflectionSource(): ReflectionSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReflectionSourcePtr, LONG)
     return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTonemapper(mode: ToneMapper): Unit {
+  public final fun setTonemapper(mode: ToneMapper): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTonemapperPtr, NIL)
   }
 
-  public fun getTonemapper(): ToneMapper {
+  public final fun getTonemapper(): ToneMapper {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTonemapperPtr, LONG)
     return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTonemapExposure(exposure: Float): Unit {
+  public final fun setTonemapExposure(exposure: Float): Unit {
     TransferContext.writeArguments(DOUBLE to exposure.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTonemapExposurePtr, NIL)
   }
 
-  public fun getTonemapExposure(): Float {
+  public final fun getTonemapExposure(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTonemapExposurePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTonemapWhite(white: Float): Unit {
+  public final fun setTonemapWhite(white: Float): Unit {
     TransferContext.writeArguments(DOUBLE to white.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTonemapWhitePtr, NIL)
   }
 
-  public fun getTonemapWhite(): Float {
+  public final fun getTonemapWhite(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTonemapWhitePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsrEnabled(enabled: Boolean): Unit {
+  public final fun setSsrEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setSsrEnabledPtr, NIL)
   }
 
-  public fun isSsrEnabled(): Boolean {
+  public final fun isSsrEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSsrEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSsrMaxSteps(maxSteps: Int): Unit {
+  public final fun setSsrMaxSteps(maxSteps: Int): Unit {
     TransferContext.writeArguments(LONG to maxSteps.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsrMaxStepsPtr, NIL)
   }
 
-  public fun getSsrMaxSteps(): Int {
+  public final fun getSsrMaxSteps(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsrMaxStepsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSsrFadeIn(fadeIn: Float): Unit {
+  public final fun setSsrFadeIn(fadeIn: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fadeIn.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsrFadeInPtr, NIL)
   }
 
-  public fun getSsrFadeIn(): Float {
+  public final fun getSsrFadeIn(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsrFadeInPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsrFadeOut(fadeOut: Float): Unit {
+  public final fun setSsrFadeOut(fadeOut: Float): Unit {
     TransferContext.writeArguments(DOUBLE to fadeOut.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsrFadeOutPtr, NIL)
   }
 
-  public fun getSsrFadeOut(): Float {
+  public final fun getSsrFadeOut(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsrFadeOutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsrDepthTolerance(depthTolerance: Float): Unit {
+  public final fun setSsrDepthTolerance(depthTolerance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to depthTolerance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsrDepthTolerancePtr, NIL)
   }
 
-  public fun getSsrDepthTolerance(): Float {
+  public final fun getSsrDepthTolerance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsrDepthTolerancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoEnabled(enabled: Boolean): Unit {
+  public final fun setSsaoEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoEnabledPtr, NIL)
   }
 
-  public fun isSsaoEnabled(): Boolean {
+  public final fun isSsaoEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSsaoEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSsaoRadius(radius: Float): Unit {
+  public final fun setSsaoRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoRadiusPtr, NIL)
   }
 
-  public fun getSsaoRadius(): Float {
+  public final fun getSsaoRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoIntensity(intensity: Float): Unit {
+  public final fun setSsaoIntensity(intensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoIntensityPtr, NIL)
   }
 
-  public fun getSsaoIntensity(): Float {
+  public final fun getSsaoIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoPower(power: Float): Unit {
+  public final fun setSsaoPower(power: Float): Unit {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoPowerPtr, NIL)
   }
 
-  public fun getSsaoPower(): Float {
+  public final fun getSsaoPower(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoPowerPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoDetail(detail: Float): Unit {
+  public final fun setSsaoDetail(detail: Float): Unit {
     TransferContext.writeArguments(DOUBLE to detail.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoDetailPtr, NIL)
   }
 
-  public fun getSsaoDetail(): Float {
+  public final fun getSsaoDetail(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoDetailPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoHorizon(horizon: Float): Unit {
+  public final fun setSsaoHorizon(horizon: Float): Unit {
     TransferContext.writeArguments(DOUBLE to horizon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoHorizonPtr, NIL)
   }
 
-  public fun getSsaoHorizon(): Float {
+  public final fun getSsaoHorizon(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoHorizonPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoSharpness(sharpness: Float): Unit {
+  public final fun setSsaoSharpness(sharpness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoSharpnessPtr, NIL)
   }
 
-  public fun getSsaoSharpness(): Float {
+  public final fun getSsaoSharpness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoDirectLightAffect(amount: Float): Unit {
+  public final fun setSsaoDirectLightAffect(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoDirectLightAffectPtr, NIL)
   }
 
-  public fun getSsaoDirectLightAffect(): Float {
+  public final fun getSsaoDirectLightAffect(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoDirectLightAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsaoAoChannelAffect(amount: Float): Unit {
+  public final fun setSsaoAoChannelAffect(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsaoAoChannelAffectPtr, NIL)
   }
 
-  public fun getSsaoAoChannelAffect(): Float {
+  public final fun getSsaoAoChannelAffect(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsaoAoChannelAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsilEnabled(enabled: Boolean): Unit {
+  public final fun setSsilEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setSsilEnabledPtr, NIL)
   }
 
-  public fun isSsilEnabled(): Boolean {
+  public final fun isSsilEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSsilEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSsilRadius(radius: Float): Unit {
+  public final fun setSsilRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsilRadiusPtr, NIL)
   }
 
-  public fun getSsilRadius(): Float {
+  public final fun getSsilRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsilRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsilIntensity(intensity: Float): Unit {
+  public final fun setSsilIntensity(intensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsilIntensityPtr, NIL)
   }
 
-  public fun getSsilIntensity(): Float {
+  public final fun getSsilIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsilIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsilSharpness(sharpness: Float): Unit {
+  public final fun setSsilSharpness(sharpness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsilSharpnessPtr, NIL)
   }
 
-  public fun getSsilSharpness(): Float {
+  public final fun getSsilSharpness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsilSharpnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSsilNormalRejection(normalRejection: Float): Unit {
+  public final fun setSsilNormalRejection(normalRejection: Float): Unit {
     TransferContext.writeArguments(DOUBLE to normalRejection.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSsilNormalRejectionPtr, NIL)
   }
 
-  public fun getSsilNormalRejection(): Float {
+  public final fun getSsilNormalRejection(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSsilNormalRejectionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSdfgiEnabled(enabled: Boolean): Unit {
+  public final fun setSdfgiEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiEnabledPtr, NIL)
   }
 
-  public fun isSdfgiEnabled(): Boolean {
+  public final fun isSdfgiEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSdfgiCascades(amount: Int): Unit {
+  public final fun setSdfgiCascades(amount: Int): Unit {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiCascadesPtr, NIL)
   }
 
-  public fun getSdfgiCascades(): Int {
+  public final fun getSdfgiCascades(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiCascadesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSdfgiMinCellSize(size: Float): Unit {
+  public final fun setSdfgiMinCellSize(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiMinCellSizePtr, NIL)
   }
 
-  public fun getSdfgiMinCellSize(): Float {
+  public final fun getSdfgiMinCellSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiMinCellSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSdfgiMaxDistance(distance: Float): Unit {
+  public final fun setSdfgiMaxDistance(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiMaxDistancePtr, NIL)
   }
 
-  public fun getSdfgiMaxDistance(): Float {
+  public final fun getSdfgiMaxDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSdfgiCascade0Distance(distance: Float): Unit {
+  public final fun setSdfgiCascade0Distance(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiCascade0DistancePtr, NIL)
   }
 
-  public fun getSdfgiCascade0Distance(): Float {
+  public final fun getSdfgiCascade0Distance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiCascade0DistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSdfgiYScale(scale: SDFGIYScale): Unit {
+  public final fun setSdfgiYScale(scale: SDFGIYScale): Unit {
     TransferContext.writeArguments(LONG to scale.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiYScalePtr, NIL)
   }
 
-  public fun getSdfgiYScale(): SDFGIYScale {
+  public final fun getSdfgiYScale(): SDFGIYScale {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiYScalePtr, LONG)
     return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setSdfgiUseOcclusion(enable: Boolean): Unit {
+  public final fun setSdfgiUseOcclusion(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiUseOcclusionPtr, NIL)
   }
 
-  public fun isSdfgiUsingOcclusion(): Boolean {
+  public final fun isSdfgiUsingOcclusion(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiUsingOcclusionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSdfgiBounceFeedback(amount: Float): Unit {
+  public final fun setSdfgiBounceFeedback(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiBounceFeedbackPtr, NIL)
   }
 
-  public fun getSdfgiBounceFeedback(): Float {
+  public final fun getSdfgiBounceFeedback(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiBounceFeedbackPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSdfgiReadSkyLight(enable: Boolean): Unit {
+  public final fun setSdfgiReadSkyLight(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiReadSkyLightPtr, NIL)
   }
 
-  public fun isSdfgiReadingSkyLight(): Boolean {
+  public final fun isSdfgiReadingSkyLight(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiReadingSkyLightPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setSdfgiEnergy(amount: Float): Unit {
+  public final fun setSdfgiEnergy(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiEnergyPtr, NIL)
   }
 
-  public fun getSdfgiEnergy(): Float {
+  public final fun getSdfgiEnergy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSdfgiNormalBias(bias: Float): Unit {
+  public final fun setSdfgiNormalBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiNormalBiasPtr, NIL)
   }
 
-  public fun getSdfgiNormalBias(): Float {
+  public final fun getSdfgiNormalBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiNormalBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSdfgiProbeBias(bias: Float): Unit {
+  public final fun setSdfgiProbeBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiProbeBiasPtr, NIL)
   }
 
-  public fun getSdfgiProbeBias(): Float {
+  public final fun getSdfgiProbeBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiProbeBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowEnabled(enabled: Boolean): Unit {
+  public final fun setGlowEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowEnabledPtr, NIL)
   }
 
-  public fun isGlowEnabled(): Boolean {
+  public final fun isGlowEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isGlowEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1959,7 +1960,7 @@ public open class Environment : Resource() {
    * relies on the previous level. This means that enabling higher glow levels will slow down the glow
    * effect rendering, even if previous levels aren't enabled.
    */
-  public fun setGlowLevel(idx: Int, intensity: Float): Unit {
+  public final fun setGlowLevel(idx: Int, intensity: Float): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to intensity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowLevelPtr, NIL)
   }
@@ -1967,473 +1968,474 @@ public open class Environment : Resource() {
   /**
    * Returns the intensity of the glow level [idx].
    */
-  public fun getGlowLevel(idx: Int): Float {
+  public final fun getGlowLevel(idx: Int): Float {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowLevelPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowNormalized(normalize: Boolean): Unit {
+  public final fun setGlowNormalized(normalize: Boolean): Unit {
     TransferContext.writeArguments(BOOL to normalize)
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowNormalizedPtr, NIL)
   }
 
-  public fun isGlowNormalized(): Boolean {
+  public final fun isGlowNormalized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isGlowNormalizedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setGlowIntensity(intensity: Float): Unit {
+  public final fun setGlowIntensity(intensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowIntensityPtr, NIL)
   }
 
-  public fun getGlowIntensity(): Float {
+  public final fun getGlowIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowIntensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowStrength(strength: Float): Unit {
+  public final fun setGlowStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowStrengthPtr, NIL)
   }
 
-  public fun getGlowStrength(): Float {
+  public final fun getGlowStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowMix(mix: Float): Unit {
+  public final fun setGlowMix(mix: Float): Unit {
     TransferContext.writeArguments(DOUBLE to mix.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowMixPtr, NIL)
   }
 
-  public fun getGlowMix(): Float {
+  public final fun getGlowMix(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowMixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowBloom(amount: Float): Unit {
+  public final fun setGlowBloom(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowBloomPtr, NIL)
   }
 
-  public fun getGlowBloom(): Float {
+  public final fun getGlowBloom(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowBloomPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowBlendMode(mode: GlowBlendMode): Unit {
+  public final fun setGlowBlendMode(mode: GlowBlendMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowBlendModePtr, NIL)
   }
 
-  public fun getGlowBlendMode(): GlowBlendMode {
+  public final fun getGlowBlendMode(): GlowBlendMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowBlendModePtr, LONG)
     return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setGlowHdrBleedThreshold(threshold: Float): Unit {
+  public final fun setGlowHdrBleedThreshold(threshold: Float): Unit {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrBleedThresholdPtr, NIL)
   }
 
-  public fun getGlowHdrBleedThreshold(): Float {
+  public final fun getGlowHdrBleedThreshold(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrBleedThresholdPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowHdrBleedScale(scale: Float): Unit {
+  public final fun setGlowHdrBleedScale(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrBleedScalePtr, NIL)
   }
 
-  public fun getGlowHdrBleedScale(): Float {
+  public final fun getGlowHdrBleedScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrBleedScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowHdrLuminanceCap(amount: Float): Unit {
+  public final fun setGlowHdrLuminanceCap(amount: Float): Unit {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrLuminanceCapPtr, NIL)
   }
 
-  public fun getGlowHdrLuminanceCap(): Float {
+  public final fun getGlowHdrLuminanceCap(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrLuminanceCapPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowMapStrength(strength: Float): Unit {
+  public final fun setGlowMapStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowMapStrengthPtr, NIL)
   }
 
-  public fun getGlowMapStrength(): Float {
+  public final fun getGlowMapStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowMapStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlowMap(mode: Texture?): Unit {
+  public final fun setGlowMap(mode: Texture?): Unit {
     TransferContext.writeArguments(OBJECT to mode)
     TransferContext.callMethod(rawPtr, MethodBindings.setGlowMapPtr, NIL)
   }
 
-  public fun getGlowMap(): Texture? {
+  public final fun getGlowMap(): Texture? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlowMapPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture?)
   }
 
-  public fun setFogEnabled(enabled: Boolean): Unit {
+  public final fun setFogEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setFogEnabledPtr, NIL)
   }
 
-  public fun isFogEnabled(): Boolean {
+  public final fun isFogEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFogEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFogMode(mode: FogMode): Unit {
+  public final fun setFogMode(mode: FogMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setFogModePtr, NIL)
   }
 
-  public fun getFogMode(): FogMode {
+  public final fun getFogMode(): FogMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogModePtr, LONG)
     return Environment.FogMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setFogLightColor(lightColor: Color): Unit {
+  public final fun setFogLightColor(lightColor: Color): Unit {
     TransferContext.writeArguments(COLOR to lightColor)
     TransferContext.callMethod(rawPtr, MethodBindings.setFogLightColorPtr, NIL)
   }
 
-  public fun getFogLightColor(): Color {
+  public final fun getFogLightColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogLightColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setFogLightEnergy(lightEnergy: Float): Unit {
+  public final fun setFogLightEnergy(lightEnergy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to lightEnergy.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogLightEnergyPtr, NIL)
   }
 
-  public fun getFogLightEnergy(): Float {
+  public final fun getFogLightEnergy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogLightEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogSunScatter(sunScatter: Float): Unit {
+  public final fun setFogSunScatter(sunScatter: Float): Unit {
     TransferContext.writeArguments(DOUBLE to sunScatter.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogSunScatterPtr, NIL)
   }
 
-  public fun getFogSunScatter(): Float {
+  public final fun getFogSunScatter(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogSunScatterPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogDensity(density: Float): Unit {
+  public final fun setFogDensity(density: Float): Unit {
     TransferContext.writeArguments(DOUBLE to density.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogDensityPtr, NIL)
   }
 
-  public fun getFogDensity(): Float {
+  public final fun getFogDensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogDensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogHeight(height: Float): Unit {
+  public final fun setFogHeight(height: Float): Unit {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogHeightPtr, NIL)
   }
 
-  public fun getFogHeight(): Float {
+  public final fun getFogHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogHeightDensity(heightDensity: Float): Unit {
+  public final fun setFogHeightDensity(heightDensity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to heightDensity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogHeightDensityPtr, NIL)
   }
 
-  public fun getFogHeightDensity(): Float {
+  public final fun getFogHeightDensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogHeightDensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogAerialPerspective(aerialPerspective: Float): Unit {
+  public final fun setFogAerialPerspective(aerialPerspective: Float): Unit {
     TransferContext.writeArguments(DOUBLE to aerialPerspective.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogAerialPerspectivePtr, NIL)
   }
 
-  public fun getFogAerialPerspective(): Float {
+  public final fun getFogAerialPerspective(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogAerialPerspectivePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogSkyAffect(skyAffect: Float): Unit {
+  public final fun setFogSkyAffect(skyAffect: Float): Unit {
     TransferContext.writeArguments(DOUBLE to skyAffect.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogSkyAffectPtr, NIL)
   }
 
-  public fun getFogSkyAffect(): Float {
+  public final fun getFogSkyAffect(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogSkyAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogDepthCurve(curve: Float): Unit {
+  public final fun setFogDepthCurve(curve: Float): Unit {
     TransferContext.writeArguments(DOUBLE to curve.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthCurvePtr, NIL)
   }
 
-  public fun getFogDepthCurve(): Float {
+  public final fun getFogDepthCurve(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthCurvePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogDepthBegin(begin: Float): Unit {
+  public final fun setFogDepthBegin(begin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to begin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthBeginPtr, NIL)
   }
 
-  public fun getFogDepthBegin(): Float {
+  public final fun getFogDepthBegin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFogDepthEnd(end: Float): Unit {
+  public final fun setFogDepthEnd(end: Float): Unit {
     TransferContext.writeArguments(DOUBLE to end.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthEndPtr, NIL)
   }
 
-  public fun getFogDepthEnd(): Float {
+  public final fun getFogDepthEnd(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogEnabled(enabled: Boolean): Unit {
+  public final fun setVolumetricFogEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEnabledPtr, NIL)
   }
 
-  public fun isVolumetricFogEnabled(): Boolean {
+  public final fun isVolumetricFogEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVolumetricFogEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setVolumetricFogEmission(color: Color): Unit {
+  public final fun setVolumetricFogEmission(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionPtr, NIL)
   }
 
-  public fun getVolumetricFogEmission(): Color {
+  public final fun getVolumetricFogEmission(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setVolumetricFogAlbedo(color: Color): Unit {
+  public final fun setVolumetricFogAlbedo(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAlbedoPtr, NIL)
   }
 
-  public fun getVolumetricFogAlbedo(): Color {
+  public final fun getVolumetricFogAlbedo(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAlbedoPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setVolumetricFogDensity(density: Float): Unit {
+  public final fun setVolumetricFogDensity(density: Float): Unit {
     TransferContext.writeArguments(DOUBLE to density.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogDensityPtr, NIL)
   }
 
-  public fun getVolumetricFogDensity(): Float {
+  public final fun getVolumetricFogDensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogDensityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogEmissionEnergy(begin: Float): Unit {
+  public final fun setVolumetricFogEmissionEnergy(begin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to begin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionEnergyPtr, NIL)
   }
 
-  public fun getVolumetricFogEmissionEnergy(): Float {
+  public final fun getVolumetricFogEmissionEnergy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionEnergyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogAnisotropy(anisotropy: Float): Unit {
+  public final fun setVolumetricFogAnisotropy(anisotropy: Float): Unit {
     TransferContext.writeArguments(DOUBLE to anisotropy.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAnisotropyPtr, NIL)
   }
 
-  public fun getVolumetricFogAnisotropy(): Float {
+  public final fun getVolumetricFogAnisotropy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAnisotropyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogLength(length: Float): Unit {
+  public final fun setVolumetricFogLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogLengthPtr, NIL)
   }
 
-  public fun getVolumetricFogLength(): Float {
+  public final fun getVolumetricFogLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogDetailSpread(detailSpread: Float): Unit {
+  public final fun setVolumetricFogDetailSpread(detailSpread: Float): Unit {
     TransferContext.writeArguments(DOUBLE to detailSpread.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogDetailSpreadPtr, NIL)
   }
 
-  public fun getVolumetricFogDetailSpread(): Float {
+  public final fun getVolumetricFogDetailSpread(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogDetailSpreadPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogGiInject(giInject: Float): Unit {
+  public final fun setVolumetricFogGiInject(giInject: Float): Unit {
     TransferContext.writeArguments(DOUBLE to giInject.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogGiInjectPtr, NIL)
   }
 
-  public fun getVolumetricFogGiInject(): Float {
+  public final fun getVolumetricFogGiInject(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogGiInjectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogAmbientInject(enabled: Float): Unit {
+  public final fun setVolumetricFogAmbientInject(enabled: Float): Unit {
     TransferContext.writeArguments(DOUBLE to enabled.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAmbientInjectPtr, NIL)
   }
 
-  public fun getVolumetricFogAmbientInject(): Float {
+  public final fun getVolumetricFogAmbientInject(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAmbientInjectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogSkyAffect(skyAffect: Float): Unit {
+  public final fun setVolumetricFogSkyAffect(skyAffect: Float): Unit {
     TransferContext.writeArguments(DOUBLE to skyAffect.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogSkyAffectPtr, NIL)
   }
 
-  public fun getVolumetricFogSkyAffect(): Float {
+  public final fun getVolumetricFogSkyAffect(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogSkyAffectPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVolumetricFogTemporalReprojectionEnabled(enabled: Boolean): Unit {
+  public final fun setVolumetricFogTemporalReprojectionEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr, NIL)
   }
 
-  public fun isVolumetricFogTemporalReprojectionEnabled(): Boolean {
+  public final fun isVolumetricFogTemporalReprojectionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr,
         BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setVolumetricFogTemporalReprojectionAmount(temporalReprojectionAmount: Float): Unit {
+  public final fun setVolumetricFogTemporalReprojectionAmount(temporalReprojectionAmount: Float):
+      Unit {
     TransferContext.writeArguments(DOUBLE to temporalReprojectionAmount.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr,
         NIL)
   }
 
-  public fun getVolumetricFogTemporalReprojectionAmount(): Float {
+  public final fun getVolumetricFogTemporalReprojectionAmount(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr,
         DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAdjustmentEnabled(enabled: Boolean): Unit {
+  public final fun setAdjustmentEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentEnabledPtr, NIL)
   }
 
-  public fun isAdjustmentEnabled(): Boolean {
+  public final fun isAdjustmentEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAdjustmentEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAdjustmentBrightness(brightness: Float): Unit {
+  public final fun setAdjustmentBrightness(brightness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to brightness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentBrightnessPtr, NIL)
   }
 
-  public fun getAdjustmentBrightness(): Float {
+  public final fun getAdjustmentBrightness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentBrightnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAdjustmentContrast(contrast: Float): Unit {
+  public final fun setAdjustmentContrast(contrast: Float): Unit {
     TransferContext.writeArguments(DOUBLE to contrast.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentContrastPtr, NIL)
   }
 
-  public fun getAdjustmentContrast(): Float {
+  public final fun getAdjustmentContrast(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentContrastPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAdjustmentSaturation(saturation: Float): Unit {
+  public final fun setAdjustmentSaturation(saturation: Float): Unit {
     TransferContext.writeArguments(DOUBLE to saturation.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentSaturationPtr, NIL)
   }
 
-  public fun getAdjustmentSaturation(): Float {
+  public final fun getAdjustmentSaturation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentSaturationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setAdjustmentColorCorrection(colorCorrection: Texture?): Unit {
+  public final fun setAdjustmentColorCorrection(colorCorrection: Texture?): Unit {
     TransferContext.writeArguments(OBJECT to colorCorrection)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentColorCorrectionPtr, NIL)
   }
 
-  public fun getAdjustmentColorCorrection(): Texture? {
+  public final fun getAdjustmentColorCorrection(): Texture? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentColorCorrectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture?)

@@ -46,7 +46,7 @@ public open class GLTFNode : Resource() {
   /**
    * The original name of the node.
    */
-  public var originalName: String
+  public final inline var originalName: String
     @JvmName("originalNameProperty")
     get() = getOriginalName()
     @JvmName("originalNameProperty")
@@ -57,7 +57,7 @@ public open class GLTFNode : Resource() {
   /**
    * The index of the parent node in the [GLTFState]. If -1, this node is a root node.
    */
-  public var parent: Int
+  public final inline var parent: Int
     @JvmName("parentProperty")
     get() = getParent()
     @JvmName("parentProperty")
@@ -69,7 +69,7 @@ public open class GLTFNode : Resource() {
    * How deep into the node hierarchy this node is. A root node will have a height of 0, its
    * children will have a height of 1, and so on. If -1, the height has not been calculated.
    */
-  public var height: Int
+  public final inline var height: Int
     @JvmName("heightProperty")
     get() = getHeight()
     @JvmName("heightProperty")
@@ -82,7 +82,7 @@ public open class GLTFNode : Resource() {
    * the position, rotation, and scale properties are preferred.
    */
   @CoreTypeLocalCopy
-  public var xform: Transform3D
+  public final inline var xform: Transform3D
     @JvmName("xformProperty")
     get() = getXform()
     @JvmName("xformProperty")
@@ -94,7 +94,7 @@ public open class GLTFNode : Resource() {
    * If this GLTF node is a mesh, the index of the [GLTFMesh] in the [GLTFState] that describes the
    * mesh's properties. If -1, this node is not a mesh.
    */
-  public var mesh: Int
+  public final inline var mesh: Int
     @JvmName("meshProperty")
     get() = getMesh()
     @JvmName("meshProperty")
@@ -106,7 +106,7 @@ public open class GLTFNode : Resource() {
    * If this GLTF node is a camera, the index of the [GLTFCamera] in the [GLTFState] that describes
    * the camera's properties. If -1, this node is not a camera.
    */
-  public var camera: Int
+  public final inline var camera: Int
     @JvmName("cameraProperty")
     get() = getCamera()
     @JvmName("cameraProperty")
@@ -118,7 +118,7 @@ public open class GLTFNode : Resource() {
    * If this GLTF node has a skin, the index of the [GLTFSkin] in the [GLTFState] that describes the
    * skin's properties. If -1, this node does not have a skin.
    */
-  public var skin: Int
+  public final inline var skin: Int
     @JvmName("skinProperty")
     get() = getSkin()
     @JvmName("skinProperty")
@@ -130,7 +130,7 @@ public open class GLTFNode : Resource() {
    * If this GLTF node has a skeleton, the index of the [GLTFSkeleton] in the [GLTFState] that
    * describes the skeleton's properties. If -1, this node does not have a skeleton.
    */
-  public var skeleton: Int
+  public final inline var skeleton: Int
     @JvmName("skeletonProperty")
     get() = getSkeleton()
     @JvmName("skeletonProperty")
@@ -142,7 +142,7 @@ public open class GLTFNode : Resource() {
    * The position of the GLTF node relative to its parent.
    */
   @CoreTypeLocalCopy
-  public var position: Vector3
+  public final inline var position: Vector3
     @JvmName("positionProperty")
     get() = getPosition()
     @JvmName("positionProperty")
@@ -154,7 +154,7 @@ public open class GLTFNode : Resource() {
    * The rotation of the GLTF node relative to its parent.
    */
   @CoreTypeLocalCopy
-  public var rotation: Quaternion
+  public final inline var rotation: Quaternion
     @JvmName("rotationProperty")
     get() = getRotation()
     @JvmName("rotationProperty")
@@ -166,7 +166,7 @@ public open class GLTFNode : Resource() {
    * The scale of the GLTF node relative to its parent.
    */
   @CoreTypeLocalCopy
-  public var scale: Vector3
+  public final inline var scale: Vector3
     @JvmName("scaleProperty")
     get() = getScale()
     @JvmName("scaleProperty")
@@ -178,7 +178,7 @@ public open class GLTFNode : Resource() {
    * The indices of the child nodes in the [GLTFState]. If this GLTF node has no children, this will
    * be an empty array.
    */
-  public var children: PackedInt32Array
+  public final inline var children: PackedInt32Array
     @JvmName("childrenProperty")
     get() = getChildren()
     @JvmName("childrenProperty")
@@ -190,7 +190,7 @@ public open class GLTFNode : Resource() {
    * If this GLTF node is a light, the index of the [GLTFLight] in the [GLTFState] that describes
    * the light's properties. If -1, this node is not a light.
    */
-  public var light: Int
+  public final inline var light: Int
     @JvmName("lightProperty")
     get() = getLight()
     @JvmName("lightProperty")
@@ -221,7 +221,7 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun xformMutate(block: Transform3D.() -> Unit): Transform3D = xform.apply{
+  public final fun xformMutate(block: Transform3D.() -> Unit): Transform3D = xform.apply{
       block(this)
       xform = this
   }
@@ -245,7 +245,7 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
+  public final fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply{
       block(this)
       position = this
   }
@@ -269,7 +269,7 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rotationMutate(block: Quaternion.() -> Unit): Quaternion = rotation.apply{
+  public final fun rotationMutate(block: Quaternion.() -> Unit): Quaternion = rotation.apply{
       block(this)
       rotation = this
   }
@@ -293,151 +293,151 @@ public open class GLTFNode : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply{
+  public final fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply{
       block(this)
       scale = this
   }
 
 
-  public fun getOriginalName(): String {
+  public final fun getOriginalName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setOriginalName(originalName: String): Unit {
+  public final fun setOriginalName(originalName: String): Unit {
     TransferContext.writeArguments(STRING to originalName)
     TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
   }
 
-  public fun getParent(): Int {
+  public final fun getParent(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setParent(parent: Int): Unit {
+  public final fun setParent(parent: Int): Unit {
     TransferContext.writeArguments(LONG to parent.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setParentPtr, NIL)
   }
 
-  public fun getHeight(): Int {
+  public final fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setHeight(height: Int): Unit {
+  public final fun setHeight(height: Int): Unit {
     TransferContext.writeArguments(LONG to height.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
-  public fun getXform(): Transform3D {
+  public final fun getXform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
-  public fun setXform(xform: Transform3D): Unit {
+  public final fun setXform(xform: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to xform)
     TransferContext.callMethod(rawPtr, MethodBindings.setXformPtr, NIL)
   }
 
-  public fun getMesh(): Int {
+  public final fun getMesh(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMesh(mesh: Int): Unit {
+  public final fun setMesh(mesh: Int): Unit {
     TransferContext.writeArguments(LONG to mesh.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
-  public fun getCamera(): Int {
+  public final fun getCamera(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setCamera(camera: Int): Unit {
+  public final fun setCamera(camera: Int): Unit {
     TransferContext.writeArguments(LONG to camera.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCameraPtr, NIL)
   }
 
-  public fun getSkin(): Int {
+  public final fun getSkin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSkin(skin: Int): Unit {
+  public final fun setSkin(skin: Int): Unit {
     TransferContext.writeArguments(LONG to skin.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
   }
 
-  public fun getSkeleton(): Int {
+  public final fun getSkeleton(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setSkeleton(skeleton: Int): Unit {
+  public final fun setSkeleton(skeleton: Int): Unit {
     TransferContext.writeArguments(LONG to skeleton.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
   }
 
-  public fun getPosition(): Vector3 {
+  public final fun getPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setPosition(position: Vector3): Unit {
+  public final fun setPosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
-  public fun getRotation(): Quaternion {
+  public final fun getRotation(): Quaternion {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
   }
 
-  public fun setRotation(rotation: Quaternion): Unit {
+  public final fun setRotation(rotation: Quaternion): Unit {
     TransferContext.writeArguments(QUATERNION to rotation)
     TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
   }
 
-  public fun getScale(): Vector3 {
+  public final fun getScale(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
-  public fun setScale(scale: Vector3): Unit {
+  public final fun setScale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
   }
 
-  public fun getChildren(): PackedInt32Array {
+  public final fun getChildren(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
-  public fun setChildren(children: PackedInt32Array): Unit {
+  public final fun setChildren(children: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to children)
     TransferContext.callMethod(rawPtr, MethodBindings.setChildrenPtr, NIL)
   }
 
-  public fun getLight(): Int {
+  public final fun getLight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setLight(light: Int): Unit {
+  public final fun setLight(light: Int): Unit {
     TransferContext.writeArguments(LONG to light.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLightPtr, NIL)
   }
@@ -449,7 +449,7 @@ public open class GLTFNode : Resource() {
    * name in the GLTF file), and the return value can be anything you set. If nothing was set, the
    * return value is null.
    */
-  public fun getAdditionalData(extensionName: StringName): Any? {
+  public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -461,7 +461,7 @@ public open class GLTFNode : Resource() {
    * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
    * extension name in the GLTF file), and the second argument can be anything you want.
    */
-  public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }

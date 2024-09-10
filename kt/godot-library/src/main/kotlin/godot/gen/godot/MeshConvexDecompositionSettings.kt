@@ -31,7 +31,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Maximum concavity. Ranges from `0.0` to `1.0`.
    */
-  public var maxConcavity: Float
+  public final inline var maxConcavity: Float
     @JvmName("maxConcavityProperty")
     get() = getMaxConcavity()
     @JvmName("maxConcavityProperty")
@@ -42,7 +42,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the bias toward clipping along symmetry planes. Ranges from `0.0` to `1.0`.
    */
-  public var symmetryPlanesClippingBias: Float
+  public final inline var symmetryPlanesClippingBias: Float
     @JvmName("symmetryPlanesClippingBiasProperty")
     get() = getSymmetryPlanesClippingBias()
     @JvmName("symmetryPlanesClippingBiasProperty")
@@ -53,7 +53,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the bias toward clipping along revolution axes. Ranges from `0.0` to `1.0`.
    */
-  public var revolutionAxesClippingBias: Float
+  public final inline var revolutionAxesClippingBias: Float
     @JvmName("revolutionAxesClippingBiasProperty")
     get() = getRevolutionAxesClippingBias()
     @JvmName("revolutionAxesClippingBiasProperty")
@@ -64,7 +64,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the adaptive sampling of the generated convex-hulls. Ranges from `0.0` to `0.01`.
    */
-  public var minVolumePerConvexHull: Float
+  public final inline var minVolumePerConvexHull: Float
     @JvmName("minVolumePerConvexHullProperty")
     get() = getMinVolumePerConvexHull()
     @JvmName("minVolumePerConvexHullProperty")
@@ -75,7 +75,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Maximum number of voxels generated during the voxelization stage.
    */
-  public var resolution: Long
+  public final inline var resolution: Long
     @JvmName("resolutionProperty")
     get() = getResolution()
     @JvmName("resolutionProperty")
@@ -86,7 +86,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the maximum number of triangles per convex-hull. Ranges from `4` to `1024`.
    */
-  public var maxNumVerticesPerConvexHull: Long
+  public final inline var maxNumVerticesPerConvexHull: Long
     @JvmName("maxNumVerticesPerConvexHullProperty")
     get() = getMaxNumVerticesPerConvexHull()
     @JvmName("maxNumVerticesPerConvexHullProperty")
@@ -97,7 +97,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Controls the granularity of the search for the "best" clipping plane. Ranges from `1` to `16`.
    */
-  public var planeDownsampling: Long
+  public final inline var planeDownsampling: Long
     @JvmName("planeDownsamplingProperty")
     get() = getPlaneDownsampling()
     @JvmName("planeDownsamplingProperty")
@@ -109,7 +109,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
    * Controls the precision of the convex-hull generation process during the clipping plane
    * selection stage. Ranges from `1` to `16`.
    */
-  public var convexHullDownsampling: Long
+  public final inline var convexHullDownsampling: Long
     @JvmName("convexHullDownsamplingProperty")
     get() = getConvexHullDownsampling()
     @JvmName("convexHullDownsamplingProperty")
@@ -120,7 +120,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * If `true`, normalizes the mesh before applying the convex decomposition.
    */
-  public var normalizeMesh: Boolean
+  public final inline var normalizeMesh: Boolean
     @JvmName("normalizeMeshProperty")
     get() = getNormalizeMesh()
     @JvmName("normalizeMeshProperty")
@@ -131,7 +131,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * Mode for the approximate convex decomposition.
    */
-  public var mode: Mode
+  public final inline var mode: Mode
     @JvmName("modeProperty")
     get() = getMode()
     @JvmName("modeProperty")
@@ -142,7 +142,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * If `true`, uses approximation for computing convex hulls.
    */
-  public var convexHullApproximation: Boolean
+  public final inline var convexHullApproximation: Boolean
     @JvmName("convexHullApproximationProperty")
     get() = getConvexHullApproximation()
     @JvmName("convexHullApproximationProperty")
@@ -153,7 +153,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   /**
    * The maximum number of convex hulls to produce from the merge operation.
    */
-  public var maxConvexHulls: Long
+  public final inline var maxConvexHulls: Long
     @JvmName("maxConvexHullsProperty")
     get() = getMaxConvexHulls()
     @JvmName("maxConvexHullsProperty")
@@ -165,7 +165,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
    * If `true`, projects output convex hull vertices onto the original source mesh to increase
    * floating-point accuracy of the results.
    */
-  public var projectHullVertices: Boolean
+  public final inline var projectHullVertices: Boolean
     @JvmName("projectHullVerticesProperty")
     get() = getProjectHullVertices()
     @JvmName("projectHullVerticesProperty")
@@ -177,144 +177,144 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     callConstructor(ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS, scriptIndex)
   }
 
-  public fun setMaxConcavity(maxConcavity: Float): Unit {
+  public final fun setMaxConcavity(maxConcavity: Float): Unit {
     TransferContext.writeArguments(DOUBLE to maxConcavity.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxConcavityPtr, NIL)
   }
 
-  public fun getMaxConcavity(): Float {
+  public final fun getMaxConcavity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxConcavityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSymmetryPlanesClippingBias(symmetryPlanesClippingBias: Float): Unit {
+  public final fun setSymmetryPlanesClippingBias(symmetryPlanesClippingBias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to symmetryPlanesClippingBias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSymmetryPlanesClippingBiasPtr, NIL)
   }
 
-  public fun getSymmetryPlanesClippingBias(): Float {
+  public final fun getSymmetryPlanesClippingBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSymmetryPlanesClippingBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRevolutionAxesClippingBias(revolutionAxesClippingBias: Float): Unit {
+  public final fun setRevolutionAxesClippingBias(revolutionAxesClippingBias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to revolutionAxesClippingBias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRevolutionAxesClippingBiasPtr, NIL)
   }
 
-  public fun getRevolutionAxesClippingBias(): Float {
+  public final fun getRevolutionAxesClippingBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRevolutionAxesClippingBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMinVolumePerConvexHull(minVolumePerConvexHull: Float): Unit {
+  public final fun setMinVolumePerConvexHull(minVolumePerConvexHull: Float): Unit {
     TransferContext.writeArguments(DOUBLE to minVolumePerConvexHull.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMinVolumePerConvexHullPtr, NIL)
   }
 
-  public fun getMinVolumePerConvexHull(): Float {
+  public final fun getMinVolumePerConvexHull(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinVolumePerConvexHullPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setResolution(minVolumePerConvexHull: Long): Unit {
+  public final fun setResolution(minVolumePerConvexHull: Long): Unit {
     TransferContext.writeArguments(LONG to minVolumePerConvexHull)
     TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
   }
 
-  public fun getResolution(): Long {
+  public final fun getResolution(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setMaxNumVerticesPerConvexHull(maxNumVerticesPerConvexHull: Long): Unit {
+  public final fun setMaxNumVerticesPerConvexHull(maxNumVerticesPerConvexHull: Long): Unit {
     TransferContext.writeArguments(LONG to maxNumVerticesPerConvexHull)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxNumVerticesPerConvexHullPtr, NIL)
   }
 
-  public fun getMaxNumVerticesPerConvexHull(): Long {
+  public final fun getMaxNumVerticesPerConvexHull(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxNumVerticesPerConvexHullPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setPlaneDownsampling(planeDownsampling: Long): Unit {
+  public final fun setPlaneDownsampling(planeDownsampling: Long): Unit {
     TransferContext.writeArguments(LONG to planeDownsampling)
     TransferContext.callMethod(rawPtr, MethodBindings.setPlaneDownsamplingPtr, NIL)
   }
 
-  public fun getPlaneDownsampling(): Long {
+  public final fun getPlaneDownsampling(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaneDownsamplingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setConvexHullDownsampling(convexHullDownsampling: Long): Unit {
+  public final fun setConvexHullDownsampling(convexHullDownsampling: Long): Unit {
     TransferContext.writeArguments(LONG to convexHullDownsampling)
     TransferContext.callMethod(rawPtr, MethodBindings.setConvexHullDownsamplingPtr, NIL)
   }
 
-  public fun getConvexHullDownsampling(): Long {
+  public final fun getConvexHullDownsampling(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConvexHullDownsamplingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setNormalizeMesh(normalizeMesh: Boolean): Unit {
+  public final fun setNormalizeMesh(normalizeMesh: Boolean): Unit {
     TransferContext.writeArguments(BOOL to normalizeMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setNormalizeMeshPtr, NIL)
   }
 
-  public fun getNormalizeMesh(): Boolean {
+  public final fun getNormalizeMesh(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNormalizeMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMode(mode: Mode): Unit {
+  public final fun setMode(mode: Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
-  public fun getMode(): Mode {
+  public final fun getMode(): Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
     return MeshConvexDecompositionSettings.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setConvexHullApproximation(convexHullApproximation: Boolean): Unit {
+  public final fun setConvexHullApproximation(convexHullApproximation: Boolean): Unit {
     TransferContext.writeArguments(BOOL to convexHullApproximation)
     TransferContext.callMethod(rawPtr, MethodBindings.setConvexHullApproximationPtr, NIL)
   }
 
-  public fun getConvexHullApproximation(): Boolean {
+  public final fun getConvexHullApproximation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConvexHullApproximationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setMaxConvexHulls(maxConvexHulls: Long): Unit {
+  public final fun setMaxConvexHulls(maxConvexHulls: Long): Unit {
     TransferContext.writeArguments(LONG to maxConvexHulls)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxConvexHullsPtr, NIL)
   }
 
-  public fun getMaxConvexHulls(): Long {
+  public final fun getMaxConvexHulls(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxConvexHullsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
-  public fun setProjectHullVertices(projectHullVertices: Boolean): Unit {
+  public final fun setProjectHullVertices(projectHullVertices: Boolean): Unit {
     TransferContext.writeArguments(BOOL to projectHullVertices)
     TransferContext.callMethod(rawPtr, MethodBindings.setProjectHullVerticesPtr, NIL)
   }
 
-  public fun getProjectHullVertices(): Boolean {
+  public final fun getProjectHullVertices(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectHullVerticesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

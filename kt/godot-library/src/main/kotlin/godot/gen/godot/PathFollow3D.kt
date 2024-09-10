@@ -38,7 +38,7 @@ public open class PathFollow3D : Node3D() {
    * The distance from the first vertex, measured in 3D units along the path. Changing this value
    * sets this node's position to a point within the path.
    */
-  public var progress: Float
+  public final inline var progress: Float
     @JvmName("progressProperty")
     get() = getProgress()
     @JvmName("progressProperty")
@@ -51,7 +51,7 @@ public open class PathFollow3D : Node3D() {
    * This is just another way of expressing the progress within the path, as the progress supplied is
    * multiplied internally by the path's length.
    */
-  public var progressRatio: Float
+  public final inline var progressRatio: Float
     @JvmName("progressRatioProperty")
     get() = getProgressRatio()
     @JvmName("progressRatioProperty")
@@ -62,7 +62,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * The node's offset along the curve.
    */
-  public var hOffset: Float
+  public final inline var hOffset: Float
     @JvmName("hOffsetProperty")
     get() = getHOffset()
     @JvmName("hOffsetProperty")
@@ -73,7 +73,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * The node's offset perpendicular to the curve.
    */
-  public var vOffset: Float
+  public final inline var vOffset: Float
     @JvmName("vOffsetProperty")
     get() = getVOffset()
     @JvmName("vOffsetProperty")
@@ -85,7 +85,7 @@ public open class PathFollow3D : Node3D() {
    * Allows or forbids rotation on one or more axes, depending on the [RotationMode] constants being
    * used.
    */
-  public var rotationMode: RotationMode
+  public final inline var rotationMode: RotationMode
     @JvmName("rotationModeProperty")
     get() = getRotationMode()
     @JvmName("rotationModeProperty")
@@ -97,7 +97,7 @@ public open class PathFollow3D : Node3D() {
    * If `true`, the node moves on the travel path with orienting the +Z axis as forward. See also
    * [Vector3.FORWARD] and [Vector3.MODEL_FRONT].
    */
-  public var useModelFront: Boolean
+  public final inline var useModelFront: Boolean
     @JvmName("useModelFrontProperty")
     get() = isUsingModelFront()
     @JvmName("useModelFrontProperty")
@@ -116,7 +116,7 @@ public open class PathFollow3D : Node3D() {
    * memory consumption, or make a cubic interpolation between two points at the cost of (slightly)
    * slower calculations.
    */
-  public var cubicInterp: Boolean
+  public final inline var cubicInterp: Boolean
     @JvmName("cubicInterpProperty")
     get() = getCubicInterpolation()
     @JvmName("cubicInterpProperty")
@@ -128,7 +128,7 @@ public open class PathFollow3D : Node3D() {
    * If `true`, any offset outside the path's length will wrap around, instead of stopping at the
    * ends. Use it for cyclic paths.
    */
-  public var loop: Boolean
+  public final inline var loop: Boolean
     @JvmName("loopProperty")
     get() = hasLoop()
     @JvmName("loopProperty")
@@ -139,7 +139,7 @@ public open class PathFollow3D : Node3D() {
   /**
    * If `true`, the tilt property of [Curve3D] takes effect.
    */
-  public var tiltEnabled: Boolean
+  public final inline var tiltEnabled: Boolean
     @JvmName("tiltEnabledProperty")
     get() = isTiltEnabled()
     @JvmName("tiltEnabledProperty")
@@ -151,100 +151,100 @@ public open class PathFollow3D : Node3D() {
     callConstructor(ENGINECLASS_PATHFOLLOW3D, scriptIndex)
   }
 
-  public fun setProgress(progress: Float): Unit {
+  public final fun setProgress(progress: Float): Unit {
     TransferContext.writeArguments(DOUBLE to progress.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setProgressPtr, NIL)
   }
 
-  public fun getProgress(): Float {
+  public final fun getProgress(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProgressPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHOffset(hOffset: Float): Unit {
+  public final fun setHOffset(hOffset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to hOffset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHOffsetPtr, NIL)
   }
 
-  public fun getHOffset(): Float {
+  public final fun getHOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVOffset(vOffset: Float): Unit {
+  public final fun setVOffset(vOffset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to vOffset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVOffsetPtr, NIL)
   }
 
-  public fun getVOffset(): Float {
+  public final fun getVOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setProgressRatio(ratio: Float): Unit {
+  public final fun setProgressRatio(ratio: Float): Unit {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setProgressRatioPtr, NIL)
   }
 
-  public fun getProgressRatio(): Float {
+  public final fun getProgressRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProgressRatioPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRotationMode(rotationMode: RotationMode): Unit {
+  public final fun setRotationMode(rotationMode: RotationMode): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRotationModePtr, NIL)
   }
 
-  public fun getRotationMode(): RotationMode {
+  public final fun getRotationMode(): RotationMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationModePtr, LONG)
     return PathFollow3D.RotationMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setCubicInterpolation(enabled: Boolean): Unit {
+  public final fun setCubicInterpolation(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setCubicInterpolationPtr, NIL)
   }
 
-  public fun getCubicInterpolation(): Boolean {
+  public final fun getCubicInterpolation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCubicInterpolationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setUseModelFront(enabled: Boolean): Unit {
+  public final fun setUseModelFront(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseModelFrontPtr, NIL)
   }
 
-  public fun isUsingModelFront(): Boolean {
+  public final fun isUsingModelFront(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingModelFrontPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setLoop(loop: Boolean): Unit {
+  public final fun setLoop(loop: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
-  public fun hasLoop(): Boolean {
+  public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTiltEnabled(enabled: Boolean): Unit {
+  public final fun setTiltEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setTiltEnabledPtr, NIL)
   }
 
-  public fun isTiltEnabled(): Boolean {
+  public final fun isTiltEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTiltEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -291,7 +291,8 @@ public open class PathFollow3D : Node3D() {
      * Correct the [transform]. [rotationMode] implicitly specifies how posture (forward, up and
      * sideway direction) is calculated.
      */
-    public fun correctPosture(transform: Transform3D, rotationMode: RotationMode): Transform3D {
+    public final fun correctPosture(transform: Transform3D, rotationMode: RotationMode):
+        Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)
       TransferContext.callMethod(0, MethodBindings.correctPosturePtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)

@@ -55,7 +55,7 @@ public open class Theme : Resource() {
    * scale factor is used (see [ThemeDB.fallbackBaseScale]).
    * Use [hasDefaultBaseScale] to check if this value is valid.
    */
-  public var defaultBaseScale: Float
+  public final inline var defaultBaseScale: Float
     @JvmName("defaultBaseScaleProperty")
     get() = getDefaultBaseScale()
     @JvmName("defaultBaseScaleProperty")
@@ -69,7 +69,7 @@ public open class Theme : Resource() {
    * missing or invalid, the engine fallback value is used (see [ThemeDB.fallbackFont]).
    * Use [hasDefaultFont] to check if this value is valid.
    */
-  public var defaultFont: Font?
+  public final inline var defaultFont: Font?
     @JvmName("defaultFontProperty")
     get() = getDefaultFont()
     @JvmName("defaultFontProperty")
@@ -84,7 +84,7 @@ public open class Theme : Resource() {
    * Values below `0` are invalid and can be used to unset the property. Use [hasDefaultFontSize] to
    * check if this value is valid.
    */
-  public var defaultFontSize: Int
+  public final inline var defaultFontSize: Int
     @JvmName("defaultFontSizeProperty")
     get() = getDefaultFontSize()
     @JvmName("defaultFontSizeProperty")
@@ -100,7 +100,7 @@ public open class Theme : Resource() {
    * Creates or changes the value of the icon property defined by [name] and [themeType]. Use
    * [clearIcon] to remove the property.
    */
-  public fun setIcon(
+  public final fun setIcon(
     name: StringName,
     themeType: StringName,
     texture: Texture2D?,
@@ -114,7 +114,7 @@ public open class Theme : Resource() {
    * Returns the engine fallback icon value if the property doesn't exist (see
    * [ThemeDB.fallbackIcon]). Use [hasIcon] to check for existence.
    */
-  public fun getIcon(name: StringName, themeType: StringName): Texture2D? {
+  public final fun getIcon(name: StringName, themeType: StringName): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
@@ -124,7 +124,7 @@ public open class Theme : Resource() {
    * Returns `true` if the icon property defined by [name] and [themeType] exists.
    * Returns `false` if it doesn't exist. Use [setIcon] to define it.
    */
-  public fun hasIcon(name: StringName, themeType: StringName): Boolean {
+  public final fun hasIcon(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasIconPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -135,7 +135,7 @@ public open class Theme : Resource() {
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasIcon] to check for existence, and [clearIcon] to remove the existing property.
    */
-  public fun renameIcon(
+  public final fun renameIcon(
     oldName: StringName,
     name: StringName,
     themeType: StringName,
@@ -148,7 +148,7 @@ public open class Theme : Resource() {
    * Removes the icon property defined by [name] and [themeType], if it exists.
    * Fails if it doesn't exist. Use [hasIcon] to check for existence.
    */
-  public fun clearIcon(name: StringName, themeType: StringName): Unit {
+  public final fun clearIcon(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.clearIconPtr, NIL)
   }
@@ -157,7 +157,7 @@ public open class Theme : Resource() {
    * Returns a list of names for icon properties defined with [themeType]. Use [getIconTypeList] to
    * get a list of possible theme type names.
    */
-  public fun getIconList(themeType: String): PackedStringArray {
+  public final fun getIconList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getIconListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -167,7 +167,7 @@ public open class Theme : Resource() {
    * Returns a list of all unique theme type names for icon properties. Use [getTypeList] to get a
    * list of all unique theme types.
    */
-  public fun getIconTypeList(): PackedStringArray {
+  public final fun getIconTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIconTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -177,7 +177,7 @@ public open class Theme : Resource() {
    * Creates or changes the value of the [StyleBox] property defined by [name] and [themeType]. Use
    * [clearStylebox] to remove the property.
    */
-  public fun setStylebox(
+  public final fun setStylebox(
     name: StringName,
     themeType: StringName,
     texture: StyleBox?,
@@ -191,7 +191,7 @@ public open class Theme : Resource() {
    * Returns the engine fallback stylebox value if the property doesn't exist (see
    * [ThemeDB.fallbackStylebox]). Use [hasStylebox] to check for existence.
    */
-  public fun getStylebox(name: StringName, themeType: StringName): StyleBox? {
+  public final fun getStylebox(name: StringName, themeType: StringName): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getStyleboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as StyleBox?)
@@ -201,7 +201,7 @@ public open class Theme : Resource() {
    * Returns `true` if the [StyleBox] property defined by [name] and [themeType] exists.
    * Returns `false` if it doesn't exist. Use [setStylebox] to define it.
    */
-  public fun hasStylebox(name: StringName, themeType: StringName): Boolean {
+  public final fun hasStylebox(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasStyleboxPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -212,7 +212,7 @@ public open class Theme : Resource() {
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasStylebox] to check for existence, and [clearStylebox] to remove the existing property.
    */
-  public fun renameStylebox(
+  public final fun renameStylebox(
     oldName: StringName,
     name: StringName,
     themeType: StringName,
@@ -225,7 +225,7 @@ public open class Theme : Resource() {
    * Removes the [StyleBox] property defined by [name] and [themeType], if it exists.
    * Fails if it doesn't exist. Use [hasStylebox] to check for existence.
    */
-  public fun clearStylebox(name: StringName, themeType: StringName): Unit {
+  public final fun clearStylebox(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.clearStyleboxPtr, NIL)
   }
@@ -234,7 +234,7 @@ public open class Theme : Resource() {
    * Returns a list of names for [StyleBox] properties defined with [themeType]. Use
    * [getStyleboxTypeList] to get a list of possible theme type names.
    */
-  public fun getStyleboxList(themeType: String): PackedStringArray {
+  public final fun getStyleboxList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getStyleboxListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -244,7 +244,7 @@ public open class Theme : Resource() {
    * Returns a list of all unique theme type names for [StyleBox] properties. Use [getTypeList] to
    * get a list of all unique theme types.
    */
-  public fun getStyleboxTypeList(): PackedStringArray {
+  public final fun getStyleboxTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStyleboxTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -254,7 +254,7 @@ public open class Theme : Resource() {
    * Creates or changes the value of the [Font] property defined by [name] and [themeType]. Use
    * [clearFont] to remove the property.
    */
-  public fun setFont(
+  public final fun setFont(
     name: StringName,
     themeType: StringName,
     font: Font?,
@@ -270,7 +270,7 @@ public open class Theme : Resource() {
    * to check for existence of the default theme font.
    * Returns the engine fallback font value, if neither exist (see [ThemeDB.fallbackFont]).
    */
-  public fun getFont(name: StringName, themeType: StringName): Font? {
+  public final fun getFont(name: StringName, themeType: StringName): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
@@ -281,7 +281,7 @@ public open class Theme : Resource() {
    * default theme font is set up (see [hasDefaultFont]).
    * Returns `false` if neither exist. Use [setFont] to define the property.
    */
-  public fun hasFont(name: StringName, themeType: StringName): Boolean {
+  public final fun hasFont(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFontPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -292,7 +292,7 @@ public open class Theme : Resource() {
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasFont] to check for existence, and [clearFont] to remove the existing property.
    */
-  public fun renameFont(
+  public final fun renameFont(
     oldName: StringName,
     name: StringName,
     themeType: StringName,
@@ -305,7 +305,7 @@ public open class Theme : Resource() {
    * Removes the [Font] property defined by [name] and [themeType], if it exists.
    * Fails if it doesn't exist. Use [hasFont] to check for existence.
    */
-  public fun clearFont(name: StringName, themeType: StringName): Unit {
+  public final fun clearFont(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.clearFontPtr, NIL)
   }
@@ -314,7 +314,7 @@ public open class Theme : Resource() {
    * Returns a list of names for [Font] properties defined with [themeType]. Use [getFontTypeList]
    * to get a list of possible theme type names.
    */
-  public fun getFontList(themeType: String): PackedStringArray {
+  public final fun getFontList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -324,7 +324,7 @@ public open class Theme : Resource() {
    * Returns a list of all unique theme type names for [Font] properties. Use [getTypeList] to get a
    * list of all unique theme types.
    */
-  public fun getFontTypeList(): PackedStringArray {
+  public final fun getFontTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -334,7 +334,7 @@ public open class Theme : Resource() {
    * Creates or changes the value of the font size property defined by [name] and [themeType]. Use
    * [clearFontSize] to remove the property.
    */
-  public fun setFontSize(
+  public final fun setFontSize(
     name: StringName,
     themeType: StringName,
     fontSize: Int,
@@ -350,7 +350,7 @@ public open class Theme : Resource() {
    * and [hasDefaultFontSize] to check for existence of the default theme font.
    * Returns the engine fallback font size value, if neither exist (see [ThemeDB.fallbackFontSize]).
    */
-  public fun getFontSize(name: StringName, themeType: StringName): Int {
+  public final fun getFontSize(name: StringName, themeType: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -361,7 +361,7 @@ public open class Theme : Resource() {
    * default theme font size is set up (see [hasDefaultFontSize]).
    * Returns `false` if neither exist. Use [setFontSize] to define the property.
    */
-  public fun hasFontSize(name: StringName, themeType: StringName): Boolean {
+  public final fun hasFontSize(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFontSizePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -372,7 +372,7 @@ public open class Theme : Resource() {
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasFontSize] to check for existence, and [clearFontSize] to remove the existing property.
    */
-  public fun renameFontSize(
+  public final fun renameFontSize(
     oldName: StringName,
     name: StringName,
     themeType: StringName,
@@ -385,7 +385,7 @@ public open class Theme : Resource() {
    * Removes the font size property defined by [name] and [themeType], if it exists.
    * Fails if it doesn't exist. Use [hasFontSize] to check for existence.
    */
-  public fun clearFontSize(name: StringName, themeType: StringName): Unit {
+  public final fun clearFontSize(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.clearFontSizePtr, NIL)
   }
@@ -394,7 +394,7 @@ public open class Theme : Resource() {
    * Returns a list of names for font size properties defined with [themeType]. Use
    * [getFontSizeTypeList] to get a list of possible theme type names.
    */
-  public fun getFontSizeList(themeType: String): PackedStringArray {
+  public final fun getFontSizeList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -404,7 +404,7 @@ public open class Theme : Resource() {
    * Returns a list of all unique theme type names for font size properties. Use [getTypeList] to
    * get a list of all unique theme types.
    */
-  public fun getFontSizeTypeList(): PackedStringArray {
+  public final fun getFontSizeTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizeTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -414,7 +414,7 @@ public open class Theme : Resource() {
    * Creates or changes the value of the [Color] property defined by [name] and [themeType]. Use
    * [clearColor] to remove the property.
    */
-  public fun setColor(
+  public final fun setColor(
     name: StringName,
     themeType: StringName,
     color: Color,
@@ -428,7 +428,7 @@ public open class Theme : Resource() {
    * Returns the default color value if the property doesn't exist. Use [hasColor] to check for
    * existence.
    */
-  public fun getColor(name: StringName, themeType: StringName): Color {
+  public final fun getColor(name: StringName, themeType: StringName): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -438,7 +438,7 @@ public open class Theme : Resource() {
    * Returns `true` if the [Color] property defined by [name] and [themeType] exists.
    * Returns `false` if it doesn't exist. Use [setColor] to define it.
    */
-  public fun hasColor(name: StringName, themeType: StringName): Boolean {
+  public final fun hasColor(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasColorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -449,7 +449,7 @@ public open class Theme : Resource() {
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasColor] to check for existence, and [clearColor] to remove the existing property.
    */
-  public fun renameColor(
+  public final fun renameColor(
     oldName: StringName,
     name: StringName,
     themeType: StringName,
@@ -462,7 +462,7 @@ public open class Theme : Resource() {
    * Removes the [Color] property defined by [name] and [themeType], if it exists.
    * Fails if it doesn't exist. Use [hasColor] to check for existence.
    */
-  public fun clearColor(name: StringName, themeType: StringName): Unit {
+  public final fun clearColor(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.clearColorPtr, NIL)
   }
@@ -471,7 +471,7 @@ public open class Theme : Resource() {
    * Returns a list of names for [Color] properties defined with [themeType]. Use [getColorTypeList]
    * to get a list of possible theme type names.
    */
-  public fun getColorList(themeType: String): PackedStringArray {
+  public final fun getColorList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getColorListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -481,7 +481,7 @@ public open class Theme : Resource() {
    * Returns a list of all unique theme type names for [Color] properties. Use [getTypeList] to get
    * a list of all unique theme types.
    */
-  public fun getColorTypeList(): PackedStringArray {
+  public final fun getColorTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -491,7 +491,7 @@ public open class Theme : Resource() {
    * Creates or changes the value of the constant property defined by [name] and [themeType]. Use
    * [clearConstant] to remove the property.
    */
-  public fun setConstant(
+  public final fun setConstant(
     name: StringName,
     themeType: StringName,
     constant: Int,
@@ -504,7 +504,7 @@ public open class Theme : Resource() {
    * Returns the constant property defined by [name] and [themeType], if it exists.
    * Returns `0` if the property doesn't exist. Use [hasConstant] to check for existence.
    */
-  public fun getConstant(name: StringName, themeType: StringName): Int {
+  public final fun getConstant(name: StringName, themeType: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -514,7 +514,7 @@ public open class Theme : Resource() {
    * Returns `true` if the constant property defined by [name] and [themeType] exists.
    * Returns `false` if it doesn't exist. Use [setConstant] to define it.
    */
-  public fun hasConstant(name: StringName, themeType: StringName): Boolean {
+  public final fun hasConstant(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasConstantPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -525,7 +525,7 @@ public open class Theme : Resource() {
    * Fails if it doesn't exist, or if a similar property with the new name already exists. Use
    * [hasConstant] to check for existence, and [clearConstant] to remove the existing property.
    */
-  public fun renameConstant(
+  public final fun renameConstant(
     oldName: StringName,
     name: StringName,
     themeType: StringName,
@@ -538,7 +538,7 @@ public open class Theme : Resource() {
    * Removes the constant property defined by [name] and [themeType], if it exists.
    * Fails if it doesn't exist. Use [hasConstant] to check for existence.
    */
-  public fun clearConstant(name: StringName, themeType: StringName): Unit {
+  public final fun clearConstant(name: StringName, themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.clearConstantPtr, NIL)
   }
@@ -547,7 +547,7 @@ public open class Theme : Resource() {
    * Returns a list of names for constant properties defined with [themeType]. Use
    * [getConstantTypeList] to get a list of possible theme type names.
    */
-  public fun getConstantList(themeType: String): PackedStringArray {
+  public final fun getConstantList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -557,18 +557,18 @@ public open class Theme : Resource() {
    * Returns a list of all unique theme type names for constant properties. Use [getTypeList] to get
    * a list of all unique theme types.
    */
-  public fun getConstantTypeList(): PackedStringArray {
+  public final fun getConstantTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
-  public fun setDefaultBaseScale(baseScale: Float): Unit {
+  public final fun setDefaultBaseScale(baseScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBaseScalePtr, NIL)
   }
 
-  public fun getDefaultBaseScale(): Float {
+  public final fun getDefaultBaseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -578,18 +578,18 @@ public open class Theme : Resource() {
    * Returns `true` if [defaultBaseScale] has a valid value.
    * Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.
    */
-  public fun hasDefaultBaseScale(): Boolean {
+  public final fun hasDefaultBaseScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDefaultBaseScalePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultFont(font: Font?): Unit {
+  public final fun setDefaultFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultFontPtr, NIL)
   }
 
-  public fun getDefaultFont(): Font? {
+  public final fun getDefaultFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
@@ -599,18 +599,18 @@ public open class Theme : Resource() {
    * Returns `true` if [defaultFont] has a valid value.
    * Returns `false` if it doesn't.
    */
-  public fun hasDefaultFont(): Boolean {
+  public final fun hasDefaultFont(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDefaultFontPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultFontSize(fontSize: Int): Unit {
+  public final fun setDefaultFontSize(fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultFontSizePtr, NIL)
   }
 
-  public fun getDefaultFontSize(): Int {
+  public final fun getDefaultFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -620,7 +620,7 @@ public open class Theme : Resource() {
    * Returns `true` if [defaultFontSize] has a valid value.
    * Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.
    */
-  public fun hasDefaultFontSize(): Boolean {
+  public final fun hasDefaultFontSize(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDefaultFontSizePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -633,7 +633,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
-  public fun setThemeItem(
+  public final fun setThemeItem(
     dataType: DataType,
     name: StringName,
     themeType: StringName,
@@ -650,7 +650,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
-  public fun getThemeItem(
+  public final fun getThemeItem(
     dataType: DataType,
     name: StringName,
     themeType: StringName,
@@ -666,7 +666,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
-  public fun hasThemeItem(
+  public final fun hasThemeItem(
     dataType: DataType,
     name: StringName,
     themeType: StringName,
@@ -684,7 +684,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
-  public fun renameThemeItem(
+  public final fun renameThemeItem(
     dataType: DataType,
     oldName: StringName,
     name: StringName,
@@ -700,7 +700,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
-  public fun clearThemeItem(
+  public final fun clearThemeItem(
     dataType: DataType,
     name: StringName,
     themeType: StringName,
@@ -715,7 +715,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
-  public fun getThemeItemList(dataType: DataType, themeType: String): PackedStringArray {
+  public final fun getThemeItemList(dataType: DataType, themeType: String): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id, STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeItemListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -727,7 +727,7 @@ public open class Theme : Resource() {
    * **Note:** This method is analogous to calling the corresponding data type specific method, but
    * can be used for more generalized logic.
    */
-  public fun getThemeItemTypeList(dataType: DataType): PackedStringArray {
+  public final fun getThemeItemTypeList(dataType: DataType): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeItemTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -743,7 +743,7 @@ public open class Theme : Resource() {
    * **Note:** Suggestions only show up if this theme resource is set as the project default theme.
    * See [ProjectSettings.gui/theme/custom].
    */
-  public fun setTypeVariation(themeType: StringName, baseType: StringName): Unit {
+  public final fun setTypeVariation(themeType: StringName, baseType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
     TransferContext.callMethod(rawPtr, MethodBindings.setTypeVariationPtr, NIL)
   }
@@ -751,7 +751,7 @@ public open class Theme : Resource() {
   /**
    * Returns `true` if [themeType] is marked as a variation of [baseType].
    */
-  public fun isTypeVariation(themeType: StringName, baseType: StringName): Boolean {
+  public final fun isTypeVariation(themeType: StringName, baseType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
     TransferContext.callMethod(rawPtr, MethodBindings.isTypeVariationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -760,7 +760,7 @@ public open class Theme : Resource() {
   /**
    * Unmarks [themeType] as being a variation of another theme type. See [setTypeVariation].
    */
-  public fun clearTypeVariation(themeType: StringName): Unit {
+  public final fun clearTypeVariation(themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.clearTypeVariationPtr, NIL)
   }
@@ -769,7 +769,7 @@ public open class Theme : Resource() {
    * Returns the name of the base theme type if [themeType] is a valid variation type. Returns an
    * empty string otherwise.
    */
-  public fun getTypeVariationBase(themeType: StringName): StringName {
+  public final fun getTypeVariationBase(themeType: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getTypeVariationBasePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -778,7 +778,7 @@ public open class Theme : Resource() {
   /**
    * Returns a list of all type variations for the given [baseType].
    */
-  public fun getTypeVariationList(baseType: StringName): PackedStringArray {
+  public final fun getTypeVariationList(baseType: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to baseType)
     TransferContext.callMethod(rawPtr, MethodBindings.getTypeVariationListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -789,7 +789,7 @@ public open class Theme : Resource() {
    * **Note:** Empty types are not saved with the theme. This method only exists to perform
    * in-memory changes to the resource. Use available `set_*` methods to add theme items.
    */
-  public fun addType(themeType: StringName): Unit {
+  public final fun addType(themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.addTypePtr, NIL)
   }
@@ -799,7 +799,7 @@ public open class Theme : Resource() {
    * this information is also erased. If the type is a base for type variations, those variations lose
    * their base.
    */
-  public fun removeType(themeType: StringName): Unit {
+  public final fun removeType(themeType: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.removeTypePtr, NIL)
   }
@@ -808,7 +808,7 @@ public open class Theme : Resource() {
    * Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to
    * get a list of unique theme types for a single data type.
    */
-  public fun getTypeList(): PackedStringArray {
+  public final fun getTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -819,7 +819,7 @@ public open class Theme : Resource() {
    * **Note:** This modifies the current theme. If you want to merge two themes together without
    * modifying either one, create a new empty theme and merge the other two into it one after another.
    */
-  public fun mergeWith(other: Theme?): Unit {
+  public final fun mergeWith(other: Theme?): Unit {
     TransferContext.writeArguments(OBJECT to other)
     TransferContext.callMethod(rawPtr, MethodBindings.mergeWithPtr, NIL)
   }
@@ -827,7 +827,7 @@ public open class Theme : Resource() {
   /**
    * Removes all the theme properties defined on the theme resource.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }

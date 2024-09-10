@@ -30,7 +30,7 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
+  public final inline var defaultValueEnabled: Boolean
     @JvmName("defaultValueEnabledProperty")
     get() = isDefaultValueEnabled()
     @JvmName("defaultValueEnabledProperty")
@@ -42,7 +42,7 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
    * A default value to be assigned within the shader.
    */
   @CoreTypeLocalCopy
-  public var defaultValue: Vector3
+  public final inline var defaultValue: Vector3
     @JvmName("defaultValueProperty")
     get() = getDefaultValue()
     @JvmName("defaultValueProperty")
@@ -72,29 +72,29 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultValueMutate(block: Vector3.() -> Unit): Vector3 = defaultValue.apply{
+  public final fun defaultValueMutate(block: Vector3.() -> Unit): Vector3 = defaultValue.apply{
       block(this)
       defaultValue = this
   }
 
 
-  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
-  public fun isDefaultValueEnabled(): Boolean {
+  public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultValue(`value`: Vector3): Unit {
+  public final fun setDefaultValue(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
-  public fun getDefaultValue(): Vector3 {
+  public final fun getDefaultValue(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)

@@ -40,7 +40,7 @@ public open class VehicleWheel3D : Node3D() {
    * logic for this if you wish to simulate gears.
    * A negative value will result in the wheel reversing.
    */
-  public var engineForce: Float
+  public final inline var engineForce: Float
     @JvmName("engineForceProperty")
     get() = getEngineForce()
     @JvmName("engineForceProperty")
@@ -54,7 +54,7 @@ public open class VehicleWheel3D : Node3D() {
    * on the [RigidBody3D.mass] of the vehicle. For a vehicle with a mass set to 1000, try a value in
    * the 25 - 30 range for hard braking.
    */
-  public var brake: Float
+  public final inline var brake: Float
     @JvmName("brakeProperty")
     get() = getBrake()
     @JvmName("brakeProperty")
@@ -66,7 +66,7 @@ public open class VehicleWheel3D : Node3D() {
    * The steering angle for the wheel, in radians. Setting this to a non-zero value will result in
    * the vehicle turning when it's moving.
    */
-  public var steering: Float
+  public final inline var steering: Float
     @JvmName("steeringProperty")
     get() = getSteering()
     @JvmName("steeringProperty")
@@ -79,7 +79,7 @@ public open class VehicleWheel3D : Node3D() {
    * value is used in conjunction with [VehicleBody3D.engineForce] and ignored if you are using the
    * per-wheel [engineForce] value instead.
    */
-  public var useAsTraction: Boolean
+  public final inline var useAsTraction: Boolean
     @JvmName("useAsTractionProperty")
     get() = isUsedAsTraction()
     @JvmName("useAsTractionProperty")
@@ -91,7 +91,7 @@ public open class VehicleWheel3D : Node3D() {
    * If `true`, this wheel will be turned when the car steers. This value is used in conjunction
    * with [VehicleBody3D.steering] and ignored if you are using the per-wheel [steering] value instead.
    */
-  public var useAsSteering: Boolean
+  public final inline var useAsSteering: Boolean
     @JvmName("useAsSteeringProperty")
     get() = isUsedAsSteering()
     @JvmName("useAsSteeringProperty")
@@ -103,7 +103,7 @@ public open class VehicleWheel3D : Node3D() {
    * This value affects the roll of your vehicle. If set to 1.0 for all wheels, your vehicle will
    * resist body roll, while a value of 0.0 will be prone to rolling over.
    */
-  public var wheelRollInfluence: Float
+  public final inline var wheelRollInfluence: Float
     @JvmName("wheelRollInfluenceProperty")
     get() = getRollInfluence()
     @JvmName("wheelRollInfluenceProperty")
@@ -114,7 +114,7 @@ public open class VehicleWheel3D : Node3D() {
   /**
    * The radius of the wheel in meters.
    */
-  public var wheelRadius: Float
+  public final inline var wheelRadius: Float
     @JvmName("wheelRadiusProperty")
     get() = getRadius()
     @JvmName("wheelRadiusProperty")
@@ -128,7 +128,7 @@ public open class VehicleWheel3D : Node3D() {
    * Godot) to the position the wheel will take when bottoming out, then use the rest length to move
    * the wheel down to the position it should be in when the car is in rest.
    */
-  public var wheelRestLength: Float
+  public final inline var wheelRestLength: Float
     @JvmName("wheelRestLengthProperty")
     get() = getSuspensionRestLength()
     @JvmName("wheelRestLengthProperty")
@@ -143,7 +143,7 @@ public open class VehicleWheel3D : Node3D() {
    * lower value to simulate tire wear.
    * It's best to set this to 1.0 when starting out.
    */
-  public var wheelFrictionSlip: Float
+  public final inline var wheelFrictionSlip: Float
     @JvmName("wheelFrictionSlipProperty")
     get() = getFrictionSlip()
     @JvmName("wheelFrictionSlipProperty")
@@ -155,7 +155,7 @@ public open class VehicleWheel3D : Node3D() {
    * This is the distance the suspension can travel. As Godot units are equivalent to meters, keep
    * this setting relatively low. Try a value between 0.1 and 0.3 depending on the type of car.
    */
-  public var suspensionTravel: Float
+  public final inline var suspensionTravel: Float
     @JvmName("suspensionTravelProperty")
     get() = getSuspensionTravel()
     @JvmName("suspensionTravelProperty")
@@ -168,7 +168,7 @@ public open class VehicleWheel3D : Node3D() {
    * car, a value between 50 and 100 for a race car and try something around 200 for something like a
    * Formula 1 car.
    */
-  public var suspensionStiffness: Float
+  public final inline var suspensionStiffness: Float
     @JvmName("suspensionStiffnessProperty")
     get() = getSuspensionStiffness()
     @JvmName("suspensionStiffnessProperty")
@@ -181,7 +181,7 @@ public open class VehicleWheel3D : Node3D() {
    * [RigidBody3D.mass] of the [VehicleBody3D] or the spring will not carry the weight of the vehicle.
    * Good results are often obtained by a value that is about 3× to 4× this number.
    */
-  public var suspensionMaxForce: Float
+  public final inline var suspensionMaxForce: Float
     @JvmName("suspensionMaxForceProperty")
     get() = getSuspensionMaxForce()
     @JvmName("suspensionMaxForceProperty")
@@ -194,7 +194,7 @@ public open class VehicleWheel3D : Node3D() {
    * between 0.0 (no damping) and 1.0. A value of 0.0 means the car will keep bouncing as the spring
    * keeps its energy. A good value for this is around 0.3 for a normal car, 0.5 for a race car.
    */
-  public var dampingCompression: Float
+  public final inline var dampingCompression: Float
     @JvmName("dampingCompressionProperty")
     get() = getDampingCompression()
     @JvmName("dampingCompressionProperty")
@@ -207,7 +207,7 @@ public open class VehicleWheel3D : Node3D() {
    * and 1.0. This value should always be slightly higher than the [dampingCompression] property. For a
    * [dampingCompression] value of 0.3, try a relaxation value of 0.5.
    */
-  public var dampingRelaxation: Float
+  public final inline var dampingRelaxation: Float
     @JvmName("dampingRelaxationProperty")
     get() = getDampingRelaxation()
     @JvmName("dampingRelaxationProperty")
@@ -219,111 +219,111 @@ public open class VehicleWheel3D : Node3D() {
     callConstructor(ENGINECLASS_VEHICLEWHEEL3D, scriptIndex)
   }
 
-  public fun setRadius(length: Float): Unit {
+  public final fun setRadius(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSuspensionRestLength(length: Float): Unit {
+  public final fun setSuspensionRestLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionRestLengthPtr, NIL)
   }
 
-  public fun getSuspensionRestLength(): Float {
+  public final fun getSuspensionRestLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionRestLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSuspensionTravel(length: Float): Unit {
+  public final fun setSuspensionTravel(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionTravelPtr, NIL)
   }
 
-  public fun getSuspensionTravel(): Float {
+  public final fun getSuspensionTravel(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionTravelPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSuspensionStiffness(length: Float): Unit {
+  public final fun setSuspensionStiffness(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionStiffnessPtr, NIL)
   }
 
-  public fun getSuspensionStiffness(): Float {
+  public final fun getSuspensionStiffness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSuspensionMaxForce(length: Float): Unit {
+  public final fun setSuspensionMaxForce(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionMaxForcePtr, NIL)
   }
 
-  public fun getSuspensionMaxForce(): Float {
+  public final fun getSuspensionMaxForce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionMaxForcePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDampingCompression(length: Float): Unit {
+  public final fun setDampingCompression(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDampingCompressionPtr, NIL)
   }
 
-  public fun getDampingCompression(): Float {
+  public final fun getDampingCompression(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingCompressionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDampingRelaxation(length: Float): Unit {
+  public final fun setDampingRelaxation(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDampingRelaxationPtr, NIL)
   }
 
-  public fun getDampingRelaxation(): Float {
+  public final fun getDampingRelaxation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingRelaxationPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setUseAsTraction(enable: Boolean): Unit {
+  public final fun setUseAsTraction(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseAsTractionPtr, NIL)
   }
 
-  public fun isUsedAsTraction(): Boolean {
+  public final fun isUsedAsTraction(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsTractionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setUseAsSteering(enable: Boolean): Unit {
+  public final fun setUseAsSteering(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseAsSteeringPtr, NIL)
   }
 
-  public fun isUsedAsSteering(): Boolean {
+  public final fun isUsedAsSteering(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsSteeringPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFrictionSlip(length: Float): Unit {
+  public final fun setFrictionSlip(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFrictionSlipPtr, NIL)
   }
 
-  public fun getFrictionSlip(): Float {
+  public final fun getFrictionSlip(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrictionSlipPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -332,7 +332,7 @@ public open class VehicleWheel3D : Node3D() {
   /**
    * Returns `true` if this wheel is in contact with a surface.
    */
-  public fun isInContact(): Boolean {
+  public final fun isInContact(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInContactPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -344,18 +344,18 @@ public open class VehicleWheel3D : Node3D() {
    * Returns `null` if the wheel is not in contact with a surface, or the contact body is not a
    * [PhysicsBody3D].
    */
-  public fun getContactBody(): Node3D? {
+  public final fun getContactBody(): Node3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getContactBodyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node3D?)
   }
 
-  public fun setRollInfluence(rollInfluence: Float): Unit {
+  public final fun setRollInfluence(rollInfluence: Float): Unit {
     TransferContext.writeArguments(DOUBLE to rollInfluence.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRollInfluencePtr, NIL)
   }
 
-  public fun getRollInfluence(): Float {
+  public final fun getRollInfluence(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRollInfluencePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -366,7 +366,7 @@ public open class VehicleWheel3D : Node3D() {
    * skidding (the wheel has lost grip, e.g. icy terrain), 1.0 means not skidding (the wheel has full
    * grip, e.g. dry asphalt road).
    */
-  public fun getSkidinfo(): Float {
+  public final fun getSkidinfo(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkidinfoPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -375,40 +375,40 @@ public open class VehicleWheel3D : Node3D() {
   /**
    * Returns the rotational speed of the wheel in revolutions per minute.
    */
-  public fun getRpm(): Float {
+  public final fun getRpm(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRpmPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setEngineForce(engineForce: Float): Unit {
+  public final fun setEngineForce(engineForce: Float): Unit {
     TransferContext.writeArguments(DOUBLE to engineForce.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
   }
 
-  public fun getEngineForce(): Float {
+  public final fun getEngineForce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBrake(brake: Float): Unit {
+  public final fun setBrake(brake: Float): Unit {
     TransferContext.writeArguments(DOUBLE to brake.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
   }
 
-  public fun getBrake(): Float {
+  public final fun getBrake(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setSteering(steering: Float): Unit {
+  public final fun setSteering(steering: Float): Unit {
     TransferContext.writeArguments(DOUBLE to steering.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
   }
 
-  public fun getSteering(): Float {
+  public final fun getSteering(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

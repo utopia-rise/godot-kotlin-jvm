@@ -30,7 +30,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   /**
    * The radius of the sphere.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -41,7 +41,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   /**
    * The central horizontal angle of the sphere. Used to set the width.
    */
-  public var centralHorizontalAngle: Float
+  public final inline var centralHorizontalAngle: Float
     @JvmName("centralHorizontalAngleProperty")
     get() = getCentralHorizontalAngle()
     @JvmName("centralHorizontalAngleProperty")
@@ -53,7 +53,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
    * The upper vertical angle of the sphere. Used (together with [lowerVerticalAngle]) to set the
    * height.
    */
-  public var upperVerticalAngle: Float
+  public final inline var upperVerticalAngle: Float
     @JvmName("upperVerticalAngleProperty")
     get() = getUpperVerticalAngle()
     @JvmName("upperVerticalAngleProperty")
@@ -65,7 +65,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
    * The lower vertical angle of the sphere. Used (together with [upperVerticalAngle]) to set the
    * height.
    */
-  public var lowerVerticalAngle: Float
+  public final inline var lowerVerticalAngle: Float
     @JvmName("lowerVerticalAngleProperty")
     get() = getLowerVerticalAngle()
     @JvmName("lowerVerticalAngleProperty")
@@ -76,7 +76,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   /**
    * The number of segments to use in the fallback mesh.
    */
-  public var fallbackSegments: Long
+  public final inline var fallbackSegments: Long
     @JvmName("fallbackSegmentsProperty")
     get() = getFallbackSegments()
     @JvmName("fallbackSegmentsProperty")
@@ -88,56 +88,56 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYEREQUIRECT, scriptIndex)
   }
 
-  public fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setCentralHorizontalAngle(angle: Float): Unit {
+  public final fun setCentralHorizontalAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
   }
 
-  public fun getCentralHorizontalAngle(): Float {
+  public final fun getCentralHorizontalAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setUpperVerticalAngle(angle: Float): Unit {
+  public final fun setUpperVerticalAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
   }
 
-  public fun getUpperVerticalAngle(): Float {
+  public final fun getUpperVerticalAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setLowerVerticalAngle(angle: Float): Unit {
+  public final fun setLowerVerticalAngle(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
   }
 
-  public fun getLowerVerticalAngle(): Float {
+  public final fun getLowerVerticalAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFallbackSegments(segments: Long): Unit {
+  public final fun setFallbackSegments(segments: Long): Unit {
     TransferContext.writeArguments(LONG to segments)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
   }
 
-  public fun getFallbackSegments(): Long {
+  public final fun getFallbackSegments(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

@@ -35,7 +35,7 @@ public open class AudioListener2D : Node2D() {
    * already another active [AudioListener2D], it will be disabled.
    * This method will have no effect if the [AudioListener2D] is not added to [SceneTree].
    */
-  public fun makeCurrent(): Unit {
+  public final fun makeCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
   }
@@ -43,7 +43,7 @@ public open class AudioListener2D : Node2D() {
   /**
    * Disables the [AudioListener2D]. If it's not set as current, this method will have no effect.
    */
-  public fun clearCurrent(): Unit {
+  public final fun clearCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
   }
@@ -51,7 +51,7 @@ public open class AudioListener2D : Node2D() {
   /**
    * Returns `true` if this [AudioListener2D] is currently active.
    */
-  public fun isCurrent(): Boolean {
+  public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

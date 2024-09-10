@@ -32,7 +32,7 @@ public open class InputEventJoypadButton : InputEvent() {
   /**
    * Button identifier. One of the [JoyButton] button constants.
    */
-  public var buttonIndex: JoyButton
+  public final inline var buttonIndex: JoyButton
     @JvmName("buttonIndexProperty")
     get() = getButtonIndex()
     @JvmName("buttonIndexProperty")
@@ -40,7 +40,7 @@ public open class InputEventJoypadButton : InputEvent() {
       setButtonIndex(value)
     }
 
-  public var pressure: Float
+  public final inline var pressure: Float
     @JvmName("pressureProperty")
     get() = getPressure()
     @JvmName("pressureProperty")
@@ -51,7 +51,7 @@ public open class InputEventJoypadButton : InputEvent() {
   /**
    * If `true`, the button's state is pressed. If `false`, the button's state is released.
    */
-  public var pressed: Boolean
+  public final inline var pressed: Boolean
     @JvmName("pressedProperty")
     get() = isPressed()
     @JvmName("pressedProperty")
@@ -63,29 +63,29 @@ public open class InputEventJoypadButton : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADBUTTON, scriptIndex)
   }
 
-  public fun setButtonIndex(buttonIndex: JoyButton): Unit {
+  public final fun setButtonIndex(buttonIndex: JoyButton): Unit {
     TransferContext.writeArguments(LONG to buttonIndex.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
   }
 
-  public fun getButtonIndex(): JoyButton {
+  public final fun getButtonIndex(): JoyButton {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
     return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPressure(pressure: Float): Unit {
+  public final fun setPressure(pressure: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pressure.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
   }
 
-  public fun getPressure(): Float {
+  public final fun getPressure(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }

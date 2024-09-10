@@ -48,7 +48,7 @@ public open class TCPServer : RefCounted() {
    * address exists).
    */
   @JvmOverloads
-  public fun listen(port: Int, bindAddress: String = "*"): GodotError {
+  public final fun listen(port: Int, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
     TransferContext.callMethod(rawPtr, MethodBindings.listenPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -57,7 +57,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Returns `true` if a connection is available for taking.
    */
-  public fun isConnectionAvailable(): Boolean {
+  public final fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -66,7 +66,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Returns `true` if the server is currently listening for connections.
    */
-  public fun isListening(): Boolean {
+  public final fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -75,7 +75,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Returns the local port this server is listening to.
    */
-  public fun getLocalPort(): Int {
+  public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -84,7 +84,7 @@ public open class TCPServer : RefCounted() {
   /**
    * If a connection is available, returns a StreamPeerTCP with the connection.
    */
-  public fun takeConnection(): StreamPeerTCP? {
+  public final fun takeConnection(): StreamPeerTCP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?)
@@ -93,7 +93,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Stops listening.
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }

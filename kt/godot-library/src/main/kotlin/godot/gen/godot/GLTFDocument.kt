@@ -50,7 +50,7 @@ public open class GLTFDocument : Resource() {
    * By default, Godot allows the following options: "None", "PNG", "JPEG", "Lossless WebP", and
    * "Lossy WebP". Support for more image formats can be added in [GLTFDocumentExtension] classes.
    */
-  public var imageFormat: String
+  public final inline var imageFormat: String
     @JvmName("imageFormatProperty")
     get() = getImageFormat()
     @JvmName("imageFormatProperty")
@@ -63,7 +63,7 @@ public open class GLTFDocument : Resource() {
    * range of `0.0` to `1.0`, where `0.0` is the lowest quality and `1.0` is the highest quality. A
    * lossy quality of `1.0` is not the same as lossless.
    */
-  public var lossyQuality: Float
+  public final inline var lossyQuality: Float
     @JvmName("lossyQualityProperty")
     get() = getLossyQuality()
     @JvmName("lossyQualityProperty")
@@ -77,7 +77,7 @@ public open class GLTFDocument : Resource() {
    * **Note:** Regardless of how the glTF file is exported, when importing, the root node type and
    * name can be overridden in the scene import settings tab.
    */
-  public var rootNodeMode: RootNodeMode
+  public final inline var rootNodeMode: RootNodeMode
     @JvmName("rootNodeModeProperty")
     get() = getRootNodeMode()
     @JvmName("rootNodeModeProperty")
@@ -89,34 +89,34 @@ public open class GLTFDocument : Resource() {
     callConstructor(ENGINECLASS_GLTFDOCUMENT, scriptIndex)
   }
 
-  public fun setImageFormat(imageFormat: String): Unit {
+  public final fun setImageFormat(imageFormat: String): Unit {
     TransferContext.writeArguments(STRING to imageFormat)
     TransferContext.callMethod(rawPtr, MethodBindings.setImageFormatPtr, NIL)
   }
 
-  public fun getImageFormat(): String {
+  public final fun getImageFormat(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getImageFormatPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setLossyQuality(lossyQuality: Float): Unit {
+  public final fun setLossyQuality(lossyQuality: Float): Unit {
     TransferContext.writeArguments(DOUBLE to lossyQuality.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLossyQualityPtr, NIL)
   }
 
-  public fun getLossyQuality(): Float {
+  public final fun getLossyQuality(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLossyQualityPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
+  public final fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
     TransferContext.writeArguments(LONG to rootNodeMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setRootNodeModePtr, NIL)
   }
 
-  public fun getRootNodeMode(): RootNodeMode {
+  public final fun getRootNodeMode(): RootNodeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootNodeModePtr, LONG)
     return GLTFDocument.RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -128,7 +128,7 @@ public open class GLTFDocument : Resource() {
    * **Note:** The [basePath] tells [appendFromFile] where to find dependencies and can be empty.
    */
   @JvmOverloads
-  public fun appendFromFile(
+  public final fun appendFromFile(
     path: String,
     state: GLTFState?,
     flags: Long = 0,
@@ -145,7 +145,7 @@ public open class GLTFDocument : Resource() {
    * **Note:** The [basePath] tells [appendFromBuffer] where to find dependencies and can be empty.
    */
   @JvmOverloads
-  public fun appendFromBuffer(
+  public final fun appendFromBuffer(
     bytes: PackedByteArray,
     basePath: String,
     state: GLTFState?,
@@ -161,7 +161,7 @@ public open class GLTFDocument : Resource() {
    * object through the [state] parameter.
    */
   @JvmOverloads
-  public fun appendFromScene(
+  public final fun appendFromScene(
     node: Node?,
     state: GLTFState?,
     flags: Long = 0,
@@ -176,7 +176,7 @@ public open class GLTFDocument : Resource() {
    * The [bakeFps] parameter overrides the bake_fps in [state].
    */
   @JvmOverloads
-  public fun generateScene(
+  public final fun generateScene(
     state: GLTFState?,
     bakeFps: Float = 30.0f,
     trimming: Boolean = false,
@@ -190,7 +190,7 @@ public open class GLTFDocument : Resource() {
   /**
    * Takes a [GLTFState] object through the [state] parameter and returns a GLTF [PackedByteArray].
    */
-  public fun generateBuffer(state: GLTFState?): PackedByteArray {
+  public final fun generateBuffer(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
     TransferContext.callMethod(rawPtr, MethodBindings.generateBufferPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -202,7 +202,7 @@ public open class GLTFDocument : Resource() {
    * **Note:** The extension of the glTF file determines if it is a .glb binary file or a .gltf text
    * file.
    */
-  public fun writeToFilesystem(state: GLTFState?, path: String): GodotError {
+  public final fun writeToFilesystem(state: GLTFState?, path: String): GodotError {
     TransferContext.writeArguments(OBJECT to state, STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.writeToFilesystemPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -251,7 +251,7 @@ public open class GLTFDocument : Resource() {
      * `get_additional_data` methods in [GLTFState] or [GLTFNode].
      */
     @JvmOverloads
-    public fun registerGltfDocumentExtension(extension: GLTFDocumentExtension?,
+    public final fun registerGltfDocumentExtension(extension: GLTFDocumentExtension?,
         firstPriority: Boolean = false): Unit {
       TransferContext.writeArguments(OBJECT to extension, BOOL to firstPriority)
       TransferContext.callMethod(0, MethodBindings.registerGltfDocumentExtensionPtr, NIL)
@@ -260,7 +260,7 @@ public open class GLTFDocument : Resource() {
     /**
      * Unregisters the given [GLTFDocumentExtension] instance.
      */
-    public fun unregisterGltfDocumentExtension(extension: GLTFDocumentExtension?): Unit {
+    public final fun unregisterGltfDocumentExtension(extension: GLTFDocumentExtension?): Unit {
       TransferContext.writeArguments(OBJECT to extension)
       TransferContext.callMethod(0, MethodBindings.unregisterGltfDocumentExtensionPtr, NIL)
     }

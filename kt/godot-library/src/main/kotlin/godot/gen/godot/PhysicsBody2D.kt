@@ -51,7 +51,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    * snapping.
    */
   @JvmOverloads
-  public fun moveAndCollide(
+  public final fun moveAndCollide(
     motion: Vector2,
     testOnly: Boolean = false,
     safeMargin: Float = 0.08f,
@@ -76,7 +76,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    * as a collision; this is useful for checking whether the body would *touch* any other bodies.
    */
   @JvmOverloads
-  public fun testMove(
+  public final fun testMove(
     from: Transform2D,
     motion: Vector2,
     collision: KinematicCollision2D? = null,
@@ -92,7 +92,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
    * Returns the gravity vector computed from all sources that can affect the body, including all
    * gravity overrides from [Area2D] nodes and the global world gravity.
    */
-  public fun getGravity(): Vector2 {
+  public final fun getGravity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -101,7 +101,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public fun getCollisionExceptions(): VariantArray<PhysicsBody2D> {
+  public final fun getCollisionExceptions(): VariantArray<PhysicsBody2D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody2D>)
@@ -110,7 +110,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public fun addCollisionExceptionWith(body: Node?): Unit {
+  public final fun addCollisionExceptionWith(body: Node?): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, MethodBindings.addCollisionExceptionWithPtr, NIL)
   }
@@ -118,7 +118,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public fun removeCollisionExceptionWith(body: Node?): Unit {
+  public final fun removeCollisionExceptionWith(body: Node?): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }

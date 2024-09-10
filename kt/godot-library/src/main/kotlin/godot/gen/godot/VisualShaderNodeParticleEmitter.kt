@@ -28,7 +28,7 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
    * If `true`, the result of this emitter is projected to 2D space. By default it is `false` and
    * meant for use in 3D space.
    */
-  public var mode2d: Boolean
+  public final inline var mode2d: Boolean
     @JvmName("mode2dProperty")
     get() = isMode2d()
     @JvmName("mode2dProperty")
@@ -40,12 +40,12 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, scriptIndex)
   }
 
-  public fun setMode2d(enabled: Boolean): Unit {
+  public final fun setMode2d(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
   }
 
-  public fun isMode2d(): Boolean {
+  public final fun isMode2d(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

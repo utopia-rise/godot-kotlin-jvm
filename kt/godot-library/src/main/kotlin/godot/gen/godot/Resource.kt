@@ -64,7 +64,7 @@ public open class Resource : RefCounted() {
    * **Note:** Changing this property at run-time has no effect on already created duplicate
    * resources.
    */
-  public var resourceLocalToScene: Boolean
+  public final inline var resourceLocalToScene: Boolean
     @JvmName("resourceLocalToSceneProperty")
     get() = isLocalToScene()
     @JvmName("resourceLocalToSceneProperty")
@@ -79,7 +79,7 @@ public open class Resource : RefCounted() {
    * **Note:** Setting this property manually may fail if a resource with the same path has already
    * been previously loaded. If necessary, use [takeOverPath].
    */
-  public var resourcePath: String
+  public final inline var resourcePath: String
     @JvmName("resourcePathProperty")
     get() = getPath()
     @JvmName("resourcePathProperty")
@@ -95,7 +95,7 @@ public open class Resource : RefCounted() {
    * the editor or via code, but it will be lost when the resource is reloaded. For example, only
    * built-in scripts can have a resource name, while scripts stored in separate files cannot.
    */
-  public var resourceName: String
+  public final inline var resourceName: String
     @JvmName("resourceNameProperty")
     get() = getName()
     @JvmName("resourceNameProperty")
@@ -114,7 +114,7 @@ public open class Resource : RefCounted() {
    * **Warning:** When setting, the ID must only consist of letters, numbers, and underscores.
    * Otherwise, it will fail and default to a randomly generated ID.
    */
-  public var resourceSceneUniqueId: String
+  public final inline var resourceSceneUniqueId: String
     @JvmName("resourceSceneUniqueIdProperty")
     get() = getSceneUniqueId()
     @JvmName("resourceSceneUniqueIdProperty")
@@ -142,7 +142,7 @@ public open class Resource : RefCounted() {
   public open fun _setupLocalToScene(): Unit {
   }
 
-  public fun setPath(path: String): Unit {
+  public final fun setPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
   }
@@ -151,23 +151,23 @@ public open class Resource : RefCounted() {
    * Sets the [resourcePath] to [path], potentially overriding an existing cache entry for this
    * path. Further attempts to load an overridden resource by path will instead return this resource.
    */
-  public fun takeOverPath(path: String): Unit {
+  public final fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.takeOverPathPtr, NIL)
   }
 
-  public fun getPath(): String {
+  public final fun getPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setName(name: String): Unit {
+  public final fun setName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
   }
 
-  public fun getName(): String {
+  public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -178,18 +178,18 @@ public open class Resource : RefCounted() {
    * [Mesh], and so on) are high-level abstractions of resources stored in a specialized server
    * ([DisplayServer], [RenderingServer], etc.), so this function will return the original [RID].
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
-  public fun setLocalToScene(enable: Boolean): Unit {
+  public final fun setLocalToScene(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setLocalToScenePtr, NIL)
   }
 
-  public fun isLocalToScene(): Boolean {
+  public final fun isLocalToScene(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -200,7 +200,7 @@ public open class Resource : RefCounted() {
    * [PackedScene] instantiation, returns the root [Node] of the scene where this resource is used.
    * Otherwise, returns `null`.
    */
-  public fun getLocalScene(): Node? {
+  public final fun getLocalScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
@@ -211,17 +211,17 @@ public open class Resource : RefCounted() {
    * automatically called from [PackedScene.instantiate] by the newly duplicated resource within the
    * scene instance.
    */
-  public fun setupLocalToScene(): Unit {
+  public final fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.setupLocalToScenePtr, NIL)
   }
 
-  public fun setSceneUniqueId(id: String): Unit {
+  public final fun setSceneUniqueId(id: String): Unit {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
   }
 
-  public fun getSceneUniqueId(): String {
+  public final fun getSceneUniqueId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -241,7 +241,7 @@ public open class Resource : RefCounted() {
    *             emit_changed()
    * [/codeblock]
    */
-  public fun emitChanged(): Unit {
+  public final fun emitChanged(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.emitChangedPtr, NIL)
   }
@@ -261,7 +261,7 @@ public open class Resource : RefCounted() {
    * required parameters.
    */
   @JvmOverloads
-  public fun duplicate(subresources: Boolean = false): Resource? {
+  public final fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
     TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
@@ -273,7 +273,7 @@ public open class Resource : RefCounted() {
      * the current date, time, and a random value. The returned string is only composed of letters (`a`
      * to `y`) and numbers (`0` to `8`). See also [resourceSceneUniqueId].
      */
-    public fun generateSceneUniqueId(): String {
+    public final fun generateSceneUniqueId(): String {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)
       return (TransferContext.readReturnValue(STRING, false) as String)

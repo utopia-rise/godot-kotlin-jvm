@@ -26,7 +26,7 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
   /**
    * The type of the operation to be performed on the transforms. See [Operator] for options.
    */
-  public var `operator`: Operator
+  public final inline var `operator`: Operator
     @JvmName("operatorProperty")
     get() = getOperator()
     @JvmName("operatorProperty")
@@ -38,12 +38,12 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMOP, scriptIndex)
   }
 
-  public fun setOperator(op: Operator): Unit {
+  public final fun setOperator(op: Operator): Unit {
     TransferContext.writeArguments(LONG to op.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
   }
 
-  public fun getOperator(): Operator {
+  public final fun getOperator(): Operator {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
     return VisualShaderNodeTransformOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)

@@ -29,7 +29,7 @@ public open class CameraTexture : Texture2D() {
   /**
    * The ID of the [CameraFeed] for which we want to display the image.
    */
-  public var cameraFeedId: Int
+  public final inline var cameraFeedId: Int
     @JvmName("cameraFeedIdProperty")
     get() = getCameraFeedId()
     @JvmName("cameraFeedIdProperty")
@@ -41,7 +41,7 @@ public open class CameraTexture : Texture2D() {
    * Which image within the [CameraFeed] we want access to, important if the camera image is split
    * in a Y and CbCr component.
    */
-  public var whichFeed: CameraServer.FeedImage
+  public final inline var whichFeed: CameraServer.FeedImage
     @JvmName("whichFeedProperty")
     get() = getWhichFeed()
     @JvmName("whichFeedProperty")
@@ -52,7 +52,7 @@ public open class CameraTexture : Texture2D() {
   /**
    * Convenience property that gives access to the active property of the [CameraFeed].
    */
-  public var cameraIsActive: Boolean
+  public final inline var cameraIsActive: Boolean
     @JvmName("cameraIsActiveProperty")
     get() = getCameraActive()
     @JvmName("cameraIsActiveProperty")
@@ -64,34 +64,34 @@ public open class CameraTexture : Texture2D() {
     callConstructor(ENGINECLASS_CAMERATEXTURE, scriptIndex)
   }
 
-  public fun setCameraFeedId(feedId: Int): Unit {
+  public final fun setCameraFeedId(feedId: Int): Unit {
     TransferContext.writeArguments(LONG to feedId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCameraFeedIdPtr, NIL)
   }
 
-  public fun getCameraFeedId(): Int {
+  public final fun getCameraFeedId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setWhichFeed(whichFeed: CameraServer.FeedImage): Unit {
+  public final fun setWhichFeed(whichFeed: CameraServer.FeedImage): Unit {
     TransferContext.writeArguments(LONG to whichFeed.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setWhichFeedPtr, NIL)
   }
 
-  public fun getWhichFeed(): CameraServer.FeedImage {
+  public final fun getWhichFeed(): CameraServer.FeedImage {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWhichFeedPtr, LONG)
     return CameraServer.FeedImage.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setCameraActive(active: Boolean): Unit {
+  public final fun setCameraActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.setCameraActivePtr, NIL)
   }
 
-  public fun getCameraActive(): Boolean {
+  public final fun getCameraActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

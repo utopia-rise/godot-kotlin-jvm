@@ -31,7 +31,7 @@ public open class GridContainer : Container() {
    * The number of columns in the [GridContainer]. If modified, [GridContainer] reorders its
    * Control-derived children to accommodate the new layout.
    */
-  public var columns: Int
+  public final inline var columns: Int
     @JvmName("columnsProperty")
     get() = getColumns()
     @JvmName("columnsProperty")
@@ -43,12 +43,12 @@ public open class GridContainer : Container() {
     callConstructor(ENGINECLASS_GRIDCONTAINER, scriptIndex)
   }
 
-  public fun setColumns(columns: Int): Unit {
+  public final fun setColumns(columns: Int): Unit {
     TransferContext.writeArguments(LONG to columns.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
   }
 
-  public fun getColumns(): Int {
+  public final fun getColumns(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

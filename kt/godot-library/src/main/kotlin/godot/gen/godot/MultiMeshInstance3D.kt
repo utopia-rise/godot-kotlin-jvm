@@ -29,7 +29,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
    * The [MultiMesh] resource that will be used and shared among all instances of the
    * [MultiMeshInstance3D].
    */
-  public var multimesh: MultiMesh?
+  public final inline var multimesh: MultiMesh?
     @JvmName("multimeshProperty")
     get() = getMultimesh()
     @JvmName("multimeshProperty")
@@ -41,12 +41,12 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE3D, scriptIndex)
   }
 
-  public fun setMultimesh(multimesh: MultiMesh?): Unit {
+  public final fun setMultimesh(multimesh: MultiMesh?): Unit {
     TransferContext.writeArguments(OBJECT to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
   }
 
-  public fun getMultimesh(): MultiMesh? {
+  public final fun getMultimesh(): MultiMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)

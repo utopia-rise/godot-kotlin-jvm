@@ -43,7 +43,7 @@ public open class NinePatchRect : Control() {
   /**
    * The node's texture resource.
    */
-  public var texture: Texture2D?
+  public final inline var texture: Texture2D?
     @JvmName("textureProperty")
     get() = getTexture()
     @JvmName("textureProperty")
@@ -54,7 +54,7 @@ public open class NinePatchRect : Control() {
   /**
    * If `true`, draw the panel's center. Else, only draw the 9-slice's borders.
    */
-  public var drawCenter: Boolean
+  public final inline var drawCenter: Boolean
     @JvmName("drawCenterProperty")
     get() = isDrawCenterEnabled()
     @JvmName("drawCenterProperty")
@@ -68,7 +68,7 @@ public open class NinePatchRect : Control() {
    * If the rect is empty, NinePatchRect will use the whole texture.
    */
   @CoreTypeLocalCopy
-  public var regionRect: Rect2
+  public final inline var regionRect: Rect2
     @JvmName("regionRectProperty")
     get() = getRegionRect()
     @JvmName("regionRectProperty")
@@ -81,7 +81,7 @@ public open class NinePatchRect : Control() {
    * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
    * with non-uniform borders.
    */
-  public var patchMarginLeft: Int
+  public final inline var patchMarginLeft: Int
     @JvmName("patchMarginLeftProperty")
     get() = getPatchMargin(Side.SIDE_LEFT)
     @JvmName("patchMarginLeftProperty")
@@ -94,7 +94,7 @@ public open class NinePatchRect : Control() {
    * will have a height of 16 pixels. You can set all 4 margin values individually to create panels
    * with non-uniform borders.
    */
-  public var patchMarginTop: Int
+  public final inline var patchMarginTop: Int
     @JvmName("patchMarginTopProperty")
     get() = getPatchMargin(Side.SIDE_TOP)
     @JvmName("patchMarginTopProperty")
@@ -107,7 +107,7 @@ public open class NinePatchRect : Control() {
    * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
    * with non-uniform borders.
    */
-  public var patchMarginRight: Int
+  public final inline var patchMarginRight: Int
     @JvmName("patchMarginRightProperty")
     get() = getPatchMargin(Side.SIDE_RIGHT)
     @JvmName("patchMarginRightProperty")
@@ -120,7 +120,7 @@ public open class NinePatchRect : Control() {
    * side will have a height of 16 pixels. You can set all 4 margin values individually to create
    * panels with non-uniform borders.
    */
-  public var patchMarginBottom: Int
+  public final inline var patchMarginBottom: Int
     @JvmName("patchMarginBottomProperty")
     get() = getPatchMargin(Side.SIDE_BOTTOM)
     @JvmName("patchMarginBottomProperty")
@@ -132,7 +132,7 @@ public open class NinePatchRect : Control() {
    * The stretch mode to use for horizontal stretching/tiling. See [NinePatchRect.AxisStretchMode]
    * for possible values.
    */
-  public var axisStretchHorizontal: AxisStretchMode
+  public final inline var axisStretchHorizontal: AxisStretchMode
     @JvmName("axisStretchHorizontalProperty")
     get() = getHAxisStretchMode()
     @JvmName("axisStretchHorizontalProperty")
@@ -144,7 +144,7 @@ public open class NinePatchRect : Control() {
    * The stretch mode to use for vertical stretching/tiling. See [NinePatchRect.AxisStretchMode] for
    * possible values.
    */
-  public var axisStretchVertical: AxisStretchMode
+  public final inline var axisStretchVertical: AxisStretchMode
     @JvmName("axisStretchVerticalProperty")
     get() = getVAxisStretchMode()
     @JvmName("axisStretchVerticalProperty")
@@ -176,18 +176,18 @@ public open class NinePatchRect : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
       block(this)
       regionRect = this
   }
 
 
-  public fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun getTexture(): Texture2D? {
+  public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
@@ -196,7 +196,7 @@ public open class NinePatchRect : Control() {
   /**
    * Sets the size of the margin on the specified [Side] to [value] pixels.
    */
-  public fun setPatchMargin(margin: Side, `value`: Int): Unit {
+  public final fun setPatchMargin(margin: Side, `value`: Int): Unit {
     TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
   }
@@ -204,51 +204,51 @@ public open class NinePatchRect : Control() {
   /**
    * Returns the size of the margin on the specified [Side].
    */
-  public fun getPatchMargin(margin: Side): Int {
+  public final fun getPatchMargin(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setRegionRect(rect: Rect2): Unit {
+  public final fun setRegionRect(rect: Rect2): Unit {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
   }
 
-  public fun getRegionRect(): Rect2 {
+  public final fun getRegionRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
   }
 
-  public fun setDrawCenter(drawCenter: Boolean): Unit {
+  public final fun setDrawCenter(drawCenter: Boolean): Unit {
     TransferContext.writeArguments(BOOL to drawCenter)
     TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
   }
 
-  public fun isDrawCenterEnabled(): Boolean {
+  public final fun isDrawCenterEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
+  public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
 
-  public fun getHAxisStretchMode(): AxisStretchMode {
+  public final fun getHAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
     return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
+  public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
 
-  public fun getVAxisStretchMode(): AxisStretchMode {
+  public final fun getVAxisStretchMode(): AxisStretchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
     return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)

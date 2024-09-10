@@ -65,7 +65,7 @@ public open class FontVariation : Font() {
   /**
    * Base font used to create a variation. If not set, default [Theme] font is used.
    */
-  public var baseFont: Font?
+  public final inline var baseFont: Font?
     @JvmName("baseFontProperty")
     get() = getBaseFont()
     @JvmName("baseFontProperty")
@@ -84,7 +84,7 @@ public open class FontVariation : Font() {
    * [TextServer.tagToName].
    * **Note:** To get available variation axes of a font, use [Font.getSupportedVariationList].
    */
-  public var variationOpentype: Dictionary<Any?, Any?>
+  public final inline var variationOpentype: Dictionary<Any?, Any?>
     @JvmName("variationOpentypeProperty")
     get() = getVariationOpentype()
     @JvmName("variationOpentypeProperty")
@@ -95,7 +95,7 @@ public open class FontVariation : Font() {
   /**
    * Active face index in the TrueType / OpenType collection file.
    */
-  public var variationFaceIndex: Int
+  public final inline var variationFaceIndex: Int
     @JvmName("variationFaceIndexProperty")
     get() = getVariationFaceIndex()
     @JvmName("variationFaceIndexProperty")
@@ -109,7 +109,7 @@ public open class FontVariation : Font() {
    * **Note:** Emboldened fonts might have self-intersecting outlines, which will prevent MSDF fonts
    * and [TextMesh] from working correctly.
    */
-  public var variationEmbolden: Float
+  public final inline var variationEmbolden: Float
     @JvmName("variationEmboldenProperty")
     get() = getVariationEmbolden()
     @JvmName("variationEmboldenProperty")
@@ -124,7 +124,7 @@ public open class FontVariation : Font() {
    * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
   @CoreTypeLocalCopy
-  public var variationTransform: Transform2D
+  public final inline var variationTransform: Transform2D
     @JvmName("variationTransformProperty")
     get() = getVariationTransform()
     @JvmName("variationTransformProperty")
@@ -137,7 +137,7 @@ public open class FontVariation : Font() {
    * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature
    * tags[/url].
    */
-  public var opentypeFeatures: Dictionary<Any?, Any?>
+  public final inline var opentypeFeatures: Dictionary<Any?, Any?>
     @JvmName("opentypeFeaturesProperty")
     get() = getOpentypeFeatures()
     @JvmName("opentypeFeaturesProperty")
@@ -148,7 +148,7 @@ public open class FontVariation : Font() {
   /**
    * Extra spacing between graphical glyphs.
    */
-  public val spacingGlyph: Int
+  public final val spacingGlyph: Int
     get() {
       throw
           UninitializedPropertyAccessException("Cannot access property spacingGlyph: has no getter")
@@ -157,7 +157,7 @@ public open class FontVariation : Font() {
   /**
    * Extra width of the space glyphs.
    */
-  public val spacingSpace: Int
+  public final val spacingSpace: Int
     get() {
       throw
           UninitializedPropertyAccessException("Cannot access property spacingSpace: has no getter")
@@ -166,7 +166,7 @@ public open class FontVariation : Font() {
   /**
    * Extra spacing at the top of the line in pixels.
    */
-  public val spacingTop: Int
+  public final val spacingTop: Int
     get() {
       throw UninitializedPropertyAccessException("Cannot access property spacingTop: has no getter")
     }
@@ -174,7 +174,7 @@ public open class FontVariation : Font() {
   /**
    * Extra spacing at the bottom of the line in pixels.
    */
-  public val spacingBottom: Int
+  public final val spacingBottom: Int
     get() {
       throw
           UninitializedPropertyAccessException("Cannot access property spacingBottom: has no getter")
@@ -183,7 +183,7 @@ public open class FontVariation : Font() {
   /**
    * Extra baseline offset (as a fraction of font height).
    */
-  public var baselineOffset: Float
+  public final inline var baselineOffset: Float
     @JvmName("baselineOffsetProperty")
     get() = getBaselineOffset()
     @JvmName("baselineOffsetProperty")
@@ -216,69 +216,69 @@ public open class FontVariation : Font() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+  public final fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D =
       variationTransform.apply{
       block(this)
       variationTransform = this
   }
 
 
-  public fun setBaseFont(font: Font?): Unit {
+  public final fun setBaseFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setBaseFontPtr, NIL)
   }
 
-  public fun getBaseFont(): Font? {
+  public final fun getBaseFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
-  public fun setVariationOpentype(coords: Dictionary<Any?, Any?>): Unit {
+  public final fun setVariationOpentype(coords: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.setVariationOpentypePtr, NIL)
   }
 
-  public fun getVariationOpentype(): Dictionary<Any?, Any?> {
+  public final fun getVariationOpentype(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
-  public fun setVariationEmbolden(strength: Float): Unit {
+  public final fun setVariationEmbolden(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVariationEmboldenPtr, NIL)
   }
 
-  public fun getVariationEmbolden(): Float {
+  public final fun getVariationEmbolden(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVariationFaceIndex(faceIndex: Int): Unit {
+  public final fun setVariationFaceIndex(faceIndex: Int): Unit {
     TransferContext.writeArguments(LONG to faceIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setVariationFaceIndexPtr, NIL)
   }
 
-  public fun getVariationFaceIndex(): Int {
+  public final fun getVariationFaceIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVariationFaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setVariationTransform(transform: Transform2D): Unit {
+  public final fun setVariationTransform(transform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.setVariationTransformPtr, NIL)
   }
 
-  public fun getVariationTransform(): Transform2D {
+  public final fun getVariationTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
   }
 
-  public fun setOpentypeFeatures(features: Dictionary<Any?, Any?>): Unit {
+  public final fun setOpentypeFeatures(features: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to features)
     TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeaturesPtr, NIL)
   }
@@ -287,17 +287,17 @@ public open class FontVariation : Font() {
    * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
    * relative to the font size).
    */
-  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
+  public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
     TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
   }
 
-  public fun setBaselineOffset(baselineOffset: Float): Unit {
+  public final fun setBaselineOffset(baselineOffset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to baselineOffset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBaselineOffsetPtr, NIL)
   }
 
-  public fun getBaselineOffset(): Float {
+  public final fun getBaselineOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

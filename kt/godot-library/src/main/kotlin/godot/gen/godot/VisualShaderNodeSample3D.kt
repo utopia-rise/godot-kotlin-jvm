@@ -26,7 +26,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   /**
    * An input source type.
    */
-  public var source: Source
+  public final inline var source: Source
     @JvmName("sourceProperty")
     get() = getSource()
     @JvmName("sourceProperty")
@@ -38,12 +38,12 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     callConstructor(ENGINECLASS_VISUALSHADERNODESAMPLE3D, scriptIndex)
   }
 
-  public fun setSource(`value`: Source): Unit {
+  public final fun setSource(`value`: Source): Unit {
     TransferContext.writeArguments(LONG to value.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
   }
 
-  public fun getSource(): Source {
+  public final fun getSource(): Source {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
     return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)

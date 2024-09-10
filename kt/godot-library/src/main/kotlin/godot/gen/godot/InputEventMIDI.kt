@@ -88,7 +88,7 @@ public open class InputEventMIDI : InputEvent() {
    * The MIDI channel of this message, ranging from `0` to `15`. MIDI channel `9` is reserved for
    * percussion instruments.
    */
-  public var channel: Int
+  public final inline var channel: Int
     @JvmName("channelProperty")
     get() = getChannel()
     @JvmName("channelProperty")
@@ -102,7 +102,7 @@ public open class InputEventMIDI : InputEvent() {
    * [url=https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes]MIDI
    * message status byte list chart[/url].
    */
-  public var message: MIDIMessage
+  public final inline var message: MIDIMessage
     @JvmName("messageProperty")
     get() = getMessage()
     @JvmName("messageProperty")
@@ -117,7 +117,7 @@ public open class InputEventMIDI : InputEvent() {
    * [url=https://en.wikipedia.org/wiki/Piano_key_frequencies]piano key frequency chart[/url] a full
    * list.
    */
-  public var pitch: Int
+  public final inline var pitch: Int
     @JvmName("pitchProperty")
     get() = getPitch()
     @JvmName("pitchProperty")
@@ -138,7 +138,7 @@ public open class InputEventMIDI : InputEvent() {
    *             print("Note pressed!")
    * [/codeblock]
    */
-  public var velocity: Int
+  public final inline var velocity: Int
     @JvmName("velocityProperty")
     get() = getVelocity()
     @JvmName("velocityProperty")
@@ -154,7 +154,7 @@ public open class InputEventMIDI : InputEvent() {
    * list[/url]. Keep in mind that the list is off by 1 because it does not begin from 0. A value of
    * `0` corresponds to the acoustic grand piano.
    */
-  public var instrument: Int
+  public final inline var instrument: Int
     @JvmName("instrumentProperty")
     get() = getInstrument()
     @JvmName("instrumentProperty")
@@ -167,7 +167,7 @@ public open class InputEventMIDI : InputEvent() {
    * **Note:** For many devices, this value is always `0`. Other devices such as musical keyboards
    * may simulate pressure by changing the [velocity], instead.
    */
-  public var pressure: Int
+  public final inline var pressure: Int
     @JvmName("pressureProperty")
     get() = getPressure()
     @JvmName("pressureProperty")
@@ -182,7 +182,7 @@ public open class InputEventMIDI : InputEvent() {
    * [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url]
    * for a small list.
    */
-  public var controllerNumber: Int
+  public final inline var controllerNumber: Int
     @JvmName("controllerNumberProperty")
     get() = getControllerNumber()
     @JvmName("controllerNumberProperty")
@@ -194,7 +194,7 @@ public open class InputEventMIDI : InputEvent() {
    * The value applied to the controller. If [message] is [MIDI_MESSAGE_CONTROL_CHANGE], this value
    * ranges from `0` to `127`, otherwise it is `0`. See also [controllerValue].
    */
-  public var controllerValue: Int
+  public final inline var controllerValue: Int
     @JvmName("controllerValueProperty")
     get() = getControllerValue()
     @JvmName("controllerValueProperty")
@@ -206,89 +206,89 @@ public open class InputEventMIDI : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTMIDI, scriptIndex)
   }
 
-  public fun setChannel(channel: Int): Unit {
+  public final fun setChannel(channel: Int): Unit {
     TransferContext.writeArguments(LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setChannelPtr, NIL)
   }
 
-  public fun getChannel(): Int {
+  public final fun getChannel(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getChannelPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMessage(message: MIDIMessage): Unit {
+  public final fun setMessage(message: MIDIMessage): Unit {
     TransferContext.writeArguments(LONG to message.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMessagePtr, NIL)
   }
 
-  public fun getMessage(): MIDIMessage {
+  public final fun getMessage(): MIDIMessage {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, LONG)
     return MIDIMessage.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setPitch(pitch: Int): Unit {
+  public final fun setPitch(pitch: Int): Unit {
     TransferContext.writeArguments(LONG to pitch.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPitchPtr, NIL)
   }
 
-  public fun getPitch(): Int {
+  public final fun getPitch(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPitchPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setVelocity(velocity: Int): Unit {
+  public final fun setVelocity(velocity: Int): Unit {
     TransferContext.writeArguments(LONG to velocity.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
   }
 
-  public fun getVelocity(): Int {
+  public final fun getVelocity(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setInstrument(instrument: Int): Unit {
+  public final fun setInstrument(instrument: Int): Unit {
     TransferContext.writeArguments(LONG to instrument.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setInstrumentPtr, NIL)
   }
 
-  public fun getInstrument(): Int {
+  public final fun getInstrument(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstrumentPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setPressure(pressure: Int): Unit {
+  public final fun setPressure(pressure: Int): Unit {
     TransferContext.writeArguments(LONG to pressure.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
   }
 
-  public fun getPressure(): Int {
+  public final fun getPressure(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setControllerNumber(controllerNumber: Int): Unit {
+  public final fun setControllerNumber(controllerNumber: Int): Unit {
     TransferContext.writeArguments(LONG to controllerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setControllerNumberPtr, NIL)
   }
 
-  public fun getControllerNumber(): Int {
+  public final fun getControllerNumber(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getControllerNumberPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setControllerValue(controllerValue: Int): Unit {
+  public final fun setControllerValue(controllerValue: Int): Unit {
     TransferContext.writeArguments(LONG to controllerValue.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setControllerValuePtr, NIL)
   }
 
-  public fun getControllerValue(): Int {
+  public final fun getControllerValue(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getControllerValuePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

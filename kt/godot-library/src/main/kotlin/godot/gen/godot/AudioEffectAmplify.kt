@@ -28,7 +28,7 @@ public open class AudioEffectAmplify : AudioEffect() {
    * Amount of amplification in decibels. Positive values make the sound louder, negative values
    * make it quieter. Value can range from -80 to 24.
    */
-  public var volumeDb: Float
+  public final inline var volumeDb: Float
     @JvmName("volumeDbProperty")
     get() = getVolumeDb()
     @JvmName("volumeDbProperty")
@@ -40,12 +40,12 @@ public open class AudioEffectAmplify : AudioEffect() {
     callConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY, scriptIndex)
   }
 
-  public fun setVolumeDb(volume: Float): Unit {
+  public final fun setVolumeDb(volume: Float): Unit {
     TransferContext.writeArguments(DOUBLE to volume.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
   }
 
-  public fun getVolumeDb(): Float {
+  public final fun getVolumeDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

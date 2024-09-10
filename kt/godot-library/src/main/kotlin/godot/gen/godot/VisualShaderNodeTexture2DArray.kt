@@ -26,7 +26,7 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
    * A source texture array. Used if [VisualShaderNodeSample3D.source] is set to
    * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
-  public var textureArray: Texture2DArray?
+  public final inline var textureArray: Texture2DArray?
     @JvmName("textureArrayProperty")
     get() = getTextureArray()
     @JvmName("textureArrayProperty")
@@ -38,12 +38,12 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY, scriptIndex)
   }
 
-  public fun setTextureArray(`value`: Texture2DArray?): Unit {
+  public final fun setTextureArray(`value`: Texture2DArray?): Unit {
     TransferContext.writeArguments(OBJECT to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureArrayPtr, NIL)
   }
 
-  public fun getTextureArray(): Texture2DArray? {
+  public final fun getTextureArray(): Texture2DArray? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?)

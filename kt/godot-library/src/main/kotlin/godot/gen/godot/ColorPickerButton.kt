@@ -55,7 +55,7 @@ public open class ColorPickerButton : Button() {
    * The currently selected color.
    */
   @CoreTypeLocalCopy
-  public var color: Color
+  public final inline var color: Color
     @JvmName("colorProperty")
     get() = getPickColor()
     @JvmName("colorProperty")
@@ -66,7 +66,7 @@ public open class ColorPickerButton : Button() {
   /**
    * If `true`, the alpha channel in the displayed [ColorPicker] will be visible.
    */
-  public var editAlpha: Boolean
+  public final inline var editAlpha: Boolean
     @JvmName("editAlphaProperty")
     get() = isEditingAlpha()
     @JvmName("editAlphaProperty")
@@ -96,18 +96,18 @@ public open class ColorPickerButton : Button() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
 
 
-  public fun setPickColor(color: Color): Unit {
+  public final fun setPickColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
   }
 
-  public fun getPickColor(): Color {
+  public final fun getPickColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -118,7 +118,7 @@ public open class ColorPickerButton : Button() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getPicker(): ColorPicker? {
+  public final fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPickerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ColorPicker?)
@@ -130,18 +130,18 @@ public open class ColorPickerButton : Button() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
-  public fun getPopup(): PopupPanel? {
+  public final fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupPanel?)
   }
 
-  public fun setEditAlpha(show: Boolean): Unit {
+  public final fun setEditAlpha(show: Boolean): Unit {
     TransferContext.writeArguments(BOOL to show)
     TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
   }
 
-  public fun isEditingAlpha(): Boolean {
+  public final fun isEditingAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

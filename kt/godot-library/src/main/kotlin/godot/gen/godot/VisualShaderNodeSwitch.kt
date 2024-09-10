@@ -27,7 +27,7 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: OpType
+  public final inline var opType: OpType
     @JvmName("opTypeProperty")
     get() = getOpType()
     @JvmName("opTypeProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODESWITCH, scriptIndex)
   }
 
-  public fun setOpType(type: OpType): Unit {
+  public final fun setOpType(type: OpType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
   }
 
-  public fun getOpType(): OpType {
+  public final fun getOpType(): OpType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
     return VisualShaderNodeSwitch.OpType.from(TransferContext.readReturnValue(LONG) as Long)

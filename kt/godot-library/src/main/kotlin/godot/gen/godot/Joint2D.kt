@@ -34,7 +34,7 @@ public open class Joint2D internal constructor() : Node2D() {
   /**
    * Path to the first body (A) attached to the joint. The node must inherit [PhysicsBody2D].
    */
-  public var nodeA: NodePath
+  public final inline var nodeA: NodePath
     @JvmName("nodeAProperty")
     get() = getNodeA()
     @JvmName("nodeAProperty")
@@ -45,7 +45,7 @@ public open class Joint2D internal constructor() : Node2D() {
   /**
    * Path to the second body (B) attached to the joint. The node must inherit [PhysicsBody2D].
    */
-  public var nodeB: NodePath
+  public final inline var nodeB: NodePath
     @JvmName("nodeBProperty")
     get() = getNodeB()
     @JvmName("nodeBProperty")
@@ -60,7 +60,7 @@ public open class Joint2D internal constructor() : Node2D() {
    * When set to `0`, the default value from
    * [ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */
-  public var bias: Float
+  public final inline var bias: Float
     @JvmName("biasProperty")
     get() = getBias()
     @JvmName("biasProperty")
@@ -71,7 +71,7 @@ public open class Joint2D internal constructor() : Node2D() {
   /**
    * If `true`, the two bodies bound together do not collide with each other.
    */
-  public var disableCollision: Boolean
+  public final inline var disableCollision: Boolean
     @JvmName("disableCollisionProperty")
     get() = getExcludeNodesFromCollision()
     @JvmName("disableCollisionProperty")
@@ -83,45 +83,45 @@ public open class Joint2D internal constructor() : Node2D() {
     callConstructor(ENGINECLASS_JOINT2D, scriptIndex)
   }
 
-  public fun setNodeA(node: NodePath): Unit {
+  public final fun setNodeA(node: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to node)
     TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
   }
 
-  public fun getNodeA(): NodePath {
+  public final fun getNodeA(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setNodeB(node: NodePath): Unit {
+  public final fun setNodeB(node: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to node)
     TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
   }
 
-  public fun getNodeB(): NodePath {
+  public final fun getNodeB(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setBias(bias: Float): Unit {
+  public final fun setBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
   }
 
-  public fun getBias(): Float {
+  public final fun getBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setExcludeNodesFromCollision(enable: Boolean): Unit {
+  public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
   }
 
-  public fun getExcludeNodesFromCollision(): Boolean {
+  public final fun getExcludeNodesFromCollision(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -130,7 +130,7 @@ public open class Joint2D internal constructor() : Node2D() {
   /**
    * Returns the joint's internal [RID] from the [PhysicsServer2D].
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

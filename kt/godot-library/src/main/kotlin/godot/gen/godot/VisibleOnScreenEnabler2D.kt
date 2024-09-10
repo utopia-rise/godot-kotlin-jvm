@@ -36,7 +36,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
    * Determines how the target node is enabled. Corresponds to [Node.ProcessMode]. When the node is
    * disabled, it always uses [Node.PROCESS_MODE_DISABLED].
    */
-  public var enableMode: EnableMode
+  public final inline var enableMode: EnableMode
     @JvmName("enableModeProperty")
     get() = getEnableMode()
     @JvmName("enableModeProperty")
@@ -50,7 +50,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
    * the scene tree) and every time the [VisibleOnScreenEnabler2D] enters the scene tree. If the path
    * is empty, no node will be affected. If the path is invalid, an error is also generated.
    */
-  public var enableNodePath: NodePath
+  public final inline var enableNodePath: NodePath
     @JvmName("enableNodePathProperty")
     get() = getEnableNodePath()
     @JvmName("enableNodePathProperty")
@@ -62,23 +62,23 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER2D, scriptIndex)
   }
 
-  public fun setEnableMode(mode: EnableMode): Unit {
+  public final fun setEnableMode(mode: EnableMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
   }
 
-  public fun getEnableMode(): EnableMode {
+  public final fun getEnableMode(): EnableMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
     return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setEnableNodePath(path: NodePath): Unit {
+  public final fun setEnableNodePath(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
   }
 
-  public fun getEnableNodePath(): NodePath {
+  public final fun getEnableNodePath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)

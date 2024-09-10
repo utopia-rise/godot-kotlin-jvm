@@ -30,7 +30,7 @@ public open class XRTracker internal constructor() : RefCounted() {
   /**
    * The type of tracker.
    */
-  public var type: XRServer.TrackerType
+  public final inline var type: XRServer.TrackerType
     @JvmName("typeProperty")
     get() = getTrackerType()
     @JvmName("typeProperty")
@@ -50,7 +50,7 @@ public open class XRTracker internal constructor() : RefCounted() {
    * - `/user/body_tracker` identifies the [XRBodyTracker] for the players body
    * - `/user/face_tracker` identifies the [XRFaceTracker] for the players face
    */
-  public var name: StringName
+  public final inline var name: StringName
     @JvmName("nameProperty")
     get() = getTrackerName()
     @JvmName("nameProperty")
@@ -61,7 +61,7 @@ public open class XRTracker internal constructor() : RefCounted() {
   /**
    * The description of this tracker.
    */
-  public var description: String
+  public final inline var description: String
     @JvmName("descriptionProperty")
     get() = getTrackerDesc()
     @JvmName("descriptionProperty")
@@ -73,35 +73,35 @@ public open class XRTracker internal constructor() : RefCounted() {
     callConstructor(ENGINECLASS_XRTRACKER, scriptIndex)
   }
 
-  public fun getTrackerType(): XRServer.TrackerType {
+  public final fun getTrackerType(): XRServer.TrackerType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
     return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTrackerType(type: XRServer.TrackerType): Unit {
+  public final fun setTrackerType(type: XRServer.TrackerType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
   }
 
-  public fun getTrackerName(): StringName {
+  public final fun getTrackerName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setTrackerName(name: StringName): Unit {
+  public final fun setTrackerName(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
   }
 
-  public fun getTrackerDesc(): String {
+  public final fun getTrackerDesc(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setTrackerDesc(description: String): Unit {
+  public final fun setTrackerDesc(description: String): Unit {
     TransferContext.writeArguments(STRING to description)
     TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
   }

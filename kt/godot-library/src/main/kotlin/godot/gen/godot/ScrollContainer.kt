@@ -57,7 +57,7 @@ public open class ScrollContainer : Container() {
    * If `true`, the ScrollContainer will automatically scroll to focused children (including
    * indirect children) to make sure they are fully visible.
    */
-  public var followFocus: Boolean
+  public final inline var followFocus: Boolean
     @JvmName("followFocusProperty")
     get() = isFollowingFocus()
     @JvmName("followFocusProperty")
@@ -74,7 +74,7 @@ public open class ScrollContainer : Container() {
    *     set_deferred("scroll_horizontal", 600)
    * [/codeblock]
    */
-  public var scrollHorizontal: Int
+  public final inline var scrollHorizontal: Int
     @JvmName("scrollHorizontalProperty")
     get() = getHScroll()
     @JvmName("scrollHorizontalProperty")
@@ -90,7 +90,7 @@ public open class ScrollContainer : Container() {
    *     set_deferred("scroll_vertical", 600)
    * [/codeblock]
    */
-  public var scrollVertical: Int
+  public final inline var scrollVertical: Int
     @JvmName("scrollVerticalProperty")
     get() = getVScroll()
     @JvmName("scrollVerticalProperty")
@@ -102,7 +102,7 @@ public open class ScrollContainer : Container() {
    * Overrides the [ScrollBar.customStep] used when clicking the internal scroll bar's horizontal
    * increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused.
    */
-  public var scrollHorizontalCustomStep: Float
+  public final inline var scrollHorizontalCustomStep: Float
     @JvmName("scrollHorizontalCustomStepProperty")
     get() = getHorizontalCustomStep()
     @JvmName("scrollHorizontalCustomStepProperty")
@@ -114,7 +114,7 @@ public open class ScrollContainer : Container() {
    * Overrides the [ScrollBar.customStep] used when clicking the internal scroll bar's vertical
    * increment and decrement buttons or when using arrow keys when the [ScrollBar] is focused.
    */
-  public var scrollVerticalCustomStep: Float
+  public final inline var scrollVerticalCustomStep: Float
     @JvmName("scrollVerticalCustomStepProperty")
     get() = getVerticalCustomStep()
     @JvmName("scrollVerticalCustomStepProperty")
@@ -126,7 +126,7 @@ public open class ScrollContainer : Container() {
    * Controls whether horizontal scrollbar can be used and when it should be visible. See
    * [ScrollMode] for options.
    */
-  public var horizontalScrollMode: ScrollMode
+  public final inline var horizontalScrollMode: ScrollMode
     @JvmName("horizontalScrollModeProperty")
     get() = getHorizontalScrollMode()
     @JvmName("horizontalScrollModeProperty")
@@ -138,7 +138,7 @@ public open class ScrollContainer : Container() {
    * Controls whether vertical scrollbar can be used and when it should be visible. See [ScrollMode]
    * for options.
    */
-  public var verticalScrollMode: ScrollMode
+  public final inline var verticalScrollMode: ScrollMode
     @JvmName("verticalScrollModeProperty")
     get() = getVerticalScrollMode()
     @JvmName("verticalScrollModeProperty")
@@ -149,7 +149,7 @@ public open class ScrollContainer : Container() {
   /**
    * Deadzone for touch scrolling. Lower deadzone makes the scrolling more sensitive.
    */
-  public var scrollDeadzone: Int
+  public final inline var scrollDeadzone: Int
     @JvmName("scrollDeadzoneProperty")
     get() = getDeadzone()
     @JvmName("scrollDeadzoneProperty")
@@ -161,89 +161,89 @@ public open class ScrollContainer : Container() {
     callConstructor(ENGINECLASS_SCROLLCONTAINER, scriptIndex)
   }
 
-  public fun setHScroll(`value`: Int): Unit {
+  public final fun setHScroll(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setHScrollPtr, NIL)
   }
 
-  public fun getHScroll(): Int {
+  public final fun getHScroll(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHScrollPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setVScroll(`value`: Int): Unit {
+  public final fun setVScroll(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setVScrollPtr, NIL)
   }
 
-  public fun getVScroll(): Int {
+  public final fun getVScroll(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVScrollPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setHorizontalCustomStep(`value`: Float): Unit {
+  public final fun setHorizontalCustomStep(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalCustomStepPtr, NIL)
   }
 
-  public fun getHorizontalCustomStep(): Float {
+  public final fun getHorizontalCustomStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalCustomStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVerticalCustomStep(`value`: Float): Unit {
+  public final fun setVerticalCustomStep(`value`: Float): Unit {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticalCustomStepPtr, NIL)
   }
 
-  public fun getVerticalCustomStep(): Float {
+  public final fun getVerticalCustomStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticalCustomStepPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setHorizontalScrollMode(enable: ScrollMode): Unit {
+  public final fun setHorizontalScrollMode(enable: ScrollMode): Unit {
     TransferContext.writeArguments(LONG to enable.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalScrollModePtr, NIL)
   }
 
-  public fun getHorizontalScrollMode(): ScrollMode {
+  public final fun getHorizontalScrollMode(): ScrollMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalScrollModePtr, LONG)
     return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setVerticalScrollMode(enable: ScrollMode): Unit {
+  public final fun setVerticalScrollMode(enable: ScrollMode): Unit {
     TransferContext.writeArguments(LONG to enable.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticalScrollModePtr, NIL)
   }
 
-  public fun getVerticalScrollMode(): ScrollMode {
+  public final fun getVerticalScrollMode(): ScrollMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticalScrollModePtr, LONG)
     return ScrollContainer.ScrollMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setDeadzone(deadzone: Int): Unit {
+  public final fun setDeadzone(deadzone: Int): Unit {
     TransferContext.writeArguments(LONG to deadzone.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDeadzonePtr, NIL)
   }
 
-  public fun getDeadzone(): Int {
+  public final fun getDeadzone(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDeadzonePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFollowFocus(enabled: Boolean): Unit {
+  public final fun setFollowFocus(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setFollowFocusPtr, NIL)
   }
 
-  public fun isFollowingFocus(): Boolean {
+  public final fun isFollowingFocus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFollowingFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -254,7 +254,7 @@ public open class ScrollContainer : Container() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to disable or hide a scrollbar, you can use [horizontalScrollMode].
    */
-  public fun getHScrollBar(): HScrollBar? {
+  public final fun getHScrollBar(): HScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HScrollBar?)
@@ -265,7 +265,7 @@ public open class ScrollContainer : Container() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to disable or hide a scrollbar, you can use [verticalScrollMode].
    */
-  public fun getVScrollBar(): VScrollBar? {
+  public final fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
@@ -283,7 +283,7 @@ public open class ScrollContainer : Container() {
    * ensure_control_visible(child_node)
    * [/codeblock]
    */
-  public fun ensureControlVisible(control: Control?): Unit {
+  public final fun ensureControlVisible(control: Control?): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr, MethodBindings.ensureControlVisiblePtr, NIL)
   }

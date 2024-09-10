@@ -52,7 +52,7 @@ public open class Font internal constructor() : Resource() {
    * If this array is empty in a [FontVariation], the [FontVariation.baseFont]'s fallbacks are used
    * instead.
    */
-  public var fallbacks: VariantArray<Font>
+  public final inline var fallbacks: VariantArray<Font>
     @JvmName("fallbacksProperty")
     get() = getFallbacks()
     @JvmName("fallbacksProperty")
@@ -64,12 +64,12 @@ public open class Font internal constructor() : Resource() {
     callConstructor(ENGINECLASS_FONT, scriptIndex)
   }
 
-  public fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
+  public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
     TransferContext.writeArguments(ARRAY to fallbacks)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbacksPtr, NIL)
   }
 
-  public fun getFallbacks(): VariantArray<Font> {
+  public final fun getFallbacks(): VariantArray<Font> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbacksPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Font>)
@@ -79,7 +79,7 @@ public open class Font internal constructor() : Resource() {
    * Returns [TextServer] RID of the font cache for specific variation.
    */
   @JvmOverloads
-  public fun findVariation(
+  public final fun findVariation(
     variationCoordinates: Dictionary<Any?, Any?>,
     faceIndex: Int = 0,
     strength: Float = 0.0f,
@@ -98,7 +98,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns [Array] of valid [Font] [RID]s, which can be passed to the [TextServer] methods.
    */
-  public fun getRids(): VariantArray<RID> {
+  public final fun getRids(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
@@ -111,7 +111,7 @@ public open class Font internal constructor() : Resource() {
    * empty line).
    */
   @JvmOverloads
-  public fun getHeight(fontSize: Int = 16): Float {
+  public final fun getHeight(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -124,7 +124,7 @@ public open class Font internal constructor() : Resource() {
    * empty line).
    */
   @JvmOverloads
-  public fun getAscent(fontSize: Int = 16): Float {
+  public final fun getAscent(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAscentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -137,7 +137,7 @@ public open class Font internal constructor() : Resource() {
    * empty line).
    */
   @JvmOverloads
-  public fun getDescent(fontSize: Int = 16): Float {
+  public final fun getDescent(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDescentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -149,7 +149,7 @@ public open class Font internal constructor() : Resource() {
    * different from the value returned by this function. Use it only as rough estimate.
    */
   @JvmOverloads
-  public fun getUnderlinePosition(fontSize: Int = 16): Float {
+  public final fun getUnderlinePosition(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUnderlinePositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -161,7 +161,7 @@ public open class Font internal constructor() : Resource() {
    * different from the value returned by this function. Use it only as rough estimate.
    */
   @JvmOverloads
-  public fun getUnderlineThickness(fontSize: Int = 16): Float {
+  public final fun getUnderlineThickness(fontSize: Int = 16): Float {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUnderlineThicknessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -170,7 +170,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns font family name.
    */
-  public fun getFontName(): String {
+  public final fun getFontName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -179,7 +179,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns font style name.
    */
-  public fun getFontStyleName(): String {
+  public final fun getFontStyleName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontStyleNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -189,7 +189,7 @@ public open class Font internal constructor() : Resource() {
    * Returns [Dictionary] with OpenType font name strings (localized font names, version,
    * description, license information, sample text, etc.).
    */
-  public fun getOtNameStrings(): Dictionary<Any?, Any?> {
+  public final fun getOtNameStrings(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOtNameStringsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -198,7 +198,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns font style flags, see [TextServer.FontStyle].
    */
-  public fun getFontStyle(): TextServer.FontStyle {
+  public final fun getFontStyle(): TextServer.FontStyle {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontStylePtr, LONG)
     return FontStyleValue(TransferContext.readReturnValue(LONG) as Long)
@@ -208,7 +208,7 @@ public open class Font internal constructor() : Resource() {
    * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
    * `400`, bold font weight is `700`.
    */
-  public fun getFontWeight(): Int {
+  public final fun getFontWeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontWeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -218,7 +218,7 @@ public open class Font internal constructor() : Resource() {
    * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
    * and `200&#37;`.
    */
-  public fun getFontStretch(): Int {
+  public final fun getFontStretch(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontStretchPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -227,7 +227,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns the spacing for the given `type` (see [TextServer.SpacingType]).
    */
-  public fun getSpacing(spacing: TextServer.SpacingType): Int {
+  public final fun getSpacing(spacing: TextServer.SpacingType): Int {
     TransferContext.writeArguments(LONG to spacing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -238,7 +238,7 @@ public open class Font internal constructor() : Resource() {
    * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature
    * tags[/url].
    */
-  public fun getOpentypeFeatures(): Dictionary<Any?, Any?> {
+  public final fun getOpentypeFeatures(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOpentypeFeaturesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -247,7 +247,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Sets LRU cache capacity for `draw_*` methods.
    */
-  public fun setCacheCapacity(singleLine: Int, multiLine: Int): Unit {
+  public final fun setCacheCapacity(singleLine: Int, multiLine: Int): Unit {
     TransferContext.writeArguments(LONG to singleLine.toLong(), LONG to multiLine.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCacheCapacityPtr, NIL)
   }
@@ -277,7 +277,7 @@ public open class Font internal constructor() : Resource() {
    * from the value returned by [getHeight].
    */
   @JvmOverloads
-  public fun getStringSize(
+  public final fun getStringSize(
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Float = -1.0f,
@@ -297,7 +297,7 @@ public open class Font internal constructor() : Resource() {
    * See also [drawMultilineString].
    */
   @JvmOverloads
-  public fun getMultilineStringSize(
+  public final fun getMultilineStringSize(
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
     width: Float = -1.0f,
@@ -320,7 +320,7 @@ public open class Font internal constructor() : Resource() {
    * See also [CanvasItem.drawString].
    */
   @JvmOverloads
-  public fun drawString(
+  public final fun drawString(
     canvasItem: RID,
     pos: Vector2,
     text: String,
@@ -344,7 +344,7 @@ public open class Font internal constructor() : Resource() {
    * See also [CanvasItem.drawMultilineString].
    */
   @JvmOverloads
-  public fun drawMultilineString(
+  public final fun drawMultilineString(
     canvasItem: RID,
     pos: Vector2,
     text: String,
@@ -369,7 +369,7 @@ public open class Font internal constructor() : Resource() {
    * See also [CanvasItem.drawStringOutline].
    */
   @JvmOverloads
-  public fun drawStringOutline(
+  public final fun drawStringOutline(
     canvasItem: RID,
     pos: Vector2,
     text: String,
@@ -394,7 +394,7 @@ public open class Font internal constructor() : Resource() {
    * See also [CanvasItem.drawMultilineStringOutline].
    */
   @JvmOverloads
-  public fun drawMultilineStringOutline(
+  public final fun drawMultilineStringOutline(
     canvasItem: RID,
     pos: Vector2,
     text: String,
@@ -419,7 +419,7 @@ public open class Font internal constructor() : Resource() {
    * [getStringSize] or [TextLine] instead. The height returned is the font height (see also
    * [getHeight]) and has no relation to the glyph height.
    */
-  public fun getCharSize(char: Long, fontSize: Int): Vector2 {
+  public final fun getCharSize(char: Long, fontSize: Int): Vector2 {
     TransferContext.writeArguments(LONG to char, LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCharSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -433,7 +433,7 @@ public open class Font internal constructor() : Resource() {
    * [TextLine] instead.
    */
   @JvmOverloads
-  public fun drawChar(
+  public final fun drawChar(
     canvasItem: RID,
     pos: Vector2,
     char: Long,
@@ -453,7 +453,7 @@ public open class Font internal constructor() : Resource() {
    * [TextLine] instead.
    */
   @JvmOverloads
-  public fun drawCharOutline(
+  public final fun drawCharOutline(
     canvasItem: RID,
     pos: Vector2,
     char: Long,
@@ -469,7 +469,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns `true` if a Unicode [char] is available in the font.
    */
-  public fun hasChar(char: Long): Boolean {
+  public final fun hasChar(char: Long): Boolean {
     TransferContext.writeArguments(LONG to char)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCharPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -480,7 +480,7 @@ public open class Font internal constructor() : Resource() {
    * If a given character is included in more than one font data source, it appears only once in the
    * returned string.
    */
-  public fun getSupportedChars(): String {
+  public final fun getSupportedChars(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportedCharsPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -490,7 +490,7 @@ public open class Font internal constructor() : Resource() {
    * Returns `true`, if font supports given language
    * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
-  public fun isLanguageSupported(language: String): Boolean {
+  public final fun isLanguageSupported(language: String): Boolean {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.isLanguageSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -500,7 +500,7 @@ public open class Font internal constructor() : Resource() {
    * Returns `true`, if font supports given script ([url=https://en.wikipedia.org/wiki/ISO_15924]ISO
    * 15924[/url] code).
    */
-  public fun isScriptSupported(script: String): Boolean {
+  public final fun isScriptSupported(script: String): Boolean {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.isScriptSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -509,7 +509,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns list of OpenType features supported by font.
    */
-  public fun getSupportedFeatureList(): Dictionary<Any?, Any?> {
+  public final fun getSupportedFeatureList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportedFeatureListPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -536,7 +536,7 @@ public open class Font internal constructor() : Resource() {
    * **Note:** To set and get variation coordinates of a [FontVariation], use
    * [FontVariation.variationOpentype].
    */
-  public fun getSupportedVariationList(): Dictionary<Any?, Any?> {
+  public final fun getSupportedVariationList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportedVariationListPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -545,7 +545,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns number of faces in the TrueType / OpenType collection.
    */
-  public fun getFaceCount(): Long {
+  public final fun getFaceCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFaceCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)

@@ -32,7 +32,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   /**
    * Set the total amount of streams that will be played back synchronized.
    */
-  public var streamCount: Int
+  public final inline var streamCount: Int
     @JvmName("streamCountProperty")
     get() = getStreamCount()
     @JvmName("streamCountProperty")
@@ -44,12 +44,12 @@ public open class AudioStreamSynchronized : AudioStream() {
     callConstructor(ENGINECLASS_AUDIOSTREAMSYNCHRONIZED, scriptIndex)
   }
 
-  public fun setStreamCount(streamCount: Int): Unit {
+  public final fun setStreamCount(streamCount: Int): Unit {
     TransferContext.writeArguments(LONG to streamCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
   }
 
-  public fun getStreamCount(): Int {
+  public final fun getStreamCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -58,7 +58,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   /**
    * Set one of the synchronized streams, by index.
    */
-  public fun setSyncStream(streamIndex: Int, audioStream: AudioStream?): Unit {
+  public final fun setSyncStream(streamIndex: Int, audioStream: AudioStream?): Unit {
     TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
     TransferContext.callMethod(rawPtr, MethodBindings.setSyncStreamPtr, NIL)
   }
@@ -66,7 +66,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   /**
    * Get one of the synchronized streams, by index.
    */
-  public fun getSyncStream(streamIndex: Int): AudioStream? {
+  public final fun getSyncStream(streamIndex: Int): AudioStream? {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSyncStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
@@ -75,7 +75,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   /**
    * Set the volume of one of the synchronized streams, by index.
    */
-  public fun setSyncStreamVolume(streamIndex: Int, volumeDb: Float): Unit {
+  public final fun setSyncStreamVolume(streamIndex: Int, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to streamIndex.toLong(), DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setSyncStreamVolumePtr, NIL)
   }
@@ -83,7 +83,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   /**
    * Get the volume of one of the synchronized streams, by index.
    */
-  public fun getSyncStreamVolume(streamIndex: Int): Float {
+  public final fun getSyncStreamVolume(streamIndex: Int): Float {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSyncStreamVolumePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

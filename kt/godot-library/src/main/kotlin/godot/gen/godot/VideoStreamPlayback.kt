@@ -129,7 +129,7 @@ public open class VideoStreamPlayback : Resource() {
    * index [offset] in the array. Returns the number of audio frames rendered, or -1 on error.
    */
   @JvmOverloads
-  public fun mixAudio(
+  public final fun mixAudio(
     numFrames: Int,
     buffer: PackedFloat32Array = PackedFloat32Array(),
     offset: Int = 0,

@@ -29,7 +29,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   /**
    * If `true`, the playlist will shuffle each time playback starts and each time it loops.
    */
-  public var shuffle: Boolean
+  public final inline var shuffle: Boolean
     @JvmName("shuffleProperty")
     get() = getShuffle()
     @JvmName("shuffleProperty")
@@ -41,7 +41,7 @@ public open class AudioStreamPlaylist : AudioStream() {
    * If `true`, the playlist will loop, otherwise the playlist will end when the last stream is
    * finished.
    */
-  public var loop: Boolean
+  public final inline var loop: Boolean
     @JvmName("loopProperty")
     get() = hasLoop()
     @JvmName("loopProperty")
@@ -53,7 +53,7 @@ public open class AudioStreamPlaylist : AudioStream() {
    * Fade time used when a stream ends, when going to the next one. Streams are expected to have an
    * extra bit of audio after the end to help with fading.
    */
-  public var fadeTime: Float
+  public final inline var fadeTime: Float
     @JvmName("fadeTimeProperty")
     get() = getFadeTime()
     @JvmName("fadeTimeProperty")
@@ -64,7 +64,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   /**
    * Amount of streams in the playlist.
    */
-  public var streamCount: Int
+  public final inline var streamCount: Int
     @JvmName("streamCountProperty")
     get() = getStreamCount()
     @JvmName("streamCountProperty")
@@ -72,7 +72,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setStreamCount(value)
     }
 
-  public var stream0: AudioStream?
+  public final inline var stream0: AudioStream?
     @JvmName("stream0Property")
     get() = getListStream(0)
     @JvmName("stream0Property")
@@ -80,7 +80,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(0, value)
     }
 
-  public var stream1: AudioStream?
+  public final inline var stream1: AudioStream?
     @JvmName("stream1Property")
     get() = getListStream(1)
     @JvmName("stream1Property")
@@ -88,7 +88,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(1, value)
     }
 
-  public var stream2: AudioStream?
+  public final inline var stream2: AudioStream?
     @JvmName("stream2Property")
     get() = getListStream(2)
     @JvmName("stream2Property")
@@ -96,7 +96,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(2, value)
     }
 
-  public var stream3: AudioStream?
+  public final inline var stream3: AudioStream?
     @JvmName("stream3Property")
     get() = getListStream(3)
     @JvmName("stream3Property")
@@ -104,7 +104,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(3, value)
     }
 
-  public var stream4: AudioStream?
+  public final inline var stream4: AudioStream?
     @JvmName("stream4Property")
     get() = getListStream(4)
     @JvmName("stream4Property")
@@ -112,7 +112,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(4, value)
     }
 
-  public var stream5: AudioStream?
+  public final inline var stream5: AudioStream?
     @JvmName("stream5Property")
     get() = getListStream(5)
     @JvmName("stream5Property")
@@ -120,7 +120,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(5, value)
     }
 
-  public var stream6: AudioStream?
+  public final inline var stream6: AudioStream?
     @JvmName("stream6Property")
     get() = getListStream(6)
     @JvmName("stream6Property")
@@ -128,7 +128,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(6, value)
     }
 
-  public var stream7: AudioStream?
+  public final inline var stream7: AudioStream?
     @JvmName("stream7Property")
     get() = getListStream(7)
     @JvmName("stream7Property")
@@ -136,7 +136,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(7, value)
     }
 
-  public var stream8: AudioStream?
+  public final inline var stream8: AudioStream?
     @JvmName("stream8Property")
     get() = getListStream(8)
     @JvmName("stream8Property")
@@ -144,7 +144,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(8, value)
     }
 
-  public var stream9: AudioStream?
+  public final inline var stream9: AudioStream?
     @JvmName("stream9Property")
     get() = getListStream(9)
     @JvmName("stream9Property")
@@ -152,7 +152,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(9, value)
     }
 
-  public var stream10: AudioStream?
+  public final inline var stream10: AudioStream?
     @JvmName("stream10Property")
     get() = getListStream(10)
     @JvmName("stream10Property")
@@ -160,7 +160,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(10, value)
     }
 
-  public var stream11: AudioStream?
+  public final inline var stream11: AudioStream?
     @JvmName("stream11Property")
     get() = getListStream(11)
     @JvmName("stream11Property")
@@ -168,7 +168,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(11, value)
     }
 
-  public var stream12: AudioStream?
+  public final inline var stream12: AudioStream?
     @JvmName("stream12Property")
     get() = getListStream(12)
     @JvmName("stream12Property")
@@ -176,7 +176,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(12, value)
     }
 
-  public var stream13: AudioStream?
+  public final inline var stream13: AudioStream?
     @JvmName("stream13Property")
     get() = getListStream(13)
     @JvmName("stream13Property")
@@ -184,7 +184,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(13, value)
     }
 
-  public var stream14: AudioStream?
+  public final inline var stream14: AudioStream?
     @JvmName("stream14Property")
     get() = getListStream(14)
     @JvmName("stream14Property")
@@ -192,7 +192,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(14, value)
     }
 
-  public var stream15: AudioStream?
+  public final inline var stream15: AudioStream?
     @JvmName("stream15Property")
     get() = getListStream(15)
     @JvmName("stream15Property")
@@ -200,7 +200,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(15, value)
     }
 
-  public var stream16: AudioStream?
+  public final inline var stream16: AudioStream?
     @JvmName("stream16Property")
     get() = getListStream(16)
     @JvmName("stream16Property")
@@ -208,7 +208,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(16, value)
     }
 
-  public var stream17: AudioStream?
+  public final inline var stream17: AudioStream?
     @JvmName("stream17Property")
     get() = getListStream(17)
     @JvmName("stream17Property")
@@ -216,7 +216,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(17, value)
     }
 
-  public var stream18: AudioStream?
+  public final inline var stream18: AudioStream?
     @JvmName("stream18Property")
     get() = getListStream(18)
     @JvmName("stream18Property")
@@ -224,7 +224,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(18, value)
     }
 
-  public var stream19: AudioStream?
+  public final inline var stream19: AudioStream?
     @JvmName("stream19Property")
     get() = getListStream(19)
     @JvmName("stream19Property")
@@ -232,7 +232,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(19, value)
     }
 
-  public var stream20: AudioStream?
+  public final inline var stream20: AudioStream?
     @JvmName("stream20Property")
     get() = getListStream(20)
     @JvmName("stream20Property")
@@ -240,7 +240,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(20, value)
     }
 
-  public var stream21: AudioStream?
+  public final inline var stream21: AudioStream?
     @JvmName("stream21Property")
     get() = getListStream(21)
     @JvmName("stream21Property")
@@ -248,7 +248,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(21, value)
     }
 
-  public var stream22: AudioStream?
+  public final inline var stream22: AudioStream?
     @JvmName("stream22Property")
     get() = getListStream(22)
     @JvmName("stream22Property")
@@ -256,7 +256,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(22, value)
     }
 
-  public var stream23: AudioStream?
+  public final inline var stream23: AudioStream?
     @JvmName("stream23Property")
     get() = getListStream(23)
     @JvmName("stream23Property")
@@ -264,7 +264,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(23, value)
     }
 
-  public var stream24: AudioStream?
+  public final inline var stream24: AudioStream?
     @JvmName("stream24Property")
     get() = getListStream(24)
     @JvmName("stream24Property")
@@ -272,7 +272,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(24, value)
     }
 
-  public var stream25: AudioStream?
+  public final inline var stream25: AudioStream?
     @JvmName("stream25Property")
     get() = getListStream(25)
     @JvmName("stream25Property")
@@ -280,7 +280,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(25, value)
     }
 
-  public var stream26: AudioStream?
+  public final inline var stream26: AudioStream?
     @JvmName("stream26Property")
     get() = getListStream(26)
     @JvmName("stream26Property")
@@ -288,7 +288,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(26, value)
     }
 
-  public var stream27: AudioStream?
+  public final inline var stream27: AudioStream?
     @JvmName("stream27Property")
     get() = getListStream(27)
     @JvmName("stream27Property")
@@ -296,7 +296,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(27, value)
     }
 
-  public var stream28: AudioStream?
+  public final inline var stream28: AudioStream?
     @JvmName("stream28Property")
     get() = getListStream(28)
     @JvmName("stream28Property")
@@ -304,7 +304,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(28, value)
     }
 
-  public var stream29: AudioStream?
+  public final inline var stream29: AudioStream?
     @JvmName("stream29Property")
     get() = getListStream(29)
     @JvmName("stream29Property")
@@ -312,7 +312,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(29, value)
     }
 
-  public var stream30: AudioStream?
+  public final inline var stream30: AudioStream?
     @JvmName("stream30Property")
     get() = getListStream(30)
     @JvmName("stream30Property")
@@ -320,7 +320,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(30, value)
     }
 
-  public var stream31: AudioStream?
+  public final inline var stream31: AudioStream?
     @JvmName("stream31Property")
     get() = getListStream(31)
     @JvmName("stream31Property")
@@ -328,7 +328,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(31, value)
     }
 
-  public var stream32: AudioStream?
+  public final inline var stream32: AudioStream?
     @JvmName("stream32Property")
     get() = getListStream(32)
     @JvmName("stream32Property")
@@ -336,7 +336,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(32, value)
     }
 
-  public var stream33: AudioStream?
+  public final inline var stream33: AudioStream?
     @JvmName("stream33Property")
     get() = getListStream(33)
     @JvmName("stream33Property")
@@ -344,7 +344,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(33, value)
     }
 
-  public var stream34: AudioStream?
+  public final inline var stream34: AudioStream?
     @JvmName("stream34Property")
     get() = getListStream(34)
     @JvmName("stream34Property")
@@ -352,7 +352,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(34, value)
     }
 
-  public var stream35: AudioStream?
+  public final inline var stream35: AudioStream?
     @JvmName("stream35Property")
     get() = getListStream(35)
     @JvmName("stream35Property")
@@ -360,7 +360,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(35, value)
     }
 
-  public var stream36: AudioStream?
+  public final inline var stream36: AudioStream?
     @JvmName("stream36Property")
     get() = getListStream(36)
     @JvmName("stream36Property")
@@ -368,7 +368,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(36, value)
     }
 
-  public var stream37: AudioStream?
+  public final inline var stream37: AudioStream?
     @JvmName("stream37Property")
     get() = getListStream(37)
     @JvmName("stream37Property")
@@ -376,7 +376,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(37, value)
     }
 
-  public var stream38: AudioStream?
+  public final inline var stream38: AudioStream?
     @JvmName("stream38Property")
     get() = getListStream(38)
     @JvmName("stream38Property")
@@ -384,7 +384,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(38, value)
     }
 
-  public var stream39: AudioStream?
+  public final inline var stream39: AudioStream?
     @JvmName("stream39Property")
     get() = getListStream(39)
     @JvmName("stream39Property")
@@ -392,7 +392,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(39, value)
     }
 
-  public var stream40: AudioStream?
+  public final inline var stream40: AudioStream?
     @JvmName("stream40Property")
     get() = getListStream(40)
     @JvmName("stream40Property")
@@ -400,7 +400,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(40, value)
     }
 
-  public var stream41: AudioStream?
+  public final inline var stream41: AudioStream?
     @JvmName("stream41Property")
     get() = getListStream(41)
     @JvmName("stream41Property")
@@ -408,7 +408,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(41, value)
     }
 
-  public var stream42: AudioStream?
+  public final inline var stream42: AudioStream?
     @JvmName("stream42Property")
     get() = getListStream(42)
     @JvmName("stream42Property")
@@ -416,7 +416,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(42, value)
     }
 
-  public var stream43: AudioStream?
+  public final inline var stream43: AudioStream?
     @JvmName("stream43Property")
     get() = getListStream(43)
     @JvmName("stream43Property")
@@ -424,7 +424,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(43, value)
     }
 
-  public var stream44: AudioStream?
+  public final inline var stream44: AudioStream?
     @JvmName("stream44Property")
     get() = getListStream(44)
     @JvmName("stream44Property")
@@ -432,7 +432,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(44, value)
     }
 
-  public var stream45: AudioStream?
+  public final inline var stream45: AudioStream?
     @JvmName("stream45Property")
     get() = getListStream(45)
     @JvmName("stream45Property")
@@ -440,7 +440,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(45, value)
     }
 
-  public var stream46: AudioStream?
+  public final inline var stream46: AudioStream?
     @JvmName("stream46Property")
     get() = getListStream(46)
     @JvmName("stream46Property")
@@ -448,7 +448,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(46, value)
     }
 
-  public var stream47: AudioStream?
+  public final inline var stream47: AudioStream?
     @JvmName("stream47Property")
     get() = getListStream(47)
     @JvmName("stream47Property")
@@ -456,7 +456,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(47, value)
     }
 
-  public var stream48: AudioStream?
+  public final inline var stream48: AudioStream?
     @JvmName("stream48Property")
     get() = getListStream(48)
     @JvmName("stream48Property")
@@ -464,7 +464,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(48, value)
     }
 
-  public var stream49: AudioStream?
+  public final inline var stream49: AudioStream?
     @JvmName("stream49Property")
     get() = getListStream(49)
     @JvmName("stream49Property")
@@ -472,7 +472,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(49, value)
     }
 
-  public var stream50: AudioStream?
+  public final inline var stream50: AudioStream?
     @JvmName("stream50Property")
     get() = getListStream(50)
     @JvmName("stream50Property")
@@ -480,7 +480,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(50, value)
     }
 
-  public var stream51: AudioStream?
+  public final inline var stream51: AudioStream?
     @JvmName("stream51Property")
     get() = getListStream(51)
     @JvmName("stream51Property")
@@ -488,7 +488,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(51, value)
     }
 
-  public var stream52: AudioStream?
+  public final inline var stream52: AudioStream?
     @JvmName("stream52Property")
     get() = getListStream(52)
     @JvmName("stream52Property")
@@ -496,7 +496,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(52, value)
     }
 
-  public var stream53: AudioStream?
+  public final inline var stream53: AudioStream?
     @JvmName("stream53Property")
     get() = getListStream(53)
     @JvmName("stream53Property")
@@ -504,7 +504,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(53, value)
     }
 
-  public var stream54: AudioStream?
+  public final inline var stream54: AudioStream?
     @JvmName("stream54Property")
     get() = getListStream(54)
     @JvmName("stream54Property")
@@ -512,7 +512,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(54, value)
     }
 
-  public var stream55: AudioStream?
+  public final inline var stream55: AudioStream?
     @JvmName("stream55Property")
     get() = getListStream(55)
     @JvmName("stream55Property")
@@ -520,7 +520,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(55, value)
     }
 
-  public var stream56: AudioStream?
+  public final inline var stream56: AudioStream?
     @JvmName("stream56Property")
     get() = getListStream(56)
     @JvmName("stream56Property")
@@ -528,7 +528,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(56, value)
     }
 
-  public var stream57: AudioStream?
+  public final inline var stream57: AudioStream?
     @JvmName("stream57Property")
     get() = getListStream(57)
     @JvmName("stream57Property")
@@ -536,7 +536,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(57, value)
     }
 
-  public var stream58: AudioStream?
+  public final inline var stream58: AudioStream?
     @JvmName("stream58Property")
     get() = getListStream(58)
     @JvmName("stream58Property")
@@ -544,7 +544,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(58, value)
     }
 
-  public var stream59: AudioStream?
+  public final inline var stream59: AudioStream?
     @JvmName("stream59Property")
     get() = getListStream(59)
     @JvmName("stream59Property")
@@ -552,7 +552,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(59, value)
     }
 
-  public var stream60: AudioStream?
+  public final inline var stream60: AudioStream?
     @JvmName("stream60Property")
     get() = getListStream(60)
     @JvmName("stream60Property")
@@ -560,7 +560,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(60, value)
     }
 
-  public var stream61: AudioStream?
+  public final inline var stream61: AudioStream?
     @JvmName("stream61Property")
     get() = getListStream(61)
     @JvmName("stream61Property")
@@ -568,7 +568,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(61, value)
     }
 
-  public var stream62: AudioStream?
+  public final inline var stream62: AudioStream?
     @JvmName("stream62Property")
     get() = getListStream(62)
     @JvmName("stream62Property")
@@ -576,7 +576,7 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(62, value)
     }
 
-  public var stream63: AudioStream?
+  public final inline var stream63: AudioStream?
     @JvmName("stream63Property")
     get() = getListStream(63)
     @JvmName("stream63Property")
@@ -588,12 +588,12 @@ public open class AudioStreamPlaylist : AudioStream() {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYLIST, scriptIndex)
   }
 
-  public fun setStreamCount(streamCount: Int): Unit {
+  public final fun setStreamCount(streamCount: Int): Unit {
     TransferContext.writeArguments(LONG to streamCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
   }
 
-  public fun getStreamCount(): Int {
+  public final fun getStreamCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -602,7 +602,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   /**
    * Returns the BPM of the playlist, which can vary depending on the clip being played.
    */
-  public fun getBpm(): Double {
+  public final fun getBpm(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -611,7 +611,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   /**
    * Sets the stream at playback position index.
    */
-  public fun setListStream(streamIndex: Int, audioStream: AudioStream?): Unit {
+  public final fun setListStream(streamIndex: Int, audioStream: AudioStream?): Unit {
     TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
     TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
   }
@@ -619,40 +619,40 @@ public open class AudioStreamPlaylist : AudioStream() {
   /**
    * Returns the stream at playback position index.
    */
-  public fun getListStream(streamIndex: Int): AudioStream? {
+  public final fun getListStream(streamIndex: Int): AudioStream? {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
   }
 
-  public fun setShuffle(shuffle: Boolean): Unit {
+  public final fun setShuffle(shuffle: Boolean): Unit {
     TransferContext.writeArguments(BOOL to shuffle)
     TransferContext.callMethod(rawPtr, MethodBindings.setShufflePtr, NIL)
   }
 
-  public fun getShuffle(): Boolean {
+  public final fun getShuffle(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShufflePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setFadeTime(dec: Float): Unit {
+  public final fun setFadeTime(dec: Float): Unit {
     TransferContext.writeArguments(DOUBLE to dec.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFadeTimePtr, NIL)
   }
 
-  public fun getFadeTime(): Float {
+  public final fun getFadeTime(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFadeTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setLoop(loop: Boolean): Unit {
+  public final fun setLoop(loop: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
-  public fun hasLoop(): Boolean {
+  public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

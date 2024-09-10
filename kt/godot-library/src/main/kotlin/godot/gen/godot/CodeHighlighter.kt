@@ -38,7 +38,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the color for numbers.
    */
   @CoreTypeLocalCopy
-  public var numberColor: Color
+  public final inline var numberColor: Color
     @JvmName("numberColorProperty")
     get() = getNumberColor()
     @JvmName("numberColorProperty")
@@ -50,7 +50,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the color for symbols.
    */
   @CoreTypeLocalCopy
-  public var symbolColor: Color
+  public final inline var symbolColor: Color
     @JvmName("symbolColorProperty")
     get() = getSymbolColor()
     @JvmName("symbolColorProperty")
@@ -62,7 +62,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets color for functions. A function is a non-keyword string followed by a '('.
    */
   @CoreTypeLocalCopy
-  public var functionColor: Color
+  public final inline var functionColor: Color
     @JvmName("functionColorProperty")
     get() = getFunctionColor()
     @JvmName("functionColorProperty")
@@ -75,7 +75,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * proceeded with a '.'.
    */
   @CoreTypeLocalCopy
-  public var memberVariableColor: Color
+  public final inline var memberVariableColor: Color
     @JvmName("memberVariableColorProperty")
     get() = getMemberVariableColor()
     @JvmName("memberVariableColorProperty")
@@ -87,7 +87,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the keyword colors. All existing keywords will be removed. The [Dictionary] key is the
    * keyword. The value is the keyword color.
    */
-  public var keywordColors: Dictionary<Any?, Any?>
+  public final inline var keywordColors: Dictionary<Any?, Any?>
     @JvmName("keywordColorsProperty")
     get() = getKeywordColors()
     @JvmName("keywordColorsProperty")
@@ -99,7 +99,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the member keyword colors. All existing member keyword will be removed. The [Dictionary]
    * key is the member keyword. The value is the member keyword color.
    */
-  public var memberKeywordColors: Dictionary<Any?, Any?>
+  public final inline var memberKeywordColors: Dictionary<Any?, Any?>
     @JvmName("memberKeywordColorsProperty")
     get() = getMemberKeywordColors()
     @JvmName("memberKeywordColorsProperty")
@@ -111,7 +111,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the color regions. All existing regions will be removed. The [Dictionary] key is the
    * region start and end key, separated by a space. The value is the region color.
    */
-  public var colorRegions: Dictionary<Any?, Any?>
+  public final inline var colorRegions: Dictionary<Any?, Any?>
     @JvmName("colorRegionsProperty")
     get() = getColorRegions()
     @JvmName("colorRegionsProperty")
@@ -141,7 +141,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun numberColorMutate(block: Color.() -> Unit): Color = numberColor.apply{
+  public final fun numberColorMutate(block: Color.() -> Unit): Color = numberColor.apply{
       block(this)
       numberColor = this
   }
@@ -165,7 +165,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun symbolColorMutate(block: Color.() -> Unit): Color = symbolColor.apply{
+  public final fun symbolColorMutate(block: Color.() -> Unit): Color = symbolColor.apply{
       block(this)
       symbolColor = this
   }
@@ -189,7 +189,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun functionColorMutate(block: Color.() -> Unit): Color = functionColor.apply{
+  public final fun functionColorMutate(block: Color.() -> Unit): Color = functionColor.apply{
       block(this)
       functionColor = this
   }
@@ -214,7 +214,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun memberVariableColorMutate(block: Color.() -> Unit): Color =
+  public final fun memberVariableColorMutate(block: Color.() -> Unit): Color =
       memberVariableColor.apply{
       block(this)
       memberVariableColor = this
@@ -225,7 +225,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets the color for a keyword.
    * The keyword cannot contain any symbols except '_'.
    */
-  public fun addKeywordColor(keyword: String, color: Color): Unit {
+  public final fun addKeywordColor(keyword: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to keyword, COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.addKeywordColorPtr, NIL)
   }
@@ -233,7 +233,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes the keyword.
    */
-  public fun removeKeywordColor(keyword: String): Unit {
+  public final fun removeKeywordColor(keyword: String): Unit {
     TransferContext.writeArguments(STRING to keyword)
     TransferContext.callMethod(rawPtr, MethodBindings.removeKeywordColorPtr, NIL)
   }
@@ -241,7 +241,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Returns `true` if the keyword exists, else `false`.
    */
-  public fun hasKeywordColor(keyword: String): Boolean {
+  public final fun hasKeywordColor(keyword: String): Boolean {
     TransferContext.writeArguments(STRING to keyword)
     TransferContext.callMethod(rawPtr, MethodBindings.hasKeywordColorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -250,13 +250,13 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Returns the color for a keyword.
    */
-  public fun getKeywordColor(keyword: String): Color {
+  public final fun getKeywordColor(keyword: String): Color {
     TransferContext.writeArguments(STRING to keyword)
     TransferContext.callMethod(rawPtr, MethodBindings.getKeywordColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setKeywordColors(keywords: Dictionary<Any?, Any?>): Unit {
+  public final fun setKeywordColors(keywords: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to keywords)
     TransferContext.callMethod(rawPtr, MethodBindings.setKeywordColorsPtr, NIL)
   }
@@ -264,12 +264,12 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes all keywords.
    */
-  public fun clearKeywordColors(): Unit {
+  public final fun clearKeywordColors(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearKeywordColorsPtr, NIL)
   }
 
-  public fun getKeywordColors(): Dictionary<Any?, Any?> {
+  public final fun getKeywordColors(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getKeywordColorsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -280,7 +280,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * The member keyword cannot contain any symbols except '_'.
    * It will not be highlighted if preceded by a '.'.
    */
-  public fun addMemberKeywordColor(memberKeyword: String, color: Color): Unit {
+  public final fun addMemberKeywordColor(memberKeyword: String, color: Color): Unit {
     TransferContext.writeArguments(STRING to memberKeyword, COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.addMemberKeywordColorPtr, NIL)
   }
@@ -288,7 +288,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes the member keyword.
    */
-  public fun removeMemberKeywordColor(memberKeyword: String): Unit {
+  public final fun removeMemberKeywordColor(memberKeyword: String): Unit {
     TransferContext.writeArguments(STRING to memberKeyword)
     TransferContext.callMethod(rawPtr, MethodBindings.removeMemberKeywordColorPtr, NIL)
   }
@@ -296,7 +296,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Returns `true` if the member keyword exists, else `false`.
    */
-  public fun hasMemberKeywordColor(memberKeyword: String): Boolean {
+  public final fun hasMemberKeywordColor(memberKeyword: String): Boolean {
     TransferContext.writeArguments(STRING to memberKeyword)
     TransferContext.callMethod(rawPtr, MethodBindings.hasMemberKeywordColorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -305,13 +305,13 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Returns the color for a member keyword.
    */
-  public fun getMemberKeywordColor(memberKeyword: String): Color {
+  public final fun getMemberKeywordColor(memberKeyword: String): Color {
     TransferContext.writeArguments(STRING to memberKeyword)
     TransferContext.callMethod(rawPtr, MethodBindings.getMemberKeywordColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setMemberKeywordColors(memberKeyword: Dictionary<Any?, Any?>): Unit {
+  public final fun setMemberKeywordColors(memberKeyword: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to memberKeyword)
     TransferContext.callMethod(rawPtr, MethodBindings.setMemberKeywordColorsPtr, NIL)
   }
@@ -319,12 +319,12 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes all member keywords.
    */
-  public fun clearMemberKeywordColors(): Unit {
+  public final fun clearMemberKeywordColors(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearMemberKeywordColorsPtr, NIL)
   }
 
-  public fun getMemberKeywordColors(): Dictionary<Any?, Any?> {
+  public final fun getMemberKeywordColors(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMemberKeywordColorsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -337,7 +337,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * next line.
    */
   @JvmOverloads
-  public fun addColorRegion(
+  public final fun addColorRegion(
     startKey: String,
     endKey: String,
     color: Color,
@@ -350,7 +350,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes the color region that uses that start key.
    */
-  public fun removeColorRegion(startKey: String): Unit {
+  public final fun removeColorRegion(startKey: String): Unit {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, MethodBindings.removeColorRegionPtr, NIL)
   }
@@ -358,13 +358,13 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Returns `true` if the start key exists, else `false`.
    */
-  public fun hasColorRegion(startKey: String): Boolean {
+  public final fun hasColorRegion(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, MethodBindings.hasColorRegionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setColorRegions(colorRegions: Dictionary<Any?, Any?>): Unit {
+  public final fun setColorRegions(colorRegions: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to colorRegions)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorRegionsPtr, NIL)
   }
@@ -372,56 +372,56 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Removes all color regions.
    */
-  public fun clearColorRegions(): Unit {
+  public final fun clearColorRegions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearColorRegionsPtr, NIL)
   }
 
-  public fun getColorRegions(): Dictionary<Any?, Any?> {
+  public final fun getColorRegions(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorRegionsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
-  public fun setFunctionColor(color: Color): Unit {
+  public final fun setFunctionColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setFunctionColorPtr, NIL)
   }
 
-  public fun getFunctionColor(): Color {
+  public final fun getFunctionColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFunctionColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setNumberColor(color: Color): Unit {
+  public final fun setNumberColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setNumberColorPtr, NIL)
   }
 
-  public fun getNumberColor(): Color {
+  public final fun getNumberColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNumberColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setSymbolColor(color: Color): Unit {
+  public final fun setSymbolColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setSymbolColorPtr, NIL)
   }
 
-  public fun getSymbolColor(): Color {
+  public final fun getSymbolColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSymbolColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setMemberVariableColor(color: Color): Unit {
+  public final fun setMemberVariableColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setMemberVariableColorPtr, NIL)
   }
 
-  public fun getMemberVariableColor(): Color {
+  public final fun getMemberVariableColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMemberVariableColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)

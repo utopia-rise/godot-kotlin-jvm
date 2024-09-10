@@ -78,7 +78,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * This effectively allows to have different branches of the scene tree to be managed by different
    * MultiplayerAPI, allowing for example to run both client and server in the same scene.
    */
-  public var rootPath: NodePath
+  public final inline var rootPath: NodePath
     @JvmName("rootPathProperty")
     get() = getRootPath()
     @JvmName("rootPathProperty")
@@ -90,7 +90,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * The callback to execute when when receiving authentication data sent via [sendAuth]. If the
    * [Callable] is empty (default), peers will be automatically accepted as soon as they connect.
    */
-  public var authCallback: Callable
+  public final inline var authCallback: Callable
     @JvmName("authCallbackProperty")
     get() = getAuthCallback()
     @JvmName("authCallbackProperty")
@@ -103,7 +103,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * authenticating state, after which the authentication will automatically fail. See the [signal
    * peer_authenticating] and [signal peer_authentication_failed] signals.
    */
-  public var authTimeout: Double
+  public final inline var authTimeout: Double
     @JvmName("authTimeoutProperty")
     get() = getAuthTimeout()
     @JvmName("authTimeoutProperty")
@@ -117,7 +117,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * if the serialized object comes from untrusted sources to avoid potential security threat such as
    * remote code execution.
    */
-  public var allowObjectDecoding: Boolean
+  public final inline var allowObjectDecoding: Boolean
     @JvmName("allowObjectDecodingProperty")
     get() = isObjectDecodingAllowed()
     @JvmName("allowObjectDecodingProperty")
@@ -129,7 +129,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * If `true`, the MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] refuses new incoming
    * connections.
    */
-  public var refuseNewConnections: Boolean
+  public final inline var refuseNewConnections: Boolean
     @JvmName("refuseNewConnectionsProperty")
     get() = isRefusingNewConnections()
     @JvmName("refuseNewConnectionsProperty")
@@ -147,7 +147,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * **Note:** Support for this feature may depend on the current [MultiplayerPeer] configuration.
    * See [MultiplayerPeer.isServerRelaySupported].
    */
-  public var serverRelay: Boolean
+  public final inline var serverRelay: Boolean
     @JvmName("serverRelayProperty")
     get() = isServerRelayEnabled()
     @JvmName("serverRelayProperty")
@@ -159,7 +159,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * Maximum size of each synchronization packet. Higher values increase the chance of receiving
    * full updates in a single frame, but also the chance of packet loss. See [MultiplayerSynchronizer].
    */
-  public var maxSyncPacketSize: Int
+  public final inline var maxSyncPacketSize: Int
     @JvmName("maxSyncPacketSizeProperty")
     get() = getMaxSyncPacketSize()
     @JvmName("maxSyncPacketSizeProperty")
@@ -172,7 +172,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * in a single frame, but also the chance of causing networking congestion (higher latency,
    * disconnections). See [MultiplayerSynchronizer].
    */
-  public var maxDeltaPacketSize: Int
+  public final inline var maxDeltaPacketSize: Int
     @JvmName("maxDeltaPacketSizeProperty")
     get() = getMaxDeltaPacketSize()
     @JvmName("maxDeltaPacketSizeProperty")
@@ -184,12 +184,12 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     callConstructor(ENGINECLASS_SCENEMULTIPLAYER, scriptIndex)
   }
 
-  public fun setRootPath(path: NodePath): Unit {
+  public final fun setRootPath(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setRootPathPtr, NIL)
   }
 
-  public fun getRootPath(): NodePath {
+  public final fun getRootPath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -199,7 +199,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * Clears the current SceneMultiplayer network state (you shouldn't call this unless you know what
    * you are doing).
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -208,7 +208,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * Disconnects the peer identified by [id], removing it from the list of connected peers, and
    * closing the underlying connection with it.
    */
-  public fun disconnectPeer(id: Int): Unit {
+  public final fun disconnectPeer(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.disconnectPeerPtr, NIL)
   }
@@ -216,7 +216,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   /**
    * Returns the IDs of the peers currently trying to authenticate with this [MultiplayerAPI].
    */
-  public fun getAuthenticatingPeers(): PackedInt32Array {
+  public final fun getAuthenticatingPeers(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthenticatingPeersPtr,
         PACKED_INT_32_ARRAY)
@@ -229,7 +229,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected
    * peers).
    */
-  public fun sendAuth(id: Int, `data`: PackedByteArray): GodotError {
+  public final fun sendAuth(id: Int, `data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.sendAuthPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -245,62 +245,62 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * peer_authentication_failed] signal will be emitted instead of [signal
    * MultiplayerAPI.peer_disconnected].
    */
-  public fun completeAuth(id: Int): GodotError {
+  public final fun completeAuth(id: Int): GodotError {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.completeAuthPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAuthCallback(callback: Callable): Unit {
+  public final fun setAuthCallback(callback: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.setAuthCallbackPtr, NIL)
   }
 
-  public fun getAuthCallback(): Callable {
+  public final fun getAuthCallback(): Callable {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthCallbackPtr, CALLABLE)
     return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
   }
 
-  public fun setAuthTimeout(timeout: Double): Unit {
+  public final fun setAuthTimeout(timeout: Double): Unit {
     TransferContext.writeArguments(DOUBLE to timeout)
     TransferContext.callMethod(rawPtr, MethodBindings.setAuthTimeoutPtr, NIL)
   }
 
-  public fun getAuthTimeout(): Double {
+  public final fun getAuthTimeout(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthTimeoutPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setRefuseNewConnections(refuse: Boolean): Unit {
+  public final fun setRefuseNewConnections(refuse: Boolean): Unit {
     TransferContext.writeArguments(BOOL to refuse)
     TransferContext.callMethod(rawPtr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
   }
 
-  public fun isRefusingNewConnections(): Boolean {
+  public final fun isRefusingNewConnections(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setAllowObjectDecoding(enable: Boolean): Unit {
+  public final fun setAllowObjectDecoding(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setAllowObjectDecodingPtr, NIL)
   }
 
-  public fun isObjectDecodingAllowed(): Boolean {
+  public final fun isObjectDecodingAllowed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isObjectDecodingAllowedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setServerRelayEnabled(enabled: Boolean): Unit {
+  public final fun setServerRelayEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setServerRelayEnabledPtr, NIL)
   }
 
-  public fun isServerRelayEnabled(): Boolean {
+  public final fun isServerRelayEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isServerRelayEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -311,7 +311,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * [MultiplayerPeer.setTargetPeer]). Default ID is `0`, i.e. broadcast to all peers.
    */
   @JvmOverloads
-  public fun sendBytes(
+  public final fun sendBytes(
     bytes: PackedByteArray,
     id: Int = 0,
     mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,
@@ -322,24 +322,24 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun getMaxSyncPacketSize(): Int {
+  public final fun getMaxSyncPacketSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxSyncPacketSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMaxSyncPacketSize(size: Int): Unit {
+  public final fun setMaxSyncPacketSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxSyncPacketSizePtr, NIL)
   }
 
-  public fun getMaxDeltaPacketSize(): Int {
+  public final fun getMaxDeltaPacketSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxDeltaPacketSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMaxDeltaPacketSize(size: Int): Unit {
+  public final fun setMaxDeltaPacketSize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxDeltaPacketSizePtr, NIL)
   }

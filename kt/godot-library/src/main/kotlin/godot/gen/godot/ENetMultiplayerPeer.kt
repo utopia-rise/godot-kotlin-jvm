@@ -36,7 +36,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   /**
    * The underlying [ENetConnection] created after [createClient] and [createServer].
    */
-  public val host: ENetConnection?
+  public final inline val host: ENetConnection?
     @JvmName("hostProperty")
     get() = getHost()
 
@@ -57,7 +57,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * [ERR_CANT_CREATE] if the server could not be created.
    */
   @JvmOverloads
-  public fun createServer(
+  public final fun createServer(
     port: Int,
     maxClients: Int = 32,
     maxChannels: Int = 0,
@@ -86,7 +86,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * NAT traversal techniques.
    */
   @JvmOverloads
-  public fun createClient(
+  public final fun createClient(
     address: String,
     port: Int,
     channelCount: Int = 0,
@@ -107,7 +107,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * connection process (e.g. when dealing with NAT punch-through) and for better distribution of the
    * network load (which would otherwise be more taxing on the server).
    */
-  public fun createMesh(uniqueId: Int): GodotError {
+  public final fun createMesh(uniqueId: Int): GodotError {
     TransferContext.writeArguments(LONG to uniqueId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -117,7 +117,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * Add a new remote peer with the given [peerId] connected to the given [host].
    * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
    */
-  public fun addMeshPeer(peerId: Int, host: ENetConnection?): GodotError {
+  public final fun addMeshPeer(peerId: Int, host: ENetConnection?): GodotError {
     TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
     TransferContext.callMethod(rawPtr, MethodBindings.addMeshPeerPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -128,12 +128,12 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * to all available interfaces. The given IP needs to be in IPv4 or IPv6 address format, for example:
    * `"192.168.1.1"`.
    */
-  public fun setBindIp(ip: String): Unit {
+  public final fun setBindIp(ip: String): Unit {
     TransferContext.writeArguments(STRING to ip)
     TransferContext.callMethod(rawPtr, MethodBindings.setBindIpPtr, NIL)
   }
 
-  public fun getHost(): ENetConnection? {
+  public final fun getHost(): ENetConnection? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHostPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ENetConnection?)
@@ -142,7 +142,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   /**
    * Returns the [ENetPacketPeer] associated to the given [id].
    */
-  public fun getPeer(id: Int): ENetPacketPeer? {
+  public final fun getPeer(id: Int): ENetPacketPeer? {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?)

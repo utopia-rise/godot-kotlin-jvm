@@ -27,7 +27,7 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
    * A source texture. Used if [VisualShaderNodeSample3D.source] is set to
    * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
-  public var texture: Texture3D?
+  public final inline var texture: Texture3D?
     @JvmName("textureProperty")
     get() = getTexture()
     @JvmName("textureProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE3D, scriptIndex)
   }
 
-  public fun setTexture(`value`: Texture3D?): Unit {
+  public final fun setTexture(`value`: Texture3D?): Unit {
     TransferContext.writeArguments(OBJECT to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun getTexture(): Texture3D? {
+  public final fun getTexture(): Texture3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)

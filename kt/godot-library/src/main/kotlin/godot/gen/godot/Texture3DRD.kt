@@ -27,7 +27,7 @@ public open class Texture3DRD : Texture3D() {
   /**
    * The RID of the texture object created on the [RenderingDevice].
    */
-  public var textureRdRid: RID
+  public final inline var textureRdRid: RID
     @JvmName("textureRdRidProperty")
     get() = getTextureRdRid()
     @JvmName("textureRdRidProperty")
@@ -39,12 +39,12 @@ public open class Texture3DRD : Texture3D() {
     callConstructor(ENGINECLASS_TEXTURE3DRD, scriptIndex)
   }
 
-  public fun setTextureRdRid(textureRdRid: RID): Unit {
+  public final fun setTextureRdRid(textureRdRid: RID): Unit {
     TransferContext.writeArguments(_RID to textureRdRid)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
   }
 
-  public fun getTextureRdRid(): RID {
+  public final fun getTextureRdRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

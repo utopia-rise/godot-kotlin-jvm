@@ -34,7 +34,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    * If `true`, performs the logic operation defined in [logicOp].
    */
-  public var enableLogicOp: Boolean
+  public final inline var enableLogicOp: Boolean
     @JvmName("enableLogicOpProperty")
     get() = getEnableLogicOp()
     @JvmName("enableLogicOpProperty")
@@ -45,7 +45,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    * The logic operation to perform for blending. Only effective if [enableLogicOp] is `true`.
    */
-  public var logicOp: RenderingDevice.LogicOperation
+  public final inline var logicOp: RenderingDevice.LogicOperation
     @JvmName("logicOpProperty")
     get() = getLogicOp()
     @JvmName("logicOpProperty")
@@ -57,7 +57,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
    * The constant color to blend with. See also [RenderingDevice.drawListSetBlendConstants].
    */
   @CoreTypeLocalCopy
-  public var blendConstant: Color
+  public final inline var blendConstant: Color
     @JvmName("blendConstantProperty")
     get() = getBlendConstant()
     @JvmName("blendConstantProperty")
@@ -68,7 +68,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   /**
    * The attachments that are blended together.
    */
-  public var attachments: VariantArray<RDPipelineColorBlendStateAttachment>
+  public final inline var attachments: VariantArray<RDPipelineColorBlendStateAttachment>
     @JvmName("attachmentsProperty")
     get() = getAttachments()
     @JvmName("attachmentsProperty")
@@ -98,51 +98,52 @@ public open class RDPipelineColorBlendState : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun blendConstantMutate(block: Color.() -> Unit): Color = blendConstant.apply{
+  public final fun blendConstantMutate(block: Color.() -> Unit): Color = blendConstant.apply{
       block(this)
       blendConstant = this
   }
 
 
-  public fun setEnableLogicOp(pMember: Boolean): Unit {
+  public final fun setEnableLogicOp(pMember: Boolean): Unit {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableLogicOpPtr, NIL)
   }
 
-  public fun getEnableLogicOp(): Boolean {
+  public final fun getEnableLogicOp(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableLogicOpPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setLogicOp(pMember: RenderingDevice.LogicOperation): Unit {
+  public final fun setLogicOp(pMember: RenderingDevice.LogicOperation): Unit {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setLogicOpPtr, NIL)
   }
 
-  public fun getLogicOp(): RenderingDevice.LogicOperation {
+  public final fun getLogicOp(): RenderingDevice.LogicOperation {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLogicOpPtr, LONG)
     return RenderingDevice.LogicOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setBlendConstant(pMember: Color): Unit {
+  public final fun setBlendConstant(pMember: Color): Unit {
     TransferContext.writeArguments(COLOR to pMember)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendConstantPtr, NIL)
   }
 
-  public fun getBlendConstant(): Color {
+  public final fun getBlendConstant(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendConstantPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setAttachments(attachments: VariantArray<RDPipelineColorBlendStateAttachment>): Unit {
+  public final fun setAttachments(attachments: VariantArray<RDPipelineColorBlendStateAttachment>):
+      Unit {
     TransferContext.writeArguments(ARRAY to attachments)
     TransferContext.callMethod(rawPtr, MethodBindings.setAttachmentsPtr, NIL)
   }
 
-  public fun getAttachments(): VariantArray<RDPipelineColorBlendStateAttachment> {
+  public final fun getAttachments(): VariantArray<RDPipelineColorBlendStateAttachment> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttachmentsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY,

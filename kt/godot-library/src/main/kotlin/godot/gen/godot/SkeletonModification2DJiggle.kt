@@ -48,7 +48,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * The NodePath to the node that is the target for the Jiggle modification. This node is what the
    * Jiggle chain will attempt to rotate the bone chain to.
    */
-  public var targetNodepath: NodePath
+  public final inline var targetNodepath: NodePath
     @JvmName("targetNodepathProperty")
     get() = getTargetNode()
     @JvmName("targetNodepathProperty")
@@ -59,7 +59,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * The amount of Jiggle joints in the Jiggle modification.
    */
-  public var jiggleDataChainLength: Int
+  public final inline var jiggleDataChainLength: Int
     @JvmName("jiggleDataChainLengthProperty")
     get() = getJiggleDataChainLength()
     @JvmName("jiggleDataChainLengthProperty")
@@ -71,7 +71,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * The default amount of stiffness assigned to the Jiggle joints, if they are not overridden.
    * Higher values act more like springs, quickly moving into the correct position.
    */
-  public var stiffness: Float
+  public final inline var stiffness: Float
     @JvmName("stiffnessProperty")
     get() = getStiffness()
     @JvmName("stiffnessProperty")
@@ -83,7 +83,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * The default amount of mass assigned to the Jiggle joints, if they are not overridden. Higher
    * values lead to faster movements and more overshooting.
    */
-  public var mass: Float
+  public final inline var mass: Float
     @JvmName("massProperty")
     get() = getMass()
     @JvmName("massProperty")
@@ -95,7 +95,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * The default amount of damping applied to the Jiggle joints, if they are not overridden. Higher
    * values lead to more of the calculated velocity being applied.
    */
-  public var damping: Float
+  public final inline var damping: Float
     @JvmName("dampingProperty")
     get() = getDamping()
     @JvmName("dampingProperty")
@@ -107,7 +107,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Whether the gravity vector, [gravity], should be applied to the Jiggle joints, assuming they
    * are not overriding the default settings.
    */
-  public var useGravity: Boolean
+  public final inline var useGravity: Boolean
     @JvmName("useGravityProperty")
     get() = getUseGravity()
     @JvmName("useGravityProperty")
@@ -119,7 +119,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * The default amount of gravity applied to the Jiggle joints, if they are not overridden.
    */
   @CoreTypeLocalCopy
-  public var gravity: Vector2
+  public final inline var gravity: Vector2
     @JvmName("gravityProperty")
     get() = getGravity()
     @JvmName("gravityProperty")
@@ -149,84 +149,84 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply{
+  public final fun gravityMutate(block: Vector2.() -> Unit): Vector2 = gravity.apply{
       block(this)
       gravity = this
   }
 
 
-  public fun setTargetNode(targetNodepath: NodePath): Unit {
+  public final fun setTargetNode(targetNodepath: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to targetNodepath)
     TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
   }
 
-  public fun getTargetNode(): NodePath {
+  public final fun getTargetNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setJiggleDataChainLength(length: Int): Unit {
+  public final fun setJiggleDataChainLength(length: Int): Unit {
     TransferContext.writeArguments(LONG to length.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleDataChainLengthPtr, NIL)
   }
 
-  public fun getJiggleDataChainLength(): Int {
+  public final fun getJiggleDataChainLength(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleDataChainLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setStiffness(stiffness: Float): Unit {
+  public final fun setStiffness(stiffness: Float): Unit {
     TransferContext.writeArguments(DOUBLE to stiffness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStiffnessPtr, NIL)
   }
 
-  public fun getStiffness(): Float {
+  public final fun getStiffness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setMass(mass: Float): Unit {
+  public final fun setMass(mass: Float): Unit {
     TransferContext.writeArguments(DOUBLE to mass.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
   }
 
-  public fun getMass(): Float {
+  public final fun getMass(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setDamping(damping: Float): Unit {
+  public final fun setDamping(damping: Float): Unit {
     TransferContext.writeArguments(DOUBLE to damping.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
   }
 
-  public fun getDamping(): Float {
+  public final fun getDamping(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setUseGravity(useGravity: Boolean): Unit {
+  public final fun setUseGravity(useGravity: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useGravity)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseGravityPtr, NIL)
   }
 
-  public fun getUseGravity(): Boolean {
+  public final fun getUseGravity(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseGravityPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setGravity(gravity: Vector2): Unit {
+  public final fun setGravity(gravity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to gravity)
     TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
   }
 
-  public fun getGravity(): Vector2 {
+  public final fun getGravity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -236,7 +236,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * If `true`, the Jiggle modifier will take colliders into account, keeping them from entering
    * into these collision objects.
    */
-  public fun setUseColliders(useColliders: Boolean): Unit {
+  public final fun setUseColliders(useColliders: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useColliders)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseCollidersPtr, NIL)
   }
@@ -244,7 +244,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns whether the jiggle modifier is taking physics colliders into account when solving.
    */
-  public fun getUseColliders(): Boolean {
+  public final fun getUseColliders(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseCollidersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -254,7 +254,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Sets the collision mask that the Jiggle modifier will use when reacting to colliders, if the
    * Jiggle modifier is set to take colliders into account.
    */
-  public fun setCollisionMask(collisionMask: Int): Unit {
+  public final fun setCollisionMask(collisionMask: Int): Unit {
     TransferContext.writeArguments(LONG to collisionMask.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -262,7 +262,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the collision mask used by the Jiggle modifier when collisions are enabled.
    */
-  public fun getCollisionMask(): Int {
+  public final fun getCollisionMask(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -271,7 +271,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the [Bone2D] node assigned to the Jiggle joint at [jointIdx].
    */
-  public fun setJiggleJointBone2dNode(jointIdx: Int, bone2dNode: NodePath): Unit {
+  public final fun setJiggleJointBone2dNode(jointIdx: Int, bone2dNode: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to bone2dNode)
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointBone2dNodePtr, NIL)
   }
@@ -279,7 +279,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the [Bone2D] node assigned to the Jiggle joint at [jointIdx].
    */
-  public fun getJiggleJointBone2dNode(jointIdx: Int): NodePath {
+  public final fun getJiggleJointBone2dNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -289,7 +289,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Sets the bone index, [boneIdx], of the Jiggle joint at [jointIdx]. When possible, this will
    * also update the `bone2d_node` of the Jiggle joint based on data provided by the linked skeleton.
    */
-  public fun setJiggleJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
+  public final fun setJiggleJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointBoneIndexPtr, NIL)
   }
@@ -297,7 +297,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the index of the [Bone2D] node assigned to the Jiggle joint at [jointIdx].
    */
-  public fun getJiggleJointBoneIndex(jointIdx: Int): Int {
+  public final fun getJiggleJointBoneIndex(jointIdx: Int): Int {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointBoneIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -308,7 +308,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Setting this to `true` will make the joint use its own settings rather than the default ones
    * attached to the modification.
    */
-  public fun setJiggleJointOverride(jointIdx: Int, `override`: Boolean): Unit {
+  public final fun setJiggleJointOverride(jointIdx: Int, `override`: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to override)
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointOverridePtr, NIL)
   }
@@ -317,7 +317,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Returns a boolean that indicates whether the joint at [jointIdx] is overriding the default
    * Jiggle joint data defined in the modification.
    */
-  public fun getJiggleJointOverride(jointIdx: Int): Boolean {
+  public final fun getJiggleJointOverride(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointOverridePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -326,7 +326,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the of stiffness of the Jiggle joint at [jointIdx].
    */
-  public fun setJiggleJointStiffness(jointIdx: Int, stiffness: Float): Unit {
+  public final fun setJiggleJointStiffness(jointIdx: Int, stiffness: Float): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), DOUBLE to stiffness.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointStiffnessPtr, NIL)
   }
@@ -334,7 +334,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the stiffness of the Jiggle joint at [jointIdx].
    */
-  public fun getJiggleJointStiffness(jointIdx: Int): Float {
+  public final fun getJiggleJointStiffness(jointIdx: Int): Float {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointStiffnessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -343,7 +343,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the of mass of the Jiggle joint at [jointIdx].
    */
-  public fun setJiggleJointMass(jointIdx: Int, mass: Float): Unit {
+  public final fun setJiggleJointMass(jointIdx: Int, mass: Float): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), DOUBLE to mass.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointMassPtr, NIL)
   }
@@ -351,7 +351,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the amount of mass of the jiggle joint at [jointIdx].
    */
-  public fun getJiggleJointMass(jointIdx: Int): Float {
+  public final fun getJiggleJointMass(jointIdx: Int): Float {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointMassPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -360,7 +360,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the amount of damping of the Jiggle joint at [jointIdx].
    */
-  public fun setJiggleJointDamping(jointIdx: Int, damping: Float): Unit {
+  public final fun setJiggleJointDamping(jointIdx: Int, damping: Float): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), DOUBLE to damping.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointDampingPtr, NIL)
   }
@@ -368,7 +368,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns the amount of damping of the Jiggle joint at [jointIdx].
    */
-  public fun getJiggleJointDamping(jointIdx: Int): Float {
+  public final fun getJiggleJointDamping(jointIdx: Int): Float {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointDampingPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -377,7 +377,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets whether the Jiggle joint at [jointIdx] should use gravity.
    */
-  public fun setJiggleJointUseGravity(jointIdx: Int, useGravity: Boolean): Unit {
+  public final fun setJiggleJointUseGravity(jointIdx: Int, useGravity: Boolean): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to useGravity)
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointUseGravityPtr, NIL)
   }
@@ -385,7 +385,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Returns a boolean that indicates whether the joint at [jointIdx] is using gravity or not.
    */
-  public fun getJiggleJointUseGravity(jointIdx: Int): Boolean {
+  public final fun getJiggleJointUseGravity(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointUseGravityPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -394,7 +394,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
   /**
    * Sets the gravity vector of the Jiggle joint at [jointIdx].
    */
-  public fun setJiggleJointGravity(jointIdx: Int, gravity: Vector2): Unit {
+  public final fun setJiggleJointGravity(jointIdx: Int, gravity: Vector2): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), VECTOR2 to gravity)
     TransferContext.callMethod(rawPtr, MethodBindings.setJiggleJointGravityPtr, NIL)
   }
@@ -403,7 +403,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
    * Returns a [Vector2] representing the amount of gravity the Jiggle joint at [jointIdx] is
    * influenced by.
    */
-  public fun getJiggleJointGravity(jointIdx: Int): Vector2 {
+  public final fun getJiggleJointGravity(jointIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJiggleJointGravityPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

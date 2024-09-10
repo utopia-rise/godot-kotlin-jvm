@@ -46,7 +46,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collisions will be reported.
    */
-  public var enabled: Boolean
+  public final inline var enabled: Boolean
     @JvmName("enabledProperty")
     get() = isEnabled()
     @JvmName("enabledProperty")
@@ -57,7 +57,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collisions will be ignored for this RayCast3D's immediate parent.
    */
-  public var excludeParent: Boolean
+  public final inline var excludeParent: Boolean
     @JvmName("excludeParentProperty")
     get() = getExcludeParentBody()
     @JvmName("excludeParentProperty")
@@ -69,7 +69,7 @@ public open class RayCast3D : Node3D() {
    * The ray's destination point, relative to the RayCast's `position`.
    */
   @CoreTypeLocalCopy
-  public var targetPosition: Vector3
+  public final inline var targetPosition: Vector3
     @JvmName("targetPositionProperty")
     get() = getTargetPosition()
     @JvmName("targetPositionProperty")
@@ -83,7 +83,7 @@ public open class RayCast3D : Node3D() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionMask: Long
+  public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
     get() = getCollisionMask()
     @JvmName("collisionMaskProperty")
@@ -96,7 +96,7 @@ public open class RayCast3D : Node3D() {
    * normal will be `Vector3(0, 0, 0)`. Does not affect shapes with no volume like concave polygon or
    * heightmap.
    */
-  public var hitFromInside: Boolean
+  public final inline var hitFromInside: Boolean
     @JvmName("hitFromInsideProperty")
     get() = isHitFromInsideEnabled()
     @JvmName("hitFromInsideProperty")
@@ -108,7 +108,7 @@ public open class RayCast3D : Node3D() {
    * If `true`, the ray will hit back faces with concave polygon shapes with back face enabled or
    * heightmap shapes.
    */
-  public var hitBackFaces: Boolean
+  public final inline var hitBackFaces: Boolean
     @JvmName("hitBackFacesProperty")
     get() = isHitBackFacesEnabled()
     @JvmName("hitBackFacesProperty")
@@ -119,7 +119,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collisions with [Area3D]s will be reported.
    */
-  public var collideWithAreas: Boolean
+  public final inline var collideWithAreas: Boolean
     @JvmName("collideWithAreasProperty")
     get() = isCollideWithAreasEnabled()
     @JvmName("collideWithAreasProperty")
@@ -130,7 +130,7 @@ public open class RayCast3D : Node3D() {
   /**
    * If `true`, collisions with [PhysicsBody3D]s will be reported.
    */
-  public var collideWithBodies: Boolean
+  public final inline var collideWithBodies: Boolean
     @JvmName("collideWithBodiesProperty")
     get() = isCollideWithBodiesEnabled()
     @JvmName("collideWithBodiesProperty")
@@ -146,7 +146,7 @@ public open class RayCast3D : Node3D() {
    * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    */
   @CoreTypeLocalCopy
-  public var debugShapeCustomColor: Color
+  public final inline var debugShapeCustomColor: Color
     @JvmName("debugShapeCustomColorProperty")
     get() = getDebugShapeCustomColor()
     @JvmName("debugShapeCustomColorProperty")
@@ -159,7 +159,7 @@ public open class RayCast3D : Node3D() {
    * represent the [RayCast3D]. Requires **Visible Collision Shapes** to be enabled in the **Debug**
    * menu for the debug shape to be visible at run-time.
    */
-  public var debugShapeThickness: Int
+  public final inline var debugShapeThickness: Int
     @JvmName("debugShapeThicknessProperty")
     get() = getDebugShapeThickness()
     @JvmName("debugShapeThicknessProperty")
@@ -189,7 +189,7 @@ public open class RayCast3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
+  public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply{
       block(this)
       targetPosition = this
   }
@@ -217,30 +217,30 @@ public open class RayCast3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun debugShapeCustomColorMutate(block: Color.() -> Unit): Color =
+  public final fun debugShapeCustomColorMutate(block: Color.() -> Unit): Color =
       debugShapeCustomColor.apply{
       block(this)
       debugShapeCustomColor = this
   }
 
 
-  public fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
-  public fun isEnabled(): Boolean {
+  public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setTargetPosition(localPoint: Vector3): Unit {
+  public final fun setTargetPosition(localPoint: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to localPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
-  public fun getTargetPosition(): Vector3 {
+  public final fun getTargetPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -250,7 +250,7 @@ public open class RayCast3D : Node3D() {
    * Returns whether any object is intersecting with the ray's vector (considering the vector
    * length).
    */
-  public fun isColliding(): Boolean {
+  public final fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -262,7 +262,7 @@ public open class RayCast3D : Node3D() {
    * state.
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
-  public fun forceRaycastUpdate(): Unit {
+  public final fun forceRaycastUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceRaycastUpdatePtr, NIL)
   }
@@ -271,7 +271,7 @@ public open class RayCast3D : Node3D() {
    * Returns the first object that the ray intersects, or `null` if no object is intersecting the
    * ray (i.e. [isColliding] returns `false`).
    */
-  public fun getCollider(): Object? {
+  public final fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Object?)
@@ -281,7 +281,7 @@ public open class RayCast3D : Node3D() {
    * Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object
    * is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  public fun getColliderRid(): RID {
+  public final fun getColliderRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -307,7 +307,7 @@ public open class RayCast3D : Node3D() {
    * var shape = target.ShapeOwnerGetOwner(ownerId);
    * ```
    */
-  public fun getColliderShape(): Int {
+  public final fun getColliderShape(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -320,7 +320,7 @@ public open class RayCast3D : Node3D() {
    * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
    * returned point is valid and up-to-date.
    */
-  public fun getCollisionPoint(): Vector3 {
+  public final fun getCollisionPoint(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -332,7 +332,7 @@ public open class RayCast3D : Node3D() {
    * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
    * returned normal is valid and up-to-date.
    */
-  public fun getCollisionNormal(): Vector3 {
+  public final fun getCollisionNormal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -342,7 +342,7 @@ public open class RayCast3D : Node3D() {
    * Returns the collision object's face index at the collision point, or `-1` if the shape
    * intersecting the ray is not a [ConcavePolygonShape3D].
    */
-  public fun getCollisionFaceIndex(): Int {
+  public final fun getCollisionFaceIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionFaceIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -351,7 +351,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
-  public fun addExceptionRid(rid: RID): Unit {
+  public final fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.addExceptionRidPtr, NIL)
   }
@@ -360,7 +360,7 @@ public open class RayCast3D : Node3D() {
    * Adds a collision exception so the ray does not report collisions with the specified
    * [CollisionObject3D] node.
    */
-  public fun addException(node: CollisionObject3D?): Unit {
+  public final fun addException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.addExceptionPtr, NIL)
   }
@@ -368,7 +368,7 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
-  public fun removeExceptionRid(rid: RID): Unit {
+  public final fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionRidPtr, NIL)
   }
@@ -377,7 +377,7 @@ public open class RayCast3D : Node3D() {
    * Removes a collision exception so the ray does report collisions with the specified
    * [CollisionObject3D] node.
    */
-  public fun removeException(node: CollisionObject3D?): Unit {
+  public final fun removeException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionPtr, NIL)
   }
@@ -385,17 +385,17 @@ public open class RayCast3D : Node3D() {
   /**
    * Removes all collision exceptions for this ray.
    */
-  public fun clearExceptions(): Unit {
+  public final fun clearExceptions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
-  public fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long): Unit {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
-  public fun getCollisionMask(): Long {
+  public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -405,7 +405,7 @@ public open class RayCast3D : Node3D() {
    * Based on [value], enables or disables the specified layer in the [collisionMask], given a
    * [layerNumber] between 1 and 32.
    */
-  public fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
@@ -414,84 +414,84 @@ public open class RayCast3D : Node3D() {
    * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
    * [layerNumber] between 1 and 32.
    */
-  public fun getCollisionMaskValue(layerNumber: Int): Boolean {
+  public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setExcludeParentBody(mask: Boolean): Unit {
+  public final fun setExcludeParentBody(mask: Boolean): Unit {
     TransferContext.writeArguments(BOOL to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.setExcludeParentBodyPtr, NIL)
   }
 
-  public fun getExcludeParentBody(): Boolean {
+  public final fun getExcludeParentBody(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
-  public fun isCollideWithAreasEnabled(): Boolean {
+  public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
-  public fun isCollideWithBodiesEnabled(): Boolean {
+  public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHitFromInside(enable: Boolean): Unit {
+  public final fun setHitFromInside(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
   }
 
-  public fun isHitFromInsideEnabled(): Boolean {
+  public final fun isHitFromInsideEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setHitBackFaces(enable: Boolean): Unit {
+  public final fun setHitBackFaces(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setHitBackFacesPtr, NIL)
   }
 
-  public fun isHitBackFacesEnabled(): Boolean {
+  public final fun isHitBackFacesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDebugShapeCustomColor(debugShapeCustomColor: Color): Unit {
+  public final fun setDebugShapeCustomColor(debugShapeCustomColor: Color): Unit {
     TransferContext.writeArguments(COLOR to debugShapeCustomColor)
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugShapeCustomColorPtr, NIL)
   }
 
-  public fun getDebugShapeCustomColor(): Color {
+  public final fun getDebugShapeCustomColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugShapeCustomColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setDebugShapeThickness(debugShapeThickness: Int): Unit {
+  public final fun setDebugShapeThickness(debugShapeThickness: Int): Unit {
     TransferContext.writeArguments(LONG to debugShapeThickness.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugShapeThicknessPtr, NIL)
   }
 
-  public fun getDebugShapeThickness(): Int {
+  public final fun getDebugShapeThickness(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugShapeThicknessPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

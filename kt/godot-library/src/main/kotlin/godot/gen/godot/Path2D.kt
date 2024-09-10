@@ -28,7 +28,7 @@ public open class Path2D : Node2D() {
   /**
    * A [Curve2D] describing the path.
    */
-  public var curve: Curve2D?
+  public final inline var curve: Curve2D?
     @JvmName("curveProperty")
     get() = getCurve()
     @JvmName("curveProperty")
@@ -40,12 +40,12 @@ public open class Path2D : Node2D() {
     callConstructor(ENGINECLASS_PATH2D, scriptIndex)
   }
 
-  public fun setCurve(curve: Curve2D?): Unit {
+  public final fun setCurve(curve: Curve2D?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
   }
 
-  public fun getCurve(): Curve2D? {
+  public final fun getCurve(): Curve2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve2D?)

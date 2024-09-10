@@ -45,7 +45,7 @@ public open class ConcavePolygonShape2D : Shape2D() {
    * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
    * consists of the starting point of a segment and the endpoint of a segment.
    */
-  public var segments: PackedVector2Array
+  public final inline var segments: PackedVector2Array
     @JvmName("segmentsProperty")
     get() = getSegments()
     @JvmName("segmentsProperty")
@@ -57,12 +57,12 @@ public open class ConcavePolygonShape2D : Shape2D() {
     callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE2D, scriptIndex)
   }
 
-  public fun setSegments(segments: PackedVector2Array): Unit {
+  public final fun setSegments(segments: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to segments)
     TransferContext.callMethod(rawPtr, MethodBindings.setSegmentsPtr, NIL)
   }
 
-  public fun getSegments(): PackedVector2Array {
+  public final fun getSegments(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSegmentsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)

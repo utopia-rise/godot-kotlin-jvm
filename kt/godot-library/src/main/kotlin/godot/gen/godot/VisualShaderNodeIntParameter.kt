@@ -29,7 +29,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * Range hint of this node. Use it to customize valid parameter range.
    */
-  public var hint: Hint
+  public final inline var hint: Hint
     @JvmName("hintProperty")
     get() = getHint()
     @JvmName("hintProperty")
@@ -41,7 +41,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
    * The minimum value this parameter can take. [hint] must be either [HINT_RANGE] or
    * [HINT_RANGE_STEP] for this to take effect.
    */
-  public var min: Int
+  public final inline var min: Int
     @JvmName("minProperty")
     get() = getMin()
     @JvmName("minProperty")
@@ -53,7 +53,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
    * The maximum value this parameter can take. [hint] must be either [HINT_RANGE] or
    * [HINT_RANGE_STEP] for this to take effect.
    */
-  public var max: Int
+  public final inline var max: Int
     @JvmName("maxProperty")
     get() = getMax()
     @JvmName("maxProperty")
@@ -65,7 +65,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
    * The step between parameter's values. Forces the parameter to be a multiple of the given value.
    * [hint] must be [HINT_RANGE_STEP] for this to take effect.
    */
-  public var step: Int
+  public final inline var step: Int
     @JvmName("stepProperty")
     get() = getStep()
     @JvmName("stepProperty")
@@ -76,7 +76,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * If `true`, the node will have a custom default value.
    */
-  public var defaultValueEnabled: Boolean
+  public final inline var defaultValueEnabled: Boolean
     @JvmName("defaultValueEnabledProperty")
     get() = isDefaultValueEnabled()
     @JvmName("defaultValueEnabledProperty")
@@ -88,7 +88,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
    * Default value of this parameter, which will be used if not set externally.
    * [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
-  public var defaultValue: Int
+  public final inline var defaultValue: Int
     @JvmName("defaultValueProperty")
     get() = getDefaultValue()
     @JvmName("defaultValueProperty")
@@ -100,67 +100,67 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINTPARAMETER, scriptIndex)
   }
 
-  public fun setHint(hint: Hint): Unit {
+  public final fun setHint(hint: Hint): Unit {
     TransferContext.writeArguments(LONG to hint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
   }
 
-  public fun getHint(): Hint {
+  public final fun getHint(): Hint {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
     return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setMin(`value`: Int): Unit {
+  public final fun setMin(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
-  public fun getMin(): Int {
+  public final fun getMin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMax(`value`: Int): Unit {
+  public final fun setMax(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
-  public fun getMax(): Int {
+  public final fun getMax(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setStep(`value`: Int): Unit {
+  public final fun setStep(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
   }
 
-  public fun getStep(): Int {
+  public final fun getStep(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
-  public fun isDefaultValueEnabled(): Boolean {
+  public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setDefaultValue(`value`: Int): Unit {
+  public final fun setDefaultValue(`value`: Int): Unit {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
-  public fun getDefaultValue(): Int {
+  public final fun getDefaultValue(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

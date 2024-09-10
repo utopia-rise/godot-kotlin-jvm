@@ -30,7 +30,7 @@ public open class GrooveJoint2D : Joint2D() {
    * The groove's length. The groove is from the joint's origin towards [length] along the joint's
    * local Y axis.
    */
-  public var length: Float
+  public final inline var length: Float
     @JvmName("lengthProperty")
     get() = getLength()
     @JvmName("lengthProperty")
@@ -42,7 +42,7 @@ public open class GrooveJoint2D : Joint2D() {
    * The body B's initial anchor position defined by the joint's origin and a local offset
    * [initialOffset] along the joint's Y axis (along the groove).
    */
-  public var initialOffset: Float
+  public final inline var initialOffset: Float
     @JvmName("initialOffsetProperty")
     get() = getInitialOffset()
     @JvmName("initialOffsetProperty")
@@ -54,23 +54,23 @@ public open class GrooveJoint2D : Joint2D() {
     callConstructor(ENGINECLASS_GROOVEJOINT2D, scriptIndex)
   }
 
-  public fun setLength(length: Float): Unit {
+  public final fun setLength(length: Float): Unit {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
-  public fun getLength(): Float {
+  public final fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setInitialOffset(offset: Float): Unit {
+  public final fun setInitialOffset(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
   }
 
-  public fun getInitialOffset(): Float {
+  public final fun getInitialOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

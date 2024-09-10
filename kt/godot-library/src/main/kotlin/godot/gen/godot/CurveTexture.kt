@@ -32,7 +32,7 @@ public open class CurveTexture : Texture2D() {
    * high-frequency data better (such as sudden direction changes), at the cost of increased generation
    * time and memory usage.
    */
-  public var width: Int
+  public final inline var width: Int
     @JvmName("widthProperty")
     get() = getWidth()
     @JvmName("widthProperty")
@@ -44,7 +44,7 @@ public open class CurveTexture : Texture2D() {
    * The format the texture should be generated with. When passing a CurveTexture as an input to a
    * [Shader], this may need to be adjusted.
    */
-  public var textureMode: TextureMode
+  public final inline var textureMode: TextureMode
     @JvmName("textureModeProperty")
     get() = getTextureMode()
     @JvmName("textureModeProperty")
@@ -55,7 +55,7 @@ public open class CurveTexture : Texture2D() {
   /**
    * The [Curve] that is rendered onto the texture.
    */
-  public var curve: Curve?
+  public final inline var curve: Curve?
     @JvmName("curveProperty")
     get() = getCurve()
     @JvmName("curveProperty")
@@ -67,28 +67,28 @@ public open class CurveTexture : Texture2D() {
     callConstructor(ENGINECLASS_CURVETEXTURE, scriptIndex)
   }
 
-  public fun setWidth(width: Int): Unit {
+  public final fun setWidth(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
-  public fun setCurve(curve: Curve?): Unit {
+  public final fun setCurve(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
   }
 
-  public fun getCurve(): Curve? {
+  public final fun getCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setTextureMode(textureMode: TextureMode): Unit {
+  public final fun setTextureMode(textureMode: TextureMode): Unit {
     TransferContext.writeArguments(LONG to textureMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
   }
 
-  public fun getTextureMode(): TextureMode {
+  public final fun getTextureMode(): TextureMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
     return CurveTexture.TextureMode.from(TransferContext.readReturnValue(LONG) as Long)

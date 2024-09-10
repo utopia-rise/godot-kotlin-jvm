@@ -36,7 +36,7 @@ public open class PlaceholderTexture2D : Texture2D() {
    * The texture's size (in pixels).
    */
   @CoreTypeLocalCopy
-  public var size: Vector2
+  public final inline var size: Vector2
     @JvmName("sizeProperty")
     get() = getSize()
     @JvmName("sizeProperty")
@@ -66,13 +66,13 @@ public open class PlaceholderTexture2D : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
+  public final fun sizeMutate(block: Vector2.() -> Unit): Vector2 = size.apply{
       block(this)
       size = this
   }
 
 
-  public fun setSize(size: Vector2): Unit {
+  public final fun setSize(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }

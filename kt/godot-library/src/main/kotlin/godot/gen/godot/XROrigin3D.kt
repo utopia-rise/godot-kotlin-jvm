@@ -41,7 +41,7 @@ public open class XROrigin3D : Node3D() {
    * [XRServer.worldScale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1
    * real world meter.
    */
-  public var worldScale: Float
+  public final inline var worldScale: Float
     @JvmName("worldScaleProperty")
     get() = getWorldScale()
     @JvmName("worldScaleProperty")
@@ -53,7 +53,7 @@ public open class XROrigin3D : Node3D() {
    * If `true`, this origin node is currently being used by the [XRServer]. Only one origin point
    * can be used at a time.
    */
-  public var current: Boolean
+  public final inline var current: Boolean
     @JvmName("currentProperty")
     get() = isCurrent()
     @JvmName("currentProperty")
@@ -65,23 +65,23 @@ public open class XROrigin3D : Node3D() {
     callConstructor(ENGINECLASS_XRORIGIN3D, scriptIndex)
   }
 
-  public fun setWorldScale(worldScale: Float): Unit {
+  public final fun setWorldScale(worldScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to worldScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
   }
 
-  public fun getWorldScale(): Float {
+  public final fun getWorldScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setCurrent(enabled: Boolean): Unit {
+  public final fun setCurrent(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
   }
 
-  public fun isCurrent(): Boolean {
+  public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

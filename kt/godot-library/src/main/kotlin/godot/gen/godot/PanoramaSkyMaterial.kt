@@ -37,7 +37,7 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * [Texture2D] to be applied to the [PanoramaSkyMaterial].
    */
-  public var panorama: Texture2D?
+  public final inline var panorama: Texture2D?
     @JvmName("panoramaProperty")
     get() = getPanorama()
     @JvmName("panoramaProperty")
@@ -48,7 +48,7 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * A boolean value to determine if the background texture should be filtered or not.
    */
-  public var filter: Boolean
+  public final inline var filter: Boolean
     @JvmName("filterProperty")
     get() = isFilteringEnabled()
     @JvmName("filterProperty")
@@ -59,7 +59,7 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * The sky's overall brightness multiplier. Higher values result in a brighter sky.
    */
-  public var energyMultiplier: Float
+  public final inline var energyMultiplier: Float
     @JvmName("energyMultiplierProperty")
     get() = getEnergyMultiplier()
     @JvmName("energyMultiplierProperty")
@@ -71,34 +71,34 @@ public open class PanoramaSkyMaterial : Material() {
     callConstructor(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
   }
 
-  public fun setPanorama(texture: Texture2D?): Unit {
+  public final fun setPanorama(texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setPanoramaPtr, NIL)
   }
 
-  public fun getPanorama(): Texture2D? {
+  public final fun getPanorama(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPanoramaPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setFilteringEnabled(enabled: Boolean): Unit {
+  public final fun setFilteringEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setFilteringEnabledPtr, NIL)
   }
 
-  public fun isFilteringEnabled(): Boolean {
+  public final fun isFilteringEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFilteringEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEnergyMultiplier(multiplier: Float): Unit {
+  public final fun setEnergyMultiplier(multiplier: Float): Unit {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
 
-  public fun getEnergyMultiplier(): Float {
+  public final fun getEnergyMultiplier(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

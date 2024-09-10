@@ -37,7 +37,7 @@ public open class StyleBoxLine : StyleBox() {
    * The line's color.
    */
   @CoreTypeLocalCopy
-  public var color: Color
+  public final inline var color: Color
     @JvmName("colorProperty")
     get() = getColor()
     @JvmName("colorProperty")
@@ -49,7 +49,7 @@ public open class StyleBoxLine : StyleBox() {
    * The number of pixels the line will extend before the [StyleBoxLine]'s bounds. If set to a
    * negative value, the line will begin inside the [StyleBoxLine]'s bounds.
    */
-  public var growBegin: Float
+  public final inline var growBegin: Float
     @JvmName("growBeginProperty")
     get() = getGrowBegin()
     @JvmName("growBeginProperty")
@@ -61,7 +61,7 @@ public open class StyleBoxLine : StyleBox() {
    * The number of pixels the line will extend past the [StyleBoxLine]'s bounds. If set to a
    * negative value, the line will end inside the [StyleBoxLine]'s bounds.
    */
-  public var growEnd: Float
+  public final inline var growEnd: Float
     @JvmName("growEndProperty")
     get() = getGrowEnd()
     @JvmName("growEndProperty")
@@ -72,7 +72,7 @@ public open class StyleBoxLine : StyleBox() {
   /**
    * The line's thickness in pixels.
    */
-  public var thickness: Int
+  public final inline var thickness: Int
     @JvmName("thicknessProperty")
     get() = getThickness()
     @JvmName("thicknessProperty")
@@ -83,7 +83,7 @@ public open class StyleBoxLine : StyleBox() {
   /**
    * If `true`, the line will be vertical. If `false`, the line will be horizontal.
    */
-  public var vertical: Boolean
+  public final inline var vertical: Boolean
     @JvmName("verticalProperty")
     get() = isVertical()
     @JvmName("verticalProperty")
@@ -113,62 +113,62 @@ public open class StyleBoxLine : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
 
 
-  public fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
-  public fun getColor(): Color {
+  public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setThickness(thickness: Int): Unit {
+  public final fun setThickness(thickness: Int): Unit {
     TransferContext.writeArguments(LONG to thickness.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
   }
 
-  public fun getThickness(): Int {
+  public final fun getThickness(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setGrowBegin(offset: Float): Unit {
+  public final fun setGrowBegin(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
   }
 
-  public fun getGrowBegin(): Float {
+  public final fun getGrowBegin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGrowEnd(offset: Float): Unit {
+  public final fun setGrowEnd(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
   }
 
-  public fun getGrowEnd(): Float {
+  public final fun getGrowEnd(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVertical(vertical: Boolean): Unit {
+  public final fun setVertical(vertical: Boolean): Unit {
     TransferContext.writeArguments(BOOL to vertical)
     TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
   }
 
-  public fun isVertical(): Boolean {
+  public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

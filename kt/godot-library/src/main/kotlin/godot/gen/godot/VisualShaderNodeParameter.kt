@@ -30,7 +30,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   /**
    * Name of the parameter, by which it can be accessed through the [ShaderMaterial] properties.
    */
-  public var parameterName: String
+  public final inline var parameterName: String
     @JvmName("parameterNameProperty")
     get() = getParameterName()
     @JvmName("parameterNameProperty")
@@ -41,7 +41,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   /**
    * Defines the scope of the parameter.
    */
-  public var qualifier: Qualifier
+  public final inline var qualifier: Qualifier
     @JvmName("qualifierProperty")
     get() = getQualifier()
     @JvmName("qualifierProperty")
@@ -53,23 +53,23 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETER, scriptIndex)
   }
 
-  public fun setParameterName(name: String): Unit {
+  public final fun setParameterName(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
   }
 
-  public fun getParameterName(): String {
+  public final fun getParameterName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setQualifier(qualifier: Qualifier): Unit {
+  public final fun setQualifier(qualifier: Qualifier): Unit {
     TransferContext.writeArguments(LONG to qualifier.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
   }
 
-  public fun getQualifier(): Qualifier {
+  public final fun getQualifier(): Qualifier {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getQualifierPtr, LONG)
     return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)

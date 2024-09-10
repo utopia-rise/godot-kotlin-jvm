@@ -29,7 +29,7 @@ public open class ProgressBar : Range() {
   /**
    * The fill direction. See [FillMode] for possible values.
    */
-  public var fillMode: Int
+  public final inline var fillMode: Int
     @JvmName("fillModeProperty")
     get() = getFillMode()
     @JvmName("fillModeProperty")
@@ -40,7 +40,7 @@ public open class ProgressBar : Range() {
   /**
    * If `true`, the fill percentage is displayed on the bar.
    */
-  public var showPercentage: Boolean
+  public final inline var showPercentage: Boolean
     @JvmName("showPercentageProperty")
     get() = isPercentageShown()
     @JvmName("showPercentageProperty")
@@ -52,7 +52,7 @@ public open class ProgressBar : Range() {
    * When set to `true`, the progress bar indicates that something is happening with an animation,
    * but does not show the fill percentage or value.
    */
-  public var indeterminate: Boolean
+  public final inline var indeterminate: Boolean
     @JvmName("indeterminateProperty")
     get() = isIndeterminate()
     @JvmName("indeterminateProperty")
@@ -63,7 +63,7 @@ public open class ProgressBar : Range() {
   /**
    * If `false`, the [indeterminate] animation will be paused in the editor.
    */
-  public var editorPreviewIndeterminate: Boolean
+  public final inline var editorPreviewIndeterminate: Boolean
     @JvmName("editorPreviewIndeterminateProperty")
     get() = isEditorPreviewIndeterminateEnabled()
     @JvmName("editorPreviewIndeterminateProperty")
@@ -75,45 +75,45 @@ public open class ProgressBar : Range() {
     callConstructor(ENGINECLASS_PROGRESSBAR, scriptIndex)
   }
 
-  public fun setFillMode(mode: Int): Unit {
+  public final fun setFillMode(mode: Int): Unit {
     TransferContext.writeArguments(LONG to mode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
   }
 
-  public fun getFillMode(): Int {
+  public final fun getFillMode(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setShowPercentage(visible: Boolean): Unit {
+  public final fun setShowPercentage(visible: Boolean): Unit {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(rawPtr, MethodBindings.setShowPercentagePtr, NIL)
   }
 
-  public fun isPercentageShown(): Boolean {
+  public final fun isPercentageShown(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPercentageShownPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setIndeterminate(indeterminate: Boolean): Unit {
+  public final fun setIndeterminate(indeterminate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to indeterminate)
     TransferContext.callMethod(rawPtr, MethodBindings.setIndeterminatePtr, NIL)
   }
 
-  public fun isIndeterminate(): Boolean {
+  public final fun isIndeterminate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEditorPreviewIndeterminate(previewIndeterminate: Boolean): Unit {
+  public final fun setEditorPreviewIndeterminate(previewIndeterminate: Boolean): Unit {
     TransferContext.writeArguments(BOOL to previewIndeterminate)
     TransferContext.callMethod(rawPtr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
   }
 
-  public fun isEditorPreviewIndeterminateEnabled(): Boolean {
+  public final fun isEditorPreviewIndeterminateEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

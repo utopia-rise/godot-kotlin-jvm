@@ -25,7 +25,7 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
   /**
    * The source texture.
    */
-  public var texture: CurveTexture?
+  public final inline var texture: CurveTexture?
     @JvmName("textureProperty")
     get() = getTexture()
     @JvmName("textureProperty")
@@ -37,12 +37,12 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
     callConstructor(ENGINECLASS_VISUALSHADERNODECURVETEXTURE, scriptIndex)
   }
 
-  public fun setTexture(texture: CurveTexture?): Unit {
+  public final fun setTexture(texture: CurveTexture?): Unit {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public fun getTexture(): CurveTexture? {
+  public final fun getTexture(): CurveTexture? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CurveTexture?)

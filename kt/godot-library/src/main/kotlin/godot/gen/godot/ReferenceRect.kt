@@ -35,7 +35,7 @@ public open class ReferenceRect : Control() {
    * Sets the border color of the [ReferenceRect].
    */
   @CoreTypeLocalCopy
-  public var borderColor: Color
+  public final inline var borderColor: Color
     @JvmName("borderColorProperty")
     get() = getBorderColor()
     @JvmName("borderColorProperty")
@@ -47,7 +47,7 @@ public open class ReferenceRect : Control() {
    * Sets the border width of the [ReferenceRect]. The border grows both inwards and outwards with
    * respect to the rectangle box.
    */
-  public var borderWidth: Float
+  public final inline var borderWidth: Float
     @JvmName("borderWidthProperty")
     get() = getBorderWidth()
     @JvmName("borderWidthProperty")
@@ -59,7 +59,7 @@ public open class ReferenceRect : Control() {
    * If `true`, the [ReferenceRect] will only be visible while in editor. Otherwise, [ReferenceRect]
    * will be visible in the running project.
    */
-  public var editorOnly: Boolean
+  public final inline var editorOnly: Boolean
     @JvmName("editorOnlyProperty")
     get() = getEditorOnly()
     @JvmName("editorOnlyProperty")
@@ -89,41 +89,41 @@ public open class ReferenceRect : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
+  public final fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
       block(this)
       borderColor = this
   }
 
 
-  public fun getBorderColor(): Color {
+  public final fun getBorderColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setBorderColor(color: Color): Unit {
+  public final fun setBorderColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
   }
 
-  public fun getBorderWidth(): Float {
+  public final fun getBorderWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setBorderWidth(width: Float): Unit {
+  public final fun setBorderWidth(width: Float): Unit {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
   }
 
-  public fun getEditorOnly(): Boolean {
+  public final fun getEditorOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEditorOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setEditorOnly(enabled: Boolean): Unit {
+  public final fun setEditorOnly(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
   }

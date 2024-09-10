@@ -42,7 +42,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * If a material is assigned to this property, it will be used instead of any material set in any
    * material slot of the mesh.
    */
-  public var materialOverride: Material?
+  public final inline var materialOverride: Material?
     @JvmName("materialOverrideProperty")
     get() = getMaterialOverride()
     @JvmName("materialOverrideProperty")
@@ -55,7 +55,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * If a material is assigned to this property, it will be rendered on top of any other active
    * material for all the surfaces.
    */
-  public var materialOverlay: Material?
+  public final inline var materialOverlay: Material?
     @JvmName("materialOverlayProperty")
     get() = getMaterialOverlay()
     @JvmName("materialOverlayProperty")
@@ -76,7 +76,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * **Note:** Only supported when using the Forward+ rendering method. When using the Mobile or
    * Compatibility rendering method, [transparency] is ignored and is considered as always being `0.0`.
    */
-  public var transparency: Float
+  public final inline var transparency: Float
     @JvmName("transparencyProperty")
     get() = getTransparency()
     @JvmName("transparencyProperty")
@@ -87,7 +87,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The selected shadow casting flag. See [ShadowCastingSetting] for possible values.
    */
-  public var castShadow: ShadowCastingSetting
+  public final inline var castShadow: ShadowCastingSetting
     @JvmName("castShadowProperty")
     get() = getCastShadowsSetting()
     @JvmName("castShadowProperty")
@@ -99,7 +99,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * The extra distance added to the GeometryInstance3D's bounding box ([AABB]) to increase its cull
    * box.
    */
-  public var extraCullMargin: Float
+  public final inline var extraCullMargin: Float
     @JvmName("extraCullMarginProperty")
     get() = getExtraCullMargin()
     @JvmName("extraCullMarginProperty")
@@ -117,7 +117,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * [RenderingServer.instanceSetIgnoreCulling] on the [GeometryInstance3D]'s [RID].
    */
   @CoreTypeLocalCopy
-  public var customAabb: AABB
+  public final inline var customAabb: AABB
     @JvmName("customAabbProperty")
     get() = getCustomAabb()
     @JvmName("customAabbProperty")
@@ -131,7 +131,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * values will keep the mesh in a higher level of detail at farther distances.
    * Useful for testing level of detail transitions in the editor.
    */
-  public var lodBias: Float
+  public final inline var lodBias: Float
     @JvmName("lodBiasProperty")
     get() = getLodBias()
     @JvmName("lodBiasProperty")
@@ -147,7 +147,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * a very large AABB that covers your entire game world such as `AABB(-10000, -10000, -10000, 20000,
    * 20000, 20000)`.
    */
-  public var ignoreOcclusionCulling: Boolean
+  public final inline var ignoreOcclusionCulling: Boolean
     @JvmName("ignoreOcclusionCullingProperty")
     get() = isIgnoringOcclusionCulling()
     @JvmName("ignoreOcclusionCullingProperty")
@@ -161,7 +161,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * **Note:** Lights' bake mode will also affect the global illumination rendering. See
    * [Light3D.lightBakeMode].
    */
-  public var giMode: GIMode
+  public final inline var giMode: GIMode
     @JvmName("giModeProperty")
     get() = getGiMode()
     @JvmName("giModeProperty")
@@ -177,7 +177,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * When using a single mesh at different scales, consider adjusting this value to keep the lightmap
    * texel density consistent across meshes.
    */
-  public var giLightmapScale: LightmapScale
+  public final inline var giLightmapScale: LightmapScale
     @JvmName("giLightmapScaleProperty")
     get() = getLightmapScale()
     @JvmName("giLightmapScaleProperty")
@@ -190,7 +190,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * [visibilityRangeBeginMargin] into account as well. The default value of 0 is used to disable the
    * range check.
    */
-  public var visibilityRangeBegin: Float
+  public final inline var visibilityRangeBegin: Float
     @JvmName("visibilityRangeBeginProperty")
     get() = getVisibilityRangeBegin()
     @JvmName("visibilityRangeBeginProperty")
@@ -206,7 +206,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
    * value greater than `0.0` for the effect to be noticeable.
    */
-  public var visibilityRangeBeginMargin: Float
+  public final inline var visibilityRangeBeginMargin: Float
     @JvmName("visibilityRangeBeginMarginProperty")
     get() = getVisibilityRangeBeginMargin()
     @JvmName("visibilityRangeBeginMarginProperty")
@@ -218,7 +218,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * Distance from which the GeometryInstance3D will be hidden, taking [visibilityRangeEndMargin]
    * into account as well. The default value of 0 is used to disable the range check.
    */
-  public var visibilityRangeEnd: Float
+  public final inline var visibilityRangeEnd: Float
     @JvmName("visibilityRangeEndProperty")
     get() = getVisibilityRangeEnd()
     @JvmName("visibilityRangeEndProperty")
@@ -234,7 +234,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * [VISIBILITY_RANGE_FADE_DEPENDENCIES], this acts as a fade transition distance and must be set to a
    * value greater than `0.0` for the effect to be noticeable.
    */
-  public var visibilityRangeEndMargin: Float
+  public final inline var visibilityRangeEndMargin: Float
     @JvmName("visibilityRangeEndMarginProperty")
     get() = getVisibilityRangeEndMargin()
     @JvmName("visibilityRangeEndMarginProperty")
@@ -246,7 +246,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * Controls which instances will be faded when approaching the limits of the visibility range. See
    * [VisibilityRangeFadeMode] for possible values.
    */
-  public var visibilityRangeFadeMode: VisibilityRangeFadeMode
+  public final inline var visibilityRangeFadeMode: VisibilityRangeFadeMode
     @JvmName("visibilityRangeFadeModeProperty")
     get() = getVisibilityRangeFadeMode()
     @JvmName("visibilityRangeFadeModeProperty")
@@ -282,117 +282,117 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
+  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
       block(this)
       customAabb = this
   }
 
 
-  public fun setMaterialOverride(material: Material?): Unit {
+  public final fun setMaterialOverride(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialOverridePtr, NIL)
   }
 
-  public fun getMaterialOverride(): Material? {
+  public final fun getMaterialOverride(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverridePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
-  public fun setMaterialOverlay(material: Material?): Unit {
+  public final fun setMaterialOverlay(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialOverlayPtr, NIL)
   }
 
-  public fun getMaterialOverlay(): Material? {
+  public final fun getMaterialOverlay(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverlayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
-  public fun setCastShadowsSetting(shadowCastingSetting: ShadowCastingSetting): Unit {
+  public final fun setCastShadowsSetting(shadowCastingSetting: ShadowCastingSetting): Unit {
     TransferContext.writeArguments(LONG to shadowCastingSetting.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCastShadowsSettingPtr, NIL)
   }
 
-  public fun getCastShadowsSetting(): ShadowCastingSetting {
+  public final fun getCastShadowsSetting(): ShadowCastingSetting {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCastShadowsSettingPtr, LONG)
     return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setLodBias(bias: Float): Unit {
+  public final fun setLodBias(bias: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
   }
 
-  public fun getLodBias(): Float {
+  public final fun getLodBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setTransparency(transparency: Float): Unit {
+  public final fun setTransparency(transparency: Float): Unit {
     TransferContext.writeArguments(DOUBLE to transparency.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
   }
 
-  public fun getTransparency(): Float {
+  public final fun getTransparency(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVisibilityRangeEndMargin(distance: Float): Unit {
+  public final fun setVisibilityRangeEndMargin(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndMarginPtr, NIL)
   }
 
-  public fun getVisibilityRangeEndMargin(): Float {
+  public final fun getVisibilityRangeEndMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVisibilityRangeEnd(distance: Float): Unit {
+  public final fun setVisibilityRangeEnd(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndPtr, NIL)
   }
 
-  public fun getVisibilityRangeEnd(): Float {
+  public final fun getVisibilityRangeEnd(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVisibilityRangeBeginMargin(distance: Float): Unit {
+  public final fun setVisibilityRangeBeginMargin(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginMarginPtr, NIL)
   }
 
-  public fun getVisibilityRangeBeginMargin(): Float {
+  public final fun getVisibilityRangeBeginMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVisibilityRangeBegin(distance: Float): Unit {
+  public final fun setVisibilityRangeBegin(distance: Float): Unit {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginPtr, NIL)
   }
 
-  public fun getVisibilityRangeBegin(): Float {
+  public final fun getVisibilityRangeBegin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVisibilityRangeFadeMode(mode: VisibilityRangeFadeMode): Unit {
+  public final fun setVisibilityRangeFadeMode(mode: VisibilityRangeFadeMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
   }
 
-  public fun getVisibilityRangeFadeMode(): VisibilityRangeFadeMode {
+  public final fun getVisibilityRangeFadeMode(): VisibilityRangeFadeMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
     return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -410,7 +410,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * **Note:** Per-instance shader uniforms are currently only available in 3D, so there is no 2D
    * equivalent of this method.
    */
-  public fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
+  public final fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setInstanceShaderParameterPtr, NIL)
   }
@@ -418,62 +418,62 @@ public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * Get the value of a shader parameter as set on this instance.
    */
-  public fun getInstanceShaderParameter(name: StringName): Any? {
+  public final fun getInstanceShaderParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceShaderParameterPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
-  public fun setExtraCullMargin(margin: Float): Unit {
+  public final fun setExtraCullMargin(margin: Float): Unit {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setExtraCullMarginPtr, NIL)
   }
 
-  public fun getExtraCullMargin(): Float {
+  public final fun getExtraCullMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setLightmapScale(scale: LightmapScale): Unit {
+  public final fun setLightmapScale(scale: LightmapScale): Unit {
     TransferContext.writeArguments(LONG to scale.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setLightmapScalePtr, NIL)
   }
 
-  public fun getLightmapScale(): LightmapScale {
+  public final fun getLightmapScale(): LightmapScale {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightmapScalePtr, LONG)
     return GeometryInstance3D.LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setGiMode(mode: GIMode): Unit {
+  public final fun setGiMode(mode: GIMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setGiModePtr, NIL)
   }
 
-  public fun getGiMode(): GIMode {
+  public final fun getGiMode(): GIMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGiModePtr, LONG)
     return GeometryInstance3D.GIMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setIgnoreOcclusionCulling(ignoreCulling: Boolean): Unit {
+  public final fun setIgnoreOcclusionCulling(ignoreCulling: Boolean): Unit {
     TransferContext.writeArguments(BOOL to ignoreCulling)
     TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreOcclusionCullingPtr, NIL)
   }
 
-  public fun isIgnoringOcclusionCulling(): Boolean {
+  public final fun isIgnoringOcclusionCulling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringOcclusionCullingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setCustomAabb(aabb: AABB): Unit {
+  public final fun setCustomAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
-  public fun getCustomAabb(): AABB {
+  public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)

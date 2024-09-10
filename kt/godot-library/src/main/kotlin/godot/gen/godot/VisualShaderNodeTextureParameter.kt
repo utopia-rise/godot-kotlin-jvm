@@ -27,7 +27,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Defines the type of data provided by the source texture. See [TextureType] for options.
    */
-  public var textureType: TextureType
+  public final inline var textureType: TextureType
     @JvmName("textureTypeProperty")
     get() = getTextureType()
     @JvmName("textureTypeProperty")
@@ -38,7 +38,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Sets the default color if no texture is assigned to the uniform.
    */
-  public var colorDefault: ColorDefault
+  public final inline var colorDefault: ColorDefault
     @JvmName("colorDefaultProperty")
     get() = getColorDefault()
     @JvmName("colorDefaultProperty")
@@ -49,7 +49,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Sets the texture filtering mode. See [TextureFilter] for options.
    */
-  public var textureFilter: TextureFilter
+  public final inline var textureFilter: TextureFilter
     @JvmName("textureFilterProperty")
     get() = getTextureFilter()
     @JvmName("textureFilterProperty")
@@ -60,7 +60,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   /**
    * Sets the texture repeating mode. See [TextureRepeat] for options.
    */
-  public var textureRepeat: TextureRepeat
+  public final inline var textureRepeat: TextureRepeat
     @JvmName("textureRepeatProperty")
     get() = getTextureRepeat()
     @JvmName("textureRepeatProperty")
@@ -72,7 +72,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
    * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness
    * texture. See [TextureSource] for options.
    */
-  public var textureSource: TextureSource
+  public final inline var textureSource: TextureSource
     @JvmName("textureSourceProperty")
     get() = getTextureSource()
     @JvmName("textureSourceProperty")
@@ -84,56 +84,56 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER, scriptIndex)
   }
 
-  public fun setTextureType(type: TextureType): Unit {
+  public final fun setTextureType(type: TextureType): Unit {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
   }
 
-  public fun getTextureType(): TextureType {
+  public final fun getTextureType(): TextureType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
     return VisualShaderNodeTextureParameter.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setColorDefault(color: ColorDefault): Unit {
+  public final fun setColorDefault(color: ColorDefault): Unit {
     TransferContext.writeArguments(LONG to color.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorDefaultPtr, NIL)
   }
 
-  public fun getColorDefault(): ColorDefault {
+  public final fun getColorDefault(): ColorDefault {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorDefaultPtr, LONG)
     return VisualShaderNodeTextureParameter.ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTextureFilter(filter: TextureFilter): Unit {
+  public final fun setTextureFilter(filter: TextureFilter): Unit {
     TransferContext.writeArguments(LONG to filter.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
-  public fun getTextureFilter(): TextureFilter {
+  public final fun getTextureFilter(): TextureFilter {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
     return VisualShaderNodeTextureParameter.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTextureRepeat(repeat: TextureRepeat): Unit {
+  public final fun setTextureRepeat(repeat: TextureRepeat): Unit {
     TransferContext.writeArguments(LONG to repeat.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 
-  public fun getTextureRepeat(): TextureRepeat {
+  public final fun getTextureRepeat(): TextureRepeat {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
     return VisualShaderNodeTextureParameter.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setTextureSource(source: TextureSource): Unit {
+  public final fun setTextureSource(source: TextureSource): Unit {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTextureSourcePtr, NIL)
   }
 
-  public fun getTextureSource(): TextureSource {
+  public final fun getTextureSource(): TextureSource {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureSourcePtr, LONG)
     return VisualShaderNodeTextureParameter.TextureSource.from(TransferContext.readReturnValue(LONG) as Long)

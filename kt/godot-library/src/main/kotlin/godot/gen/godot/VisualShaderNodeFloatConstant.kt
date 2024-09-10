@@ -27,7 +27,7 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
   /**
    * A floating-point constant which represents a state of this node.
    */
-  public var constant: Float
+  public final inline var constant: Float
     @JvmName("constantProperty")
     get() = getConstant()
     @JvmName("constantProperty")
@@ -39,12 +39,12 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT, scriptIndex)
   }
 
-  public fun setConstant(constant: Float): Unit {
+  public final fun setConstant(constant: Float): Unit {
     TransferContext.writeArguments(DOUBLE to constant.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
-  public fun getConstant(): Float {
+  public final fun getConstant(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

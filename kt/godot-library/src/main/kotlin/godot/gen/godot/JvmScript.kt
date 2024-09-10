@@ -22,7 +22,7 @@ public open class JvmScript internal constructor() : Script() {
     callConstructor(ENGINECLASS_JVMSCRIPT, scriptIndex)
   }
 
-  public fun new(vararg __var_args: Any?): Any? {
+  public final fun new(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, MethodBindings.newPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)

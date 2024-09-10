@@ -28,7 +28,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * The transfer mode to use when sending outgoing packet. Either text or binary.
    */
-  public var writeMode: WriteMode
+  public final inline var writeMode: WriteMode
     @JvmName("writeModeProperty")
     get() = getWriteMode()
     @JvmName("writeModeProperty")
@@ -43,7 +43,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Reserved, but not used for now.
    */
-  public fun poll(): GodotError {
+  public final fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -52,7 +52,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Closes this data channel, notifying the other peer.
    */
-  public fun close(): Unit {
+  public final fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
@@ -60,18 +60,18 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Returns `true` if the last received packet was transferred as text. See [writeMode].
    */
-  public fun wasStringPacket(): Boolean {
+  public final fun wasStringPacket(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.wasStringPacketPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setWriteMode(writeMode: WriteMode): Unit {
+  public final fun setWriteMode(writeMode: WriteMode): Unit {
     TransferContext.writeArguments(LONG to writeMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setWriteModePtr, NIL)
   }
 
-  public fun getWriteMode(): WriteMode {
+  public final fun getWriteMode(): WriteMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteModePtr, LONG)
     return WebRTCDataChannel.WriteMode.from(TransferContext.readReturnValue(LONG) as Long)
@@ -80,7 +80,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Returns the current state of this channel, see [ChannelState].
    */
-  public fun getReadyState(): ChannelState {
+  public final fun getReadyState(): ChannelState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReadyStatePtr, LONG)
     return WebRTCDataChannel.ChannelState.from(TransferContext.readReturnValue(LONG) as Long)
@@ -89,7 +89,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Returns the label assigned to this channel during creation.
    */
-  public fun getLabel(): String {
+  public final fun getLabel(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLabelPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -98,7 +98,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Returns `true` if this channel was created with ordering enabled (default).
    */
-  public fun isOrdered(): Boolean {
+  public final fun isOrdered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOrderedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -109,7 +109,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
    * If the channel is not negotiated out-of-band the ID will only be available after the connection
    * is established (will return `65535` until then).
    */
-  public fun getId(): Int {
+  public final fun getId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -119,7 +119,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
    * Returns the `maxPacketLifeTime` value assigned to this channel during creation.
    * Will be `65535` if not specified.
    */
-  public fun getMaxPacketLifeTime(): Int {
+  public final fun getMaxPacketLifeTime(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPacketLifeTimePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -129,7 +129,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
    * Returns the `maxRetransmits` value assigned to this channel during creation.
    * Will be `65535` if not specified.
    */
-  public fun getMaxRetransmits(): Int {
+  public final fun getMaxRetransmits(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxRetransmitsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -139,7 +139,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
    * Returns the sub-protocol assigned to this channel during creation. An empty string if not
    * specified.
    */
-  public fun getProtocol(): String {
+  public final fun getProtocol(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProtocolPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -148,7 +148,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Returns `true` if this channel was created with out-of-band configuration.
    */
-  public fun isNegotiated(): Boolean {
+  public final fun isNegotiated(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNegotiatedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -157,7 +157,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * Returns the number of bytes currently queued to be sent over this channel.
    */
-  public fun getBufferedAmount(): Int {
+  public final fun getBufferedAmount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferedAmountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

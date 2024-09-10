@@ -30,7 +30,7 @@ public open class ShaderInclude : Resource() {
    * Returns the code of the shader include file. The returned text is what the user has written,
    * not the full generated code used internally.
    */
-  public var code: String
+  public final inline var code: String
     @JvmName("codeProperty")
     get() = getCode()
     @JvmName("codeProperty")
@@ -42,12 +42,12 @@ public open class ShaderInclude : Resource() {
     callConstructor(ENGINECLASS_SHADERINCLUDE, scriptIndex)
   }
 
-  public fun setCode(code: String): Unit {
+  public final fun setCode(code: String): Unit {
     TransferContext.writeArguments(STRING to code)
     TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
   }
 
-  public fun getCode(): String {
+  public final fun getCode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

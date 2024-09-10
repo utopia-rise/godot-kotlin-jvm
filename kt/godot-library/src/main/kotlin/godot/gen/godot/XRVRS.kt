@@ -35,7 +35,7 @@ public open class XRVRS : Object() {
    * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a
    * percentage of screen size.
    */
-  public var vrsMinRadius: Float
+  public final inline var vrsMinRadius: Float
     @JvmName("vrsMinRadiusProperty")
     get() = getVrsMinRadius()
     @JvmName("vrsMinRadiusProperty")
@@ -47,7 +47,7 @@ public open class XRVRS : Object() {
    * The strength used to calculate the VRS density map. The greater this value, the more noticeable
    * VRS is.
    */
-  public var vrsStrength: Float
+  public final inline var vrsStrength: Float
     @JvmName("vrsStrengthProperty")
     get() = getVrsStrength()
     @JvmName("vrsStrengthProperty")
@@ -59,24 +59,24 @@ public open class XRVRS : Object() {
     callConstructor(ENGINECLASS_XRVRS, scriptIndex)
   }
 
-  public fun getVrsMinRadius(): Float {
+  public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVrsMinRadius(radius: Float): Unit {
+  public final fun setVrsMinRadius(radius: Float): Unit {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
   }
 
-  public fun getVrsStrength(): Float {
+  public final fun getVrsStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setVrsStrength(strength: Float): Unit {
+  public final fun setVrsStrength(strength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
   }
@@ -87,7 +87,7 @@ public open class XRVRS : Object() {
    * The result will be cached, requesting a VRS texture with unchanged parameters and settings will
    * return the cached RID.
    */
-  public fun makeVrsTexture(targetSize: Vector2, eyeFoci: PackedVector2Array): RID {
+  public final fun makeVrsTexture(targetSize: Vector2, eyeFoci: PackedVector2Array): RID {
     TransferContext.writeArguments(VECTOR2 to targetSize, PACKED_VECTOR2_ARRAY to eyeFoci)
     TransferContext.callMethod(rawPtr, MethodBindings.makeVrsTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

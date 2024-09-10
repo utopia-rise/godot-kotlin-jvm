@@ -49,7 +49,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
    * depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
    */
-  public var xfadeTime: Float
+  public final inline var xfadeTime: Float
     @JvmName("xfadeTimeProperty")
     get() = getXfadeTime()
     @JvmName("xfadeTimeProperty")
@@ -60,7 +60,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Ease curve for better control over cross-fade between this state and the next.
    */
-  public var xfadeCurve: Curve?
+  public final inline var xfadeCurve: Curve?
     @JvmName("xfadeCurveProperty")
     get() = getXfadeCurve()
     @JvmName("xfadeCurveProperty")
@@ -72,7 +72,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
    * is looping.
    */
-  public var breakLoopAtEnd: Boolean
+  public final inline var breakLoopAtEnd: Boolean
     @JvmName("breakLoopAtEndProperty")
     get() = isLoopBrokenAtEnd()
     @JvmName("breakLoopAtEndProperty")
@@ -83,7 +83,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * If `true`, the destination animation is played back from the beginning when switched.
    */
-  public var reset: Boolean
+  public final inline var reset: Boolean
     @JvmName("resetProperty")
     get() = isReset()
     @JvmName("resetProperty")
@@ -95,7 +95,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * Lower priority transitions are preferred when travelling through the tree via
    * [AnimationNodeStateMachinePlayback.travel] or [advanceMode] is set to [ADVANCE_MODE_AUTO].
    */
-  public var priority: Int
+  public final inline var priority: Int
     @JvmName("priorityProperty")
     get() = getPriority()
     @JvmName("priorityProperty")
@@ -106,7 +106,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * The transition type.
    */
-  public var switchMode: SwitchMode
+  public final inline var switchMode: SwitchMode
     @JvmName("switchModeProperty")
     get() = getSwitchMode()
     @JvmName("switchModeProperty")
@@ -119,7 +119,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * [AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [advanceCondition]
    * and [advanceExpression] checks are true (if assigned).
    */
-  public var advanceMode: AdvanceMode
+  public final inline var advanceMode: AdvanceMode
     @JvmName("advanceModeProperty")
     get() = getAdvanceMode()
     @JvmName("advanceModeProperty")
@@ -144,7 +144,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * (LinearVelocity.X == 0));
    * ```
    */
-  public var advanceCondition: StringName
+  public final inline var advanceCondition: StringName
     @JvmName("advanceConditionProperty")
     get() = getAdvanceCondition()
     @JvmName("advanceConditionProperty")
@@ -157,7 +157,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * complex animation advance conditions for switching between states and gives much greater
    * flexibility for creating complex state machines by directly interfacing with the script code.
    */
-  public var advanceExpression: String
+  public final inline var advanceExpression: String
     @JvmName("advanceExpressionProperty")
     get() = getAdvanceExpression()
     @JvmName("advanceExpressionProperty")
@@ -169,100 +169,100 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION, scriptIndex)
   }
 
-  public fun setSwitchMode(mode: SwitchMode): Unit {
+  public final fun setSwitchMode(mode: SwitchMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSwitchModePtr, NIL)
   }
 
-  public fun getSwitchMode(): SwitchMode {
+  public final fun getSwitchMode(): SwitchMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwitchModePtr, LONG)
     return AnimationNodeStateMachineTransition.SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAdvanceMode(mode: AdvanceMode): Unit {
+  public final fun setAdvanceMode(mode: AdvanceMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceModePtr, NIL)
   }
 
-  public fun getAdvanceMode(): AdvanceMode {
+  public final fun getAdvanceMode(): AdvanceMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceModePtr, LONG)
     return AnimationNodeStateMachineTransition.AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAdvanceCondition(name: StringName): Unit {
+  public final fun setAdvanceCondition(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceConditionPtr, NIL)
   }
 
-  public fun getAdvanceCondition(): StringName {
+  public final fun getAdvanceCondition(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceConditionPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
-  public fun setXfadeTime(secs: Float): Unit {
+  public final fun setXfadeTime(secs: Float): Unit {
     TransferContext.writeArguments(DOUBLE to secs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
   }
 
-  public fun getXfadeTime(): Float {
+  public final fun getXfadeTime(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setXfadeCurve(curve: Curve?): Unit {
+  public final fun setXfadeCurve(curve: Curve?): Unit {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
   }
 
-  public fun getXfadeCurve(): Curve? {
+  public final fun getXfadeCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
-  public fun setBreakLoopAtEnd(enable: Boolean): Unit {
+  public final fun setBreakLoopAtEnd(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
   }
 
-  public fun isLoopBrokenAtEnd(): Boolean {
+  public final fun isLoopBrokenAtEnd(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setReset(reset: Boolean): Unit {
+  public final fun setReset(reset: Boolean): Unit {
     TransferContext.writeArguments(BOOL to reset)
     TransferContext.callMethod(rawPtr, MethodBindings.setResetPtr, NIL)
   }
 
-  public fun isReset(): Boolean {
+  public final fun isReset(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isResetPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
-  public fun setPriority(priority: Int): Unit {
+  public final fun setPriority(priority: Int): Unit {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
   }
 
-  public fun getPriority(): Int {
+  public final fun getPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setAdvanceExpression(text: String): Unit {
+  public final fun setAdvanceExpression(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionPtr, NIL)
   }
 
-  public fun getAdvanceExpression(): String {
+  public final fun getAdvanceExpression(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

@@ -30,7 +30,7 @@ public open class InputEventJoypadMotion : InputEvent() {
   /**
    * Axis identifier. Use one of the [JoyAxis] axis constants.
    */
-  public var axis: JoyAxis
+  public final inline var axis: JoyAxis
     @JvmName("axisProperty")
     get() = getAxis()
     @JvmName("axisProperty")
@@ -42,7 +42,7 @@ public open class InputEventJoypadMotion : InputEvent() {
    * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A
    * value of `0` means the axis is in its resting position.
    */
-  public var axisValue: Float
+  public final inline var axisValue: Float
     @JvmName("axisValueProperty")
     get() = getAxisValue()
     @JvmName("axisValueProperty")
@@ -54,23 +54,23 @@ public open class InputEventJoypadMotion : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION, scriptIndex)
   }
 
-  public fun setAxis(axis: JoyAxis): Unit {
+  public final fun setAxis(axis: JoyAxis): Unit {
     TransferContext.writeArguments(LONG to axis.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
   }
 
-  public fun getAxis(): JoyAxis {
+  public final fun getAxis(): JoyAxis {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
     return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public fun setAxisValue(axisValue: Float): Unit {
+  public final fun setAxisValue(axisValue: Float): Unit {
     TransferContext.writeArguments(DOUBLE to axisValue.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setAxisValuePtr, NIL)
   }
 
-  public fun getAxisValue(): Float {
+  public final fun getAxisValue(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAxisValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

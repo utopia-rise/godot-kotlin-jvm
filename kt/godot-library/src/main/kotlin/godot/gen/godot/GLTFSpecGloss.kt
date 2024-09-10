@@ -33,7 +33,7 @@ public open class GLTFSpecGloss : Resource() {
   /**
    * The diffuse texture.
    */
-  public var diffuseImg: Image?
+  public final inline var diffuseImg: Image?
     @JvmName("diffuseImgProperty")
     get() = getDiffuseImg()
     @JvmName("diffuseImgProperty")
@@ -45,7 +45,7 @@ public open class GLTFSpecGloss : Resource() {
    * The reflected diffuse factor of the material.
    */
   @CoreTypeLocalCopy
-  public var diffuseFactor: Color
+  public final inline var diffuseFactor: Color
     @JvmName("diffuseFactorProperty")
     get() = getDiffuseFactor()
     @JvmName("diffuseFactorProperty")
@@ -56,7 +56,7 @@ public open class GLTFSpecGloss : Resource() {
   /**
    * The glossiness or smoothness of the material.
    */
-  public var glossFactor: Float
+  public final inline var glossFactor: Float
     @JvmName("glossFactorProperty")
     get() = getGlossFactor()
     @JvmName("glossFactorProperty")
@@ -68,7 +68,7 @@ public open class GLTFSpecGloss : Resource() {
    * The specular RGB color of the material. The alpha channel is unused.
    */
   @CoreTypeLocalCopy
-  public var specularFactor: Color
+  public final inline var specularFactor: Color
     @JvmName("specularFactorProperty")
     get() = getSpecularFactor()
     @JvmName("specularFactorProperty")
@@ -79,7 +79,7 @@ public open class GLTFSpecGloss : Resource() {
   /**
    * The specular-glossiness texture.
    */
-  public var specGlossImg: Image?
+  public final inline var specGlossImg: Image?
     @JvmName("specGlossImgProperty")
     get() = getSpecGlossImg()
     @JvmName("specGlossImgProperty")
@@ -109,7 +109,7 @@ public open class GLTFSpecGloss : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun diffuseFactorMutate(block: Color.() -> Unit): Color = diffuseFactor.apply{
+  public final fun diffuseFactorMutate(block: Color.() -> Unit): Color = diffuseFactor.apply{
       block(this)
       diffuseFactor = this
   }
@@ -133,63 +133,63 @@ public open class GLTFSpecGloss : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun specularFactorMutate(block: Color.() -> Unit): Color = specularFactor.apply{
+  public final fun specularFactorMutate(block: Color.() -> Unit): Color = specularFactor.apply{
       block(this)
       specularFactor = this
   }
 
 
-  public fun getDiffuseImg(): Image? {
+  public final fun getDiffuseImg(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseImgPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
-  public fun setDiffuseImg(diffuseImg: Image?): Unit {
+  public final fun setDiffuseImg(diffuseImg: Image?): Unit {
     TransferContext.writeArguments(OBJECT to diffuseImg)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseImgPtr, NIL)
   }
 
-  public fun getDiffuseFactor(): Color {
+  public final fun getDiffuseFactor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseFactorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setDiffuseFactor(diffuseFactor: Color): Unit {
+  public final fun setDiffuseFactor(diffuseFactor: Color): Unit {
     TransferContext.writeArguments(COLOR to diffuseFactor)
     TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseFactorPtr, NIL)
   }
 
-  public fun getGlossFactor(): Float {
+  public final fun getGlossFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlossFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setGlossFactor(glossFactor: Float): Unit {
+  public final fun setGlossFactor(glossFactor: Float): Unit {
     TransferContext.writeArguments(DOUBLE to glossFactor.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setGlossFactorPtr, NIL)
   }
 
-  public fun getSpecularFactor(): Color {
+  public final fun getSpecularFactor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularFactorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setSpecularFactor(specularFactor: Color): Unit {
+  public final fun setSpecularFactor(specularFactor: Color): Unit {
     TransferContext.writeArguments(COLOR to specularFactor)
     TransferContext.callMethod(rawPtr, MethodBindings.setSpecularFactorPtr, NIL)
   }
 
-  public fun getSpecGlossImg(): Image? {
+  public final fun getSpecGlossImg(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecGlossImgPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
   }
 
-  public fun setSpecGlossImg(specGlossImg: Image?): Unit {
+  public final fun setSpecGlossImg(specGlossImg: Image?): Unit {
     TransferContext.writeArguments(OBJECT to specGlossImg)
     TransferContext.callMethod(rawPtr, MethodBindings.setSpecGlossImgPtr, NIL)
   }

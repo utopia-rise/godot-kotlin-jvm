@@ -41,7 +41,7 @@ public open class RootMotionView : VisualInstance3D() {
   /**
    * Path to an [AnimationMixer] node to use as a basis for root motion.
    */
-  public var animationPath: NodePath
+  public final inline var animationPath: NodePath
     @JvmName("animationPathProperty")
     get() = getAnimationPath()
     @JvmName("animationPathProperty")
@@ -53,7 +53,7 @@ public open class RootMotionView : VisualInstance3D() {
    * The grid's color.
    */
   @CoreTypeLocalCopy
-  public var color: Color
+  public final inline var color: Color
     @JvmName("colorProperty")
     get() = getColor()
     @JvmName("colorProperty")
@@ -64,7 +64,7 @@ public open class RootMotionView : VisualInstance3D() {
   /**
    * The grid's cell size in 3D units.
    */
-  public var cellSize: Float
+  public final inline var cellSize: Float
     @JvmName("cellSizeProperty")
     get() = getCellSize()
     @JvmName("cellSizeProperty")
@@ -76,7 +76,7 @@ public open class RootMotionView : VisualInstance3D() {
    * The grid's radius in 3D units. The grid's opacity will fade gradually as the distance from the
    * origin increases until this [radius] is reached.
    */
-  public var radius: Float
+  public final inline var radius: Float
     @JvmName("radiusProperty")
     get() = getRadius()
     @JvmName("radiusProperty")
@@ -88,7 +88,7 @@ public open class RootMotionView : VisualInstance3D() {
    * If `true`, the grid's points will all be on the same Y coordinate (*local* Y = 0). If `false`,
    * the points' original Y coordinate is preserved.
    */
-  public var zeroY: Boolean
+  public final inline var zeroY: Boolean
     @JvmName("zeroYProperty")
     get() = getZeroY()
     @JvmName("zeroYProperty")
@@ -118,62 +118,62 @@ public open class RootMotionView : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
 
 
-  public fun setAnimationPath(path: NodePath): Unit {
+  public final fun setAnimationPath(path: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPathPtr, NIL)
   }
 
-  public fun getAnimationPath(): NodePath {
+  public final fun getAnimationPath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPathPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
-  public fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
-  public fun getColor(): Color {
+  public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
-  public fun setCellSize(size: Float): Unit {
+  public final fun setCellSize(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
   }
 
-  public fun getCellSize(): Float {
+  public final fun getCellSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setRadius(size: Float): Unit {
+  public final fun setRadius(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
-  public fun getRadius(): Float {
+  public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setZeroY(enable: Boolean): Unit {
+  public final fun setZeroY(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setZeroYPtr, NIL)
   }
 
-  public fun getZeroY(): Boolean {
+  public final fun getZeroY(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZeroYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
