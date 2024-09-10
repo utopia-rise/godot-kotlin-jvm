@@ -141,21 +141,21 @@ public object GDExtensionManager : Object() {
 
   internal object MethodBindings {
     public val loadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "load_extension")
+        TypeManager.getMethodBindPtr("GDExtensionManager", "load_extension", 4024158731)
 
     public val reloadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "reload_extension")
+        TypeManager.getMethodBindPtr("GDExtensionManager", "reload_extension", 4024158731)
 
     public val unloadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "unload_extension")
+        TypeManager.getMethodBindPtr("GDExtensionManager", "unload_extension", 4024158731)
 
     public val isExtensionLoadedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "is_extension_loaded")
+        TypeManager.getMethodBindPtr("GDExtensionManager", "is_extension_loaded", 3927539163)
 
     public val getLoadedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "get_loaded_extensions")
+        TypeManager.getMethodBindPtr("GDExtensionManager", "get_loaded_extensions", 1139954409)
 
     public val getExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "get_extension")
+        TypeManager.getMethodBindPtr("GDExtensionManager", "get_extension", 49743343)
   }
 }

@@ -85,33 +85,33 @@ public open class RDVertexAttribute : RefCounted() {
 
   internal object MethodBindings {
     public val setLocationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_location")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_location", 1286410249)
 
     public val getLocationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_location")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_location", 3905245786)
 
     public val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_offset")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_offset", 1286410249)
 
     public val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_offset")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_offset", 3905245786)
 
     public val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_format")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_format", 565531219)
 
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_format")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_format", 2235804183)
 
     public val setStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_stride")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_stride", 1286410249)
 
     public val getStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_stride")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_stride", 3905245786)
 
     public val setFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_frequency")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_frequency", 522141836)
 
     public val getFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_frequency")
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_frequency", 4154106413)
   }
 }

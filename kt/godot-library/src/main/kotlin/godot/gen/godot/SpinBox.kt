@@ -188,43 +188,50 @@ public open class SpinBox : Range() {
 
   internal object MethodBindings {
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_horizontal_alignment")
+        TypeManager.getMethodBindPtr("SpinBox", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_horizontal_alignment")
+        TypeManager.getMethodBindPtr("SpinBox", "get_horizontal_alignment", 341400642)
 
-    public val setSuffixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "set_suffix")
+    public val setSuffixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_suffix", 83702148)
 
-    public val getSuffixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "get_suffix")
+    public val getSuffixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "get_suffix", 201670096)
 
-    public val setPrefixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "set_prefix")
+    public val setPrefixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_prefix", 83702148)
 
-    public val getPrefixPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "get_prefix")
+    public val getPrefixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "get_prefix", 201670096)
 
-    public val setEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "set_editable")
+    public val setEditablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "set_editable", 2586408642)
 
     public val setCustomArrowStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_custom_arrow_step")
+        TypeManager.getMethodBindPtr("SpinBox", "set_custom_arrow_step", 373806689)
 
     public val getCustomArrowStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_custom_arrow_step")
+        TypeManager.getMethodBindPtr("SpinBox", "get_custom_arrow_step", 1740695150)
 
-    public val isEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "is_editable")
+    public val isEditablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "is_editable", 36873697)
 
     public val setUpdateOnTextChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_update_on_text_changed")
+        TypeManager.getMethodBindPtr("SpinBox", "set_update_on_text_changed", 2586408642)
 
     public val getUpdateOnTextChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_update_on_text_changed")
+        TypeManager.getMethodBindPtr("SpinBox", "get_update_on_text_changed", 36873697)
 
     public val setSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_select_all_on_focus")
+        TypeManager.getMethodBindPtr("SpinBox", "set_select_all_on_focus", 2586408642)
 
     public val isSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "is_select_all_on_focus")
+        TypeManager.getMethodBindPtr("SpinBox", "is_select_all_on_focus", 36873697)
 
-    public val applyPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "apply")
+    public val applyPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "apply", 3218959716)
 
-    public val getLineEditPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "get_line_edit")
+    public val getLineEditPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpinBox", "get_line_edit", 4071694264)
   }
 }

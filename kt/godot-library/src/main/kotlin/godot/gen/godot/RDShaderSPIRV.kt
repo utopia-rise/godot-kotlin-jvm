@@ -183,15 +183,15 @@ public open class RDShaderSPIRV : Resource() {
 
   internal object MethodBindings {
     public val setStageBytecodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "set_stage_bytecode")
+        TypeManager.getMethodBindPtr("RDShaderSPIRV", "set_stage_bytecode", 3514097977)
 
     public val getStageBytecodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "get_stage_bytecode")
+        TypeManager.getMethodBindPtr("RDShaderSPIRV", "get_stage_bytecode", 3816765404)
 
     public val setStageCompileErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "set_stage_compile_error")
+        TypeManager.getMethodBindPtr("RDShaderSPIRV", "set_stage_compile_error", 620821314)
 
     public val getStageCompileErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "get_stage_compile_error")
+        TypeManager.getMethodBindPtr("RDShaderSPIRV", "get_stage_compile_error", 3354920045)
   }
 }

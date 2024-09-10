@@ -374,87 +374,87 @@ public open class CodeHighlighter : SyntaxHighlighter() {
 
   internal object MethodBindings {
     public val addKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "add_keyword_color", 1636512886)
 
     public val removeKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_keyword_color", 83702148)
 
     public val hasKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "has_keyword_color", 3927539163)
 
     public val getKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_color", 3855908743)
 
     public val setKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_keyword_colors")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_keyword_colors", 4155329257)
 
     public val clearKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_keyword_colors")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_keyword_colors", 3218959716)
 
     public val getKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_colors")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_colors", 3102165223)
 
     public val addMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_member_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "add_member_keyword_color", 1636512886)
 
     public val removeMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_member_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_member_keyword_color", 83702148)
 
     public val hasMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_member_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "has_member_keyword_color", 3927539163)
 
     public val getMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_color", 3855908743)
 
     public val setMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_keyword_colors")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_keyword_colors", 4155329257)
 
     public val clearMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_member_keyword_colors")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_member_keyword_colors", 3218959716)
 
     public val getMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_colors")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_colors", 3102165223)
 
     public val addColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_color_region")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "add_color_region", 2924977451)
 
     public val removeColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_color_region")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_color_region", 83702148)
 
     public val hasColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_color_region")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "has_color_region", 3927539163)
 
     public val setColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_color_regions")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_color_regions", 4155329257)
 
     public val clearColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_color_regions")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_color_regions", 3218959716)
 
     public val getColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_color_regions")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_color_regions", 3102165223)
 
     public val setFunctionColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_function_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_function_color", 2920490490)
 
     public val getFunctionColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_function_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_function_color", 3444240500)
 
     public val setNumberColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_number_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_number_color", 2920490490)
 
     public val getNumberColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_number_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_number_color", 3444240500)
 
     public val setSymbolColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_symbol_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_symbol_color", 2920490490)
 
     public val getSymbolColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_symbol_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_symbol_color", 3444240500)
 
     public val setMemberVariableColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_variable_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_variable_color", 2920490490)
 
     public val getMemberVariableColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_variable_color")
+        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_variable_color", 3444240500)
   }
 }

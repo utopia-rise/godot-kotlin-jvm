@@ -262,42 +262,45 @@ public open class GradientTexture2D : Texture2D() {
 
   internal object MethodBindings {
     public val setGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_gradient")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_gradient", 2756054477)
 
     public val getGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_gradient")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_gradient", 132272999)
 
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("GradientTexture2D", "set_width")
+    public val setWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_width", 1286410249)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_height")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_height", 1286410249)
 
     public val setUseHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_use_hdr")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_use_hdr", 2586408642)
 
     public val isUsingHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "is_using_hdr")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "is_using_hdr", 36873697)
 
-    public val setFillPtr: VoidPtr = TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill")
+    public val setFillPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill", 3623927636)
 
-    public val getFillPtr: VoidPtr = TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill")
+    public val getFillPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill", 1876227217)
 
     public val setFillFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_from")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_from", 743155724)
 
     public val getFillFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_from")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_from", 3341600327)
 
     public val setFillToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_to")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_to", 743155724)
 
     public val getFillToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_to")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_to", 3341600327)
 
     public val setRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_repeat")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "set_repeat", 1357597002)
 
     public val getRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_repeat")
+        TypeManager.getMethodBindPtr("GradientTexture2D", "get_repeat", 3351758665)
   }
 }

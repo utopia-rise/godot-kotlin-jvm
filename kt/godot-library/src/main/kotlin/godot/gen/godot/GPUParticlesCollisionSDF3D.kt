@@ -225,39 +225,39 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_size")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_size")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_size", 3360562783)
 
     public val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_resolution")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_resolution", 1155629297)
 
     public val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_resolution")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_resolution", 2919555867)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_texture")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_texture", 1188404210)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_texture")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_texture", 373985333)
 
     public val setThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_thickness")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_thickness", 373806689)
 
     public val getThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_thickness")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_thickness", 1740695150)
 
     public val setBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask", 1286410249)
 
     public val getBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask", 3905245786)
 
     public val setBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask_value")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask_value", 300928843)
 
     public val getBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask_value")
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask_value", 1116898809)
   }
 }

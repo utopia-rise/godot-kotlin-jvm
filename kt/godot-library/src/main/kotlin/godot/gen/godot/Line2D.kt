@@ -428,86 +428,103 @@ public open class Line2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_points")
+    public val setPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_points", 1509147220)
 
-    public val getPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_points")
+    public val getPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_points", 2961356807)
 
     public val setPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_point_position")
+        TypeManager.getMethodBindPtr("Line2D", "set_point_position", 163021252)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_point_position")
+        TypeManager.getMethodBindPtr("Line2D", "get_point_position", 2299179447)
 
-    public val getPointCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_point_count")
+    public val getPointCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_point_count", 3905245786)
 
-    public val addPointPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "add_point")
+    public val addPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "add_point", 2654014372)
 
-    public val removePointPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "remove_point")
+    public val removePointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "remove_point", 1286410249)
 
-    public val clearPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "clear_points")
+    public val clearPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "clear_points", 3218959716)
 
-    public val setClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_closed")
+    public val setClosedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_closed", 2586408642)
 
-    public val isClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "is_closed")
+    public val isClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "is_closed", 36873697)
 
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_width")
+    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_width", 373806689)
 
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_width")
+    public val getWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_width", 1740695150)
 
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_curve")
+    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_curve", 270443179)
 
-    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_curve")
+    public val getCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_curve", 2460114913)
 
     public val setDefaultColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_default_color")
+        TypeManager.getMethodBindPtr("Line2D", "set_default_color", 2920490490)
 
     public val getDefaultColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_default_color")
+        TypeManager.getMethodBindPtr("Line2D", "get_default_color", 3444240500)
 
-    public val setGradientPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_gradient")
+    public val setGradientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_gradient", 2756054477)
 
-    public val getGradientPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_gradient")
+    public val getGradientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_gradient", 132272999)
 
-    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_texture")
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_texture", 3635182373)
 
     public val setTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_texture_mode")
+        TypeManager.getMethodBindPtr("Line2D", "set_texture_mode", 1952559516)
 
     public val getTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_texture_mode")
+        TypeManager.getMethodBindPtr("Line2D", "get_texture_mode", 2341040722)
 
-    public val setJointModePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_joint_mode")
+    public val setJointModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_joint_mode", 604292979)
 
-    public val getJointModePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_joint_mode")
+    public val getJointModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_joint_mode", 2546544037)
 
     public val setBeginCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_begin_cap_mode")
+        TypeManager.getMethodBindPtr("Line2D", "set_begin_cap_mode", 1669024546)
 
     public val getBeginCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_begin_cap_mode")
+        TypeManager.getMethodBindPtr("Line2D", "get_begin_cap_mode", 1107511441)
 
     public val setEndCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_end_cap_mode")
+        TypeManager.getMethodBindPtr("Line2D", "set_end_cap_mode", 1669024546)
 
     public val getEndCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_end_cap_mode")
+        TypeManager.getMethodBindPtr("Line2D", "get_end_cap_mode", 1107511441)
 
-    public val setSharpLimitPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_sharp_limit")
+    public val setSharpLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "set_sharp_limit", 373806689)
 
-    public val getSharpLimitPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "get_sharp_limit")
+    public val getSharpLimitPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Line2D", "get_sharp_limit", 1740695150)
 
     public val setRoundPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_round_precision")
+        TypeManager.getMethodBindPtr("Line2D", "set_round_precision", 1286410249)
 
     public val getRoundPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_round_precision")
+        TypeManager.getMethodBindPtr("Line2D", "get_round_precision", 3905245786)
 
     public val setAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_antialiased")
+        TypeManager.getMethodBindPtr("Line2D", "set_antialiased", 2586408642)
 
     public val getAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_antialiased")
+        TypeManager.getMethodBindPtr("Line2D", "get_antialiased", 36873697)
   }
 }

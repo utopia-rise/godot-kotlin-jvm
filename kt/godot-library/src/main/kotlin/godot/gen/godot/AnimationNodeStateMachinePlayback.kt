@@ -152,33 +152,33 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
 
   internal object MethodBindings {
     public val travelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "travel")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "travel", 3823612587)
 
     public val startPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "start")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "start", 3823612587)
 
     public val nextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "next")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "next", 3218959716)
 
     public val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "stop")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "stop", 3218959716)
 
     public val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "is_playing")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "is_playing", 36873697)
 
     public val getCurrentNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_node")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_node", 2002593661)
 
     public val getCurrentPlayPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_play_position")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_play_position", 1740695150)
 
     public val getCurrentLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_length")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_current_length", 1740695150)
 
     public val getFadingFromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_from_node")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_fading_from_node", 2002593661)
 
     public val getTravelPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_travel_path")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachinePlayback", "get_travel_path", 3995934104)
   }
 }

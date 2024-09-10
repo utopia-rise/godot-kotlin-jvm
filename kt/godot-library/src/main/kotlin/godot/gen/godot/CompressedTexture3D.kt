@@ -57,9 +57,10 @@ public open class CompressedTexture3D : Texture3D() {
   public companion object
 
   internal object MethodBindings {
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("CompressedTexture3D", "load")
+    public val loadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CompressedTexture3D", "load", 166001499)
 
     public val getLoadPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompressedTexture3D", "get_load_path")
+        TypeManager.getMethodBindPtr("CompressedTexture3D", "get_load_path", 201670096)
   }
 }

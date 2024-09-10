@@ -115,32 +115,34 @@ public open class World3D : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getSpacePtr: VoidPtr = TypeManager.getMethodBindPtr("World3D", "get_space")
+    public val getSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("World3D", "get_space", 2944877500)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_navigation_map")
+        TypeManager.getMethodBindPtr("World3D", "get_navigation_map", 2944877500)
 
-    public val getScenarioPtr: VoidPtr = TypeManager.getMethodBindPtr("World3D", "get_scenario")
+    public val getScenarioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("World3D", "get_scenario", 2944877500)
 
     public val setEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "set_environment")
+        TypeManager.getMethodBindPtr("World3D", "set_environment", 4143518816)
 
     public val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_environment")
+        TypeManager.getMethodBindPtr("World3D", "get_environment", 3082064660)
 
     public val setFallbackEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "set_fallback_environment")
+        TypeManager.getMethodBindPtr("World3D", "set_fallback_environment", 4143518816)
 
     public val getFallbackEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_fallback_environment")
+        TypeManager.getMethodBindPtr("World3D", "get_fallback_environment", 3082064660)
 
     public val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "set_camera_attributes")
+        TypeManager.getMethodBindPtr("World3D", "set_camera_attributes", 2817810567)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_camera_attributes")
+        TypeManager.getMethodBindPtr("World3D", "get_camera_attributes", 3921283215)
 
     public val getDirectSpaceStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_direct_space_state")
+        TypeManager.getMethodBindPtr("World3D", "get_direct_space_state", 2069328350)
   }
 }

@@ -476,57 +476,57 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   internal object MethodBindings {
     public val isSessionSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "is_session_supported")
+        TypeManager.getMethodBindPtr("WebXRInterface", "is_session_supported", 83702148)
 
     public val setSessionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_session_mode")
+        TypeManager.getMethodBindPtr("WebXRInterface", "set_session_mode", 83702148)
 
     public val getSessionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_session_mode")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_session_mode", 201670096)
 
     public val setRequiredFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_required_features")
+        TypeManager.getMethodBindPtr("WebXRInterface", "set_required_features", 83702148)
 
     public val getRequiredFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_required_features")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_required_features", 201670096)
 
     public val setOptionalFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_optional_features")
+        TypeManager.getMethodBindPtr("WebXRInterface", "set_optional_features", 83702148)
 
     public val getOptionalFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_optional_features")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_optional_features", 201670096)
 
     public val getReferenceSpaceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_reference_space_type")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_reference_space_type", 201670096)
 
     public val getEnabledFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_enabled_features")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_enabled_features", 201670096)
 
     public val setRequestedReferenceSpaceTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_requested_reference_space_types")
+        TypeManager.getMethodBindPtr("WebXRInterface", "set_requested_reference_space_types", 83702148)
 
     public val getRequestedReferenceSpaceTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_requested_reference_space_types")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_requested_reference_space_types", 201670096)
 
     public val isInputSourceActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "is_input_source_active")
+        TypeManager.getMethodBindPtr("WebXRInterface", "is_input_source_active", 1116898809)
 
     public val getInputSourceTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_input_source_tracker")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_input_source_tracker", 399776966)
 
     public val getInputSourceTargetRayModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_input_source_target_ray_mode")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_input_source_target_ray_mode", 2852387453)
 
     public val getVisibilityStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_visibility_state")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_visibility_state", 201670096)
 
     public val getDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_display_refresh_rate")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_display_refresh_rate", 1740695150)
 
     public val setDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_display_refresh_rate")
+        TypeManager.getMethodBindPtr("WebXRInterface", "set_display_refresh_rate", 373806689)
 
     public val getAvailableDisplayRefreshRatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_available_display_refresh_rates")
+        TypeManager.getMethodBindPtr("WebXRInterface", "get_available_display_refresh_rates", 3995934104)
   }
 }

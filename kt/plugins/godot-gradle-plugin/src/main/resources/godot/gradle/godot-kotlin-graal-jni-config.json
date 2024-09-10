@@ -59,7 +59,7 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "getMethodBindPtr$godot_library", "parameterTypes" : ["java.lang.String", "java.lang.String"] }
+      { "name" : "getMethodBindPtr$godot_library", "parameterTypes" : ["java.lang.String", "java.lang.String", "long"] }
     ]
   },
   {

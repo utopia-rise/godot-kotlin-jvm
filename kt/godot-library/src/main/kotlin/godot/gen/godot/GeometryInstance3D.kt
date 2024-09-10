@@ -515,99 +515,99 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_override")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_override", 2757459619)
 
     public val getMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_override")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_override", 5934680)
 
     public val setMaterialOverlayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_overlay")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_overlay", 2757459619)
 
     public val getMaterialOverlayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_overlay")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_overlay", 5934680)
 
     public val setCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_cast_shadows_setting")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_cast_shadows_setting", 856677339)
 
     public val getCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_cast_shadows_setting")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_cast_shadows_setting", 3383019359)
 
     public val setLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lod_bias")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lod_bias", 373806689)
 
     public val getLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lod_bias")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lod_bias", 1740695150)
 
     public val setTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_transparency")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_transparency", 373806689)
 
     public val getTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_transparency")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_transparency", 1740695150)
 
     public val setVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end_margin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end_margin", 373806689)
 
     public val getVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end_margin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end_margin", 1740695150)
 
     public val setVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end", 373806689)
 
     public val getVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end", 1740695150)
 
     public val setVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin_margin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin_margin", 373806689)
 
     public val getVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin_margin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin_margin", 1740695150)
 
     public val setVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin", 373806689)
 
     public val getVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin", 1740695150)
 
     public val setVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_fade_mode")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_fade_mode", 1440117808)
 
     public val getVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_fade_mode")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_fade_mode", 2067221882)
 
     public val setInstanceShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_instance_shader_parameter")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_instance_shader_parameter", 3776071444)
 
     public val getInstanceShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_instance_shader_parameter")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_instance_shader_parameter", 2760726917)
 
     public val setExtraCullMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_extra_cull_margin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_extra_cull_margin", 373806689)
 
     public val getExtraCullMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_extra_cull_margin")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_extra_cull_margin", 1740695150)
 
     public val setLightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lightmap_scale")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lightmap_scale", 2462696582)
 
     public val getLightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lightmap_scale")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lightmap_scale", 798767852)
 
     public val setGiModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_gi_mode")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_gi_mode", 2548557163)
 
     public val getGiModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_gi_mode")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_gi_mode", 2188566509)
 
     public val setIgnoreOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_ignore_occlusion_culling")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_ignore_occlusion_culling", 2586408642)
 
     public val isIgnoringOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "is_ignoring_occlusion_culling")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "is_ignoring_occlusion_culling", 2240911060)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_custom_aabb")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_custom_aabb")
+        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_custom_aabb", 1068685055)
   }
 }

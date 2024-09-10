@@ -73,8 +73,10 @@ public open class BoxShape3D : Shape3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxShape3D", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxShape3D", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxShape3D", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BoxShape3D", "get_size", 3360562783)
   }
 }

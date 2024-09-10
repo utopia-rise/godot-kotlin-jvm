@@ -66,9 +66,9 @@ public open class DirectionalLight2D : Light2D() {
 
   internal object MethodBindings {
     public val setMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight2D", "set_max_distance")
+        TypeManager.getMethodBindPtr("DirectionalLight2D", "set_max_distance", 373806689)
 
     public val getMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight2D", "get_max_distance")
+        TypeManager.getMethodBindPtr("DirectionalLight2D", "get_max_distance", 1740695150)
   }
 }

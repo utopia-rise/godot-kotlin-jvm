@@ -142,53 +142,57 @@ public open class AudioEffectChorus : AudioEffect() {
 
   internal object MethodBindings {
     public val setVoiceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_count")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_count", 1286410249)
 
     public val getVoiceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_count")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_count", 3905245786)
 
     public val setVoiceDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_delay_ms", 1602489585)
 
     public val getVoiceDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_delay_ms", 2339986948)
 
     public val setVoiceRateHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_rate_hz")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_rate_hz", 1602489585)
 
     public val getVoiceRateHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_rate_hz")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_rate_hz", 2339986948)
 
     public val setVoiceDepthMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_depth_ms")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_depth_ms", 1602489585)
 
     public val getVoiceDepthMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_depth_ms")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_depth_ms", 2339986948)
 
     public val setVoiceLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_level_db", 1602489585)
 
     public val getVoiceLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_level_db", 2339986948)
 
     public val setVoiceCutoffHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_cutoff_hz")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_cutoff_hz", 1602489585)
 
     public val getVoiceCutoffHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_cutoff_hz")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_cutoff_hz", 2339986948)
 
     public val setVoicePanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_pan")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_voice_pan", 1602489585)
 
     public val getVoicePanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_pan")
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_voice_pan", 2339986948)
 
-    public val setWetPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectChorus", "set_wet")
+    public val setWetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_wet", 373806689)
 
-    public val getWetPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectChorus", "get_wet")
+    public val getWetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_wet", 1740695150)
 
-    public val setDryPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectChorus", "set_dry")
+    public val setDryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "set_dry", 373806689)
 
-    public val getDryPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectChorus", "get_dry")
+    public val getDryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectChorus", "get_dry", 1740695150)
   }
 }

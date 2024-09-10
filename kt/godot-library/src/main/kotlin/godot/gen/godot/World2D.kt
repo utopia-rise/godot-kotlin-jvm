@@ -73,14 +73,16 @@ public open class World2D : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getCanvasPtr: VoidPtr = TypeManager.getMethodBindPtr("World2D", "get_canvas")
+    public val getCanvasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("World2D", "get_canvas", 2944877500)
 
-    public val getSpacePtr: VoidPtr = TypeManager.getMethodBindPtr("World2D", "get_space")
+    public val getSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("World2D", "get_space", 2944877500)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World2D", "get_navigation_map")
+        TypeManager.getMethodBindPtr("World2D", "get_navigation_map", 2944877500)
 
     public val getDirectSpaceStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World2D", "get_direct_space_state")
+        TypeManager.getMethodBindPtr("World2D", "get_direct_space_state", 2506717822)
   }
 }

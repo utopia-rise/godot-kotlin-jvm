@@ -166,35 +166,34 @@ public open class Translation : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _getPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "_get_plural_message")
+    public val setLocalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Translation", "set_locale", 83702148)
 
-    public val _getMessagePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "_get_message")
+    public val getLocalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Translation", "get_locale", 201670096)
 
-    public val setLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "set_locale")
-
-    public val getLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "get_locale")
-
-    public val addMessagePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "add_message")
+    public val addMessagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Translation", "add_message", 971803314)
 
     public val addPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "add_plural_message")
+        TypeManager.getMethodBindPtr("Translation", "add_plural_message", 360316719)
 
-    public val getMessagePtr: VoidPtr = TypeManager.getMethodBindPtr("Translation", "get_message")
+    public val getMessagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Translation", "get_message", 58037827)
 
     public val getPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_plural_message")
+        TypeManager.getMethodBindPtr("Translation", "get_plural_message", 1333931916)
 
     public val eraseMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "erase_message")
+        TypeManager.getMethodBindPtr("Translation", "erase_message", 3919944288)
 
     public val getMessageListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message_list")
+        TypeManager.getMethodBindPtr("Translation", "get_message_list", 1139954409)
 
     public val getTranslatedMessageListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_translated_message_list")
+        TypeManager.getMethodBindPtr("Translation", "get_translated_message_list", 1139954409)
 
     public val getMessageCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message_count")
+        TypeManager.getMethodBindPtr("Translation", "get_message_count", 3905245786)
   }
 }

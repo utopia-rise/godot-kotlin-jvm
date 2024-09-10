@@ -380,87 +380,87 @@ public open class ProceduralSkyMaterial : Material() {
 
   internal object MethodBindings {
     public val setSkyTopColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_top_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_top_color", 2920490490)
 
     public val getSkyTopColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_top_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_top_color", 3444240500)
 
     public val setSkyHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_horizon_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_horizon_color", 2920490490)
 
     public val getSkyHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_horizon_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_horizon_color", 3444240500)
 
     public val setSkyCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_curve")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_curve", 373806689)
 
     public val getSkyCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_curve")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_curve", 1740695150)
 
     public val setSkyEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_energy_multiplier")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_energy_multiplier", 373806689)
 
     public val getSkyEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_energy_multiplier")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_energy_multiplier", 1740695150)
 
     public val setSkyCoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover", 4051416890)
 
     public val getSkyCoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover", 3635182373)
 
     public val setSkyCoverModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover_modulate")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover_modulate", 2920490490)
 
     public val getSkyCoverModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover_modulate")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover_modulate", 3444240500)
 
     public val setGroundBottomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_bottom_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_bottom_color", 2920490490)
 
     public val getGroundBottomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_bottom_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_bottom_color", 3444240500)
 
     public val setGroundHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_horizon_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_horizon_color", 2920490490)
 
     public val getGroundHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_horizon_color")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_horizon_color", 3444240500)
 
     public val setGroundCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_curve")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_curve", 373806689)
 
     public val getGroundCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_curve")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_curve", 1740695150)
 
     public val setGroundEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_energy_multiplier")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_energy_multiplier", 373806689)
 
     public val getGroundEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_energy_multiplier")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_energy_multiplier", 1740695150)
 
     public val setSunAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_angle_max")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_angle_max", 373806689)
 
     public val getSunAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_angle_max")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_angle_max", 1740695150)
 
     public val setSunCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_curve")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_curve", 373806689)
 
     public val getSunCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_curve")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_curve", 1740695150)
 
     public val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_use_debanding")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_use_debanding", 2586408642)
 
     public val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding", 36873697)
 
     public val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier", 373806689)
 
     public val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier")
+        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier", 1740695150)
   }
 }

@@ -375,60 +375,64 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   internal object MethodBindings {
-    public val fromNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_node")
+    public val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_node", 420544174)
 
-    public val toNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_node")
+    public val toNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_node", 3224013656)
 
     public val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary", 1177544336)
 
     public val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_dictionary")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_dictionary", 3102165223)
 
     public val getBodyTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_body_type")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_body_type", 201670096)
 
     public val setBodyTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_body_type")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_body_type", 83702148)
 
-    public val getMassPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_mass")
+    public val getMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_mass", 1740695150)
 
-    public val setMassPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_mass")
+    public val setMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_mass", 373806689)
 
     public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_linear_velocity")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_linear_velocity", 3360562783)
 
     public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_linear_velocity")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_linear_velocity", 3460891852)
 
     public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_angular_velocity")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_angular_velocity", 3360562783)
 
     public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_angular_velocity")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_angular_velocity", 3460891852)
 
     public val getCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_center_of_mass")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_center_of_mass", 3360562783)
 
     public val setCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_center_of_mass")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_center_of_mass", 3460891852)
 
     public val getInertiaDiagonalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_diagonal")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_diagonal", 3360562783)
 
     public val setInertiaDiagonalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_diagonal")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_diagonal", 3460891852)
 
     public val getInertiaOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_orientation")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_orientation", 1222331677)
 
     public val setInertiaOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_orientation")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_orientation", 1727505552)
 
     public val getInertiaTensorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_tensor")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_tensor", 2716978435)
 
     public val setInertiaTensorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_tensor")
+        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_tensor", 1055510324)
   }
 }

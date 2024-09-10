@@ -415,64 +415,66 @@ public object Time : Object() {
 
   internal object MethodBindings {
     public val getDatetimeDictFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_unix_time")
+        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_unix_time", 3485342025)
 
     public val getDateDictFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_dict_from_unix_time")
+        TypeManager.getMethodBindPtr("Time", "get_date_dict_from_unix_time", 3485342025)
 
     public val getTimeDictFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_dict_from_unix_time")
+        TypeManager.getMethodBindPtr("Time", "get_time_dict_from_unix_time", 3485342025)
 
     public val getDatetimeStringFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_unix_time")
+        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_unix_time", 2311239925)
 
     public val getDateStringFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_string_from_unix_time")
+        TypeManager.getMethodBindPtr("Time", "get_date_string_from_unix_time", 844755477)
 
     public val getTimeStringFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_string_from_unix_time")
+        TypeManager.getMethodBindPtr("Time", "get_time_string_from_unix_time", 844755477)
 
     public val getDatetimeDictFromDatetimeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_datetime_string")
+        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_datetime_string", 3253569256)
 
     public val getDatetimeStringFromDatetimeDictPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_datetime_dict")
+        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_datetime_dict", 1898123706)
 
     public val getUnixTimeFromDatetimeDictPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_datetime_dict")
+        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_datetime_dict", 3021115443)
 
     public val getUnixTimeFromDatetimeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_datetime_string")
+        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_datetime_string", 1321353865)
 
     public val getOffsetStringFromOffsetMinutesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_offset_string_from_offset_minutes")
+        TypeManager.getMethodBindPtr("Time", "get_offset_string_from_offset_minutes", 844755477)
 
     public val getDatetimeDictFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_system", 205769976)
 
     public val getDateDictFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_dict_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_date_dict_from_system", 205769976)
 
     public val getTimeDictFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_dict_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_time_dict_from_system", 205769976)
 
     public val getDatetimeStringFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_system", 1136425492)
 
     public val getDateStringFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_string_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_date_string_from_system", 1162154673)
 
     public val getTimeStringFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_string_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_time_string_from_system", 1162154673)
 
     public val getTimeZoneFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_zone_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_time_zone_from_system", 3102165223)
 
     public val getUnixTimeFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_system")
+        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_system", 1740695150)
 
-    public val getTicksMsecPtr: VoidPtr = TypeManager.getMethodBindPtr("Time", "get_ticks_msec")
+    public val getTicksMsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Time", "get_ticks_msec", 3905245786)
 
-    public val getTicksUsecPtr: VoidPtr = TypeManager.getMethodBindPtr("Time", "get_ticks_usec")
+    public val getTicksUsecPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Time", "get_ticks_usec", 3905245786)
   }
 }

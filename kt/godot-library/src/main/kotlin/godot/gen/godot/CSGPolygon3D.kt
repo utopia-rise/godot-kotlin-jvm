@@ -363,94 +363,100 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGPolygon3D", "set_polygon")
+    public val setPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_polygon", 1509147220)
 
-    public val getPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGPolygon3D", "get_polygon")
+    public val getPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_polygon", 2961356807)
 
-    public val setModePtr: VoidPtr = TypeManager.getMethodBindPtr("CSGPolygon3D", "set_mode")
+    public val setModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_mode", 3158377035)
 
-    public val getModePtr: VoidPtr = TypeManager.getMethodBindPtr("CSGPolygon3D", "get_mode")
+    public val getModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_mode", 1201612222)
 
-    public val setDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGPolygon3D", "set_depth")
+    public val setDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_depth", 373806689)
 
-    public val getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGPolygon3D", "get_depth")
+    public val getDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_depth", 1740695150)
 
     public val setSpinDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_degrees")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_degrees", 373806689)
 
     public val getSpinDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_degrees")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_degrees", 1740695150)
 
     public val setSpinSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_sides")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_sides", 1286410249)
 
     public val getSpinSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_sides")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_sides", 3905245786)
 
     public val setPathNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_node")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_node", 1348162250)
 
     public val getPathNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_node")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_node", 4075236667)
 
     public val setPathIntervalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval_type")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval_type", 3744240707)
 
     public val getPathIntervalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval_type")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval_type", 3434618397)
 
     public val setPathIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval", 373806689)
 
     public val getPathIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval", 1740695150)
 
     public val setPathSimplifyAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_simplify_angle")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_simplify_angle", 373806689)
 
     public val getPathSimplifyAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_simplify_angle")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_simplify_angle", 1740695150)
 
     public val setPathRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation", 1412947288)
 
     public val getPathRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation", 647219346)
 
     public val setPathLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_local")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_local", 2586408642)
 
     public val isPathLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_local")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_local", 36873697)
 
     public val setPathContinuousUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_continuous_u")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_continuous_u", 2586408642)
 
     public val isPathContinuousUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_continuous_u")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_continuous_u", 36873697)
 
     public val setPathUDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_u_distance")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_u_distance", 373806689)
 
     public val getPathUDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_u_distance")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_u_distance", 1740695150)
 
     public val setPathJoinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_joined")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_joined", 2586408642)
 
     public val isPathJoinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_joined")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_joined", 36873697)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_material")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_material")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_material", 5934680)
 
     public val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_smooth_faces", 2586408642)
 
     public val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_smooth_faces", 36873697)
   }
 }

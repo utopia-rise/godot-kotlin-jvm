@@ -257,55 +257,61 @@ public open class InputEventKey : InputEventWithModifiers() {
   public companion object
 
   internal object MethodBindings {
-    public val setPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_pressed")
+    public val setPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "set_pressed", 2586408642)
 
-    public val setKeycodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_keycode")
+    public val setKeycodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "set_keycode", 888074362)
 
-    public val getKeycodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "get_keycode")
+    public val getKeycodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_keycode", 1585896689)
 
     public val setPhysicalKeycodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "set_physical_keycode")
+        TypeManager.getMethodBindPtr("InputEventKey", "set_physical_keycode", 888074362)
 
     public val getPhysicalKeycodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "get_physical_keycode")
+        TypeManager.getMethodBindPtr("InputEventKey", "get_physical_keycode", 1585896689)
 
     public val setKeyLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "set_key_label")
+        TypeManager.getMethodBindPtr("InputEventKey", "set_key_label", 888074362)
 
     public val getKeyLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "get_key_label")
+        TypeManager.getMethodBindPtr("InputEventKey", "get_key_label", 1585896689)
 
-    public val setUnicodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_unicode")
+    public val setUnicodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "set_unicode", 1286410249)
 
-    public val getUnicodePtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "get_unicode")
+    public val getUnicodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "get_unicode", 3905245786)
 
     public val setLocationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "set_location")
+        TypeManager.getMethodBindPtr("InputEventKey", "set_location", 634453155)
 
     public val getLocationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "get_location")
+        TypeManager.getMethodBindPtr("InputEventKey", "get_location", 211810873)
 
-    public val setEchoPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEventKey", "set_echo")
+    public val setEchoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputEventKey", "set_echo", 2586408642)
 
     public val getKeycodeWithModifiersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "get_keycode_with_modifiers")
+        TypeManager.getMethodBindPtr("InputEventKey", "get_keycode_with_modifiers", 1585896689)
 
     public val getPhysicalKeycodeWithModifiersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "get_physical_keycode_with_modifiers")
+        TypeManager.getMethodBindPtr("InputEventKey", "get_physical_keycode_with_modifiers", 1585896689)
 
     public val getKeyLabelWithModifiersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "get_key_label_with_modifiers")
+        TypeManager.getMethodBindPtr("InputEventKey", "get_key_label_with_modifiers", 1585896689)
 
     public val asTextKeycodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "as_text_keycode")
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_keycode", 201670096)
 
     public val asTextPhysicalKeycodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "as_text_physical_keycode")
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_physical_keycode", 201670096)
 
     public val asTextKeyLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "as_text_key_label")
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_key_label", 201670096)
 
     public val asTextLocationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventKey", "as_text_location")
+        TypeManager.getMethodBindPtr("InputEventKey", "as_text_location", 201670096)
   }
 }

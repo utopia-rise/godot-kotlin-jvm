@@ -221,59 +221,67 @@ public open class VoxelGIData : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val allocatePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "allocate")
+    public val allocatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "allocate", 4041601946)
 
-    public val getBoundsPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "get_bounds")
+    public val getBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_bounds", 1068685055)
 
     public val getOctreeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_octree_size")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_octree_size", 3360562783)
 
     public val getToCellXformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_to_cell_xform")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_to_cell_xform", 3229777777)
 
     public val getOctreeCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_octree_cells")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_octree_cells", 2362200018)
 
     public val getDataCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_data_cells")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_data_cells", 2362200018)
 
     public val getLevelCountsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_level_counts")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_level_counts", 1930428628)
 
     public val setDynamicRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_dynamic_range")
+        TypeManager.getMethodBindPtr("VoxelGIData", "set_dynamic_range", 373806689)
 
     public val getDynamicRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_dynamic_range")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_dynamic_range", 1740695150)
 
-    public val setEnergyPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "set_energy")
+    public val setEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "set_energy", 373806689)
 
-    public val getEnergyPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "get_energy")
+    public val getEnergyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_energy", 1740695150)
 
-    public val setBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "set_bias")
+    public val setBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "set_bias", 373806689)
 
-    public val getBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "get_bias")
+    public val getBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_bias", 1740695150)
 
     public val setNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_normal_bias")
+        TypeManager.getMethodBindPtr("VoxelGIData", "set_normal_bias", 373806689)
 
     public val getNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_normal_bias")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_normal_bias", 1740695150)
 
     public val setPropagationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_propagation")
+        TypeManager.getMethodBindPtr("VoxelGIData", "set_propagation", 373806689)
 
     public val getPropagationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_propagation")
+        TypeManager.getMethodBindPtr("VoxelGIData", "get_propagation", 1740695150)
 
-    public val setInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "set_interior")
+    public val setInteriorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "set_interior", 2586408642)
 
-    public val isInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGIData", "is_interior")
+    public val isInteriorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VoxelGIData", "is_interior", 36873697)
 
     public val setUseTwoBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_use_two_bounces")
+        TypeManager.getMethodBindPtr("VoxelGIData", "set_use_two_bounces", 2586408642)
 
     public val isUsingTwoBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "is_using_two_bounces")
+        TypeManager.getMethodBindPtr("VoxelGIData", "is_using_two_bounces", 36873697)
   }
 }

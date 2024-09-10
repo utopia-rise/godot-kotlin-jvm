@@ -412,110 +412,112 @@ public open class GraphNode : GraphElement() {
   public companion object
 
   internal object MethodBindings {
-    public val _drawPortPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "_draw_port")
+    public val setTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_title", 83702148)
 
-    public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "set_title")
-
-    public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "get_title")
+    public val getTitlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_title", 201670096)
 
     public val getTitlebarHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_titlebar_hbox")
+        TypeManager.getMethodBindPtr("GraphNode", "get_titlebar_hbox", 3590609951)
 
-    public val setSlotPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "set_slot")
+    public val setSlotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot", 2873310869)
 
-    public val clearSlotPtr: VoidPtr = TypeManager.getMethodBindPtr("GraphNode", "clear_slot")
+    public val clearSlotPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "clear_slot", 1286410249)
 
     public val clearAllSlotsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "clear_all_slots")
+        TypeManager.getMethodBindPtr("GraphNode", "clear_all_slots", 3218959716)
 
     public val isSlotEnabledLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_left")
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_left", 1116898809)
 
     public val setSlotEnabledLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_left")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_left", 300928843)
 
     public val setSlotTypeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_left")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_left", 3937882851)
 
     public val getSlotTypeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_left")
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_left", 923996154)
 
     public val setSlotColorLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_left")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_left", 2878471219)
 
     public val getSlotColorLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_left")
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_left", 3457211756)
 
     public val setSlotCustomIconLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_left")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_left", 666127730)
 
     public val getSlotCustomIconLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left")
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left", 3536238170)
 
     public val isSlotEnabledRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right")
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right", 1116898809)
 
     public val setSlotEnabledRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_right")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_right", 300928843)
 
     public val setSlotTypeRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_right")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_right", 3937882851)
 
     public val getSlotTypeRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_right")
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_right", 923996154)
 
     public val setSlotColorRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_right")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_right", 2878471219)
 
     public val getSlotColorRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_right")
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_right", 3457211756)
 
     public val setSlotCustomIconRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_right")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_right", 666127730)
 
     public val getSlotCustomIconRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right")
+        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right", 3536238170)
 
     public val isSlotDrawStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox")
+        TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox", 1116898809)
 
     public val setSlotDrawStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox")
+        TypeManager.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox", 300928843)
 
     public val setIgnoreInvalidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_ignore_invalid_connection_type")
+        TypeManager.getMethodBindPtr("GraphNode", "set_ignore_invalid_connection_type", 2586408642)
 
     public val isIgnoringValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type")
+        TypeManager.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type", 36873697)
 
     public val getInputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count")
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count", 2455072627)
 
     public val getInputPortPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_position")
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_position", 3114997196)
 
     public val getInputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_type")
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_type", 3744713108)
 
     public val getInputPortColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_color")
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_color", 2624840992)
 
     public val getInputPortSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_slot")
+        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_slot", 3744713108)
 
     public val getOutputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_count")
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_count", 2455072627)
 
     public val getOutputPortPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_position")
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_position", 3114997196)
 
     public val getOutputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_type")
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_type", 3744713108)
 
     public val getOutputPortColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_color")
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_color", 2624840992)
 
     public val getOutputPortSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_slot")
+        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_slot", 3744713108)
   }
 }

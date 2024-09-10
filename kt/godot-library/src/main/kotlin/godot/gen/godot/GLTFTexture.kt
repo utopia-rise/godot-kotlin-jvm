@@ -57,13 +57,15 @@ public open class GLTFTexture : Resource() {
 
   internal object MethodBindings {
     public val getSrcImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "get_src_image")
+        TypeManager.getMethodBindPtr("GLTFTexture", "get_src_image", 3905245786)
 
     public val setSrcImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "set_src_image")
+        TypeManager.getMethodBindPtr("GLTFTexture", "set_src_image", 1286410249)
 
-    public val getSamplerPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFTexture", "get_sampler")
+    public val getSamplerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTexture", "get_sampler", 3905245786)
 
-    public val setSamplerPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFTexture", "set_sampler")
+    public val setSamplerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFTexture", "set_sampler", 1286410249)
   }
 }

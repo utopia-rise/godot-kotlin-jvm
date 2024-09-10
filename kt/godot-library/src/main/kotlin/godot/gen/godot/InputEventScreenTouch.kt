@@ -129,27 +129,27 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
 
   internal object MethodBindings {
     public val setIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_index")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_index", 1286410249)
 
     public val getIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_index")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_index", 3905245786)
 
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_position")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_position", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_position")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_position", 3341600327)
 
     public val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_pressed")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_pressed", 2586408642)
 
     public val setCanceledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_canceled")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_canceled", 2586408642)
 
     public val setDoubleTapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_double_tap")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_double_tap", 2586408642)
 
     public val isDoubleTapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "is_double_tap")
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "is_double_tap", 36873697)
   }
 }

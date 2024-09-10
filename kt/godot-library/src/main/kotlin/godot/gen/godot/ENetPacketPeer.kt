@@ -383,43 +383,46 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   internal object MethodBindings {
     public val peerDisconnectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect", 1995695955)
 
     public val peerDisconnectLaterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_later")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_later", 1995695955)
 
     public val peerDisconnectNowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_now")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_now", 1995695955)
 
-    public val pingPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "ping")
+    public val pingPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "ping", 3218959716)
 
     public val pingIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "ping_interval")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "ping_interval", 1286410249)
 
-    public val resetPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "reset")
+    public val resetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "reset", 3218959716)
 
-    public val sendPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "send")
+    public val sendPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "send", 120522849)
 
     public val throttleConfigurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "throttle_configure")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "throttle_configure", 1649997291)
 
     public val setTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "set_timeout")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "set_timeout", 1649997291)
 
     public val getRemoteAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_remote_address")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_remote_address", 201670096)
 
     public val getRemotePortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_remote_port")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_remote_port", 3905245786)
 
     public val getStatisticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_statistic")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_statistic", 1642578323)
 
-    public val getStatePtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "get_state")
+    public val getStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_state", 711068532)
 
     public val getChannelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_channels")
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_channels", 3905245786)
 
-    public val isActivePtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "is_active")
+    public val isActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ENetPacketPeer", "is_active", 36873697)
   }
 }

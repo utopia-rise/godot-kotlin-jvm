@@ -81,15 +81,19 @@ public open class Shortcut : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setEventsPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "set_events")
+    public val setEventsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shortcut", "set_events", 381264803)
 
-    public val getEventsPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "get_events")
+    public val getEventsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shortcut", "get_events", 3995934104)
 
     public val hasValidEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "has_valid_event")
+        TypeManager.getMethodBindPtr("Shortcut", "has_valid_event", 36873697)
 
-    public val matchesEventPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "matches_event")
+    public val matchesEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shortcut", "matches_event", 3738334489)
 
-    public val getAsTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Shortcut", "get_as_text")
+    public val getAsTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shortcut", "get_as_text", 201670096)
   }
 }

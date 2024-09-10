@@ -7,10 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -190,14 +188,5 @@ public open class MainLoop : Object() {
     public final const val NOTIFICATION_TEXT_SERVER_CHANGED: Long = 2018
   }
 
-  internal object MethodBindings {
-    public val _initializePtr: VoidPtr = TypeManager.getMethodBindPtr("MainLoop", "_initialize")
-
-    public val _physicsProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MainLoop", "_physics_process")
-
-    public val _processPtr: VoidPtr = TypeManager.getMethodBindPtr("MainLoop", "_process")
-
-    public val _finalizePtr: VoidPtr = TypeManager.getMethodBindPtr("MainLoop", "_finalize")
-  }
+  internal object MethodBindings
 }

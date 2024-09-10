@@ -142,28 +142,34 @@ public open class XRNode3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setTrackerPtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "set_tracker")
+    public val setTrackerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "set_tracker", 3304788590)
 
-    public val getTrackerPtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "get_tracker")
+    public val getTrackerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "get_tracker", 2002593661)
 
-    public val setPoseNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "set_pose_name")
+    public val setPoseNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "set_pose_name", 3304788590)
 
-    public val getPoseNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "get_pose_name")
+    public val getPoseNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "get_pose_name", 2002593661)
 
     public val setShowWhenTrackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "set_show_when_tracked")
+        TypeManager.getMethodBindPtr("XRNode3D", "set_show_when_tracked", 2586408642)
 
     public val getShowWhenTrackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_show_when_tracked")
+        TypeManager.getMethodBindPtr("XRNode3D", "get_show_when_tracked", 36873697)
 
-    public val getIsActivePtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "get_is_active")
+    public val getIsActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "get_is_active", 36873697)
 
     public val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_has_tracking_data")
+        TypeManager.getMethodBindPtr("XRNode3D", "get_has_tracking_data", 36873697)
 
-    public val getPosePtr: VoidPtr = TypeManager.getMethodBindPtr("XRNode3D", "get_pose")
+    public val getPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRNode3D", "get_pose", 2806551826)
 
     public val triggerHapticPulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "trigger_haptic_pulse")
+        TypeManager.getMethodBindPtr("XRNode3D", "trigger_haptic_pulse", 508576839)
   }
 }

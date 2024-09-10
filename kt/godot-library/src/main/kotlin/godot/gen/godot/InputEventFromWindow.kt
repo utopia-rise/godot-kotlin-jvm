@@ -45,9 +45,9 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
 
   internal object MethodBindings {
     public val setWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventFromWindow", "set_window_id")
+        TypeManager.getMethodBindPtr("InputEventFromWindow", "set_window_id", 1286410249)
 
     public val getWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventFromWindow", "get_window_id")
+        TypeManager.getMethodBindPtr("InputEventFromWindow", "get_window_id", 3905245786)
   }
 }

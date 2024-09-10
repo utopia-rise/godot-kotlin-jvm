@@ -149,48 +149,48 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
 
   internal object MethodBindings {
     public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear", 3218959716)
 
     public val hasDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "has_data")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "has_data", 2240911060)
 
     public val setTraversableOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_traversable_outlines")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_traversable_outlines", 381264803)
 
     public val getTraversableOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_traversable_outlines")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_traversable_outlines", 3995934104)
 
     public val setObstructionOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_obstruction_outlines")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_obstruction_outlines", 381264803)
 
     public val getObstructionOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_obstruction_outlines")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_obstruction_outlines", 3995934104)
 
     public val appendTraversableOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_traversable_outlines")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_traversable_outlines", 381264803)
 
     public val appendObstructionOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_obstruction_outlines")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_obstruction_outlines", 381264803)
 
     public val addTraversableOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_traversable_outline")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_traversable_outline", 1509147220)
 
     public val addObstructionOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_obstruction_outline")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_obstruction_outline", 1509147220)
 
     public val mergePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "merge")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "merge", 742424872)
 
     public val addProjectedObstructionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_projected_obstruction")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_projected_obstruction", 3882407395)
 
     public val clearProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear_projected_obstructions")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear_projected_obstructions", 3218959716)
 
     public val setProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_projected_obstructions")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_projected_obstructions", 381264803)
 
     public val getProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_projected_obstructions")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_projected_obstructions", 3995934104)
   }
 }

@@ -204,36 +204,30 @@ public open class StyleBox : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _drawPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "_draw")
-
-    public val _getDrawRectPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "_get_draw_rect")
-
-    public val _getMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "_get_minimum_size")
-
-    public val _testMaskPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "_test_mask")
-
     public val getMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_minimum_size")
+        TypeManager.getMethodBindPtr("StyleBox", "get_minimum_size", 3341600327)
 
     public val setContentMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "set_content_margin")
+        TypeManager.getMethodBindPtr("StyleBox", "set_content_margin", 4290182280)
 
     public val setContentMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "set_content_margin_all")
+        TypeManager.getMethodBindPtr("StyleBox", "set_content_margin_all", 373806689)
 
     public val getContentMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_content_margin")
+        TypeManager.getMethodBindPtr("StyleBox", "get_content_margin", 2869120046)
 
-    public val getMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "get_margin")
+    public val getMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBox", "get_margin", 2869120046)
 
-    public val getOffsetPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "get_offset")
+    public val getOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBox", "get_offset", 3341600327)
 
-    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "draw")
+    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "draw", 2275962004)
 
     public val getCurrentItemDrawnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_current_item_drawn")
+        TypeManager.getMethodBindPtr("StyleBox", "get_current_item_drawn", 3213695180)
 
-    public val testMaskPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "test_mask")
+    public val testMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StyleBox", "test_mask", 3735564539)
   }
 }

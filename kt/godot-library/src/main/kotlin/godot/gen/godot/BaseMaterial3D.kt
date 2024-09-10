@@ -2891,404 +2891,412 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public companion object
 
   internal object MethodBindings {
-    public val setAlbedoPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_albedo")
+    public val setAlbedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_albedo", 2920490490)
 
-    public val getAlbedoPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_albedo")
+    public val getAlbedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_albedo", 3444240500)
 
     public val setTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transparency")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transparency", 3435651667)
 
     public val getTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transparency")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transparency", 990903061)
 
     public val setAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing", 3212649852)
 
     public val getAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing", 2889939400)
 
     public val setAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing_edge")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing_edge", 373806689)
 
     public val getAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing_edge")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing_edge", 1740695150)
 
     public val setShadingModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_shading_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_shading_mode", 3368750322)
 
     public val getShadingModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_shading_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_shading_mode", 2132070559)
 
     public val setSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular", 373806689)
 
     public val getSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular", 1740695150)
 
     public val setMetallicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic", 373806689)
 
     public val getMetallicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic", 1740695150)
 
     public val setRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness", 373806689)
 
     public val getRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness", 1740695150)
 
     public val setEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission", 2920490490)
 
     public val getEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission", 3444240500)
 
     public val setEmissionEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_energy_multiplier")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_energy_multiplier", 373806689)
 
     public val getEmissionEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_energy_multiplier")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_energy_multiplier", 1740695150)
 
     public val setEmissionIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_intensity")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_intensity", 373806689)
 
     public val getEmissionIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_intensity")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_intensity", 1740695150)
 
     public val setNormalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_normal_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_normal_scale", 373806689)
 
     public val getNormalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_normal_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_normal_scale", 1740695150)
 
-    public val setRimPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim")
+    public val setRimPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim", 373806689)
 
-    public val getRimPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim")
+    public val getRimPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim", 1740695150)
 
     public val setRimTintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim_tint")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim_tint", 373806689)
 
     public val getRimTintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim_tint")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim_tint", 1740695150)
 
     public val setClearcoatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat", 373806689)
 
     public val getClearcoatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat", 1740695150)
 
     public val setClearcoatRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat_roughness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat_roughness", 373806689)
 
     public val getClearcoatRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat_roughness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat_roughness", 1740695150)
 
     public val setAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_anisotropy")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_anisotropy", 373806689)
 
     public val getAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_anisotropy")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_anisotropy", 1740695150)
 
     public val setHeightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_scale", 373806689)
 
     public val getHeightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_scale", 1740695150)
 
     public val setSubsurfaceScatteringStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_subsurface_scattering_strength")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_subsurface_scattering_strength", 373806689)
 
     public val getSubsurfaceScatteringStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_subsurface_scattering_strength")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_subsurface_scattering_strength", 1740695150)
 
     public val setTransmittanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_color")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_color", 2920490490)
 
     public val getTransmittanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_color")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_color", 3444240500)
 
     public val setTransmittanceDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_depth")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_depth", 373806689)
 
     public val getTransmittanceDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_depth")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_depth", 1740695150)
 
     public val setTransmittanceBoostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_boost")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_boost", 373806689)
 
     public val getTransmittanceBoostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_boost")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_boost", 1740695150)
 
     public val setBacklightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_backlight")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_backlight", 2920490490)
 
     public val getBacklightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_backlight")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_backlight", 3444240500)
 
     public val setRefractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction", 373806689)
 
     public val getRefractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction", 1740695150)
 
     public val setPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_point_size")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_point_size", 373806689)
 
     public val getPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_point_size")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_point_size", 1740695150)
 
     public val setDetailUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_uv")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_uv", 456801921)
 
     public val getDetailUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_uv")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_uv", 2306920512)
 
     public val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_blend_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_blend_mode", 2830186259)
 
     public val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_blend_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_blend_mode", 4022690962)
 
     public val setDepthDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_depth_draw_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_depth_draw_mode", 1456584748)
 
     public val getDepthDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode", 2578197639)
 
     public val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_cull_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_cull_mode", 2338909218)
 
     public val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_cull_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_cull_mode", 1941499586)
 
     public val setDiffuseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_diffuse_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_diffuse_mode", 1045299638)
 
     public val getDiffuseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_diffuse_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_diffuse_mode", 3973617136)
 
     public val setSpecularModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular_mode", 584737147)
 
     public val getSpecularModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular_mode", 2569953298)
 
-    public val setFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_flag")
+    public val setFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_flag", 3070159527)
 
-    public val getFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_flag")
+    public val getFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_flag", 1286410065)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture_filter")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture_filter", 22904437)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture_filter")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture_filter", 3289213076)
 
     public val setFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_feature")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_feature", 2819288693)
 
     public val getFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_feature")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_feature", 1965241794)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture", 464208135)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture", 329605813)
 
     public val setDetailBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_blend_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_blend_mode", 2830186259)
 
     public val getDetailBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_blend_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_blend_mode", 4022690962)
 
     public val setUv1ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_scale", 3460891852)
 
     public val getUv1ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_scale", 3360562783)
 
     public val setUv1OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_offset")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_offset", 3460891852)
 
     public val getUv1OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_offset")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_offset", 3360562783)
 
     public val setUv1TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_triplanar_blend_sharpness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_triplanar_blend_sharpness", 373806689)
 
     public val getUv1TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_triplanar_blend_sharpness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_triplanar_blend_sharpness", 1740695150)
 
     public val setUv2ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_scale", 3460891852)
 
     public val getUv2ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_scale", 3360562783)
 
     public val setUv2OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_offset")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_offset", 3460891852)
 
     public val getUv2OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_offset")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_offset", 3360562783)
 
     public val setUv2TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_triplanar_blend_sharpness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_triplanar_blend_sharpness", 373806689)
 
     public val getUv2TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_triplanar_blend_sharpness")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_triplanar_blend_sharpness", 1740695150)
 
     public val setBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_billboard_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_billboard_mode", 4202036497)
 
     public val getBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_billboard_mode")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_billboard_mode", 1283840139)
 
     public val setParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_h_frames")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_h_frames", 1286410249)
 
     public val getParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_h_frames")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_h_frames", 3905245786)
 
     public val setParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_v_frames")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_v_frames", 1286410249)
 
     public val getParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_v_frames")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_v_frames", 3905245786)
 
     public val setParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_loop")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_loop", 2586408642)
 
     public val getParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_loop")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_loop", 36873697)
 
     public val setHeightmapDeepParallaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax", 2586408642)
 
     public val isHeightmapDeepParallaxEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_heightmap_deep_parallax_enabled")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_heightmap_deep_parallax_enabled", 36873697)
 
     public val setHeightmapDeepParallaxMinLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_min_layers")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_min_layers", 1286410249)
 
     public val getHeightmapDeepParallaxMinLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_min_layers")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_min_layers", 3905245786)
 
     public val setHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_max_layers")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_max_layers", 1286410249)
 
     public val getHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_max_layers")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_max_layers", 3905245786)
 
     public val setHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_tangent")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_tangent", 2586408642)
 
     public val getHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_tangent")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_tangent", 36873697)
 
     public val setHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_binormal")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_binormal", 2586408642)
 
     public val getHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_binormal")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_binormal", 36873697)
 
-    public val setGrowPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow")
+    public val setGrowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow", 373806689)
 
-    public val getGrowPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseMaterial3D", "get_grow")
+    public val getGrowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_grow", 1740695150)
 
     public val setEmissionOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_operator")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_operator", 3825128922)
 
     public val getEmissionOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_operator")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_operator", 974205018)
 
     public val setAoLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_light_affect")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_light_affect", 373806689)
 
     public val getAoLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_light_affect")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_light_affect", 1740695150)
 
     public val setAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_scissor_threshold")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_scissor_threshold", 373806689)
 
     public val getAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_scissor_threshold")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_scissor_threshold", 1740695150)
 
     public val setAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_hash_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_hash_scale", 373806689)
 
     public val getAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_hash_scale")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_hash_scale", 1740695150)
 
     public val setGrowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow_enabled")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow_enabled", 2586408642)
 
     public val isGrowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_grow_enabled")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_grow_enabled", 36873697)
 
     public val setMetallicTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic_texture_channel", 744167988)
 
     public val getMetallicTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic_texture_channel", 568133867)
 
     public val setRoughnessTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness_texture_channel", 744167988)
 
     public val getRoughnessTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness_texture_channel", 568133867)
 
     public val setAoTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_texture_channel", 744167988)
 
     public val getAoTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_texture_channel", 568133867)
 
     public val setRefractionTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction_texture_channel", 744167988)
 
     public val getRefractionTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction_texture_channel")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction_texture_channel", 568133867)
 
     public val setProximityFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_enabled")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_enabled", 2586408642)
 
     public val isProximityFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_proximity_fade_enabled")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_proximity_fade_enabled", 36873697)
 
     public val setProximityFadeDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_distance")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_distance", 373806689)
 
     public val getProximityFadeDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_proximity_fade_distance")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_proximity_fade_distance", 1740695150)
 
     public val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_pixel_range")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_pixel_range", 373806689)
 
     public val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_pixel_range")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_pixel_range", 1740695150)
 
     public val setMsdfOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_outline_size")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_outline_size", 373806689)
 
     public val getMsdfOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_outline_size")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_outline_size", 1740695150)
 
     public val setDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade", 1379478617)
 
     public val getDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade", 2694575734)
 
     public val setDistanceFadeMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_max_distance")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_max_distance", 373806689)
 
     public val getDistanceFadeMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_max_distance")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_max_distance", 1740695150)
 
     public val setDistanceFadeMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_min_distance")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_min_distance", 373806689)
 
     public val getDistanceFadeMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance")
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance", 1740695150)
   }
 }

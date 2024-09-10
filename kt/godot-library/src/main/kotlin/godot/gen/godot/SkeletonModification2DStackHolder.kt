@@ -50,9 +50,9 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
 
   internal object MethodBindings {
     public val setHeldModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "set_held_modification_stack")
+        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "set_held_modification_stack", 3907307132)
 
     public val getHeldModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "get_held_modification_stack")
+        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "get_held_modification_stack", 2107508396)
   }
 }

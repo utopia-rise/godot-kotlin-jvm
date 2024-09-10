@@ -645,176 +645,177 @@ public open class NavigationMesh : Resource() {
 
   internal object MethodBindings {
     public val setSamplePartitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_sample_partition_type")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_sample_partition_type", 2472437533)
 
     public val getSamplePartitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_sample_partition_type")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_sample_partition_type", 833513918)
 
     public val setParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_parsed_geometry_type")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_parsed_geometry_type", 3064713163)
 
     public val getParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_parsed_geometry_type")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_parsed_geometry_type", 3928011953)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask", 3905245786)
 
     public val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask_value")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask_value", 300928843)
 
     public val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask_value")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask_value", 1116898809)
 
     public val setSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_geometry_mode")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_geometry_mode", 2700825194)
 
     public val getSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_geometry_mode")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_geometry_mode", 2770484141)
 
     public val setSourceGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_group_name")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_group_name", 3304788590)
 
     public val getSourceGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_group_name")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_group_name", 2002593661)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_size", 373806689)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_size", 1740695150)
 
     public val setCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_height")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_height", 373806689)
 
     public val getCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_height")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_height", 1740695150)
 
     public val setBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_border_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_border_size", 373806689)
 
     public val getBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_border_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_border_size", 1740695150)
 
     public val setAgentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_height")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_height", 373806689)
 
     public val getAgentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_height")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_height", 1740695150)
 
     public val setAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_radius")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_radius", 373806689)
 
     public val getAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_radius")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_radius", 191475506)
 
     public val setAgentMaxClimbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_climb")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_climb", 373806689)
 
     public val getAgentMaxClimbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_climb")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_climb", 1740695150)
 
     public val setAgentMaxSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_slope")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_slope", 373806689)
 
     public val getAgentMaxSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_slope")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_slope", 1740695150)
 
     public val setRegionMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_min_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_min_size", 373806689)
 
     public val getRegionMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_min_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_min_size", 1740695150)
 
     public val setRegionMergeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_merge_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_merge_size", 373806689)
 
     public val getRegionMergeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_merge_size")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_merge_size", 1740695150)
 
     public val setEdgeMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_length")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_length", 373806689)
 
     public val getEdgeMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_length")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_length", 1740695150)
 
     public val setEdgeMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_error")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_error", 373806689)
 
     public val getEdgeMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_error")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_error", 1740695150)
 
     public val setVerticesPerPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices_per_polygon")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices_per_polygon", 373806689)
 
     public val getVerticesPerPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices_per_polygon")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices_per_polygon", 1740695150)
 
     public val setDetailSampleDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_distance")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_distance", 373806689)
 
     public val getDetailSampleDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_distance")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_distance", 1740695150)
 
     public val setDetailSampleMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_max_error")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_max_error", 373806689)
 
     public val getDetailSampleMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_max_error")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_max_error", 1740695150)
 
     public val setFilterLowHangingObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_low_hanging_obstacles")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_low_hanging_obstacles", 2586408642)
 
     public val getFilterLowHangingObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_low_hanging_obstacles")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_low_hanging_obstacles", 36873697)
 
     public val setFilterLedgeSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_ledge_spans")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_ledge_spans", 2586408642)
 
     public val getFilterLedgeSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_ledge_spans")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_ledge_spans", 36873697)
 
     public val setFilterWalkableLowHeightSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_walkable_low_height_spans")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_walkable_low_height_spans", 2586408642)
 
     public val getFilterWalkableLowHeightSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_walkable_low_height_spans")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_walkable_low_height_spans", 36873697)
 
     public val setFilterBakingAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb", 259215842)
 
     public val getFilterBakingAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb", 1068685055)
 
     public val setFilterBakingAabbOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb_offset")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb_offset", 3460891852)
 
     public val getFilterBakingAabbOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb_offset")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb_offset", 3360562783)
 
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices")
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices", 334873810)
 
     public val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices", 497664490)
 
     public val addPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "add_polygon")
+        TypeManager.getMethodBindPtr("NavigationMesh", "add_polygon", 3614634198)
 
     public val getPolygonCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon_count")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon_count", 3905245786)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon")
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon", 3668444399)
 
     public val clearPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "clear_polygons")
+        TypeManager.getMethodBindPtr("NavigationMesh", "clear_polygons", 3218959716)
 
     public val createFromMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "create_from_mesh")
+        TypeManager.getMethodBindPtr("NavigationMesh", "create_from_mesh", 194775623)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationMesh", "clear")
+    public val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationMesh", "clear", 3218959716)
   }
 }

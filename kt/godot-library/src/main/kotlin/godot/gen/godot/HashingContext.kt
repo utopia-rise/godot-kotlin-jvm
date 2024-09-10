@@ -140,10 +140,13 @@ public open class HashingContext : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("HashingContext", "start")
+    public val startPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HashingContext", "start", 3940338335)
 
-    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("HashingContext", "update")
+    public val updatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HashingContext", "update", 680677267)
 
-    public val finishPtr: VoidPtr = TypeManager.getMethodBindPtr("HashingContext", "finish")
+    public val finishPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HashingContext", "finish", 2115431945)
   }
 }

@@ -146,33 +146,33 @@ public open class CollisionPolygon2D : Node2D() {
 
   internal object MethodBindings {
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_polygon")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_polygon")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_polygon", 2961356807)
 
     public val setBuildModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_build_mode")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_build_mode", 2780803135)
 
     public val getBuildModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_build_mode")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_build_mode", 3044948800)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_disabled")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_disabled")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_disabled", 36873697)
 
     public val setOneWayCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision", 2586408642)
 
     public val isOneWayCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_one_way_collision_enabled")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_one_way_collision_enabled", 36873697)
 
     public val setOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_margin")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_margin", 373806689)
 
     public val getOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin")
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin", 1740695150)
   }
 }

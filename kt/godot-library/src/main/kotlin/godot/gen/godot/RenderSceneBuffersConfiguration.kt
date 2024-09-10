@@ -217,57 +217,57 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
   internal object MethodBindings {
     public val getRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target", 2944877500)
 
     public val setRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target", 2722037293)
 
     public val getInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size", 3690982128)
 
     public val setInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size", 1130785943)
 
     public val getTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size", 3690982128)
 
     public val setTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size", 1130785943)
 
     public val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count", 3905245786)
 
     public val setViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count", 1286410249)
 
     public val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode", 976778074)
 
     public val setScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode", 447477857)
 
     public val getMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d", 3109158617)
 
     public val setMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d", 3952630748)
 
     public val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa", 641513172)
 
     public val setScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa", 139543108)
 
     public val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness", 1740695150)
 
     public val setFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness", 373806689)
 
     public val getTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias", 1740695150)
 
     public val setTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias")
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias", 373806689)
   }
 }

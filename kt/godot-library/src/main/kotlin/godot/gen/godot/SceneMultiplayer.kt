@@ -283,67 +283,69 @@ public open class SceneMultiplayer : MultiplayerAPI() {
 
   internal object MethodBindings {
     public val setRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_root_path")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_root_path", 1348162250)
 
     public val getRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_root_path")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_root_path", 4075236667)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneMultiplayer", "clear")
+    public val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "clear", 3218959716)
 
     public val disconnectPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "disconnect_peer")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "disconnect_peer", 1286410249)
 
     public val getAuthenticatingPeersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_authenticating_peers")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_authenticating_peers", 969006518)
 
-    public val sendAuthPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneMultiplayer", "send_auth")
+    public val sendAuthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "send_auth", 506032537)
 
     public val completeAuthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "complete_auth")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "complete_auth", 844576869)
 
     public val setAuthCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_auth_callback")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_auth_callback", 1611583062)
 
     public val getAuthCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_auth_callback")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_auth_callback", 1307783378)
 
     public val setAuthTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_auth_timeout")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_auth_timeout", 373806689)
 
     public val getAuthTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_auth_timeout")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_auth_timeout", 1740695150)
 
     public val setRefuseNewConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_refuse_new_connections")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_refuse_new_connections", 2586408642)
 
     public val isRefusingNewConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "is_refusing_new_connections")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "is_refusing_new_connections", 36873697)
 
     public val setAllowObjectDecodingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_allow_object_decoding")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_allow_object_decoding", 2586408642)
 
     public val isObjectDecodingAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "is_object_decoding_allowed")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "is_object_decoding_allowed", 36873697)
 
     public val setServerRelayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_server_relay_enabled")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_server_relay_enabled", 2586408642)
 
     public val isServerRelayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "is_server_relay_enabled")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "is_server_relay_enabled", 36873697)
 
     public val sendBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "send_bytes")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "send_bytes", 1307428718)
 
     public val getMaxSyncPacketSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_max_sync_packet_size")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_max_sync_packet_size", 3905245786)
 
     public val setMaxSyncPacketSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_max_sync_packet_size")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_max_sync_packet_size", 1286410249)
 
     public val getMaxDeltaPacketSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_max_delta_packet_size")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "get_max_delta_packet_size", 3905245786)
 
     public val setMaxDeltaPacketSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_max_delta_packet_size")
+        TypeManager.getMethodBindPtr("SceneMultiplayer", "set_max_delta_packet_size", 1286410249)
   }
 }

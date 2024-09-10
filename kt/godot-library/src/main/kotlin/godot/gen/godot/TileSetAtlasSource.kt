@@ -599,126 +599,126 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   internal object MethodBindings {
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_texture")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_texture")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_texture", 3635182373)
 
     public val setMarginsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_margins")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_margins", 1130785943)
 
     public val getMarginsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_margins")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_margins", 3690982128)
 
     public val setSeparationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_separation")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_separation", 1130785943)
 
     public val getSeparationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_separation")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_separation", 3690982128)
 
     public val setTextureRegionSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_texture_region_size")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_texture_region_size", 1130785943)
 
     public val getTextureRegionSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_texture_region_size")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_texture_region_size", 3690982128)
 
     public val setUseTexturePaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_use_texture_padding")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_use_texture_padding", 2586408642)
 
     public val getUseTexturePaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_use_texture_padding")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_use_texture_padding", 36873697)
 
     public val createTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "create_tile")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "create_tile", 190528769)
 
     public val removeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "remove_tile")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "remove_tile", 1130785943)
 
     public val moveTileInAtlasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "move_tile_in_atlas")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "move_tile_in_atlas", 3870111920)
 
     public val getTileSizeInAtlasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_size_in_atlas")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_size_in_atlas", 3050897911)
 
     public val hasRoomForTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "has_room_for_tile")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "has_room_for_tile", 3018597268)
 
     public val getTilesToBeRemovedOnChangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tiles_to_be_removed_on_change")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tiles_to_be_removed_on_change", 1240378054)
 
     public val getTileAtCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_at_coords")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_at_coords", 3050897911)
 
     public val hasTilesOutsideTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "has_tiles_outside_texture")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "has_tiles_outside_texture", 36873697)
 
     public val clearTilesOutsideTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "clear_tiles_outside_texture")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "clear_tiles_outside_texture", 3218959716)
 
     public val setTileAnimationColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_columns")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_columns", 3200960707)
 
     public val getTileAnimationColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_columns")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_columns", 2485466453)
 
     public val setTileAnimationSeparationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_separation")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_separation", 1941061099)
 
     public val getTileAnimationSeparationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_separation")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_separation", 3050897911)
 
     public val setTileAnimationSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_speed")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_speed", 2262553149)
 
     public val getTileAnimationSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_speed")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_speed", 719993801)
 
     public val setTileAnimationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_mode")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_mode", 3192753483)
 
     public val getTileAnimationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_mode")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_mode", 4025349959)
 
     public val setTileAnimationFramesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_frames_count")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_frames_count", 3200960707)
 
     public val getTileAnimationFramesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_frames_count")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_frames_count", 2485466453)
 
     public val setTileAnimationFrameDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_frame_duration")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_tile_animation_frame_duration", 2843487787)
 
     public val getTileAnimationFrameDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_frame_duration")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_frame_duration", 1802448425)
 
     public val getTileAnimationTotalDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_total_duration")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_animation_total_duration", 719993801)
 
     public val createAlternativeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "create_alternative_tile")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "create_alternative_tile", 2226298068)
 
     public val removeAlternativeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "remove_alternative_tile")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "remove_alternative_tile", 3200960707)
 
     public val setAlternativeTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_alternative_tile_id")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "set_alternative_tile_id", 1499785778)
 
     public val getNextAlternativeTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_next_alternative_tile_id")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_next_alternative_tile_id", 2485466453)
 
     public val getTileDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_data")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_data", 3534028207)
 
     public val getAtlasGridSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_atlas_grid_size")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_atlas_grid_size", 3690982128)
 
     public val getTileTextureRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_texture_region")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_tile_texture_region", 241857547)
 
     public val getRuntimeTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_runtime_texture")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_runtime_texture", 3635182373)
 
     public val getRuntimeTileTextureRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_runtime_tile_texture_region")
+        TypeManager.getMethodBindPtr("TileSetAtlasSource", "get_runtime_tile_texture_region", 104874263)
   }
 }

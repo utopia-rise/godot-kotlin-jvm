@@ -97,33 +97,37 @@ public open class GLTFSkeleton : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getJointsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkeleton", "get_joints")
+    public val getJointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_joints", 969006518)
 
-    public val setJointsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkeleton", "set_joints")
+    public val setJointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "set_joints", 3614634198)
 
-    public val getRootsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkeleton", "get_roots")
+    public val getRootsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_roots", 969006518)
 
-    public val setRootsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkeleton", "set_roots")
+    public val setRootsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "set_roots", 3614634198)
 
     public val getGodotSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_godot_skeleton")
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_godot_skeleton", 1814733083)
 
     public val getUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_unique_names")
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_unique_names", 2915620761)
 
     public val setUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkeleton", "set_unique_names")
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "set_unique_names", 381264803)
 
     public val getGodotBoneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_godot_bone_node")
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_godot_bone_node", 2382534195)
 
     public val setGodotBoneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkeleton", "set_godot_bone_node")
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "set_godot_bone_node", 4155329257)
 
     public val getBoneAttachmentCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_bone_attachment_count")
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_bone_attachment_count", 2455072627)
 
     public val getBoneAttachmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_bone_attachment")
+        TypeManager.getMethodBindPtr("GLTFSkeleton", "get_bone_attachment", 945440495)
   }
 }

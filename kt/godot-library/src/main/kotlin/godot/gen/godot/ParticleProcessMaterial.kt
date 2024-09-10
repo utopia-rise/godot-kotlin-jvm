@@ -2554,279 +2554,279 @@ public open class ParticleProcessMaterial : Material() {
 
   internal object MethodBindings {
     public val setDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_direction")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_direction", 3460891852)
 
     public val getDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_direction")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_direction", 3360562783)
 
     public val setInheritVelocityRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_inherit_velocity_ratio")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_inherit_velocity_ratio", 373806689)
 
     public val getInheritVelocityRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_inherit_velocity_ratio")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_inherit_velocity_ratio", 191475506)
 
     public val setSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_spread")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_spread", 373806689)
 
     public val getSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_spread")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_spread", 1740695150)
 
     public val setFlatnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_flatness")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_flatness", 373806689)
 
     public val getFlatnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_flatness")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_flatness", 1740695150)
 
     public val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param", 676779352)
 
     public val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param", 2623708480)
 
     public val setParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_min")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_min", 2295964248)
 
     public val getParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_min")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_min", 3903786503)
 
     public val setParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_max")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_max", 2295964248)
 
     public val getParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_max")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_max", 3903786503)
 
     public val setParamTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_texture", 526976089)
 
     public val getParamTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_texture", 3489372978)
 
     public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color", 2920490490)
 
     public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color", 3444240500)
 
     public val setColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_ramp")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_ramp", 4051416890)
 
     public val getColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_ramp")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_ramp", 3635182373)
 
     public val setAlphaCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_alpha_curve")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_alpha_curve", 4051416890)
 
     public val getAlphaCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_alpha_curve")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_alpha_curve", 3635182373)
 
     public val setEmissionCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_curve")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_curve", 4051416890)
 
     public val getEmissionCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_curve")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_curve", 3635182373)
 
     public val setColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_initial_ramp")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_initial_ramp", 4051416890)
 
     public val getColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_initial_ramp")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_initial_ramp", 3635182373)
 
     public val setVelocityLimitCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_limit_curve")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_limit_curve", 4051416890)
 
     public val getVelocityLimitCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_limit_curve")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_limit_curve", 3635182373)
 
     public val setParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_particle_flag")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_particle_flag", 1711815571)
 
     public val getParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_particle_flag")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_particle_flag", 3895316907)
 
     public val setVelocityPivotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_pivot")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_pivot", 3460891852)
 
     public val getVelocityPivotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_pivot")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_pivot", 3783033775)
 
     public val setEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape", 461501442)
 
     public val getEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape", 3719733018)
 
     public val setEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_sphere_radius")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_sphere_radius", 373806689)
 
     public val getEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_sphere_radius")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_sphere_radius", 1740695150)
 
     public val setEmissionBoxExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_box_extents")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_box_extents", 3460891852)
 
     public val getEmissionBoxExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_box_extents")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_box_extents", 3360562783)
 
     public val setEmissionPointTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_texture", 4051416890)
 
     public val getEmissionPointTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_texture", 3635182373)
 
     public val setEmissionNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_normal_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_normal_texture", 4051416890)
 
     public val getEmissionNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_normal_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_normal_texture", 3635182373)
 
     public val setEmissionColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_color_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_color_texture", 4051416890)
 
     public val getEmissionColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_color_texture")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_color_texture", 3635182373)
 
     public val setEmissionPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_count")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_count", 1286410249)
 
     public val getEmissionPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_count")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_count", 3905245786)
 
     public val setEmissionRingAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_axis")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_axis", 3460891852)
 
     public val getEmissionRingAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_axis")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_axis", 3360562783)
 
     public val setEmissionRingHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_height")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_height", 373806689)
 
     public val getEmissionRingHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_height")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_height", 1740695150)
 
     public val setEmissionRingRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_radius")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_radius", 373806689)
 
     public val getEmissionRingRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_radius")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_radius", 1740695150)
 
     public val setEmissionRingInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_inner_radius")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_inner_radius", 373806689)
 
     public val getEmissionRingInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_inner_radius")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_inner_radius", 1740695150)
 
     public val setEmissionShapeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_offset")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_offset", 3460891852)
 
     public val getEmissionShapeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_offset")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_offset", 3360562783)
 
     public val setEmissionShapeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_scale")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_scale", 3460891852)
 
     public val getEmissionShapeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_scale")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_scale", 3360562783)
 
     public val getTurbulenceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_enabled")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_enabled", 36873697)
 
     public val setTurbulenceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_enabled")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_enabled", 2586408642)
 
     public val getTurbulenceNoiseStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_strength")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_strength", 1740695150)
 
     public val setTurbulenceNoiseStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_strength")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_strength", 373806689)
 
     public val getTurbulenceNoiseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_scale")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_scale", 1740695150)
 
     public val setTurbulenceNoiseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_scale")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_scale", 373806689)
 
     public val getTurbulenceNoiseSpeedRandomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed_random")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed_random", 1740695150)
 
     public val setTurbulenceNoiseSpeedRandomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed_random")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed_random", 373806689)
 
     public val getTurbulenceNoiseSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed", 3360562783)
 
     public val setTurbulenceNoiseSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed", 3460891852)
 
     public val getGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_gravity")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_gravity", 3360562783)
 
     public val setGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_gravity")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_gravity", 3460891852)
 
     public val setLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_lifetime_randomness")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_lifetime_randomness", 373806689)
 
     public val getLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_lifetime_randomness")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_lifetime_randomness", 1740695150)
 
     public val getSubEmitterModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_mode")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_mode", 2399052877)
 
     public val setSubEmitterModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_mode")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_mode", 2161806672)
 
     public val getSubEmitterFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_frequency")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_frequency", 1740695150)
 
     public val setSubEmitterFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_frequency")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_frequency", 373806689)
 
     public val getSubEmitterAmountAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_end")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_end", 3905245786)
 
     public val setSubEmitterAmountAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_end")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_end", 1286410249)
 
     public val getSubEmitterAmountAtCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_collision")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_collision", 3905245786)
 
     public val setSubEmitterAmountAtCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_collision")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_collision", 1286410249)
 
     public val getSubEmitterKeepVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_keep_velocity")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_keep_velocity", 36873697)
 
     public val setSubEmitterKeepVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_keep_velocity")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_keep_velocity", 2586408642)
 
     public val setAttractorInteractionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_attractor_interaction_enabled")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_attractor_interaction_enabled", 2586408642)
 
     public val isAttractorInteractionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_attractor_interaction_enabled")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_attractor_interaction_enabled", 36873697)
 
     public val setCollisionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_mode")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_mode", 653804659)
 
     public val getCollisionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_mode")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_mode", 139371864)
 
     public val setCollisionUseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_use_scale")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_use_scale", 2586408642)
 
     public val isCollisionUsingScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_collision_using_scale")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_collision_using_scale", 36873697)
 
     public val setCollisionFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_friction")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_friction", 373806689)
 
     public val getCollisionFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_friction")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_friction", 1740695150)
 
     public val setCollisionBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_bounce")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_bounce", 373806689)
 
     public val getCollisionBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_bounce")
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_bounce", 1740695150)
   }
 }

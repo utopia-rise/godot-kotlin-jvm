@@ -79,15 +79,18 @@ public open class Shape3D internal constructor() : Resource() {
 
   internal object MethodBindings {
     public val setCustomSolverBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape3D", "set_custom_solver_bias")
+        TypeManager.getMethodBindPtr("Shape3D", "set_custom_solver_bias", 373806689)
 
     public val getCustomSolverBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape3D", "get_custom_solver_bias")
+        TypeManager.getMethodBindPtr("Shape3D", "get_custom_solver_bias", 1740695150)
 
-    public val setMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape3D", "set_margin")
+    public val setMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shape3D", "set_margin", 373806689)
 
-    public val getMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape3D", "get_margin")
+    public val getMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shape3D", "get_margin", 1740695150)
 
-    public val getDebugMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape3D", "get_debug_mesh")
+    public val getDebugMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Shape3D", "get_debug_mesh", 1605880883)
   }
 }

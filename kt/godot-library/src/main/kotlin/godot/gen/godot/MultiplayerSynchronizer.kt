@@ -235,54 +235,54 @@ public open class MultiplayerSynchronizer : Node() {
 
   internal object MethodBindings {
     public val setRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_root_path")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_root_path", 1348162250)
 
     public val getRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_root_path")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_root_path", 4075236667)
 
     public val setReplicationIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_interval")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_interval", 373806689)
 
     public val getReplicationIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_interval")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_interval", 1740695150)
 
     public val setDeltaIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_delta_interval")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_delta_interval", 373806689)
 
     public val getDeltaIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_delta_interval")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_delta_interval", 1740695150)
 
     public val setReplicationConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_config")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_config", 3889206742)
 
     public val getReplicationConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_config")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_config", 3200254614)
 
     public val setVisibilityUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_update_mode")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_update_mode", 3494860300)
 
     public val getVisibilityUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_update_mode")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_update_mode", 3352241418)
 
     public val updateVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "update_visibility")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "update_visibility", 1995695955)
 
     public val setVisibilityPublicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_public")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_public", 2586408642)
 
     public val isVisibilityPublicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "is_visibility_public")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "is_visibility_public", 36873697)
 
     public val addVisibilityFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "add_visibility_filter")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "add_visibility_filter", 1611583062)
 
     public val removeVisibilityFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "remove_visibility_filter")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "remove_visibility_filter", 1611583062)
 
     public val setVisibilityForPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_for")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_for", 300928843)
 
     public val getVisibilityForPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_for")
+        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_for", 1116898809)
   }
 }

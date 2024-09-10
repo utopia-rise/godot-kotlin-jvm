@@ -187,45 +187,45 @@ public open class KinematicCollision3D : RefCounted() {
 
   internal object MethodBindings {
     public val getTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_travel")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_travel", 3360562783)
 
     public val getRemainderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_remainder")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_remainder", 3360562783)
 
     public val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_depth")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_depth", 1740695150)
 
     public val getCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collision_count")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collision_count", 3905245786)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_position")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_position", 1914908202)
 
     public val getNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_normal")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_normal", 1914908202)
 
     public val getAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_angle")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_angle", 1242741860)
 
     public val getLocalShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_local_shape")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_local_shape", 2639523548)
 
     public val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider", 2639523548)
 
     public val getColliderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_id")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_id", 1591665591)
 
     public val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_rid")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_rid", 1231817359)
 
     public val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_shape")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_shape", 2639523548)
 
     public val getColliderShapeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_shape_index")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_shape_index", 1591665591)
 
     public val getColliderVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_velocity")
+        TypeManager.getMethodBindPtr("KinematicCollision3D", "get_collider_velocity", 1914908202)
   }
 }

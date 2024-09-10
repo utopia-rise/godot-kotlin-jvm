@@ -841,173 +841,178 @@ public open class RigidBody2D : PhysicsBody2D() {
   public companion object
 
   internal object MethodBindings {
-    public val _integrateForcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "_integrate_forces")
+    public val setMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_mass", 373806689)
 
-    public val setMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "set_mass")
+    public val getMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_mass", 1740695150)
 
-    public val getMassPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "get_mass")
+    public val getInertiaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_inertia", 1740695150)
 
-    public val getInertiaPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "get_inertia")
-
-    public val setInertiaPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "set_inertia")
+    public val setInertiaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_inertia", 373806689)
 
     public val setCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass_mode", 1757235706)
 
     public val getCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass_mode", 3277132817)
 
     public val setCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass", 743155724)
 
     public val getCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass", 3341600327)
 
     public val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_physics_material_override")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_physics_material_override", 1784508650)
 
     public val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_physics_material_override")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_physics_material_override", 2521850424)
 
     public val setGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_gravity_scale")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_gravity_scale", 373806689)
 
     public val getGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_gravity_scale")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_gravity_scale", 1740695150)
 
     public val setLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp_mode", 3406533708)
 
     public val getLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp_mode", 2970511462)
 
     public val setAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp_mode", 3406533708)
 
     public val getAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp_mode", 2970511462)
 
     public val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp", 373806689)
 
     public val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp", 1740695150)
 
     public val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp", 373806689)
 
     public val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp", 1740695150)
 
     public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_velocity")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_velocity", 743155724)
 
     public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_velocity")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_velocity", 3341600327)
 
     public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_velocity")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_velocity", 373806689)
 
     public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_velocity")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_velocity", 1740695150)
 
     public val setMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_max_contacts_reported")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_max_contacts_reported", 1286410249)
 
     public val getMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_max_contacts_reported")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_max_contacts_reported", 3905245786)
 
     public val getContactCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_contact_count")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_contact_count", 3905245786)
 
     public val setUseCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_use_custom_integrator")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_use_custom_integrator", 2586408642)
 
     public val isUsingCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_using_custom_integrator")
+        TypeManager.getMethodBindPtr("RigidBody2D", "is_using_custom_integrator", 2240911060)
 
     public val setContactMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_contact_monitor")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_contact_monitor", 2586408642)
 
     public val isContactMonitorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_contact_monitor_enabled")
+        TypeManager.getMethodBindPtr("RigidBody2D", "is_contact_monitor_enabled", 36873697)
 
     public val setContinuousCollisionDetectionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_continuous_collision_detection_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_continuous_collision_detection_mode", 1000241384)
 
     public val getContinuousCollisionDetectionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_continuous_collision_detection_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_continuous_collision_detection_mode", 815214376)
 
     public val setAxisVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_axis_velocity")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_axis_velocity", 743155724)
 
     public val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_impulse")
+        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_impulse", 3862383994)
 
     public val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_impulse")
+        TypeManager.getMethodBindPtr("RigidBody2D", "apply_impulse", 4288681949)
 
     public val applyTorqueImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque_impulse")
+        TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque_impulse", 373806689)
 
     public val applyCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_force")
+        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_force", 743155724)
 
-    public val applyForcePtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "apply_force")
+    public val applyForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "apply_force", 4288681949)
 
-    public val applyTorquePtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque")
+    public val applyTorquePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque", 373806689)
 
     public val addConstantCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_central_force")
+        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_central_force", 743155724)
 
     public val addConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_force")
+        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_force", 4288681949)
 
     public val addConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_torque")
+        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_torque", 373806689)
 
     public val setConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_force")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_force", 743155724)
 
     public val getConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_force")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_force", 3341600327)
 
     public val setConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_torque")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_torque", 373806689)
 
     public val getConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_torque")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_torque", 1740695150)
 
-    public val setSleepingPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "set_sleeping")
+    public val setSleepingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_sleeping", 2586408642)
 
-    public val isSleepingPtr: VoidPtr = TypeManager.getMethodBindPtr("RigidBody2D", "is_sleeping")
+    public val isSleepingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RigidBody2D", "is_sleeping", 36873697)
 
     public val setCanSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_can_sleep")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_can_sleep", 2586408642)
 
     public val isAbleToSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_able_to_sleep")
+        TypeManager.getMethodBindPtr("RigidBody2D", "is_able_to_sleep", 36873697)
 
     public val setLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_lock_rotation_enabled")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_lock_rotation_enabled", 2586408642)
 
     public val isLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_lock_rotation_enabled")
+        TypeManager.getMethodBindPtr("RigidBody2D", "is_lock_rotation_enabled", 36873697)
 
     public val setFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_enabled")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_enabled", 2586408642)
 
     public val isFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_freeze_enabled")
+        TypeManager.getMethodBindPtr("RigidBody2D", "is_freeze_enabled", 36873697)
 
     public val setFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_mode", 1705112154)
 
     public val getFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_freeze_mode")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_freeze_mode", 2016872314)
 
     public val getCollidingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_colliding_bodies")
+        TypeManager.getMethodBindPtr("RigidBody2D", "get_colliding_bodies", 3995934104)
   }
 }

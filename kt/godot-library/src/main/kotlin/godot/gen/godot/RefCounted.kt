@@ -90,13 +90,16 @@ public open class RefCounted : Object() {
   public companion object
 
   internal object MethodBindings {
-    public val initRefPtr: VoidPtr = TypeManager.getMethodBindPtr("RefCounted", "init_ref")
+    public val initRefPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RefCounted", "init_ref", 2240911060)
 
-    public val referencePtr: VoidPtr = TypeManager.getMethodBindPtr("RefCounted", "reference")
+    public val referencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RefCounted", "reference", 2240911060)
 
-    public val unreferencePtr: VoidPtr = TypeManager.getMethodBindPtr("RefCounted", "unreference")
+    public val unreferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RefCounted", "unreference", 2240911060)
 
     public val getReferenceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RefCounted", "get_reference_count")
+        TypeManager.getMethodBindPtr("RefCounted", "get_reference_count", 3905245786)
   }
 }

@@ -853,168 +853,197 @@ public open class Theme : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_icon")
+    public val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_icon", 2188371082)
 
-    public val getIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_icon")
+    public val getIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_icon", 934555193)
 
-    public val hasIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_icon")
+    public val hasIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_icon", 471820014)
 
-    public val renameIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "rename_icon")
+    public val renameIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "rename_icon", 642128662)
 
-    public val clearIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear_icon")
+    public val clearIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "clear_icon", 3740211285)
 
-    public val getIconListPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_icon_list")
+    public val getIconListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_icon_list", 4291131558)
 
     public val getIconTypeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_icon_type_list")
+        TypeManager.getMethodBindPtr("Theme", "get_icon_type_list", 1139954409)
 
-    public val setStyleboxPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_stylebox")
+    public val setStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "set_stylebox", 2075907568)
 
-    public val getStyleboxPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_stylebox")
+    public val getStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_stylebox", 3405608165)
 
-    public val hasStyleboxPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_stylebox")
+    public val hasStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "has_stylebox", 471820014)
 
-    public val renameStyleboxPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "rename_stylebox")
+    public val renameStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "rename_stylebox", 642128662)
 
-    public val clearStyleboxPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear_stylebox")
+    public val clearStyleboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "clear_stylebox", 3740211285)
 
     public val getStyleboxListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_stylebox_list")
+        TypeManager.getMethodBindPtr("Theme", "get_stylebox_list", 4291131558)
 
     public val getStyleboxTypeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_stylebox_type_list")
+        TypeManager.getMethodBindPtr("Theme", "get_stylebox_type_list", 1139954409)
 
-    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_font")
+    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_font", 177292320)
 
-    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_font")
+    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_font", 3445063586)
 
-    public val hasFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_font")
+    public val hasFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_font", 471820014)
 
-    public val renameFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "rename_font")
+    public val renameFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "rename_font", 642128662)
 
-    public val clearFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear_font")
+    public val clearFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "clear_font", 3740211285)
 
-    public val getFontListPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_font_list")
+    public val getFontListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_font_list", 4291131558)
 
     public val getFontTypeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_font_type_list")
+        TypeManager.getMethodBindPtr("Theme", "get_font_type_list", 1139954409)
 
-    public val setFontSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_font_size")
+    public val setFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "set_font_size", 281601298)
 
-    public val getFontSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_font_size")
+    public val getFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_font_size", 2419549490)
 
-    public val hasFontSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_font_size")
+    public val hasFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "has_font_size", 471820014)
 
     public val renameFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "rename_font_size")
+        TypeManager.getMethodBindPtr("Theme", "rename_font_size", 642128662)
 
-    public val clearFontSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear_font_size")
+    public val clearFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "clear_font_size", 3740211285)
 
     public val getFontSizeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_font_size_list")
+        TypeManager.getMethodBindPtr("Theme", "get_font_size_list", 4291131558)
 
     public val getFontSizeTypeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_font_size_type_list")
+        TypeManager.getMethodBindPtr("Theme", "get_font_size_type_list", 1139954409)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_color")
+    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_color", 4111215154)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_color")
+    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_color", 2015923404)
 
-    public val hasColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_color")
+    public val hasColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_color", 471820014)
 
-    public val renameColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "rename_color")
+    public val renameColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "rename_color", 642128662)
 
-    public val clearColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear_color")
+    public val clearColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "clear_color", 3740211285)
 
-    public val getColorListPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_color_list")
+    public val getColorListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_color_list", 4291131558)
 
     public val getColorTypeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_color_type_list")
+        TypeManager.getMethodBindPtr("Theme", "get_color_type_list", 1139954409)
 
-    public val setConstantPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_constant")
+    public val setConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "set_constant", 281601298)
 
-    public val getConstantPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_constant")
+    public val getConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_constant", 2419549490)
 
-    public val hasConstantPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_constant")
+    public val hasConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "has_constant", 471820014)
 
-    public val renameConstantPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "rename_constant")
+    public val renameConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "rename_constant", 642128662)
 
-    public val clearConstantPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear_constant")
+    public val clearConstantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "clear_constant", 3740211285)
 
     public val getConstantListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_constant_list")
+        TypeManager.getMethodBindPtr("Theme", "get_constant_list", 4291131558)
 
     public val getConstantTypeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_constant_type_list")
+        TypeManager.getMethodBindPtr("Theme", "get_constant_type_list", 1139954409)
 
     public val setDefaultBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "set_default_base_scale")
+        TypeManager.getMethodBindPtr("Theme", "set_default_base_scale", 373806689)
 
     public val getDefaultBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_default_base_scale")
+        TypeManager.getMethodBindPtr("Theme", "get_default_base_scale", 1740695150)
 
     public val hasDefaultBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "has_default_base_scale")
+        TypeManager.getMethodBindPtr("Theme", "has_default_base_scale", 36873697)
 
     public val setDefaultFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "set_default_font")
+        TypeManager.getMethodBindPtr("Theme", "set_default_font", 1262170328)
 
     public val getDefaultFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_default_font")
+        TypeManager.getMethodBindPtr("Theme", "get_default_font", 3229501585)
 
     public val hasDefaultFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "has_default_font")
+        TypeManager.getMethodBindPtr("Theme", "has_default_font", 36873697)
 
     public val setDefaultFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "set_default_font_size")
+        TypeManager.getMethodBindPtr("Theme", "set_default_font_size", 1286410249)
 
     public val getDefaultFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_default_font_size")
+        TypeManager.getMethodBindPtr("Theme", "get_default_font_size", 3905245786)
 
     public val hasDefaultFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "has_default_font_size")
+        TypeManager.getMethodBindPtr("Theme", "has_default_font_size", 36873697)
 
-    public val setThemeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "set_theme_item")
+    public val setThemeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "set_theme_item", 2492983623)
 
-    public val getThemeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_theme_item")
+    public val getThemeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_theme_item", 2191024021)
 
-    public val hasThemeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "has_theme_item")
+    public val hasThemeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "has_theme_item", 1739311056)
 
     public val renameThemeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "rename_theme_item")
+        TypeManager.getMethodBindPtr("Theme", "rename_theme_item", 3900867553)
 
     public val clearThemeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "clear_theme_item")
+        TypeManager.getMethodBindPtr("Theme", "clear_theme_item", 2965505587)
 
     public val getThemeItemListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_theme_item_list")
+        TypeManager.getMethodBindPtr("Theme", "get_theme_item_list", 3726716710)
 
     public val getThemeItemTypeListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_theme_item_type_list")
+        TypeManager.getMethodBindPtr("Theme", "get_theme_item_type_list", 1316004935)
 
     public val setTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "set_type_variation")
+        TypeManager.getMethodBindPtr("Theme", "set_type_variation", 3740211285)
 
     public val isTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "is_type_variation")
+        TypeManager.getMethodBindPtr("Theme", "is_type_variation", 471820014)
 
     public val clearTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "clear_type_variation")
+        TypeManager.getMethodBindPtr("Theme", "clear_type_variation", 3304788590)
 
     public val getTypeVariationBasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_type_variation_base")
+        TypeManager.getMethodBindPtr("Theme", "get_type_variation_base", 1965194235)
 
     public val getTypeVariationListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Theme", "get_type_variation_list")
+        TypeManager.getMethodBindPtr("Theme", "get_type_variation_list", 1761182771)
 
-    public val addTypePtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "add_type")
+    public val addTypePtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "add_type", 3304788590)
 
-    public val removeTypePtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "remove_type")
+    public val removeTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "remove_type", 3304788590)
 
-    public val getTypeListPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "get_type_list")
+    public val getTypeListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "get_type_list", 1139954409)
 
-    public val mergeWithPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "merge_with")
+    public val mergeWithPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "merge_with", 2326690814)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Theme", "clear", 3218959716)
   }
 }

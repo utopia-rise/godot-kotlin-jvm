@@ -276,47 +276,48 @@ public object Geometry3D : Object() {
 
   internal object MethodBindings {
     public val computeConvexMeshPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "compute_convex_mesh_points")
+        TypeManager.getMethodBindPtr("Geometry3D", "compute_convex_mesh_points", 1936902142)
 
     public val buildBoxPlanesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "build_box_planes")
+        TypeManager.getMethodBindPtr("Geometry3D", "build_box_planes", 3622277145)
 
     public val buildCylinderPlanesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "build_cylinder_planes")
+        TypeManager.getMethodBindPtr("Geometry3D", "build_cylinder_planes", 449920067)
 
     public val buildCapsulePlanesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "build_capsule_planes")
+        TypeManager.getMethodBindPtr("Geometry3D", "build_capsule_planes", 2113592876)
 
     public val getClosestPointsBetweenSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_points_between_segments")
+        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_points_between_segments", 1056373962)
 
     public val getClosestPointToSegmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment")
+        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment", 2168193209)
 
     public val getClosestPointToSegmentUncappedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment_uncapped")
+        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment_uncapped", 2168193209)
 
     public val getTriangleBarycentricCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_triangle_barycentric_coords")
+        TypeManager.getMethodBindPtr("Geometry3D", "get_triangle_barycentric_coords", 1362048029)
 
     public val rayIntersectsTrianglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "ray_intersects_triangle")
+        TypeManager.getMethodBindPtr("Geometry3D", "ray_intersects_triangle", 1718655448)
 
     public val segmentIntersectsTrianglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_triangle")
+        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_triangle", 1718655448)
 
     public val segmentIntersectsSpherePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_sphere")
+        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_sphere", 4080141172)
 
     public val segmentIntersectsCylinderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_cylinder")
+        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_cylinder", 2361316491)
 
     public val segmentIntersectsConvexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_convex")
+        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_convex", 537425332)
 
-    public val clipPolygonPtr: VoidPtr = TypeManager.getMethodBindPtr("Geometry3D", "clip_polygon")
+    public val clipPolygonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Geometry3D", "clip_polygon", 2603188319)
 
     public val tetrahedralizeDelaunayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "tetrahedralize_delaunay")
+        TypeManager.getMethodBindPtr("Geometry3D", "tetrahedralize_delaunay", 1230191221)
   }
 }

@@ -48,9 +48,9 @@ public open class AudioStreamPlaybackInteractive internal constructor() : AudioS
 
   internal object MethodBindings {
     public val switchToClipByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip_by_name")
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip_by_name", 3304788590)
 
     public val switchToClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip")
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip", 1286410249)
   }
 }

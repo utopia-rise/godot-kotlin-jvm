@@ -500,113 +500,115 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public companion object
 
   internal object MethodBindings {
-    public val _integrateForcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "_integrate_forces")
-
     public val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_central_impulse")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_central_impulse", 3460891852)
 
     public val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_impulse")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_impulse", 2754756483)
 
     public val setJointTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_type")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_type", 2289552604)
 
     public val getJointTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_type")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_type", 931347320)
 
     public val setJointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_offset")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_offset", 2952846383)
 
     public val getJointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_offset")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_offset", 3229777777)
 
     public val setJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_rotation")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_rotation", 3460891852)
 
     public val getJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_rotation")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_rotation", 3360562783)
 
     public val setBodyOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_body_offset")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_body_offset", 2952846383)
 
     public val getBodyOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_body_offset")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_body_offset", 3229777777)
 
     public val getSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_simulate_physics")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_simulate_physics", 2240911060)
 
     public val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_simulating_physics")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_simulating_physics", 2240911060)
 
-    public val getBoneIdPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bone_id")
+    public val getBoneIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bone_id", 3905245786)
 
-    public val setMassPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicalBone3D", "set_mass")
+    public val setMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_mass", 373806689)
 
-    public val getMassPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicalBone3D", "get_mass")
+    public val getMassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_mass", 1740695150)
 
     public val setFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_friction")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_friction", 373806689)
 
     public val getFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_friction")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_friction", 1740695150)
 
-    public val setBouncePtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicalBone3D", "set_bounce")
+    public val setBouncePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_bounce", 373806689)
 
-    public val getBouncePtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bounce")
+    public val getBouncePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bounce", 1740695150)
 
     public val setGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_gravity_scale")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_gravity_scale", 373806689)
 
     public val getGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_gravity_scale")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_gravity_scale", 1740695150)
 
     public val setLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp_mode")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp_mode", 1244972221)
 
     public val getLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp_mode")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp_mode", 205884699)
 
     public val setAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp_mode")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp_mode", 1244972221)
 
     public val getAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp_mode")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp_mode", 205884699)
 
     public val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp", 373806689)
 
     public val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp", 1740695150)
 
     public val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp", 373806689)
 
     public val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp", 1740695150)
 
     public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_velocity")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_velocity", 3460891852)
 
     public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_velocity")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_velocity", 3360562783)
 
     public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_velocity")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_velocity", 3460891852)
 
     public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_velocity")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_velocity", 3360562783)
 
     public val setUseCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_use_custom_integrator")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_use_custom_integrator", 2586408642)
 
     public val isUsingCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_using_custom_integrator")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_using_custom_integrator", 2240911060)
 
     public val setCanSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_can_sleep")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_can_sleep", 2586408642)
 
     public val isAbleToSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_able_to_sleep")
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_able_to_sleep", 36873697)
   }
 }

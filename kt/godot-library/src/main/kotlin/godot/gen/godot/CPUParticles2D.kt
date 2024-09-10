@@ -1288,200 +1288,207 @@ public open class CPUParticles2D : Node2D() {
 
   internal object MethodBindings {
     public val setEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emitting")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emitting", 2586408642)
 
-    public val setAmountPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles2D", "set_amount")
+    public val setAmountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_amount", 1286410249)
 
     public val setLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_lifetime")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_lifetime", 373806689)
 
     public val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_one_shot")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_one_shot", 2586408642)
 
     public val setPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_pre_process_time")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_pre_process_time", 373806689)
 
     public val setExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_explosiveness_ratio")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_explosiveness_ratio", 373806689)
 
     public val setRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_randomness_ratio")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_randomness_ratio", 373806689)
 
     public val setLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_lifetime_randomness")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_lifetime_randomness", 373806689)
 
     public val setUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_use_local_coordinates")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_use_local_coordinates", 2586408642)
 
     public val setFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_fixed_fps")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_fixed_fps", 1286410249)
 
     public val setFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_fractional_delta")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_fractional_delta", 2586408642)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_speed_scale")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_speed_scale", 373806689)
 
     public val isEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "is_emitting")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "is_emitting", 36873697)
 
-    public val getAmountPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles2D", "get_amount")
+    public val getAmountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_amount", 3905245786)
 
     public val getLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_lifetime")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_lifetime", 1740695150)
 
     public val getOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_one_shot")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_one_shot", 36873697)
 
     public val getPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_pre_process_time")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_pre_process_time", 1740695150)
 
     public val getExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_explosiveness_ratio")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_explosiveness_ratio", 1740695150)
 
     public val getRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_randomness_ratio")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_randomness_ratio", 1740695150)
 
     public val getLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_lifetime_randomness")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_lifetime_randomness", 1740695150)
 
     public val getUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_use_local_coordinates")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_use_local_coordinates", 36873697)
 
     public val getFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_fixed_fps")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_fixed_fps", 3905245786)
 
     public val getFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_fractional_delta")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_fractional_delta", 36873697)
 
     public val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_speed_scale")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_speed_scale", 1740695150)
 
     public val setDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_draw_order")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_draw_order", 4183193490)
 
     public val getDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_draw_order")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_draw_order", 1668655735)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_texture")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_texture")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_texture", 3635182373)
 
-    public val restartPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles2D", "restart")
+    public val restartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "restart", 3218959716)
 
     public val setDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_direction")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_direction", 743155724)
 
     public val getDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_direction")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_direction", 3341600327)
 
-    public val setSpreadPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles2D", "set_spread")
+    public val setSpreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_spread", 373806689)
 
-    public val getSpreadPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles2D", "get_spread")
+    public val getSpreadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_spread", 1740695150)
 
     public val setParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_param_min")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_param_min", 3320615296)
 
     public val getParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_param_min")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_param_min", 2038050600)
 
     public val setParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_param_max")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_param_max", 3320615296)
 
     public val getParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_param_max")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_param_max", 2038050600)
 
     public val setParamCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_param_curve")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_param_curve", 2959350143)
 
     public val getParamCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_param_curve")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_param_curve", 2603158474)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles2D", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CPUParticles2D", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_color", 3444240500)
 
     public val setColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_color_ramp")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_color_ramp", 2756054477)
 
     public val getColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_color_ramp")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_color_ramp", 132272999)
 
     public val setColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_color_initial_ramp")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_color_initial_ramp", 2756054477)
 
     public val getColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_color_initial_ramp")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_color_initial_ramp", 132272999)
 
     public val setParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_particle_flag")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_particle_flag", 4178137949)
 
     public val getParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_particle_flag")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_particle_flag", 2829976507)
 
     public val setEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_shape")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_shape", 393763892)
 
     public val getEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_shape")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_shape", 1740246024)
 
     public val setEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_sphere_radius")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_sphere_radius", 373806689)
 
     public val getEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_sphere_radius")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_sphere_radius", 1740695150)
 
     public val setEmissionRectExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_rect_extents")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_rect_extents", 743155724)
 
     public val getEmissionRectExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_rect_extents")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_rect_extents", 3341600327)
 
     public val setEmissionPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_points")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_points", 1509147220)
 
     public val getEmissionPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_points")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_points", 2961356807)
 
     public val setEmissionNormalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_normals")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_normals", 1509147220)
 
     public val getEmissionNormalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_normals")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_normals", 2961356807)
 
     public val setEmissionColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_colors")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_emission_colors", 3546319833)
 
     public val getEmissionColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_colors")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_emission_colors", 1392750486)
 
     public val getGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_gravity")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_gravity", 3341600327)
 
     public val setGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_gravity")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_gravity", 743155724)
 
     public val getSplitScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_split_scale")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_split_scale", 2240911060)
 
     public val setSplitScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_split_scale")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_split_scale", 2586408642)
 
     public val getScaleCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_scale_curve_x")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_scale_curve_x", 2460114913)
 
     public val setScaleCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_scale_curve_x")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_scale_curve_x", 270443179)
 
     public val getScaleCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "get_scale_curve_y")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "get_scale_curve_y", 2460114913)
 
     public val setScaleCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "set_scale_curve_y")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "set_scale_curve_y", 270443179)
 
     public val convertFromParticlesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles2D", "convert_from_particles")
+        TypeManager.getMethodBindPtr("CPUParticles2D", "convert_from_particles", 1078189570)
   }
 }

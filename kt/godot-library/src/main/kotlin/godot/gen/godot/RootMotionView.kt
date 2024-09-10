@@ -142,27 +142,33 @@ public open class RootMotionView : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setAnimationPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "set_animation_path")
+        TypeManager.getMethodBindPtr("RootMotionView", "set_animation_path", 1348162250)
 
     public val getAnimationPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "get_animation_path")
+        TypeManager.getMethodBindPtr("RootMotionView", "get_animation_path", 4075236667)
 
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "get_color", 3444240500)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "set_cell_size")
+        TypeManager.getMethodBindPtr("RootMotionView", "set_cell_size", 373806689)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "get_cell_size")
+        TypeManager.getMethodBindPtr("RootMotionView", "get_cell_size", 1740695150)
 
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "get_radius", 1740695150)
 
-    public val setZeroYPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "set_zero_y")
+    public val setZeroYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "set_zero_y", 2586408642)
 
-    public val getZeroYPtr: VoidPtr = TypeManager.getMethodBindPtr("RootMotionView", "get_zero_y")
+    public val getZeroYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RootMotionView", "get_zero_y", 36873697)
   }
 }

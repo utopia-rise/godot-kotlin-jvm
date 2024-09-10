@@ -338,87 +338,90 @@ public open class SkeletonProfile : Resource() {
 
   internal object MethodBindings {
     public val setRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_root_bone")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_root_bone", 3304788590)
 
     public val getRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_root_bone")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_root_bone", 2737447660)
 
     public val setScaleBaseBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_scale_base_bone")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_scale_base_bone", 3304788590)
 
     public val getScaleBaseBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_scale_base_bone")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_scale_base_bone", 2737447660)
 
     public val setGroupSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_size")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_size", 1286410249)
 
     public val getGroupSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_size")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_size", 2455072627)
 
     public val getGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_name")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_name", 659327637)
 
     public val setGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_name")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_name", 3780747571)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_texture")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_texture", 3536238170)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_texture")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_texture", 666127730)
 
     public val setBoneSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_size")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_size", 1286410249)
 
     public val getBoneSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_size")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_size", 2455072627)
 
-    public val findBonePtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonProfile", "find_bone")
+    public val findBonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonProfile", "find_bone", 2458036349)
 
     public val getBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_name")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_name", 659327637)
 
     public val setBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_name")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_name", 3780747571)
 
     public val getBoneParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_parent")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_parent", 659327637)
 
     public val setBoneParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_parent")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_parent", 3780747571)
 
     public val getTailDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_tail_direction")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_tail_direction", 2675997574)
 
     public val setTailDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_tail_direction")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_tail_direction", 1231951015)
 
     public val getBoneTailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_tail")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_tail", 659327637)
 
     public val setBoneTailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_tail")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_tail", 3780747571)
 
     public val getReferencePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_reference_pose")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_reference_pose", 1965739696)
 
     public val setReferencePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_reference_pose")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_reference_pose", 3616898986)
 
     public val getHandleOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_handle_offset")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_handle_offset", 2299179447)
 
     public val setHandleOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_handle_offset")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_handle_offset", 163021252)
 
-    public val getGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonProfile", "get_group")
+    public val getGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group", 659327637)
 
-    public val setGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonProfile", "set_group")
+    public val setGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group", 3780747571)
 
     public val isRequiredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "is_required")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "is_required", 1116898809)
 
     public val setRequiredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_required")
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_required", 300928843)
   }
 }

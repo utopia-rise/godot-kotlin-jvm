@@ -210,49 +210,46 @@ public open class CompositorEffect : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _renderCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "_render_callback")
-
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_enabled")
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_enabled", 2586408642)
 
     public val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_enabled")
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_enabled", 36873697)
 
     public val setEffectCallbackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_effect_callback_type")
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_effect_callback_type", 1390728419)
 
     public val getEffectCallbackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_effect_callback_type")
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_effect_callback_type", 1221912590)
 
     public val setAccessResolvedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_color")
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_color", 2586408642)
 
     public val getAccessResolvedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_color")
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_color", 36873697)
 
     public val setAccessResolvedDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_depth")
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_depth", 2586408642)
 
     public val getAccessResolvedDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_depth")
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_depth", 36873697)
 
     public val setNeedsMotionVectorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_motion_vectors")
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_motion_vectors", 2586408642)
 
     public val getNeedsMotionVectorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_motion_vectors")
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_motion_vectors", 36873697)
 
     public val setNeedsNormalRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_normal_roughness")
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_normal_roughness", 2586408642)
 
     public val getNeedsNormalRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_normal_roughness")
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_normal_roughness", 36873697)
 
     public val setNeedsSeparateSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_separate_specular")
+        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_separate_specular", 2586408642)
 
     public val getNeedsSeparateSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_separate_specular")
+        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_separate_specular", 36873697)
   }
 }

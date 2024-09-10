@@ -1849,322 +1849,348 @@ public open class Window : Viewport() {
   }
 
   internal object MethodBindings {
-    public val _getContentsMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "_get_contents_minimum_size")
+    public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_title", 83702148)
 
-    public val setTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_title")
+    public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_title", 201670096)
 
-    public val getTitlePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_title")
-
-    public val getWindowIdPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_window_id")
+    public val getWindowIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_window_id", 3905245786)
 
     public val setInitialPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_initial_position")
+        TypeManager.getMethodBindPtr("Window", "set_initial_position", 4084468099)
 
     public val getInitialPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_initial_position")
+        TypeManager.getMethodBindPtr("Window", "get_initial_position", 4294066647)
 
     public val setCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_current_screen")
+        TypeManager.getMethodBindPtr("Window", "set_current_screen", 1286410249)
 
     public val getCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_current_screen")
+        TypeManager.getMethodBindPtr("Window", "get_current_screen", 3905245786)
 
-    public val setPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_position")
+    public val setPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_position", 1130785943)
 
-    public val getPositionPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_position")
+    public val getPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_position", 3690982128)
 
-    public val moveToCenterPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "move_to_center")
+    public val moveToCenterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "move_to_center", 3218959716)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_size")
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_size", 1130785943)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_size")
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_size", 3690982128)
 
-    public val resetSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "reset_size")
+    public val resetSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "reset_size", 3218959716)
 
     public val getPositionWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_position_with_decorations")
+        TypeManager.getMethodBindPtr("Window", "get_position_with_decorations", 3690982128)
 
     public val getSizeWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_size_with_decorations")
+        TypeManager.getMethodBindPtr("Window", "get_size_with_decorations", 3690982128)
 
-    public val setMaxSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_max_size")
+    public val setMaxSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_max_size", 1130785943)
 
-    public val getMaxSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_max_size")
+    public val getMaxSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_max_size", 3690982128)
 
-    public val setMinSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_min_size")
+    public val setMinSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_min_size", 1130785943)
 
-    public val getMinSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_min_size")
+    public val getMinSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_min_size", 3690982128)
 
-    public val setModePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_mode")
+    public val setModePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_mode", 3095236531)
 
-    public val getModePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_mode")
+    public val getModePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_mode", 2566346114)
 
-    public val setFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_flag")
+    public val setFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_flag", 3426449779)
 
-    public val getFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_flag")
+    public val getFlagPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_flag", 3062752289)
 
     public val isMaximizeAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_maximize_allowed")
+        TypeManager.getMethodBindPtr("Window", "is_maximize_allowed", 36873697)
 
     public val requestAttentionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "request_attention")
+        TypeManager.getMethodBindPtr("Window", "request_attention", 3218959716)
 
     public val moveToForegroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "move_to_foreground")
+        TypeManager.getMethodBindPtr("Window", "move_to_foreground", 3218959716)
 
-    public val setVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_visible")
+    public val setVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "is_visible")
+    public val isVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_visible", 36873697)
 
-    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "hide")
+    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "hide", 3218959716)
 
-    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "show")
+    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "show", 3218959716)
 
-    public val setTransientPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_transient")
+    public val setTransientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_transient", 2586408642)
 
-    public val isTransientPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "is_transient")
+    public val isTransientPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_transient", 36873697)
 
     public val setTransientToFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_transient_to_focused")
+        TypeManager.getMethodBindPtr("Window", "set_transient_to_focused", 2586408642)
 
     public val isTransientToFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_transient_to_focused")
+        TypeManager.getMethodBindPtr("Window", "is_transient_to_focused", 36873697)
 
-    public val setExclusivePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_exclusive")
+    public val setExclusivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_exclusive", 2586408642)
 
-    public val isExclusivePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "is_exclusive")
+    public val isExclusivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_exclusive", 36873697)
 
     public val setUnparentWhenInvisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_unparent_when_invisible")
+        TypeManager.getMethodBindPtr("Window", "set_unparent_when_invisible", 2586408642)
 
-    public val canDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "can_draw")
+    public val canDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "can_draw", 36873697)
 
-    public val hasFocusPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "has_focus")
+    public val hasFocusPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "has_focus", 36873697)
 
-    public val grabFocusPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "grab_focus")
+    public val grabFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "grab_focus", 3218959716)
 
-    public val setImeActivePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_ime_active")
+    public val setImeActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_ime_active", 2586408642)
 
     public val setImePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_ime_position")
+        TypeManager.getMethodBindPtr("Window", "set_ime_position", 1130785943)
 
-    public val isEmbeddedPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "is_embedded")
+    public val isEmbeddedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_embedded", 36873697)
 
     public val getContentsMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_contents_minimum_size")
+        TypeManager.getMethodBindPtr("Window", "get_contents_minimum_size", 3341600327)
 
     public val setForceNativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_force_native")
+        TypeManager.getMethodBindPtr("Window", "set_force_native", 2586408642)
 
     public val getForceNativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_force_native")
+        TypeManager.getMethodBindPtr("Window", "get_force_native", 36873697)
 
     public val setContentScaleSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_size")
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_size", 1130785943)
 
     public val getContentScaleSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_size")
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_size", 3690982128)
 
     public val setContentScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_mode")
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_mode", 2937716473)
 
     public val getContentScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_mode")
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_mode", 161585230)
 
     public val setContentScaleAspectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_aspect")
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_aspect", 2370399418)
 
     public val getContentScaleAspectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_aspect")
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_aspect", 4158790715)
 
     public val setContentScaleStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_stretch")
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_stretch", 349355940)
 
     public val getContentScaleStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_stretch")
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_stretch", 536857316)
 
     public val setKeepTitleVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_keep_title_visible")
+        TypeManager.getMethodBindPtr("Window", "set_keep_title_visible", 2586408642)
 
     public val getKeepTitleVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_keep_title_visible")
+        TypeManager.getMethodBindPtr("Window", "get_keep_title_visible", 36873697)
 
     public val setContentScaleFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_factor")
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_factor", 373806689)
 
     public val getContentScaleFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_factor")
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_factor", 1740695150)
 
     public val setUseFontOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_use_font_oversampling")
+        TypeManager.getMethodBindPtr("Window", "set_use_font_oversampling", 2586408642)
 
     public val isUsingFontOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_using_font_oversampling")
+        TypeManager.getMethodBindPtr("Window", "is_using_font_oversampling", 36873697)
 
     public val setMousePassthroughPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_mouse_passthrough_polygon")
+        TypeManager.getMethodBindPtr("Window", "set_mouse_passthrough_polygon", 1509147220)
 
     public val getMousePassthroughPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_mouse_passthrough_polygon")
+        TypeManager.getMethodBindPtr("Window", "get_mouse_passthrough_polygon", 2961356807)
 
     public val setWrapControlsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_wrap_controls")
+        TypeManager.getMethodBindPtr("Window", "set_wrap_controls", 2586408642)
 
     public val isWrappingControlsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_wrapping_controls")
+        TypeManager.getMethodBindPtr("Window", "is_wrapping_controls", 36873697)
 
     public val childControlsChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "child_controls_changed")
+        TypeManager.getMethodBindPtr("Window", "child_controls_changed", 3218959716)
 
-    public val setThemePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "set_theme")
+    public val setThemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_theme", 2326690814)
 
-    public val getThemePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_theme")
+    public val getThemePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_theme", 3846893731)
 
     public val setThemeTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_theme_type_variation")
+        TypeManager.getMethodBindPtr("Window", "set_theme_type_variation", 3304788590)
 
     public val getThemeTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_type_variation")
+        TypeManager.getMethodBindPtr("Window", "get_theme_type_variation", 2002593661)
 
     public val beginBulkThemeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "begin_bulk_theme_override")
+        TypeManager.getMethodBindPtr("Window", "begin_bulk_theme_override", 3218959716)
 
     public val endBulkThemeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "end_bulk_theme_override")
+        TypeManager.getMethodBindPtr("Window", "end_bulk_theme_override", 3218959716)
 
     public val addThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_icon_override")
+        TypeManager.getMethodBindPtr("Window", "add_theme_icon_override", 1373065600)
 
     public val addThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_stylebox_override")
+        TypeManager.getMethodBindPtr("Window", "add_theme_stylebox_override", 4188838905)
 
     public val addThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_font_override")
+        TypeManager.getMethodBindPtr("Window", "add_theme_font_override", 3518018674)
 
     public val addThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_font_size_override")
+        TypeManager.getMethodBindPtr("Window", "add_theme_font_size_override", 2415702435)
 
     public val addThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_color_override")
+        TypeManager.getMethodBindPtr("Window", "add_theme_color_override", 4260178595)
 
     public val addThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_constant_override")
+        TypeManager.getMethodBindPtr("Window", "add_theme_constant_override", 2415702435)
 
     public val removeThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_icon_override")
+        TypeManager.getMethodBindPtr("Window", "remove_theme_icon_override", 3304788590)
 
     public val removeThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_stylebox_override")
+        TypeManager.getMethodBindPtr("Window", "remove_theme_stylebox_override", 3304788590)
 
     public val removeThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_font_override")
+        TypeManager.getMethodBindPtr("Window", "remove_theme_font_override", 3304788590)
 
     public val removeThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_font_size_override")
+        TypeManager.getMethodBindPtr("Window", "remove_theme_font_size_override", 3304788590)
 
     public val removeThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_color_override")
+        TypeManager.getMethodBindPtr("Window", "remove_theme_color_override", 3304788590)
 
     public val removeThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_constant_override")
+        TypeManager.getMethodBindPtr("Window", "remove_theme_constant_override", 3304788590)
 
-    public val getThemeIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_theme_icon")
+    public val getThemeIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_theme_icon", 2336455395)
 
     public val getThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_stylebox")
+        TypeManager.getMethodBindPtr("Window", "get_theme_stylebox", 2759935355)
 
-    public val getThemeFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_theme_font")
+    public val getThemeFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_theme_font", 387378635)
 
     public val getThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_font_size")
+        TypeManager.getMethodBindPtr("Window", "get_theme_font_size", 229578101)
 
-    public val getThemeColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "get_theme_color")
+    public val getThemeColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_theme_color", 2377051548)
 
     public val getThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_constant")
+        TypeManager.getMethodBindPtr("Window", "get_theme_constant", 229578101)
 
     public val hasThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_icon_override")
+        TypeManager.getMethodBindPtr("Window", "has_theme_icon_override", 2619796661)
 
     public val hasThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox_override")
+        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox_override", 2619796661)
 
     public val hasThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font_override")
+        TypeManager.getMethodBindPtr("Window", "has_theme_font_override", 2619796661)
 
     public val hasThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font_size_override")
+        TypeManager.getMethodBindPtr("Window", "has_theme_font_size_override", 2619796661)
 
     public val hasThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_color_override")
+        TypeManager.getMethodBindPtr("Window", "has_theme_color_override", 2619796661)
 
     public val hasThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_constant_override")
+        TypeManager.getMethodBindPtr("Window", "has_theme_constant_override", 2619796661)
 
-    public val hasThemeIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "has_theme_icon")
+    public val hasThemeIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "has_theme_icon", 1187511791)
 
     public val hasThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox")
+        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox", 1187511791)
 
-    public val hasThemeFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "has_theme_font")
+    public val hasThemeFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "has_theme_font", 1187511791)
 
     public val hasThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font_size")
+        TypeManager.getMethodBindPtr("Window", "has_theme_font_size", 1187511791)
 
-    public val hasThemeColorPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "has_theme_color")
+    public val hasThemeColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "has_theme_color", 1187511791)
 
     public val hasThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_constant")
+        TypeManager.getMethodBindPtr("Window", "has_theme_constant", 1187511791)
 
     public val getThemeDefaultBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_default_base_scale")
+        TypeManager.getMethodBindPtr("Window", "get_theme_default_base_scale", 1740695150)
 
     public val getThemeDefaultFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_default_font")
+        TypeManager.getMethodBindPtr("Window", "get_theme_default_font", 3229501585)
 
     public val getThemeDefaultFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_default_font_size")
+        TypeManager.getMethodBindPtr("Window", "get_theme_default_font_size", 3905245786)
 
     public val setLayoutDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_layout_direction")
+        TypeManager.getMethodBindPtr("Window", "set_layout_direction", 3094704184)
 
     public val getLayoutDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_layout_direction")
+        TypeManager.getMethodBindPtr("Window", "get_layout_direction", 3909617982)
 
-    public val isLayoutRtlPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "is_layout_rtl")
+    public val isLayoutRtlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_layout_rtl", 36873697)
 
     public val setAutoTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_auto_translate")
+        TypeManager.getMethodBindPtr("Window", "set_auto_translate", 2586408642)
 
     public val isAutoTranslatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_auto_translating")
+        TypeManager.getMethodBindPtr("Window", "is_auto_translating", 36873697)
 
-    public val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "popup")
+    public val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "popup", 1680304321)
 
-    public val popupOnParentPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "popup_on_parent")
+    public val popupOnParentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "popup_on_parent", 1763793166)
 
-    public val popupCenteredPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "popup_centered")
+    public val popupCenteredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "popup_centered", 3447975422)
 
     public val popupCenteredRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_centered_ratio")
+        TypeManager.getMethodBindPtr("Window", "popup_centered_ratio", 1014814997)
 
     public val popupCenteredClampedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_centered_clamped")
+        TypeManager.getMethodBindPtr("Window", "popup_centered_clamped", 2613752477)
 
     public val popupExclusivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive")
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive", 2134721627)
 
     public val popupExclusiveOnParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_on_parent")
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_on_parent", 2344671043)
 
     public val popupExclusiveCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered")
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered", 3357594017)
 
     public val popupExclusiveCenteredRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_ratio")
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_ratio", 2284776287)
 
     public val popupExclusiveCenteredClampedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_clamped")
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_clamped", 2612708785)
   }
 }

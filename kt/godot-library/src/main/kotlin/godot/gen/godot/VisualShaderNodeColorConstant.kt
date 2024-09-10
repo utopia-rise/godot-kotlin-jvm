@@ -72,9 +72,9 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "set_constant")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "set_constant", 2920490490)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "get_constant")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "get_constant", 3444240500)
   }
 }

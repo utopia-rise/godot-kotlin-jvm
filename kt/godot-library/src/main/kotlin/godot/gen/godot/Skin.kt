@@ -91,26 +91,36 @@ public open class Skin : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setBindCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_count")
+    public val setBindCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "set_bind_count", 1286410249)
 
-    public val getBindCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_count")
+    public val getBindCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "get_bind_count", 3905245786)
 
-    public val addBindPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "add_bind")
+    public val addBindPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "add_bind", 3616898986)
 
-    public val addNamedBindPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "add_named_bind")
+    public val addNamedBindPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "add_named_bind", 3154712474)
 
-    public val setBindPosePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_pose")
+    public val setBindPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "set_bind_pose", 3616898986)
 
-    public val getBindPosePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_pose")
+    public val getBindPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "get_bind_pose", 1965739696)
 
-    public val setBindNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_name")
+    public val setBindNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "set_bind_name", 3780747571)
 
-    public val getBindNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_name")
+    public val getBindNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "get_bind_name", 659327637)
 
-    public val setBindBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "set_bind_bone")
+    public val setBindBonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "set_bind_bone", 3937882851)
 
-    public val getBindBonePtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "get_bind_bone")
+    public val getBindBonePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "get_bind_bone", 923996154)
 
-    public val clearBindsPtr: VoidPtr = TypeManager.getMethodBindPtr("Skin", "clear_binds")
+    public val clearBindsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skin", "clear_binds", 3218959716)
   }
 }

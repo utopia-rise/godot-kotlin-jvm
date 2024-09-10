@@ -247,64 +247,72 @@ public open class Button : BaseButton() {
   public companion object
 
   internal object MethodBindings {
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_text")
+    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "get_text")
+    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "get_text", 201670096)
 
     public val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("Button", "set_text_overrun_behavior", 1008890932)
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("Button", "get_text_overrun_behavior", 3779142101)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_autowrap_mode")
+        TypeManager.getMethodBindPtr("Button", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_autowrap_mode")
+        TypeManager.getMethodBindPtr("Button", "get_autowrap_mode", 1549071663)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_direction")
+        TypeManager.getMethodBindPtr("Button", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_direction")
+        TypeManager.getMethodBindPtr("Button", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_language")
+    public val setLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "get_language")
+    public val getLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "get_language", 201670096)
 
-    public val setButtonIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_button_icon")
+    public val setButtonIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "set_button_icon", 4051416890)
 
-    public val getButtonIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "get_button_icon")
+    public val getButtonIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "get_button_icon", 3635182373)
 
-    public val setFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_flat")
+    public val setFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_flat", 2586408642)
 
-    public val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "is_flat")
+    public val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "is_flat", 36873697)
 
-    public val setClipTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_clip_text")
+    public val setClipTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "set_clip_text", 2586408642)
 
-    public val getClipTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "get_clip_text")
+    public val getClipTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "get_clip_text", 36873697)
 
     public val setTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_alignment")
+        TypeManager.getMethodBindPtr("Button", "set_text_alignment", 2312603777)
 
     public val getTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_alignment")
+        TypeManager.getMethodBindPtr("Button", "get_text_alignment", 341400642)
 
     public val setIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_icon_alignment")
+        TypeManager.getMethodBindPtr("Button", "set_icon_alignment", 2312603777)
 
     public val getIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_icon_alignment")
+        TypeManager.getMethodBindPtr("Button", "get_icon_alignment", 341400642)
 
     public val setVerticalIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_vertical_icon_alignment")
+        TypeManager.getMethodBindPtr("Button", "set_vertical_icon_alignment", 1796458609)
 
     public val getVerticalIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_vertical_icon_alignment")
+        TypeManager.getMethodBindPtr("Button", "get_vertical_icon_alignment", 3274884059)
 
-    public val setExpandIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_expand_icon")
+    public val setExpandIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "set_expand_icon", 2586408642)
 
-    public val isExpandIconPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "is_expand_icon")
+    public val isExpandIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "is_expand_icon", 36873697)
   }
 }

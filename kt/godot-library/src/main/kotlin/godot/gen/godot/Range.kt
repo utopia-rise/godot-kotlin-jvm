@@ -231,59 +231,61 @@ public open class Range : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val _valueChangedPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "_value_changed")
+    public val getValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_value", 1740695150)
 
-    public val getValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_value")
+    public val getMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_min", 1740695150)
 
-    public val getMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_min")
+    public val getMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_max", 1740695150)
 
-    public val getMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_max")
+    public val getStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_step", 1740695150)
 
-    public val getStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_step")
+    public val getPagePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_page", 1740695150)
 
-    public val getPagePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_page")
+    public val getAsRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Range", "get_as_ratio", 1740695150)
 
-    public val getAsRatioPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_as_ratio")
-
-    public val setValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_value")
+    public val setValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_value", 373806689)
 
     public val setValueNoSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_value_no_signal")
+        TypeManager.getMethodBindPtr("Range", "set_value_no_signal", 373806689)
 
-    public val setMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_min")
+    public val setMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_min", 373806689)
 
-    public val setMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_max")
+    public val setMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_max", 373806689)
 
-    public val setStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_step")
+    public val setStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_step", 373806689)
 
-    public val setPagePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_page")
+    public val setPagePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_page", 373806689)
 
-    public val setAsRatioPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_as_ratio")
+    public val setAsRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Range", "set_as_ratio", 373806689)
 
     public val setUseRoundedValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_use_rounded_values")
+        TypeManager.getMethodBindPtr("Range", "set_use_rounded_values", 2586408642)
 
     public val isUsingRoundedValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "is_using_rounded_values")
+        TypeManager.getMethodBindPtr("Range", "is_using_rounded_values", 36873697)
 
-    public val setExpRatioPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_exp_ratio")
+    public val setExpRatioPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Range", "set_exp_ratio", 2586408642)
 
-    public val isRatioExpPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "is_ratio_exp")
+    public val isRatioExpPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Range", "is_ratio_exp", 36873697)
 
     public val setAllowGreaterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_allow_greater")
+        TypeManager.getMethodBindPtr("Range", "set_allow_greater", 2586408642)
 
     public val isGreaterAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "is_greater_allowed")
+        TypeManager.getMethodBindPtr("Range", "is_greater_allowed", 36873697)
 
     public val setAllowLesserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_allow_lesser")
+        TypeManager.getMethodBindPtr("Range", "set_allow_lesser", 2586408642)
 
     public val isLesserAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "is_lesser_allowed")
+        TypeManager.getMethodBindPtr("Range", "is_lesser_allowed", 36873697)
 
-    public val sharePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "share")
+    public val sharePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "share", 1078189570)
 
-    public val unsharePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "unshare")
+    public val unsharePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "unshare", 3218959716)
   }
 }

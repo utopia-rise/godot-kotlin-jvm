@@ -334,78 +334,82 @@ public object ClassDB : Object() {
   }
 
   internal object MethodBindings {
-    public val getClassListPtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "get_class_list")
+    public val getClassListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "get_class_list", 1139954409)
 
     public val getInheritersFromClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_inheriters_from_class")
+        TypeManager.getMethodBindPtr("ClassDB", "get_inheriters_from_class", 1761182771)
 
     public val getParentClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_parent_class")
+        TypeManager.getMethodBindPtr("ClassDB", "get_parent_class", 1965194235)
 
-    public val classExistsPtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "class_exists")
+    public val classExistsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_exists", 2619796661)
 
     public val isParentClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_parent_class")
+        TypeManager.getMethodBindPtr("ClassDB", "is_parent_class", 471820014)
 
     public val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "can_instantiate")
+        TypeManager.getMethodBindPtr("ClassDB", "can_instantiate", 2619796661)
 
-    public val instantiatePtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "instantiate")
+    public val instantiatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "instantiate", 2760726917)
 
     public val classHasSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_signal")
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_signal", 471820014)
 
     public val classGetSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal", 3061114238)
 
     public val classGetSignalListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal_list")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal_list", 3504980660)
 
     public val classGetPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_list")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_list", 3504980660)
 
     public val classGetPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property", 2498641674)
 
     public val classSetPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_set_property")
+        TypeManager.getMethodBindPtr("ClassDB", "class_set_property", 1690314931)
 
     public val classGetPropertyDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_default_value")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_default_value", 2718203076)
 
     public val classHasMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_method")
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_method", 3860701026)
 
     public val classGetMethodArgumentCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_argument_count")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_argument_count", 3885694822)
 
     public val classGetMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list", 3504980660)
 
     public val classGetIntegerConstantListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_list")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_list", 3031669221)
 
     public val classHasIntegerConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_integer_constant")
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_integer_constant", 471820014)
 
     public val classGetIntegerConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant", 2419549490)
 
-    public val classHasEnumPtr: VoidPtr = TypeManager.getMethodBindPtr("ClassDB", "class_has_enum")
+    public val classHasEnumPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_enum", 3860701026)
 
     public val classGetEnumListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_list")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_list", 3031669221)
 
     public val classGetEnumConstantsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_constants")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_constants", 661528303)
 
     public val classGetIntegerConstantEnumPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum")
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum", 2457504236)
 
     public val isClassEnumBitfieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_class_enum_bitfield")
+        TypeManager.getMethodBindPtr("ClassDB", "is_class_enum_bitfield", 3860701026)
 
     public val isClassEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_class_enabled")
+        TypeManager.getMethodBindPtr("ClassDB", "is_class_enabled", 2619796661)
   }
 }

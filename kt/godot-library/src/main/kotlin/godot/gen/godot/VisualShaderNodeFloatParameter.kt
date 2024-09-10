@@ -155,39 +155,39 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
 
   internal object MethodBindings {
     public val setHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_hint")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_hint", 3712586466)
 
     public val getHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_hint")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_hint", 3042240429)
 
     public val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_min")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_min", 373806689)
 
     public val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_min")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_min", 1740695150)
 
     public val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_max")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_max", 373806689)
 
     public val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_max")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_max", 1740695150)
 
     public val setStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_step")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_step", 373806689)
 
     public val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_step")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_step", 1740695150)
 
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "is_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value", 373806689)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_default_value", 1740695150)
   }
 }

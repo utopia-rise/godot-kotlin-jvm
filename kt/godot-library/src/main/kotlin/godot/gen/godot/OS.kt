@@ -1324,190 +1324,215 @@ public object OS : Object() {
   }
 
   internal object MethodBindings {
-    public val getEntropyPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_entropy")
+    public val getEntropyPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_entropy", 47165747)
 
     public val getSystemCaCertificatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_ca_certificates")
+        TypeManager.getMethodBindPtr("OS", "get_system_ca_certificates", 2841200299)
 
     public val getConnectedMidiInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_connected_midi_inputs")
+        TypeManager.getMethodBindPtr("OS", "get_connected_midi_inputs", 2981934095)
 
-    public val openMidiInputsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "open_midi_inputs")
+    public val openMidiInputsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "open_midi_inputs", 3218959716)
 
-    public val closeMidiInputsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "close_midi_inputs")
+    public val closeMidiInputsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "close_midi_inputs", 3218959716)
 
-    public val alertPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "alert")
+    public val alertPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "alert", 1783970740)
 
-    public val crashPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "crash")
+    public val crashPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "crash", 83702148)
 
     public val setLowProcessorUsageModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode")
+        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode", 2586408642)
 
     public val isInLowProcessorUsageModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_in_low_processor_usage_mode")
+        TypeManager.getMethodBindPtr("OS", "is_in_low_processor_usage_mode", 36873697)
 
     public val setLowProcessorUsageModeSleepUsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode_sleep_usec")
+        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode_sleep_usec", 1286410249)
 
     public val getLowProcessorUsageModeSleepUsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_low_processor_usage_mode_sleep_usec")
+        TypeManager.getMethodBindPtr("OS", "get_low_processor_usage_mode_sleep_usec", 3905245786)
 
     public val setDeltaSmoothingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_delta_smoothing")
+        TypeManager.getMethodBindPtr("OS", "set_delta_smoothing", 2586408642)
 
     public val isDeltaSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_delta_smoothing_enabled")
+        TypeManager.getMethodBindPtr("OS", "is_delta_smoothing_enabled", 36873697)
 
     public val getProcessorCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_processor_count")
+        TypeManager.getMethodBindPtr("OS", "get_processor_count", 3905245786)
 
     public val getProcessorNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_processor_name")
+        TypeManager.getMethodBindPtr("OS", "get_processor_name", 201670096)
 
-    public val getSystemFontsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_system_fonts")
+    public val getSystemFontsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_system_fonts", 1139954409)
 
     public val getSystemFontPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_font_path")
+        TypeManager.getMethodBindPtr("OS", "get_system_font_path", 626580860)
 
     public val getSystemFontPathForTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_font_path_for_text")
+        TypeManager.getMethodBindPtr("OS", "get_system_font_path_for_text", 197317981)
 
     public val getExecutablePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_executable_path")
+        TypeManager.getMethodBindPtr("OS", "get_executable_path", 201670096)
 
     public val readStringFromStdinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin")
+        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin", 2841200299)
 
-    public val executePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "execute")
+    public val executePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "execute", 1488299882)
 
-    public val executeWithPipePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "execute_with_pipe")
+    public val executeWithPipePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "execute_with_pipe", 3845631403)
 
-    public val createProcessPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "create_process")
+    public val createProcessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "create_process", 2903767230)
 
-    public val createInstancePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "create_instance")
+    public val createInstancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "create_instance", 1080601263)
 
-    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "kill")
+    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "kill", 844576869)
 
-    public val shellOpenPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "shell_open")
+    public val shellOpenPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "shell_open", 166001499)
 
     public val shellShowInFileManagerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "shell_show_in_file_manager")
+        TypeManager.getMethodBindPtr("OS", "shell_show_in_file_manager", 3565188097)
 
     public val isProcessRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_process_running")
+        TypeManager.getMethodBindPtr("OS", "is_process_running", 1116898809)
 
     public val getProcessExitCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_process_exit_code")
+        TypeManager.getMethodBindPtr("OS", "get_process_exit_code", 923996154)
 
-    public val getProcessIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_process_id")
+    public val getProcessIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_process_id", 3905245786)
 
-    public val hasEnvironmentPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "has_environment")
+    public val hasEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "has_environment", 3927539163)
 
-    public val getEnvironmentPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_environment")
+    public val getEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_environment", 3135753539)
 
-    public val setEnvironmentPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "set_environment")
+    public val setEnvironmentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "set_environment", 3605043004)
 
     public val unsetEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "unset_environment")
+        TypeManager.getMethodBindPtr("OS", "unset_environment", 3089850668)
 
-    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_name")
+    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_name", 201670096)
 
     public val getDistributionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_distribution_name")
+        TypeManager.getMethodBindPtr("OS", "get_distribution_name", 201670096)
 
-    public val getVersionPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_version")
+    public val getVersionPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_version", 201670096)
 
-    public val getCmdlineArgsPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_cmdline_args")
+    public val getCmdlineArgsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_cmdline_args", 2981934095)
 
     public val getCmdlineUserArgsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_cmdline_user_args")
+        TypeManager.getMethodBindPtr("OS", "get_cmdline_user_args", 2981934095)
 
     public val getVideoAdapterDriverInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_video_adapter_driver_info")
+        TypeManager.getMethodBindPtr("OS", "get_video_adapter_driver_info", 1139954409)
 
     public val setRestartOnExitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_restart_on_exit")
+        TypeManager.getMethodBindPtr("OS", "set_restart_on_exit", 3331453935)
 
     public val isRestartOnExitSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_restart_on_exit_set")
+        TypeManager.getMethodBindPtr("OS", "is_restart_on_exit_set", 36873697)
 
     public val getRestartOnExitArgumentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_restart_on_exit_arguments")
+        TypeManager.getMethodBindPtr("OS", "get_restart_on_exit_arguments", 1139954409)
 
-    public val delayUsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_usec")
+    public val delayUsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_usec", 998575451)
 
-    public val delayMsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_msec")
+    public val delayMsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_msec", 998575451)
 
-    public val getLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_locale")
+    public val getLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_locale", 201670096)
 
     public val getLocaleLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_locale_language")
+        TypeManager.getMethodBindPtr("OS", "get_locale_language", 201670096)
 
-    public val getModelNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_model_name")
+    public val getModelNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_model_name", 201670096)
 
     public val isUserfsPersistentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_userfs_persistent")
+        TypeManager.getMethodBindPtr("OS", "is_userfs_persistent", 36873697)
 
-    public val isStdoutVerbosePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "is_stdout_verbose")
+    public val isStdoutVerbosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_stdout_verbose", 36873697)
 
-    public val isDebugBuildPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "is_debug_build")
+    public val isDebugBuildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_debug_build", 36873697)
 
     public val getStaticMemoryUsagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_static_memory_usage")
+        TypeManager.getMethodBindPtr("OS", "get_static_memory_usage", 3905245786)
 
     public val getStaticMemoryPeakUsagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_static_memory_peak_usage")
+        TypeManager.getMethodBindPtr("OS", "get_static_memory_peak_usage", 3905245786)
 
-    public val getMemoryInfoPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_memory_info")
+    public val getMemoryInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_memory_info", 3102165223)
 
-    public val moveToTrashPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "move_to_trash")
+    public val moveToTrashPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "move_to_trash", 2113323047)
 
-    public val getUserDataDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_user_data_dir")
+    public val getUserDataDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_user_data_dir", 201670096)
 
-    public val getSystemDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_system_dir")
+    public val getSystemDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_system_dir", 3073895123)
 
-    public val getConfigDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_config_dir")
+    public val getConfigDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_config_dir", 201670096)
 
-    public val getDataDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_data_dir")
+    public val getDataDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_data_dir", 201670096)
 
-    public val getCacheDirPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_cache_dir")
+    public val getCacheDirPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_cache_dir", 201670096)
 
-    public val getUniqueIdPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_unique_id")
+    public val getUniqueIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "get_unique_id", 201670096)
 
     public val getKeycodeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_keycode_string")
+        TypeManager.getMethodBindPtr("OS", "get_keycode_string", 2261993717)
 
     public val isKeycodeUnicodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_keycode_unicode")
+        TypeManager.getMethodBindPtr("OS", "is_keycode_unicode", 1116898809)
 
     public val findKeycodeFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "find_keycode_from_string")
+        TypeManager.getMethodBindPtr("OS", "find_keycode_from_string", 1084858572)
 
     public val setUseFileAccessSaveAndSwapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_use_file_access_save_and_swap")
+        TypeManager.getMethodBindPtr("OS", "set_use_file_access_save_and_swap", 2586408642)
 
-    public val setThreadNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "set_thread_name")
+    public val setThreadNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "set_thread_name", 166001499)
 
     public val getThreadCallerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_thread_caller_id")
+        TypeManager.getMethodBindPtr("OS", "get_thread_caller_id", 3905245786)
 
     public val getMainThreadIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_main_thread_id")
+        TypeManager.getMethodBindPtr("OS", "get_main_thread_id", 3905245786)
 
-    public val hasFeaturePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "has_feature")
+    public val hasFeaturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "has_feature", 3927539163)
 
-    public val isSandboxedPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "is_sandboxed")
+    public val isSandboxedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "is_sandboxed", 36873697)
 
     public val requestPermissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "request_permission")
+        TypeManager.getMethodBindPtr("OS", "request_permission", 2323990056)
 
     public val requestPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "request_permissions")
+        TypeManager.getMethodBindPtr("OS", "request_permissions", 2240911060)
 
     public val getGrantedPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_granted_permissions")
+        TypeManager.getMethodBindPtr("OS", "get_granted_permissions", 1139954409)
 
     public val revokeGrantedPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "revoke_granted_permissions")
+        TypeManager.getMethodBindPtr("OS", "revoke_granted_permissions", 3218959716)
   }
 }

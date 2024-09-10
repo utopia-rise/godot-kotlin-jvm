@@ -262,63 +262,63 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   internal object MethodBindings {
     public val getInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance", 2455072627)
 
     public val getSystemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_system_id")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_system_id", 2455072627)
 
     public val getSessionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_session")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_session", 2455072627)
 
     public val transformFromPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose", 3255299855)
 
     public val xrResultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "xr_result")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "xr_result", 3886436197)
 
     public val openxrIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled", 2703660260)
 
     public val getInstanceProcAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance_proc_addr")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance_proc_addr", 1597066294)
 
     public val getErrorStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_error_string")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_error_string", 990163283)
 
     public val getSwapchainFormatNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_swapchain_format_name")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_swapchain_format_name", 990163283)
 
     public val isInitializedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_initialized")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_initialized", 2240911060)
 
     public val isRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_running")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_running", 2240911060)
 
     public val getPlaySpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_play_space")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_play_space", 2455072627)
 
     public val getPredictedDisplayTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_predicted_display_time")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_predicted_display_time", 2455072627)
 
     public val getNextFrameTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_next_frame_time")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_next_frame_time", 2455072627)
 
     public val canRenderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "can_render")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "can_render", 2240911060)
 
     public val getHandTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker", 3744713108)
 
     public val registerCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider", 1997997368)
 
     public val unregisterCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider", 1997997368)
 
     public val setEmulateEnvironmentBlendModeAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_emulate_environment_blend_mode_alpha_blend")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_emulate_environment_blend_mode_alpha_blend", 2586408642)
 
     public val isEnvironmentBlendModeAlphaSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported")
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported", 1579290861)
   }
 }

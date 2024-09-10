@@ -66,15 +66,15 @@ public open class MultiMeshInstance2D : Node2D() {
 
   internal object MethodBindings {
     public val setMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_multimesh")
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_multimesh", 2246127404)
 
     public val getMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_multimesh")
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_multimesh", 1385450523)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_texture")
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_texture")
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_texture", 3635182373)
   }
 }

@@ -46,9 +46,9 @@ public open class AudioEffectAmplify : AudioEffect() {
 
   internal object MethodBindings {
     public val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_db")
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_db", 373806689)
 
     public val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_db")
+        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_db", 1740695150)
   }
 }

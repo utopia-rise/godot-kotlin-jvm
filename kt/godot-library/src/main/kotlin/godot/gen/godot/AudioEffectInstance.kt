@@ -7,8 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -38,11 +36,5 @@ public open class AudioEffectInstance : RefCounted() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _processPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectInstance", "_process")
-
-    public val _processSilencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectInstance", "_process_silence")
-  }
+  internal object MethodBindings
 }

@@ -135,19 +135,21 @@ public open class StreamPeerTLS : StreamPeer() {
   public companion object
 
   internal object MethodBindings {
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTLS", "poll")
+    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTLS", "poll", 3218959716)
 
     public val acceptStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "accept_stream")
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "accept_stream", 4292689651)
 
     public val connectToStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "connect_to_stream")
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "connect_to_stream", 57169517)
 
-    public val getStatusPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTLS", "get_status")
+    public val getStatusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_status", 1128380576)
 
-    public val getStreamPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTLS", "get_stream")
+    public val getStreamPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_stream", 2741655269)
 
     public val disconnectFromStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "disconnect_from_stream")
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "disconnect_from_stream", 3218959716)
   }
 }

@@ -134,20 +134,21 @@ public open class ColorPickerButton : Button() {
 
   internal object MethodBindings {
     public val setPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "set_pick_color")
+        TypeManager.getMethodBindPtr("ColorPickerButton", "set_pick_color", 2920490490)
 
     public val getPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_pick_color")
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_pick_color", 3444240500)
 
     public val getPickerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_picker")
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_picker", 331835996)
 
-    public val getPopupPtr: VoidPtr = TypeManager.getMethodBindPtr("ColorPickerButton", "get_popup")
+    public val getPopupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_popup", 1322440207)
 
     public val setEditAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "set_edit_alpha")
+        TypeManager.getMethodBindPtr("ColorPickerButton", "set_edit_alpha", 2586408642)
 
     public val isEditingAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_alpha")
+        TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_alpha", 36873697)
   }
 }

@@ -164,40 +164,22 @@ public open class AudioStream : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _instantiatePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "_instantiate_playback")
-
-    public val _getStreamNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "_get_stream_name")
-
-    public val _getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStream", "_get_length")
-
-    public val _isMonophonicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "_is_monophonic")
-
-    public val _getBpmPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStream", "_get_bpm")
-
-    public val _getBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "_get_beat_count")
-
-    public val _getParameterListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "_get_parameter_list")
-
-    public val getLengthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStream", "get_length")
+    public val getLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStream", "get_length", 1740695150)
 
     public val isMonophonicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "is_monophonic")
+        TypeManager.getMethodBindPtr("AudioStream", "is_monophonic", 36873697)
 
     public val instantiatePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "instantiate_playback")
+        TypeManager.getMethodBindPtr("AudioStream", "instantiate_playback", 210135309)
 
     public val canBeSampledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "can_be_sampled")
+        TypeManager.getMethodBindPtr("AudioStream", "can_be_sampled", 36873697)
 
     public val generateSamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "generate_sample")
+        TypeManager.getMethodBindPtr("AudioStream", "generate_sample", 2646048999)
 
     public val isMetaStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "is_meta_stream")
+        TypeManager.getMethodBindPtr("AudioStream", "is_meta_stream", 36873697)
   }
 }

@@ -46,9 +46,9 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
 
   internal object MethodBindings {
     public val setDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_description")
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_description", 83702148)
 
     public val getDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_description")
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_description", 201670096)
   }
 }

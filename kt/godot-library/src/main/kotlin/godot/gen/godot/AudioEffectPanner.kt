@@ -44,8 +44,10 @@ public open class AudioEffectPanner : AudioEffect() {
   public companion object
 
   internal object MethodBindings {
-    public val setPanPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectPanner", "set_pan")
+    public val setPanPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPanner", "set_pan", 373806689)
 
-    public val getPanPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectPanner", "get_pan")
+    public val getPanPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPanner", "get_pan", 1740695150)
   }
 }

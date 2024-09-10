@@ -844,63 +844,67 @@ public open class HTTPClient : RefCounted() {
 
   internal object MethodBindings {
     public val connectToHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "connect_to_host")
+        TypeManager.getMethodBindPtr("HTTPClient", "connect_to_host", 504540374)
 
     public val setConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "set_connection")
+        TypeManager.getMethodBindPtr("HTTPClient", "set_connection", 3281897016)
 
     public val getConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "get_connection")
+        TypeManager.getMethodBindPtr("HTTPClient", "get_connection", 2741655269)
 
-    public val requestRawPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "request_raw")
+    public val requestRawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "request_raw", 540161961)
 
-    public val requestPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "request")
+    public val requestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "request", 3778990155)
 
-    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "close")
+    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "close", 3218959716)
 
-    public val hasResponsePtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "has_response")
+    public val hasResponsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "has_response", 36873697)
 
     public val isResponseChunkedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "is_response_chunked")
+        TypeManager.getMethodBindPtr("HTTPClient", "is_response_chunked", 36873697)
 
     public val getResponseCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "get_response_code")
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_code", 3905245786)
 
     public val getResponseHeadersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "get_response_headers")
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_headers", 2981934095)
 
     public val getResponseHeadersAsDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "get_response_headers_as_dictionary")
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_headers_as_dictionary", 2382534195)
 
     public val getResponseBodyLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "get_response_body_length")
+        TypeManager.getMethodBindPtr("HTTPClient", "get_response_body_length", 3905245786)
 
     public val readResponseBodyChunkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "read_response_body_chunk")
+        TypeManager.getMethodBindPtr("HTTPClient", "read_response_body_chunk", 2115431945)
 
     public val setReadChunkSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "set_read_chunk_size")
+        TypeManager.getMethodBindPtr("HTTPClient", "set_read_chunk_size", 1286410249)
 
     public val getReadChunkSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "get_read_chunk_size")
+        TypeManager.getMethodBindPtr("HTTPClient", "get_read_chunk_size", 3905245786)
 
     public val setBlockingModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "set_blocking_mode")
+        TypeManager.getMethodBindPtr("HTTPClient", "set_blocking_mode", 2586408642)
 
     public val isBlockingModeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "is_blocking_mode_enabled")
+        TypeManager.getMethodBindPtr("HTTPClient", "is_blocking_mode_enabled", 36873697)
 
-    public val getStatusPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "get_status")
+    public val getStatusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("HTTPClient", "get_status", 1426656811)
 
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "poll")
+    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("HTTPClient", "poll", 166280745)
 
     public val setHttpProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "set_http_proxy")
+        TypeManager.getMethodBindPtr("HTTPClient", "set_http_proxy", 2956805083)
 
     public val setHttpsProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "set_https_proxy")
+        TypeManager.getMethodBindPtr("HTTPClient", "set_https_proxy", 2956805083)
 
     public val queryStringFromDictPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPClient", "query_string_from_dict")
+        TypeManager.getMethodBindPtr("HTTPClient", "query_string_from_dict", 2538086567)
   }
 }

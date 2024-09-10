@@ -170,29 +170,30 @@ public open class FlowContainer : Container() {
 
   internal object MethodBindings {
     public val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_line_count")
+        TypeManager.getMethodBindPtr("FlowContainer", "get_line_count", 3905245786)
 
     public val setAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_alignment")
+        TypeManager.getMethodBindPtr("FlowContainer", "set_alignment", 575250951)
 
     public val getAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_alignment")
+        TypeManager.getMethodBindPtr("FlowContainer", "get_alignment", 3749743559)
 
     public val setLastWrapAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment")
+        TypeManager.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment", 2899697495)
 
     public val getLastWrapAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment")
+        TypeManager.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment", 3743456014)
 
     public val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_vertical")
+        TypeManager.getMethodBindPtr("FlowContainer", "set_vertical", 2586408642)
 
-    public val isVerticalPtr: VoidPtr = TypeManager.getMethodBindPtr("FlowContainer", "is_vertical")
+    public val isVerticalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FlowContainer", "is_vertical", 36873697)
 
     public val setReverseFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_reverse_fill")
+        TypeManager.getMethodBindPtr("FlowContainer", "set_reverse_fill", 2586408642)
 
     public val isReverseFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "is_reverse_fill")
+        TypeManager.getMethodBindPtr("FlowContainer", "is_reverse_fill", 36873697)
   }
 }

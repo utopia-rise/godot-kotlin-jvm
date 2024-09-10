@@ -202,45 +202,45 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
 
   internal object MethodBindings {
     public val getFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_from")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_from", 3814499831)
 
     public val setFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_from")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_from", 2761652528)
 
     public val getMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_motion")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_motion", 3341600327)
 
     public val setMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_motion")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_motion", 743155724)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_margin")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_margin", 1740695150)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_margin")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_margin", 373806689)
 
     public val isCollideSeparationRayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "is_collide_separation_ray_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "is_collide_separation_ray_enabled", 36873697)
 
     public val setCollideSeparationRayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_collide_separation_ray_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_collide_separation_ray_enabled", 2586408642)
 
     public val getExcludeBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_exclude_bodies")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_exclude_bodies", 3995934104)
 
     public val setExcludeBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_exclude_bodies")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_exclude_bodies", 381264803)
 
     public val getExcludeObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_exclude_objects")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "get_exclude_objects", 3995934104)
 
     public val setExcludeObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_exclude_objects")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_exclude_objects", 381264803)
 
     public val isRecoveryAsCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "is_recovery_as_collision_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "is_recovery_as_collision_enabled", 36873697)
 
     public val setRecoveryAsCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_recovery_as_collision_enabled")
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters2D", "set_recovery_as_collision_enabled", 2586408642)
   }
 }

@@ -111,24 +111,30 @@ public open class StatusIndicator : Node() {
 
   internal object MethodBindings {
     public val setTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "set_tooltip")
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_tooltip", 83702148)
 
     public val getTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "get_tooltip")
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_tooltip", 201670096)
 
-    public val setIconPtr: VoidPtr = TypeManager.getMethodBindPtr("StatusIndicator", "set_icon")
+    public val setIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_icon", 4051416890)
 
-    public val getIconPtr: VoidPtr = TypeManager.getMethodBindPtr("StatusIndicator", "get_icon")
+    public val getIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_icon", 3635182373)
 
     public val setVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StatusIndicator", "set_visible")
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr = TypeManager.getMethodBindPtr("StatusIndicator", "is_visible")
+    public val isVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StatusIndicator", "is_visible", 36873697)
 
-    public val setMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("StatusIndicator", "set_menu")
+    public val setMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StatusIndicator", "set_menu", 1348162250)
 
-    public val getMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("StatusIndicator", "get_menu")
+    public val getMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_menu", 4075236667)
 
-    public val getRectPtr: VoidPtr = TypeManager.getMethodBindPtr("StatusIndicator", "get_rect")
+    public val getRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StatusIndicator", "get_rect", 1639390495)
   }
 }

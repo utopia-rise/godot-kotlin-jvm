@@ -183,33 +183,36 @@ public open class RandomNumberGenerator : RefCounted() {
 
   internal object MethodBindings {
     public val setSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_seed")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_seed", 1286410249)
 
     public val getSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_seed")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_seed", 2455072627)
 
     public val setStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_state")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_state", 1286410249)
 
     public val getStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_state")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_state", 3905245786)
 
-    public val randiPtr: VoidPtr = TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi")
+    public val randiPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi", 2455072627)
 
-    public val randfPtr: VoidPtr = TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf")
+    public val randfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf", 191475506)
 
-    public val randfnPtr: VoidPtr = TypeManager.getMethodBindPtr("RandomNumberGenerator", "randfn")
+    public val randfnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randfn", 837325100)
 
     public val randfRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf_range")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf_range", 4269894367)
 
     public val randiRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi_range")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi_range", 50157827)
 
     public val randWeightedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "rand_weighted")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "rand_weighted", 4189642986)
 
     public val randomizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randomize")
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randomize", 3218959716)
   }
 }

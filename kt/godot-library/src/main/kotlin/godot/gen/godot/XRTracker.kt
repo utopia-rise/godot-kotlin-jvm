@@ -85,21 +85,21 @@ public open class XRTracker internal constructor() : RefCounted() {
 
   internal object MethodBindings {
     public val getTrackerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_type")
+        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_type", 2784508102)
 
     public val setTrackerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_type")
+        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_type", 3055763575)
 
     public val getTrackerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_name")
+        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_name", 2002593661)
 
     public val setTrackerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_name")
+        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_name", 3304788590)
 
     public val getTrackerDescPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_desc")
+        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_desc", 201670096)
 
     public val setTrackerDescPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_desc")
+        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_desc", 83702148)
   }
 }

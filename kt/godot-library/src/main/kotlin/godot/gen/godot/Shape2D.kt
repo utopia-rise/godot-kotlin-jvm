@@ -166,24 +166,24 @@ public open class Shape2D internal constructor() : Resource() {
 
   internal object MethodBindings {
     public val setCustomSolverBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape2D", "set_custom_solver_bias")
+        TypeManager.getMethodBindPtr("Shape2D", "set_custom_solver_bias", 373806689)
 
     public val getCustomSolverBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape2D", "get_custom_solver_bias")
+        TypeManager.getMethodBindPtr("Shape2D", "get_custom_solver_bias", 1740695150)
 
-    public val collidePtr: VoidPtr = TypeManager.getMethodBindPtr("Shape2D", "collide")
+    public val collidePtr: VoidPtr = TypeManager.getMethodBindPtr("Shape2D", "collide", 3709843132)
 
     public val collideWithMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape2D", "collide_with_motion")
+        TypeManager.getMethodBindPtr("Shape2D", "collide_with_motion", 2869556801)
 
     public val collideAndGetContactsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape2D", "collide_and_get_contacts")
+        TypeManager.getMethodBindPtr("Shape2D", "collide_and_get_contacts", 3056932662)
 
     public val collideWithMotionAndGetContactsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape2D", "collide_with_motion_and_get_contacts")
+        TypeManager.getMethodBindPtr("Shape2D", "collide_with_motion_and_get_contacts", 3620351573)
 
-    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape2D", "draw")
+    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape2D", "draw", 2948539648)
 
-    public val getRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape2D", "get_rect")
+    public val getRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Shape2D", "get_rect", 1639390495)
   }
 }

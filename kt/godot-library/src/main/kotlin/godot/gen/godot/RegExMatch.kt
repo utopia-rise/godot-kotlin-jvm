@@ -119,19 +119,24 @@ public open class RegExMatch : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val getSubjectPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_subject")
+    public val getSubjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegExMatch", "get_subject", 201670096)
 
     public val getGroupCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegExMatch", "get_group_count")
+        TypeManager.getMethodBindPtr("RegExMatch", "get_group_count", 3905245786)
 
-    public val getNamesPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_names")
+    public val getNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegExMatch", "get_names", 3102165223)
 
-    public val getStringsPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_strings")
+    public val getStringsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegExMatch", "get_strings", 1139954409)
 
-    public val getStringPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_string")
+    public val getStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegExMatch", "get_string", 687115856)
 
-    public val getStartPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_start")
+    public val getStartPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RegExMatch", "get_start", 490464691)
 
-    public val getEndPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_end")
+    public val getEndPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_end", 490464691)
   }
 }

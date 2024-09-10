@@ -65,15 +65,15 @@ public open class MissingResource : Resource() {
 
   internal object MethodBindings {
     public val setOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "set_original_class")
+        TypeManager.getMethodBindPtr("MissingResource", "set_original_class", 83702148)
 
     public val getOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "get_original_class")
+        TypeManager.getMethodBindPtr("MissingResource", "get_original_class", 201670096)
 
     public val setRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "set_recording_properties")
+        TypeManager.getMethodBindPtr("MissingResource", "set_recording_properties", 2586408642)
 
     public val isRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingResource", "is_recording_properties")
+        TypeManager.getMethodBindPtr("MissingResource", "is_recording_properties", 36873697)
   }
 }

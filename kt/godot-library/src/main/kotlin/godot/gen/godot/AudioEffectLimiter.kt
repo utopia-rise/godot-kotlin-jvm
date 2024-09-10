@@ -89,27 +89,27 @@ public open class AudioEffectLimiter : AudioEffect() {
 
   internal object MethodBindings {
     public val setCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_ceiling_db")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_ceiling_db", 373806689)
 
     public val getCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_ceiling_db")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_ceiling_db", 1740695150)
 
     public val setThresholdDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_threshold_db")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_threshold_db", 373806689)
 
     public val getThresholdDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_threshold_db")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_threshold_db", 1740695150)
 
     public val setSoftClipDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_db")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_db", 373806689)
 
     public val getSoftClipDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_db")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_db", 1740695150)
 
     public val setSoftClipRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_ratio")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_ratio", 373806689)
 
     public val getSoftClipRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_ratio")
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_ratio", 1740695150)
   }
 }

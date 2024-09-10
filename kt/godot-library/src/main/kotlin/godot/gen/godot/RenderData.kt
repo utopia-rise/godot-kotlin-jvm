@@ -69,15 +69,15 @@ public open class RenderData internal constructor() : Object() {
 
   internal object MethodBindings {
     public val getRenderSceneBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_buffers")
+        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_buffers", 2793216201)
 
     public val getRenderSceneDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_data")
+        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_data", 1288715698)
 
     public val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_environment")
+        TypeManager.getMethodBindPtr("RenderData", "get_environment", 2944877500)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_camera_attributes")
+        TypeManager.getMethodBindPtr("RenderData", "get_camera_attributes", 2944877500)
   }
 }

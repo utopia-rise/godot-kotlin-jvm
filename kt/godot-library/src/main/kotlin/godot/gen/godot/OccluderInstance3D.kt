@@ -146,27 +146,27 @@ public open class OccluderInstance3D : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_mask")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_mask", 1286410249)
 
     public val getBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_mask")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_mask", 3905245786)
 
     public val setBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_mask_value")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_mask_value", 300928843)
 
     public val getBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_mask_value")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_mask_value", 1116898809)
 
     public val setBakeSimplificationDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_simplification_distance")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_simplification_distance", 373806689)
 
     public val getBakeSimplificationDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_simplification_distance")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_simplification_distance", 1740695150)
 
     public val setOccluderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_occluder")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_occluder", 1664878165)
 
     public val getOccluderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_occluder")
+        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_occluder", 1696836198)
   }
 }

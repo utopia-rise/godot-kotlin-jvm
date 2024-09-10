@@ -66,15 +66,15 @@ public open class SeparationRayShape2D : Shape2D() {
 
   internal object MethodBindings {
     public val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SeparationRayShape2D", "set_length")
+        TypeManager.getMethodBindPtr("SeparationRayShape2D", "set_length", 373806689)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SeparationRayShape2D", "get_length")
+        TypeManager.getMethodBindPtr("SeparationRayShape2D", "get_length", 1740695150)
 
     public val setSlideOnSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SeparationRayShape2D", "set_slide_on_slope")
+        TypeManager.getMethodBindPtr("SeparationRayShape2D", "set_slide_on_slope", 2586408642)
 
     public val getSlideOnSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SeparationRayShape2D", "get_slide_on_slope")
+        TypeManager.getMethodBindPtr("SeparationRayShape2D", "get_slide_on_slope", 36873697)
   }
 }

@@ -290,69 +290,69 @@ public open class PhysicalSkyMaterial : Material() {
 
   internal object MethodBindings {
     public val setRayleighCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_coefficient")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_coefficient", 373806689)
 
     public val getRayleighCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_coefficient")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_coefficient", 1740695150)
 
     public val setRayleighColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_color")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_color", 2920490490)
 
     public val getRayleighColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_color")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_color", 3444240500)
 
     public val setMieCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_coefficient")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_coefficient", 373806689)
 
     public val getMieCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_coefficient")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_coefficient", 1740695150)
 
     public val setMieEccentricityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_eccentricity")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_eccentricity", 373806689)
 
     public val getMieEccentricityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_eccentricity")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_eccentricity", 1740695150)
 
     public val setMieColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_color")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_color", 2920490490)
 
     public val getMieColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_color")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_color", 3444240500)
 
     public val setTurbidityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_turbidity")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_turbidity", 373806689)
 
     public val getTurbidityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_turbidity")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_turbidity", 1740695150)
 
     public val setSunDiskScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_sun_disk_scale")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_sun_disk_scale", 373806689)
 
     public val getSunDiskScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_sun_disk_scale")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_sun_disk_scale", 1740695150)
 
     public val setGroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_ground_color")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_ground_color", 2920490490)
 
     public val getGroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_ground_color")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_ground_color", 3444240500)
 
     public val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_energy_multiplier")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_energy_multiplier", 373806689)
 
     public val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_energy_multiplier")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_energy_multiplier", 1740695150)
 
     public val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_use_debanding")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_use_debanding", 2586408642)
 
     public val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_use_debanding")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_use_debanding", 36873697)
 
     public val setNightSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_night_sky")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_night_sky", 4051416890)
 
     public val getNightSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_night_sky")
+        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_night_sky", 3635182373)
   }
 }

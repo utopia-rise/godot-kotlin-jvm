@@ -93,27 +93,27 @@ public open class DampedSpringJoint2D : Joint2D() {
 
   internal object MethodBindings {
     public val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_length")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_length", 373806689)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_length")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_length", 1740695150)
 
     public val setRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_rest_length")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_rest_length", 373806689)
 
     public val getRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_rest_length")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_rest_length", 1740695150)
 
     public val setStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_stiffness")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_stiffness", 373806689)
 
     public val getStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_stiffness")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_stiffness", 1740695150)
 
     public val setDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_damping")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_damping", 373806689)
 
     public val getDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_damping")
+        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_damping", 1740695150)
   }
 }

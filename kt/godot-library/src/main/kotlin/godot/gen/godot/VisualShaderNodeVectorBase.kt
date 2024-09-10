@@ -75,9 +75,9 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
 
   internal object MethodBindings {
     public val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "set_op_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "set_op_type", 1692596998)
 
     public val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "get_op_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "get_op_type", 2568738462)
   }
 }

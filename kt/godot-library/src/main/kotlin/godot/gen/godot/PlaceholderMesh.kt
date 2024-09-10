@@ -72,6 +72,7 @@ public open class PlaceholderMesh : Mesh() {
   public companion object
 
   internal object MethodBindings {
-    public val setAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("PlaceholderMesh", "set_aabb")
+    public val setAabbPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PlaceholderMesh", "set_aabb", 259215842)
   }
 }

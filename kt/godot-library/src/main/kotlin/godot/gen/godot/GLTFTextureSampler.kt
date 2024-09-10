@@ -89,27 +89,27 @@ public open class GLTFTextureSampler : Resource() {
 
   internal object MethodBindings {
     public val getMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_mag_filter")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_mag_filter", 3905245786)
 
     public val setMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_mag_filter")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_mag_filter", 1286410249)
 
     public val getMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_min_filter")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_min_filter", 3905245786)
 
     public val setMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_min_filter")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_min_filter", 1286410249)
 
     public val getWrapSPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_s")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_s", 3905245786)
 
     public val setWrapSPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_s")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_s", 1286410249)
 
     public val getWrapTPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_t")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_t", 3905245786)
 
     public val setWrapTPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_t")
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_t", 1286410249)
   }
 }

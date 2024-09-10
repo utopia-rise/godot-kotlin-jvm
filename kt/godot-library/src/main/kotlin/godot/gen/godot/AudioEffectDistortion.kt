@@ -144,33 +144,33 @@ public open class AudioEffectDistortion : AudioEffect() {
 
   internal object MethodBindings {
     public val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_mode")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_mode", 1314744793)
 
     public val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_mode")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_mode", 809118343)
 
     public val setPreGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain", 373806689)
 
     public val getPreGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain", 1740695150)
 
     public val setKeepHfHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz", 373806689)
 
     public val getKeepHfHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz", 1740695150)
 
     public val setDrivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_drive")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_drive", 373806689)
 
     public val getDrivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_drive")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_drive", 1740695150)
 
     public val setPostGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_post_gain")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_post_gain", 373806689)
 
     public val getPostGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_post_gain")
+        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_post_gain", 1740695150)
   }
 }

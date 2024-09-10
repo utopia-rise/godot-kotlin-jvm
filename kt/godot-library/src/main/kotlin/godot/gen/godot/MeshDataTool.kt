@@ -447,114 +447,117 @@ public open class MeshDataTool : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshDataTool", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshDataTool", "clear", 3218959716)
 
     public val createFromSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "create_from_surface")
+        TypeManager.getMethodBindPtr("MeshDataTool", "create_from_surface", 2727020678)
 
     public val commitToSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "commit_to_surface")
+        TypeManager.getMethodBindPtr("MeshDataTool", "commit_to_surface", 2021686445)
 
-    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshDataTool", "get_format")
+    public val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_format", 3905245786)
 
     public val getVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_count")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_count", 3905245786)
 
     public val getEdgeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_count")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_count", 3905245786)
 
     public val getFaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_count")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_count", 3905245786)
 
-    public val setVertexPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex")
+    public val setVertexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex", 1530502735)
 
-    public val getVertexPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex")
+    public val getVertexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex", 711720468)
 
     public val setVertexNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_normal")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_normal", 1530502735)
 
     public val getVertexNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_normal")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_normal", 711720468)
 
     public val setVertexTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_tangent")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_tangent", 1104099133)
 
     public val getVertexTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_tangent")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_tangent", 1372055458)
 
     public val setVertexUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv", 163021252)
 
     public val getVertexUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv", 2299179447)
 
     public val setVertexUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv2")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv2", 163021252)
 
     public val getVertexUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv2")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv2", 2299179447)
 
     public val setVertexColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_color")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_color", 2878471219)
 
     public val getVertexColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_color")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_color", 3457211756)
 
     public val setVertexBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_bones")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_bones", 3500328261)
 
     public val getVertexBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_bones")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_bones", 1706082319)
 
     public val setVertexWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_weights")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_weights", 1345852415)
 
     public val getVertexWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_weights")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_weights", 1542882410)
 
     public val setVertexMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_meta")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_meta", 2152698145)
 
     public val getVertexMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_meta")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_meta", 4227898402)
 
     public val getVertexEdgesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_edges")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_edges", 1706082319)
 
     public val getVertexFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_faces")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_faces", 1706082319)
 
     public val getEdgeVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_vertex")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_vertex", 3175239445)
 
     public val getEdgeFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_faces")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_faces", 1706082319)
 
     public val setEdgeMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_edge_meta")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_edge_meta", 2152698145)
 
     public val getEdgeMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_meta")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_meta", 4227898402)
 
     public val getFaceVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_vertex")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_vertex", 3175239445)
 
     public val getFaceEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_edge")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_edge", 3175239445)
 
     public val setFaceMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_face_meta")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_face_meta", 2152698145)
 
     public val getFaceMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_meta")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_meta", 4227898402)
 
     public val getFaceNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_normal")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_normal", 711720468)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_material")
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_material")
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_material", 5934680)
   }
 }

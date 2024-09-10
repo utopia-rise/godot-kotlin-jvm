@@ -343,57 +343,63 @@ public object XRServer : Object() {
 
   internal object MethodBindings {
     public val getWorldScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_world_scale")
+        TypeManager.getMethodBindPtr("XRServer", "get_world_scale", 1740695150)
 
     public val setWorldScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "set_world_scale")
+        TypeManager.getMethodBindPtr("XRServer", "set_world_scale", 373806689)
 
     public val getWorldOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_world_origin")
+        TypeManager.getMethodBindPtr("XRServer", "get_world_origin", 3229777777)
 
     public val setWorldOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "set_world_origin")
+        TypeManager.getMethodBindPtr("XRServer", "set_world_origin", 2952846383)
 
     public val getReferenceFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_reference_frame")
+        TypeManager.getMethodBindPtr("XRServer", "get_reference_frame", 3229777777)
 
     public val clearReferenceFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "clear_reference_frame")
+        TypeManager.getMethodBindPtr("XRServer", "clear_reference_frame", 3218959716)
 
-    public val centerOnHmdPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "center_on_hmd")
+    public val centerOnHmdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "center_on_hmd", 1450904707)
 
     public val getHmdTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_hmd_transform")
+        TypeManager.getMethodBindPtr("XRServer", "get_hmd_transform", 4183770049)
 
-    public val addInterfacePtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "add_interface")
+    public val addInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "add_interface", 1898711491)
 
     public val getInterfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_interface_count")
+        TypeManager.getMethodBindPtr("XRServer", "get_interface_count", 3905245786)
 
     public val removeInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "remove_interface")
+        TypeManager.getMethodBindPtr("XRServer", "remove_interface", 1898711491)
 
-    public val getInterfacePtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "get_interface")
+    public val getInterfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_interface", 4237347919)
 
     public val getInterfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_interfaces")
+        TypeManager.getMethodBindPtr("XRServer", "get_interfaces", 3995934104)
 
     public val findInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "find_interface")
+        TypeManager.getMethodBindPtr("XRServer", "find_interface", 1395192955)
 
-    public val addTrackerPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "add_tracker")
+    public val addTrackerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "add_tracker", 684804553)
 
     public val removeTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "remove_tracker")
+        TypeManager.getMethodBindPtr("XRServer", "remove_tracker", 684804553)
 
-    public val getTrackersPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "get_trackers")
+    public val getTrackersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_trackers", 3554694381)
 
-    public val getTrackerPtr: VoidPtr = TypeManager.getMethodBindPtr("XRServer", "get_tracker")
+    public val getTrackerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRServer", "get_tracker", 147382240)
 
     public val getPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_primary_interface")
+        TypeManager.getMethodBindPtr("XRServer", "get_primary_interface", 2143545064)
 
     public val setPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "set_primary_interface")
+        TypeManager.getMethodBindPtr("XRServer", "set_primary_interface", 1898711491)
   }
 }

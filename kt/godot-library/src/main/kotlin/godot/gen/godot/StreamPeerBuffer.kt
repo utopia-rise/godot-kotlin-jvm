@@ -102,23 +102,28 @@ public open class StreamPeerBuffer : StreamPeer() {
   public companion object
 
   internal object MethodBindings {
-    public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "seek")
+    public val seekPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "seek", 1286410249)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_size", 3905245786)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_position")
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_position", 3905245786)
 
-    public val resizePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "resize")
+    public val resizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "resize", 1286410249)
 
     public val setDataArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "set_data_array")
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "set_data_array", 2971499966)
 
     public val getDataArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_data_array")
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_data_array", 2362200018)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "clear")
+    public val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "clear", 3218959716)
 
-    public val duplicatePtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerBuffer", "duplicate")
+    public val duplicatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "duplicate", 2474064677)
   }
 }

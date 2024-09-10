@@ -264,89 +264,93 @@ public open class RDSamplerState : RefCounted() {
 
   internal object MethodBindings {
     public val setMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_mag_filter")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_mag_filter", 1493420382)
 
     public val getMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_mag_filter")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_mag_filter", 2209202801)
 
     public val setMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_min_filter")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_min_filter", 1493420382)
 
     public val getMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_min_filter")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_min_filter", 2209202801)
 
     public val setMipFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_mip_filter")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_mip_filter", 1493420382)
 
     public val getMipFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_mip_filter")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_mip_filter", 2209202801)
 
     public val setRepeatUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_u")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_u", 246127626)
 
     public val getRepeatUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_u")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_u", 3227895872)
 
     public val setRepeatVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_v")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_v", 246127626)
 
     public val getRepeatVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_v")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_v", 3227895872)
 
     public val setRepeatWPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_w")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_w", 246127626)
 
     public val getRepeatWPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_w")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_w", 3227895872)
 
     public val setLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_lod_bias")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_lod_bias", 373806689)
 
     public val getLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_lod_bias")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_lod_bias", 1740695150)
 
     public val setUseAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_use_anisotropy")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_use_anisotropy", 2586408642)
 
     public val getUseAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_use_anisotropy")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_use_anisotropy", 36873697)
 
     public val setAnisotropyMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_anisotropy_max")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_anisotropy_max", 373806689)
 
     public val getAnisotropyMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_anisotropy_max")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_anisotropy_max", 1740695150)
 
     public val setEnableComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_enable_compare")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_enable_compare", 2586408642)
 
     public val getEnableComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_enable_compare")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_enable_compare", 36873697)
 
     public val setCompareOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_compare_op")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_compare_op", 2573711505)
 
     public val getCompareOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_compare_op")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_compare_op", 269730778)
 
-    public val setMinLodPtr: VoidPtr = TypeManager.getMethodBindPtr("RDSamplerState", "set_min_lod")
+    public val setMinLodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_min_lod", 373806689)
 
-    public val getMinLodPtr: VoidPtr = TypeManager.getMethodBindPtr("RDSamplerState", "get_min_lod")
+    public val getMinLodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_min_lod", 1740695150)
 
-    public val setMaxLodPtr: VoidPtr = TypeManager.getMethodBindPtr("RDSamplerState", "set_max_lod")
+    public val setMaxLodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_max_lod", 373806689)
 
-    public val getMaxLodPtr: VoidPtr = TypeManager.getMethodBindPtr("RDSamplerState", "get_max_lod")
+    public val getMaxLodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_max_lod", 1740695150)
 
     public val setBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_border_color")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_border_color", 1115869595)
 
     public val getBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_border_color")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_border_color", 3514246478)
 
     public val setUnnormalizedUvwPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_unnormalized_uvw")
+        TypeManager.getMethodBindPtr("RDSamplerState", "set_unnormalized_uvw", 2586408642)
 
     public val getUnnormalizedUvwPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_unnormalized_uvw")
+        TypeManager.getMethodBindPtr("RDSamplerState", "get_unnormalized_uvw", 36873697)
   }
 }

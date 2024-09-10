@@ -45,9 +45,9 @@ public open class Compositor : Resource() {
 
   internal object MethodBindings {
     public val setCompositorEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Compositor", "set_compositor_effects")
+        TypeManager.getMethodBindPtr("Compositor", "set_compositor_effects", 381264803)
 
     public val getCompositorEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Compositor", "get_compositor_effects")
+        TypeManager.getMethodBindPtr("Compositor", "get_compositor_effects", 3995934104)
   }
 }

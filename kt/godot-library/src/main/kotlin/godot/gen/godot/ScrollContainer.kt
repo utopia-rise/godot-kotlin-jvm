@@ -259,60 +259,60 @@ public open class ScrollContainer : Container() {
 
   internal object MethodBindings {
     public val setHScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_h_scroll")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_h_scroll", 1286410249)
 
     public val getHScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_h_scroll")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_h_scroll", 3905245786)
 
     public val setVScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_v_scroll")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_v_scroll", 1286410249)
 
     public val getVScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_v_scroll")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_v_scroll", 3905245786)
 
     public val setHorizontalCustomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_horizontal_custom_step")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_horizontal_custom_step", 373806689)
 
     public val getHorizontalCustomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_horizontal_custom_step")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_horizontal_custom_step", 1740695150)
 
     public val setVerticalCustomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_vertical_custom_step")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_vertical_custom_step", 373806689)
 
     public val getVerticalCustomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_vertical_custom_step")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_vertical_custom_step", 1740695150)
 
     public val setHorizontalScrollModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_horizontal_scroll_mode")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_horizontal_scroll_mode", 2750506364)
 
     public val getHorizontalScrollModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_horizontal_scroll_mode")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_horizontal_scroll_mode", 3987985145)
 
     public val setVerticalScrollModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_vertical_scroll_mode")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_vertical_scroll_mode", 2750506364)
 
     public val getVerticalScrollModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_vertical_scroll_mode")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_vertical_scroll_mode", 3987985145)
 
     public val setDeadzonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_deadzone")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_deadzone", 1286410249)
 
     public val getDeadzonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_deadzone")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_deadzone", 3905245786)
 
     public val setFollowFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "set_follow_focus")
+        TypeManager.getMethodBindPtr("ScrollContainer", "set_follow_focus", 2586408642)
 
     public val isFollowingFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "is_following_focus")
+        TypeManager.getMethodBindPtr("ScrollContainer", "is_following_focus", 36873697)
 
     public val getHScrollBarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_h_scroll_bar")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_h_scroll_bar", 4004517983)
 
     public val getVScrollBarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "get_v_scroll_bar")
+        TypeManager.getMethodBindPtr("ScrollContainer", "get_v_scroll_bar", 2630340773)
 
     public val ensureControlVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollContainer", "ensure_control_visible")
+        TypeManager.getMethodBindPtr("ScrollContainer", "ensure_control_visible", 1496901182)
   }
 }

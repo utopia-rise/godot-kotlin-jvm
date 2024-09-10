@@ -93,9 +93,9 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "set_function")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "set_function", 3973396138)
 
     public val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "get_function")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorFunc", "get_function", 554863321)
   }
 }

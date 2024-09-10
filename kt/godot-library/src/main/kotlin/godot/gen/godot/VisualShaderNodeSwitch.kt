@@ -96,9 +96,9 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "set_op_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "set_op_type", 510471861)
 
     public val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "get_op_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "get_op_type", 2517845071)
   }
 }

@@ -71,16 +71,10 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public companion object
 
   internal object MethodBindings {
-    public val _getRecognizedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "_get_recognized_extensions")
-
-    public val _loadImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "_load_image")
-
     public val addFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "add_format_loader")
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "add_format_loader", 3218959716)
 
     public val removeFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "remove_format_loader")
+        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "remove_format_loader", 3218959716)
   }
 }

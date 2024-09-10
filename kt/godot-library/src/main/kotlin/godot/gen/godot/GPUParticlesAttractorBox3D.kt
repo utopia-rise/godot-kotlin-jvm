@@ -75,9 +75,9 @@ public open class GPUParticlesAttractorBox3D : GPUParticlesAttractor3D() {
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractorBox3D", "set_size")
+        TypeManager.getMethodBindPtr("GPUParticlesAttractorBox3D", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractorBox3D", "get_size")
+        TypeManager.getMethodBindPtr("GPUParticlesAttractorBox3D", "get_size", 3360562783)
   }
 }

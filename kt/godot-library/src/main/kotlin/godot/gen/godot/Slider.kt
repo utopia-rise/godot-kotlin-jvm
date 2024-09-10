@@ -105,22 +105,28 @@ public open class Slider internal constructor() : Range() {
   public companion object
 
   internal object MethodBindings {
-    public val setTicksPtr: VoidPtr = TypeManager.getMethodBindPtr("Slider", "set_ticks")
+    public val setTicksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "set_ticks", 1286410249)
 
-    public val getTicksPtr: VoidPtr = TypeManager.getMethodBindPtr("Slider", "get_ticks")
+    public val getTicksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "get_ticks", 3905245786)
 
     public val getTicksOnBordersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "get_ticks_on_borders")
+        TypeManager.getMethodBindPtr("Slider", "get_ticks_on_borders", 36873697)
 
     public val setTicksOnBordersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_ticks_on_borders")
+        TypeManager.getMethodBindPtr("Slider", "set_ticks_on_borders", 2586408642)
 
-    public val setEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("Slider", "set_editable")
+    public val setEditablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "set_editable", 2586408642)
 
-    public val isEditablePtr: VoidPtr = TypeManager.getMethodBindPtr("Slider", "is_editable")
+    public val isEditablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "is_editable", 36873697)
 
-    public val setScrollablePtr: VoidPtr = TypeManager.getMethodBindPtr("Slider", "set_scrollable")
+    public val setScrollablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "set_scrollable", 2586408642)
 
-    public val isScrollablePtr: VoidPtr = TypeManager.getMethodBindPtr("Slider", "is_scrollable")
+    public val isScrollablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "is_scrollable", 36873697)
   }
 }

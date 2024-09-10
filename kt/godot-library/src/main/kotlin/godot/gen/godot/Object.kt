@@ -1107,109 +1107,130 @@ public open class Object : KtObject() {
   }
 
   internal object MethodBindings {
-    public val getClassPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_class")
+    public val getClassPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_class", 201670096)
 
-    public val isClassPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "is_class")
+    public val isClassPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "is_class", 3927539163)
 
-    public val setPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set")
+    public val setPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set", 3776071444)
 
-    public val getPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get")
+    public val getPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get", 2760726917)
 
-    public val setIndexedPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set_indexed")
+    public val setIndexedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "set_indexed", 3500910842)
 
-    public val getIndexedPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_indexed")
+    public val getIndexedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_indexed", 4006125091)
 
     public val getPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_property_list")
+        TypeManager.getMethodBindPtr("Object", "get_property_list", 3995934104)
 
-    public val getMethodListPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_method_list")
+    public val getMethodListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_method_list", 3995934104)
 
     public val propertyCanRevertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "property_can_revert")
+        TypeManager.getMethodBindPtr("Object", "property_can_revert", 2619796661)
 
     public val propertyGetRevertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "property_get_revert")
+        TypeManager.getMethodBindPtr("Object", "property_get_revert", 2760726917)
 
-    public val notificationPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "notification")
+    public val notificationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "notification", 4023243586)
 
-    public val toStringPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "to_string")
+    public val toStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "to_string", 2841200299)
 
-    public val getInstanceIdPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_instance_id")
+    public val getInstanceIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_instance_id", 3905245786)
 
-    public val setScriptPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set_script")
+    public val setScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "set_script", 1114965689)
 
-    public val getScriptPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_script")
+    public val getScriptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_script", 1214101251)
 
-    public val setMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set_meta")
+    public val setMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set_meta", 3776071444)
 
-    public val removeMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "remove_meta")
+    public val removeMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "remove_meta", 3304788590)
 
-    public val getMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_meta")
+    public val getMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_meta", 3990617847)
 
-    public val hasMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_meta")
+    public val hasMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_meta", 2619796661)
 
-    public val getMetaListPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_meta_list")
+    public val getMetaListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_meta_list", 3995934104)
 
-    public val addUserSignalPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "add_user_signal")
+    public val addUserSignalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "add_user_signal", 85656714)
 
-    public val hasUserSignalPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_user_signal")
+    public val hasUserSignalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "has_user_signal", 2619796661)
 
     public val removeUserSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "remove_user_signal")
+        TypeManager.getMethodBindPtr("Object", "remove_user_signal", 3304788590)
 
-    public val emitSignalPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "emit_signal")
+    public val emitSignalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "emit_signal", 4047867050)
 
-    public val callPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "call")
+    public val callPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "call", 3400424181)
 
-    public val callDeferredPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "call_deferred")
+    public val callDeferredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "call_deferred", 3400424181)
 
-    public val setDeferredPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set_deferred")
+    public val setDeferredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "set_deferred", 3776071444)
 
-    public val callvPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "callv")
+    public val callvPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "callv", 1260104456)
 
-    public val hasMethodPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_method")
+    public val hasMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "has_method", 2619796661)
 
     public val getMethodArgumentCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_method_argument_count")
+        TypeManager.getMethodBindPtr("Object", "get_method_argument_count", 2458036349)
 
-    public val hasSignalPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_signal")
+    public val hasSignalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "has_signal", 2619796661)
 
-    public val getSignalListPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_signal_list")
+    public val getSignalListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "get_signal_list", 3995934104)
 
     public val getSignalConnectionListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_signal_connection_list")
+        TypeManager.getMethodBindPtr("Object", "get_signal_connection_list", 3147814860)
 
     public val getIncomingConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_incoming_connections")
+        TypeManager.getMethodBindPtr("Object", "get_incoming_connections", 3995934104)
 
-    public val connectPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "connect")
+    public val connectPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "connect", 1518946055)
 
-    public val disconnectPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "disconnect")
+    public val disconnectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "disconnect", 1874754934)
 
-    public val isConnectedPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "is_connected")
+    public val isConnectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "is_connected", 768136979)
 
     public val setBlockSignalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "set_block_signals")
+        TypeManager.getMethodBindPtr("Object", "set_block_signals", 2586408642)
 
     public val isBlockingSignalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "is_blocking_signals")
+        TypeManager.getMethodBindPtr("Object", "is_blocking_signals", 36873697)
 
     public val notifyPropertyListChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "notify_property_list_changed")
+        TypeManager.getMethodBindPtr("Object", "notify_property_list_changed", 3218959716)
 
     public val setMessageTranslationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "set_message_translation")
+        TypeManager.getMethodBindPtr("Object", "set_message_translation", 2586408642)
 
     public val canTranslateMessagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "can_translate_messages")
+        TypeManager.getMethodBindPtr("Object", "can_translate_messages", 36873697)
 
-    public val trPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr")
+    public val trPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr", 2475554935)
 
-    public val trNPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr_n")
+    public val trNPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr_n", 4021311862)
 
     public val isQueuedForDeletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "is_queued_for_deletion")
+        TypeManager.getMethodBindPtr("Object", "is_queued_for_deletion", 36873697)
 
-    public val cancelFreePtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "cancel_free")
+    public val cancelFreePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Object", "cancel_free", 3218959716)
   }
 }

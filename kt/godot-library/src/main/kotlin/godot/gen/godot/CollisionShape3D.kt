@@ -79,19 +79,21 @@ public open class CollisionShape3D : Node3D() {
 
   internal object MethodBindings {
     public val resourceChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "resource_changed")
+        TypeManager.getMethodBindPtr("CollisionShape3D", "resource_changed", 968641751)
 
-    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("CollisionShape3D", "set_shape")
+    public val setShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_shape", 1549710052)
 
-    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("CollisionShape3D", "get_shape")
+    public val getShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape3D", "get_shape", 3214262478)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "set_disabled")
+        TypeManager.getMethodBindPtr("CollisionShape3D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "is_disabled")
+        TypeManager.getMethodBindPtr("CollisionShape3D", "is_disabled", 36873697)
 
     public val makeConvexFromSiblingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings")
+        TypeManager.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings", 3218959716)
   }
 }

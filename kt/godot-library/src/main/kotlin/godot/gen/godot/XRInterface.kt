@@ -529,84 +529,88 @@ public open class XRInterface internal constructor() : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRInterface", "get_name")
+    public val getNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRInterface", "get_name", 2002593661)
 
     public val getCapabilitiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_capabilities")
+        TypeManager.getMethodBindPtr("XRInterface", "get_capabilities", 3905245786)
 
-    public val isPrimaryPtr: VoidPtr = TypeManager.getMethodBindPtr("XRInterface", "is_primary")
+    public val isPrimaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRInterface", "is_primary", 2240911060)
 
-    public val setPrimaryPtr: VoidPtr = TypeManager.getMethodBindPtr("XRInterface", "set_primary")
+    public val setPrimaryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRInterface", "set_primary", 2586408642)
 
     public val isInitializedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "is_initialized")
+        TypeManager.getMethodBindPtr("XRInterface", "is_initialized", 36873697)
 
-    public val initializePtr: VoidPtr = TypeManager.getMethodBindPtr("XRInterface", "initialize")
+    public val initializePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRInterface", "initialize", 2240911060)
 
     public val uninitializePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "uninitialize")
+        TypeManager.getMethodBindPtr("XRInterface", "uninitialize", 3218959716)
 
     public val getSystemInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_system_info")
+        TypeManager.getMethodBindPtr("XRInterface", "get_system_info", 2382534195)
 
     public val getTrackingStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_tracking_status")
+        TypeManager.getMethodBindPtr("XRInterface", "get_tracking_status", 167423259)
 
     public val getRenderTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_render_target_size")
+        TypeManager.getMethodBindPtr("XRInterface", "get_render_target_size", 1497962370)
 
     public val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_view_count")
+        TypeManager.getMethodBindPtr("XRInterface", "get_view_count", 2455072627)
 
     public val triggerHapticPulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "trigger_haptic_pulse")
+        TypeManager.getMethodBindPtr("XRInterface", "trigger_haptic_pulse", 3752640163)
 
     public val supportsPlayAreaModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "supports_play_area_mode")
+        TypeManager.getMethodBindPtr("XRInterface", "supports_play_area_mode", 3429955281)
 
     public val getPlayAreaModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_play_area_mode")
+        TypeManager.getMethodBindPtr("XRInterface", "get_play_area_mode", 1615132885)
 
     public val setPlayAreaModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "set_play_area_mode")
+        TypeManager.getMethodBindPtr("XRInterface", "set_play_area_mode", 3429955281)
 
     public val getPlayAreaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_play_area")
+        TypeManager.getMethodBindPtr("XRInterface", "get_play_area", 497664490)
 
     public val getAnchorDetectionIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_anchor_detection_is_enabled")
+        TypeManager.getMethodBindPtr("XRInterface", "get_anchor_detection_is_enabled", 36873697)
 
     public val setAnchorDetectionIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "set_anchor_detection_is_enabled")
+        TypeManager.getMethodBindPtr("XRInterface", "set_anchor_detection_is_enabled", 2586408642)
 
     public val getCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_camera_feed_id")
+        TypeManager.getMethodBindPtr("XRInterface", "get_camera_feed_id", 2455072627)
 
     public val isPassthroughSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "is_passthrough_supported")
+        TypeManager.getMethodBindPtr("XRInterface", "is_passthrough_supported", 2240911060)
 
     public val isPassthroughEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "is_passthrough_enabled")
+        TypeManager.getMethodBindPtr("XRInterface", "is_passthrough_enabled", 2240911060)
 
     public val startPassthroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "start_passthrough")
+        TypeManager.getMethodBindPtr("XRInterface", "start_passthrough", 2240911060)
 
     public val stopPassthroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "stop_passthrough")
+        TypeManager.getMethodBindPtr("XRInterface", "stop_passthrough", 3218959716)
 
     public val getTransformForViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_transform_for_view")
+        TypeManager.getMethodBindPtr("XRInterface", "get_transform_for_view", 518934792)
 
     public val getProjectionForViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_projection_for_view")
+        TypeManager.getMethodBindPtr("XRInterface", "get_projection_for_view", 3766090294)
 
     public val getSupportedEnvironmentBlendModesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_supported_environment_blend_modes")
+        TypeManager.getMethodBindPtr("XRInterface", "get_supported_environment_blend_modes", 2915620761)
 
     public val setEnvironmentBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "set_environment_blend_mode")
+        TypeManager.getMethodBindPtr("XRInterface", "set_environment_blend_mode", 551152418)
 
     public val getEnvironmentBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_environment_blend_mode")
+        TypeManager.getMethodBindPtr("XRInterface", "get_environment_blend_mode", 1984334071)
   }
 }

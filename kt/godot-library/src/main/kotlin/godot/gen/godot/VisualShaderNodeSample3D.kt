@@ -71,9 +71,9 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
 
   internal object MethodBindings {
     public val setSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "set_source")
+        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "set_source", 3315130991)
 
     public val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "get_source")
+        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "get_source", 1079494121)
   }
 }

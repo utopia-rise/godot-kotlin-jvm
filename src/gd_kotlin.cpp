@@ -164,7 +164,7 @@ bool GDKotlin::initialize_core_library() {
     return true;
 }
 
-void GDKotlin::load_user_code() {
+bool GDKotlin::load_user_code() {
 #ifdef TOOLS_ENABLED
     String project_path {ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY)};
 #else
@@ -173,8 +173,8 @@ void GDKotlin::load_user_code() {
 
     jni::Env env {jni::Jvm::current_env()};
     if (user_configuration.vm_type == jni::JvmType::GRAAL_NATIVE_IMAGE) {
-        state = State::JVM_SCRIPTS_INITIALIZED;
         bootstrap->init(env, project_path, "", jni::JObject(nullptr));
+        return true;
     } else {
 #ifdef TOOLS_ENABLED
         String user_code_path {String(BUILD_DIRECTORY) + String(USER_CODE_FILE)};
@@ -195,7 +195,7 @@ void GDKotlin::load_user_code() {
           user_class_loader->get_wrapped()
         );
         delete user_class_loader;
-        CHECK_AND_SET_STATE(FileAccess::exists(user_code_path), JVM_SCRIPTS_INITIALIZED)
+        return FileAccess::exists(user_code_path);
     }
 }
 
@@ -214,6 +214,7 @@ void GDKotlin::init() {
 
     CHECK_AND_SET_STATE(load_bootstrap(), BOOTSTRAP_LOADED)
     CHECK_AND_SET_STATE(initialize_core_library(), CORE_LIBRARY_INITIALIZED)
+    CHECK_AND_SET_STATE(load_user_code(), JVM_SCRIPTS_INITIALIZED)
 }
 
 void GDKotlin::finish() {

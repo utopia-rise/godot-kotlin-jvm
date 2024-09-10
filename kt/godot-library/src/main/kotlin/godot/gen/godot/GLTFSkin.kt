@@ -145,52 +145,64 @@ public open class GLTFSkin : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getSkinRootPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "get_skin_root")
+    public val getSkinRootPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_skin_root", 2455072627)
 
-    public val setSkinRootPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "set_skin_root")
+    public val setSkinRootPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_skin_root", 1286410249)
 
     public val getJointsOriginalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints_original")
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints_original", 969006518)
 
     public val setJointsOriginalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints_original")
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints_original", 3614634198)
 
     public val getInverseBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_inverse_binds")
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_inverse_binds", 2915620761)
 
     public val setInverseBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_inverse_binds")
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_inverse_binds", 381264803)
 
-    public val getJointsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "get_joints")
+    public val getJointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints", 969006518)
 
-    public val setJointsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "set_joints")
+    public val setJointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints", 3614634198)
 
-    public val getNonJointsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "get_non_joints")
+    public val getNonJointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_non_joints", 969006518)
 
-    public val setNonJointsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "set_non_joints")
+    public val setNonJointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_non_joints", 3614634198)
 
-    public val getRootsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "get_roots")
+    public val getRootsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_roots", 969006518)
 
-    public val setRootsPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "set_roots")
+    public val setRootsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_roots", 3614634198)
 
-    public val getSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "get_skeleton")
+    public val getSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_skeleton", 2455072627)
 
-    public val setSkeletonPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "set_skeleton")
+    public val setSkeletonPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_skeleton", 1286410249)
 
     public val getJointIToBoneIPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_bone_i")
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_bone_i", 2382534195)
 
     public val setJointIToBoneIPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_bone_i")
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_bone_i", 4155329257)
 
     public val getJointIToNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_name")
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_name", 2382534195)
 
     public val setJointIToNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_name")
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_name", 4155329257)
 
-    public val getGodotSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "get_godot_skin")
+    public val getGodotSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "get_godot_skin", 1032037385)
 
-    public val setGodotSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFSkin", "set_godot_skin")
+    public val setGodotSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFSkin", "set_godot_skin", 3971435618)
   }
 }

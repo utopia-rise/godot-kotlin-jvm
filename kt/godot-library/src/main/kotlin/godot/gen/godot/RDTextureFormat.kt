@@ -166,56 +166,64 @@ public open class RDTextureFormat : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val setFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_format")
+    public val setFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_format", 565531219)
 
-    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_format")
+    public val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_format", 2235804183)
 
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_width")
+    public val setWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_width", 1286410249)
 
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_width")
+    public val getWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_width", 3905245786)
 
-    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_height")
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_height", 1286410249)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_height", 3905245786)
 
-    public val setDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "set_depth")
+    public val setDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_depth", 1286410249)
 
-    public val getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("RDTextureFormat", "get_depth")
+    public val getDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_depth", 3905245786)
 
     public val setArrayLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_array_layers")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_array_layers", 1286410249)
 
     public val getArrayLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_array_layers")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_array_layers", 3905245786)
 
     public val setMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_mipmaps")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_mipmaps", 1286410249)
 
     public val getMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_mipmaps")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_mipmaps", 3905245786)
 
     public val setTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_texture_type")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_texture_type", 652343381)
 
     public val getTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_texture_type")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_texture_type", 4036357416)
 
     public val setSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_samples")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_samples", 3774171498)
 
     public val getSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_samples")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_samples", 407791724)
 
     public val setUsageBitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_usage_bits")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "set_usage_bits", 245642367)
 
     public val getUsageBitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_usage_bits")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "get_usage_bits", 1313398998)
 
     public val addShareableFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "add_shareable_format")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "add_shareable_format", 565531219)
 
     public val removeShareableFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "remove_shareable_format")
+        TypeManager.getMethodBindPtr("RDTextureFormat", "remove_shareable_format", 565531219)
   }
 }

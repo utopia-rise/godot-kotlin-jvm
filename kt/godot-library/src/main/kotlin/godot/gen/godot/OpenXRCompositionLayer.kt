@@ -126,33 +126,33 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   internal object MethodBindings {
     public val setLayerViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_layer_viewport")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_layer_viewport", 3888077664)
 
     public val getLayerViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_layer_viewport")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_layer_viewport", 3750751911)
 
     public val setEnableHolePunchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_enable_hole_punch")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_enable_hole_punch", 2586408642)
 
     public val getEnableHolePunchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_enable_hole_punch")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_enable_hole_punch", 36873697)
 
     public val setSortOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_sort_order")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_sort_order", 1286410249)
 
     public val getSortOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_sort_order")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_sort_order", 3905245786)
 
     public val setAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_blend")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_blend", 2586408642)
 
     public val getAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_blend")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_blend", 36873697)
 
     public val isNativelySupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36873697)
 
     public val intersectsRayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1091262597)
   }
 }

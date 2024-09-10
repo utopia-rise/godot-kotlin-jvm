@@ -135,30 +135,30 @@ public open class SplitContainer : Container() {
 
   internal object MethodBindings {
     public val setSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offset")
+        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offset", 1286410249)
 
     public val getSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offset")
+        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offset", 3905245786)
 
     public val clampSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "clamp_split_offset")
+        TypeManager.getMethodBindPtr("SplitContainer", "clamp_split_offset", 3218959716)
 
     public val setCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_collapsed")
+        TypeManager.getMethodBindPtr("SplitContainer", "set_collapsed", 2586408642)
 
     public val isCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "is_collapsed")
+        TypeManager.getMethodBindPtr("SplitContainer", "is_collapsed", 36873697)
 
     public val setDraggerVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_dragger_visibility")
+        TypeManager.getMethodBindPtr("SplitContainer", "set_dragger_visibility", 1168273952)
 
     public val getDraggerVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "get_dragger_visibility")
+        TypeManager.getMethodBindPtr("SplitContainer", "get_dragger_visibility", 967297479)
 
     public val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_vertical")
+        TypeManager.getMethodBindPtr("SplitContainer", "set_vertical", 2586408642)
 
     public val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "is_vertical")
+        TypeManager.getMethodBindPtr("SplitContainer", "is_vertical", 36873697)
   }
 }

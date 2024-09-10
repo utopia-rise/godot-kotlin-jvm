@@ -809,33 +809,36 @@ public open class AudioStreamPlaylist : AudioStream() {
 
   internal object MethodBindings {
     public val setStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_stream_count")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_stream_count", 1286410249)
 
     public val getStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_stream_count")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_stream_count", 3905245786)
 
-    public val getBpmPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_bpm")
+    public val getBpmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_bpm", 1740695150)
 
     public val setListStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_list_stream")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_list_stream", 111075094)
 
     public val getListStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_list_stream")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_list_stream", 2739380747)
 
     public val setShufflePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_shuffle")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_shuffle", 2586408642)
 
     public val getShufflePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_shuffle")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_shuffle", 36873697)
 
     public val setFadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_fade_time")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_fade_time", 373806689)
 
     public val getFadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_fade_time")
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_fade_time", 1740695150)
 
-    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_loop")
+    public val setLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamPlaylist", "has_loop")
+    public val hasLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "has_loop", 36873697)
   }
 }

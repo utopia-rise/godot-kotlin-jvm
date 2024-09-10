@@ -471,81 +471,81 @@ public open class TextureProgressBar : Range() {
 
   internal object MethodBindings {
     public val setUnderTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_under_texture")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_under_texture", 4051416890)
 
     public val getUnderTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_under_texture")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_under_texture", 3635182373)
 
     public val setProgressTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_progress_texture")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_progress_texture", 4051416890)
 
     public val getProgressTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_progress_texture")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_progress_texture", 3635182373)
 
     public val setOverTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_over_texture")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_over_texture", 4051416890)
 
     public val getOverTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_over_texture")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_over_texture", 3635182373)
 
     public val setFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_mode")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_mode", 1286410249)
 
     public val getFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_mode")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_mode", 2455072627)
 
     public val setTintUnderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_under")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_under", 2920490490)
 
     public val getTintUnderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_under")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_under", 3444240500)
 
     public val setTintProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_progress")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_progress", 2920490490)
 
     public val getTintProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_progress")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_progress", 3444240500)
 
     public val setTintOverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_over")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_over", 2920490490)
 
     public val getTintOverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_over")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_over", 3444240500)
 
     public val setTextureProgressOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_texture_progress_offset")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_texture_progress_offset", 743155724)
 
     public val getTextureProgressOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_texture_progress_offset")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_texture_progress_offset", 3341600327)
 
     public val setRadialInitialAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_initial_angle")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_initial_angle", 373806689)
 
     public val getRadialInitialAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_initial_angle")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_initial_angle", 191475506)
 
     public val setRadialCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_center_offset")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_center_offset", 743155724)
 
     public val getRadialCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_center_offset")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_center_offset", 1497962370)
 
     public val setFillDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_degrees")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_degrees", 373806689)
 
     public val getFillDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_degrees")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_degrees", 191475506)
 
     public val setStretchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_stretch_margin")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_stretch_margin", 437707142)
 
     public val getStretchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_stretch_margin")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_stretch_margin", 1983885014)
 
     public val setNinePatchStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_nine_patch_stretch")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "set_nine_patch_stretch", 2586408642)
 
     public val getNinePatchStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_nine_patch_stretch")
+        TypeManager.getMethodBindPtr("TextureProgressBar", "get_nine_patch_stretch", 36873697)
   }
 }

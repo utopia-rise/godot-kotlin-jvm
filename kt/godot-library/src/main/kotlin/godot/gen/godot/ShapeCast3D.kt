@@ -428,109 +428,117 @@ public open class ShapeCast3D : Node3D() {
 
   internal object MethodBindings {
     public val resourceChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "resource_changed")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "resource_changed", 968641751)
 
-    public val setEnabledPtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "set_enabled")
+    public val setEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_enabled", 2586408642)
 
-    public val isEnabledPtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "is_enabled")
+    public val isEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "is_enabled", 36873697)
 
-    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "set_shape")
+    public val setShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_shape", 1549710052)
 
-    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "get_shape")
+    public val getShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_shape", 3214262478)
 
     public val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_target_position")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_target_position", 3460891852)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_target_position")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_target_position", 3360562783)
 
-    public val setMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "set_margin")
+    public val setMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_margin", 373806689)
 
-    public val getMarginPtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "get_margin")
+    public val getMarginPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_margin", 1740695150)
 
     public val setMaxResultsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_max_results")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_max_results", 1286410249)
 
     public val getMaxResultsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_max_results")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_max_results", 3905245786)
 
-    public val isCollidingPtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "is_colliding")
+    public val isCollidingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "is_colliding", 36873697)
 
     public val getCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_count")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_count", 3905245786)
 
     public val forceShapecastUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "force_shapecast_update")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "force_shapecast_update", 3218959716)
 
-    public val getColliderPtr: VoidPtr = TypeManager.getMethodBindPtr("ShapeCast3D", "get_collider")
+    public val getColliderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collider", 3332903315)
 
     public val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collider_rid")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collider_rid", 495598643)
 
     public val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collider_shape")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collider_shape", 923996154)
 
     public val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_point")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_point", 711720468)
 
     public val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_normal")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_normal", 711720468)
 
     public val getClosestCollisionSafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_closest_collision_safe_fraction")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_closest_collision_safe_fraction", 1740695150)
 
     public val getClosestCollisionUnsafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_closest_collision_unsafe_fraction")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_closest_collision_unsafe_fraction", 1740695150)
 
     public val addExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "add_exception_rid")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "add_exception_rid", 2722037293)
 
     public val addExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "add_exception")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "add_exception", 1976431078)
 
     public val removeExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "remove_exception_rid")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "remove_exception_rid", 2722037293)
 
     public val removeExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "remove_exception")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "remove_exception", 1976431078)
 
     public val clearExceptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "clear_exceptions")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "clear_exceptions", 3218959716)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collision_mask")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_mask")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_mask", 3905245786)
 
     public val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collision_mask_value")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collision_mask_value", 300928843)
 
     public val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_mask_value")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_collision_mask_value", 1116898809)
 
     public val setExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_exclude_parent_body")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_exclude_parent_body", 2586408642)
 
     public val getExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_exclude_parent_body")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_exclude_parent_body", 36873697)
 
     public val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collide_with_areas")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collide_with_areas", 2586408642)
 
     public val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "is_collide_with_areas_enabled")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "is_collide_with_areas_enabled", 36873697)
 
     public val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collide_with_bodies")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_collide_with_bodies", 2586408642)
 
     public val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "is_collide_with_bodies_enabled")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "is_collide_with_bodies_enabled", 36873697)
 
     public val setDebugShapeCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "set_debug_shape_custom_color")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "set_debug_shape_custom_color", 2920490490)
 
     public val getDebugShapeCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast3D", "get_debug_shape_custom_color")
+        TypeManager.getMethodBindPtr("ShapeCast3D", "get_debug_shape_custom_color", 3444240500)
   }
 }

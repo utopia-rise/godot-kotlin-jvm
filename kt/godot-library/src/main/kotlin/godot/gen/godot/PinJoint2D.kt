@@ -119,38 +119,40 @@ public open class PinJoint2D : Joint2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setSoftnessPtr: VoidPtr = TypeManager.getMethodBindPtr("PinJoint2D", "set_softness")
+    public val setSoftnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PinJoint2D", "set_softness", 373806689)
 
-    public val getSoftnessPtr: VoidPtr = TypeManager.getMethodBindPtr("PinJoint2D", "get_softness")
+    public val getSoftnessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PinJoint2D", "get_softness", 1740695150)
 
     public val setAngularLimitLowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_lower")
+        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_lower", 373806689)
 
     public val getAngularLimitLowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "get_angular_limit_lower")
+        TypeManager.getMethodBindPtr("PinJoint2D", "get_angular_limit_lower", 1740695150)
 
     public val setAngularLimitUpperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_upper")
+        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_upper", 373806689)
 
     public val getAngularLimitUpperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "get_angular_limit_upper")
+        TypeManager.getMethodBindPtr("PinJoint2D", "get_angular_limit_upper", 1740695150)
 
     public val setMotorTargetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_motor_target_velocity")
+        TypeManager.getMethodBindPtr("PinJoint2D", "set_motor_target_velocity", 373806689)
 
     public val getMotorTargetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "get_motor_target_velocity")
+        TypeManager.getMethodBindPtr("PinJoint2D", "get_motor_target_velocity", 1740695150)
 
     public val setMotorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_motor_enabled")
+        TypeManager.getMethodBindPtr("PinJoint2D", "set_motor_enabled", 2586408642)
 
     public val isMotorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "is_motor_enabled")
+        TypeManager.getMethodBindPtr("PinJoint2D", "is_motor_enabled", 36873697)
 
     public val setAngularLimitEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_enabled")
+        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_enabled", 2586408642)
 
     public val isAngularLimitEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "is_angular_limit_enabled")
+        TypeManager.getMethodBindPtr("PinJoint2D", "is_angular_limit_enabled", 36873697)
   }
 }

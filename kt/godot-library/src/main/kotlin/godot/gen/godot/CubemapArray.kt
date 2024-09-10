@@ -47,6 +47,6 @@ public open class CubemapArray : ImageTextureLayered() {
 
   internal object MethodBindings {
     public val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CubemapArray", "create_placeholder")
+        TypeManager.getMethodBindPtr("CubemapArray", "create_placeholder", 121922552)
   }
 }

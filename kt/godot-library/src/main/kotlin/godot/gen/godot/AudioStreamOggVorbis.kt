@@ -138,43 +138,45 @@ public open class AudioStreamOggVorbis : AudioStream() {
 
   internal object MethodBindings {
     public val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_buffer")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_buffer", 354904730)
 
     public val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_file")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_file", 797568536)
 
     public val setPacketSequencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_packet_sequence")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_packet_sequence", 438882457)
 
     public val getPacketSequencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_packet_sequence")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_packet_sequence", 2801636033)
 
     public val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop", 2586408642)
 
     public val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "has_loop")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "has_loop", 36873697)
 
     public val setLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop_offset")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop_offset", 373806689)
 
     public val getLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_loop_offset")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_loop_offset", 1740695150)
 
-    public val setBpmPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bpm")
+    public val setBpmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bpm", 373806689)
 
-    public val getBpmPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bpm")
+    public val getBpmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bpm", 1740695150)
 
     public val setBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_beat_count")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_beat_count", 1286410249)
 
     public val getBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_beat_count")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_beat_count", 3905245786)
 
     public val setBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bar_beats")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bar_beats", 1286410249)
 
     public val getBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bar_beats")
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bar_beats", 3905245786)
   }
 }

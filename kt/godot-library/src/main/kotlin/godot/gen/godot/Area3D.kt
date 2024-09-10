@@ -651,142 +651,153 @@ public open class Area3D : CollisionObject3D() {
 
   internal object MethodBindings {
     public val setGravitySpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_space_override_mode")
+        TypeManager.getMethodBindPtr("Area3D", "set_gravity_space_override_mode", 2311433571)
 
     public val getGravitySpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_space_override_mode")
+        TypeManager.getMethodBindPtr("Area3D", "get_gravity_space_override_mode", 958191869)
 
     public val setGravityIsPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_is_point")
+        TypeManager.getMethodBindPtr("Area3D", "set_gravity_is_point", 2586408642)
 
     public val isGravityAPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_gravity_a_point")
+        TypeManager.getMethodBindPtr("Area3D", "is_gravity_a_point", 36873697)
 
     public val setGravityPointUnitDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_point_unit_distance")
+        TypeManager.getMethodBindPtr("Area3D", "set_gravity_point_unit_distance", 373806689)
 
     public val getGravityPointUnitDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_point_unit_distance")
+        TypeManager.getMethodBindPtr("Area3D", "get_gravity_point_unit_distance", 1740695150)
 
     public val setGravityPointCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_point_center")
+        TypeManager.getMethodBindPtr("Area3D", "set_gravity_point_center", 3460891852)
 
     public val getGravityPointCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_point_center")
+        TypeManager.getMethodBindPtr("Area3D", "get_gravity_point_center", 3360562783)
 
     public val setGravityDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_direction")
+        TypeManager.getMethodBindPtr("Area3D", "set_gravity_direction", 3460891852)
 
     public val getGravityDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_direction")
+        TypeManager.getMethodBindPtr("Area3D", "get_gravity_direction", 3360562783)
 
-    public val setGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "set_gravity")
+    public val setGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "set_gravity", 373806689)
 
-    public val getGravityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "get_gravity")
+    public val getGravityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "get_gravity", 1740695150)
 
     public val setLinearDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_linear_damp_space_override_mode")
+        TypeManager.getMethodBindPtr("Area3D", "set_linear_damp_space_override_mode", 2311433571)
 
     public val getLinearDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_linear_damp_space_override_mode")
+        TypeManager.getMethodBindPtr("Area3D", "get_linear_damp_space_override_mode", 958191869)
 
     public val setAngularDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_angular_damp_space_override_mode")
+        TypeManager.getMethodBindPtr("Area3D", "set_angular_damp_space_override_mode", 2311433571)
 
     public val getAngularDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_angular_damp_space_override_mode")
+        TypeManager.getMethodBindPtr("Area3D", "get_angular_damp_space_override_mode", 958191869)
 
     public val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_angular_damp")
+        TypeManager.getMethodBindPtr("Area3D", "set_angular_damp", 373806689)
 
     public val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_angular_damp")
+        TypeManager.getMethodBindPtr("Area3D", "get_angular_damp", 1740695150)
 
-    public val setLinearDampPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "set_linear_damp")
+    public val setLinearDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "set_linear_damp", 373806689)
 
-    public val getLinearDampPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "get_linear_damp")
+    public val getLinearDampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "get_linear_damp", 1740695150)
 
-    public val setPriorityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "set_priority")
+    public val setPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "set_priority", 1286410249)
 
-    public val getPriorityPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "get_priority")
+    public val getPriorityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "get_priority", 3905245786)
 
     public val setWindForceMagnitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_wind_force_magnitude")
+        TypeManager.getMethodBindPtr("Area3D", "set_wind_force_magnitude", 373806689)
 
     public val getWindForceMagnitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_wind_force_magnitude")
+        TypeManager.getMethodBindPtr("Area3D", "get_wind_force_magnitude", 1740695150)
 
     public val setWindAttenuationFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_wind_attenuation_factor")
+        TypeManager.getMethodBindPtr("Area3D", "set_wind_attenuation_factor", 373806689)
 
     public val getWindAttenuationFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_wind_attenuation_factor")
+        TypeManager.getMethodBindPtr("Area3D", "get_wind_attenuation_factor", 1740695150)
 
     public val setWindSourcePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_wind_source_path")
+        TypeManager.getMethodBindPtr("Area3D", "set_wind_source_path", 1348162250)
 
     public val getWindSourcePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_wind_source_path")
+        TypeManager.getMethodBindPtr("Area3D", "get_wind_source_path", 4075236667)
 
     public val setMonitorablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_monitorable")
+        TypeManager.getMethodBindPtr("Area3D", "set_monitorable", 2586408642)
 
-    public val isMonitorablePtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "is_monitorable")
+    public val isMonitorablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "is_monitorable", 36873697)
 
-    public val setMonitoringPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "set_monitoring")
+    public val setMonitoringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "set_monitoring", 2586408642)
 
-    public val isMonitoringPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "is_monitoring")
+    public val isMonitoringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "is_monitoring", 36873697)
 
     public val getOverlappingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_overlapping_bodies")
+        TypeManager.getMethodBindPtr("Area3D", "get_overlapping_bodies", 3995934104)
 
     public val getOverlappingAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_overlapping_areas")
+        TypeManager.getMethodBindPtr("Area3D", "get_overlapping_areas", 3995934104)
 
     public val hasOverlappingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "has_overlapping_bodies")
+        TypeManager.getMethodBindPtr("Area3D", "has_overlapping_bodies", 36873697)
 
     public val hasOverlappingAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "has_overlapping_areas")
+        TypeManager.getMethodBindPtr("Area3D", "has_overlapping_areas", 36873697)
 
-    public val overlapsBodyPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "overlaps_body")
+    public val overlapsBodyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "overlaps_body", 3093956946)
 
-    public val overlapsAreaPtr: VoidPtr = TypeManager.getMethodBindPtr("Area3D", "overlaps_area")
+    public val overlapsAreaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Area3D", "overlaps_area", 3093956946)
 
     public val setAudioBusOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_audio_bus_override")
+        TypeManager.getMethodBindPtr("Area3D", "set_audio_bus_override", 2586408642)
 
     public val isOverridingAudioBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_overriding_audio_bus")
+        TypeManager.getMethodBindPtr("Area3D", "is_overriding_audio_bus", 36873697)
 
     public val setAudioBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_audio_bus_name")
+        TypeManager.getMethodBindPtr("Area3D", "set_audio_bus_name", 3304788590)
 
     public val getAudioBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_audio_bus_name")
+        TypeManager.getMethodBindPtr("Area3D", "get_audio_bus_name", 2002593661)
 
     public val setUseReverbBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_use_reverb_bus")
+        TypeManager.getMethodBindPtr("Area3D", "set_use_reverb_bus", 2586408642)
 
     public val isUsingReverbBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_using_reverb_bus")
+        TypeManager.getMethodBindPtr("Area3D", "is_using_reverb_bus", 36873697)
 
     public val setReverbBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_reverb_bus_name")
+        TypeManager.getMethodBindPtr("Area3D", "set_reverb_bus_name", 3304788590)
 
     public val getReverbBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_reverb_bus_name")
+        TypeManager.getMethodBindPtr("Area3D", "get_reverb_bus_name", 2002593661)
 
     public val setReverbAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_reverb_amount")
+        TypeManager.getMethodBindPtr("Area3D", "set_reverb_amount", 373806689)
 
     public val getReverbAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_reverb_amount")
+        TypeManager.getMethodBindPtr("Area3D", "get_reverb_amount", 1740695150)
 
     public val setReverbUniformityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_reverb_uniformity")
+        TypeManager.getMethodBindPtr("Area3D", "set_reverb_uniformity", 373806689)
 
     public val getReverbUniformityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_reverb_uniformity")
+        TypeManager.getMethodBindPtr("Area3D", "get_reverb_uniformity", 1740695150)
   }
 }

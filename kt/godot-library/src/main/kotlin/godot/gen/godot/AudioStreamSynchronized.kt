@@ -89,21 +89,21 @@ public open class AudioStreamSynchronized : AudioStream() {
 
   internal object MethodBindings {
     public val setStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_stream_count")
+        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_stream_count", 1286410249)
 
     public val getStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_stream_count")
+        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_stream_count", 3905245786)
 
     public val setSyncStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream")
+        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream", 111075094)
 
     public val getSyncStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream")
+        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream", 2739380747)
 
     public val setSyncStreamVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream_volume")
+        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream_volume", 1602489585)
 
     public val getSyncStreamVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream_volume")
+        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream_volume", 2339986948)
   }
 }

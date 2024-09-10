@@ -175,17 +175,21 @@ public open class Sky : Resource() {
 
   internal object MethodBindings {
     public val setRadianceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "set_radiance_size")
+        TypeManager.getMethodBindPtr("Sky", "set_radiance_size", 1512957179)
 
     public val getRadianceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "get_radiance_size")
+        TypeManager.getMethodBindPtr("Sky", "get_radiance_size", 2708733976)
 
-    public val setProcessModePtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "set_process_mode")
+    public val setProcessModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sky", "set_process_mode", 875986769)
 
-    public val getProcessModePtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "get_process_mode")
+    public val getProcessModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sky", "get_process_mode", 731245043)
 
-    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "set_material")
+    public val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sky", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("Sky", "get_material")
+    public val getMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sky", "get_material", 5934680)
   }
 }

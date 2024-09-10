@@ -72,21 +72,21 @@ public open class PacketPeerStream : PacketPeer() {
 
   internal object MethodBindings {
     public val setStreamPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "set_stream_peer")
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_stream_peer", 3281897016)
 
     public val getStreamPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "get_stream_peer")
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_stream_peer", 2741655269)
 
     public val setInputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "set_input_buffer_max_size")
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_input_buffer_max_size", 1286410249)
 
     public val setOutputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "set_output_buffer_max_size")
+        TypeManager.getMethodBindPtr("PacketPeerStream", "set_output_buffer_max_size", 1286410249)
 
     public val getInputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "get_input_buffer_max_size")
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_input_buffer_max_size", 3905245786)
 
     public val getOutputBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerStream", "get_output_buffer_max_size")
+        TypeManager.getMethodBindPtr("PacketPeerStream", "get_output_buffer_max_size", 3905245786)
   }
 }

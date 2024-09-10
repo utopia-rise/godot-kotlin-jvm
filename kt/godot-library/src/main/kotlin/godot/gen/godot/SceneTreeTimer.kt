@@ -77,9 +77,9 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
 
   internal object MethodBindings {
     public val setTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTreeTimer", "set_time_left")
+        TypeManager.getMethodBindPtr("SceneTreeTimer", "set_time_left", 373806689)
 
     public val getTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTreeTimer", "get_time_left")
+        TypeManager.getMethodBindPtr("SceneTreeTimer", "get_time_left", 1740695150)
   }
 }

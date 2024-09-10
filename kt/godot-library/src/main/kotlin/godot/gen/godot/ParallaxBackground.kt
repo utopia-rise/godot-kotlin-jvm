@@ -258,39 +258,39 @@ public open class ParallaxBackground : CanvasLayer() {
 
   internal object MethodBindings {
     public val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_offset")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_offset", 743155724)
 
     public val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_offset")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_offset", 3341600327)
 
     public val setScrollBaseOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset", 743155724)
 
     public val getScrollBaseOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset", 3341600327)
 
     public val setScrollBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale", 743155724)
 
     public val getScrollBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale", 3341600327)
 
     public val setLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_begin")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_begin", 743155724)
 
     public val getLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_begin")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_begin", 3341600327)
 
     public val setLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_end")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_end", 743155724)
 
     public val getLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_end")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_end", 3341600327)
 
     public val setIgnoreCameraZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom", 2586408642)
 
     public val isIgnoreCameraZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom")
+        TypeManager.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom", 2240911060)
   }
 }

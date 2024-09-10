@@ -581,111 +581,117 @@ public open class LightmapGI : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setLightDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_light_data")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_light_data", 1790597277)
 
     public val getLightDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_light_data")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_light_data", 290354153)
 
     public val setBakeQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bake_quality")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bake_quality", 1192215803)
 
     public val getBakeQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bake_quality")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bake_quality", 688832735)
 
-    public val setBouncesPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_bounces")
+    public val setBouncesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bounces", 1286410249)
 
-    public val getBouncesPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "get_bounces")
+    public val getBouncesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bounces", 3905245786)
 
     public val setBounceIndirectEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy", 373806689)
 
     public val getBounceIndirectEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy", 1740695150)
 
     public val setGenerateProbesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes", 549981046)
 
     public val getGenerateProbesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_generate_probes")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_generate_probes", 3930596226)
 
-    public val setBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_bias")
+    public val setBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_bias", 373806689)
 
-    public val getBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "get_bias")
+    public val getBiasPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "get_bias", 1740695150)
 
     public val setEnvironmentModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_mode")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_mode", 2282650285)
 
     public val getEnvironmentModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_mode")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_mode", 4128646479)
 
     public val setEnvironmentCustomSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_sky")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_sky", 3336722921)
 
     public val getEnvironmentCustomSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_sky")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_sky", 1177136966)
 
     public val setEnvironmentCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_color")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_color", 2920490490)
 
     public val getEnvironmentCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_color")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_color", 3444240500)
 
     public val setEnvironmentCustomEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_energy")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_energy", 373806689)
 
     public val getEnvironmentCustomEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_energy")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_energy", 1740695150)
 
     public val setTexelScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_texel_scale")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_texel_scale", 373806689)
 
     public val getTexelScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_texel_scale")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_texel_scale", 1740695150)
 
     public val setMaxTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_max_texture_size")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_max_texture_size", 1286410249)
 
     public val getMaxTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_max_texture_size")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_max_texture_size", 3905245786)
 
     public val setUseDenoiserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_use_denoiser")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_use_denoiser", 2586408642)
 
     public val isUsingDenoiserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser")
+        TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser", 36873697)
 
     public val setDenoiserStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_strength")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_strength", 373806689)
 
     public val getDenoiserStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength", 1740695150)
 
     public val setDenoiserRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_range")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_range", 1286410249)
 
     public val getDenoiserRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_range")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_range", 3905245786)
 
-    public val setInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "set_interior")
+    public val setInteriorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "set_interior", 2586408642)
 
-    public val isInteriorPtr: VoidPtr = TypeManager.getMethodBindPtr("LightmapGI", "is_interior")
+    public val isInteriorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LightmapGI", "is_interior", 36873697)
 
     public val setDirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_directional")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_directional", 2586408642)
 
     public val isDirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_directional")
+        TypeManager.getMethodBindPtr("LightmapGI", "is_directional", 36873697)
 
     public val setUseTextureForBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces", 2586408642)
 
     public val isUsingTextureForBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces")
+        TypeManager.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces", 36873697)
 
     public val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes")
+        TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes", 2817810567)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_camera_attributes")
+        TypeManager.getMethodBindPtr("LightmapGI", "get_camera_attributes", 3921283215)
   }
 }

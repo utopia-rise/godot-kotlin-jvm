@@ -45,9 +45,9 @@ public open class Texture3DRD : Texture3D() {
 
   internal object MethodBindings {
     public val setTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3DRD", "set_texture_rd_rid")
+        TypeManager.getMethodBindPtr("Texture3DRD", "set_texture_rd_rid", 2722037293)
 
     public val getTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3DRD", "get_texture_rd_rid")
+        TypeManager.getMethodBindPtr("Texture3DRD", "get_texture_rd_rid", 2944877500)
   }
 }

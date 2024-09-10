@@ -89,24 +89,24 @@ public open class OggPacketSequence : Resource() {
 
   internal object MethodBindings {
     public val setPacketDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_data")
+        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_data", 381264803)
 
     public val getPacketDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_data")
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_data", 3995934104)
 
     public val setPacketGranulePositionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_granule_positions")
+        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_granule_positions", 3709968205)
 
     public val getPacketGranulePositionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_granule_positions")
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_granule_positions", 235988956)
 
     public val setSamplingRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_sampling_rate")
+        TypeManager.getMethodBindPtr("OggPacketSequence", "set_sampling_rate", 373806689)
 
     public val getSamplingRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_sampling_rate")
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_sampling_rate", 1740695150)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_length")
+        TypeManager.getMethodBindPtr("OggPacketSequence", "get_length", 1740695150)
   }
 }

@@ -80,19 +80,16 @@ public open class SubViewportContainer : Container() {
   public companion object
 
   internal object MethodBindings {
-    public val _propagateInputEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "_propagate_input_event")
-
     public val setStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch")
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch", 2586408642)
 
     public val isStretchEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "is_stretch_enabled")
+        TypeManager.getMethodBindPtr("SubViewportContainer", "is_stretch_enabled", 36873697)
 
     public val setStretchShrinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch_shrink")
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch_shrink", 1286410249)
 
     public val getStretchShrinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink")
+        TypeManager.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink", 3905245786)
   }
 }

@@ -388,46 +388,46 @@ public open class XRHandTracker : XRPositionalTracker() {
 
   internal object MethodBindings {
     public val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_has_tracking_data")
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_has_tracking_data", 2586408642)
 
     public val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_has_tracking_data")
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_has_tracking_data", 36873697)
 
     public val setHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_tracking_source")
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_tracking_source", 2958308861)
 
     public val getHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_tracking_source")
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_tracking_source", 2475045250)
 
     public val setHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_flags")
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_flags", 3028437365)
 
     public val getHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_flags")
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_flags", 1730972401)
 
     public val setHandJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_transform")
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_transform", 2529959613)
 
     public val getHandJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_transform")
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_transform", 1090840196)
 
     public val setHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_radius")
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_radius", 2723659615)
 
     public val getHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_radius")
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_radius", 3400025734)
 
     public val setHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_linear_velocity")
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_linear_velocity", 1978646737)
 
     public val getHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_linear_velocity")
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_linear_velocity", 547240792)
 
     public val setHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_angular_velocity")
+        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_angular_velocity", 1978646737)
 
     public val getHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity")
+        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity", 547240792)
   }
 }
 

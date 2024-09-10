@@ -791,165 +791,176 @@ public open class TileMap : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val _useTileDataRuntimeUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "_use_tile_data_runtime_update")
-
-    public val _tileDataRuntimeUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "_tile_data_runtime_update")
-
     public val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_navigation_map")
+        TypeManager.getMethodBindPtr("TileMap", "set_navigation_map", 4040184819)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_navigation_map")
+        TypeManager.getMethodBindPtr("TileMap", "get_navigation_map", 495598643)
 
-    public val forceUpdatePtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "force_update")
+    public val forceUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "force_update", 1025054187)
 
-    public val setTilesetPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "set_tileset")
+    public val setTilesetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "set_tileset", 774531446)
 
-    public val getTilesetPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "get_tileset")
+    public val getTilesetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "get_tileset", 2678226422)
 
     public val setRenderingQuadrantSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_rendering_quadrant_size")
+        TypeManager.getMethodBindPtr("TileMap", "set_rendering_quadrant_size", 1286410249)
 
     public val getRenderingQuadrantSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_rendering_quadrant_size")
+        TypeManager.getMethodBindPtr("TileMap", "get_rendering_quadrant_size", 3905245786)
 
     public val getLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_layers_count")
+        TypeManager.getMethodBindPtr("TileMap", "get_layers_count", 3905245786)
 
-    public val addLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "add_layer")
+    public val addLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "add_layer", 1286410249)
 
-    public val moveLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "move_layer")
+    public val moveLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "move_layer", 3937882851)
 
-    public val removeLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "remove_layer")
+    public val removeLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "remove_layer", 1286410249)
 
-    public val setLayerNamePtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "set_layer_name")
+    public val setLayerNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_name", 501894301)
 
-    public val getLayerNamePtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "get_layer_name")
+    public val getLayerNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "get_layer_name", 844755477)
 
     public val setLayerEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_layer_enabled")
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_enabled", 300928843)
 
     public val isLayerEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "is_layer_enabled")
+        TypeManager.getMethodBindPtr("TileMap", "is_layer_enabled", 1116898809)
 
     public val setLayerModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_layer_modulate")
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_modulate", 2878471219)
 
     public val getLayerModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_layer_modulate")
+        TypeManager.getMethodBindPtr("TileMap", "get_layer_modulate", 3457211756)
 
     public val setLayerYSortEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_layer_y_sort_enabled")
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_y_sort_enabled", 300928843)
 
     public val isLayerYSortEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "is_layer_y_sort_enabled")
+        TypeManager.getMethodBindPtr("TileMap", "is_layer_y_sort_enabled", 1116898809)
 
     public val setLayerYSortOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_layer_y_sort_origin")
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_y_sort_origin", 3937882851)
 
     public val getLayerYSortOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_layer_y_sort_origin")
+        TypeManager.getMethodBindPtr("TileMap", "get_layer_y_sort_origin", 923996154)
 
     public val setLayerZIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_layer_z_index")
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_z_index", 3937882851)
 
     public val getLayerZIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_layer_z_index")
+        TypeManager.getMethodBindPtr("TileMap", "get_layer_z_index", 923996154)
 
     public val setLayerNavigationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_layer_navigation_enabled")
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_navigation_enabled", 300928843)
 
     public val isLayerNavigationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "is_layer_navigation_enabled")
+        TypeManager.getMethodBindPtr("TileMap", "is_layer_navigation_enabled", 1116898809)
 
     public val setLayerNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_layer_navigation_map")
+        TypeManager.getMethodBindPtr("TileMap", "set_layer_navigation_map", 4040184819)
 
     public val getLayerNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_layer_navigation_map")
+        TypeManager.getMethodBindPtr("TileMap", "get_layer_navigation_map", 495598643)
 
     public val setCollisionAnimatablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_collision_animatable")
+        TypeManager.getMethodBindPtr("TileMap", "set_collision_animatable", 2586408642)
 
     public val isCollisionAnimatablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "is_collision_animatable")
+        TypeManager.getMethodBindPtr("TileMap", "is_collision_animatable", 36873697)
 
     public val setCollisionVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_collision_visibility_mode")
+        TypeManager.getMethodBindPtr("TileMap", "set_collision_visibility_mode", 3193440636)
 
     public val getCollisionVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_collision_visibility_mode")
+        TypeManager.getMethodBindPtr("TileMap", "get_collision_visibility_mode", 1697018252)
 
     public val setNavigationVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_navigation_visibility_mode")
+        TypeManager.getMethodBindPtr("TileMap", "set_navigation_visibility_mode", 3193440636)
 
     public val getNavigationVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_navigation_visibility_mode")
+        TypeManager.getMethodBindPtr("TileMap", "get_navigation_visibility_mode", 1697018252)
 
-    public val setCellPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "set_cell")
+    public val setCellPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "set_cell", 966713560)
 
-    public val eraseCellPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "erase_cell")
+    public val eraseCellPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "erase_cell", 2311374912)
 
     public val getCellSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_cell_source_id")
+        TypeManager.getMethodBindPtr("TileMap", "get_cell_source_id", 551761942)
 
     public val getCellAtlasCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_cell_atlas_coords")
+        TypeManager.getMethodBindPtr("TileMap", "get_cell_atlas_coords", 1869815066)
 
     public val getCellAlternativeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_cell_alternative_tile")
+        TypeManager.getMethodBindPtr("TileMap", "get_cell_alternative_tile", 551761942)
 
     public val getCellTileDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_cell_tile_data")
+        TypeManager.getMethodBindPtr("TileMap", "get_cell_tile_data", 2849631287)
 
     public val getCoordsForBodyRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_coords_for_body_rid")
+        TypeManager.getMethodBindPtr("TileMap", "get_coords_for_body_rid", 291584212)
 
     public val getLayerForBodyRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_layer_for_body_rid")
+        TypeManager.getMethodBindPtr("TileMap", "get_layer_for_body_rid", 3917799429)
 
-    public val getPatternPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "get_pattern")
+    public val getPatternPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "get_pattern", 2833570986)
 
-    public val mapPatternPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "map_pattern")
+    public val mapPatternPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "map_pattern", 1864516957)
 
-    public val setPatternPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "set_pattern")
+    public val setPatternPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "set_pattern", 1195853946)
 
     public val setCellsTerrainConnectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_cells_terrain_connect")
+        TypeManager.getMethodBindPtr("TileMap", "set_cells_terrain_connect", 3578627656)
 
     public val setCellsTerrainPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "set_cells_terrain_path")
+        TypeManager.getMethodBindPtr("TileMap", "set_cells_terrain_path", 3578627656)
 
     public val fixInvalidTilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "fix_invalid_tiles")
+        TypeManager.getMethodBindPtr("TileMap", "fix_invalid_tiles", 3218959716)
 
-    public val clearLayerPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "clear_layer")
+    public val clearLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "clear_layer", 1286410249)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "clear", 3218959716)
 
     public val updateInternalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "update_internals")
+        TypeManager.getMethodBindPtr("TileMap", "update_internals", 3218959716)
 
     public val notifyRuntimeTileDataUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "notify_runtime_tile_data_update")
+        TypeManager.getMethodBindPtr("TileMap", "notify_runtime_tile_data_update", 1025054187)
 
     public val getSurroundingCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_surrounding_cells")
+        TypeManager.getMethodBindPtr("TileMap", "get_surrounding_cells", 2673526557)
 
-    public val getUsedCellsPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "get_used_cells")
+    public val getUsedCellsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "get_used_cells", 663333327)
 
     public val getUsedCellsByIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_used_cells_by_id")
+        TypeManager.getMethodBindPtr("TileMap", "get_used_cells_by_id", 2931012785)
 
-    public val getUsedRectPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "get_used_rect")
+    public val getUsedRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "get_used_rect", 410525958)
 
-    public val mapToLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "map_to_local")
+    public val mapToLocalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "map_to_local", 108438297)
 
-    public val localToMapPtr: VoidPtr = TypeManager.getMethodBindPtr("TileMap", "local_to_map")
+    public val localToMapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMap", "local_to_map", 837806996)
 
     public val getNeighborCellPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileMap", "get_neighbor_cell")
+        TypeManager.getMethodBindPtr("TileMap", "get_neighbor_cell", 986575103)
   }
 }

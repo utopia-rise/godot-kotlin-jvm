@@ -188,48 +188,48 @@ public open class AudioStreamRandomizer : AudioStream() {
 
   internal object MethodBindings {
     public val addStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "add_stream")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "add_stream", 1892018854)
 
     public val moveStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "move_stream")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "move_stream", 3937882851)
 
     public val removeStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "remove_stream")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "remove_stream", 1286410249)
 
     public val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_stream")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_stream", 111075094)
 
     public val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_stream")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_stream", 2739380747)
 
     public val setStreamProbabilityWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_stream_probability_weight")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_stream_probability_weight", 1602489585)
 
     public val getStreamProbabilityWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_stream_probability_weight")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_stream_probability_weight", 2339986948)
 
     public val setStreamsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_streams_count")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_streams_count", 1286410249)
 
     public val getStreamsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_streams_count")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_streams_count", 3905245786)
 
     public val setRandomPitchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_random_pitch")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_random_pitch", 373806689)
 
     public val getRandomPitchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_random_pitch")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_random_pitch", 1740695150)
 
     public val setRandomVolumeOffsetDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_random_volume_offset_db")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_random_volume_offset_db", 373806689)
 
     public val getRandomVolumeOffsetDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_random_volume_offset_db")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_random_volume_offset_db", 1740695150)
 
     public val setPlaybackModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_playback_mode")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "set_playback_mode", 3950967023)
 
     public val getPlaybackModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_playback_mode")
+        TypeManager.getMethodBindPtr("AudioStreamRandomizer", "get_playback_mode", 3943055077)
   }
 }

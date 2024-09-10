@@ -238,60 +238,64 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   internal object MethodBindings {
-    public val fromNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node")
+    public val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3613751275)
 
-    public val toNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_node")
+    public val toNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_node", 563689933)
 
     public val fromResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3845569786)
 
     public val toResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_resource")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_resource", 1913542110)
 
     public val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2390691823)
 
     public val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary", 3102165223)
 
     public val getShapeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_shape_type")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_shape_type", 201670096)
 
     public val setShapeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_shape_type")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_shape_type", 83702148)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_size")
+    public val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_size", 3360562783)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_size")
+    public val setSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_size", 3460891852)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_radius")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_radius", 1740695150)
 
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_radius")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_radius", 373806689)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_height")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_height", 1740695150)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_height")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_height", 373806689)
 
     public val getIsTriggerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_is_trigger")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_is_trigger", 36873697)
 
     public val setIsTriggerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_is_trigger")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_is_trigger", 2586408642)
 
     public val getMeshIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_mesh_index")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_mesh_index", 3905245786)
 
     public val setMeshIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_mesh_index")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_mesh_index", 1286410249)
 
     public val getImporterMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_importer_mesh")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_importer_mesh", 3161779525)
 
     public val setImporterMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh")
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh", 2255166972)
   }
 }

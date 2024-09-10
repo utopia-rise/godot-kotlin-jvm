@@ -135,14 +135,15 @@ public open class Expression : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "parse")
+    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "parse", 3069722906)
 
-    public val executePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "execute")
+    public val executePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Expression", "execute", 3712471238)
 
     public val hasExecuteFailedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "has_execute_failed")
+        TypeManager.getMethodBindPtr("Expression", "has_execute_failed", 36873697)
 
     public val getErrorTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "get_error_text")
+        TypeManager.getMethodBindPtr("Expression", "get_error_text", 201670096)
   }
 }

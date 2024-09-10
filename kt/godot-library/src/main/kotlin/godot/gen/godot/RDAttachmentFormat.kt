@@ -72,21 +72,21 @@ public open class RDAttachmentFormat : RefCounted() {
 
   internal object MethodBindings {
     public val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_format")
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_format", 565531219)
 
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_format")
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_format", 2235804183)
 
     public val setSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_samples")
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_samples", 3774171498)
 
     public val getSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_samples")
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_samples", 407791724)
 
     public val setUsageFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_usage_flags")
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_usage_flags", 1286410249)
 
     public val getUsageFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_usage_flags")
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_usage_flags", 3905245786)
   }
 }

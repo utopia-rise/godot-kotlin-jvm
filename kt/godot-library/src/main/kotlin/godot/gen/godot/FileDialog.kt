@@ -433,99 +433,111 @@ public open class FileDialog : ConfirmationDialog() {
 
   internal object MethodBindings {
     public val clearFiltersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "clear_filters")
+        TypeManager.getMethodBindPtr("FileDialog", "clear_filters", 3218959716)
 
-    public val addFilterPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "add_filter")
+    public val addFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "add_filter", 3388804757)
 
-    public val setFiltersPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "set_filters")
+    public val setFiltersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_filters", 4015028928)
 
-    public val getFiltersPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_filters")
+    public val getFiltersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_filters", 1139954409)
 
     public val getOptionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_name")
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_name", 844755477)
 
     public val getOptionValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_values")
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_values", 647634434)
 
     public val getOptionDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_default")
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_default", 923996154)
 
     public val setOptionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_name")
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_name", 501894301)
 
     public val setOptionValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_values")
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_values", 3353661094)
 
     public val setOptionDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_default")
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_default", 3937882851)
 
     public val setOptionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_count")
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_count", 1286410249)
 
     public val getOptionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_count")
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_count", 3905245786)
 
-    public val addOptionPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "add_option")
+    public val addOptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "add_option", 149592325)
 
     public val getSelectedOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_selected_options")
+        TypeManager.getMethodBindPtr("FileDialog", "get_selected_options", 3102165223)
 
     public val getCurrentDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_current_dir")
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_dir", 201670096)
 
     public val getCurrentFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_current_file")
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_file", 201670096)
 
     public val getCurrentPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_current_path")
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_path", 201670096)
 
     public val setCurrentDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_current_dir")
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_dir", 83702148)
 
     public val setCurrentFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_current_file")
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_file", 83702148)
 
     public val setCurrentPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_current_path")
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_path", 83702148)
 
     public val setModeOverridesTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_mode_overrides_title")
+        TypeManager.getMethodBindPtr("FileDialog", "set_mode_overrides_title", 2586408642)
 
     public val isModeOverridingTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "is_mode_overriding_title")
+        TypeManager.getMethodBindPtr("FileDialog", "is_mode_overriding_title", 36873697)
 
-    public val setFileModePtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "set_file_mode")
+    public val setFileModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_file_mode", 3654936397)
 
-    public val getFileModePtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_file_mode")
+    public val getFileModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_file_mode", 4074825319)
 
-    public val getVboxPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_vbox")
+    public val getVboxPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_vbox", 915758477)
 
-    public val getLineEditPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_line_edit")
+    public val getLineEditPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_line_edit", 4071694264)
 
-    public val setAccessPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "set_access")
+    public val setAccessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_access", 4104413466)
 
-    public val getAccessPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "get_access")
+    public val getAccessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_access", 3344081076)
 
     public val setRootSubfolderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_root_subfolder")
+        TypeManager.getMethodBindPtr("FileDialog", "set_root_subfolder", 83702148)
 
     public val getRootSubfolderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_root_subfolder")
+        TypeManager.getMethodBindPtr("FileDialog", "get_root_subfolder", 201670096)
 
     public val setShowHiddenFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_show_hidden_files")
+        TypeManager.getMethodBindPtr("FileDialog", "set_show_hidden_files", 2586408642)
 
     public val isShowingHiddenFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "is_showing_hidden_files")
+        TypeManager.getMethodBindPtr("FileDialog", "is_showing_hidden_files", 36873697)
 
     public val setUseNativeDialogPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_use_native_dialog")
+        TypeManager.getMethodBindPtr("FileDialog", "set_use_native_dialog", 2586408642)
 
     public val getUseNativeDialogPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_use_native_dialog")
+        TypeManager.getMethodBindPtr("FileDialog", "get_use_native_dialog", 36873697)
 
-    public val deselectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "deselect_all")
+    public val deselectAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "deselect_all", 3218959716)
 
-    public val invalidatePtr: VoidPtr = TypeManager.getMethodBindPtr("FileDialog", "invalidate")
+    public val invalidatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "invalidate", 3218959716)
   }
 }

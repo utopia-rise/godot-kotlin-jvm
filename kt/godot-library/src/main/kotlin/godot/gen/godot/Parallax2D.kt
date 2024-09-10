@@ -384,61 +384,63 @@ public open class Parallax2D : Node2D() {
 
   internal object MethodBindings {
     public val setScrollScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_scale")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_scale", 743155724)
 
     public val getScrollScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_scale")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_scale", 3341600327)
 
     public val setRepeatSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_size")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_size", 743155724)
 
     public val getRepeatSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_size")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_size", 3341600327)
 
     public val setRepeatTimesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_times")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_times", 1286410249)
 
     public val getRepeatTimesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_times")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_times", 3905245786)
 
     public val setAutoscrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_autoscroll")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_autoscroll", 743155724)
 
     public val getAutoscrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_autoscroll")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_autoscroll", 3341600327)
 
     public val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_offset")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_offset", 743155724)
 
     public val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_offset")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_offset", 3341600327)
 
     public val setScreenOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_screen_offset")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_screen_offset", 743155724)
 
     public val getScreenOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_screen_offset")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_screen_offset", 3341600327)
 
     public val setLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_begin")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_begin", 743155724)
 
     public val getLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_begin")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_begin", 3341600327)
 
-    public val setLimitEndPtr: VoidPtr = TypeManager.getMethodBindPtr("Parallax2D", "set_limit_end")
+    public val setLimitEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_end", 743155724)
 
-    public val getLimitEndPtr: VoidPtr = TypeManager.getMethodBindPtr("Parallax2D", "get_limit_end")
+    public val getLimitEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_end", 3341600327)
 
     public val setFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_follow_viewport")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_follow_viewport", 2586408642)
 
     public val getFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_follow_viewport")
+        TypeManager.getMethodBindPtr("Parallax2D", "get_follow_viewport", 2240911060)
 
     public val setIgnoreCameraScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_ignore_camera_scroll")
+        TypeManager.getMethodBindPtr("Parallax2D", "set_ignore_camera_scroll", 2586408642)
 
     public val isIgnoreCameraScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "is_ignore_camera_scroll")
+        TypeManager.getMethodBindPtr("Parallax2D", "is_ignore_camera_scroll", 2240911060)
   }
 }

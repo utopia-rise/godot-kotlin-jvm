@@ -46,9 +46,9 @@ public open class Marker3D : Node3D() {
 
   internal object MethodBindings {
     public val setGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker3D", "set_gizmo_extents")
+        TypeManager.getMethodBindPtr("Marker3D", "set_gizmo_extents", 373806689)
 
     public val getGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker3D", "get_gizmo_extents")
+        TypeManager.getMethodBindPtr("Marker3D", "get_gizmo_extents", 1740695150)
   }
 }

@@ -59,9 +59,9 @@ public open class ConvexPolygonShape3D : Shape3D() {
 
   internal object MethodBindings {
     public val setPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape3D", "set_points")
+        TypeManager.getMethodBindPtr("ConvexPolygonShape3D", "set_points", 334873810)
 
     public val getPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape3D", "get_points")
+        TypeManager.getMethodBindPtr("ConvexPolygonShape3D", "get_points", 497664490)
   }
 }

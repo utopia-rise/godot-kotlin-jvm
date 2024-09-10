@@ -74,9 +74,9 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
 
   internal object MethodBindings {
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventGesture", "set_position")
+        TypeManager.getMethodBindPtr("InputEventGesture", "set_position", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventGesture", "get_position")
+        TypeManager.getMethodBindPtr("InputEventGesture", "get_position", 3341600327)
   }
 }

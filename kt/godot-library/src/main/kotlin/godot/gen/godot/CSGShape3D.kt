@@ -242,60 +242,64 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   public companion object
 
   internal object MethodBindings {
-    public val isRootShapePtr: VoidPtr = TypeManager.getMethodBindPtr("CSGShape3D", "is_root_shape")
+    public val isRootShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "is_root_shape", 36873697)
 
     public val setOperationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_operation")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_operation", 811425055)
 
     public val getOperationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "get_operation")
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_operation", 2662425879)
 
-    public val setSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGShape3D", "set_snap")
+    public val setSnapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_snap", 373806689)
 
-    public val getSnapPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGShape3D", "get_snap")
+    public val getSnapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_snap", 1740695150)
 
     public val setUseCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_use_collision")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_use_collision", 2586408642)
 
     public val isUsingCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "is_using_collision")
+        TypeManager.getMethodBindPtr("CSGShape3D", "is_using_collision", 36873697)
 
     public val setCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_layer")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_layer", 1286410249)
 
     public val getCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_layer")
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_layer", 3905245786)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_mask")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_mask")
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_mask", 3905245786)
 
     public val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_mask_value")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_mask_value", 300928843)
 
     public val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_mask_value")
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_mask_value", 1116898809)
 
     public val setCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_layer_value")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_layer_value", 300928843)
 
     public val getCollisionLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_layer_value")
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_layer_value", 1116898809)
 
     public val setCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_priority")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_collision_priority", 373806689)
 
     public val getCollisionPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_priority")
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_priority", 1740695150)
 
     public val setCalculateTangentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "set_calculate_tangents")
+        TypeManager.getMethodBindPtr("CSGShape3D", "set_calculate_tangents", 2586408642)
 
     public val isCalculatingTangentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "is_calculating_tangents")
+        TypeManager.getMethodBindPtr("CSGShape3D", "is_calculating_tangents", 36873697)
 
-    public val getMeshesPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGShape3D", "get_meshes")
+    public val getMeshesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "get_meshes", 3995934104)
   }
 }

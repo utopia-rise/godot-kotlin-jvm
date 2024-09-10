@@ -142,42 +142,7 @@ public open class VideoStreamPlayback : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _stopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayback", "_stop")
-
-    public val _playPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayback", "_play")
-
-    public val _isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_is_playing")
-
-    public val _setPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_set_paused")
-
-    public val _isPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_is_paused")
-
-    public val _getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_get_length")
-
-    public val _getPlaybackPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_get_playback_position")
-
-    public val _seekPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayback", "_seek")
-
-    public val _setAudioTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_set_audio_track")
-
-    public val _getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_get_texture")
-
-    public val _updatePtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayback", "_update")
-
-    public val _getChannelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_get_channels")
-
-    public val _getMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "_get_mix_rate")
-
     public val mixAudioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio")
+        TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93876830)
   }
 }

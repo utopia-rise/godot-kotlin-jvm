@@ -78,17 +78,18 @@ public open class GradientTexture1D : Texture2D() {
 
   internal object MethodBindings {
     public val setGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "set_gradient")
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_gradient", 2756054477)
 
     public val getGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "get_gradient")
+        TypeManager.getMethodBindPtr("GradientTexture1D", "get_gradient", 132272999)
 
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("GradientTexture1D", "set_width")
+    public val setWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_width", 1286410249)
 
     public val setUseHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "set_use_hdr")
+        TypeManager.getMethodBindPtr("GradientTexture1D", "set_use_hdr", 2586408642)
 
     public val isUsingHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture1D", "is_using_hdr")
+        TypeManager.getMethodBindPtr("GradientTexture1D", "is_using_hdr", 36873697)
   }
 }

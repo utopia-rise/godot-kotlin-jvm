@@ -107,18 +107,18 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
 
   internal object MethodBindings {
     public val playStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "play_stream")
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "play_stream", 1846744803)
 
     public val setStreamVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "set_stream_volume")
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "set_stream_volume", 1602489585)
 
     public val setStreamPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "set_stream_pitch_scale")
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "set_stream_pitch_scale", 1602489585)
 
     public val isStreamPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "is_stream_playing")
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "is_stream_playing", 1116898809)
 
     public val stopStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "stop_stream")
+        TypeManager.getMethodBindPtr("AudioStreamPlaybackPolyphonic", "stop_stream", 1286410249)
   }
 }

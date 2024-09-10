@@ -117,21 +117,21 @@ public open class OpenXRAction : Resource() {
 
   internal object MethodBindings {
     public val setLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "set_localized_name")
+        TypeManager.getMethodBindPtr("OpenXRAction", "set_localized_name", 83702148)
 
     public val getLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "get_localized_name")
+        TypeManager.getMethodBindPtr("OpenXRAction", "get_localized_name", 201670096)
 
     public val setActionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "set_action_type")
+        TypeManager.getMethodBindPtr("OpenXRAction", "set_action_type", 1675238366)
 
     public val getActionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "get_action_type")
+        TypeManager.getMethodBindPtr("OpenXRAction", "get_action_type", 3536542431)
 
     public val setToplevelPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "set_toplevel_paths")
+        TypeManager.getMethodBindPtr("OpenXRAction", "set_toplevel_paths", 4015028928)
 
     public val getToplevelPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "get_toplevel_paths")
+        TypeManager.getMethodBindPtr("OpenXRAction", "get_toplevel_paths", 1139954409)
   }
 }

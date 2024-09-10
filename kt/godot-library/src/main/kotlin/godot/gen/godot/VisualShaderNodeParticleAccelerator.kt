@@ -77,9 +77,9 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode", 3457585749)
 
     public val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode", 2660365633)
   }
 }

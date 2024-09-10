@@ -178,41 +178,25 @@ public open class TextureLayered : Texture() {
   public companion object
 
   internal object MethodBindings {
-    public val _getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_format")
-
-    public val _getLayeredTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_layered_type")
-
-    public val _getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "_get_width")
-
-    public val _getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_height")
-
-    public val _getLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_layers")
-
-    public val _hasMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_has_mipmaps")
-
-    public val _getLayerDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "_get_layer_data")
-
-    public val getFormatPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_format")
+    public val getFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "get_format", 3847873762)
 
     public val getLayeredTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layered_type")
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layered_type", 518123893)
 
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_width")
+    public val getWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "get_width", 3905245786)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "get_height", 3905245786)
 
-    public val getLayersPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureLayered", "get_layers")
+    public val getLayersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layers", 3905245786)
 
     public val hasMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "has_mipmaps")
+        TypeManager.getMethodBindPtr("TextureLayered", "has_mipmaps", 36873697)
 
     public val getLayerDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layer_data")
+        TypeManager.getMethodBindPtr("TextureLayered", "get_layer_data", 3655284255)
   }
 }

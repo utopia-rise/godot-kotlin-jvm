@@ -148,22 +148,24 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
 
   internal object MethodBindings {
     public val createServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_server")
+        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_server", 2917761309)
 
     public val createClientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_client")
+        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_client", 2327163476)
 
     public val createMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_mesh")
+        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_mesh", 844576869)
 
     public val addMeshPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "add_mesh_peer")
+        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "add_mesh_peer", 1293458335)
 
     public val setBindIpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "set_bind_ip")
+        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "set_bind_ip", 83702148)
 
-    public val getHostPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "get_host")
+    public val getHostPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "get_host", 4103238886)
 
-    public val getPeerPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "get_peer")
+    public val getPeerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "get_peer", 3793311544)
   }
 }

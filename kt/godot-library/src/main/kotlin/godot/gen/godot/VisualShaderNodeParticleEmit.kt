@@ -81,9 +81,9 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags", 3960756792)
 
     public val getFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags")
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags", 171277835)
   }
 }

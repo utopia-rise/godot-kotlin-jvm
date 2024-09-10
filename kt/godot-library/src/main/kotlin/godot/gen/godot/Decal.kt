@@ -421,60 +421,74 @@ public open class Decal : VisualInstance3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_size")
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_size")
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_size", 3360562783)
 
-    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_texture")
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "set_texture", 2086764391)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "get_texture", 3244119503)
 
     public val setEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_emission_energy")
+        TypeManager.getMethodBindPtr("Decal", "set_emission_energy", 373806689)
 
     public val getEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_emission_energy")
+        TypeManager.getMethodBindPtr("Decal", "get_emission_energy", 1740695150)
 
-    public val setAlbedoMixPtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_albedo_mix")
+    public val setAlbedoMixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "set_albedo_mix", 373806689)
 
-    public val getAlbedoMixPtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_albedo_mix")
+    public val getAlbedoMixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "get_albedo_mix", 1740695150)
 
-    public val setModulatePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_modulate")
+    public val setModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "set_modulate", 2920490490)
 
-    public val getModulatePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_modulate")
+    public val getModulatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "get_modulate", 3444240500)
 
-    public val setUpperFadePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_upper_fade")
+    public val setUpperFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "set_upper_fade", 373806689)
 
-    public val getUpperFadePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_upper_fade")
+    public val getUpperFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "get_upper_fade", 1740695150)
 
-    public val setLowerFadePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_lower_fade")
+    public val setLowerFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "set_lower_fade", 373806689)
 
-    public val getLowerFadePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_lower_fade")
+    public val getLowerFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "get_lower_fade", 1740695150)
 
-    public val setNormalFadePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_normal_fade")
+    public val setNormalFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "set_normal_fade", 373806689)
 
-    public val getNormalFadePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_normal_fade")
+    public val getNormalFadePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "get_normal_fade", 1740695150)
 
     public val setEnableDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_enable_distance_fade")
+        TypeManager.getMethodBindPtr("Decal", "set_enable_distance_fade", 2586408642)
 
     public val isDistanceFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "is_distance_fade_enabled")
+        TypeManager.getMethodBindPtr("Decal", "is_distance_fade_enabled", 36873697)
 
     public val setDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_distance_fade_begin")
+        TypeManager.getMethodBindPtr("Decal", "set_distance_fade_begin", 373806689)
 
     public val getDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_distance_fade_begin")
+        TypeManager.getMethodBindPtr("Decal", "get_distance_fade_begin", 1740695150)
 
     public val setDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_distance_fade_length")
+        TypeManager.getMethodBindPtr("Decal", "set_distance_fade_length", 373806689)
 
     public val getDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_distance_fade_length")
+        TypeManager.getMethodBindPtr("Decal", "get_distance_fade_length", 1740695150)
 
-    public val setCullMaskPtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_cull_mask")
+    public val setCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "set_cull_mask", 1286410249)
 
-    public val getCullMaskPtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_cull_mask")
+    public val getCullMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Decal", "get_cull_mask", 3905245786)
   }
 }

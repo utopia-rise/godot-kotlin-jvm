@@ -1423,326 +1423,354 @@ public open class RichTextLabel : Control() {
 
   internal object MethodBindings {
     public val getParsedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_parsed_text")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_parsed_text", 201670096)
 
-    public val addTextPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "add_text")
+    public val addTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "add_text", 83702148)
 
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "set_text")
+    public val setTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_text", 83702148)
 
-    public val addImagePtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "add_image")
+    public val addImagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "add_image", 3017663154)
 
     public val updateImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "update_image")
+        TypeManager.getMethodBindPtr("RichTextLabel", "update_image", 815048486)
 
-    public val newlinePtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "newline")
+    public val newlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "newline", 3218959716)
 
     public val removeParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "remove_paragraph")
+        TypeManager.getMethodBindPtr("RichTextLabel", "remove_paragraph", 3262369265)
 
     public val invalidateParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "invalidate_paragraph")
+        TypeManager.getMethodBindPtr("RichTextLabel", "invalidate_paragraph", 3067735520)
 
-    public val pushFontPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_font")
+    public val pushFontPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_font", 2347424842)
 
     public val pushFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_font_size")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_font_size", 1286410249)
 
-    public val pushNormalPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_normal")
+    public val pushNormalPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_normal", 3218959716)
 
-    public val pushBoldPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_bold")
+    public val pushBoldPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_bold", 3218959716)
 
     public val pushBoldItalicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_bold_italics")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_bold_italics", 3218959716)
 
     public val pushItalicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_italics")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_italics", 3218959716)
 
-    public val pushMonoPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_mono")
+    public val pushMonoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_mono", 3218959716)
 
-    public val pushColorPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_color")
+    public val pushColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_color", 2920490490)
 
     public val pushOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_outline_size")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_outline_size", 1286410249)
 
     public val pushOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_outline_color")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_outline_color", 2920490490)
 
     public val pushParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_paragraph")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_paragraph", 3089306873)
 
-    public val pushIndentPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_indent")
+    public val pushIndentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_indent", 1286410249)
 
-    public val pushListPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_list")
+    public val pushListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_list", 3017143144)
 
-    public val pushMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_meta")
+    public val pushMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_meta", 2206155733)
 
-    public val pushHintPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_hint")
+    public val pushHintPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_hint", 83702148)
 
     public val pushLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_language")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_language", 83702148)
 
     public val pushUnderlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_underline")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_underline", 3218959716)
 
     public val pushStrikethroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_strikethrough")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_strikethrough", 3218959716)
 
-    public val pushTablePtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_table")
+    public val pushTablePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_table", 2623499273)
 
     public val pushDropcapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_dropcap")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_dropcap", 4061635501)
 
     public val setTableColumnExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_table_column_expand")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_table_column_expand", 2185176273)
 
     public val setCellRowBackgroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_row_background_color")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_row_background_color", 3465483165)
 
     public val setCellBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_border_color")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_border_color", 2920490490)
 
     public val setCellSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_size_override")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_size_override", 3108078480)
 
     public val setCellPaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_padding")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_padding", 2046264180)
 
-    public val pushCellPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "push_cell")
+    public val pushCellPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_cell", 3218959716)
 
     public val pushFgcolorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_fgcolor")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_fgcolor", 2920490490)
 
     public val pushBgcolorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_bgcolor")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_bgcolor", 2920490490)
 
     public val pushCustomfxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_customfx")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_customfx", 2337942958)
 
     public val pushContextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_context")
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_context", 3218959716)
 
-    public val popContextPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop_context")
+    public val popContextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "pop_context", 3218959716)
 
-    public val popPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop")
+    public val popPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop", 3218959716)
 
-    public val popAllPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop_all")
+    public val popAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "pop_all", 3218959716)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "clear")
+    public val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "clear", 3218959716)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override_options", 3995934104)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_text_direction")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_text_direction")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_text_direction", 797257663)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_language")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_language", 83702148)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_language")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_language", 201670096)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_autowrap_mode")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_autowrap_mode")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_autowrap_mode", 1549071663)
 
     public val setMetaUnderlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_meta_underline")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_meta_underline", 2586408642)
 
     public val isMetaUnderlinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_meta_underlined")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_meta_underlined", 36873697)
 
     public val setHintUnderlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_hint_underline")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_hint_underline", 2586408642)
 
     public val isHintUnderlinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_hint_underlined")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_hint_underlined", 36873697)
 
     public val setScrollActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_active")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_active", 2586408642)
 
     public val isScrollActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_active")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_active", 36873697)
 
     public val setScrollFollowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_follow")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_follow", 2586408642)
 
     public val isScrollFollowingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_following")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_following", 36873697)
 
     public val getVScrollBarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_v_scroll_bar")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_v_scroll_bar", 2630340773)
 
     public val scrollToLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_line")
+        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_line", 1286410249)
 
     public val scrollToParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_paragraph")
+        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_paragraph", 1286410249)
 
     public val scrollToSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_selection")
+        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_selection", 3218959716)
 
     public val setTabSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_tab_size")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_tab_size", 1286410249)
 
     public val getTabSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_tab_size")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_tab_size", 3905245786)
 
     public val setFitContentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_fit_content")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_fit_content", 2586408642)
 
     public val isFitContentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_fit_content_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_fit_content_enabled", 36873697)
 
     public val setSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_selection_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_selection_enabled", 2586408642)
 
     public val isSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_selection_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_selection_enabled", 36873697)
 
     public val setContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_context_menu_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_context_menu_enabled", 2586408642)
 
     public val isContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_context_menu_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_context_menu_enabled", 36873697)
 
     public val setShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_shortcut_keys_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_shortcut_keys_enabled", 2586408642)
 
     public val isShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_shortcut_keys_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_shortcut_keys_enabled", 36873697)
 
     public val setDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_deselect_on_focus_loss_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_deselect_on_focus_loss_enabled", 2586408642)
 
     public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_deselect_on_focus_loss_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_deselect_on_focus_loss_enabled", 36873697)
 
     public val setDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_drag_and_drop_selection_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_drag_and_drop_selection_enabled", 2586408642)
 
     public val isDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_drag_and_drop_selection_enabled")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_drag_and_drop_selection_enabled", 36873697)
 
     public val getSelectionFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_from")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_from", 3905245786)
 
     public val getSelectionToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_to")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_to", 3905245786)
 
-    public val selectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "select_all")
+    public val selectAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "select_all", 3218959716)
 
     public val getSelectedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_selected_text")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_selected_text", 201670096)
 
-    public val deselectPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "deselect")
+    public val deselectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "deselect", 3218959716)
 
     public val parseBbcodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "parse_bbcode")
+        TypeManager.getMethodBindPtr("RichTextLabel", "parse_bbcode", 83702148)
 
-    public val appendTextPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "append_text")
+    public val appendTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "append_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "get_text")
+    public val getTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_text", 201670096)
 
-    public val isReadyPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "is_ready")
+    public val isReadyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_ready", 36873697)
 
     public val setThreadedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_threaded")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_threaded", 2586408642)
 
-    public val isThreadedPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "is_threaded")
+    public val isThreadedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_threaded", 36873697)
 
     public val setProgressBarDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_progress_bar_delay")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_progress_bar_delay", 1286410249)
 
     public val getProgressBarDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_progress_bar_delay")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_progress_bar_delay", 3905245786)
 
     public val setVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_characters")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_characters", 1286410249)
 
     public val getVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_characters")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_characters", 3905245786)
 
     public val getVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_characters_behavior")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_characters_behavior", 258789322)
 
     public val setVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_characters_behavior")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_characters_behavior", 3383839701)
 
     public val setVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_ratio")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_ratio", 373806689)
 
     public val getVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_ratio")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_ratio", 1740695150)
 
     public val getCharacterLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_character_line")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_character_line", 3744713108)
 
     public val getCharacterParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_character_paragraph")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_character_paragraph", 3744713108)
 
     public val getTotalCharacterCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_total_character_count")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_total_character_count", 3905245786)
 
     public val setUseBbcodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_use_bbcode")
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_use_bbcode", 2586408642)
 
     public val isUsingBbcodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_using_bbcode")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_using_bbcode", 36873697)
 
     public val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_count")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_count", 3905245786)
 
     public val getVisibleLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_line_count")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_line_count", 3905245786)
 
     public val getParagraphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_paragraph_count")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_paragraph_count", 3905245786)
 
     public val getVisibleParagraphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_paragraph_count")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_paragraph_count", 3905245786)
 
     public val getContentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_content_height")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_content_height", 3905245786)
 
     public val getContentWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_content_width")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_content_width", 3905245786)
 
     public val getLineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_offset")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_offset", 4025615559)
 
     public val getParagraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_paragraph_offset")
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_paragraph_offset", 4025615559)
 
     public val parseExpressionsForValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "parse_expressions_for_values")
+        TypeManager.getMethodBindPtr("RichTextLabel", "parse_expressions_for_values", 1522900837)
 
-    public val setEffectsPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "set_effects")
+    public val setEffectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_effects", 381264803)
 
-    public val getEffectsPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "get_effects")
+    public val getEffectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_effects", 2915620761)
 
     public val installEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "install_effect")
+        TypeManager.getMethodBindPtr("RichTextLabel", "install_effect", 1114965689)
 
-    public val getMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "get_menu")
+    public val getMenuPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_menu", 229722558)
 
     public val isMenuVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_menu_visible")
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_menu_visible", 36873697)
 
-    public val menuOptionPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "menu_option")
+    public val menuOptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "menu_option", 1286410249)
   }
 }
 

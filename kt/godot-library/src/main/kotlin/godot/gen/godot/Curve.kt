@@ -293,68 +293,79 @@ public open class Curve : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getPointCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "get_point_count")
+    public val getPointCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "get_point_count", 3905245786)
 
-    public val setPointCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "set_point_count")
+    public val setPointCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "set_point_count", 1286410249)
 
-    public val addPointPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "add_point")
+    public val addPointPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "add_point", 434072736)
 
-    public val removePointPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "remove_point")
+    public val removePointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "remove_point", 1286410249)
 
-    public val clearPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "clear_points")
+    public val clearPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "clear_points", 3218959716)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_position")
+        TypeManager.getMethodBindPtr("Curve", "get_point_position", 2299179447)
 
-    public val setPointValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "set_point_value")
+    public val setPointValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "set_point_value", 1602489585)
 
     public val setPointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_offset")
+        TypeManager.getMethodBindPtr("Curve", "set_point_offset", 3780573764)
 
-    public val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "sample")
+    public val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "sample", 3919130443)
 
-    public val sampleBakedPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "sample_baked")
+    public val sampleBakedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "sample_baked", 3919130443)
 
     public val getPointLeftTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_left_tangent")
+        TypeManager.getMethodBindPtr("Curve", "get_point_left_tangent", 2339986948)
 
     public val getPointRightTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_right_tangent")
+        TypeManager.getMethodBindPtr("Curve", "get_point_right_tangent", 2339986948)
 
     public val getPointLeftModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_left_mode")
+        TypeManager.getMethodBindPtr("Curve", "get_point_left_mode", 426950354)
 
     public val getPointRightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_right_mode")
+        TypeManager.getMethodBindPtr("Curve", "get_point_right_mode", 426950354)
 
     public val setPointLeftTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_left_tangent")
+        TypeManager.getMethodBindPtr("Curve", "set_point_left_tangent", 1602489585)
 
     public val setPointRightTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_right_tangent")
+        TypeManager.getMethodBindPtr("Curve", "set_point_right_tangent", 1602489585)
 
     public val setPointLeftModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_left_mode")
+        TypeManager.getMethodBindPtr("Curve", "set_point_left_mode", 1217242874)
 
     public val setPointRightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_right_mode")
+        TypeManager.getMethodBindPtr("Curve", "set_point_right_mode", 1217242874)
 
-    public val getMinValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "get_min_value")
+    public val getMinValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "get_min_value", 1740695150)
 
-    public val setMinValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "set_min_value")
+    public val setMinValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "set_min_value", 373806689)
 
-    public val getMaxValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "get_max_value")
+    public val getMaxValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "get_max_value", 1740695150)
 
-    public val setMaxValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "set_max_value")
+    public val setMaxValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "set_max_value", 373806689)
 
-    public val cleanDupesPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "clean_dupes")
+    public val cleanDupesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve", "clean_dupes", 3218959716)
 
-    public val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "bake")
+    public val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "bake", 3218959716)
 
     public val getBakeResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_bake_resolution")
+        TypeManager.getMethodBindPtr("Curve", "get_bake_resolution", 3905245786)
 
     public val setBakeResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_bake_resolution")
+        TypeManager.getMethodBindPtr("Curve", "set_bake_resolution", 1286410249)
   }
 }

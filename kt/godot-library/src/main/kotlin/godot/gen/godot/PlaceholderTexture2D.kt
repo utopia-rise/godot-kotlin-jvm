@@ -76,6 +76,6 @@ public open class PlaceholderTexture2D : Texture2D() {
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture2D", "set_size")
+        TypeManager.getMethodBindPtr("PlaceholderTexture2D", "set_size", 743155724)
   }
 }

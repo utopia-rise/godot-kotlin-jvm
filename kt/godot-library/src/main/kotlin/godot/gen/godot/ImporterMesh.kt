@@ -303,69 +303,71 @@ public open class ImporterMesh : Resource() {
 
   internal object MethodBindings {
     public val addBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "add_blend_shape")
+        TypeManager.getMethodBindPtr("ImporterMesh", "add_blend_shape", 83702148)
 
     public val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_count")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_count", 3905245786)
 
     public val getBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_name")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_name", 844755477)
 
     public val setBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_blend_shape_mode")
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_blend_shape_mode", 227983991)
 
     public val getBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_mode")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_mode", 836485024)
 
-    public val addSurfacePtr: VoidPtr = TypeManager.getMethodBindPtr("ImporterMesh", "add_surface")
+    public val addSurfacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMesh", "add_surface", 1740448849)
 
     public val getSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_count")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_count", 3905245786)
 
     public val getSurfacePrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_primitive_type")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_primitive_type", 3552571330)
 
     public val getSurfaceNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_name")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_name", 844755477)
 
     public val getSurfaceArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_arrays")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_arrays", 663333327)
 
     public val getSurfaceBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_blend_shape_arrays")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_blend_shape_arrays", 2345056839)
 
     public val getSurfaceLodCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_count")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_count", 923996154)
 
     public val getSurfaceLodSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_size")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_size", 3085491603)
 
     public val getSurfaceLodIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_indices")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_indices", 1265128013)
 
     public val getSurfaceMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_material")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_material", 2897466400)
 
     public val getSurfaceFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_format")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_format", 923996154)
 
     public val setSurfaceNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_name")
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_name", 501894301)
 
     public val setSurfaceMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_material")
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_material", 3671737478)
 
     public val generateLodsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "generate_lods")
+        TypeManager.getMethodBindPtr("ImporterMesh", "generate_lods", 2491878677)
 
-    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("ImporterMesh", "get_mesh")
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_mesh", 1457573577)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ImporterMesh", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ImporterMesh", "clear", 3218959716)
 
     public val setLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_lightmap_size_hint")
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_lightmap_size_hint", 1130785943)
 
     public val getLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_lightmap_size_hint")
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_lightmap_size_hint", 3690982128)
   }
 }

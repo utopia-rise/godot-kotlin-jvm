@@ -120,26 +120,26 @@ public open class BoxMesh : PrimitiveMesh() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxMesh", "set_size")
+    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxMesh", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxMesh", "get_size")
+    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BoxMesh", "get_size", 3360562783)
 
     public val setSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_width")
+        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_width", 1286410249)
 
     public val getSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_width")
+        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_width", 3905245786)
 
     public val setSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_height")
+        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_height", 1286410249)
 
     public val getSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_height")
+        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_height", 3905245786)
 
     public val setSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_depth")
+        TypeManager.getMethodBindPtr("BoxMesh", "set_subdivide_depth", 1286410249)
 
     public val getSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_depth")
+        TypeManager.getMethodBindPtr("BoxMesh", "get_subdivide_depth", 3905245786)
   }
 }

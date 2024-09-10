@@ -651,124 +651,135 @@ public open class SceneTree : MainLoop() {
   public companion object
 
   internal object MethodBindings {
-    public val getRootPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "get_root")
+    public val getRootPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "get_root", 1757182445)
 
-    public val hasGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "has_group")
+    public val hasGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "has_group", 2619796661)
 
     public val isAutoAcceptQuitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_auto_accept_quit")
+        TypeManager.getMethodBindPtr("SceneTree", "is_auto_accept_quit", 36873697)
 
     public val setAutoAcceptQuitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_auto_accept_quit")
+        TypeManager.getMethodBindPtr("SceneTree", "set_auto_accept_quit", 2586408642)
 
     public val isQuitOnGoBackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_quit_on_go_back")
+        TypeManager.getMethodBindPtr("SceneTree", "is_quit_on_go_back", 36873697)
 
     public val setQuitOnGoBackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_quit_on_go_back")
+        TypeManager.getMethodBindPtr("SceneTree", "set_quit_on_go_back", 2586408642)
 
     public val setDebugCollisionsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_debug_collisions_hint")
+        TypeManager.getMethodBindPtr("SceneTree", "set_debug_collisions_hint", 2586408642)
 
     public val isDebuggingCollisionsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_collisions_hint")
+        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_collisions_hint", 36873697)
 
     public val setDebugPathsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_debug_paths_hint")
+        TypeManager.getMethodBindPtr("SceneTree", "set_debug_paths_hint", 2586408642)
 
     public val isDebuggingPathsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_paths_hint")
+        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_paths_hint", 36873697)
 
     public val setDebugNavigationHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_debug_navigation_hint")
+        TypeManager.getMethodBindPtr("SceneTree", "set_debug_navigation_hint", 2586408642)
 
     public val isDebuggingNavigationHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_navigation_hint")
+        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_navigation_hint", 36873697)
 
     public val setEditedSceneRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_edited_scene_root")
+        TypeManager.getMethodBindPtr("SceneTree", "set_edited_scene_root", 1078189570)
 
     public val getEditedSceneRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_edited_scene_root")
+        TypeManager.getMethodBindPtr("SceneTree", "get_edited_scene_root", 3160264692)
 
-    public val setPausePtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "set_pause")
+    public val setPausePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "set_pause", 2586408642)
 
-    public val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "is_paused")
+    public val isPausedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "is_paused", 36873697)
 
-    public val createTimerPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "create_timer")
+    public val createTimerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "create_timer", 2709170273)
 
-    public val createTweenPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "create_tween")
+    public val createTweenPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "create_tween", 3426978995)
 
     public val getProcessedTweensPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_processed_tweens")
+        TypeManager.getMethodBindPtr("SceneTree", "get_processed_tweens", 2915620761)
 
     public val getNodeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_node_count")
+        TypeManager.getMethodBindPtr("SceneTree", "get_node_count", 3905245786)
 
-    public val getFramePtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "get_frame")
+    public val getFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "get_frame", 3905245786)
 
-    public val quitPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "quit")
+    public val quitPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "quit", 1995695955)
 
     public val setPhysicsInterpolationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_physics_interpolation_enabled")
+        TypeManager.getMethodBindPtr("SceneTree", "set_physics_interpolation_enabled", 2586408642)
 
     public val isPhysicsInterpolationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_physics_interpolation_enabled")
+        TypeManager.getMethodBindPtr("SceneTree", "is_physics_interpolation_enabled", 36873697)
 
-    public val queueDeletePtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "queue_delete")
+    public val queueDeletePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "queue_delete", 3975164845)
 
     public val callGroupFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "call_group_flags")
+        TypeManager.getMethodBindPtr("SceneTree", "call_group_flags", 1527739229)
 
     public val notifyGroupFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "notify_group_flags")
+        TypeManager.getMethodBindPtr("SceneTree", "notify_group_flags", 1245489420)
 
     public val setGroupFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_group_flags")
+        TypeManager.getMethodBindPtr("SceneTree", "set_group_flags", 3497599527)
 
-    public val callGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "call_group")
+    public val callGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "call_group", 1257962832)
 
-    public val notifyGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "notify_group")
+    public val notifyGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "notify_group", 2415702435)
 
-    public val setGroupPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "set_group")
+    public val setGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "set_group", 1279312029)
 
     public val getNodesInGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_nodes_in_group")
+        TypeManager.getMethodBindPtr("SceneTree", "get_nodes_in_group", 689397652)
 
     public val getFirstNodeInGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_first_node_in_group")
+        TypeManager.getMethodBindPtr("SceneTree", "get_first_node_in_group", 4071044623)
 
     public val getNodeCountInGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_node_count_in_group")
+        TypeManager.getMethodBindPtr("SceneTree", "get_node_count_in_group", 2458036349)
 
     public val setCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_current_scene")
+        TypeManager.getMethodBindPtr("SceneTree", "set_current_scene", 1078189570)
 
     public val getCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_current_scene")
+        TypeManager.getMethodBindPtr("SceneTree", "get_current_scene", 3160264692)
 
     public val changeSceneToFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_file")
+        TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_file", 166001499)
 
     public val changeSceneToPackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_packed")
+        TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_packed", 107349098)
 
     public val reloadCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "reload_current_scene")
+        TypeManager.getMethodBindPtr("SceneTree", "reload_current_scene", 166280745)
 
     public val unloadCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "unload_current_scene")
+        TypeManager.getMethodBindPtr("SceneTree", "unload_current_scene", 3218959716)
 
     public val setMultiplayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_multiplayer")
+        TypeManager.getMethodBindPtr("SceneTree", "set_multiplayer", 2385607013)
 
     public val getMultiplayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_multiplayer")
+        TypeManager.getMethodBindPtr("SceneTree", "get_multiplayer", 3453401404)
 
     public val setMultiplayerPollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_multiplayer_poll_enabled")
+        TypeManager.getMethodBindPtr("SceneTree", "set_multiplayer_poll_enabled", 2586408642)
 
     public val isMultiplayerPollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_multiplayer_poll_enabled")
+        TypeManager.getMethodBindPtr("SceneTree", "is_multiplayer_poll_enabled", 36873697)
   }
 }

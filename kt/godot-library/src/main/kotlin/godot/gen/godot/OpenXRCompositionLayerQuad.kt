@@ -71,9 +71,9 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
 
   internal object MethodBindings {
     public val setQuadSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "set_quad_size")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "set_quad_size", 743155724)
 
     public val getQuadSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "get_quad_size")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "get_quad_size", 3341600327)
   }
 }

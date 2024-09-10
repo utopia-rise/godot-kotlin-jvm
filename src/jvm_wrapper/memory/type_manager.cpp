@@ -44,11 +44,25 @@ void TypeManager::register_engine_singletons(jni::Env& p_env, jni::JObjectArray&
     }
 }
 
-uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name) {
+uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name, jlong hash) {
     jni::Env env {p_raw_env};
     String class_name {env.from_jstring(jni::JString(p_class_name))};
     String method_name {env.from_jstring(jni::JString(p_method_name))};
-    return reinterpret_cast<uintptr_t>(ClassDB::get_method(class_name, method_name));
+
+    MethodBind* bind {ClassDB::get_method(class_name, method_name)};
+
+    if(!bind){
+        LOG_ERROR(vformat("Method %s from Class %s doesn't exist. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name));
+        return 0;
+    }
+
+    if(bind->get_hash() != hash){
+        LOG_ERROR(vformat("Hash mismatch for Method %s from Class %s. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name));
+        return 0;
+    }
+
+    return reinterpret_cast<uintptr_t>(bind);
+
 }
 
 TypeManager::~TypeManager() = default;

@@ -7,8 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -30,17 +28,5 @@ public open class PacketPeerExtension : PacketPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _getPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerExtension", "_get_packet")
-
-    public val _putPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerExtension", "_put_packet")
-
-    public val _getAvailablePacketCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerExtension", "_get_available_packet_count")
-
-    public val _getMaxPacketSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerExtension", "_get_max_packet_size")
-  }
+  internal object MethodBindings
 }

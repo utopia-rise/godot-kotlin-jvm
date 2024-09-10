@@ -189,34 +189,40 @@ public open class FogMaterial : Material() {
   public companion object
 
   internal object MethodBindings {
-    public val setDensityPtr: VoidPtr = TypeManager.getMethodBindPtr("FogMaterial", "set_density")
+    public val setDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FogMaterial", "set_density", 373806689)
 
-    public val getDensityPtr: VoidPtr = TypeManager.getMethodBindPtr("FogMaterial", "get_density")
+    public val getDensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FogMaterial", "get_density", 1740695150)
 
-    public val setAlbedoPtr: VoidPtr = TypeManager.getMethodBindPtr("FogMaterial", "set_albedo")
+    public val setAlbedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FogMaterial", "set_albedo", 2920490490)
 
-    public val getAlbedoPtr: VoidPtr = TypeManager.getMethodBindPtr("FogMaterial", "get_albedo")
+    public val getAlbedoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FogMaterial", "get_albedo", 3444240500)
 
-    public val setEmissionPtr: VoidPtr = TypeManager.getMethodBindPtr("FogMaterial", "set_emission")
+    public val setEmissionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FogMaterial", "set_emission", 2920490490)
 
-    public val getEmissionPtr: VoidPtr = TypeManager.getMethodBindPtr("FogMaterial", "get_emission")
+    public val getEmissionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FogMaterial", "get_emission", 3444240500)
 
     public val setHeightFalloffPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_height_falloff")
+        TypeManager.getMethodBindPtr("FogMaterial", "set_height_falloff", 373806689)
 
     public val getHeightFalloffPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_height_falloff")
+        TypeManager.getMethodBindPtr("FogMaterial", "get_height_falloff", 1740695150)
 
     public val setEdgeFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_edge_fade")
+        TypeManager.getMethodBindPtr("FogMaterial", "set_edge_fade", 373806689)
 
     public val getEdgeFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_edge_fade")
+        TypeManager.getMethodBindPtr("FogMaterial", "get_edge_fade", 1740695150)
 
     public val setDensityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_density_texture")
+        TypeManager.getMethodBindPtr("FogMaterial", "set_density_texture", 1188404210)
 
     public val getDensityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_density_texture")
+        TypeManager.getMethodBindPtr("FogMaterial", "get_density_texture", 373985333)
   }
 }

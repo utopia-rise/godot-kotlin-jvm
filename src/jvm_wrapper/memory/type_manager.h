@@ -11,7 +11,7 @@ JVM_SINGLETON_WRAPPER(TypeManager, "godot.core.TypeManager") {
     SINGLETON_CLASS(TypeManager)
 
     INIT_JNI_BINDINGS(
-        INIT_NATIVE_METHOD("getMethodBindPtr$godot_library", "(Ljava/lang/String;Ljava/lang/String;)J",TypeManager::get_method_bind_ptr)
+        INIT_NATIVE_METHOD("getMethodBindPtr$godot_library", "(Ljava/lang/String;Ljava/lang/String;J)J",TypeManager::get_method_bind_ptr)
     )
 
 public:
@@ -24,7 +24,7 @@ public:
     void register_engine_types(jni::Env& p_env, jni::JObjectArray & p_engine_types);
     void register_engine_singletons(jni::Env& p_env, jni::JObjectArray & p_singletons);
 
-    static uintptr_t get_method_bind_ptr(JNIEnv * p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name);
+    static uintptr_t get_method_bind_ptr(JNIEnv * p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name, jlong hash);
 
 private:
     Vector<StringName> engine_type_names;

@@ -144,32 +144,33 @@ public open class ImmediateMesh : Mesh() {
 
   internal object MethodBindings {
     public val surfaceBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_begin")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_begin", 2794442543)
 
     public val surfaceSetColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_color")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_color", 2920490490)
 
     public val surfaceSetNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_normal")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_normal", 3460891852)
 
     public val surfaceSetTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_tangent")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_tangent", 3505987427)
 
     public val surfaceSetUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv", 743155724)
 
     public val surfaceSetUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv2")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv2", 743155724)
 
     public val surfaceAddVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex", 3460891852)
 
     public val surfaceAddVertex2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex_2d")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex_2d", 743155724)
 
-    public val surfaceEndPtr: VoidPtr = TypeManager.getMethodBindPtr("ImmediateMesh", "surface_end")
+    public val surfaceEndPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_end", 3218959716)
 
     public val clearSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "clear_surfaces")
+        TypeManager.getMethodBindPtr("ImmediateMesh", "clear_surfaces", 3218959716)
   }
 }

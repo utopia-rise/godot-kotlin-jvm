@@ -304,95 +304,100 @@ public open class VehicleWheel3D : Node3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleWheel3D", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleWheel3D", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_radius", 1740695150)
 
     public val setSuspensionRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_rest_length")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_rest_length", 373806689)
 
     public val getSuspensionRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_rest_length")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_rest_length", 1740695150)
 
     public val setSuspensionTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_travel")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_travel", 373806689)
 
     public val getSuspensionTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_travel")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_travel", 1740695150)
 
     public val setSuspensionStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_stiffness")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_stiffness", 373806689)
 
     public val getSuspensionStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_stiffness")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_stiffness", 1740695150)
 
     public val setSuspensionMaxForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_max_force")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_max_force", 373806689)
 
     public val getSuspensionMaxForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_max_force")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_max_force", 1740695150)
 
     public val setDampingCompressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_damping_compression")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_damping_compression", 373806689)
 
     public val getDampingCompressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_damping_compression")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_damping_compression", 1740695150)
 
     public val setDampingRelaxationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_damping_relaxation")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_damping_relaxation", 373806689)
 
     public val getDampingRelaxationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_damping_relaxation")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_damping_relaxation", 1740695150)
 
     public val setUseAsTractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_use_as_traction")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_use_as_traction", 2586408642)
 
     public val isUsedAsTractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_used_as_traction")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_used_as_traction", 36873697)
 
     public val setUseAsSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_use_as_steering")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_use_as_steering", 2586408642)
 
     public val isUsedAsSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_used_as_steering")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_used_as_steering", 36873697)
 
     public val setFrictionSlipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_friction_slip")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_friction_slip", 373806689)
 
     public val getFrictionSlipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_friction_slip")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_friction_slip", 1740695150)
 
     public val isInContactPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_in_contact")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_in_contact", 36873697)
 
     public val getContactBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_contact_body")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_contact_body", 151077316)
 
     public val setRollInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_roll_influence")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_roll_influence", 373806689)
 
     public val getRollInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_roll_influence")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_roll_influence", 1740695150)
 
     public val getSkidinfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_skidinfo")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_skidinfo", 1740695150)
 
-    public val getRpmPtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleWheel3D", "get_rpm")
+    public val getRpmPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_rpm", 1740695150)
 
     public val setEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_engine_force")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_engine_force", 373806689)
 
     public val getEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_engine_force")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_engine_force", 1740695150)
 
-    public val setBrakePtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleWheel3D", "set_brake")
+    public val setBrakePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_brake", 373806689)
 
-    public val getBrakePtr: VoidPtr = TypeManager.getMethodBindPtr("VehicleWheel3D", "get_brake")
+    public val getBrakePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_brake", 1740695150)
 
     public val setSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_steering")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_steering", 373806689)
 
     public val getSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_steering")
+        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_steering", 1740695150)
   }
 }

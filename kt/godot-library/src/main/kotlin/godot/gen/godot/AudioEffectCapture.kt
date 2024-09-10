@@ -128,30 +128,30 @@ public open class AudioEffectCapture : AudioEffect() {
 
   internal object MethodBindings {
     public val canGetBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "can_get_buffer")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "can_get_buffer", 1116898809)
 
     public val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer", 2649534757)
 
     public val clearBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "clear_buffer")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "clear_buffer", 3218959716)
 
     public val setBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "set_buffer_length")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "set_buffer_length", 373806689)
 
     public val getBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length", 191475506)
 
     public val getFramesAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_frames_available")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_frames_available", 3905245786)
 
     public val getDiscardedFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_discarded_frames")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_discarded_frames", 3905245786)
 
     public val getBufferLengthFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length_frames")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length_frames", 3905245786)
 
     public val getPushedFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_pushed_frames")
+        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_pushed_frames", 3905245786)
   }
 }

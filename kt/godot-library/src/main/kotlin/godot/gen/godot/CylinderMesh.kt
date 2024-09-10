@@ -146,39 +146,45 @@ public open class CylinderMesh : PrimitiveMesh() {
 
   internal object MethodBindings {
     public val setTopRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_top_radius")
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_top_radius", 373806689)
 
     public val getTopRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_top_radius")
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_top_radius", 1740695150)
 
     public val setBottomRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_bottom_radius")
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_bottom_radius", 373806689)
 
     public val getBottomRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_bottom_radius")
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_bottom_radius", 1740695150)
 
-    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "set_height")
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_height", 1740695150)
 
     public val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_radial_segments")
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_radial_segments", 1286410249)
 
     public val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_radial_segments")
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_radial_segments", 3905245786)
 
-    public val setRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "set_rings")
+    public val setRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_rings", 1286410249)
 
-    public val getRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "get_rings")
+    public val getRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "get_rings", 3905245786)
 
-    public val setCapTopPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_top")
+    public val setCapTopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_top", 2586408642)
 
-    public val isCapTopPtr: VoidPtr = TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_top")
+    public val isCapTopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_top", 36873697)
 
     public val setCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_bottom")
+        TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_bottom", 2586408642)
 
     public val isCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_bottom")
+        TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_bottom", 36873697)
   }
 }

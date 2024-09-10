@@ -163,16 +163,16 @@ public object ResourceSaver : Object() {
   ) : SaverFlags
 
   internal object MethodBindings {
-    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceSaver", "save")
+    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceSaver", "save", 2983274697)
 
     public val getRecognizedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "get_recognized_extensions")
+        TypeManager.getMethodBindPtr("ResourceSaver", "get_recognized_extensions", 4223597960)
 
     public val addResourceFormatSaverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "add_resource_format_saver")
+        TypeManager.getMethodBindPtr("ResourceSaver", "add_resource_format_saver", 362894272)
 
     public val removeResourceFormatSaverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver")
+        TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3373026878)
   }
 }
 

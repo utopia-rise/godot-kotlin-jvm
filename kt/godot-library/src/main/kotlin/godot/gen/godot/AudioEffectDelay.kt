@@ -218,80 +218,82 @@ public open class AudioEffectDelay : AudioEffect() {
   public companion object
 
   internal object MethodBindings {
-    public val setDryPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectDelay", "set_dry")
+    public val setDryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_dry", 373806689)
 
-    public val getDryPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectDelay", "get_dry")
+    public val getDryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_dry", 191475506)
 
     public val setTap1ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_active")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_active", 2586408642)
 
     public val isTap1ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap1_active")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap1_active", 36873697)
 
     public val setTap1DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_delay_ms", 373806689)
 
     public val getTap1DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_delay_ms", 1740695150)
 
     public val setTap1LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_level_db", 373806689)
 
     public val getTap1LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_level_db", 1740695150)
 
     public val setTap1PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_pan")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_pan", 373806689)
 
     public val getTap1PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_pan")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_pan", 1740695150)
 
     public val setTap2ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_active")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_active", 2586408642)
 
     public val isTap2ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap2_active")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap2_active", 36873697)
 
     public val setTap2DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_delay_ms", 373806689)
 
     public val getTap2DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_delay_ms", 1740695150)
 
     public val setTap2LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_level_db", 373806689)
 
     public val getTap2LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_level_db", 1740695150)
 
     public val setTap2PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_pan")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_pan", 373806689)
 
     public val getTap2PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_pan")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_pan", 1740695150)
 
     public val setFeedbackActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_active")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_active", 2586408642)
 
     public val isFeedbackActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_feedback_active")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_feedback_active", 36873697)
 
     public val setFeedbackDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_delay_ms", 373806689)
 
     public val getFeedbackDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_delay_ms")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_delay_ms", 1740695150)
 
     public val setFeedbackLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_level_db", 373806689)
 
     public val getFeedbackLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_level_db")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_level_db", 1740695150)
 
     public val setFeedbackLowpassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_lowpass")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_lowpass", 373806689)
 
     public val getFeedbackLowpassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_lowpass")
+        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_lowpass", 1740695150)
   }
 }

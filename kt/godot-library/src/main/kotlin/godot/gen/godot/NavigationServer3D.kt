@@ -1538,434 +1538,436 @@ public object NavigationServer3D : Object() {
   }
 
   internal object MethodBindings {
-    public val getMapsPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationServer3D", "get_maps")
+    public val getMapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "get_maps", 3995934104)
 
     public val mapCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_create")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_create", 529393457)
 
     public val mapSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_active")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_active", 1265174801)
 
     public val mapIsActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_is_active")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_is_active", 4155700596)
 
     public val mapSetUpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_up")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_up", 3227306858)
 
     public val mapGetUpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_up")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_up", 531438156)
 
     public val mapSetCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_cell_size")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_cell_size", 1794382983)
 
     public val mapGetCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_cell_size")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_cell_size", 866169185)
 
     public val mapSetCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_cell_height")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_cell_height", 1794382983)
 
     public val mapGetCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_cell_height")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_cell_height", 866169185)
 
     public val mapSetMergeRasterizerCellScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_merge_rasterizer_cell_scale")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_merge_rasterizer_cell_scale", 1794382983)
 
     public val mapGetMergeRasterizerCellScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_merge_rasterizer_cell_scale")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_merge_rasterizer_cell_scale", 866169185)
 
     public val mapSetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_use_edge_connections")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_use_edge_connections", 1265174801)
 
     public val mapGetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_use_edge_connections")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_use_edge_connections", 4155700596)
 
     public val mapSetEdgeConnectionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_edge_connection_margin")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_edge_connection_margin", 1794382983)
 
     public val mapGetEdgeConnectionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_edge_connection_margin")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_edge_connection_margin", 866169185)
 
     public val mapSetLinkConnectionRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_link_connection_radius")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_link_connection_radius", 1794382983)
 
     public val mapGetLinkConnectionRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_link_connection_radius")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_link_connection_radius", 866169185)
 
     public val mapGetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_path")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_path", 1187418690)
 
     public val mapGetClosestPointToSegmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_to_segment")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_to_segment", 3830095642)
 
     public val mapGetClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point", 2056183332)
 
     public val mapGetClosestPointNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_normal")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_normal", 2056183332)
 
     public val mapGetClosestPointOwnerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_owner")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_owner", 553364610)
 
     public val mapGetLinksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_links")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_links", 2684255073)
 
     public val mapGetRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_regions")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_regions", 2684255073)
 
     public val mapGetAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_agents")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_agents", 2684255073)
 
     public val mapGetObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_obstacles")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_obstacles", 2684255073)
 
     public val mapForceUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_force_update")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_force_update", 2722037293)
 
     public val mapGetIterationIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_iteration_id")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_iteration_id", 2198884583)
 
     public val mapGetRandomPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_random_point")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_random_point", 722801526)
 
     public val queryPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "query_path")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "query_path", 3415008901)
 
     public val regionCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_create")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_create", 529393457)
 
     public val regionSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enabled", 1265174801)
 
     public val regionGetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enabled", 4155700596)
 
     public val regionSetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_use_edge_connections")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_use_edge_connections", 1265174801)
 
     public val regionGetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_use_edge_connections")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_use_edge_connections", 4155700596)
 
     public val regionSetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enter_cost", 1794382983)
 
     public val regionGetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enter_cost", 866169185)
 
     public val regionSetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_travel_cost", 1794382983)
 
     public val regionGetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_travel_cost", 866169185)
 
     public val regionSetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_owner_id")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_owner_id", 3411492887)
 
     public val regionGetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_owner_id")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_owner_id", 2198884583)
 
     public val regionOwnsPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_owns_point")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_owns_point", 2360011153)
 
     public val regionSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_map", 395945892)
 
     public val regionGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_map", 3814569979)
 
     public val regionSetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_navigation_layers", 3411492887)
 
     public val regionGetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_navigation_layers", 2198884583)
 
     public val regionSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_transform")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_transform", 3935195649)
 
     public val regionGetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_transform")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_transform", 1128465797)
 
     public val regionSetNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_navigation_mesh", 2764952978)
 
     public val regionBakeNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_bake_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_bake_navigation_mesh", 1401173477)
 
     public val regionGetConnectionsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connections_count")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connections_count", 2198884583)
 
     public val regionGetConnectionPathwayStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_start")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_start", 3440143363)
 
     public val regionGetConnectionPathwayEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_end")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_end", 3440143363)
 
     public val regionGetRandomPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_random_point")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_random_point", 722801526)
 
     public val linkCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_create")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_create", 529393457)
 
     public val linkSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_map", 395945892)
 
     public val linkGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_map", 3814569979)
 
     public val linkSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enabled", 1265174801)
 
     public val linkGetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enabled", 4155700596)
 
     public val linkSetBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_bidirectional")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_bidirectional", 1265174801)
 
     public val linkIsBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_is_bidirectional")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_is_bidirectional", 4155700596)
 
     public val linkSetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_navigation_layers", 3411492887)
 
     public val linkGetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_navigation_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_navigation_layers", 2198884583)
 
     public val linkSetStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_start_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_start_position", 3227306858)
 
     public val linkGetStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_start_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_start_position", 531438156)
 
     public val linkSetEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_end_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_end_position", 3227306858)
 
     public val linkGetEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_end_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_end_position", 531438156)
 
     public val linkSetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enter_cost", 1794382983)
 
     public val linkGetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enter_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enter_cost", 866169185)
 
     public val linkSetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_travel_cost", 1794382983)
 
     public val linkGetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_travel_cost")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_travel_cost", 866169185)
 
     public val linkSetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_owner_id")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_owner_id", 3411492887)
 
     public val linkGetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_owner_id")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_owner_id", 2198884583)
 
     public val agentCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_create")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_create", 529393457)
 
     public val agentSetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_enabled", 1265174801)
 
     public val agentGetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_enabled", 4155700596)
 
     public val agentSetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_use_3d_avoidance")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_use_3d_avoidance", 1265174801)
 
     public val agentGetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_use_3d_avoidance")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_use_3d_avoidance", 4155700596)
 
     public val agentSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_map", 395945892)
 
     public val agentGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_map", 3814569979)
 
     public val agentSetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_paused")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_paused", 1265174801)
 
     public val agentGetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_paused")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_paused", 4155700596)
 
     public val agentSetNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_neighbor_distance")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_neighbor_distance", 1794382983)
 
     public val agentGetNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_neighbor_distance")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_neighbor_distance", 866169185)
 
     public val agentSetMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_max_neighbors")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_max_neighbors", 3411492887)
 
     public val agentGetMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_max_neighbors")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_max_neighbors", 2198884583)
 
     public val agentSetTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_agents")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_agents", 1794382983)
 
     public val agentGetTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_agents")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_agents", 866169185)
 
     public val agentSetTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_obstacles")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_obstacles", 1794382983)
 
     public val agentGetTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_obstacles")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_obstacles", 866169185)
 
     public val agentSetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_radius")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_radius", 1794382983)
 
     public val agentGetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_radius")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_radius", 866169185)
 
     public val agentSetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_height")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_height", 1794382983)
 
     public val agentGetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_height")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_height", 866169185)
 
     public val agentSetMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_max_speed")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_max_speed", 1794382983)
 
     public val agentGetMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_max_speed")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_max_speed", 866169185)
 
     public val agentSetVelocityForcedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_velocity_forced")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_velocity_forced", 3227306858)
 
     public val agentSetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_velocity")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_velocity", 3227306858)
 
     public val agentGetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_velocity")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_velocity", 531438156)
 
     public val agentSetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_position", 3227306858)
 
     public val agentGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_position", 531438156)
 
     public val agentIsMapChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_is_map_changed")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_is_map_changed", 4155700596)
 
     public val agentSetAvoidanceCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_callback")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_callback", 3379118538)
 
     public val agentHasAvoidanceCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_has_avoidance_callback")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_has_avoidance_callback", 4155700596)
 
     public val agentSetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_layers", 3411492887)
 
     public val agentGetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_layers", 2198884583)
 
     public val agentSetAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_mask")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_mask", 3411492887)
 
     public val agentGetAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_mask")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_mask", 2198884583)
 
     public val agentSetAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_priority")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_priority", 1794382983)
 
     public val agentGetAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_priority")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_priority", 866169185)
 
     public val obstacleCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_create")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_create", 529393457)
 
     public val obstacleSetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_enabled", 1265174801)
 
     public val obstacleGetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_enabled", 4155700596)
 
     public val obstacleSetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_use_3d_avoidance")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_use_3d_avoidance", 1265174801)
 
     public val obstacleGetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_use_3d_avoidance")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_use_3d_avoidance", 4155700596)
 
     public val obstacleSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_map", 395945892)
 
     public val obstacleGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_map")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_map", 3814569979)
 
     public val obstacleSetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_paused")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_paused", 1265174801)
 
     public val obstacleGetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_paused")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_paused", 4155700596)
 
     public val obstacleSetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_radius")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_radius", 1794382983)
 
     public val obstacleGetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_radius")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_radius", 866169185)
 
     public val obstacleSetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_height")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_height", 1794382983)
 
     public val obstacleGetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_height")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_height", 866169185)
 
     public val obstacleSetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_velocity")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_velocity", 3227306858)
 
     public val obstacleGetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_velocity")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_velocity", 531438156)
 
     public val obstacleSetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_position", 3227306858)
 
     public val obstacleGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_position")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_position", 531438156)
 
     public val obstacleSetVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_vertices")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_vertices", 4030257846)
 
     public val obstacleGetVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_vertices")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_vertices", 808965560)
 
     public val obstacleSetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_layers", 3411492887)
 
     public val obstacleGetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_layers")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_layers", 2198884583)
 
     public val parseSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "parse_source_geometry_data")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "parse_source_geometry_data", 685862123)
 
     public val bakeFromSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data", 2469318639)
 
     public val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async", 2469318639)
 
     public val isBakingNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "is_baking_navigation_mesh")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "is_baking_navigation_mesh", 3142026141)
 
     public val sourceGeometryParserCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_create")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_create", 529393457)
 
     public val sourceGeometryParserSetCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_set_callback")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_set_callback", 3379118538)
 
     public val simplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "simplify_path")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "simplify_path", 2344122170)
 
-    public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("NavigationServer3D", "free_rid")
+    public val freeRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "free_rid", 2722037293)
 
     public val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "set_active")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "set_active", 2586408642)
 
     public val setDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "set_debug_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "set_debug_enabled", 2586408642)
 
     public val getDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "get_debug_enabled")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "get_debug_enabled", 36873697)
 
     public val getProcessInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "get_process_info")
+        TypeManager.getMethodBindPtr("NavigationServer3D", "get_process_info", 1938440894)
   }
 }

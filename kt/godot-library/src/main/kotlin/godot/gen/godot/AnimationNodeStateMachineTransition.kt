@@ -257,57 +257,57 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
   internal object MethodBindings {
     public val setSwitchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_switch_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_switch_mode", 2074906633)
 
     public val getSwitchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_switch_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_switch_mode", 2138562085)
 
     public val setAdvanceModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_mode", 1210869868)
 
     public val getAdvanceModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_mode")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_mode", 61101689)
 
     public val setAdvanceConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_condition")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_condition", 3304788590)
 
     public val getAdvanceConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_condition")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_condition", 2002593661)
 
     public val setXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_time")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_time", 373806689)
 
     public val getXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_time")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_time", 1740695150)
 
     public val setXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_curve")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_curve", 270443179)
 
     public val getXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_curve")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_curve", 2460114913)
 
     public val setBreakLoopAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_break_loop_at_end")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_break_loop_at_end", 2586408642)
 
     public val isLoopBrokenAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_loop_broken_at_end")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_loop_broken_at_end", 36873697)
 
     public val setResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_reset")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_reset", 2586408642)
 
     public val isResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_reset")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_reset", 36873697)
 
     public val setPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_priority")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_priority", 1286410249)
 
     public val getPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_priority")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_priority", 3905245786)
 
     public val setAdvanceExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_expression")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_expression", 83702148)
 
     public val getAdvanceExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_expression")
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_expression", 201670096)
   }
 }

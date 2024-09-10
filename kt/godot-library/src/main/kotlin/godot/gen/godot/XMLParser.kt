@@ -281,45 +281,51 @@ public open class XMLParser : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val readPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "read")
+    public val readPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "read", 166280745)
 
-    public val getNodeTypePtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "get_node_type")
+    public val getNodeTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_type", 2984359541)
 
-    public val getNodeNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "get_node_name")
+    public val getNodeNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_name", 201670096)
 
-    public val getNodeDataPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "get_node_data")
+    public val getNodeDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_data", 201670096)
 
     public val getNodeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_offset")
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_offset", 3905245786)
 
     public val getAttributeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_count")
+        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_count", 3905245786)
 
     public val getAttributeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_name")
+        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_name", 844755477)
 
     public val getAttributeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_value")
+        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_value", 844755477)
 
-    public val hasAttributePtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "has_attribute")
+    public val hasAttributePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XMLParser", "has_attribute", 3927539163)
 
     public val getNamedAttributeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value")
+        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value", 3135753539)
 
     public val getNamedAttributeValueSafePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value_safe")
+        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value_safe", 3135753539)
 
-    public val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "is_empty")
+    public val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "is_empty", 36873697)
 
     public val getCurrentLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_current_line")
+        TypeManager.getMethodBindPtr("XMLParser", "get_current_line", 3905245786)
 
-    public val skipSectionPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "skip_section")
+    public val skipSectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XMLParser", "skip_section", 3218959716)
 
-    public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "seek")
+    public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "seek", 844576869)
 
-    public val openPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "open")
+    public val openPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "open", 166001499)
 
-    public val openBufferPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "open_buffer")
+    public val openBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XMLParser", "open_buffer", 680677267)
   }
 }

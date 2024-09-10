@@ -125,32 +125,40 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_radius", 1740695150)
 
-    public val setHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "set_height")
+    public val setHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_height", 373806689)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "get_height")
+    public val getHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_height", 1740695150)
 
-    public val setSidesPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "set_sides")
+    public val setSidesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_sides", 1286410249)
 
-    public val getSidesPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "get_sides")
+    public val getSidesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_sides", 3905245786)
 
-    public val setConePtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "set_cone")
+    public val setConePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_cone", 2586408642)
 
-    public val isConePtr: VoidPtr = TypeManager.getMethodBindPtr("CSGCylinder3D", "is_cone")
+    public val isConePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "is_cone", 36873697)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_material")
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_material")
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_material", 5934680)
 
     public val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_smooth_faces", 2586408642)
 
     public val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_smooth_faces", 36873697)
   }
 }

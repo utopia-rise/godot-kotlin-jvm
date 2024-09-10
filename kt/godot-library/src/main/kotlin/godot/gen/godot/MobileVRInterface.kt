@@ -222,57 +222,63 @@ public open class MobileVRInterface : XRInterface() {
 
   internal object MethodBindings {
     public val setEyeHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_eye_height")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_eye_height", 373806689)
 
     public val getEyeHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_eye_height")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_eye_height", 1740695150)
 
-    public val setIodPtr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "set_iod")
+    public val setIodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_iod", 373806689)
 
-    public val getIodPtr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "get_iod")
+    public val getIodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_iod", 1740695150)
 
     public val setDisplayWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_width")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_width", 373806689)
 
     public val getDisplayWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_width")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_width", 1740695150)
 
     public val setDisplayToLensPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_to_lens")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_to_lens", 373806689)
 
     public val getDisplayToLensPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_to_lens")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_to_lens", 1740695150)
 
     public val setOffsetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_offset_rect")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_offset_rect", 2046264180)
 
     public val getOffsetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_offset_rect")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_offset_rect", 1639390495)
 
     public val setOversamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_oversample")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_oversample", 373806689)
 
     public val getOversamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_oversample")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_oversample", 1740695150)
 
-    public val setK1Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "set_k1")
+    public val setK1Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_k1", 373806689)
 
-    public val getK1Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "get_k1")
+    public val getK1Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_k1", 1740695150)
 
-    public val setK2Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "set_k2")
+    public val setK2Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_k2", 373806689)
 
-    public val getK2Ptr: VoidPtr = TypeManager.getMethodBindPtr("MobileVRInterface", "get_k2")
+    public val getK2Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_k2", 1740695150)
 
     public val getVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_min_radius")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_min_radius", 1740695150)
 
     public val setVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_min_radius")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_min_radius", 373806689)
 
     public val getVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_strength")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_strength", 1740695150)
 
     public val setVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_strength")
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_strength", 373806689)
   }
 }

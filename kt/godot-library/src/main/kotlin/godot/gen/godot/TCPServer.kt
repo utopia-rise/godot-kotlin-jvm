@@ -101,19 +101,20 @@ public open class TCPServer : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val listenPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "listen")
+    public val listenPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "listen", 3167955072)
 
     public val isConnectionAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "is_connection_available")
+        TypeManager.getMethodBindPtr("TCPServer", "is_connection_available", 36873697)
 
-    public val isListeningPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "is_listening")
+    public val isListeningPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TCPServer", "is_listening", 36873697)
 
     public val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "get_local_port")
+        TypeManager.getMethodBindPtr("TCPServer", "get_local_port", 3905245786)
 
     public val takeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "take_connection")
+        TypeManager.getMethodBindPtr("TCPServer", "take_connection", 30545006)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "stop")
+    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "stop", 3218959716)
   }
 }

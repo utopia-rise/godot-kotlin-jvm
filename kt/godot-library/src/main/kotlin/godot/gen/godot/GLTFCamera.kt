@@ -150,38 +150,45 @@ public open class GLTFCamera : Resource() {
   }
 
   internal object MethodBindings {
-    public val fromNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "from_node")
+    public val fromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "from_node", 237784)
 
-    public val toNodePtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "to_node")
+    public val toNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "to_node", 2285090890)
 
     public val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "from_dictionary")
+        TypeManager.getMethodBindPtr("GLTFCamera", "from_dictionary", 2495512509)
 
     public val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "to_dictionary")
+        TypeManager.getMethodBindPtr("GLTFCamera", "to_dictionary", 3102165223)
 
     public val getPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "get_perspective")
+        TypeManager.getMethodBindPtr("GLTFCamera", "get_perspective", 36873697)
 
     public val setPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "set_perspective")
+        TypeManager.getMethodBindPtr("GLTFCamera", "set_perspective", 2586408642)
 
-    public val getFovPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "get_fov")
+    public val getFovPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "get_fov", 1740695150)
 
-    public val setFovPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "set_fov")
+    public val setFovPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "set_fov", 373806689)
 
-    public val getSizeMagPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "get_size_mag")
+    public val getSizeMagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "get_size_mag", 1740695150)
 
-    public val setSizeMagPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "set_size_mag")
+    public val setSizeMagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "set_size_mag", 373806689)
 
-    public val getDepthFarPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "get_depth_far")
+    public val getDepthFarPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "get_depth_far", 1740695150)
 
-    public val setDepthFarPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "set_depth_far")
+    public val setDepthFarPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFCamera", "set_depth_far", 373806689)
 
     public val getDepthNearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "get_depth_near")
+        TypeManager.getMethodBindPtr("GLTFCamera", "get_depth_near", 1740695150)
 
     public val setDepthNearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "set_depth_near")
+        TypeManager.getMethodBindPtr("GLTFCamera", "set_depth_near", 373806689)
   }
 }

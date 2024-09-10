@@ -37,6 +37,6 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
 
   internal object MethodBindings {
     public val getPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeReroute", "get_port_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeReroute", "get_port_type", 1287173294)
   }
 }

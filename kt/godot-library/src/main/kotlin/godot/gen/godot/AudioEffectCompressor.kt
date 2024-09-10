@@ -145,43 +145,45 @@ public open class AudioEffectCompressor : AudioEffect() {
 
   internal object MethodBindings {
     public val setThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_threshold")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_threshold", 373806689)
 
     public val getThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_threshold")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_threshold", 1740695150)
 
     public val setRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_ratio")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_ratio", 373806689)
 
     public val getRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_ratio")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_ratio", 1740695150)
 
     public val setGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_gain")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_gain", 373806689)
 
     public val getGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_gain")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_gain", 1740695150)
 
     public val setAttackUsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_attack_us")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_attack_us", 373806689)
 
     public val getAttackUsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_attack_us")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_attack_us", 1740695150)
 
     public val setReleaseMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_release_ms")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_release_ms", 373806689)
 
     public val getReleaseMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_release_ms")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_release_ms", 1740695150)
 
-    public val setMixPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_mix")
+    public val setMixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_mix", 373806689)
 
-    public val getMixPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_mix")
+    public val getMixPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_mix", 1740695150)
 
     public val setSidechainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_sidechain")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_sidechain", 3304788590)
 
     public val getSidechainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_sidechain")
+        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_sidechain", 2002593661)
   }
 }

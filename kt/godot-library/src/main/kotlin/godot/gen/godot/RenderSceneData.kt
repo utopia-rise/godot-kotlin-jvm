@@ -97,21 +97,21 @@ public open class RenderSceneData internal constructor() : Object() {
 
   internal object MethodBindings {
     public val getCamTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_transform")
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_transform", 3229777777)
 
     public val getCamProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_projection")
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_projection", 2910717950)
 
     public val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_count")
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_count", 3905245786)
 
     public val getViewEyeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_eye_offset")
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_eye_offset", 711720468)
 
     public val getViewProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_projection")
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_projection", 3179846605)
 
     public val getUniformBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_uniform_buffer")
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_uniform_buffer", 2944877500)
   }
 }

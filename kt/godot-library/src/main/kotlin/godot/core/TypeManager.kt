@@ -37,5 +37,5 @@ internal object TypeManager {
         userTypes.clear()
     }
 
-    internal external fun getMethodBindPtr(className: String, methodName: String): VoidPtr
+    internal external fun getMethodBindPtr(className: String, methodName: String, hash: Long): VoidPtr
 }

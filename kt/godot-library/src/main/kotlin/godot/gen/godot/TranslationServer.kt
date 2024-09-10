@@ -252,71 +252,72 @@ public object TranslationServer : Object() {
 
   internal object MethodBindings {
     public val setLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "set_locale")
+        TypeManager.getMethodBindPtr("TranslationServer", "set_locale", 83702148)
 
     public val getLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_locale")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_locale", 201670096)
 
     public val getToolLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_tool_locale")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_tool_locale", 2841200299)
 
     public val compareLocalesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "compare_locales")
+        TypeManager.getMethodBindPtr("TranslationServer", "compare_locales", 2878152881)
 
     public val standardizeLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "standardize_locale")
+        TypeManager.getMethodBindPtr("TranslationServer", "standardize_locale", 3135753539)
 
     public val getAllLanguagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_all_languages")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_all_languages", 1139954409)
 
     public val getLanguageNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_language_name")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_language_name", 3135753539)
 
     public val getAllScriptsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_all_scripts")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_all_scripts", 1139954409)
 
     public val getScriptNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_script_name")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_script_name", 3135753539)
 
     public val getAllCountriesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_all_countries")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_all_countries", 1139954409)
 
     public val getCountryNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_country_name")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_country_name", 3135753539)
 
     public val getLocaleNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_locale_name")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_locale_name", 3135753539)
 
     public val translatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "translate")
+        TypeManager.getMethodBindPtr("TranslationServer", "translate", 58037827)
 
     public val translatePluralPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "translate_plural")
+        TypeManager.getMethodBindPtr("TranslationServer", "translate_plural", 1333931916)
 
     public val addTranslationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "add_translation")
+        TypeManager.getMethodBindPtr("TranslationServer", "add_translation", 1466479800)
 
     public val removeTranslationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "remove_translation")
+        TypeManager.getMethodBindPtr("TranslationServer", "remove_translation", 1466479800)
 
     public val getTranslationObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_translation_object")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_translation_object", 2065240175)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("TranslationServer", "clear")
+    public val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationServer", "clear", 3218959716)
 
     public val getLoadedLocalesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_loaded_locales")
+        TypeManager.getMethodBindPtr("TranslationServer", "get_loaded_locales", 1139954409)
 
     public val isPseudolocalizationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "is_pseudolocalization_enabled")
+        TypeManager.getMethodBindPtr("TranslationServer", "is_pseudolocalization_enabled", 36873697)
 
     public val setPseudolocalizationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "set_pseudolocalization_enabled")
+        TypeManager.getMethodBindPtr("TranslationServer", "set_pseudolocalization_enabled", 2586408642)
 
     public val reloadPseudolocalizationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "reload_pseudolocalization")
+        TypeManager.getMethodBindPtr("TranslationServer", "reload_pseudolocalization", 3218959716)
 
     public val pseudolocalizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "pseudolocalize")
+        TypeManager.getMethodBindPtr("TranslationServer", "pseudolocalize", 1965194235)
   }
 }

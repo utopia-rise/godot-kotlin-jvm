@@ -115,20 +115,22 @@ public open class PointLight2D : Light2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("PointLight2D", "set_texture")
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("PointLight2D", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture", 3635182373)
 
     public val setTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_offset")
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_offset", 743155724)
 
     public val getTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_offset")
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_offset", 3341600327)
 
     public val setTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_scale")
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_scale", 373806689)
 
     public val getTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_scale")
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_scale", 1740695150)
   }
 }

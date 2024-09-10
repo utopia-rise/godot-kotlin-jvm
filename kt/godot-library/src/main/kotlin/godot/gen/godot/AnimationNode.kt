@@ -365,67 +365,49 @@ public open class AnimationNode : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val _getChildNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_child_nodes")
-
-    public val _getParameterListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_parameter_list")
-
-    public val _getChildByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_child_by_name")
-
-    public val _getParameterDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_parameter_default_value")
-
-    public val _isParameterReadOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_is_parameter_read_only")
-
-    public val _processPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "_process")
-
-    public val _getCaptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "_get_caption")
-
-    public val _hasFilterPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "_has_filter")
-
-    public val addInputPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "add_input")
+    public val addInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "add_input", 2323990056)
 
     public val removeInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "remove_input")
+        TypeManager.getMethodBindPtr("AnimationNode", "remove_input", 1286410249)
 
     public val setInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_input_name")
+        TypeManager.getMethodBindPtr("AnimationNode", "set_input_name", 215573526)
 
     public val getInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "get_input_name")
+        TypeManager.getMethodBindPtr("AnimationNode", "get_input_name", 844755477)
 
     public val getInputCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "get_input_count")
+        TypeManager.getMethodBindPtr("AnimationNode", "get_input_count", 3905245786)
 
-    public val findInputPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "find_input")
+    public val findInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "find_input", 1321353865)
 
     public val setFilterPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_path")
+        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_path", 3868023870)
 
     public val isPathFilteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "is_path_filtered")
+        TypeManager.getMethodBindPtr("AnimationNode", "is_path_filtered", 861721659)
 
     public val setFilterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_enabled")
+        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_enabled", 2586408642)
 
     public val isFilterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "is_filter_enabled")
+        TypeManager.getMethodBindPtr("AnimationNode", "is_filter_enabled", 36873697)
 
     public val blendAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "blend_animation")
+        TypeManager.getMethodBindPtr("AnimationNode", "blend_animation", 1630801826)
 
-    public val blendNodePtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "blend_node")
+    public val blendNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "blend_node", 1746075988)
 
-    public val blendInputPtr: VoidPtr = TypeManager.getMethodBindPtr("AnimationNode", "blend_input")
+    public val blendInputPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNode", "blend_input", 1361527350)
 
     public val setParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_parameter")
+        TypeManager.getMethodBindPtr("AnimationNode", "set_parameter", 3776071444)
 
     public val getParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "get_parameter")
+        TypeManager.getMethodBindPtr("AnimationNode", "get_parameter", 2760726917)
   }
 }

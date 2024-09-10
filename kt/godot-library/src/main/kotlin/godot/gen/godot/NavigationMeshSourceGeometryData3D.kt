@@ -168,48 +168,48 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
 
   internal object MethodBindings {
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_vertices")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_vertices", 2899603908)
 
     public val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_vertices")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_vertices", 675695659)
 
     public val setIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_indices")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_indices", 3614634198)
 
     public val getIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_indices")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_indices", 1930428628)
 
     public val appendArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "append_arrays")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "append_arrays", 3117535015)
 
     public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear", 3218959716)
 
     public val hasDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "has_data")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "has_data", 2240911060)
 
     public val addMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh", 975462459)
 
     public val addMeshArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh_array")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh_array", 4235710913)
 
     public val addFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_faces")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_faces", 1440358797)
 
     public val mergePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "merge")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "merge", 655828145)
 
     public val addProjectedObstructionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_projected_obstruction")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_projected_obstruction", 3351846707)
 
     public val clearProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear_projected_obstructions")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear_projected_obstructions", 3218959716)
 
     public val setProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_projected_obstructions")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_projected_obstructions", 381264803)
 
     public val getProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_projected_obstructions")
+        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_projected_obstructions", 3995934104)
   }
 }

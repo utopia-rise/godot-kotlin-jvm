@@ -313,69 +313,73 @@ public open class BaseButton : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val _pressedPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "_pressed")
+    public val setPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "set_pressed", 2586408642)
 
-    public val _toggledPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "_toggled")
-
-    public val setPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "set_pressed")
-
-    public val isPressedPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "is_pressed")
+    public val isPressedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "is_pressed", 36873697)
 
     public val setPressedNoSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_pressed_no_signal")
+        TypeManager.getMethodBindPtr("BaseButton", "set_pressed_no_signal", 2586408642)
 
-    public val isHoveredPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "is_hovered")
+    public val isHoveredPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "is_hovered", 36873697)
 
     public val setToggleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_toggle_mode")
+        TypeManager.getMethodBindPtr("BaseButton", "set_toggle_mode", 2586408642)
 
     public val isToggleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_toggle_mode")
+        TypeManager.getMethodBindPtr("BaseButton", "is_toggle_mode", 36873697)
 
     public val setShortcutInTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_in_tooltip")
+        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_in_tooltip", 2586408642)
 
     public val isShortcutInTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_in_tooltip_enabled")
+        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_in_tooltip_enabled", 36873697)
 
-    public val setDisabledPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "set_disabled")
+    public val setDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "set_disabled", 2586408642)
 
-    public val isDisabledPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "is_disabled")
+    public val isDisabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "is_disabled", 36873697)
 
     public val setActionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_action_mode")
+        TypeManager.getMethodBindPtr("BaseButton", "set_action_mode", 1985162088)
 
     public val getActionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_action_mode")
+        TypeManager.getMethodBindPtr("BaseButton", "get_action_mode", 2589712189)
 
     public val setButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_button_mask")
+        TypeManager.getMethodBindPtr("BaseButton", "set_button_mask", 3950145251)
 
     public val getButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_button_mask")
+        TypeManager.getMethodBindPtr("BaseButton", "get_button_mask", 2512161324)
 
-    public val getDrawModePtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "get_draw_mode")
+    public val getDrawModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "get_draw_mode", 2492721305)
 
     public val setKeepPressedOutsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_keep_pressed_outside")
+        TypeManager.getMethodBindPtr("BaseButton", "set_keep_pressed_outside", 2586408642)
 
     public val isKeepPressedOutsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_keep_pressed_outside")
+        TypeManager.getMethodBindPtr("BaseButton", "is_keep_pressed_outside", 36873697)
 
     public val setShortcutFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_feedback")
+        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_feedback", 2586408642)
 
     public val isShortcutFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_feedback")
+        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_feedback", 36873697)
 
-    public val setShortcutPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "set_shortcut")
+    public val setShortcutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut", 857163497)
 
-    public val getShortcutPtr: VoidPtr = TypeManager.getMethodBindPtr("BaseButton", "get_shortcut")
+    public val getShortcutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseButton", "get_shortcut", 3415666916)
 
     public val setButtonGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_button_group")
+        TypeManager.getMethodBindPtr("BaseButton", "set_button_group", 1794463739)
 
     public val getButtonGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_button_group")
+        TypeManager.getMethodBindPtr("BaseButton", "get_button_group", 281644053)
   }
 }

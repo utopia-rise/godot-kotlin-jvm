@@ -78,21 +78,21 @@ public open class LightOccluder2D : Node2D() {
 
   internal object MethodBindings {
     public val setOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "set_occluder_polygon")
+        TypeManager.getMethodBindPtr("LightOccluder2D", "set_occluder_polygon", 3258315893)
 
     public val getOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "get_occluder_polygon")
+        TypeManager.getMethodBindPtr("LightOccluder2D", "get_occluder_polygon", 3962317075)
 
     public val setOccluderLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "set_occluder_light_mask")
+        TypeManager.getMethodBindPtr("LightOccluder2D", "set_occluder_light_mask", 1286410249)
 
     public val getOccluderLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "get_occluder_light_mask")
+        TypeManager.getMethodBindPtr("LightOccluder2D", "get_occluder_light_mask", 3905245786)
 
     public val setAsSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "set_as_sdf_collision")
+        TypeManager.getMethodBindPtr("LightOccluder2D", "set_as_sdf_collision", 2586408642)
 
     public val isSetAsSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "is_set_as_sdf_collision")
+        TypeManager.getMethodBindPtr("LightOccluder2D", "is_set_as_sdf_collision", 36873697)
   }
 }

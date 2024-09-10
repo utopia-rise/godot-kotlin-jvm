@@ -209,38 +209,46 @@ public open class Sprite3D : SpriteBase3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "set_texture")
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "get_texture", 3635182373)
 
     public val setRegionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_region_enabled")
+        TypeManager.getMethodBindPtr("Sprite3D", "set_region_enabled", 2586408642)
 
     public val isRegionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "is_region_enabled")
+        TypeManager.getMethodBindPtr("Sprite3D", "is_region_enabled", 36873697)
 
     public val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_region_rect")
+        TypeManager.getMethodBindPtr("Sprite3D", "set_region_rect", 2046264180)
 
     public val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_region_rect")
+        TypeManager.getMethodBindPtr("Sprite3D", "get_region_rect", 1639390495)
 
-    public val setFramePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "set_frame")
+    public val setFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "set_frame", 1286410249)
 
-    public val getFramePtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "get_frame")
+    public val getFramePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "get_frame", 3905245786)
 
     public val setFrameCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_frame_coords")
+        TypeManager.getMethodBindPtr("Sprite3D", "set_frame_coords", 1130785943)
 
     public val getFrameCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_frame_coords")
+        TypeManager.getMethodBindPtr("Sprite3D", "get_frame_coords", 3690982128)
 
-    public val setVframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "set_vframes")
+    public val setVframesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "set_vframes", 1286410249)
 
-    public val getVframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "get_vframes")
+    public val getVframesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "get_vframes", 3905245786)
 
-    public val setHframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "set_hframes")
+    public val setHframesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "set_hframes", 1286410249)
 
-    public val getHframesPtr: VoidPtr = TypeManager.getMethodBindPtr("Sprite3D", "get_hframes")
+    public val getHframesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Sprite3D", "get_hframes", 3905245786)
   }
 }

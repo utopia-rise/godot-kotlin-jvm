@@ -122,27 +122,27 @@ public open class AnimationTree : AnimationMixer() {
 
   internal object MethodBindings {
     public val setTreeRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "set_tree_root")
+        TypeManager.getMethodBindPtr("AnimationTree", "set_tree_root", 2581683800)
 
     public val getTreeRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "get_tree_root")
+        TypeManager.getMethodBindPtr("AnimationTree", "get_tree_root", 4110384712)
 
     public val setAdvanceExpressionBaseNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "set_advance_expression_base_node")
+        TypeManager.getMethodBindPtr("AnimationTree", "set_advance_expression_base_node", 1348162250)
 
     public val getAdvanceExpressionBaseNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "get_advance_expression_base_node")
+        TypeManager.getMethodBindPtr("AnimationTree", "get_advance_expression_base_node", 4075236667)
 
     public val setAnimationPlayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "set_animation_player")
+        TypeManager.getMethodBindPtr("AnimationTree", "set_animation_player", 1348162250)
 
     public val getAnimationPlayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "get_animation_player")
+        TypeManager.getMethodBindPtr("AnimationTree", "get_animation_player", 4075236667)
 
     public val setProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "set_process_callback")
+        TypeManager.getMethodBindPtr("AnimationTree", "set_process_callback", 1723352826)
 
     public val getProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationTree", "get_process_callback")
+        TypeManager.getMethodBindPtr("AnimationTree", "get_process_callback", 891317132)
   }
 }

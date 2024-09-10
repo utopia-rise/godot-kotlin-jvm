@@ -143,32 +143,34 @@ public open class CollisionShape2D : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setShapePtr: VoidPtr = TypeManager.getMethodBindPtr("CollisionShape2D", "set_shape")
+    public val setShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_shape", 771364740)
 
-    public val getShapePtr: VoidPtr = TypeManager.getMethodBindPtr("CollisionShape2D", "get_shape")
+    public val getShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CollisionShape2D", "get_shape", 522005891)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_disabled")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "is_disabled")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "is_disabled", 36873697)
 
     public val setOneWayCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision", 2586408642)
 
     public val isOneWayCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "is_one_way_collision_enabled")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "is_one_way_collision_enabled", 36873697)
 
     public val setOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_margin")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_margin", 373806689)
 
     public val getOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin", 1740695150)
 
     public val setDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_debug_color")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_debug_color", 2920490490)
 
     public val getDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_debug_color")
+        TypeManager.getMethodBindPtr("CollisionShape2D", "get_debug_color", 3444240500)
   }
 }

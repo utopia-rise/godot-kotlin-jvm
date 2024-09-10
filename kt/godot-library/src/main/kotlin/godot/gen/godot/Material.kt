@@ -137,32 +137,22 @@ public open class Material : Resource() {
   }
 
   internal object MethodBindings {
-    public val _getShaderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "_get_shader_rid")
+    public val setNextPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "set_next_pass", 2757459619)
 
-    public val _getShaderModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "_get_shader_mode")
-
-    public val _canDoNextPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "_can_do_next_pass")
-
-    public val _canUseRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "_can_use_render_priority")
-
-    public val setNextPassPtr: VoidPtr = TypeManager.getMethodBindPtr("Material", "set_next_pass")
-
-    public val getNextPassPtr: VoidPtr = TypeManager.getMethodBindPtr("Material", "get_next_pass")
+    public val getNextPassPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Material", "get_next_pass", 5934680)
 
     public val setRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "set_render_priority")
+        TypeManager.getMethodBindPtr("Material", "set_render_priority", 1286410249)
 
     public val getRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "get_render_priority")
+        TypeManager.getMethodBindPtr("Material", "get_render_priority", 3905245786)
 
     public val inspectNativeShaderCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "inspect_native_shader_code")
+        TypeManager.getMethodBindPtr("Material", "inspect_native_shader_code", 3218959716)
 
     public val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "create_placeholder")
+        TypeManager.getMethodBindPtr("Material", "create_placeholder", 121922552)
   }
 }

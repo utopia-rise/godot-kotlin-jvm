@@ -71,9 +71,9 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec2Constant", "set_constant")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec2Constant", "set_constant", 743155724)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec2Constant", "get_constant")
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec2Constant", "get_constant", 3341600327)
   }
 }

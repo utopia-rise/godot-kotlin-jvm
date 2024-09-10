@@ -63,9 +63,9 @@ public open class ConcavePolygonShape2D : Shape2D() {
 
   internal object MethodBindings {
     public val setSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "set_segments")
+        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "set_segments", 1509147220)
 
     public val getSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "get_segments")
+        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "get_segments", 2961356807)
   }
 }

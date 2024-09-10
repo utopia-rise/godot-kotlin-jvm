@@ -88,9 +88,9 @@ public open class GDExtension : Resource() {
 
   internal object MethodBindings {
     public val isLibraryOpenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtension", "is_library_open")
+        TypeManager.getMethodBindPtr("GDExtension", "is_library_open", 36873697)
 
     public val getMinimumLibraryInitializationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtension", "get_minimum_library_initialization_level")
+        TypeManager.getMethodBindPtr("GDExtension", "get_minimum_library_initialization_level", 964858755)
   }
 }

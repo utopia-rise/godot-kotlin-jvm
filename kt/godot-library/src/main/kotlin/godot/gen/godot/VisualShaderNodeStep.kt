@@ -92,9 +92,9 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeStep", "set_op_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeStep", "set_op_type", 715172489)
 
     public val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeStep", "get_op_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeStep", "get_op_type", 3274022781)
   }
 }

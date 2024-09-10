@@ -101,16 +101,19 @@ public open class CurveTexture : Texture2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("CurveTexture", "set_width")
+    public val setWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CurveTexture", "set_width", 1286410249)
 
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("CurveTexture", "set_curve")
+    public val setCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CurveTexture", "set_curve", 270443179)
 
-    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("CurveTexture", "get_curve")
+    public val getCurvePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CurveTexture", "get_curve", 2460114913)
 
     public val setTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveTexture", "set_texture_mode")
+        TypeManager.getMethodBindPtr("CurveTexture", "set_texture_mode", 1321955367)
 
     public val getTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveTexture", "get_texture_mode")
+        TypeManager.getMethodBindPtr("CurveTexture", "get_texture_mode", 715756376)
   }
 }

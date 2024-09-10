@@ -150,21 +150,21 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
 
   internal object MethodBindings {
     public val intersectPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "intersect_point")
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "intersect_point", 2118456068)
 
     public val intersectRayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "intersect_ray")
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "intersect_ray", 1590275562)
 
     public val intersectShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "intersect_shape")
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "intersect_shape", 2488867228)
 
     public val castMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "cast_motion")
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "cast_motion", 711275086)
 
     public val collideShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "collide_shape")
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "collide_shape", 2488867228)
 
     public val getRestInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "get_rest_info")
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2D", "get_rest_info", 2803666496)
   }
 }

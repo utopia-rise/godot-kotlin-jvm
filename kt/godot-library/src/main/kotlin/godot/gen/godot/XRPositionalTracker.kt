@@ -212,30 +212,33 @@ public open class XRPositionalTracker : XRTracker() {
 
   internal object MethodBindings {
     public val getTrackerProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile")
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile", 201670096)
 
     public val setTrackerProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile")
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile", 83702148)
 
     public val getTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand")
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand", 4181770860)
 
     public val setTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand")
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand", 3904108980)
 
-    public val hasPosePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPositionalTracker", "has_pose")
+    public val hasPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "has_pose", 2619796661)
 
-    public val getPosePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPositionalTracker", "get_pose")
+    public val getPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_pose", 4099720006)
 
     public val invalidatePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "invalidate_pose")
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "invalidate_pose", 3304788590)
 
-    public val setPosePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPositionalTracker", "set_pose")
+    public val setPosePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_pose", 3451230163)
 
     public val getInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_input")
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_input", 2760726917)
 
     public val setInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_input")
+        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_input", 3776071444)
   }
 }

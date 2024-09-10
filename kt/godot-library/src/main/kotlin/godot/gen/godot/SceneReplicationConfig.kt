@@ -186,42 +186,42 @@ public open class SceneReplicationConfig : Resource() {
 
   internal object MethodBindings {
     public val getPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "get_properties")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "get_properties", 3995934104)
 
     public val addPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "add_property")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "add_property", 4094619021)
 
     public val hasPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "has_property")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "has_property", 861721659)
 
     public val removePropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "remove_property")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "remove_property", 1348162250)
 
     public val propertyGetIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_index")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_index", 1382022557)
 
     public val propertyGetSpawnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_spawn")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_spawn", 3456846888)
 
     public val propertySetSpawnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_spawn")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_spawn", 3868023870)
 
     public val propertyGetReplicationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_replication_mode")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_replication_mode", 2870606336)
 
     public val propertySetReplicationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_replication_mode")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_replication_mode", 3200083865)
 
     public val propertyGetSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_sync")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_sync", 3456846888)
 
     public val propertySetSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_sync")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_sync", 3868023870)
 
     public val propertyGetWatchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_watch")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_watch", 3456846888)
 
     public val propertySetWatchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_watch")
+        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_watch", 3868023870)
   }
 }

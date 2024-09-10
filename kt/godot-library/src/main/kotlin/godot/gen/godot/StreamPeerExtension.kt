@@ -7,8 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -26,20 +24,5 @@ public open class StreamPeerExtension : StreamPeer() {
 
   public companion object
 
-  internal object MethodBindings {
-    public val _getDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerExtension", "_get_data")
-
-    public val _getPartialDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerExtension", "_get_partial_data")
-
-    public val _putDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerExtension", "_put_data")
-
-    public val _putPartialDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerExtension", "_put_partial_data")
-
-    public val _getAvailableBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerExtension", "_get_available_bytes")
-  }
+  internal object MethodBindings
 }

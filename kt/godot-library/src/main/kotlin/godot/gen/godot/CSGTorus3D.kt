@@ -125,35 +125,39 @@ public open class CSGTorus3D : CSGPrimitive3D() {
 
   internal object MethodBindings {
     public val setInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "set_inner_radius")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "set_inner_radius", 373806689)
 
     public val getInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "get_inner_radius")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "get_inner_radius", 1740695150)
 
     public val setOuterRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "set_outer_radius")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "set_outer_radius", 373806689)
 
     public val getOuterRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "get_outer_radius")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "get_outer_radius", 1740695150)
 
-    public val setSidesPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGTorus3D", "set_sides")
+    public val setSidesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGTorus3D", "set_sides", 1286410249)
 
-    public val getSidesPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGTorus3D", "get_sides")
+    public val getSidesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGTorus3D", "get_sides", 3905245786)
 
     public val setRingSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "set_ring_sides")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "set_ring_sides", 1286410249)
 
     public val getRingSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "get_ring_sides")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "get_ring_sides", 3905245786)
 
-    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGTorus3D", "set_material")
+    public val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGTorus3D", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGTorus3D", "get_material")
+    public val getMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGTorus3D", "get_material", 5934680)
 
     public val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "set_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "set_smooth_faces", 2586408642)
 
     public val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGTorus3D", "get_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGTorus3D", "get_smooth_faces", 36873697)
   }
 }

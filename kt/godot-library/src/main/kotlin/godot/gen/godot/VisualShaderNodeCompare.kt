@@ -198,21 +198,21 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setComparisonTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_comparison_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_comparison_type", 516558320)
 
     public val getComparisonTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_comparison_type")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_comparison_type", 3495315961)
 
     public val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_function")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_function", 2370951349)
 
     public val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_function")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_function", 4089164265)
 
     public val setConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_condition")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_condition", 918742392)
 
     public val getConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_condition")
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_condition", 3281078941)
   }
 }

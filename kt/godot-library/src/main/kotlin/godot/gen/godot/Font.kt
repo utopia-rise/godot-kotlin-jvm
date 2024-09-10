@@ -545,88 +545,101 @@ public open class Font internal constructor() : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setFallbacksPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "set_fallbacks")
+    public val setFallbacksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "set_fallbacks", 381264803)
 
-    public val getFallbacksPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_fallbacks")
+    public val getFallbacksPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_fallbacks", 3995934104)
 
-    public val findVariationPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "find_variation")
+    public val findVariationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "find_variation", 2553855095)
 
-    public val getRidsPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_rids")
+    public val getRidsPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_rids", 3995934104)
 
-    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_height")
+    public val getHeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_height", 378113874)
 
-    public val getAscentPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_ascent")
+    public val getAscentPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_ascent", 378113874)
 
-    public val getDescentPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_descent")
+    public val getDescentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_descent", 378113874)
 
     public val getUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_underline_position")
+        TypeManager.getMethodBindPtr("Font", "get_underline_position", 378113874)
 
     public val getUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_underline_thickness")
+        TypeManager.getMethodBindPtr("Font", "get_underline_thickness", 378113874)
 
-    public val getFontNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_font_name")
+    public val getFontNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_font_name", 201670096)
 
     public val getFontStyleNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_font_style_name")
+        TypeManager.getMethodBindPtr("Font", "get_font_style_name", 201670096)
 
     public val getOtNameStringsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_ot_name_strings")
+        TypeManager.getMethodBindPtr("Font", "get_ot_name_strings", 3102165223)
 
-    public val getFontStylePtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_font_style")
+    public val getFontStylePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_font_style", 2520224254)
 
-    public val getFontWeightPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_font_weight")
+    public val getFontWeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_font_weight", 3905245786)
 
-    public val getFontStretchPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_font_stretch")
+    public val getFontStretchPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_font_stretch", 3905245786)
 
-    public val getSpacingPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_spacing")
+    public val getSpacingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_spacing", 1310880908)
 
     public val getOpentypeFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_opentype_features")
+        TypeManager.getMethodBindPtr("Font", "get_opentype_features", 3102165223)
 
     public val setCacheCapacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "set_cache_capacity")
+        TypeManager.getMethodBindPtr("Font", "set_cache_capacity", 3937882851)
 
-    public val getStringSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_string_size")
+    public val getStringSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_string_size", 1868866121)
 
     public val getMultilineStringSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_multiline_string_size")
+        TypeManager.getMethodBindPtr("Font", "get_multiline_string_size", 519636710)
 
-    public val drawStringPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "draw_string")
+    public val drawStringPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "draw_string", 1983721962)
 
     public val drawMultilineStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_multiline_string")
+        TypeManager.getMethodBindPtr("Font", "draw_multiline_string", 1171506176)
 
     public val drawStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_string_outline")
+        TypeManager.getMethodBindPtr("Font", "draw_string_outline", 623754045)
 
     public val drawMultilineStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_multiline_string_outline")
+        TypeManager.getMethodBindPtr("Font", "draw_multiline_string_outline", 3206388178)
 
-    public val getCharSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_char_size")
+    public val getCharSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_char_size", 3016396712)
 
-    public val drawCharPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "draw_char")
+    public val drawCharPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "draw_char", 3815617597)
 
     public val drawCharOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_char_outline")
+        TypeManager.getMethodBindPtr("Font", "draw_char_outline", 209525354)
 
-    public val hasCharPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "has_char")
+    public val hasCharPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "has_char", 1116898809)
 
     public val getSupportedCharsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_supported_chars")
+        TypeManager.getMethodBindPtr("Font", "get_supported_chars", 201670096)
 
     public val isLanguageSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "is_language_supported")
+        TypeManager.getMethodBindPtr("Font", "is_language_supported", 3927539163)
 
     public val isScriptSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "is_script_supported")
+        TypeManager.getMethodBindPtr("Font", "is_script_supported", 3927539163)
 
     public val getSupportedFeatureListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_supported_feature_list")
+        TypeManager.getMethodBindPtr("Font", "get_supported_feature_list", 3102165223)
 
     public val getSupportedVariationListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_supported_variation_list")
+        TypeManager.getMethodBindPtr("Font", "get_supported_variation_list", 3102165223)
 
-    public val getFaceCountPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_face_count")
+    public val getFaceCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_face_count", 3905245786)
   }
 }

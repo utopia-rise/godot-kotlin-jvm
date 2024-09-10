@@ -80,18 +80,18 @@ public open class XRVRS : Object() {
 
   internal object MethodBindings {
     public val getVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_min_radius")
+        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_min_radius", 1740695150)
 
     public val setVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_min_radius")
+        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_min_radius", 373806689)
 
     public val getVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_strength")
+        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_strength", 1740695150)
 
     public val setVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_strength")
+        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_strength", 373806689)
 
     public val makeVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "make_vrs_texture")
+        TypeManager.getMethodBindPtr("XRVRS", "make_vrs_texture", 3647044786)
   }
 }

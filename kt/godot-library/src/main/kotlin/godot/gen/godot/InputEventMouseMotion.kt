@@ -309,45 +309,45 @@ public open class InputEventMouseMotion : InputEventMouse() {
 
   internal object MethodBindings {
     public val setTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_tilt")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_tilt", 743155724)
 
     public val getTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_tilt")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_tilt", 3341600327)
 
     public val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_pressure")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_pressure", 373806689)
 
     public val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_pressure")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_pressure", 1740695150)
 
     public val setPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_pen_inverted")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_pen_inverted", 2586408642)
 
     public val getPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_pen_inverted")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_pen_inverted", 36873697)
 
     public val setRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_relative")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_relative", 743155724)
 
     public val getRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_relative")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_relative", 3341600327)
 
     public val setScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_screen_relative")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_screen_relative", 743155724)
 
     public val getScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_screen_relative")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_screen_relative", 3341600327)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_velocity")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_velocity", 743155724)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_velocity")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_velocity", 3341600327)
 
     public val setScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_screen_velocity")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "set_screen_velocity", 743155724)
 
     public val getScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_screen_velocity")
+        TypeManager.getMethodBindPtr("InputEventMouseMotion", "get_screen_velocity", 3341600327)
   }
 }

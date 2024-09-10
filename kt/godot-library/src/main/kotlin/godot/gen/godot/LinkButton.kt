@@ -182,40 +182,44 @@ public open class LinkButton : BaseButton() {
   public companion object
 
   internal object MethodBindings {
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "set_text")
+    public val setTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "get_text")
+    public val getTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "get_text", 201670096)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_text_direction")
+        TypeManager.getMethodBindPtr("LinkButton", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_text_direction")
+        TypeManager.getMethodBindPtr("LinkButton", "get_text_direction", 797257663)
 
-    public val setLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "set_language")
+    public val setLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "set_language", 83702148)
 
-    public val getLanguagePtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "get_language")
+    public val getLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LinkButton", "get_language", 201670096)
 
-    public val setUriPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "set_uri")
+    public val setUriPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "set_uri", 83702148)
 
-    public val getUriPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "get_uri")
+    public val getUriPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "get_uri", 201670096)
 
     public val setUnderlineModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_underline_mode")
+        TypeManager.getMethodBindPtr("LinkButton", "set_underline_mode", 4032947085)
 
     public val getUnderlineModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_underline_mode")
+        TypeManager.getMethodBindPtr("LinkButton", "get_underline_mode", 568343738)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override")
+        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override_options")
+        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override_options", 3995934104)
   }
 }

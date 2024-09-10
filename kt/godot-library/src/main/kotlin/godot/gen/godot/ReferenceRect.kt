@@ -107,21 +107,21 @@ public open class ReferenceRect : Control() {
 
   internal object MethodBindings {
     public val getBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReferenceRect", "get_border_color")
+        TypeManager.getMethodBindPtr("ReferenceRect", "get_border_color", 3444240500)
 
     public val setBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReferenceRect", "set_border_color")
+        TypeManager.getMethodBindPtr("ReferenceRect", "set_border_color", 2920490490)
 
     public val getBorderWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReferenceRect", "get_border_width")
+        TypeManager.getMethodBindPtr("ReferenceRect", "get_border_width", 1740695150)
 
     public val setBorderWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReferenceRect", "set_border_width")
+        TypeManager.getMethodBindPtr("ReferenceRect", "set_border_width", 373806689)
 
     public val getEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReferenceRect", "get_editor_only")
+        TypeManager.getMethodBindPtr("ReferenceRect", "get_editor_only", 36873697)
 
     public val setEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReferenceRect", "set_editor_only")
+        TypeManager.getMethodBindPtr("ReferenceRect", "set_editor_only", 2586408642)
   }
 }

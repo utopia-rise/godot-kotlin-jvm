@@ -194,28 +194,34 @@ public open class TextureRect : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val setTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "set_texture")
+    public val setTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "set_texture", 4051416890)
 
-    public val getTexturePtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "get_texture")
+    public val getTexturePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "get_texture", 3635182373)
 
     public val setExpandModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "set_expand_mode")
+        TypeManager.getMethodBindPtr("TextureRect", "set_expand_mode", 1870766882)
 
     public val getExpandModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "get_expand_mode")
+        TypeManager.getMethodBindPtr("TextureRect", "get_expand_mode", 3863824733)
 
-    public val setFlipHPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "set_flip_h")
+    public val setFlipHPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "set_flip_h", 2586408642)
 
-    public val isFlippedHPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "is_flipped_h")
+    public val isFlippedHPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "is_flipped_h", 36873697)
 
-    public val setFlipVPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "set_flip_v")
+    public val setFlipVPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "set_flip_v", 2586408642)
 
-    public val isFlippedVPtr: VoidPtr = TypeManager.getMethodBindPtr("TextureRect", "is_flipped_v")
+    public val isFlippedVPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextureRect", "is_flipped_v", 36873697)
 
     public val setStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "set_stretch_mode")
+        TypeManager.getMethodBindPtr("TextureRect", "set_stretch_mode", 58788729)
 
     public val getStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "get_stretch_mode")
+        TypeManager.getMethodBindPtr("TextureRect", "get_stretch_mode", 346396079)
   }
 }

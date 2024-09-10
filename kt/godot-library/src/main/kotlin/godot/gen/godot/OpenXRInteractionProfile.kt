@@ -86,21 +86,21 @@ public open class OpenXRInteractionProfile : Resource() {
 
   internal object MethodBindings {
     public val setInteractionProfilePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_interaction_profile_path")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_interaction_profile_path", 83702148)
 
     public val getInteractionProfilePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_interaction_profile_path")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_interaction_profile_path", 201670096)
 
     public val getBindingCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_count")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_count", 3905245786)
 
     public val getBindingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding", 3934429652)
 
     public val setBindingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_bindings")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_bindings", 381264803)
 
     public val getBindingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_bindings")
+        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_bindings", 3995934104)
   }
 }

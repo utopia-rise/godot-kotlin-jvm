@@ -345,57 +345,57 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   internal object MethodBindings {
     public val setIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_index")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_index", 1286410249)
 
     public val getIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_index")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_index", 3905245786)
 
     public val setTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_tilt")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_tilt", 743155724)
 
     public val getTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_tilt")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_tilt", 3341600327)
 
     public val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pressure")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pressure", 373806689)
 
     public val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pressure")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pressure", 1740695150)
 
     public val setPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pen_inverted")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pen_inverted", 2586408642)
 
     public val getPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pen_inverted")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pen_inverted", 36873697)
 
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_position")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_position", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_position")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_position", 3341600327)
 
     public val setRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_relative")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_relative", 743155724)
 
     public val getRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_relative")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_relative", 3341600327)
 
     public val setScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_relative")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_relative", 743155724)
 
     public val getScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_relative")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_relative", 3341600327)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_velocity")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_velocity", 743155724)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_velocity")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_velocity", 3341600327)
 
     public val setScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_velocity")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_velocity", 743155724)
 
     public val getScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_velocity")
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_velocity", 3341600327)
   }
 }

@@ -110,28 +110,34 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGSphere3D", "set_radius")
+    public val setRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radius", 373806689)
 
-    public val getRadiusPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGSphere3D", "get_radius")
+    public val getRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radius", 1740695150)
 
     public val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radial_segments")
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radial_segments", 1286410249)
 
     public val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radial_segments")
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radial_segments", 3905245786)
 
-    public val setRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGSphere3D", "set_rings")
+    public val setRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_rings", 1286410249)
 
-    public val getRingsPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGSphere3D", "get_rings")
+    public val getRingsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_rings", 3905245786)
 
     public val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_smooth_faces", 2586408642)
 
     public val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_smooth_faces")
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_smooth_faces", 36873697)
 
-    public val setMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGSphere3D", "set_material")
+    public val setMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr = TypeManager.getMethodBindPtr("CSGSphere3D", "get_material")
+    public val getMaterialPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGSphere3D", "get_material", 5934680)
   }
 }

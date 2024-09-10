@@ -71,8 +71,10 @@ public open class CanvasModulate : Node2D() {
   public companion object
 
   internal object MethodBindings {
-    public val setColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasModulate", "set_color")
+    public val setColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasModulate", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasModulate", "get_color")
+    public val getColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasModulate", "get_color", 3444240500)
   }
 }

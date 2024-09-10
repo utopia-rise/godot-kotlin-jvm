@@ -41,6 +41,6 @@ public open class RenderSceneBuffers internal constructor() : RefCounted() {
 
   internal object MethodBindings {
     public val configurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffers", "configure")
+        TypeManager.getMethodBindPtr("RenderSceneBuffers", "configure", 3072623270)
   }
 }

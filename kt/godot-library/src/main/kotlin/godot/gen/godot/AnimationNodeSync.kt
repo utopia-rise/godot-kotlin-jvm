@@ -46,9 +46,9 @@ public open class AnimationNodeSync : AnimationNode() {
 
   internal object MethodBindings {
     public val setUseSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeSync", "set_use_sync")
+        TypeManager.getMethodBindPtr("AnimationNodeSync", "set_use_sync", 2586408642)
 
     public val isUsingSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeSync", "is_using_sync")
+        TypeManager.getMethodBindPtr("AnimationNodeSync", "is_using_sync", 36873697)
   }
 }

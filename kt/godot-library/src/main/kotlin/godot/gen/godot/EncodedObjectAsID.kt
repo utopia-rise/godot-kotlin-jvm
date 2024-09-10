@@ -49,9 +49,9 @@ public open class EncodedObjectAsID : RefCounted() {
 
   internal object MethodBindings {
     public val setObjectIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EncodedObjectAsID", "set_object_id")
+        TypeManager.getMethodBindPtr("EncodedObjectAsID", "set_object_id", 1286410249)
 
     public val getObjectIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EncodedObjectAsID", "get_object_id")
+        TypeManager.getMethodBindPtr("EncodedObjectAsID", "get_object_id", 3905245786)
   }
 }

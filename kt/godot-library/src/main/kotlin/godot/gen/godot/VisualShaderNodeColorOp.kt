@@ -150,9 +150,9 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorOp", "set_operator")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorOp", "set_operator", 4260370673)
 
     public val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorOp", "get_operator")
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorOp", "get_operator", 1950956529)
   }
 }

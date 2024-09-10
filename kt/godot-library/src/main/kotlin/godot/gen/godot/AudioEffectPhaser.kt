@@ -105,31 +105,33 @@ public open class AudioEffectPhaser : AudioEffect() {
 
   internal object MethodBindings {
     public val setRangeMinHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_min_hz")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_min_hz", 373806689)
 
     public val getRangeMinHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_min_hz")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_min_hz", 1740695150)
 
     public val setRangeMaxHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_max_hz")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_max_hz", 373806689)
 
     public val getRangeMaxHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_max_hz")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_max_hz", 1740695150)
 
     public val setRateHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_rate_hz")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_rate_hz", 373806689)
 
     public val getRateHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_rate_hz")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_rate_hz", 1740695150)
 
     public val setFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_feedback")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_feedback", 373806689)
 
     public val getFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_feedback")
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_feedback", 1740695150)
 
-    public val setDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_depth")
+    public val setDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_depth", 373806689)
 
-    public val getDepthPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_depth")
+    public val getDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_depth", 1740695150)
   }
 }

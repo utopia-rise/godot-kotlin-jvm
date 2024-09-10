@@ -126,21 +126,21 @@ public open class AudioEffectPitchShift : AudioEffect() {
 
   internal object MethodBindings {
     public val setPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_pitch_scale")
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_pitch_scale", 373806689)
 
     public val getPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_pitch_scale")
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_pitch_scale", 1740695150)
 
     public val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_oversampling")
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_oversampling", 1286410249)
 
     public val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_oversampling")
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_oversampling", 3905245786)
 
     public val setFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_fft_size")
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_fft_size", 2323518741)
 
     public val getFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_fft_size")
+        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_fft_size", 2361246789)
   }
 }

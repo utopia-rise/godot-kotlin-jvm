@@ -214,9 +214,9 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "set_function")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "set_function", 536026177)
 
     public val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "get_function")
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "get_function", 2033948868)
   }
 }

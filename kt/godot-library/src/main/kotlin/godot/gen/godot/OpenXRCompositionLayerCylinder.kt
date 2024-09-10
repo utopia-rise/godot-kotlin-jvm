@@ -90,27 +90,27 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_radius")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_radius")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_radius", 1740695150)
 
     public val setAspectRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_aspect_ratio")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_aspect_ratio", 373806689)
 
     public val getAspectRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_aspect_ratio")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_aspect_ratio", 1740695150)
 
     public val setCentralAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_central_angle")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_central_angle", 373806689)
 
     public val getCentralAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_central_angle")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_central_angle", 1740695150)
 
     public val setFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_fallback_segments")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_fallback_segments", 1286410249)
 
     public val getFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_fallback_segments")
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_fallback_segments", 3905245786)
   }
 }

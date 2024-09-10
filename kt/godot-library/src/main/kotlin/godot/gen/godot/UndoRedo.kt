@@ -417,62 +417,69 @@ public open class UndoRedo : Object() {
   public companion object
 
   internal object MethodBindings {
-    public val createActionPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "create_action")
+    public val createActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UndoRedo", "create_action", 3171901514)
 
-    public val commitActionPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "commit_action")
+    public val commitActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UndoRedo", "commit_action", 3216645846)
 
     public val isCommittingActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "is_committing_action")
+        TypeManager.getMethodBindPtr("UndoRedo", "is_committing_action", 36873697)
 
-    public val addDoMethodPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "add_do_method")
+    public val addDoMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UndoRedo", "add_do_method", 1611583062)
 
     public val addUndoMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_method")
+        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_method", 1611583062)
 
     public val addDoPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_property")
+        TypeManager.getMethodBindPtr("UndoRedo", "add_do_property", 1017172818)
 
     public val addUndoPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_property")
+        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_property", 1017172818)
 
     public val addDoReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_reference")
+        TypeManager.getMethodBindPtr("UndoRedo", "add_do_reference", 3975164845)
 
     public val addUndoReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_reference")
+        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_reference", 3975164845)
 
     public val startForceKeepInMergeEndsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "start_force_keep_in_merge_ends")
+        TypeManager.getMethodBindPtr("UndoRedo", "start_force_keep_in_merge_ends", 3218959716)
 
     public val endForceKeepInMergeEndsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "end_force_keep_in_merge_ends")
+        TypeManager.getMethodBindPtr("UndoRedo", "end_force_keep_in_merge_ends", 3218959716)
 
     public val getHistoryCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_history_count")
+        TypeManager.getMethodBindPtr("UndoRedo", "get_history_count", 2455072627)
 
     public val getCurrentActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action")
+        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action", 2455072627)
 
     public val getActionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_action_name")
+        TypeManager.getMethodBindPtr("UndoRedo", "get_action_name", 990163283)
 
-    public val clearHistoryPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "clear_history")
+    public val clearHistoryPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UndoRedo", "clear_history", 3216645846)
 
     public val getCurrentActionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action_name")
+        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action_name", 201670096)
 
-    public val hasUndoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "has_undo")
+    public val hasUndoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "has_undo", 36873697)
 
-    public val hasRedoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "has_redo")
+    public val hasRedoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "has_redo", 36873697)
 
-    public val getVersionPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "get_version")
+    public val getVersionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UndoRedo", "get_version", 3905245786)
 
-    public val setMaxStepsPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "set_max_steps")
+    public val setMaxStepsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UndoRedo", "set_max_steps", 1286410249)
 
-    public val getMaxStepsPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "get_max_steps")
+    public val getMaxStepsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("UndoRedo", "get_max_steps", 3905245786)
 
-    public val redoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "redo")
+    public val redoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "redo", 2240911060)
 
-    public val undoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "undo")
+    public val undoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "undo", 2240911060)
   }
 }

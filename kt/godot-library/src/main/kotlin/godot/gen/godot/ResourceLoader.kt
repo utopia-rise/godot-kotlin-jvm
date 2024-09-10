@@ -292,36 +292,38 @@ public object ResourceLoader : Object() {
 
   internal object MethodBindings {
     public val loadThreadedRequestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_request")
+        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_request", 3614384323)
 
     public val loadThreadedGetStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get_status")
+        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get_status", 4137685479)
 
     public val loadThreadedGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get")
+        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get", 1748875256)
 
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceLoader", "load")
+    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceLoader", "load", 3358495409)
 
     public val getRecognizedExtensionsForTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_recognized_extensions_for_type")
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_recognized_extensions_for_type", 3538744774)
 
     public val addResourceFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "add_resource_format_loader")
+        TypeManager.getMethodBindPtr("ResourceLoader", "add_resource_format_loader", 2896595483)
 
     public val removeResourceFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "remove_resource_format_loader")
+        TypeManager.getMethodBindPtr("ResourceLoader", "remove_resource_format_loader", 405397102)
 
     public val setAbortOnMissingResourcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "set_abort_on_missing_resources")
+        TypeManager.getMethodBindPtr("ResourceLoader", "set_abort_on_missing_resources", 2586408642)
 
     public val getDependenciesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_dependencies")
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_dependencies", 3538744774)
 
-    public val hasCachedPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceLoader", "has_cached")
+    public val hasCachedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceLoader", "has_cached", 2323990056)
 
-    public val existsPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceLoader", "exists")
+    public val existsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceLoader", "exists", 4185558881)
 
     public val getResourceUidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_resource_uid")
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_resource_uid", 1597066294)
   }
 }

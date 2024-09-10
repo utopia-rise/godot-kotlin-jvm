@@ -138,39 +138,40 @@ public open class PhysicalBone2D : RigidBody2D() {
   public companion object
 
   internal object MethodBindings {
-    public val getJointPtr: VoidPtr = TypeManager.getMethodBindPtr("PhysicalBone2D", "get_joint")
+    public val getJointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_joint", 3582132112)
 
     public val getAutoConfigureJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_auto_configure_joint")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_auto_configure_joint", 36873697)
 
     public val setAutoConfigureJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_auto_configure_joint")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_auto_configure_joint", 2586408642)
 
     public val setSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_simulate_physics")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_simulate_physics", 2586408642)
 
     public val getSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_simulate_physics")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_simulate_physics", 36873697)
 
     public val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "is_simulating_physics")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "is_simulating_physics", 36873697)
 
     public val setBone2dNodepathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_nodepath")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_nodepath", 1348162250)
 
     public val getBone2dNodepathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_nodepath")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_nodepath", 4075236667)
 
     public val setBone2dIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_index")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_index", 1286410249)
 
     public val getBone2dIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_index")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_index", 3905245786)
 
     public val setFollowBoneWhenSimulatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_follow_bone_when_simulating")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_follow_bone_when_simulating", 2586408642)
 
     public val getFollowBoneWhenSimulatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_follow_bone_when_simulating")
+        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_follow_bone_when_simulating", 36873697)
   }
 }

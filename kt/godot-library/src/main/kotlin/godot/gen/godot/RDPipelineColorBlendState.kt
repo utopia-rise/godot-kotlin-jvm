@@ -120,27 +120,27 @@ public open class RDPipelineColorBlendState : RefCounted() {
 
   internal object MethodBindings {
     public val setEnableLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op", 2586408642)
 
     public val getEnableLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op", 36873697)
 
     public val setLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op", 3610841058)
 
     public val getLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op", 988254690)
 
     public val setBlendConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant", 2920490490)
 
     public val getBlendConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant", 3444240500)
 
     public val setAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments", 381264803)
 
     public val getAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments")
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments", 3995934104)
   }
 }

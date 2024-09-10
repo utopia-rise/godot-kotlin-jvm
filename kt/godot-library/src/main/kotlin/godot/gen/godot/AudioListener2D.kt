@@ -61,11 +61,12 @@ public open class AudioListener2D : Node2D() {
 
   internal object MethodBindings {
     public val makeCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener2D", "make_current")
+        TypeManager.getMethodBindPtr("AudioListener2D", "make_current", 3218959716)
 
     public val clearCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener2D", "clear_current")
+        TypeManager.getMethodBindPtr("AudioListener2D", "clear_current", 3218959716)
 
-    public val isCurrentPtr: VoidPtr = TypeManager.getMethodBindPtr("AudioListener2D", "is_current")
+    public val isCurrentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioListener2D", "is_current", 36873697)
   }
 }

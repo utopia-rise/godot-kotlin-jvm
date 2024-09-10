@@ -97,15 +97,15 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "set_size")
+        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "get_size")
+        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "get_size", 3360562783)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "set_texture")
+        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "set_texture", 1188404210)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "get_texture")
+        TypeManager.getMethodBindPtr("GPUParticlesAttractorVectorField3D", "get_texture", 373985333)
   }
 }

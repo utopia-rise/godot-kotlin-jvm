@@ -8745,1481 +8745,1486 @@ public object RenderingServer : Object() {
 
   internal object MethodBindings {
     public val texture2dCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_create", 2010018390)
 
     public val texture2dLayeredCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_layered_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_layered_create", 913689023)
 
     public val texture3dCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_create", 4036838706)
 
     public val textureProxyCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_proxy_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_proxy_create", 41030802)
 
     public val texture2dUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_update")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_update", 999539803)
 
     public val texture3dUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_update")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_update", 684822712)
 
     public val textureProxyUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_proxy_update")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_proxy_update", 395945892)
 
     public val texture2dPlaceholderCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_placeholder_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_placeholder_create", 529393457)
 
     public val texture2dLayeredPlaceholderCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_layered_placeholder_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_layered_placeholder_create", 1394585590)
 
     public val texture3dPlaceholderCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_placeholder_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_placeholder_create", 529393457)
 
     public val texture2dGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_get")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_get", 4206205781)
 
     public val texture2dLayerGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_layer_get")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_2d_layer_get", 2705440895)
 
     public val texture3dGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_get")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_3d_get", 2684255073)
 
     public val textureReplacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_replace")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_replace", 395945892)
 
     public val textureSetSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_set_size_override")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_set_size_override", 4288446313)
 
     public val textureSetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_set_path")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_set_path", 2726140452)
 
     public val textureGetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_path")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_path", 642473191)
 
     public val textureGetFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_format")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_format", 1932918979)
 
     public val textureSetForceRedrawIfVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_set_force_redraw_if_visible")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_set_force_redraw_if_visible", 1265174801)
 
     public val textureRdCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_rd_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_rd_create", 1434128712)
 
     public val textureGetRdTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_rd_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_rd_texture", 2790148051)
 
     public val textureGetNativeHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_native_handle")
+        TypeManager.getMethodBindPtr("RenderingServer", "texture_get_native_handle", 1834114100)
 
     public val shaderCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "shader_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "shader_create", 529393457)
 
     public val shaderSetCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "shader_set_code")
+        TypeManager.getMethodBindPtr("RenderingServer", "shader_set_code", 2726140452)
 
     public val shaderSetPathHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "shader_set_path_hint")
+        TypeManager.getMethodBindPtr("RenderingServer", "shader_set_path_hint", 2726140452)
 
     public val shaderGetCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "shader_get_code")
+        TypeManager.getMethodBindPtr("RenderingServer", "shader_get_code", 642473191)
 
     public val getShaderParameterListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_shader_parameter_list")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_shader_parameter_list", 2684255073)
 
     public val shaderGetParameterDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "shader_get_parameter_default")
+        TypeManager.getMethodBindPtr("RenderingServer", "shader_get_parameter_default", 2621281810)
 
     public val shaderSetDefaultTextureParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "shader_set_default_texture_parameter")
+        TypeManager.getMethodBindPtr("RenderingServer", "shader_set_default_texture_parameter", 4094001817)
 
     public val shaderGetDefaultTextureParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "shader_get_default_texture_parameter")
+        TypeManager.getMethodBindPtr("RenderingServer", "shader_get_default_texture_parameter", 1464608890)
 
     public val materialCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "material_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "material_create", 529393457)
 
     public val materialSetShaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "material_set_shader")
+        TypeManager.getMethodBindPtr("RenderingServer", "material_set_shader", 395945892)
 
     public val materialSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "material_set_param")
+        TypeManager.getMethodBindPtr("RenderingServer", "material_set_param", 3477296213)
 
     public val materialGetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "material_get_param")
+        TypeManager.getMethodBindPtr("RenderingServer", "material_get_param", 2621281810)
 
     public val materialSetRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "material_set_render_priority")
+        TypeManager.getMethodBindPtr("RenderingServer", "material_set_render_priority", 3411492887)
 
     public val materialSetNextPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "material_set_next_pass")
+        TypeManager.getMethodBindPtr("RenderingServer", "material_set_next_pass", 395945892)
 
     public val meshCreateFromSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_create_from_surfaces")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_create_from_surfaces", 4291747531)
 
     public val meshCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_create", 529393457)
 
     public val meshSurfaceGetFormatOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_offset")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_offset", 2981368685)
 
     public val meshSurfaceGetFormatVertexStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_vertex_stride")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_vertex_stride", 3188363337)
 
     public val meshSurfaceGetFormatNormalTangentStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_normal_tangent_stride")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_normal_tangent_stride", 3188363337)
 
     public val meshSurfaceGetFormatAttributeStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_attribute_stride")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_attribute_stride", 3188363337)
 
     public val meshSurfaceGetFormatSkinStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_skin_stride")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_skin_stride", 3188363337)
 
     public val meshAddSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_add_surface")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_add_surface", 1217542888)
 
     public val meshAddSurfaceFromArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_add_surface_from_arrays")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_add_surface_from_arrays", 2342446560)
 
     public val meshGetBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_blend_shape_count")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_blend_shape_count", 2198884583)
 
     public val meshSetBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_set_blend_shape_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_set_blend_shape_mode", 1294662092)
 
     public val meshGetBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_blend_shape_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_blend_shape_mode", 4282291819)
 
     public val meshSurfaceSetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_set_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_set_material", 2310537182)
 
     public val meshSurfaceGetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_material", 1066463050)
 
     public val meshGetSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_surface")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_surface", 186674697)
 
     public val meshSurfaceGetArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_arrays")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_arrays", 1778388067)
 
     public val meshSurfaceGetBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_blend_shape_arrays")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_blend_shape_arrays", 1778388067)
 
     public val meshGetSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_surface_count")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_surface_count", 2198884583)
 
     public val meshSetCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_set_custom_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_set_custom_aabb", 3696536120)
 
     public val meshGetCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_custom_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_get_custom_aabb", 974181306)
 
-    public val meshClearPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingServer", "mesh_clear")
+    public val meshClearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_clear", 2722037293)
 
     public val meshSurfaceUpdateVertexRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_vertex_region")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_vertex_region", 2900195149)
 
     public val meshSurfaceUpdateAttributeRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_attribute_region")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_attribute_region", 2900195149)
 
     public val meshSurfaceUpdateSkinRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_skin_region")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_skin_region", 2900195149)
 
     public val meshSetShadowMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "mesh_set_shadow_mesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_set_shadow_mesh", 395945892)
 
     public val multimeshCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_create", 529393457)
 
     public val multimeshAllocateDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_allocate_data")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_allocate_data", 283685892)
 
     public val multimeshGetInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_instance_count")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_instance_count", 2198884583)
 
     public val multimeshSetMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_mesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_mesh", 395945892)
 
     public val multimeshInstanceSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_transform", 675327471)
 
     public val multimeshInstanceSetTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_transform_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_transform_2d", 736082694)
 
     public val multimeshInstanceSetColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_color", 176975443)
 
     public val multimeshInstanceSetCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_custom_data")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_set_custom_data", 176975443)
 
     public val multimeshGetMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_mesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_mesh", 3814569979)
 
     public val multimeshGetAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_aabb", 974181306)
 
     public val multimeshSetCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_custom_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_custom_aabb", 3696536120)
 
     public val multimeshGetCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_custom_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_custom_aabb", 974181306)
 
     public val multimeshInstanceGetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_transform", 1050775521)
 
     public val multimeshInstanceGetTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_transform_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_transform_2d", 1324854622)
 
     public val multimeshInstanceGetColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_color", 2946315076)
 
     public val multimeshInstanceGetCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_custom_data")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_instance_get_custom_data", 2946315076)
 
     public val multimeshSetVisibleInstancesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_visible_instances")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_visible_instances", 3411492887)
 
     public val multimeshGetVisibleInstancesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_visible_instances")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_visible_instances", 2198884583)
 
     public val multimeshSetBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_buffer")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_set_buffer", 2960552364)
 
     public val multimeshGetBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_buffer")
+        TypeManager.getMethodBindPtr("RenderingServer", "multimesh_get_buffer", 3964669176)
 
     public val skeletonCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_create", 529393457)
 
     public val skeletonAllocateDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_allocate_data")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_allocate_data", 1904426712)
 
     public val skeletonGetBoneCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_get_bone_count")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_get_bone_count", 2198884583)
 
     public val skeletonBoneSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_set_transform", 675327471)
 
     public val skeletonBoneGetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_get_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_get_transform", 1050775521)
 
     public val skeletonBoneSetTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_set_transform_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_set_transform_2d", 736082694)
 
     public val skeletonBoneGetTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_get_transform_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_bone_get_transform_2d", 1324854622)
 
     public val skeletonSetBaseTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_set_base_transform_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "skeleton_set_base_transform_2d", 1246044741)
 
     public val directionalLightCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "directional_light_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "directional_light_create", 529393457)
 
     public val omniLightCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "omni_light_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "omni_light_create", 529393457)
 
     public val spotLightCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "spot_light_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "spot_light_create", 529393457)
 
     public val lightSetColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_color", 2948539648)
 
     public val lightSetParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_param")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_param", 501936875)
 
     public val lightSetShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_shadow")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_shadow", 1265174801)
 
     public val lightSetProjectorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_projector")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_projector", 395945892)
 
     public val lightSetNegativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_negative")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_negative", 1265174801)
 
     public val lightSetCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_cull_mask", 3411492887)
 
     public val lightSetDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_distance_fade")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_distance_fade", 1622292572)
 
     public val lightSetReverseCullFaceModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_reverse_cull_face_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_reverse_cull_face_mode", 1265174801)
 
     public val lightSetBakeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_bake_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_bake_mode", 1048525260)
 
     public val lightSetMaxSdfgiCascadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_set_max_sdfgi_cascade")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_set_max_sdfgi_cascade", 3411492887)
 
     public val lightOmniSetShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_omni_set_shadow_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_omni_set_shadow_mode", 2552677200)
 
     public val lightDirectionalSetShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_directional_set_shadow_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_directional_set_shadow_mode", 380462970)
 
     public val lightDirectionalSetBlendSplitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_directional_set_blend_splits")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_directional_set_blend_splits", 1265174801)
 
     public val lightDirectionalSetSkyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_directional_set_sky_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_directional_set_sky_mode", 2559740754)
 
     public val lightProjectorsSetFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "light_projectors_set_filter")
+        TypeManager.getMethodBindPtr("RenderingServer", "light_projectors_set_filter", 43944325)
 
     public val positionalSoftShadowFilterSetQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "positional_soft_shadow_filter_set_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "positional_soft_shadow_filter_set_quality", 3613045266)
 
     public val directionalSoftShadowFilterSetQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "directional_soft_shadow_filter_set_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "directional_soft_shadow_filter_set_quality", 3613045266)
 
     public val directionalShadowAtlasSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "directional_shadow_atlas_set_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "directional_shadow_atlas_set_size", 300928843)
 
     public val reflectionProbeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_create", 529393457)
 
     public val reflectionProbeSetUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_update_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_update_mode", 3853670147)
 
     public val reflectionProbeSetIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_intensity")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_intensity", 1794382983)
 
     public val reflectionProbeSetAmbientModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_mode", 184163074)
 
     public val reflectionProbeSetAmbientColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_color", 2948539648)
 
     public val reflectionProbeSetAmbientEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_energy")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_ambient_energy", 1794382983)
 
     public val reflectionProbeSetMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_max_distance")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_max_distance", 1794382983)
 
     public val reflectionProbeSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_size", 3227306858)
 
     public val reflectionProbeSetOriginOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_origin_offset")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_origin_offset", 3227306858)
 
     public val reflectionProbeSetAsInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_as_interior")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_as_interior", 1265174801)
 
     public val reflectionProbeSetEnableBoxProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_enable_box_projection")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_enable_box_projection", 1265174801)
 
     public val reflectionProbeSetEnableShadowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_enable_shadows")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_enable_shadows", 1265174801)
 
     public val reflectionProbeSetCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_cull_mask", 3411492887)
 
     public val reflectionProbeSetReflectionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_reflection_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_reflection_mask", 3411492887)
 
     public val reflectionProbeSetResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_resolution")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_resolution", 3411492887)
 
     public val reflectionProbeSetMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_mesh_lod_threshold")
+        TypeManager.getMethodBindPtr("RenderingServer", "reflection_probe_set_mesh_lod_threshold", 1794382983)
 
     public val decalCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_create", 529393457)
 
     public val decalSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_size", 3227306858)
 
     public val decalSetTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_texture", 3953344054)
 
     public val decalSetEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_emission_energy")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_emission_energy", 1794382983)
 
     public val decalSetAlbedoMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_albedo_mix")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_albedo_mix", 1794382983)
 
     public val decalSetModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_modulate")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_modulate", 2948539648)
 
     public val decalSetCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_cull_mask", 3411492887)
 
     public val decalSetDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_distance_fade")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_distance_fade", 2972769666)
 
     public val decalSetFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_fade")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_fade", 2513314492)
 
     public val decalSetNormalFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_normal_fade")
+        TypeManager.getMethodBindPtr("RenderingServer", "decal_set_normal_fade", 1794382983)
 
     public val decalsSetFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "decals_set_filter")
+        TypeManager.getMethodBindPtr("RenderingServer", "decals_set_filter", 3519875702)
 
     public val giSetUseHalfResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "gi_set_use_half_resolution")
+        TypeManager.getMethodBindPtr("RenderingServer", "gi_set_use_half_resolution", 2586408642)
 
     public val voxelGiCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_create", 529393457)
 
     public val voxelGiAllocateDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_allocate_data")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_allocate_data", 4108223027)
 
     public val voxelGiGetOctreeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_octree_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_octree_size", 2607699645)
 
     public val voxelGiGetOctreeCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_octree_cells")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_octree_cells", 3348040486)
 
     public val voxelGiGetDataCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_data_cells")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_data_cells", 3348040486)
 
     public val voxelGiGetDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_distance_field")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_distance_field", 3348040486)
 
     public val voxelGiGetLevelCountsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_level_counts")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_level_counts", 788230395)
 
     public val voxelGiGetToCellXformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_to_cell_xform")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_get_to_cell_xform", 1128465797)
 
     public val voxelGiSetDynamicRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_dynamic_range")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_dynamic_range", 1794382983)
 
     public val voxelGiSetPropagationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_propagation")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_propagation", 1794382983)
 
     public val voxelGiSetEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_energy")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_energy", 1794382983)
 
     public val voxelGiSetBakedExposureNormalizationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_baked_exposure_normalization")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_baked_exposure_normalization", 1794382983)
 
     public val voxelGiSetBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_bias")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_bias", 1794382983)
 
     public val voxelGiSetNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_normal_bias")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_normal_bias", 1794382983)
 
     public val voxelGiSetInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_interior")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_interior", 1265174801)
 
     public val voxelGiSetUseTwoBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_use_two_bounces")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_use_two_bounces", 1265174801)
 
     public val voxelGiSetQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "voxel_gi_set_quality", 1538689978)
 
     public val lightmapCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_create", 529393457)
 
     public val lightmapSetTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_textures")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_textures", 2646464759)
 
     public val lightmapSetProbeBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_bounds")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_bounds", 3696536120)
 
     public val lightmapSetProbeInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_interior")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_interior", 1265174801)
 
     public val lightmapSetProbeCaptureDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_capture_data")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_capture_data", 3217845880)
 
     public val lightmapGetProbeCapturePointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_points")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_points", 808965560)
 
     public val lightmapGetProbeCaptureShPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_sh")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_sh", 1569415609)
 
     public val lightmapGetProbeCaptureTetrahedraPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_tetrahedra")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_tetrahedra", 788230395)
 
     public val lightmapGetProbeCaptureBspTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_bsp_tree")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_get_probe_capture_bsp_tree", 788230395)
 
     public val lightmapSetBakedExposureNormalizationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_baked_exposure_normalization")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_baked_exposure_normalization", 1794382983)
 
     public val lightmapSetProbeCaptureUpdateSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_capture_update_speed")
+        TypeManager.getMethodBindPtr("RenderingServer", "lightmap_set_probe_capture_update_speed", 373806689)
 
     public val particlesCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_create", 529393457)
 
     public val particlesSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_mode", 3492270028)
 
     public val particlesSetEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_emitting")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_emitting", 1265174801)
 
     public val particlesGetEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_get_emitting")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_get_emitting", 3521089500)
 
     public val particlesSetAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_amount")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_amount", 3411492887)
 
     public val particlesSetAmountRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_amount_ratio")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_amount_ratio", 1794382983)
 
     public val particlesSetLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_lifetime")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_lifetime", 1794382983)
 
     public val particlesSetOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_one_shot")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_one_shot", 1265174801)
 
     public val particlesSetPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_pre_process_time")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_pre_process_time", 1794382983)
 
     public val particlesSetExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_explosiveness_ratio")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_explosiveness_ratio", 1794382983)
 
     public val particlesSetRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_randomness_ratio")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_randomness_ratio", 1794382983)
 
     public val particlesSetInterpToEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_interp_to_end")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_interp_to_end", 1794382983)
 
     public val particlesSetEmitterVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_emitter_velocity")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_emitter_velocity", 3227306858)
 
     public val particlesSetCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_custom_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_custom_aabb", 3696536120)
 
     public val particlesSetSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_speed_scale")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_speed_scale", 1794382983)
 
     public val particlesSetUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_use_local_coordinates")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_use_local_coordinates", 1265174801)
 
     public val particlesSetProcessMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_process_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_process_material", 395945892)
 
     public val particlesSetFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_fixed_fps")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_fixed_fps", 3411492887)
 
     public val particlesSetInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_interpolate")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_interpolate", 1265174801)
 
     public val particlesSetFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_fractional_delta")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_fractional_delta", 1265174801)
 
     public val particlesSetCollisionBaseSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_collision_base_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_collision_base_size", 1794382983)
 
     public val particlesSetTransformAlignPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_transform_align")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_transform_align", 3264971368)
 
     public val particlesSetTrailsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_trails")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_trails", 2010054925)
 
     public val particlesSetTrailBindPosesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_trail_bind_poses")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_trail_bind_poses", 684822712)
 
     public val particlesIsInactivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_is_inactive")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_is_inactive", 3521089500)
 
     public val particlesRequestProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_request_process")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_request_process", 2722037293)
 
     public val particlesRestartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_restart")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_restart", 2722037293)
 
     public val particlesSetSubemitterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_subemitter")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_subemitter", 395945892)
 
     public val particlesEmitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_emit")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_emit", 4043136117)
 
     public val particlesSetDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_draw_order")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_draw_order", 935028487)
 
     public val particlesSetDrawPassesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_draw_passes")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_draw_passes", 3411492887)
 
     public val particlesSetDrawPassMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_draw_pass_mesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_draw_pass_mesh", 2310537182)
 
     public val particlesGetCurrentAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_get_current_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_get_current_aabb", 3952830260)
 
     public val particlesSetEmissionTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_emission_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_set_emission_transform", 3935195649)
 
     public val particlesCollisionCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_create", 529393457)
 
     public val particlesCollisionSetCollisionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_collision_type")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_collision_type", 1497044930)
 
     public val particlesCollisionSetCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_cull_mask", 3411492887)
 
     public val particlesCollisionSetSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_sphere_radius")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_sphere_radius", 1794382983)
 
     public val particlesCollisionSetBoxExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_box_extents")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_box_extents", 3227306858)
 
     public val particlesCollisionSetAttractorStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_strength")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_strength", 1794382983)
 
     public val particlesCollisionSetAttractorDirectionalityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_directionality")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_directionality", 1794382983)
 
     public val particlesCollisionSetAttractorAttenuationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_attenuation")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_attractor_attenuation", 1794382983)
 
     public val particlesCollisionSetFieldTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_field_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_field_texture", 395945892)
 
     public val particlesCollisionHeightFieldUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_height_field_update")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_height_field_update", 2722037293)
 
     public val particlesCollisionSetHeightFieldResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_height_field_resolution")
+        TypeManager.getMethodBindPtr("RenderingServer", "particles_collision_set_height_field_resolution", 962977297)
 
     public val fogVolumeCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_create", 529393457)
 
     public val fogVolumeSetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_set_shape")
+        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_set_shape", 3818703106)
 
     public val fogVolumeSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_set_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_set_size", 3227306858)
 
     public val fogVolumeSetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_set_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "fog_volume_set_material", 395945892)
 
     public val visibilityNotifierCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "visibility_notifier_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "visibility_notifier_create", 529393457)
 
     public val visibilityNotifierSetAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "visibility_notifier_set_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "visibility_notifier_set_aabb", 3696536120)
 
     public val visibilityNotifierSetCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "visibility_notifier_set_callbacks")
+        TypeManager.getMethodBindPtr("RenderingServer", "visibility_notifier_set_callbacks", 2689735388)
 
     public val occluderCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "occluder_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "occluder_create", 529393457)
 
     public val occluderSetMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "occluder_set_mesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "occluder_set_mesh", 3854404263)
 
     public val cameraCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_create", 529393457)
 
     public val cameraSetPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_perspective")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_perspective", 157498339)
 
     public val cameraSetOrthogonalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_orthogonal")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_orthogonal", 157498339)
 
     public val cameraSetFrustumPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_frustum")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_frustum", 1889878953)
 
     public val cameraSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_transform", 3935195649)
 
     public val cameraSetCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_cull_mask", 3411492887)
 
     public val cameraSetEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_environment")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_environment", 395945892)
 
     public val cameraSetCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_camera_attributes")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_camera_attributes", 395945892)
 
     public val cameraSetCompositorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_compositor")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_compositor", 395945892)
 
     public val cameraSetUseVerticalAspectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_use_vertical_aspect")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_set_use_vertical_aspect", 1265174801)
 
     public val viewportCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_create", 529393457)
 
     public val viewportSetUseXrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_xr")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_xr", 1265174801)
 
     public val viewportSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_size", 4288446313)
 
     public val viewportSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_active")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_active", 1265174801)
 
     public val viewportSetParentViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_parent_viewport")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_parent_viewport", 395945892)
 
     public val viewportAttachToScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_attach_to_screen")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_attach_to_screen", 1062245816)
 
     public val viewportSetRenderDirectToScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_render_direct_to_screen")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_render_direct_to_screen", 1265174801)
 
     public val viewportSetCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_canvas_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_canvas_cull_mask", 3411492887)
 
     public val viewportSetScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_scaling_3d_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_scaling_3d_mode", 2386524376)
 
     public val viewportSetScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_scaling_3d_scale")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_scaling_3d_scale", 1794382983)
 
     public val viewportSetFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_fsr_sharpness")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_fsr_sharpness", 1794382983)
 
     public val viewportSetTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_texture_mipmap_bias")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_texture_mipmap_bias", 1794382983)
 
     public val viewportSetUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_update_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_update_mode", 3161116010)
 
     public val viewportGetUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_update_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_update_mode", 3803901472)
 
     public val viewportSetClearModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_clear_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_clear_mode", 3628367896)
 
     public val viewportGetRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_render_target")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_render_target", 3814569979)
 
     public val viewportGetTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_texture", 3814569979)
 
     public val viewportSetDisable3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_disable_3d")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_disable_3d", 1265174801)
 
     public val viewportSetDisable2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_disable_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_disable_2d", 1265174801)
 
     public val viewportSetEnvironmentModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_environment_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_environment_mode", 2196892182)
 
     public val viewportAttachCameraPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_attach_camera")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_attach_camera", 395945892)
 
     public val viewportSetScenarioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_scenario")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_scenario", 395945892)
 
     public val viewportAttachCanvasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_attach_canvas")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_attach_canvas", 395945892)
 
     public val viewportRemoveCanvasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_remove_canvas")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_remove_canvas", 395945892)
 
     public val viewportSetSnap2dTransformsToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_snap_2d_transforms_to_pixel")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_snap_2d_transforms_to_pixel", 1265174801)
 
     public val viewportSetSnap2dVerticesToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_snap_2d_vertices_to_pixel")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_snap_2d_vertices_to_pixel", 1265174801)
 
     public val viewportSetDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_default_canvas_item_texture_filter")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_default_canvas_item_texture_filter", 1155129294)
 
     public val viewportSetDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_default_canvas_item_texture_repeat")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_default_canvas_item_texture_repeat", 1652956681)
 
     public val viewportSetCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_canvas_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_canvas_transform", 3608606053)
 
     public val viewportSetCanvasStackingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_canvas_stacking")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_canvas_stacking", 3713930247)
 
     public val viewportSetTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_transparent_background")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_transparent_background", 1265174801)
 
     public val viewportSetGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_global_canvas_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_global_canvas_transform", 1246044741)
 
     public val viewportSetSdfOversizeAndScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_sdf_oversize_and_scale")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_sdf_oversize_and_scale", 1329198632)
 
     public val viewportSetPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_positional_shadow_atlas_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_positional_shadow_atlas_size", 1904426712)
 
     public val viewportSetPositionalShadowAtlasQuadrantSubdivisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_positional_shadow_atlas_quadrant_subdivision")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_positional_shadow_atlas_quadrant_subdivision", 4288446313)
 
     public val viewportSetMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_msaa_3d")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_msaa_3d", 3764433340)
 
     public val viewportSetMsaa2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_msaa_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_msaa_2d", 3764433340)
 
     public val viewportSetUseHdr2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_hdr_2d")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_hdr_2d", 1265174801)
 
     public val viewportSetScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_screen_space_aa")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_screen_space_aa", 1447279591)
 
     public val viewportSetUseTaaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_taa")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_taa", 1265174801)
 
     public val viewportSetUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_debanding")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_debanding", 1265174801)
 
     public val viewportSetUseOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_occlusion_culling")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_use_occlusion_culling", 1265174801)
 
     public val viewportSetOcclusionRaysPerThreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_occlusion_rays_per_thread")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_occlusion_rays_per_thread", 1286410249)
 
     public val viewportSetOcclusionCullingBuildQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_occlusion_culling_build_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_occlusion_culling_build_quality", 2069725696)
 
     public val viewportGetRenderInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_render_info")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_render_info", 2041262392)
 
     public val viewportSetDebugDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_debug_draw")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_debug_draw", 2089420930)
 
     public val viewportSetMeasureRenderTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_measure_render_time")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_measure_render_time", 1265174801)
 
     public val viewportGetMeasuredRenderTimeCpuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_measured_render_time_cpu")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_measured_render_time_cpu", 866169185)
 
     public val viewportGetMeasuredRenderTimeGpuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_measured_render_time_gpu")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_get_measured_render_time_gpu", 866169185)
 
     public val viewportSetVrsModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_mode", 398809874)
 
     public val viewportSetVrsUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_update_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_update_mode", 2696154815)
 
     public val viewportSetVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "viewport_set_vrs_texture", 395945892)
 
-    public val skyCreatePtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingServer", "sky_create")
+    public val skyCreatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "sky_create", 529393457)
 
     public val skySetRadianceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "sky_set_radiance_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "sky_set_radiance_size", 3411492887)
 
     public val skySetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "sky_set_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "sky_set_mode", 3279019937)
 
     public val skySetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "sky_set_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "sky_set_material", 395945892)
 
     public val skyBakePanoramaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "sky_bake_panorama")
+        TypeManager.getMethodBindPtr("RenderingServer", "sky_bake_panorama", 3875285818)
 
     public val compositorEffectCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_create", 529393457)
 
     public val compositorEffectSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_enabled")
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_enabled", 1265174801)
 
     public val compositorEffectSetCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_callback")
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_callback", 487412485)
 
     public val compositorEffectSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_flag")
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_effect_set_flag", 3659527075)
 
     public val compositorCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "compositor_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_create", 529393457)
 
     public val compositorSetCompositorEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "compositor_set_compositor_effects")
+        TypeManager.getMethodBindPtr("RenderingServer", "compositor_set_compositor_effects", 684822712)
 
     public val environmentCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_create", 529393457)
 
     public val environmentSetBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_background")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_background", 3937328877)
 
     public val environmentSetSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sky")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sky", 395945892)
 
     public val environmentSetSkyCustomFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sky_custom_fov")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sky_custom_fov", 1794382983)
 
     public val environmentSetSkyOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sky_orientation")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sky_orientation", 1735850857)
 
     public val environmentSetBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_bg_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_bg_color", 2948539648)
 
     public val environmentSetBgEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_bg_energy")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_bg_energy", 2513314492)
 
     public val environmentSetCanvasMaxLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_canvas_max_layer")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_canvas_max_layer", 3411492887)
 
     public val environmentSetAmbientLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ambient_light")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ambient_light", 1214961493)
 
     public val environmentSetGlowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_glow")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_glow", 2421724940)
 
     public val environmentSetTonemapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_tonemap")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_tonemap", 2914312638)
 
     public val environmentSetAdjustmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_adjustment")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_adjustment", 876799838)
 
     public val environmentSetSsrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssr")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssr", 3607294374)
 
     public val environmentSetSsaoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssao")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssao", 3994732740)
 
     public val environmentSetFogPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_fog")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_fog", 105051629)
 
     public val environmentSetSdfgiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi", 3519144388)
 
     public val environmentSetVolumetricFogPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog", 1553633833)
 
     public val environmentGlowSetUseBicubicUpscalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_glow_set_use_bicubic_upscale")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_glow_set_use_bicubic_upscale", 2586408642)
 
     public val environmentSetSsrRoughnessQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssr_roughness_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssr_roughness_quality", 1190026788)
 
     public val environmentSetSsaoQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssao_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssao_quality", 189753569)
 
     public val environmentSetSsilQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssil_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_ssil_quality", 1713836683)
 
     public val environmentSetSdfgiRayCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_ray_count")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_ray_count", 340137951)
 
     public val environmentSetSdfgiFramesToConvergePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_frames_to_converge")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_frames_to_converge", 2182444374)
 
     public val environmentSetSdfgiFramesToUpdateLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_frames_to_update_light")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi_frames_to_update_light", 1251144068)
 
     public val environmentSetVolumetricFogVolumeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog_volume_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog_volume_size", 3937882851)
 
     public val environmentSetVolumetricFogFilterActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog_filter_active")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_volumetric_fog_filter_active", 2586408642)
 
     public val environmentBakePanoramaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "environment_bake_panorama")
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_bake_panorama", 2452908646)
 
     public val screenSpaceRoughnessLimiterSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "screen_space_roughness_limiter_set_active")
+        TypeManager.getMethodBindPtr("RenderingServer", "screen_space_roughness_limiter_set_active", 916716790)
 
     public val subSurfaceScatteringSetQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "sub_surface_scattering_set_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "sub_surface_scattering_set_quality", 64571803)
 
     public val subSurfaceScatteringSetScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "sub_surface_scattering_set_scale")
+        TypeManager.getMethodBindPtr("RenderingServer", "sub_surface_scattering_set_scale", 1017552074)
 
     public val cameraAttributesCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_create", 529393457)
 
     public val cameraAttributesSetDofBlurQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur_quality")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur_quality", 2220136795)
 
     public val cameraAttributesSetDofBlurBokehShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur_bokeh_shape")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur_bokeh_shape", 1205058394)
 
     public val cameraAttributesSetDofBlurPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_dof_blur", 316272616)
 
     public val cameraAttributesSetExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_exposure")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_exposure", 2513314492)
 
     public val cameraAttributesSetAutoExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_auto_exposure")
+        TypeManager.getMethodBindPtr("RenderingServer", "camera_attributes_set_auto_exposure", 4266986332)
 
     public val scenarioCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "scenario_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "scenario_create", 529393457)
 
     public val scenarioSetEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_environment")
+        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_environment", 395945892)
 
     public val scenarioSetFallbackEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_fallback_environment")
+        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_fallback_environment", 395945892)
 
     public val scenarioSetCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_camera_attributes")
+        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_camera_attributes", 395945892)
 
     public val scenarioSetCompositorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_compositor")
+        TypeManager.getMethodBindPtr("RenderingServer", "scenario_set_compositor", 395945892)
 
     public val instanceCreate2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_create2")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_create2", 746547085)
 
     public val instanceCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_create", 529393457)
 
     public val instanceSetBasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_base")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_base", 395945892)
 
     public val instanceSetScenarioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_scenario")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_scenario", 395945892)
 
     public val instanceSetLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_layer_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_layer_mask", 3411492887)
 
     public val instanceSetPivotDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_pivot_data")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_pivot_data", 1280615259)
 
     public val instanceSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_transform", 3935195649)
 
     public val instanceAttachObjectInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_attach_object_instance_id")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_attach_object_instance_id", 3411492887)
 
     public val instanceSetBlendShapeWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_blend_shape_weight")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_blend_shape_weight", 1892459533)
 
     public val instanceSetSurfaceOverrideMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_surface_override_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_surface_override_material", 2310537182)
 
     public val instanceSetVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_visible")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_visible", 1265174801)
 
     public val instanceGeometrySetTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_transparency")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_transparency", 1794382983)
 
     public val instanceSetCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_custom_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_custom_aabb", 3696536120)
 
     public val instanceAttachSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_attach_skeleton")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_attach_skeleton", 395945892)
 
     public val instanceSetExtraVisibilityMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_extra_visibility_margin")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_extra_visibility_margin", 1794382983)
 
     public val instanceSetVisibilityParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_visibility_parent")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_visibility_parent", 395945892)
 
     public val instanceSetIgnoreCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_ignore_culling")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_ignore_culling", 1265174801)
 
     public val instanceGeometrySetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_flag")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_flag", 1014989537)
 
     public val instanceGeometrySetCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_cast_shadows_setting")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_cast_shadows_setting", 3768836020)
 
     public val instanceGeometrySetMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_material_override")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_material_override", 395945892)
 
     public val instanceGeometrySetMaterialOverlayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_material_overlay")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_material_overlay", 395945892)
 
     public val instanceGeometrySetVisibilityRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_visibility_range")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_visibility_range", 4263925858)
 
     public val instanceGeometrySetLightmapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_lightmap")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_lightmap", 536974962)
 
     public val instanceGeometrySetLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_lod_bias")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_lod_bias", 1794382983)
 
     public val instanceGeometrySetShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_shader_parameter")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_shader_parameter", 3477296213)
 
     public val instanceGeometryGetShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter", 2621281810)
 
     public val instanceGeometryGetShaderParameterDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter_default_value")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter_default_value", 2621281810)
 
     public val instanceGeometryGetShaderParameterListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter_list")
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_get_shader_parameter_list", 2684255073)
 
     public val instancesCullAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instances_cull_aabb")
+        TypeManager.getMethodBindPtr("RenderingServer", "instances_cull_aabb", 2570105777)
 
     public val instancesCullRayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instances_cull_ray")
+        TypeManager.getMethodBindPtr("RenderingServer", "instances_cull_ray", 2208759584)
 
     public val instancesCullConvexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instances_cull_convex")
+        TypeManager.getMethodBindPtr("RenderingServer", "instances_cull_convex", 2488539944)
 
     public val bakeRenderUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "bake_render_uv2")
+        TypeManager.getMethodBindPtr("RenderingServer", "bake_render_uv2", 1904608558)
 
     public val canvasCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_create", 529393457)
 
     public val canvasSetItemMirroringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_item_mirroring")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_item_mirroring", 2343975398)
 
     public val canvasSetItemRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_item_repeat")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_item_repeat", 1739512717)
 
     public val canvasSetModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_modulate")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_modulate", 2948539648)
 
     public val canvasSetDisableScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_disable_scale")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_disable_scale", 2586408642)
 
     public val canvasTextureCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_create", 529393457)
 
     public val canvasTextureSetChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_channel")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_channel", 3822119138)
 
     public val canvasTextureSetShadingParametersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_shading_parameters")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_shading_parameters", 2124967469)
 
     public val canvasTextureSetTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_texture_filter")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_texture_filter", 1155129294)
 
     public val canvasTextureSetTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_texture_repeat")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_texture_set_texture_repeat", 1652956681)
 
     public val canvasItemCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_create", 529393457)
 
     public val canvasItemSetParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_parent")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_parent", 395945892)
 
     public val canvasItemSetDefaultTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_default_texture_filter")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_default_texture_filter", 1155129294)
 
     public val canvasItemSetDefaultTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_default_texture_repeat")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_default_texture_repeat", 1652956681)
 
     public val canvasItemSetVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_visible")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_visible", 1265174801)
 
     public val canvasItemSetLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_light_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_light_mask", 3411492887)
 
     public val canvasItemSetVisibilityLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_visibility_layer")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_visibility_layer", 3411492887)
 
     public val canvasItemSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_transform", 1246044741)
 
     public val canvasItemSetClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_clip")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_clip", 1265174801)
 
     public val canvasItemSetDistanceFieldModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_distance_field_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_distance_field_mode", 1265174801)
 
     public val canvasItemSetCustomRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_custom_rect")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_custom_rect", 1333997032)
 
     public val canvasItemSetModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_modulate")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_modulate", 2948539648)
 
     public val canvasItemSetSelfModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_self_modulate")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_self_modulate", 2948539648)
 
     public val canvasItemSetDrawBehindParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_draw_behind_parent")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_draw_behind_parent", 1265174801)
 
     public val canvasItemSetInterpolatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_interpolated")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_interpolated", 1265174801)
 
     public val canvasItemResetPhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_reset_physics_interpolation")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_reset_physics_interpolation", 2722037293)
 
     public val canvasItemTransformPhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_transform_physics_interpolation")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_transform_physics_interpolation", 1246044741)
 
     public val canvasItemAddLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_line")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_line", 1819681853)
 
     public val canvasItemAddPolylinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_polyline")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_polyline", 3098767073)
 
     public val canvasItemAddMultilinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_multiline")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_multiline", 3098767073)
 
     public val canvasItemAddRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_rect")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_rect", 3523446176)
 
     public val canvasItemAddCirclePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_circle")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_circle", 333077949)
 
     public val canvasItemAddTextureRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_texture_rect")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_texture_rect", 324864032)
 
     public val canvasItemAddMsdfTextureRectRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_msdf_texture_rect_region")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_msdf_texture_rect_region", 97408773)
 
     public val canvasItemAddLcdTextureRectRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_lcd_texture_rect_region")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_lcd_texture_rect_region", 359793297)
 
     public val canvasItemAddTextureRectRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_texture_rect_region")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_texture_rect_region", 485157892)
 
     public val canvasItemAddNinePatchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_nine_patch")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_nine_patch", 389957886)
 
     public val canvasItemAddPrimitivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_primitive")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_primitive", 3731601077)
 
     public val canvasItemAddPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_polygon")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_polygon", 3580000528)
 
     public val canvasItemAddTriangleArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_triangle_array")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_triangle_array", 660261329)
 
     public val canvasItemAddMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_mesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_mesh", 316450961)
 
     public val canvasItemAddMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_multimesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_multimesh", 2131855138)
 
     public val canvasItemAddParticlesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_particles")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_particles", 2575754278)
 
     public val canvasItemAddSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_set_transform", 1246044741)
 
     public val canvasItemAddClipIgnorePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_clip_ignore")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_clip_ignore", 1265174801)
 
     public val canvasItemAddAnimationSlicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_animation_slice")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_add_animation_slice", 2646834499)
 
     public val canvasItemSetSortChildrenByYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_sort_children_by_y")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_sort_children_by_y", 1265174801)
 
     public val canvasItemSetZIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_z_index")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_z_index", 3411492887)
 
     public val canvasItemSetZAsRelativeToParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_z_as_relative_to_parent")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_z_as_relative_to_parent", 1265174801)
 
     public val canvasItemSetCopyToBackbufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_copy_to_backbuffer")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_copy_to_backbuffer", 2429202503)
 
     public val canvasItemClearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_clear")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_clear", 2722037293)
 
     public val canvasItemSetDrawIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_draw_index")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_draw_index", 3411492887)
 
     public val canvasItemSetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_material", 395945892)
 
     public val canvasItemSetUseParentMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_use_parent_material")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_use_parent_material", 1265174801)
 
     public val canvasItemSetVisibilityNotifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_visibility_notifier")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_visibility_notifier", 3568945579)
 
     public val canvasItemSetCanvasGroupModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_canvas_group_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_item_set_canvas_group_mode", 3973586316)
 
     public val debugCanvasItemGetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "debug_canvas_item_get_rect")
+        TypeManager.getMethodBindPtr("RenderingServer", "debug_canvas_item_get_rect", 624227424)
 
     public val canvasLightCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_create", 529393457)
 
     public val canvasLightAttachToCanvasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_attach_to_canvas")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_attach_to_canvas", 395945892)
 
     public val canvasLightSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_enabled")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_enabled", 1265174801)
 
     public val canvasLightSetTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_texture_scale")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_texture_scale", 1794382983)
 
     public val canvasLightSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_transform", 1246044741)
 
     public val canvasLightSetTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_texture", 395945892)
 
     public val canvasLightSetTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_texture_offset")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_texture_offset", 3201125042)
 
     public val canvasLightSetColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_color", 2948539648)
 
     public val canvasLightSetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_height")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_height", 1794382983)
 
     public val canvasLightSetEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_energy")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_energy", 1794382983)
 
     public val canvasLightSetZRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_z_range")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_z_range", 4288446313)
 
     public val canvasLightSetLayerRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_layer_range")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_layer_range", 4288446313)
 
     public val canvasLightSetItemCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_item_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_item_cull_mask", 3411492887)
 
     public val canvasLightSetItemShadowCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_item_shadow_cull_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_item_shadow_cull_mask", 3411492887)
 
     public val canvasLightSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_mode", 2957564891)
 
     public val canvasLightSetShadowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_enabled")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_enabled", 1265174801)
 
     public val canvasLightSetShadowFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_filter")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_filter", 393119659)
 
     public val canvasLightSetShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_color", 2948539648)
 
     public val canvasLightSetShadowSmoothPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_smooth")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_shadow_smooth", 1794382983)
 
     public val canvasLightSetBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_blend_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_blend_mode", 804895945)
 
     public val canvasLightSetInterpolatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_interpolated")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_set_interpolated", 1265174801)
 
     public val canvasLightResetPhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_reset_physics_interpolation")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_reset_physics_interpolation", 2722037293)
 
     public val canvasLightTransformPhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_transform_physics_interpolation")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_transform_physics_interpolation", 1246044741)
 
     public val canvasLightOccluderCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_create", 529393457)
 
     public val canvasLightOccluderAttachToCanvasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_attach_to_canvas")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_attach_to_canvas", 395945892)
 
     public val canvasLightOccluderSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_enabled")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_enabled", 1265174801)
 
     public val canvasLightOccluderSetPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_polygon")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_polygon", 395945892)
 
     public val canvasLightOccluderSetAsSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_as_sdf_collision")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_as_sdf_collision", 1265174801)
 
     public val canvasLightOccluderSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_transform")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_transform", 1246044741)
 
     public val canvasLightOccluderSetLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_light_mask")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_light_mask", 3411492887)
 
     public val canvasLightOccluderSetInterpolatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_interpolated")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_set_interpolated", 1265174801)
 
     public val canvasLightOccluderResetPhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_reset_physics_interpolation")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_reset_physics_interpolation", 2722037293)
 
     public val canvasLightOccluderTransformPhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_transform_physics_interpolation")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_light_occluder_transform_physics_interpolation", 1246044741)
 
     public val canvasOccluderPolygonCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_create")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_create", 529393457)
 
     public val canvasOccluderPolygonSetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_set_shape")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_set_shape", 2103882027)
 
     public val canvasOccluderPolygonSetCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_set_cull_mode")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_occluder_polygon_set_cull_mode", 1839404663)
 
     public val canvasSetShadowTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_shadow_texture_size")
+        TypeManager.getMethodBindPtr("RenderingServer", "canvas_set_shadow_texture_size", 1286410249)
 
     public val globalShaderParameterAddPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_add")
+        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_add", 463390080)
 
     public val globalShaderParameterRemovePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_remove")
+        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_remove", 3304788590)
 
     public val globalShaderParameterGetListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_get_list")
+        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_get_list", 3995934104)
 
     public val globalShaderParameterSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_set")
+        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_set", 3776071444)
 
     public val globalShaderParameterSetOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_set_override")
+        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_set_override", 3776071444)
 
     public val globalShaderParameterGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_get")
+        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_get", 2760726917)
 
     public val globalShaderParameterGetTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_get_type")
+        TypeManager.getMethodBindPtr("RenderingServer", "global_shader_parameter_get_type", 1601414142)
 
-    public val freeRidPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingServer", "free_rid")
+    public val freeRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "free_rid", 2722037293)
 
     public val requestFrameDrawnCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "request_frame_drawn_callback")
+        TypeManager.getMethodBindPtr("RenderingServer", "request_frame_drawn_callback", 1611583062)
 
     public val hasChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "has_changed")
+        TypeManager.getMethodBindPtr("RenderingServer", "has_changed", 36873697)
 
     public val getRenderingInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_rendering_info")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_rendering_info", 3763192241)
 
     public val getVideoAdapterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_name")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_name", 201670096)
 
     public val getVideoAdapterVendorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_vendor")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_vendor", 201670096)
 
     public val getVideoAdapterTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_type")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_type", 3099547011)
 
     public val getVideoAdapterApiVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_api_version")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_video_adapter_api_version", 201670096)
 
     public val makeSphereMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "make_sphere_mesh")
+        TypeManager.getMethodBindPtr("RenderingServer", "make_sphere_mesh", 2251015897)
 
     public val getTestCubePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_test_cube")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_test_cube", 529393457)
 
     public val getTestTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_test_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_test_texture", 529393457)
 
     public val getWhiteTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_white_texture")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_white_texture", 529393457)
 
     public val setBootImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "set_boot_image")
+        TypeManager.getMethodBindPtr("RenderingServer", "set_boot_image", 3759744527)
 
     public val getDefaultClearColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_default_clear_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_default_clear_color", 3200896285)
 
     public val setDefaultClearColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "set_default_clear_color")
+        TypeManager.getMethodBindPtr("RenderingServer", "set_default_clear_color", 2920490490)
 
     public val hasOsFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "has_os_feature")
+        TypeManager.getMethodBindPtr("RenderingServer", "has_os_feature", 3927539163)
 
     public val setDebugGenerateWireframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "set_debug_generate_wireframes")
+        TypeManager.getMethodBindPtr("RenderingServer", "set_debug_generate_wireframes", 2586408642)
 
     public val isRenderLoopEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "is_render_loop_enabled")
+        TypeManager.getMethodBindPtr("RenderingServer", "is_render_loop_enabled", 36873697)
 
     public val setRenderLoopEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "set_render_loop_enabled")
+        TypeManager.getMethodBindPtr("RenderingServer", "set_render_loop_enabled", 2586408642)
 
     public val getFrameSetupTimeCpuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_frame_setup_time_cpu")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_frame_setup_time_cpu", 1740695150)
 
-    public val forceSyncPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingServer", "force_sync")
+    public val forceSyncPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "force_sync", 3218959716)
 
-    public val forceDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("RenderingServer", "force_draw")
+    public val forceDrawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "force_draw", 1076185472)
 
     public val getRenderingDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "get_rendering_device")
+        TypeManager.getMethodBindPtr("RenderingServer", "get_rendering_device", 1405107940)
 
     public val createLocalRenderingDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "create_local_rendering_device")
+        TypeManager.getMethodBindPtr("RenderingServer", "create_local_rendering_device", 1405107940)
 
     public val isOnRenderThreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "is_on_render_thread")
+        TypeManager.getMethodBindPtr("RenderingServer", "is_on_render_thread", 2240911060)
 
     public val callOnRenderThreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "call_on_render_thread")
+        TypeManager.getMethodBindPtr("RenderingServer", "call_on_render_thread", 1611583062)
 
     public val hasFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "has_feature")
+        TypeManager.getMethodBindPtr("RenderingServer", "has_feature", 598462696)
   }
 }
 

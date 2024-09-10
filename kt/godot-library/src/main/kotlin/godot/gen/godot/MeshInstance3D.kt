@@ -240,60 +240,64 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance3D", "set_mesh")
+    public val setMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance3D", "get_mesh")
+    public val getMeshPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_mesh", 1808005922)
 
     public val setSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_skeleton_path")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_skeleton_path", 1348162250)
 
     public val getSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skeleton_path")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skeleton_path", 277076166)
 
-    public val setSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance3D", "set_skin")
+    public val setSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_skin", 3971435618)
 
-    public val getSkinPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin")
+    public val getSkinPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin", 2074563878)
 
     public val getSkinReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin_reference")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_skin_reference", 2060603409)
 
     public val getSurfaceOverrideMaterialCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material_count")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material_count", 3905245786)
 
     public val setSurfaceOverrideMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_surface_override_material")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_surface_override_material", 3671737478)
 
     public val getSurfaceOverrideMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_surface_override_material", 2897466400)
 
     public val getActiveMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_active_material")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_active_material", 2897466400)
 
     public val createTrimeshCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_trimesh_collision")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_trimesh_collision", 3218959716)
 
     public val createConvexCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_convex_collision")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_convex_collision", 2751962654)
 
     public val createMultipleConvexCollisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_multiple_convex_collisions")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_multiple_convex_collisions", 628789669)
 
     public val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_count")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_count", 3905245786)
 
     public val findBlendShapeByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "find_blend_shape_by_name")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "find_blend_shape_by_name", 4150868206)
 
     public val getBlendShapeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_value")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "get_blend_shape_value", 2339986948)
 
     public val setBlendShapeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "set_blend_shape_value")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "set_blend_shape_value", 1602489585)
 
     public val createDebugTangentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "create_debug_tangents")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "create_debug_tangents", 3218959716)
 
     public val bakeMeshFromCurrentBlendShapeMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_blend_shape_mix")
+        TypeManager.getMethodBindPtr("MeshInstance3D", "bake_mesh_from_current_blend_shape_mix", 1457573577)
   }
 }

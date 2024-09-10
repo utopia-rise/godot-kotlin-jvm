@@ -103,12 +103,12 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
   internal object MethodBindings {
     public val setRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "set_rect")
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "set_rect", 2046264180)
 
     public val getRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "get_rect")
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "get_rect", 1639390495)
 
     public val isOnScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_on_screen")
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_on_screen", 36873697)
   }
 }

@@ -153,39 +153,39 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   internal object MethodBindings {
     public val setHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint", 2540512075)
 
     public val getHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint", 4250814924)
 
     public val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min", 1286410249)
 
     public val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min", 3905245786)
 
     public val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max", 1286410249)
 
     public val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max", 3905245786)
 
     public val setStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step", 1286410249)
 
     public val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step", 3905245786)
 
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value", 1286410249)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value")
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value", 3905245786)
   }
 }

@@ -82,12 +82,12 @@ public open class InstancePlaceholder internal constructor() : Node() {
 
   internal object MethodBindings {
     public val getStoredValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_stored_values")
+        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_stored_values", 2230153369)
 
     public val createInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InstancePlaceholder", "create_instance")
+        TypeManager.getMethodBindPtr("InstancePlaceholder", "create_instance", 3794612210)
 
     public val getInstancePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_instance_path")
+        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_instance_path", 201670096)
   }
 }

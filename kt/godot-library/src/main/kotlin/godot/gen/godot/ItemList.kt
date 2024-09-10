@@ -792,203 +792,220 @@ public open class ItemList : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "add_item")
+    public val addItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "add_item", 359861678)
 
-    public val addIconItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "add_icon_item")
+    public val addIconItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "add_icon_item", 4256579627)
 
-    public val setItemTextPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_item_text")
+    public val setItemTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_text", 501894301)
 
-    public val getItemTextPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_text")
+    public val getItemTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_text", 844755477)
 
-    public val setItemIconPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_item_icon")
+    public val setItemIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon", 666127730)
 
-    public val getItemIconPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_icon")
+    public val getItemIconPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon", 3536238170)
 
     public val setItemTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_text_direction")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_text_direction", 1707680378)
 
     public val getItemTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_text_direction")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_text_direction", 4235602388)
 
     public val setItemLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_language")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_language", 501894301)
 
     public val getItemLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_language")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_language", 844755477)
 
     public val setItemIconTransposedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_transposed")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_transposed", 300928843)
 
     public val isItemIconTransposedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_icon_transposed")
+        TypeManager.getMethodBindPtr("ItemList", "is_item_icon_transposed", 1116898809)
 
     public val setItemIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_region")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_region", 1356297692)
 
     public val getItemIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_region")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_region", 3327874267)
 
     public val setItemIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_modulate")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_modulate", 2878471219)
 
     public val getItemIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_modulate")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_modulate", 3457211756)
 
     public val setItemSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_selectable")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_selectable", 300928843)
 
     public val isItemSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_selectable")
+        TypeManager.getMethodBindPtr("ItemList", "is_item_selectable", 1116898809)
 
     public val setItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_disabled")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_disabled", 300928843)
 
     public val isItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_disabled")
+        TypeManager.getMethodBindPtr("ItemList", "is_item_disabled", 1116898809)
 
     public val setItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_metadata")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_metadata", 2152698145)
 
     public val getItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_metadata")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_metadata", 4227898402)
 
     public val setItemCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_bg_color")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_bg_color", 2878471219)
 
     public val getItemCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_bg_color")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_bg_color", 3457211756)
 
     public val setItemCustomFgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_fg_color")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_fg_color", 2878471219)
 
     public val getItemCustomFgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_fg_color")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_fg_color", 3457211756)
 
-    public val getItemRectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_rect")
+    public val getItemRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_rect", 159227807)
 
     public val setItemTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip_enabled")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip_enabled", 300928843)
 
     public val isItemTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_tooltip_enabled")
+        TypeManager.getMethodBindPtr("ItemList", "is_item_tooltip_enabled", 1116898809)
 
     public val setItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip")
+        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip", 501894301)
 
     public val getItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_tooltip")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_tooltip", 844755477)
 
-    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "select")
+    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "select", 972357352)
 
-    public val deselectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "deselect")
+    public val deselectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "deselect", 1286410249)
 
-    public val deselectAllPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "deselect_all")
+    public val deselectAllPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "deselect_all", 3218959716)
 
-    public val isSelectedPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "is_selected")
+    public val isSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "is_selected", 1116898809)
 
     public val getSelectedItemsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_selected_items")
+        TypeManager.getMethodBindPtr("ItemList", "get_selected_items", 969006518)
 
-    public val moveItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "move_item")
+    public val moveItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "move_item", 3937882851)
 
-    public val setItemCountPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_item_count")
+    public val setItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_item_count", 1286410249)
 
-    public val getItemCountPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_item_count")
+    public val getItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_item_count", 3905245786)
 
-    public val removeItemPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "remove_item")
+    public val removeItemPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "remove_item", 1286410249)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "clear")
+    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "clear", 3218959716)
 
     public val sortItemsByTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "sort_items_by_text")
+        TypeManager.getMethodBindPtr("ItemList", "sort_items_by_text", 3218959716)
 
     public val setFixedColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_fixed_column_width")
+        TypeManager.getMethodBindPtr("ItemList", "set_fixed_column_width", 1286410249)
 
     public val getFixedColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_fixed_column_width")
+        TypeManager.getMethodBindPtr("ItemList", "get_fixed_column_width", 3905245786)
 
     public val setSameColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_same_column_width")
+        TypeManager.getMethodBindPtr("ItemList", "set_same_column_width", 2586408642)
 
     public val isSameColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_same_column_width")
+        TypeManager.getMethodBindPtr("ItemList", "is_same_column_width", 36873697)
 
     public val setMaxTextLinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_max_text_lines")
+        TypeManager.getMethodBindPtr("ItemList", "set_max_text_lines", 1286410249)
 
     public val getMaxTextLinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_max_text_lines")
+        TypeManager.getMethodBindPtr("ItemList", "get_max_text_lines", 3905245786)
 
     public val setMaxColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_max_columns")
+        TypeManager.getMethodBindPtr("ItemList", "set_max_columns", 1286410249)
 
     public val getMaxColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_max_columns")
+        TypeManager.getMethodBindPtr("ItemList", "get_max_columns", 3905245786)
 
     public val setSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_select_mode")
+        TypeManager.getMethodBindPtr("ItemList", "set_select_mode", 928267388)
 
     public val getSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_select_mode")
+        TypeManager.getMethodBindPtr("ItemList", "get_select_mode", 1191945842)
 
-    public val setIconModePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_icon_mode")
+    public val setIconModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_icon_mode", 2025053633)
 
-    public val getIconModePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_icon_mode")
+    public val getIconModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_icon_mode", 3353929232)
 
     public val setFixedIconSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_fixed_icon_size")
+        TypeManager.getMethodBindPtr("ItemList", "set_fixed_icon_size", 1130785943)
 
     public val getFixedIconSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_fixed_icon_size")
+        TypeManager.getMethodBindPtr("ItemList", "get_fixed_icon_size", 3690982128)
 
-    public val setIconScalePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "set_icon_scale")
+    public val setIconScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "set_icon_scale", 373806689)
 
-    public val getIconScalePtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "get_icon_scale")
+    public val getIconScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "get_icon_scale", 1740695150)
 
     public val setAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_allow_rmb_select")
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_rmb_select", 2586408642)
 
     public val getAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_allow_rmb_select")
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_rmb_select", 36873697)
 
     public val setAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_allow_reselect")
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_reselect", 2586408642)
 
     public val getAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_allow_reselect")
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_reselect", 36873697)
 
     public val setAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_allow_search")
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_search", 2586408642)
 
     public val getAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_allow_search")
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_search", 36873697)
 
     public val setAutoHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_auto_height")
+        TypeManager.getMethodBindPtr("ItemList", "set_auto_height", 2586408642)
 
     public val hasAutoHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "has_auto_height")
+        TypeManager.getMethodBindPtr("ItemList", "has_auto_height", 36873697)
 
     public val isAnythingSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_anything_selected")
+        TypeManager.getMethodBindPtr("ItemList", "is_anything_selected", 2240911060)
 
     public val getItemAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_at_position")
+        TypeManager.getMethodBindPtr("ItemList", "get_item_at_position", 2300324924)
 
     public val ensureCurrentIsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "ensure_current_is_visible")
+        TypeManager.getMethodBindPtr("ItemList", "ensure_current_is_visible", 3218959716)
 
     public val getVScrollBarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_v_scroll_bar")
+        TypeManager.getMethodBindPtr("ItemList", "get_v_scroll_bar", 2630340773)
 
     public val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("ItemList", "set_text_overrun_behavior", 1008890932)
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_text_overrun_behavior")
+        TypeManager.getMethodBindPtr("ItemList", "get_text_overrun_behavior", 3779142101)
 
     public val forceUpdateListSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "force_update_list_size")
+        TypeManager.getMethodBindPtr("ItemList", "force_update_list_size", 3218959716)
   }
 }

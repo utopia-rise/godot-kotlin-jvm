@@ -371,80 +371,91 @@ public open class Curve3D : Resource() {
 
   internal object MethodBindings {
     public val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_point_count")
+        TypeManager.getMethodBindPtr("Curve3D", "get_point_count", 3905245786)
 
     public val setPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "set_point_count")
+        TypeManager.getMethodBindPtr("Curve3D", "set_point_count", 1286410249)
 
-    public val addPointPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "add_point")
+    public val addPointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "add_point", 2931053748)
 
     public val setPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "set_point_position")
+        TypeManager.getMethodBindPtr("Curve3D", "set_point_position", 1530502735)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_point_position")
+        TypeManager.getMethodBindPtr("Curve3D", "get_point_position", 711720468)
 
-    public val setPointTiltPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "set_point_tilt")
+    public val setPointTiltPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "set_point_tilt", 1602489585)
 
-    public val getPointTiltPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "get_point_tilt")
+    public val getPointTiltPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "get_point_tilt", 2339986948)
 
-    public val setPointInPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "set_point_in")
+    public val setPointInPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "set_point_in", 1530502735)
 
-    public val getPointInPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "get_point_in")
+    public val getPointInPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "get_point_in", 711720468)
 
-    public val setPointOutPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "set_point_out")
+    public val setPointOutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "set_point_out", 1530502735)
 
-    public val getPointOutPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "get_point_out")
+    public val getPointOutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "get_point_out", 711720468)
 
-    public val removePointPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "remove_point")
+    public val removePointPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "remove_point", 1286410249)
 
-    public val clearPointsPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "clear_points")
+    public val clearPointsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "clear_points", 3218959716)
 
-    public val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "sample")
+    public val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "sample", 3285246857)
 
-    public val samplefPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "samplef")
+    public val samplefPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "samplef", 2553580215)
 
     public val setBakeIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "set_bake_interval")
+        TypeManager.getMethodBindPtr("Curve3D", "set_bake_interval", 373806689)
 
     public val getBakeIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_bake_interval")
+        TypeManager.getMethodBindPtr("Curve3D", "get_bake_interval", 1740695150)
 
     public val setUpVectorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "set_up_vector_enabled")
+        TypeManager.getMethodBindPtr("Curve3D", "set_up_vector_enabled", 2586408642)
 
     public val isUpVectorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "is_up_vector_enabled")
+        TypeManager.getMethodBindPtr("Curve3D", "is_up_vector_enabled", 36873697)
 
     public val getBakedLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_baked_length")
+        TypeManager.getMethodBindPtr("Curve3D", "get_baked_length", 1740695150)
 
-    public val sampleBakedPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "sample_baked")
+    public val sampleBakedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "sample_baked", 1350085894)
 
     public val sampleBakedWithRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "sample_baked_with_rotation")
+        TypeManager.getMethodBindPtr("Curve3D", "sample_baked_with_rotation", 1939359131)
 
     public val sampleBakedUpVectorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "sample_baked_up_vector")
+        TypeManager.getMethodBindPtr("Curve3D", "sample_baked_up_vector", 1362627031)
 
     public val getBakedPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_baked_points")
+        TypeManager.getMethodBindPtr("Curve3D", "get_baked_points", 497664490)
 
     public val getBakedTiltsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_baked_tilts")
+        TypeManager.getMethodBindPtr("Curve3D", "get_baked_tilts", 675695659)
 
     public val getBakedUpVectorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_baked_up_vectors")
+        TypeManager.getMethodBindPtr("Curve3D", "get_baked_up_vectors", 497664490)
 
     public val getClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_closest_point")
+        TypeManager.getMethodBindPtr("Curve3D", "get_closest_point", 192990374)
 
     public val getClosestOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "get_closest_offset")
+        TypeManager.getMethodBindPtr("Curve3D", "get_closest_offset", 1109078154)
 
-    public val tessellatePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve3D", "tessellate")
+    public val tessellatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Curve3D", "tessellate", 1519759391)
 
     public val tessellateEvenLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve3D", "tessellate_even_length")
+        TypeManager.getMethodBindPtr("Curve3D", "tessellate_even_length", 133237049)
   }
 }

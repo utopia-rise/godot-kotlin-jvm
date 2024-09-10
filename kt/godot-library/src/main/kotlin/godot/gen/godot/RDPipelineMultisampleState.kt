@@ -135,39 +135,39 @@ public open class RDPipelineMultisampleState : RefCounted() {
 
   internal object MethodBindings {
     public val setSampleCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_count")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_count", 3774171498)
 
     public val getSampleCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_count")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_count", 407791724)
 
     public val setEnableSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_sample_shading")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_sample_shading", 2586408642)
 
     public val getEnableSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_sample_shading")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_sample_shading", 36873697)
 
     public val setMinSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_min_sample_shading")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_min_sample_shading", 373806689)
 
     public val getMinSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_min_sample_shading")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_min_sample_shading", 1740695150)
 
     public val setEnableAlphaToCoveragePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_coverage")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_coverage", 2586408642)
 
     public val getEnableAlphaToCoveragePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_coverage")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_coverage", 36873697)
 
     public val setEnableAlphaToOnePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_one")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_one", 2586408642)
 
     public val getEnableAlphaToOnePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_one")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_one", 36873697)
 
     public val setSampleMasksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_masks")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_masks", 381264803)
 
     public val getSampleMasksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_masks")
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_masks", 3995934104)
   }
 }

@@ -74,8 +74,10 @@ public open class PackedDataContainer : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val packPtr: VoidPtr = TypeManager.getMethodBindPtr("PackedDataContainer", "pack")
+    public val packPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PackedDataContainer", "pack", 966674026)
 
-    public val sizePtr: VoidPtr = TypeManager.getMethodBindPtr("PackedDataContainer", "size")
+    public val sizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PackedDataContainer", "size", 3905245786)
   }
 }

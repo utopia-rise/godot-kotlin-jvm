@@ -267,80 +267,87 @@ public open class VideoStreamPlayer : Control() {
 
   internal object MethodBindings {
     public val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream", 2317102564)
 
     public val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream", 438621487)
 
-    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "play")
+    public val playPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "play", 3218959716)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "stop")
+    public val stopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "stop", 3218959716)
 
     public val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_playing")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_playing", 36873697)
 
     public val setPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_paused")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_paused", 2586408642)
 
-    public val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused")
+    public val isPausedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused", 36873697)
 
-    public val setLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_loop")
+    public val setLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_loop", 2586408642)
 
-    public val hasLoopPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_loop")
+    public val hasLoopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_loop", 36873697)
 
     public val setVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume", 373806689)
 
     public val getVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume", 1740695150)
 
     public val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume_db")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume_db", 373806689)
 
     public val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume_db")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume_db", 1740695150)
 
     public val setAudioTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_audio_track")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_audio_track", 1286410249)
 
     public val getAudioTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_audio_track")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_audio_track", 3905245786)
 
     public val getStreamNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name", 201670096)
 
     public val getStreamLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_length")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_length", 1740695150)
 
     public val setStreamPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position", 373806689)
 
     public val getStreamPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_position")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_position", 1740695150)
 
     public val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_autoplay")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_autoplay", 2586408642)
 
     public val hasAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_autoplay")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_autoplay", 36873697)
 
     public val setExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_expand")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_expand", 2586408642)
 
     public val hasExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_expand")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_expand", 36873697)
 
     public val setBufferingMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_buffering_msec")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_buffering_msec", 1286410249)
 
     public val getBufferingMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_buffering_msec")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_buffering_msec", 3905245786)
 
-    public val setBusPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_bus")
+    public val setBusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_bus", 3304788590)
 
-    public val getBusPtr: VoidPtr = TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_bus")
+    public val getBusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_bus", 2002593661)
 
     public val getVideoTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_video_texture")
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_video_texture", 3635182373)
   }
 }
