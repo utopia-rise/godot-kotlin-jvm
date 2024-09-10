@@ -3,8 +3,8 @@ package godot.tests
 import godot.Button
 import godot.NavigationMesh
 import godot.Node3D
-import godot.XRServer
 import godot.Object
+import godot.XRServer
 import godot.annotation.ColorNoAlpha
 import godot.annotation.Dir
 import godot.annotation.DoubleRange
@@ -394,9 +394,10 @@ class Invocation : Node3D() {
 	override fun _ready() {
 		val formerName = name
 		println("Name is: $name")
-		name = "TestName".asStringName()
+		setName("TestName")
 		println("Name is: $name")
-		name = formerName
+        setName(formerName.toString())
+
 		val test = DateTime.now() //external dependency to test dependency inclusion in main compilation
 
 		val getNode = getNodeAs<Button>("CanvasLayer/Button")

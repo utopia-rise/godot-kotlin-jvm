@@ -418,7 +418,7 @@ class GenerationService(
     private fun generateProperty(enrichedClass: EnrichedClass, property: EnrichedProperty): PropertySpec? {
         if (!property.hasValidGetterInClass && !property.hasValidSetterInClass) return null
 
-        // We can't really on the property alone because some of them don't have a getter so we have to rely on the setter first parameter
+        // We can't trust the property alone because some of them don't have a getter so we have to check on the setter's first parameter as well.
         val argumentIndex = if (property.isIndexed) 1 else 0
         val propertyTypeName = (property.getterMethod ?: property.setterMethod!!.arguments[argumentIndex]).getCastedType()
 
