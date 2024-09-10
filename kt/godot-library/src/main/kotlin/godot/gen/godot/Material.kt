@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [Material] is a base resource used for coloring and shading geometry. All materials inherit from
@@ -41,14 +42,11 @@ public open class Material : Resource() {
    * opaque meshes.
    */
   public var renderPriority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("renderPriorityProperty")
+    get() = getRenderPriority()
+    @JvmName("renderPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+      setRenderPriority(value)
     }
 
   /**
@@ -60,14 +58,11 @@ public open class Material : Resource() {
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
    */
   public var nextPass: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNextPassPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
-    }
+    @JvmName("nextPassProperty")
+    get() = getNextPass()
+    @JvmName("nextPassProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNextPassPtr, NIL)
+      setNextPass(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -104,6 +99,28 @@ public open class Material : Resource() {
    */
   public open fun _canUseRenderPriority(): Boolean {
     throw NotImplementedError("_can_use_render_priority is not implemented for Material")
+  }
+
+  public fun setNextPass(nextPass: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to nextPass)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNextPassPtr, NIL)
+  }
+
+  public fun getNextPass(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNextPassPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+  }
+
+  public fun setRenderPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+  }
+
+  public fun getRenderPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

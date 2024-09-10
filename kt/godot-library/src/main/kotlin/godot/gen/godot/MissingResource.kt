@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This is an internal editor class intended for keeping data of resources of unknown type (most
@@ -32,14 +33,11 @@ public open class MissingResource : Resource() {
    * The name of the class this resource was supposed to be (see [Object.getClass]).
    */
   public var originalClass: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOriginalClassPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("originalClassProperty")
+    get() = getOriginalClass()
+    @JvmName("originalClassProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOriginalClassPtr, NIL)
+      setOriginalClass(value)
     }
 
   /**
@@ -47,18 +45,37 @@ public open class MissingResource : Resource() {
    * [Object.set].
    */
   public var recordingProperties: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isRecordingPropertiesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("recordingPropertiesProperty")
+    get() = isRecordingProperties()
+    @JvmName("recordingPropertiesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
+      setRecordingProperties(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MISSINGRESOURCE, scriptIndex)
+  }
+
+  public fun setOriginalClass(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalClassPtr, NIL)
+  }
+
+  public fun getOriginalClass(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalClassPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setRecordingProperties(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
+  }
+
+  public fun isRecordingProperties(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isRecordingPropertiesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -41,6 +41,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -88,14 +89,11 @@ public open class Skeleton3D : Node3D() {
    * position value.
    */
   public var motionScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("motionScaleProperty")
+    get() = getMotionScale()
+    @JvmName("motionScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
+      setMotionScale(value)
     }
 
   /**
@@ -103,28 +101,22 @@ public open class Skeleton3D : Node3D() {
    * editor, this also prevents the bones from being edited.
    */
   public var showRestOnly: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isShowRestOnlyPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("showRestOnlyProperty")
+    get() = isShowRestOnly()
+    @JvmName("showRestOnlyProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShowRestOnlyPtr, NIL)
+      setShowRestOnly(value)
     }
 
   /**
    * Sets the processing timing for the Modifier.
    */
   public var modifierCallbackModeProcess: ModifierCallbackModeProcess
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModifierCallbackModeProcessPtr, LONG)
-      return Skeleton3D.ModifierCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("modifierCallbackModeProcessProperty")
+    get() = getModifierCallbackModeProcess()
+    @JvmName("modifierCallbackModeProcessProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModifierCallbackModeProcessPtr, NIL)
+      setModifierCallbackModeProcess(value)
     }
 
   /**
@@ -136,14 +128,11 @@ public open class Skeleton3D : Node3D() {
    * [PhysicalBoneSimulator3D]'s [SkeletonModifier3D.active].
    */
   public var animatePhysicalBones: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnimatePhysicalBonesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("animatePhysicalBonesProperty")
+    get() = getAnimatePhysicalBones()
+    @JvmName("animatePhysicalBonesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAnimatePhysicalBonesPtr, NIL)
+      setAnimatePhysicalBones(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -306,7 +295,7 @@ public open class Skeleton3D : Node3D() {
   /**
    * Binds the given Skin to the Skeleton.
    */
-  public fun registerSkin(skin: Skin): SkinReference? {
+  public fun registerSkin(skin: Skin?): SkinReference? {
     TransferContext.writeArguments(OBJECT to skin)
     TransferContext.callMethod(rawPtr, MethodBindings.registerSkinPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkinReference?)
@@ -478,6 +467,39 @@ public open class Skeleton3D : Node3D() {
     TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateBoneChildTransformPtr, NIL)
   }
 
+  public fun setMotionScale(motionScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to motionScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
+  }
+
+  public fun getMotionScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setShowRestOnly(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShowRestOnlyPtr, NIL)
+  }
+
+  public fun isShowRestOnly(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isShowRestOnlyPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setModifierCallbackModeProcess(mode: ModifierCallbackModeProcess): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModifierCallbackModeProcessPtr, NIL)
+  }
+
+  public fun getModifierCallbackModeProcess(): ModifierCallbackModeProcess {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModifierCallbackModeProcessPtr, LONG)
+    return Skeleton3D.ModifierCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Removes the global pose override on all bones in the skeleton.
    */
@@ -523,6 +545,17 @@ public open class Skeleton3D : Node3D() {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneGlobalPoseNoOverridePtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  public fun setAnimatePhysicalBones(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAnimatePhysicalBonesPtr, NIL)
+  }
+
+  public fun getAnimatePhysicalBones(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimatePhysicalBonesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

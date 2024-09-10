@@ -24,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -96,14 +97,11 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Affects [listDirBegin] and [getDirectories].
    */
   public var includeNavigational: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIncludeNavigationalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("includeNavigationalProperty")
+    get() = getIncludeNavigational()
+    @JvmName("includeNavigationalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIncludeNavigationalPtr, NIL)
+      setIncludeNavigational(value)
     }
 
   /**
@@ -111,14 +109,11 @@ public open class DirAccess internal constructor() : RefCounted() {
    * Affects [listDirBegin], [getDirectories] and [getFiles].
    */
   public var includeHidden: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIncludeHiddenPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("includeHiddenProperty")
+    get() = getIncludeHidden()
+    @JvmName("includeHiddenProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIncludeHiddenPtr, NIL)
+      setIncludeHidden(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -364,6 +359,28 @@ public open class DirAccess internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to source, STRING to target)
     TransferContext.callMethod(rawPtr, MethodBindings.createLinkPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setIncludeNavigational(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIncludeNavigationalPtr, NIL)
+  }
+
+  public fun getIncludeNavigational(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIncludeNavigationalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setIncludeHidden(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIncludeHiddenPtr, NIL)
+  }
+
+  public fun getIncludeHidden(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIncludeHiddenPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

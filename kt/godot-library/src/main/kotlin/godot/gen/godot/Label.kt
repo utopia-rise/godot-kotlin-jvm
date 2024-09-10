@@ -32,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -45,14 +46,11 @@ public open class Label : Control() {
    * The text to display on screen.
    */
   public var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("textProperty")
+    get() = getText()
+    @JvmName("textProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+      setText(value)
     }
 
   /**
@@ -60,14 +58,11 @@ public open class Label : Control() {
    * over theme properties.
    */
   public var labelSettings: LabelSettings?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLabelSettingsPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as LabelSettings?)
-    }
+    @JvmName("labelSettingsProperty")
+    get() = getLabelSettings()
+    @JvmName("labelSettingsProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLabelSettingsPtr, NIL)
+      setLabelSettings(value)
     }
 
   /**
@@ -75,14 +70,11 @@ public open class Label : Control() {
    * Set it to one of the [HorizontalAlignment] constants.
    */
   public var horizontalAlignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("horizontalAlignmentProperty")
+    get() = getHorizontalAlignment()
+    @JvmName("horizontalAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+      setHorizontalAlignment(value)
     }
 
   /**
@@ -90,14 +82,11 @@ public open class Label : Control() {
    * of the [VerticalAlignment] constants.
    */
   public var verticalAlignment: VerticalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
-      return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("verticalAlignmentProperty")
+    get() = getVerticalAlignment()
+    @JvmName("verticalAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
+      setVerticalAlignment(value)
     }
 
   /**
@@ -106,28 +95,22 @@ public open class Label : Control() {
    * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("autowrapModeProperty")
+    get() = getAutowrapMode()
+    @JvmName("autowrapModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+      setAutowrapMode(value)
     }
 
   /**
    * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
   public var justificationFlags: TextServer.JustificationFlag
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
-      return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("justificationFlagsProperty")
+    get() = getJustificationFlags()
+    @JvmName("justificationFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+      setJustificationFlags(value)
     }
 
   /**
@@ -135,14 +118,11 @@ public open class Label : Control() {
    * text horizontally.
    */
   public var clipText: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isClippingTextPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("clipTextProperty")
+    get() = isClippingText()
+    @JvmName("clipTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
+      setClipText(value)
     }
 
   /**
@@ -150,84 +130,66 @@ public open class Label : Control() {
    * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
-      return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textOverrunBehaviorProperty")
+    get() = getTextOverrunBehavior()
+    @JvmName("textOverrunBehaviorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+      setTextOverrunBehavior(value)
     }
 
   /**
    * Ellipsis character used for text clipping.
    */
   public var ellipsisChar: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("ellipsisCharProperty")
+    get() = getEllipsisChar()
+    @JvmName("ellipsisCharProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+      setEllipsisChar(value)
     }
 
   /**
    * If `true`, all the text displays as UPPERCASE.
    */
   public var uppercase: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uppercaseProperty")
+    get() = isUppercase()
+    @JvmName("uppercaseProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
+      setUppercase(value)
     }
 
   /**
    * Aligns text to the given tab-stops.
    */
   public var tabStops: PackedFloat32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
-    }
+    @JvmName("tabStopsProperty")
+    get() = getTabStops()
+    @JvmName("tabStopsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabStopsPtr, NIL)
+      setTabStops(value)
     }
 
   /**
    * The number of the lines ignored and not displayed from the start of the [text] value.
    */
   public var linesSkipped: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinesSkippedPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("linesSkippedProperty")
+    get() = getLinesSkipped()
+    @JvmName("linesSkippedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinesSkippedPtr, NIL)
+      setLinesSkipped(value)
     }
 
   /**
    * Limits the lines of text the node shows on screen.
    */
   public var maxLinesVisible: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxLinesVisiblePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxLinesVisibleProperty")
+    get() = getMaxLinesVisible()
+    @JvmName("maxLinesVisibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxLinesVisiblePtr, NIL)
+      setMaxLinesVisible(value)
     }
 
   /**
@@ -236,14 +198,11 @@ public open class Label : Control() {
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public var visibleCharacters: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("visibleCharactersProperty")
+    get() = getVisibleCharacters()
+    @JvmName("visibleCharactersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
+      setVisibleCharacters(value)
     }
 
   /**
@@ -251,14 +210,11 @@ public open class Label : Control() {
    * [TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
-      return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("visibleCharactersBehaviorProperty")
+    get() = getVisibleCharactersBehavior()
+    @JvmName("visibleCharactersBehaviorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
+      setVisibleCharactersBehavior(value)
     }
 
   /**
@@ -269,28 +225,22 @@ public open class Label : Control() {
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public var visibleRatio: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("visibleRatioProperty")
+    get() = getVisibleRatio()
+    @JvmName("visibleRatioProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
+      setVisibleRatio(value)
     }
 
   /**
    * Base text writing direction.
    */
   public var textDirection: Control.TextDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textDirectionProperty")
+    get() = getTextDirection()
+    @JvmName("textDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+      setTextDirection(value)
     }
 
   /**
@@ -298,48 +248,180 @@ public open class Label : Control() {
    * is used instead.
    */
   public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("languageProperty")
+    get() = getLanguage()
+    @JvmName("languageProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+      setLanguage(value)
     }
 
   /**
    * Set BiDi algorithm override for the structured text.
    */
   public var structuredTextBidiOverride: TextServer.StructuredTextParser
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("structuredTextBidiOverrideProperty")
+    get() = getStructuredTextBidiOverride()
+    @JvmName("structuredTextBidiOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+      setStructuredTextBidiOverride(value)
     }
 
   /**
    * Set additional options for BiDi override.
    */
   public var structuredTextBidiOverrideOptions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-          ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
+    get() = getStructuredTextBidiOverrideOptions()
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr,
-          NIL)
+      setStructuredTextBidiOverrideOptions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LABEL, scriptIndex)
+  }
+
+  public fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+  }
+
+  public fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
+  }
+
+  public fun getVerticalAlignment(): VerticalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
+    return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+  }
+
+  public fun getText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setLabelSettings(settings: LabelSettings?): Unit {
+    TransferContext.writeArguments(OBJECT to settings)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLabelSettingsPtr, NIL)
+  }
+
+  public fun getLabelSettings(): LabelSettings? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLabelSettingsPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as LabelSettings?)
+  }
+
+  public fun setTextDirection(direction: Control.TextDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+  }
+
+  public fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLanguage(language: String): Unit {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+  }
+
+  public fun getLanguage(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+  }
+
+  public fun getAutowrapMode(): TextServer.AutowrapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+    TransferContext.writeArguments(LONG to justificationFlags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+  }
+
+  public fun getJustificationFlags(): TextServer.JustificationFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
+    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setClipText(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
+  }
+
+  public fun isClippingText(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isClippingTextPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTabStops(tabStops: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabStopsPtr, NIL)
+  }
+
+  public fun getTabStops(): PackedFloat32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+  }
+
+  public fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+  }
+
+  public fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setEllipsisChar(char: String): Unit {
+    TransferContext.writeArguments(STRING to char)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+  }
+
+  public fun getEllipsisChar(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setUppercase(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
+  }
+
+  public fun isUppercase(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -380,6 +462,84 @@ public open class Label : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalCharacterCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setVisibleCharacters(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
+  }
+
+  public fun getVisibleCharacters(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun getVisibleCharactersBehavior(): TextServer.VisibleCharactersBehavior {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
+    return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior): Unit {
+    TransferContext.writeArguments(LONG to behavior.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
+  }
+
+  public fun setVisibleRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
+  }
+
+  public fun getVisibleRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLinesSkipped(linesSkipped: Int): Unit {
+    TransferContext.writeArguments(LONG to linesSkipped.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinesSkippedPtr, NIL)
+  }
+
+  public fun getLinesSkipped(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinesSkippedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMaxLinesVisible(linesVisible: Int): Unit {
+    TransferContext.writeArguments(LONG to linesVisible.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxLinesVisiblePtr, NIL)
+  }
+
+  public fun getMaxLinesVisible(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxLinesVisiblePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+  }
+
+  public fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to args)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+  }
+
+  public fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**

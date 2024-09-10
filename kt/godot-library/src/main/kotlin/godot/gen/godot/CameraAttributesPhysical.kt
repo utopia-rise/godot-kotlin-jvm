@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's
@@ -39,14 +40,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * be clamped to be at least 1 millimeter larger than [frustumFocalLength].
    */
   public var frustumFocusDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("frustumFocusDistanceProperty")
+    get() = getFocusDistance()
+    @JvmName("frustumFocusDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusDistancePtr, NIL)
+      setFocusDistance(value)
     }
 
   /**
@@ -58,14 +56,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * property and the [Camera3D.keepAspect] property.
    */
   public var frustumFocalLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocalLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("frustumFocalLengthProperty")
+    get() = getFocalLength()
+    @JvmName("frustumFocalLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocalLengthPtr, NIL)
+      setFocalLength(value)
     }
 
   /**
@@ -74,14 +69,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * property.
    */
   public var frustumNear: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNearPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("frustumNearProperty")
+    get() = getNear()
+    @JvmName("frustumNearProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setNearPtr, NIL)
+      setNear(value)
     }
 
   /**
@@ -90,14 +82,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * property.
    */
   public var frustumFar: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFarPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("frustumFarProperty")
+    get() = getFar()
+    @JvmName("frustumFarProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFarPtr, NIL)
+      setFar(value)
     }
 
   /**
@@ -111,14 +100,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * enabled.
    */
   public var exposureAperture: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAperturePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("exposureApertureProperty")
+    get() = getAperture()
+    @JvmName("exposureApertureProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAperturePtr, NIL)
+      setAperture(value)
     }
 
   /**
@@ -129,14 +115,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * enabled.
    */
   public var exposureShutterSpeed: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShutterSpeedPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("exposureShutterSpeedProperty")
+    get() = getShutterSpeed()
+    @JvmName("exposureShutterSpeedProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setShutterSpeedPtr, NIL)
+      setShutterSpeed(value)
     }
 
   /**
@@ -146,14 +129,11 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * where the scene will remain dark.
    */
   public var autoExposureMinExposureValue: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinExposureValuePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("autoExposureMinExposureValueProperty")
+    get() = getAutoExposureMinExposureValue()
+    @JvmName("autoExposureMinExposureValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMinExposureValuePtr, NIL)
+      setAutoExposureMinExposureValue(value)
     }
 
   /**
@@ -163,18 +143,81 @@ public open class CameraAttributesPhysical : CameraAttributes() {
    * scene will remain bright.
    */
   public var autoExposureMaxExposureValue: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxExposureValuePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("autoExposureMaxExposureValueProperty")
+    get() = getAutoExposureMaxExposureValue()
+    @JvmName("autoExposureMaxExposureValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMaxExposureValuePtr, NIL)
+      setAutoExposureMaxExposureValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERAATTRIBUTESPHYSICAL, scriptIndex)
+  }
+
+  public fun setAperture(aperture: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to aperture.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAperturePtr, NIL)
+  }
+
+  public fun getAperture(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAperturePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setShutterSpeed(shutterSpeed: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to shutterSpeed.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setShutterSpeedPtr, NIL)
+  }
+
+  public fun getShutterSpeed(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShutterSpeedPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFocalLength(focalLength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to focalLength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFocalLengthPtr, NIL)
+  }
+
+  public fun getFocalLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFocalLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFocusDistance(focusDistance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to focusDistance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFocusDistancePtr, NIL)
+  }
+
+  public fun getFocusDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFocusDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setNear(near: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to near.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setNearPtr, NIL)
+  }
+
+  public fun getNear(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNearPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFar(far: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to far.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFarPtr, NIL)
+  }
+
+  public fun getFar(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFarPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -184,6 +227,28 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public fun getFov(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAutoExposureMaxExposureValue(exposureValueMax: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to exposureValueMax.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMaxExposureValuePtr, NIL)
+  }
+
+  public fun getAutoExposureMaxExposureValue(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxExposureValuePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAutoExposureMinExposureValue(exposureValueMin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to exposureValueMin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMinExposureValuePtr, NIL)
+  }
+
+  public fun getAutoExposureMinExposureValue(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinExposureValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 

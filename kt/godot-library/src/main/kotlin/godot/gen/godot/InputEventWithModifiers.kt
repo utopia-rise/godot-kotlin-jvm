@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Stores information about mouse, keyboard, and touch gesture input events. This includes
@@ -32,56 +33,44 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    * platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
    */
   public var commandOrControlAutoremap: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCommandOrControlAutoremapPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("commandOrControlAutoremapProperty")
+    get() = isCommandOrControlAutoremap()
+    @JvmName("commandOrControlAutoremapProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCommandOrControlAutoremapPtr, NIL)
+      setCommandOrControlAutoremap(value)
     }
 
   /**
    * State of the [kbd]Alt[/kbd] modifier.
    */
   public var altPressed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAltPressedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("altPressedProperty")
+    get() = isAltPressed()
+    @JvmName("altPressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAltPressedPtr, NIL)
+      setAltPressed(value)
     }
 
   /**
    * State of the [kbd]Shift[/kbd] modifier.
    */
   public var shiftPressed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isShiftPressedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("shiftPressedProperty")
+    get() = isShiftPressed()
+    @JvmName("shiftPressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShiftPressedPtr, NIL)
+      setShiftPressed(value)
     }
 
   /**
    * State of the [kbd]Ctrl[/kbd] modifier.
    */
   public var ctrlPressed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCtrlPressedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("ctrlPressedProperty")
+    get() = isCtrlPressed()
+    @JvmName("ctrlPressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCtrlPressedPtr, NIL)
+      setCtrlPressed(value)
     }
 
   /**
@@ -89,18 +78,26 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
    * (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key.
    */
   public var metaPressed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMetaPressedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("metaPressedProperty")
+    get() = isMetaPressed()
+    @JvmName("metaPressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMetaPressedPtr, NIL)
+      setMetaPressed(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
+  }
+
+  public fun setCommandOrControlAutoremap(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCommandOrControlAutoremapPtr, NIL)
+  }
+
+  public fun isCommandOrControlAutoremap(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCommandOrControlAutoremapPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -110,6 +107,50 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   public fun isCommandOrControlPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCommandOrControlPressedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAltPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAltPressedPtr, NIL)
+  }
+
+  public fun isAltPressed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAltPressedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setShiftPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShiftPressedPtr, NIL)
+  }
+
+  public fun isShiftPressed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isShiftPressedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCtrlPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCtrlPressedPtr, NIL)
+  }
+
+  public fun isCtrlPressed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCtrlPressedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMetaPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMetaPressedPtr, NIL)
+  }
+
+  public fun isMetaPressed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMetaPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

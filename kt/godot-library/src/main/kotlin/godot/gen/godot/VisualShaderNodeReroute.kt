@@ -15,6 +15,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Automatically adapts its port type to the type of the incoming connection and ensures valid
@@ -23,14 +24,20 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeReroute : VisualShaderNode() {
   public val portType: VisualShaderNode.PortType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPortTypePtr, LONG)
-      return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("portTypeProperty")
+    get() = getPortType()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEREROUTE, scriptIndex)
+  }
+
+  /**
+   * Returns the port type of the reroute node.
+   */
+  public fun getPortType(): VisualShaderNode.PortType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPortTypePtr, LONG)
+    return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

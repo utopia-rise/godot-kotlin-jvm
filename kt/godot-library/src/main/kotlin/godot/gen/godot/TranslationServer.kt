@@ -182,7 +182,7 @@ public object TranslationServer : Object() {
   /**
    * Adds a [Translation] resource.
    */
-  public fun addTranslation(translation: Translation): Unit {
+  public fun addTranslation(translation: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr, MethodBindings.addTranslationPtr, NIL)
   }
@@ -190,7 +190,7 @@ public object TranslationServer : Object() {
   /**
    * Removes the given translation from the server.
    */
-  public fun removeTranslation(translation: Translation): Unit {
+  public fun removeTranslation(translation: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr, MethodBindings.removeTranslationPtr, NIL)
   }

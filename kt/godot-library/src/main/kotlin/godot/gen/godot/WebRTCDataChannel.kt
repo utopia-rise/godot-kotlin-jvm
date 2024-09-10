@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class WebRTCDataChannel internal constructor() : PacketPeer() {
@@ -28,14 +29,11 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
    * The transfer mode to use when sending outgoing packet. Either text or binary.
    */
   public var writeMode: WriteMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWriteModePtr, LONG)
-      return WebRTCDataChannel.WriteMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("writeModeProperty")
+    get() = getWriteMode()
+    @JvmName("writeModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setWriteModePtr, NIL)
+      setWriteMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -66,6 +64,17 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.wasStringPacketPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setWriteMode(writeMode: WriteMode): Unit {
+    TransferContext.writeArguments(LONG to writeMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setWriteModePtr, NIL)
+  }
+
+  public fun getWriteMode(): WriteMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWriteModePtr, LONG)
+    return WebRTCDataChannel.WriteMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This object stores suggested bindings for an interaction profile. Interaction profiles define the
@@ -36,32 +37,37 @@ public open class OpenXRInteractionProfile : Resource() {
    * The interaction profile path identifying the XR device.
    */
   public var interactionProfilePath: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilePathPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("interactionProfilePathProperty")
+    get() = getInteractionProfilePath()
+    @JvmName("interactionProfilePathProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilePathPtr, NIL)
+      setInteractionProfilePath(value)
     }
 
   /**
    * Action bindings for this interaction profile.
    */
-  public var bindings: VariantArray<Any?>?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBindingsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
-    }
+  public var bindings: VariantArray<Any?>
+    @JvmName("bindingsProperty")
+    get() = getBindings()
+    @JvmName("bindingsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBindingsPtr, NIL)
+      setBindings(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRINTERACTIONPROFILE, scriptIndex)
+  }
+
+  public fun setInteractionProfilePath(interactionProfilePath: String): Unit {
+    TransferContext.writeArguments(STRING to interactionProfilePath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilePathPtr, NIL)
+  }
+
+  public fun getInteractionProfilePath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilePathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -80,6 +86,17 @@ public open class OpenXRInteractionProfile : Resource() {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as OpenXRIPBinding?)
+  }
+
+  public fun setBindings(bindings: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to bindings)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBindingsPtr, NIL)
+  }
+
+  public fun getBindings(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBindingsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public companion object

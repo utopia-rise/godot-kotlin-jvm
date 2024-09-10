@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -34,18 +35,26 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * The number of [PhysicalBone2D] nodes linked in this modification.
    */
   public var physicalBoneChainLength: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("physicalBoneChainLengthProperty")
+    get() = getPhysicalBoneChainLength()
+    @JvmName("physicalBoneChainLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneChainLengthPtr, NIL)
+      setPhysicalBoneChainLength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES, scriptIndex)
+  }
+
+  public fun setPhysicalBoneChainLength(length: Int): Unit {
+    TransferContext.writeArguments(LONG to length.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneChainLengthPtr, NIL)
+  }
+
+  public fun getPhysicalBoneChainLength(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

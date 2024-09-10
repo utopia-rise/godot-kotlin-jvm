@@ -858,7 +858,7 @@ public open class TextServer internal constructor() : RefCounted() {
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-    image: Image,
+    image: Image?,
   ): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex, OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSetTextureImagePtr, NIL)

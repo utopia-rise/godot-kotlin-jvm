@@ -541,7 +541,7 @@ public open class Image : Resource() {
    * Compute image metrics on the current image and the compared image.
    * The dictionary contains `max`, `mean`, `mean_squared`, `root_mean_squared` and `peak_snr`.
    */
-  public fun computeImageMetrics(comparedImage: Image, useLuma: Boolean): Dictionary<Any?, Any?> {
+  public fun computeImageMetrics(comparedImage: Image?, useLuma: Boolean): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to comparedImage, BOOL to useLuma)
     TransferContext.callMethod(rawPtr, MethodBindings.computeImageMetricsPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -553,7 +553,7 @@ public open class Image : Resource() {
    * non-positive size is treated as empty.
    */
   public fun blitRect(
-    src: Image,
+    src: Image?,
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
@@ -569,8 +569,8 @@ public open class Image : Resource() {
    * formats. [srcRect] with non-positive size is treated as empty.
    */
   public fun blitRectMask(
-    src: Image,
-    mask: Image,
+    src: Image?,
+    mask: Image?,
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
@@ -584,7 +584,7 @@ public open class Image : Resource() {
    * non-positive size is treated as empty.
    */
   public fun blendRect(
-    src: Image,
+    src: Image?,
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
@@ -601,8 +601,8 @@ public open class Image : Resource() {
    * non-positive size is treated as empty.
    */
   public fun blendRectMask(
-    src: Image,
-    mask: Image,
+    src: Image?,
+    mask: Image?,
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
@@ -648,7 +648,7 @@ public open class Image : Resource() {
   /**
    * Copies [src] image to this image.
    */
-  public fun copyFrom(src: Image): Unit {
+  public fun copyFrom(src: Image?): Unit {
     TransferContext.writeArguments(OBJECT to src)
     TransferContext.callMethod(rawPtr, MethodBindings.copyFromPtr, NIL)
   }

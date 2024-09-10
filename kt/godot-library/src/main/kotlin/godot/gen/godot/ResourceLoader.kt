@@ -140,7 +140,7 @@ public object ResourceLoader : Object() {
    * [ResourceFormatLoader] for more information).
    */
   @JvmOverloads
-  public fun addResourceFormatLoader(formatLoader: ResourceFormatLoader, atFront: Boolean = false):
+  public fun addResourceFormatLoader(formatLoader: ResourceFormatLoader?, atFront: Boolean = false):
       Unit {
     TransferContext.writeArguments(OBJECT to formatLoader, BOOL to atFront)
     TransferContext.callMethod(rawPtr, MethodBindings.addResourceFormatLoaderPtr, NIL)
@@ -149,7 +149,7 @@ public object ResourceLoader : Object() {
   /**
    * Unregisters the given [ResourceFormatLoader].
    */
-  public fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader): Unit {
+  public fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader?): Unit {
     TransferContext.writeArguments(OBJECT to formatLoader)
     TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatLoaderPtr, NIL)
   }

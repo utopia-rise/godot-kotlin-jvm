@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -36,11 +37,8 @@ public open class RegExMatch : RefCounted() {
    * The source string used with the search pattern to find this matching result.
    */
   public val subject: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubjectPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("subjectProperty")
+    get() = getSubject()
 
   /**
    * A dictionary of named groups and its corresponding group number. Only groups that were matched
@@ -48,24 +46,24 @@ public open class RegExMatch : RefCounted() {
    * one.
    */
   public val names: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNamesPtr, DICTIONARY)
-      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
-    }
+    @JvmName("namesProperty")
+    get() = getNames()
 
   /**
    * An [Array] of the match and its capturing groups.
    */
   public val strings: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStringsPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("stringsProperty")
+    get() = getStrings()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_REGEXMATCH, scriptIndex)
+  }
+
+  public fun getSubject(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubjectPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -75,6 +73,18 @@ public open class RegExMatch : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun getNames(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNamesPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  public fun getStrings(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStringsPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**

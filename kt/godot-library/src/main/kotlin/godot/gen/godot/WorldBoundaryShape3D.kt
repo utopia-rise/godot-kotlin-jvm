@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 3D world boundary shape, intended for use in physics. [WorldBoundaryShape3D] works like an
@@ -32,14 +33,11 @@ public open class WorldBoundaryShape3D : Shape3D() {
    */
   @CoreTypeLocalCopy
   public var plane: Plane
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
-      return (TransferContext.readReturnValue(PLANE, false) as Plane)
-    }
+    @JvmName("planeProperty")
+    get() = getPlane()
+    @JvmName("planeProperty")
     set(`value`) {
-      TransferContext.writeArguments(PLANE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPlanePtr, NIL)
+      setPlane(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -69,6 +67,17 @@ public open class WorldBoundaryShape3D : Shape3D() {
       plane = this
   }
 
+
+  public fun setPlane(plane: Plane): Unit {
+    TransferContext.writeArguments(PLANE to plane)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPlanePtr, NIL)
+  }
+
+  public fun getPlane(): Plane {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
+    return (TransferContext.readReturnValue(PLANE, false) as Plane)
+  }
 
   public companion object
 

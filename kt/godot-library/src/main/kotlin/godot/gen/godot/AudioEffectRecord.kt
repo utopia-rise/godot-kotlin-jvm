@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the
@@ -37,14 +38,11 @@ public open class AudioEffectRecord : AudioEffect() {
    * available formats.
    */
   public var format: AudioStreamWAV.Format
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-      return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("formatProperty")
+    get() = getFormat()
+    @JvmName("formatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+      setFormat(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -67,6 +65,17 @@ public open class AudioEffectRecord : AudioEffect() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecordingActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFormat(format: AudioStreamWAV.Format): Unit {
+    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+  }
+
+  public fun getFormat(): AudioStreamWAV.Format {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

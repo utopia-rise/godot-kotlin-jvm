@@ -217,7 +217,7 @@ public object AudioServer : Object() {
   @JvmOverloads
   public fun addBusEffect(
     busIdx: Int,
-    effect: AudioEffect,
+    effect: AudioEffect?,
     atPosition: Int = -1,
   ): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), OBJECT to effect, LONG to atPosition.toLong())
@@ -438,7 +438,7 @@ public object AudioServer : Object() {
   /**
    * Overwrites the currently used [AudioBusLayout].
    */
-  public fun setBusLayout(busLayout: AudioBusLayout): Unit {
+  public fun setBusLayout(busLayout: AudioBusLayout?): Unit {
     TransferContext.writeArguments(OBJECT to busLayout)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusLayoutPtr, NIL)
   }
@@ -469,7 +469,7 @@ public object AudioServer : Object() {
    * If `false`, the stream will have to be registered before playing it. To prevent lag spikes,
    * register the stream as sample with [registerStreamAsSample].
    */
-  public fun isStreamRegisteredAsSample(stream: AudioStream): Boolean {
+  public fun isStreamRegisteredAsSample(stream: AudioStream?): Boolean {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.isStreamRegisteredAsSamplePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -481,7 +481,7 @@ public object AudioServer : Object() {
    * It is suggested to call this method while loading assets, where the lag spike could be masked,
    * instead of registering the sample right before it needs to be played.
    */
-  public fun registerStreamAsSample(stream: AudioStream): Unit {
+  public fun registerStreamAsSample(stream: AudioStream?): Unit {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.registerStreamAsSamplePtr, NIL)
   }

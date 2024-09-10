@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be
@@ -37,18 +38,26 @@ public open class ViewportTexture : Texture2D() {
    * root cannot be found.
    */
   public var viewportPath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getViewportPathInScenePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("viewportPathProperty")
+    get() = getViewportPathInScene()
+    @JvmName("viewportPathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setViewportPathInScenePtr, NIL)
+      setViewportPathInScene(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VIEWPORTTEXTURE, scriptIndex)
+  }
+
+  public fun setViewportPathInScene(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setViewportPathInScenePtr, NIL)
+  }
+
+  public fun getViewportPathInScene(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getViewportPathInScenePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   public companion object

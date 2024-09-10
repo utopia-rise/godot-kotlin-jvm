@@ -18,6 +18,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Base class for [CompressedTexture2DArray] and [CompressedTexture3D]. Cannot be used directly, but
@@ -30,11 +31,8 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
    * The path the texture should be loaded from.
    */
   public val loadPath: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("loadPathProperty")
+    get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDTEXTURELAYERED, scriptIndex)
@@ -47,6 +45,12 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun getLoadPath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

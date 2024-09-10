@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A [VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range
@@ -29,14 +30,11 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
    * If `true`, the node will have a custom default value.
    */
   public var defaultValueEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("defaultValueEnabledProperty")
+    get() = isDefaultValueEnabled()
+    @JvmName("defaultValueEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+      setDefaultValueEnabled(value)
     }
 
   /**
@@ -44,18 +42,37 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
    * [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
   public var defaultValue: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("defaultValueProperty")
+    get() = getDefaultValue()
+    @JvmName("defaultValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+      setDefaultValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUINTPARAMETER, scriptIndex)
+  }
+
+  public fun setDefaultValueEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+  }
+
+  public fun isDefaultValueEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDefaultValue(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+  }
+
+  public fun getDefaultValue(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

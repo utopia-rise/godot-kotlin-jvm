@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Utility class which holds a reference to the internal identifier of an [Object] instance, as
@@ -31,18 +32,26 @@ public open class EncodedObjectAsID : RefCounted() {
    * retrieved with [@GlobalScope.instanceFromId].
    */
   public var objectId: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("objectIdProperty")
+    get() = getObjectId()
+    @JvmName("objectIdProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
+      setObjectId(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ENCODEDOBJECTASID, scriptIndex)
+  }
+
+  public fun setObjectId(id: Long): Unit {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
+  }
+
+  public fun getObjectId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

@@ -63,7 +63,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Adds the [animation] to the library, accessible by the key [name].
    */
-  public fun addAnimation(name: StringName, animation: Animation): GodotError {
+  public fun addAnimation(name: StringName, animation: Animation?): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.addAnimationPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

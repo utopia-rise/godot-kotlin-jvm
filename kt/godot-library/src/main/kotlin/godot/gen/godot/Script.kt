@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -47,14 +48,11 @@ public open class Script internal constructor() : Resource() {
    * reload the class implementation automatically.
    */
   public var sourceCode: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSourceCodePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("sourceCodeProperty")
+    get() = getSourceCode()
+    @JvmName("sourceCodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSourceCodePtr, NIL)
+      setSourceCode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -73,7 +71,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if [baseObject] is an instance of this script.
    */
-  public fun instanceHas(baseObject: Object): Boolean {
+  public fun instanceHas(baseObject: Object?): Boolean {
     TransferContext.writeArguments(OBJECT to baseObject)
     TransferContext.callMethod(rawPtr, MethodBindings.instanceHasPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -90,6 +88,17 @@ public open class Script internal constructor() : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasSourceCodePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun getSourceCode(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSourceCodePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setSourceCode(source: String): Unit {
+    TransferContext.writeArguments(STRING to source)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSourceCodePtr, NIL)
   }
 
   /**

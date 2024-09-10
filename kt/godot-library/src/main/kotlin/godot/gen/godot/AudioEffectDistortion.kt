@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
@@ -32,14 +33,11 @@ public open class AudioEffectDistortion : AudioEffect() {
    * Distortion type.
    */
   public var mode: Mode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-      return AudioEffectDistortion.Mode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("modeProperty")
+    get() = getMode()
+    @JvmName("modeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+      setMode(value)
     }
 
   /**
@@ -47,14 +45,11 @@ public open class AudioEffectDistortion : AudioEffect() {
    * 60.
    */
   public var preGain: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPreGainPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("preGainProperty")
+    get() = getPreGain()
+    @JvmName("preGainProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreGainPtr, NIL)
+      setPreGain(value)
     }
 
   /**
@@ -62,28 +57,22 @@ public open class AudioEffectDistortion : AudioEffect() {
    * distortion. Value can range from 1 to 20000.
    */
   public var keepHfHz: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getKeepHfHzPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("keepHfHzProperty")
+    get() = getKeepHfHz()
+    @JvmName("keepHfHzProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeepHfHzPtr, NIL)
+      setKeepHfHz(value)
     }
 
   /**
    * Distortion power. Value can range from 0 to 1.
    */
   public var drive: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrivePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("driveProperty")
+    get() = getDrive()
+    @JvmName("driveProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrivePtr, NIL)
+      setDrive(value)
     }
 
   /**
@@ -91,18 +80,70 @@ public open class AudioEffectDistortion : AudioEffect() {
    * 24.
    */
   public var postGain: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPostGainPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("postGainProperty")
+    get() = getPostGain()
+    @JvmName("postGainProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPostGainPtr, NIL)
+      setPostGain(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTDISTORTION, scriptIndex)
+  }
+
+  public fun setMode(mode: Mode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+  }
+
+  public fun getMode(): Mode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return AudioEffectDistortion.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setPreGain(preGain: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to preGain.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreGainPtr, NIL)
+  }
+
+  public fun getPreGain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPreGainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setKeepHfHz(keepHfHz: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to keepHfHz.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeepHfHzPtr, NIL)
+  }
+
+  public fun getKeepHfHz(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeepHfHzPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDrive(drive: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to drive.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrivePtr, NIL)
+  }
+
+  public fun getDrive(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDrivePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPostGain(postGain: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to postGain.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPostGainPtr, NIL)
+  }
+
+  public fun getPostGain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPostGainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class Mode(

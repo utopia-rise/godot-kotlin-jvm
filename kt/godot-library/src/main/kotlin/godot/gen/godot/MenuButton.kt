@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu],
@@ -40,28 +41,22 @@ public open class MenuButton : Button() {
    * has [switchOnHover] enabled, it will close the current [MenuButton] and open the other one.
    */
   public var switchOnHover: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSwitchOnHoverPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("switchOnHoverProperty")
+    get() = isSwitchOnHover()
+    @JvmName("switchOnHoverProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSwitchOnHoverPtr, NIL)
+      setSwitchOnHover(value)
     }
 
   /**
    * The number of items currently in the list.
    */
   public var itemCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("itemCountProperty")
+    get() = getItemCount()
+    @JvmName("itemCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+      setItemCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -88,12 +83,34 @@ public open class MenuButton : Button() {
     TransferContext.callMethod(rawPtr, MethodBindings.showPopupPtr, NIL)
   }
 
+  public fun setSwitchOnHover(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSwitchOnHoverPtr, NIL)
+  }
+
+  public fun isSwitchOnHover(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSwitchOnHoverPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
   public fun setDisableShortcuts(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDisableShortcutsPtr, NIL)
+  }
+
+  public fun setItemCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+  }
+
+  public fun getItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

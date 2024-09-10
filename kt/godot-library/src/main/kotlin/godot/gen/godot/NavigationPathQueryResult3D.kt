@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class stores the result of a 3D navigation path query from the [NavigationServer3D].
@@ -36,42 +37,33 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * [NavigationServer3D.mapGetPath].
    */
   public var path: PackedVector3Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, PACKED_VECTOR3_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
-    }
+    @JvmName("pathProperty")
+    get() = getPath()
+    @JvmName("pathProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+      setPath(value)
     }
 
   /**
    * The type of navigation primitive (region or link) that each point of the path goes through.
    */
   public var pathTypes: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+    @JvmName("pathTypesProperty")
+    get() = getPathTypes()
+    @JvmName("pathTypesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathTypesPtr, NIL)
+      setPathTypes(value)
     }
 
   /**
    * The [RID]s of the regions and links that each point of the path goes through.
    */
   public var pathRids: VariantArray<RID>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathRidsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
-    }
+    @JvmName("pathRidsProperty")
+    get() = getPathRids()
+    @JvmName("pathRidsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathRidsPtr, NIL)
+      setPathRids(value)
     }
 
   /**
@@ -79,18 +71,59 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * through.
    */
   public var pathOwnerIds: PackedInt64Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
-    }
+    @JvmName("pathOwnerIdsProperty")
+    get() = getPathOwnerIds()
+    @JvmName("pathOwnerIdsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_64_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
+      setPathOwnerIds(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYRESULT3D, scriptIndex)
+  }
+
+  public fun setPath(path: PackedVector3Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+  }
+
+  public fun getPath(): PackedVector3Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, PACKED_VECTOR3_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+  }
+
+  public fun setPathTypes(pathTypes: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pathTypes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathTypesPtr, NIL)
+  }
+
+  public fun getPathTypes(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  public fun setPathRids(pathRids: VariantArray<RID>): Unit {
+    TransferContext.writeArguments(ARRAY to pathRids)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathRidsPtr, NIL)
+  }
+
+  public fun getPathRids(): VariantArray<RID> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathRidsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+  }
+
+  public fun setPathOwnerIds(pathOwnerIds: PackedInt64Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_64_ARRAY to pathOwnerIds)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
+  }
+
+  public fun getPathOwnerIds(): PackedInt64Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
   }
 
   /**

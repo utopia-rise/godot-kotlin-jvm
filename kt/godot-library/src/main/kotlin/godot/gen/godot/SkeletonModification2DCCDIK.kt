@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This [SkeletonModification2D] uses an algorithm called Cyclic Coordinate Descent Inverse
@@ -45,14 +46,11 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * CCDIK chain will attempt to rotate the bone chain to.
    */
   public var targetNodepath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("targetNodepathProperty")
+    get() = getTargetNode()
+    @JvmName("targetNodepathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+      setTargetNode(value)
     }
 
   /**
@@ -60,32 +58,59 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
    * attached to the final [Bone2D] in the CCDIK chain.
    */
   public var tipNodepath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTipNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("tipNodepathProperty")
+    get() = getTipNode()
+    @JvmName("tipNodepathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTipNodePtr, NIL)
+      setTipNode(value)
     }
 
   /**
    * The number of CCDIK joints in the CCDIK modification.
    */
   public var ccdikDataChainLength: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCcdikDataChainLengthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("ccdikDataChainLengthProperty")
+    get() = getCcdikDataChainLength()
+    @JvmName("ccdikDataChainLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCcdikDataChainLengthPtr, NIL)
+      setCcdikDataChainLength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DCCDIK, scriptIndex)
+  }
+
+  public fun setTargetNode(targetNodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to targetNodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+  }
+
+  public fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setTipNode(tipNodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to tipNodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTipNodePtr, NIL)
+  }
+
+  public fun getTipNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTipNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setCcdikDataChainLength(length: Int): Unit {
+    TransferContext.writeArguments(LONG to length.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCcdikDataChainLengthPtr, NIL)
+  }
+
+  public fun getCcdikDataChainLength(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCcdikDataChainLengthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

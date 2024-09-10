@@ -33,14 +33,11 @@ public open class PointLight2D : Light2D() {
    * [Texture2D] used for the light's appearance.
    */
   public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   /**
@@ -48,28 +45,22 @@ public open class PointLight2D : Light2D() {
    */
   @CoreTypeLocalCopy
   public var offset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("offsetProperty")
+    get() = getTextureOffset()
+    @JvmName("offsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
+      setTextureOffset(value)
     }
 
   /**
    * The [texture]'s scale factor.
    */
   public var textureScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("textureScaleProperty")
+    get() = getTextureScale()
+    @JvmName("textureScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
+      setTextureScale(value)
     }
 
   /**
@@ -77,11 +68,11 @@ public open class PointLight2D : Light2D() {
    * height is 100, then it will illuminate an object 100 pixels away at a 45° angle to the plane.
    */
   public var height: Float
-    @JvmName("getHeight_prop")
-    get() = super.getHeight()
-    @JvmName("setHeight_prop")
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      super.setHeight(value)
+      setHeight(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -111,6 +102,39 @@ public open class PointLight2D : Light2D() {
       offset = this
   }
 
+
+  public fun setTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setTextureOffset(textureOffset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to textureOffset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
+  }
+
+  public fun getTextureOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setTextureScale(textureScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to textureScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
+  }
+
+  public fun getTextureScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
 
   public companion object
 

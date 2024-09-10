@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D]
@@ -44,14 +45,11 @@ public open class Bone2D : Node2D() {
    */
   @CoreTypeLocalCopy
   public var rest: Transform2D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRestPtr, TRANSFORM2D)
-      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
-    }
+    @JvmName("restProperty")
+    get() = getRest()
+    @JvmName("restProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRestPtr, NIL)
+      setRest(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -82,6 +80,17 @@ public open class Bone2D : Node2D() {
       rest = this
   }
 
+
+  public fun setRest(rest: Transform2D): Unit {
+    TransferContext.writeArguments(TRANSFORM2D to rest)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRestPtr, NIL)
+  }
+
+  public fun getRest(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRestPtr, TRANSFORM2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+  }
 
   /**
    * Resets the bone to the rest pose. This is equivalent to setting [Node2D.transform] to [rest].

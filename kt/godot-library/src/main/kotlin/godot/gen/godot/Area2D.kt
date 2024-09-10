@@ -34,6 +34,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [Area2D] is a region of 2D space defined by one or multiple [CollisionShape2D] or
@@ -65,7 +66,7 @@ public open class Area2D : CollisionObject2D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val bodyShapeEntered: Signal4<RID, Node2D, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeEntered: Signal4<RID, Node2D?, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -74,7 +75,7 @@ public open class Area2D : CollisionObject2D() {
    * configured. Requires [monitoring] to be set to `true`.
    * See also [signal body_shape_entered].
    */
-  public val bodyShapeExited: Signal4<RID, Node2D, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeExited: Signal4<RID, Node2D?, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -82,14 +83,14 @@ public open class Area2D : CollisionObject2D() {
    * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
    * [monitoring] to be set to `true`.
    */
-  public val bodyEntered: Signal1<Node2D> by signal("body")
+  public val bodyEntered: Signal1<Node2D?> by signal("body")
 
   /**
    * Emitted when the received [body] exits this area. [body] can be a [PhysicsBody2D] or a
    * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
    * [monitoring] to be set to `true`.
    */
-  public val bodyExited: Signal1<Node2D> by signal("body")
+  public val bodyExited: Signal1<Node2D?> by signal("body")
 
   /**
    * Emitted when a [Shape2D] of the received [area] enters a shape of this area. Requires
@@ -108,7 +109,7 @@ public open class Area2D : CollisionObject2D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val areaShapeEntered: Signal4<RID, Area2D, Long, Long> by signal("areaRid", "area",
+  public val areaShapeEntered: Signal4<RID, Area2D?, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
@@ -116,45 +117,39 @@ public open class Area2D : CollisionObject2D() {
    * [monitoring] to be set to `true`.
    * See also [signal area_shape_entered].
    */
-  public val areaShapeExited: Signal4<RID, Area2D, Long, Long> by signal("areaRid", "area",
+  public val areaShapeExited: Signal4<RID, Area2D?, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
    * Emitted when the received [area] enters this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaEntered: Signal1<Area2D> by signal("area")
+  public val areaEntered: Signal1<Area2D?> by signal("area")
 
   /**
    * Emitted when the received [area] exits this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaExited: Signal1<Area2D> by signal("area")
+  public val areaExited: Signal1<Area2D?> by signal("area")
 
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.
    */
   public var monitoring: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("monitoringProperty")
+    get() = isMonitoring()
+    @JvmName("monitoringProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMonitoringPtr, NIL)
+      setMonitoring(value)
     }
 
   /**
    * If `true`, other monitoring areas can detect this area.
    */
   public var monitorable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("monitorableProperty")
+    get() = isMonitorable()
+    @JvmName("monitorableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMonitorablePtr, NIL)
+      setMonitorable(value)
     }
 
   /**
@@ -162,14 +157,11 @@ public open class Area2D : CollisionObject2D() {
    * always processed last, after all areas.
    */
   public var priority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("priorityProperty")
+    get() = getPriority()
+    @JvmName("priorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+      setPriority(value)
     }
 
   /**
@@ -177,14 +169,11 @@ public open class Area2D : CollisionObject2D() {
    * values.
    */
   public var gravitySpaceOverride: SpaceOverride
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
-      return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("gravitySpaceOverrideProperty")
+    get() = getGravitySpaceOverrideMode()
+    @JvmName("gravitySpaceOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
+      setGravitySpaceOverrideMode(value)
     }
 
   /**
@@ -192,14 +181,11 @@ public open class Area2D : CollisionObject2D() {
    * [gravitySpaceOverride].
    */
   public var gravityPoint: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("gravityPointProperty")
+    get() = isGravityAPoint()
+    @JvmName("gravityPointProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityIsPointPtr, NIL)
+      setGravityIsPoint(value)
     }
 
   /**
@@ -212,14 +198,11 @@ public open class Area2D : CollisionObject2D() {
    * the gravity will be constant regardless of distance.
    */
   public var gravityPointUnitDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("gravityPointUnitDistanceProperty")
+    get() = getGravityPointUnitDistance()
+    @JvmName("gravityPointUnitDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
+      setGravityPointUnitDistance(value)
     }
 
   /**
@@ -227,14 +210,11 @@ public open class Area2D : CollisionObject2D() {
    */
   @CoreTypeLocalCopy
   public var gravityPointCenter: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("gravityPointCenterProperty")
+    get() = getGravityPointCenter()
+    @JvmName("gravityPointCenterProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointCenterPtr, NIL)
+      setGravityPointCenter(value)
     }
 
   /**
@@ -242,14 +222,11 @@ public open class Area2D : CollisionObject2D() {
    */
   @CoreTypeLocalCopy
   public var gravityDirection: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("gravityDirectionProperty")
+    get() = getGravityDirection()
+    @JvmName("gravityDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityDirectionPtr, NIL)
+      setGravityDirection(value)
     }
 
   /**
@@ -257,14 +234,11 @@ public open class Area2D : CollisionObject2D() {
    * direction. This is useful to alter the force of gravity without altering its direction.
    */
   public var gravity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("gravityProperty")
+    get() = getGravity()
+    @JvmName("gravityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
+      setGravity(value)
     }
 
   /**
@@ -272,14 +246,11 @@ public open class Area2D : CollisionObject2D() {
    * possible values.
    */
   public var linearDampSpaceOverride: SpaceOverride
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
-      return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("linearDampSpaceOverrideProperty")
+    get() = getLinearDampSpaceOverrideMode()
+    @JvmName("linearDampSpaceOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
+      setLinearDampSpaceOverrideMode(value)
     }
 
   /**
@@ -288,14 +259,11 @@ public open class Area2D : CollisionObject2D() {
    * See [ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
   public var linearDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("linearDampProperty")
+    get() = getLinearDamp()
+    @JvmName("linearDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+      setLinearDamp(value)
     }
 
   /**
@@ -303,14 +271,11 @@ public open class Area2D : CollisionObject2D() {
    * possible values.
    */
   public var angularDampSpaceOverride: SpaceOverride
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
-      return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("angularDampSpaceOverrideProperty")
+    get() = getAngularDampSpaceOverrideMode()
+    @JvmName("angularDampSpaceOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
+      setAngularDampSpaceOverrideMode(value)
     }
 
   /**
@@ -319,42 +284,33 @@ public open class Area2D : CollisionObject2D() {
    * See [ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
   public var angularDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("angularDampProperty")
+    get() = getAngularDamp()
+    @JvmName("angularDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+      setAngularDamp(value)
     }
 
   /**
    * If `true`, the area's audio bus overrides the default audio bus.
    */
   public var audioBusOverride: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("audioBusOverrideProperty")
+    get() = isOverridingAudioBus()
+    @JvmName("audioBusOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusOverridePtr, NIL)
+      setAudioBusOverride(value)
     }
 
   /**
    * The name of the area's audio bus.
    */
   public var audioBusName: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("audioBusNameProperty")
+    get() = getAudioBusName()
+    @JvmName("audioBusNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusNamePtr, NIL)
+      setAudioBusName(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -410,6 +366,149 @@ public open class Area2D : CollisionObject2D() {
       gravityDirection = this
   }
 
+
+  public fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
+  }
+
+  public fun getGravitySpaceOverrideMode(): SpaceOverride {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
+    return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setGravityIsPoint(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityIsPointPtr, NIL)
+  }
+
+  public fun isGravityAPoint(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setGravityPointUnitDistance(distanceScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distanceScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
+  }
+
+  public fun getGravityPointUnitDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setGravityPointCenter(center: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to center)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointCenterPtr, NIL)
+  }
+
+  public fun getGravityPointCenter(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setGravityDirection(direction: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to direction)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityDirectionPtr, NIL)
+  }
+
+  public fun getGravityDirection(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setGravity(gravity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to gravity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
+  }
+
+  public fun getGravity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
+  }
+
+  public fun getLinearDampSpaceOverrideMode(): SpaceOverride {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
+    return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
+  }
+
+  public fun getAngularDampSpaceOverrideMode(): SpaceOverride {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
+    return Area2D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLinearDamp(linearDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+  }
+
+  public fun getLinearDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAngularDamp(angularDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+  }
+
+  public fun getAngularDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+  }
+
+  public fun getPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMonitoring(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMonitoringPtr, NIL)
+  }
+
+  public fun isMonitoring(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMonitorable(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMonitorablePtr, NIL)
+  }
+
+  public fun isMonitorable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   /**
    * Returns a list of intersecting [PhysicsBody2D]s and [TileMap]s. The overlapping body's
@@ -476,7 +575,7 @@ public open class Area2D : CollisionObject2D() {
    * not physics bodies themselves, they register their tiles with collision shapes as a virtual
    * physics body.
    */
-  public fun overlapsBody(body: Node): Boolean {
+  public fun overlapsBody(body: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, MethodBindings.overlapsBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -488,9 +587,31 @@ public open class Area2D : CollisionObject2D() {
    * list of overlaps is updated once per frame and before the physics step. Consider using signals
    * instead.
    */
-  public fun overlapsArea(area: Node): Boolean {
+  public fun overlapsArea(area: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(rawPtr, MethodBindings.overlapsAreaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAudioBusName(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusNamePtr, NIL)
+  }
+
+  public fun getAudioBusName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setAudioBusOverride(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusOverridePtr, NIL)
+  }
+
+  public fun isOverridingAudioBus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

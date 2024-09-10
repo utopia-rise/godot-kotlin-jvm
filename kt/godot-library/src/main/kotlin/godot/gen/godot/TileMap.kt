@@ -36,6 +36,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -59,14 +60,11 @@ public open class TileMap : Node2D() {
    * available tiles are stored here.
    */
   public var tileSet: TileSet?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTilesetPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as TileSet?)
-    }
+    @JvmName("tileSetProperty")
+    get() = getTileset()
+    @JvmName("tileSetProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTilesetPtr, NIL)
+      setTileset(value)
     }
 
   /**
@@ -80,14 +78,11 @@ public open class TileMap : Node2D() {
    * "square shape" might not look like square in the TileMap's local coordinate system.
    */
   public var renderingQuadrantSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRenderingQuadrantSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("renderingQuadrantSizeProperty")
+    get() = getRenderingQuadrantSize()
+    @JvmName("renderingQuadrantSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRenderingQuadrantSizePtr, NIL)
+      setRenderingQuadrantSize(value)
     }
 
   /**
@@ -97,14 +92,11 @@ public open class TileMap : Node2D() {
    * TileMap is moving and has colliding tiles.
    */
   public var collisionAnimatable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCollisionAnimatablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("collisionAnimatableProperty")
+    get() = isCollisionAnimatable()
+    @JvmName("collisionAnimatableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionAnimatablePtr, NIL)
+      setCollisionAnimatable(value)
     }
 
   /**
@@ -112,14 +104,11 @@ public open class TileMap : Node2D() {
    * on the show collision debug settings.
    */
   public var collisionVisibilityMode: VisibilityMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionVisibilityModePtr, LONG)
-      return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("collisionVisibilityModeProperty")
+    get() = getCollisionVisibilityMode()
+    @JvmName("collisionVisibilityModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionVisibilityModePtr, NIL)
+      setCollisionVisibilityMode(value)
     }
 
   /**
@@ -127,14 +116,11 @@ public open class TileMap : Node2D() {
    * on the show navigation debug settings.
    */
   public var navigationVisibilityMode: VisibilityMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationVisibilityModePtr, LONG)
-      return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("navigationVisibilityModeProperty")
+    get() = getNavigationVisibilityMode()
+    @JvmName("navigationVisibilityModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationVisibilityModePtr, NIL)
+      setNavigationVisibilityMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -166,7 +152,7 @@ public open class TileMap : Node2D() {
   public open fun _tileDataRuntimeUpdate(
     layer: Int,
     coords: Vector2i,
-    tileData: TileData,
+    tileData: TileData?,
   ): Unit {
   }
 
@@ -195,6 +181,28 @@ public open class TileMap : Node2D() {
   public fun forceUpdate(layer: Int = -1): Unit {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.forceUpdatePtr, NIL)
+  }
+
+  public fun setTileset(tileset: TileSet?): Unit {
+    TransferContext.writeArguments(OBJECT to tileset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTilesetPtr, NIL)
+  }
+
+  public fun getTileset(): TileSet? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTilesetPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as TileSet?)
+  }
+
+  public fun setRenderingQuadrantSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRenderingQuadrantSizePtr, NIL)
+  }
+
+  public fun getRenderingQuadrantSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRenderingQuadrantSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -401,6 +409,39 @@ public open class TileMap : Node2D() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  public fun setCollisionAnimatable(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionAnimatablePtr, NIL)
+  }
+
+  public fun isCollisionAnimatable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCollisionAnimatablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCollisionVisibilityMode(collisionVisibilityMode: VisibilityMode): Unit {
+    TransferContext.writeArguments(LONG to collisionVisibilityMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionVisibilityModePtr, NIL)
+  }
+
+  public fun getCollisionVisibilityMode(): VisibilityMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionVisibilityModePtr, LONG)
+    return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setNavigationVisibilityMode(navigationVisibilityMode: VisibilityMode): Unit {
+    TransferContext.writeArguments(LONG to navigationVisibilityMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationVisibilityModePtr, NIL)
+  }
+
+  public fun getNavigationVisibilityMode(): VisibilityMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationVisibilityModePtr, LONG)
+    return TileMap.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Sets the tile identifiers for the cell on layer [layer] at coordinates [coords]. Each tile of
    * the [TileSet] is identified using three parts:
@@ -555,7 +596,7 @@ public open class TileMap : Node2D() {
   public fun mapPattern(
     positionInTilemap: Vector2i,
     coordsInPattern: Vector2i,
-    pattern: TileMapPattern,
+    pattern: TileMapPattern?,
   ): Vector2i {
     TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, MethodBindings.mapPatternPtr, VECTOR2I)
@@ -569,7 +610,7 @@ public open class TileMap : Node2D() {
   public fun setPattern(
     layer: Int,
     position: Vector2i,
-    pattern: TileMapPattern,
+    pattern: TileMapPattern?,
   ): Unit {
     TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to position, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, MethodBindings.setPatternPtr, NIL)

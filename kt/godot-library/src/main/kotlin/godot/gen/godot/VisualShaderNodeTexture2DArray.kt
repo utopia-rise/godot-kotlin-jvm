@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Translated to `uniform sampler2DArray` in the shader language.
@@ -26,18 +27,26 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
    * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
   public var textureArray: Texture2DArray?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?)
-    }
+    @JvmName("textureArrayProperty")
+    get() = getTextureArray()
+    @JvmName("textureArrayProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureArrayPtr, NIL)
+      setTextureArray(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAY, scriptIndex)
+  }
+
+  public fun setTextureArray(`value`: Texture2DArray?): Unit {
+    TransferContext.writeArguments(OBJECT to value)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureArrayPtr, NIL)
+  }
+
+  public fun getTextureArray(): Texture2DArray? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?)
   }
 
   public companion object

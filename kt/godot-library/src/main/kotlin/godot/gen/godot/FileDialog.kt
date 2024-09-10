@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -57,28 +58,22 @@ public open class FileDialog : ConfirmationDialog() {
    * [fileMode] to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
    */
   public var modeOverridesTitle: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isModeOverridingTitlePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("modeOverridesTitleProperty")
+    get() = isModeOverridingTitle()
+    @JvmName("modeOverridesTitleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModeOverridesTitlePtr, NIL)
+      setModeOverridesTitle(value)
     }
 
   /**
    * The dialog's open or save mode, which affects the selection behavior. See [FileMode].
    */
   public var fileMode: FileMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFileModePtr, LONG)
-      return FileDialog.FileMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("fileModeProperty")
+    get() = getFileMode()
+    @JvmName("fileModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFileModePtr, NIL)
+      setFileMode(value)
     }
 
   /**
@@ -88,14 +83,11 @@ public open class FileDialog : ConfirmationDialog() {
    * file system.
    */
   public var access: Access
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAccessPtr, LONG)
-      return FileDialog.Access.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("accessProperty")
+    get() = getAccess()
+    @JvmName("accessProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAccessPtr, NIL)
+      setAccess(value)
     }
 
   /**
@@ -104,14 +96,11 @@ public open class FileDialog : ConfirmationDialog() {
    * **Note:** This property is ignored by native file dialogs.
    */
   public var rootSubfolder: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootSubfolderPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("rootSubfolderProperty")
+    get() = getRootSubfolder()
+    @JvmName("rootSubfolderProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRootSubfolderPtr, NIL)
+      setRootSubfolder(value)
     }
 
   /**
@@ -119,28 +108,22 @@ public open class FileDialog : ConfirmationDialog() {
    * `*.txt,*.doc;Text Files`. The description text of the filter is optional and can be omitted.
    */
   public var filters: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFiltersPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("filtersProperty")
+    get() = getFilters()
+    @JvmName("filtersProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFiltersPtr, NIL)
+      setFilters(value)
     }
 
   /**
    * The number of additional [OptionButton]s and [CheckBox]es in the dialog.
    */
   public var optionCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOptionCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("optionCountProperty")
+    get() = getOptionCount()
+    @JvmName("optionCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOptionCountPtr, NIL)
+      setOptionCount(value)
     }
 
   /**
@@ -148,14 +131,11 @@ public open class FileDialog : ConfirmationDialog() {
    * **Note:** This property is ignored by native file dialogs on Linux.
    */
   public var showHiddenFiles: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isShowingHiddenFilesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("showHiddenFilesProperty")
+    get() = isShowingHiddenFiles()
+    @JvmName("showHiddenFilesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShowHiddenFilesPtr, NIL)
+      setShowHiddenFiles(value)
     }
 
   /**
@@ -170,14 +150,11 @@ public open class FileDialog : ConfirmationDialog() {
    * modified once the dialog is shown.
    */
   public var useNativeDialog: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseNativeDialogPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useNativeDialogProperty")
+    get() = getUseNativeDialog()
+    @JvmName("useNativeDialogProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseNativeDialogPtr, NIL)
+      setUseNativeDialog(value)
     }
 
   /**
@@ -186,42 +163,33 @@ public open class FileDialog : ConfirmationDialog() {
    * respected by specific OS implementations.
    */
   public var currentDir: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDirPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("currentDirProperty")
+    get() = getCurrentDir()
+    @JvmName("currentDirProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentDirPtr, NIL)
+      setCurrentDir(value)
     }
 
   /**
    * The currently selected file of the file dialog.
    */
   public var currentFile: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFilePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("currentFileProperty")
+    get() = getCurrentFile()
+    @JvmName("currentFileProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentFilePtr, NIL)
+      setCurrentFile(value)
     }
 
   /**
    * The currently selected file path of the file dialog.
    */
   public var currentPath: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPathPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("currentPathProperty")
+    get() = getCurrentPath()
+    @JvmName("currentPathProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPathPtr, NIL)
+      setCurrentPath(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -248,6 +216,17 @@ public open class FileDialog : ConfirmationDialog() {
   public fun addFilter(filter: String, description: String = ""): Unit {
     TransferContext.writeArguments(STRING to filter, STRING to description)
     TransferContext.callMethod(rawPtr, MethodBindings.addFilterPtr, NIL)
+  }
+
+  public fun setFilters(filters: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to filters)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFiltersPtr, NIL)
+  }
+
+  public fun getFilters(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFiltersPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**
@@ -301,6 +280,17 @@ public open class FileDialog : ConfirmationDialog() {
     TransferContext.callMethod(rawPtr, MethodBindings.setOptionDefaultPtr, NIL)
   }
 
+  public fun setOptionCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOptionCountPtr, NIL)
+  }
+
+  public fun getOptionCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Adds an additional [OptionButton] to the file dialog. If [values] is empty, a [CheckBox] is
    * added instead.
@@ -326,6 +316,61 @@ public open class FileDialog : ConfirmationDialog() {
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
+  public fun getCurrentDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDirPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun getCurrentFile(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFilePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun getCurrentPath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setCurrentDir(dir: String): Unit {
+    TransferContext.writeArguments(STRING to dir)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentDirPtr, NIL)
+  }
+
+  public fun setCurrentFile(`file`: String): Unit {
+    TransferContext.writeArguments(STRING to file)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentFilePtr, NIL)
+  }
+
+  public fun setCurrentPath(path: String): Unit {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPathPtr, NIL)
+  }
+
+  public fun setModeOverridesTitle(`override`: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to override)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModeOverridesTitlePtr, NIL)
+  }
+
+  public fun isModeOverridingTitle(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isModeOverridingTitlePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFileMode(mode: FileMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFileModePtr, NIL)
+  }
+
+  public fun getFileMode(): FileMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFileModePtr, LONG)
+    return FileDialog.FileMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns the vertical box container of the dialog, custom controls can be added to it.
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
@@ -348,6 +393,50 @@ public open class FileDialog : ConfirmationDialog() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
+  }
+
+  public fun setAccess(access: Access): Unit {
+    TransferContext.writeArguments(LONG to access.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAccessPtr, NIL)
+  }
+
+  public fun getAccess(): Access {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAccessPtr, LONG)
+    return FileDialog.Access.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setRootSubfolder(dir: String): Unit {
+    TransferContext.writeArguments(STRING to dir)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRootSubfolderPtr, NIL)
+  }
+
+  public fun getRootSubfolder(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootSubfolderPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setShowHiddenFiles(show: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to show)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShowHiddenFilesPtr, NIL)
+  }
+
+  public fun isShowingHiddenFiles(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isShowingHiddenFilesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setUseNativeDialog(native: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to native)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseNativeDialogPtr, NIL)
+  }
+
+  public fun getUseNativeDialog(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseNativeDialogPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

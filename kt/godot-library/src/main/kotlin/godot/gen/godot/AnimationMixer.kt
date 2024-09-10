@@ -39,6 +39,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -90,14 +91,11 @@ public open class AnimationMixer internal constructor() : Node() {
    * If `true`, the [AnimationMixer] will be processing.
    */
   public var active: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("activeProperty")
+    get() = isActive()
+    @JvmName("activeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+      setActive(value)
     }
 
   /**
@@ -117,14 +115,11 @@ public open class AnimationMixer internal constructor() : Node() {
    * [AnimationNodeBlend2] with the amount `0.5`.
    */
   public var deterministic: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDeterministicPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("deterministicProperty")
+    get() = isDeterministic()
+    @JvmName("deterministicProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDeterministicPtr, NIL)
+      setDeterministic(value)
     }
 
   /**
@@ -135,28 +130,22 @@ public open class AnimationMixer internal constructor() : Node() {
    * scene will not be saved as long as they are set in the reset animation.
    */
   public var resetOnSave: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isResetOnSaveEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("resetOnSaveProperty")
+    get() = isResetOnSaveEnabled()
+    @JvmName("resetOnSaveProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResetOnSaveEnabledPtr, NIL)
+      setResetOnSaveEnabled(value)
     }
 
   /**
    * The node which node path references will travel from.
    */
   public var rootNode: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("rootNodeProperty")
+    get() = getRootNode()
+    @JvmName("rootNodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRootNodePtr, NIL)
+      setRootNode(value)
     }
 
   /**
@@ -170,14 +159,11 @@ public open class AnimationMixer internal constructor() : Node() {
    * [getRootMotionScale], and [RootMotionView].
    */
   public var rootMotionTrack: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionTrackPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("rootMotionTrackProperty")
+    get() = getRootMotionTrack()
+    @JvmName("rootMotionTrackProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRootMotionTrackPtr, NIL)
+      setRootMotionTrack(value)
     }
 
   /**
@@ -186,42 +172,33 @@ public open class AnimationMixer internal constructor() : Node() {
    * [AudioStreamPlayer]s assigned can play simultaneously up to `32` voices each.
    */
   public var audioMaxPolyphony: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAudioMaxPolyphonyPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("audioMaxPolyphonyProperty")
+    get() = getAudioMaxPolyphony()
+    @JvmName("audioMaxPolyphonyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAudioMaxPolyphonyPtr, NIL)
+      setAudioMaxPolyphony(value)
     }
 
   /**
    * The process notification in which to update animations.
    */
   public var callbackModeProcess: AnimationCallbackModeProcess
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeProcessPtr, LONG)
-      return AnimationMixer.AnimationCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("callbackModeProcessProperty")
+    get() = getCallbackModeProcess()
+    @JvmName("callbackModeProcessProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeProcessPtr, NIL)
+      setCallbackModeProcess(value)
     }
 
   /**
    * The call mode used for "Call Method" tracks.
    */
   public var callbackModeMethod: AnimationCallbackModeMethod
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeMethodPtr, LONG)
-      return AnimationMixer.AnimationCallbackModeMethod.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("callbackModeMethodProperty")
+    get() = getCallbackModeMethod()
+    @JvmName("callbackModeMethodProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeMethodPtr, NIL)
+      setCallbackModeMethod(value)
     }
 
   /**
@@ -235,14 +212,11 @@ public open class AnimationMixer internal constructor() : Node() {
    * artifacts.
    */
   public var callbackModeDiscrete: AnimationCallbackModeDiscrete
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeDiscretePtr, LONG)
-      return AnimationMixer.AnimationCallbackModeDiscrete.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("callbackModeDiscreteProperty")
+    get() = getCallbackModeDiscrete()
+    @JvmName("callbackModeDiscreteProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeDiscretePtr, NIL)
+      setCallbackModeDiscrete(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -253,7 +227,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * A virtual function for processing after getting a key during playback.
    */
   public open fun _postProcessKeyValue(
-    animation: Animation,
+    animation: Animation?,
     track: Int,
     `value`: Any?,
     objectId: Long,
@@ -273,7 +247,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * global_library.add_animation("animation_name", animation_resource)
    * ```
    */
-  public fun addAnimationLibrary(name: StringName, library: AnimationLibrary): GodotError {
+  public fun addAnimationLibrary(name: StringName, library: AnimationLibrary?): GodotError {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
     TransferContext.callMethod(rawPtr, MethodBindings.addAnimationLibraryPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -349,6 +323,94 @@ public open class AnimationMixer internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+  }
+
+  public fun setActive(active: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+  }
+
+  public fun isActive(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDeterministic(deterministic: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to deterministic)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeterministicPtr, NIL)
+  }
+
+  public fun isDeterministic(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDeterministicPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setRootNode(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRootNodePtr, NIL)
+  }
+
+  public fun getRootNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setCallbackModeProcess(mode: AnimationCallbackModeProcess): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeProcessPtr, NIL)
+  }
+
+  public fun getCallbackModeProcess(): AnimationCallbackModeProcess {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeProcessPtr, LONG)
+    return AnimationMixer.AnimationCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setCallbackModeMethod(mode: AnimationCallbackModeMethod): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeMethodPtr, NIL)
+  }
+
+  public fun getCallbackModeMethod(): AnimationCallbackModeMethod {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeMethodPtr, LONG)
+    return AnimationMixer.AnimationCallbackModeMethod.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setCallbackModeDiscrete(mode: AnimationCallbackModeDiscrete): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeDiscretePtr, NIL)
+  }
+
+  public fun getCallbackModeDiscrete(): AnimationCallbackModeDiscrete {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeDiscretePtr, LONG)
+    return AnimationMixer.AnimationCallbackModeDiscrete.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAudioMaxPolyphony(maxPolyphony: Int): Unit {
+    TransferContext.writeArguments(LONG to maxPolyphony.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAudioMaxPolyphonyPtr, NIL)
+  }
+
+  public fun getAudioMaxPolyphony(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAudioMaxPolyphonyPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setRootMotionTrack(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRootMotionTrackPtr, NIL)
+  }
+
+  public fun getRootMotionTrack(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionTrackPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**
@@ -582,10 +644,21 @@ public open class AnimationMixer internal constructor() : Node() {
     TransferContext.callMethod(rawPtr, MethodBindings.capturePtr, NIL)
   }
 
+  public fun setResetOnSaveEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResetOnSaveEnabledPtr, NIL)
+  }
+
+  public fun isResetOnSaveEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isResetOnSaveEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns the key of [animation] or an empty [StringName] if not found.
    */
-  public fun findAnimation(animation: Animation): StringName {
+  public fun findAnimation(animation: Animation?): StringName {
     TransferContext.writeArguments(OBJECT to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.findAnimationPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -595,7 +668,7 @@ public open class AnimationMixer internal constructor() : Node() {
    * Returns the key for the [AnimationLibrary] that contains [animation] or an empty [StringName]
    * if not found.
    */
-  public fun findAnimationLibrary(animation: Animation): StringName {
+  public fun findAnimationLibrary(animation: Animation?): StringName {
     TransferContext.writeArguments(OBJECT to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.findAnimationLibraryPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)

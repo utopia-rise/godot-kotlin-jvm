@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -34,25 +35,19 @@ public open class VisualShaderNode internal constructor() : Resource() {
    * open for preview.
    */
   public var outputPortForPreview: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortForPreviewPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("outputPortForPreviewProperty")
+    get() = getOutputPortForPreview()
+    @JvmName("outputPortForPreviewProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutputPortForPreviewPtr, NIL)
+      setOutputPortForPreview(value)
     }
 
   public var defaultInputValues: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputValuesPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("defaultInputValuesProperty")
+    get() = getDefaultInputValues()
+    @JvmName("defaultInputValuesProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultInputValuesPtr, NIL)
+      setDefaultInputValues(value)
     }
 
   /**
@@ -60,14 +55,11 @@ public open class VisualShaderNode internal constructor() : Resource() {
    * to any frame.
    */
   public var linkedParentGraphFrame: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("linkedParentGraphFrameProperty")
+    get() = getFrame()
+    @JvmName("linkedParentGraphFrameProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+      setFrame(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -81,6 +73,17 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public fun getDefaultInputPort(type: PortType): Int {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputPortPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setOutputPortForPreview(port: Int): Unit {
+    TransferContext.writeArguments(LONG to port.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutputPortForPreviewPtr, NIL)
+  }
+
+  public fun getOutputPortForPreview(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortForPreviewPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -120,6 +123,36 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public fun clearDefaultInputValues(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearDefaultInputValuesPtr, NIL)
+  }
+
+  /**
+   * Sets the default input ports values using an [Array] of the form `[index0, value0, index1,
+   * value1, ...]`. For example: `[0, Vector3(0, 0, 0), 1, Vector3(0, 0, 0)]`.
+   */
+  public fun setDefaultInputValues(values: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to values)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultInputValuesPtr, NIL)
+  }
+
+  /**
+   * Returns an [Array] containing default values for all of the input ports of the node in the form
+   * `[index0, value0, index1, value1, ...]`.
+   */
+  public fun getDefaultInputValues(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputValuesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+  }
+
+  public fun setFrame(frame: Int): Unit {
+    TransferContext.writeArguments(LONG to frame.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+  }
+
+  public fun getFrame(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class PortType(

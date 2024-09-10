@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -71,28 +72,22 @@ public open class HTTPClient : RefCounted() {
    * If `true`, execution will block until all data is read from the response.
    */
   public var blockingModeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBlockingModeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("blockingModeEnabledProperty")
+    get() = isBlockingModeEnabled()
+    @JvmName("blockingModeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlockingModePtr, NIL)
+      setBlockingMode(value)
     }
 
   /**
    * The connection to use for this client.
    */
   public var connection: StreamPeer?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConnectionPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
-    }
+    @JvmName("connectionProperty")
+    get() = getConnection()
+    @JvmName("connectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConnectionPtr, NIL)
+      setConnection(value)
     }
 
   /**
@@ -100,14 +95,11 @@ public open class HTTPClient : RefCounted() {
    * [readResponseBodyChunk].
    */
   public var readChunkSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReadChunkSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("readChunkSizeProperty")
+    get() = getReadChunkSize()
+    @JvmName("readChunkSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setReadChunkSizePtr, NIL)
+      setReadChunkSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -130,6 +122,17 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong(), OBJECT to tlsOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setConnection(connection: StreamPeer?): Unit {
+    TransferContext.writeArguments(OBJECT to connection)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConnectionPtr, NIL)
+  }
+
+  public fun getConnection(): StreamPeer? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
   }
 
   /**
@@ -279,6 +282,28 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.readResponseBodyChunkPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+  }
+
+  public fun setReadChunkSize(bytes: Int): Unit {
+    TransferContext.writeArguments(LONG to bytes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setReadChunkSizePtr, NIL)
+  }
+
+  public fun getReadChunkSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReadChunkSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setBlockingMode(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlockingModePtr, NIL)
+  }
+
+  public fun isBlockingModeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBlockingModeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

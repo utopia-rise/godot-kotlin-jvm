@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;
@@ -99,14 +100,11 @@ public open class AudioStreamGenerator : AudioStream() {
    * with no loss in quality.
    */
   public var mixRate: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("mixRateProperty")
+    get() = getMixRate()
+    @JvmName("mixRateProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
+      setMixRate(value)
     }
 
   /**
@@ -115,18 +113,37 @@ public open class AudioStreamGenerator : AudioStream() {
    * for audio cracking if the CPU can't keep up.
    */
   public var bufferLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("bufferLengthProperty")
+    get() = getBufferLength()
+    @JvmName("bufferLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+      setBufferLength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR, scriptIndex)
+  }
+
+  public fun setMixRate(hz: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to hz.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
+  }
+
+  public fun getMixRate(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBufferLength(seconds: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+  }
+
+  public fun getBufferLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

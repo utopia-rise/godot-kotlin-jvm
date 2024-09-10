@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
@@ -38,28 +39,22 @@ public open class PhysicalBone2D : RigidBody2D() {
    * The [NodePath] to the [Bone2D] that this [PhysicalBone2D] should simulate.
    */
   public var bone2dNodepath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodepathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("bone2dNodepathProperty")
+    get() = getBone2dNodepath()
+    @JvmName("bone2dNodepathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBone2dNodepathPtr, NIL)
+      setBone2dNodepath(value)
     }
 
   /**
    * The index of the [Bone2D] that this [PhysicalBone2D] should simulate.
    */
   public var bone2dIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBone2dIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("bone2dIndexProperty")
+    get() = getBone2dIndex()
+    @JvmName("bone2dIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBone2dIndexPtr, NIL)
+      setBone2dIndex(value)
     }
 
   /**
@@ -68,14 +63,11 @@ public open class PhysicalBone2D : RigidBody2D() {
    * [Joint2D].
    */
   public var autoConfigureJoint: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoConfigureJointPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoConfigureJointProperty")
+    get() = getAutoConfigureJoint()
+    @JvmName("autoConfigureJointProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoConfigureJointPtr, NIL)
+      setAutoConfigureJoint(value)
     }
 
   /**
@@ -86,14 +78,11 @@ public open class PhysicalBone2D : RigidBody2D() {
    * nodes.
    */
   public var simulatePhysics: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("simulatePhysicsProperty")
+    get() = getSimulatePhysics()
+    @JvmName("simulatePhysicsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSimulatePhysicsPtr, NIL)
+      setSimulatePhysics(value)
     }
 
   /**
@@ -101,14 +90,11 @@ public open class PhysicalBone2D : RigidBody2D() {
    * simulating physics.
    */
   public var followBoneWhenSimulating: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFollowBoneWhenSimulatingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("followBoneWhenSimulatingProperty")
+    get() = getFollowBoneWhenSimulating()
+    @JvmName("followBoneWhenSimulatingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
+      setFollowBoneWhenSimulating(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -125,6 +111,28 @@ public open class PhysicalBone2D : RigidBody2D() {
     return (TransferContext.readReturnValue(OBJECT, true) as Joint2D?)
   }
 
+  public fun getAutoConfigureJoint(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoConfigureJointPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAutoConfigureJoint(autoConfigureJoint: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to autoConfigureJoint)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoConfigureJointPtr, NIL)
+  }
+
+  public fun setSimulatePhysics(simulatePhysics: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to simulatePhysics)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSimulatePhysicsPtr, NIL)
+  }
+
+  public fun getSimulatePhysics(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns a boolean that indicates whether the [PhysicalBone2D] is running and simulating using
    * the Godot 2D physics engine. When `true`, the PhysicalBone2D node is using physics.
@@ -132,6 +140,39 @@ public open class PhysicalBone2D : RigidBody2D() {
   public fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBone2dNodepath(nodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to nodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBone2dNodepathPtr, NIL)
+  }
+
+  public fun getBone2dNodepath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodepathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setBone2dIndex(boneIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBone2dIndexPtr, NIL)
+  }
+
+  public fun getBone2dIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBone2dIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFollowBoneWhenSimulating(followBone: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to followBone)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
+  }
+
+  public fun getFollowBoneWhenSimulating(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFollowBoneWhenSimulatingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

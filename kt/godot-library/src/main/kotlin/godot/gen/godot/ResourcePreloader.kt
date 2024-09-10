@@ -40,7 +40,7 @@ public open class ResourcePreloader : Node() {
    * already exists, the new resource will be renamed to "[name] N" where N is an incrementing number
    * starting from 2.
    */
-  public fun addResource(name: StringName, resource: Resource): Unit {
+  public fun addResource(name: StringName, resource: Resource?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to resource)
     TransferContext.callMethod(rawPtr, MethodBindings.addResourcePtr, NIL)
   }

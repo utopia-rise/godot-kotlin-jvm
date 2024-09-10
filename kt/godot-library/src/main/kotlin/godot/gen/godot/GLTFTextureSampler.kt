@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Represents a texture sampler as defined by the base GLTF spec. Texture samplers in GLTF specify
@@ -28,14 +29,11 @@ public open class GLTFTextureSampler : Resource() {
    * image.
    */
   public var magFilter: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("magFilterProperty")
+    get() = getMagFilter()
+    @JvmName("magFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
+      setMagFilter(value)
     }
 
   /**
@@ -43,46 +41,81 @@ public open class GLTFTextureSampler : Resource() {
    * image.
    */
   public var minFilter: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("minFilterProperty")
+    get() = getMinFilter()
+    @JvmName("minFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
+      setMinFilter(value)
     }
 
   /**
    * Wrapping mode to use for S-axis (horizontal) texture coordinates.
    */
   public var wrapS: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("wrapSProperty")
+    get() = getWrapS()
+    @JvmName("wrapSProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
+      setWrapS(value)
     }
 
   /**
    * Wrapping mode to use for T-axis (vertical) texture coordinates.
    */
   public var wrapT: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("wrapTProperty")
+    get() = getWrapT()
+    @JvmName("wrapTProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
+      setWrapT(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFTEXTURESAMPLER, scriptIndex)
+  }
+
+  public fun getMagFilter(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMagFilter(filterMode: Int): Unit {
+    TransferContext.writeArguments(LONG to filterMode.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
+  }
+
+  public fun getMinFilter(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMinFilter(filterMode: Int): Unit {
+    TransferContext.writeArguments(LONG to filterMode.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
+  }
+
+  public fun getWrapS(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setWrapS(wrapMode: Int): Unit {
+    TransferContext.writeArguments(LONG to wrapMode.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
+  }
+
+  public fun getWrapT(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setWrapT(wrapMode: Int): Unit {
+    TransferContext.writeArguments(LONG to wrapMode.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
   }
 
   public companion object

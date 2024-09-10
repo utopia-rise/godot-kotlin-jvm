@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A container that arranges its child controls horizontally or vertically, rearranging them
@@ -31,14 +32,11 @@ public open class BoxContainer : Container() {
    * [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
   public var alignment: AlignmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
-      return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alignmentProperty")
+    get() = getAlignment()
+    @JvmName("alignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+      setAlignment(value)
     }
 
   /**
@@ -46,14 +44,11 @@ public open class BoxContainer : Container() {
    * Can't be changed when using [HBoxContainer] and [VBoxContainer].
    */
   public var vertical: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("verticalProperty")
+    get() = isVertical()
+    @JvmName("verticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+      setVertical(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -68,6 +63,28 @@ public open class BoxContainer : Container() {
     TransferContext.writeArguments(BOOL to begin)
     TransferContext.callMethod(rawPtr, MethodBindings.addSpacerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+  }
+
+  public fun setAlignment(alignment: AlignmentMode): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+  }
+
+  public fun getAlignment(): AlignmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
+    return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVertical(vertical: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to vertical)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+  }
+
+  public fun isVertical(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class AlignmentMode(

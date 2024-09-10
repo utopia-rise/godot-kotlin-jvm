@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -47,14 +48,11 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    */
   @CoreTypeLocalCopy
   public var graphOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("graphOffsetProperty")
+    get() = getGraphOffset()
+    @JvmName("graphOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
+      setGraphOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -92,7 +90,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   @JvmOverloads
   public fun addNode(
     name: StringName,
-    node: AnimationNode,
+    node: AnimationNode?,
     position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
@@ -168,6 +166,17 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setGraphOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
+  }
+
+  public fun getGraphOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 

@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -52,14 +53,11 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * or remove points with [addBlendPoint] and [removeBlendPoint].
    */
   public var autoTriangles: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoTrianglesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoTrianglesProperty")
+    get() = getAutoTriangles()
+    @JvmName("autoTrianglesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTrianglesPtr, NIL)
+      setAutoTriangles(value)
     }
 
   /**
@@ -67,14 +65,11 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   @CoreTypeLocalCopy
   public var minSpace: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinSpacePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("minSpaceProperty")
+    get() = getMinSpace()
+    @JvmName("minSpaceProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinSpacePtr, NIL)
+      setMinSpace(value)
     }
 
   /**
@@ -82,14 +77,11 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   @CoreTypeLocalCopy
   public var maxSpace: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpacePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("maxSpaceProperty")
+    get() = getMaxSpace()
+    @JvmName("maxSpaceProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpacePtr, NIL)
+      setMaxSpace(value)
     }
 
   /**
@@ -97,56 +89,44 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   @CoreTypeLocalCopy
   public var snap: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("snapProperty")
+    get() = getSnap()
+    @JvmName("snapProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
+      setSnap(value)
     }
 
   /**
    * Name of the blend space's X axis.
    */
   public var xLabel: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getXLabelPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("xLabelProperty")
+    get() = getXLabel()
+    @JvmName("xLabelProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setXLabelPtr, NIL)
+      setXLabel(value)
     }
 
   /**
    * Name of the blend space's Y axis.
    */
   public var yLabel: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getYLabelPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("yLabelProperty")
+    get() = getYLabel()
+    @JvmName("yLabelProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setYLabelPtr, NIL)
+      setYLabel(value)
     }
 
   /**
    * Controls the interpolation between animations. See [BlendMode] constants.
    */
   public var blendMode: BlendMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-      return AnimationNodeBlendSpace2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("blendModeProperty")
+    get() = getBlendMode()
+    @JvmName("blendModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+      setBlendMode(value)
     }
 
   /**
@@ -154,14 +134,11 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * If `true`, forcing the blended animations to advance frame.
    */
   public var sync: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("syncProperty")
+    get() = isUsingSync()
+    @JvmName("syncProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
+      setUseSync(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -247,7 +224,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    */
   @JvmOverloads
   public fun addBlendPoint(
-    node: AnimationRootNode,
+    node: AnimationRootNode?,
     pos: Vector2,
     atIndex: Int = -1,
   ): Unit {
@@ -275,7 +252,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Changes the [AnimationNode] referenced by the point at index [point].
    */
-  public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
+  public fun setBlendPointNode(point: Int, node: AnimationRootNode?): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendPointNodePtr, NIL)
   }
@@ -346,6 +323,94 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTriangleCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMinSpace(minSpace: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to minSpace)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinSpacePtr, NIL)
+  }
+
+  public fun getMinSpace(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinSpacePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setMaxSpace(maxSpace: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to maxSpace)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpacePtr, NIL)
+  }
+
+  public fun getMaxSpace(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpacePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setSnap(snap: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to snap)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
+  }
+
+  public fun getSnap(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setXLabel(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setXLabelPtr, NIL)
+  }
+
+  public fun getXLabel(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getXLabelPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setYLabel(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setYLabelPtr, NIL)
+  }
+
+  public fun getYLabel(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getYLabelPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setAutoTriangles(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoTrianglesPtr, NIL)
+  }
+
+  public fun getAutoTriangles(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoTrianglesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBlendMode(mode: BlendMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+  }
+
+  public fun getBlendMode(): BlendMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return AnimationNodeBlendSpace2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUseSync(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
+  }
+
+  public fun isUsingSync(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class BlendMode(

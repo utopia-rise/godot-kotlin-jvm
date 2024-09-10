@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw
@@ -57,14 +58,11 @@ public open class CanvasGroup : Node2D() {
    * should only be expanded when an increased size is needed (e.g. for custom shader effects).
    */
   public var fitMargin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("fitMarginProperty")
+    get() = getFitMargin()
+    @JvmName("fitMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
+      setFitMargin(value)
     }
 
   /**
@@ -76,14 +74,11 @@ public open class CanvasGroup : Node2D() {
    * edges of the canvas group.
    */
   public var clearMargin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("clearMarginProperty")
+    get() = getClearMargin()
+    @JvmName("clearMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
+      setClearMargin(value)
     }
 
   /**
@@ -92,18 +87,48 @@ public open class CanvasGroup : Node2D() {
    * has a performance cost so this should not be enabled unless required.
    */
   public var useMipmaps: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useMipmapsProperty")
+    get() = isUsingMipmaps()
+    @JvmName("useMipmapsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
+      setUseMipmaps(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CANVASGROUP, scriptIndex)
+  }
+
+  public fun setFitMargin(fitMargin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fitMargin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
+  }
+
+  public fun getFitMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setClearMargin(clearMargin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to clearMargin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
+  }
+
+  public fun getClearMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setUseMipmaps(useMipmaps: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useMipmaps)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
+  }
+
+  public fun isUsingMipmaps(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

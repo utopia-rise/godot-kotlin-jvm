@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is
@@ -35,14 +36,11 @@ public open class RDPipelineMultisampleState : RefCounted() {
    * Higher values result in better antialiasing, at the cost of performance.
    */
   public var sampleCount: RenderingDevice.TextureSamples
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSampleCountPtr, LONG)
-      return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("sampleCountProperty")
+    get() = getSampleCount()
+    @JvmName("sampleCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSampleCountPtr, NIL)
+      setSampleCount(value)
     }
 
   /**
@@ -53,14 +51,11 @@ public open class RDPipelineMultisampleState : RefCounted() {
    * shading Vulkan documentation[/url] for more details.
    */
   public var enableSampleShading: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableSampleShadingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enableSampleShadingProperty")
+    get() = getEnableSampleShading()
+    @JvmName("enableSampleShadingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableSampleShadingPtr, NIL)
+      setEnableSampleShading(value)
     }
 
   /**
@@ -70,14 +65,11 @@ public open class RDPipelineMultisampleState : RefCounted() {
    * sample. Tile image access must not be used if [enableSampleShading] is *not* `1.0`.
    */
   public var minSampleShading: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("minSampleShadingProperty")
+    get() = getMinSampleShading()
+    @JvmName("minSampleShadingProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinSampleShadingPtr, NIL)
+      setMinSampleShading(value)
     }
 
   /**
@@ -86,14 +78,11 @@ public open class RDPipelineMultisampleState : RefCounted() {
    * of multisample antialiasing.
    */
   public var enableAlphaToCoverage: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enableAlphaToCoverageProperty")
+    get() = getEnableAlphaToCoverage()
+    @JvmName("enableAlphaToCoverageProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
+      setEnableAlphaToCoverage(value)
     }
 
   /**
@@ -101,14 +90,11 @@ public open class RDPipelineMultisampleState : RefCounted() {
    * antialiased alpha transparencies. Only relevant if [enableAlphaToCoverage] is `true`.
    */
   public var enableAlphaToOne: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enableAlphaToOneProperty")
+    get() = getEnableAlphaToOne()
+    @JvmName("enableAlphaToOneProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToOnePtr, NIL)
+      setEnableAlphaToOne(value)
     }
 
   /**
@@ -117,18 +103,81 @@ public open class RDPipelineMultisampleState : RefCounted() {
    * mask Vulkan documentation[/url] for more details.
    */
   public var sampleMasks: VariantArray<Long>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSampleMasksPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
-    }
+    @JvmName("sampleMasksProperty")
+    get() = getSampleMasks()
+    @JvmName("sampleMasksProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSampleMasksPtr, NIL)
+      setSampleMasks(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDPIPELINEMULTISAMPLESTATE, scriptIndex)
+  }
+
+  public fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSampleCountPtr, NIL)
+  }
+
+  public fun getSampleCount(): RenderingDevice.TextureSamples {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSampleCountPtr, LONG)
+    return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setEnableSampleShading(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableSampleShadingPtr, NIL)
+  }
+
+  public fun getEnableSampleShading(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableSampleShadingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMinSampleShading(pMember: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinSampleShadingPtr, NIL)
+  }
+
+  public fun getMinSampleShading(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEnableAlphaToCoverage(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
+  }
+
+  public fun getEnableAlphaToCoverage(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEnableAlphaToOne(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToOnePtr, NIL)
+  }
+
+  public fun getEnableAlphaToOne(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSampleMasks(masks: VariantArray<Long>): Unit {
+    TransferContext.writeArguments(ARRAY to masks)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSampleMasksPtr, NIL)
+  }
+
+  public fun getSampleMasks(): VariantArray<Long> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSampleMasksPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
   }
 
   public companion object

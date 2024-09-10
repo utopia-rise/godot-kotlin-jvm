@@ -38,6 +38,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -69,28 +70,22 @@ public open class GridMap : Node3D() {
    * The assigned [MeshLibrary].
    */
   public var meshLibrary: MeshLibrary?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshLibraryPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as MeshLibrary?)
-    }
+    @JvmName("meshLibraryProperty")
+    get() = getMeshLibrary()
+    @JvmName("meshLibraryProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshLibraryPtr, NIL)
+      setMeshLibrary(value)
     }
 
   /**
    * Overrides the default friction and bounce physics properties for the whole [GridMap].
    */
   public var physicsMaterial: PhysicsMaterial?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
-    }
+    @JvmName("physicsMaterialProperty")
+    get() = getPhysicsMaterial()
+    @JvmName("physicsMaterialProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialPtr, NIL)
+      setPhysicsMaterial(value)
     }
 
   /**
@@ -99,70 +94,55 @@ public open class GridMap : Node3D() {
    */
   @CoreTypeLocalCopy
   public var cellSize: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("cellSizeProperty")
+    get() = getCellSize()
+    @JvmName("cellSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+      setCellSize(value)
     }
 
   /**
    * The size of each octant measured in number of cells. This applies to all three axis.
    */
   public var cellOctantSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOctantSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("cellOctantSizeProperty")
+    get() = getOctantSize()
+    @JvmName("cellOctantSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOctantSizePtr, NIL)
+      setOctantSize(value)
     }
 
   /**
    * If `true`, grid items are centered on the X axis.
    */
   public var cellCenterX: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterXPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("cellCenterXProperty")
+    get() = getCenterX()
+    @JvmName("cellCenterXProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterXPtr, NIL)
+      setCenterX(value)
     }
 
   /**
    * If `true`, grid items are centered on the Y axis.
    */
   public var cellCenterY: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterYPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("cellCenterYProperty")
+    get() = getCenterY()
+    @JvmName("cellCenterYProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterYPtr, NIL)
+      setCenterY(value)
     }
 
   /**
    * If `true`, grid items are centered on the Z axis.
    */
   public var cellCenterZ: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterZPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("cellCenterZProperty")
+    get() = getCenterZ()
+    @JvmName("cellCenterZProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterZPtr, NIL)
+      setCenterZ(value)
     }
 
   /**
@@ -171,14 +151,11 @@ public open class GridMap : Node3D() {
    * used to make cell items overlap their neighbors.
    */
   public var cellScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("cellScaleProperty")
+    get() = getCellScale()
+    @JvmName("cellScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellScalePtr, NIL)
+      setCellScale(value)
     }
 
   /**
@@ -187,14 +164,11 @@ public open class GridMap : Node3D() {
    * only affect other physics bodies that collide with them.
    */
   public var collisionLayer: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("collisionLayerProperty")
+    get() = getCollisionLayer()
+    @JvmName("collisionLayerProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
+      setCollisionLayer(value)
     }
 
   /**
@@ -203,14 +177,11 @@ public open class GridMap : Node3D() {
    * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("collisionMaskProperty")
+    get() = getCollisionMask()
+    @JvmName("collisionMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+      setCollisionMask(value)
     }
 
   /**
@@ -219,14 +190,11 @@ public open class GridMap : Node3D() {
    * player from breaking through the boundaries of a level.
    */
   public var collisionPriority: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("collisionPriorityProperty")
+    get() = getCollisionPriority()
+    @JvmName("collisionPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
+      setCollisionPriority(value)
     }
 
   /**
@@ -235,14 +203,11 @@ public open class GridMap : Node3D() {
    * assigned to the [MeshLibrary]'s item.
    */
   public var bakeNavigation: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("bakeNavigationProperty")
+    get() = isBakingNavigation()
+    @JvmName("bakeNavigationProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeNavigationPtr, NIL)
+      setBakeNavigation(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -273,6 +238,28 @@ public open class GridMap : Node3D() {
       cellSize = this
   }
 
+
+  public fun setCollisionLayer(layer: Long): Unit {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
+  }
+
+  public fun getCollisionLayer(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setCollisionMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+  }
+
+  public fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
 
   /**
    * Based on [value], enables or disables the specified layer in the [collisionMask], given a
@@ -312,6 +299,39 @@ public open class GridMap : Node3D() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setCollisionPriority(priority: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to priority.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
+  }
+
+  public fun getCollisionPriority(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPhysicsMaterial(material: PhysicsMaterial?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialPtr, NIL)
+  }
+
+  public fun getPhysicsMaterial(): PhysicsMaterial? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+  }
+
+  public fun setBakeNavigation(bakeNavigation: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to bakeNavigation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeNavigationPtr, NIL)
+  }
+
+  public fun isBakingNavigation(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Sets the [RID] of the navigation map this GridMap node should use for its cell baked navigation
    * meshes.
@@ -332,6 +352,50 @@ public open class GridMap : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public fun setMeshLibrary(meshLibrary: MeshLibrary?): Unit {
+    TransferContext.writeArguments(OBJECT to meshLibrary)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshLibraryPtr, NIL)
+  }
+
+  public fun getMeshLibrary(): MeshLibrary? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshLibraryPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as MeshLibrary?)
+  }
+
+  public fun setCellSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+  }
+
+  public fun getCellSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setCellScale(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellScalePtr, NIL)
+  }
+
+  public fun getCellScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setOctantSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOctantSizePtr, NIL)
+  }
+
+  public fun getOctantSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOctantSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -425,9 +489,42 @@ public open class GridMap : Node3D() {
   /**
    * This method does nothing.
    */
-  public fun resourceChanged(resource: Resource): Unit {
+  public fun resourceChanged(resource: Resource?): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
+  }
+
+  public fun setCenterX(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenterXPtr, NIL)
+  }
+
+  public fun getCenterX(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCenterXPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCenterY(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenterYPtr, NIL)
+  }
+
+  public fun getCenterY(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCenterYPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCenterZ(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenterZPtr, NIL)
+  }
+
+  public fun getCenterZ(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCenterZPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

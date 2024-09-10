@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a
@@ -42,14 +43,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {
   public var `data`: PackedVector3Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
-    }
+    @JvmName("dataProperty")
+    get() = getFaces()
+    @JvmName("dataProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFacesPtr, NIL)
+      setFaces(value)
     }
 
   /**
@@ -57,18 +55,45 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * occur only along the face normals.
    */
   public var backfaceCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("backfaceCollisionProperty")
+    get() = isBackfaceCollisionEnabled()
+    @JvmName("backfaceCollisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
+      setBackfaceCollisionEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE3D, scriptIndex)
+  }
+
+  /**
+   * Sets the faces of the trimesh shape from an array of vertices. The [faces] array should be
+   * composed of triples such that each triple of vertices defines a triangle.
+   */
+  public fun setFaces(faces: PackedVector3Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFacesPtr, NIL)
+  }
+
+  /**
+   * Returns the faces of the trimesh shape as an array of vertices. The array (of length divisible
+   * by three) is naturally divided into triples; each triple of vertices defines a triangle.
+   */
+  public fun getFaces(): PackedVector3Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+  }
+
+  public fun setBackfaceCollisionEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
+  }
+
+  public fun isBackfaceCollisionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

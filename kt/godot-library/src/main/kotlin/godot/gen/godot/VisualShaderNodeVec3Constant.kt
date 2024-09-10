@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A constant [Vector3], which can be used as an input node.
@@ -29,14 +30,11 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
    */
   @CoreTypeLocalCopy
   public var constant: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("constantProperty")
+    get() = getConstant()
+    @JvmName("constantProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+      setConstant(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -66,6 +64,17 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
       constant = this
   }
 
+
+  public fun setConstant(constant: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to constant)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+  }
+
+  public fun getConstant(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
 
   public companion object
 

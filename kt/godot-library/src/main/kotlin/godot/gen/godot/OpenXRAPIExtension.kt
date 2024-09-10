@@ -188,7 +188,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Registers the given extension as a composition layer provider.
    */
-  public fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension): Unit {
+  public fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(rawPtr, MethodBindings.registerCompositionLayerProviderPtr, NIL)
   }
@@ -196,7 +196,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Unregisters the given extension as a composition layer provider.
    */
-  public fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension): Unit {
+  public fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterCompositionLayerProviderPtr, NIL)
   }

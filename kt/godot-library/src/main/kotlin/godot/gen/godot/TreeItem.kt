@@ -37,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -54,14 +55,11 @@ public open class TreeItem internal constructor() : Object() {
    * If `true`, the TreeItem is collapsed.
    */
   public var collapsed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("collapsedProperty")
+    get() = isCollapsed()
+    @JvmName("collapsedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
+      setCollapsed(value)
     }
 
   /**
@@ -70,42 +68,33 @@ public open class TreeItem internal constructor() : Object() {
    * either.
    */
   public var visible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("visibleProperty")
+    get() = isVisible()
+    @JvmName("visibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+      setVisible(value)
     }
 
   /**
    * If `true`, folding is disabled for this TreeItem.
    */
   public var disableFolding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFoldingDisabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("disableFoldingProperty")
+    get() = isFoldingDisabled()
+    @JvmName("disableFoldingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisableFoldingPtr, NIL)
+      setDisableFolding(value)
     }
 
   /**
    * The custom minimum height.
    */
   public var customMinimumHeight: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomMinimumHeightPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("customMinimumHeightProperty")
+    get() = getCustomMinimumHeight()
+    @JvmName("customMinimumHeightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomMinimumHeightPtr, NIL)
+      setCustomMinimumHeight(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -345,7 +334,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given cell's icon [Texture2D]. The cell has to be in [CELL_MODE_ICON] mode.
    */
-  public fun setIcon(column: Int, texture: Texture2D): Unit {
+  public fun setIcon(column: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
   }
@@ -482,7 +471,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public fun setCustomDraw(
     column: Int,
-    _object: Object,
+    _object: Object?,
     callback: StringName,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to _object, STRING_NAME to callback)
@@ -510,6 +499,17 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
   }
 
+  public fun setCollapsed(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
+  }
+
+  public fun isCollapsed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Collapses or uncollapses this [TreeItem] and all the descendants of this item.
    */
@@ -529,6 +529,17 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setVisible(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+  }
+
+  public fun isVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns `true` if [visible] is `true` and all its ancestors are also visible.
    */
@@ -544,6 +555,17 @@ public open class TreeItem internal constructor() : Object() {
   public fun uncollapseTree(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.uncollapseTreePtr, NIL)
+  }
+
+  public fun setCustomMinimumHeight(height: Int): Unit {
+    TransferContext.writeArguments(LONG to height.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomMinimumHeightPtr, NIL)
+  }
+
+  public fun getCustomMinimumHeight(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMinimumHeightPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -633,7 +655,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets custom font used to draw text in the given [column].
    */
-  public fun setCustomFont(column: Int, font: Font): Unit {
+  public fun setCustomFont(column: Int, font: Font?): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomFontPtr, NIL)
   }
@@ -721,7 +743,7 @@ public open class TreeItem internal constructor() : Object() {
   @JvmOverloads
   public fun addButton(
     column: Int,
-    button: Texture2D,
+    button: Texture2D?,
     id: Int = -1,
     disabled: Boolean = false,
     tooltipText: String = "",
@@ -804,7 +826,7 @@ public open class TreeItem internal constructor() : Object() {
   public fun setButton(
     column: Int,
     buttonIndex: Int,
-    button: Texture2D,
+    button: Texture2D?,
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), OBJECT to button)
     TransferContext.callMethod(rawPtr, MethodBindings.setButtonPtr, NIL)
@@ -902,6 +924,17 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setDisableFolding(disable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to disable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisableFoldingPtr, NIL)
+  }
+
+  public fun isFoldingDisabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFoldingDisabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Creates an item and adds it as a child.
    * The new item will be inserted as position [index] (the default value `-1` means the last
@@ -918,7 +951,7 @@ public open class TreeItem internal constructor() : Object() {
    * Adds a previously unparented [TreeItem] as a direct child of this one. The [child] item must
    * not be a part of any [Tree] or parented to any [TreeItem]. See also [removeChild].
    */
-  public fun addChild(child: TreeItem): Unit {
+  public fun addChild(child: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to child)
     TransferContext.callMethod(rawPtr, MethodBindings.addChildPtr, NIL)
   }
@@ -930,7 +963,7 @@ public open class TreeItem internal constructor() : Object() {
    * **Note:** If you want to move a child from one [Tree] to another, then instead of removing and
    * adding it manually you can use [moveBefore] or [moveAfter].
    */
-  public fun removeChild(child: TreeItem): Unit {
+  public fun removeChild(child: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to child)
     TransferContext.callMethod(rawPtr, MethodBindings.removeChildPtr, NIL)
   }
@@ -1075,7 +1108,7 @@ public open class TreeItem internal constructor() : Object() {
    * Moves this TreeItem right before the given [item].
    * **Note:** You can't move to the root or move the root.
    */
-  public fun moveBefore(item: TreeItem): Unit {
+  public fun moveBefore(item: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to item)
     TransferContext.callMethod(rawPtr, MethodBindings.moveBeforePtr, NIL)
   }
@@ -1084,7 +1117,7 @@ public open class TreeItem internal constructor() : Object() {
    * Moves this TreeItem right after the given [item].
    * **Note:** You can't move to the root or move the root.
    */
-  public fun moveAfter(item: TreeItem): Unit {
+  public fun moveAfter(item: TreeItem?): Unit {
     TransferContext.writeArguments(OBJECT to item)
     TransferContext.callMethod(rawPtr, MethodBindings.moveAfterPtr, NIL)
   }

@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
@@ -36,14 +37,11 @@ public open class SkeletonModification2D : Resource() {
    * [SkeletonModificationStack2D].
    */
   public var enabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enabledProperty")
+    get() = getEnabled()
+    @JvmName("enabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+      setEnabled(value)
     }
 
   /**
@@ -51,14 +49,11 @@ public open class SkeletonModification2D : Resource() {
    * modification. Some modifications have settings that are only available in certain execution modes.
    */
   public var executionMode: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("executionModeProperty")
+    get() = getExecutionMode()
+    @JvmName("executionModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
+      setExecutionMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -75,7 +70,7 @@ public open class SkeletonModification2D : Resource() {
   /**
    * Called when the modification is setup. This is where the modification performs initialization.
    */
-  public open fun _setupModification(modificationStack: SkeletonModificationStack2D): Unit {
+  public open fun _setupModification(modificationStack: SkeletonModificationStack2D?): Unit {
   }
 
   /**
@@ -85,6 +80,17 @@ public open class SkeletonModification2D : Resource() {
    * and it's draw functions, as the [SkeletonModification2D] resource cannot draw on its own.
    */
   public open fun _drawEditorGizmo(): Unit {
+  }
+
+  public fun setEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+  }
+
+  public fun getEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -114,6 +120,17 @@ public open class SkeletonModification2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setExecutionMode(executionMode: Int): Unit {
+    TransferContext.writeArguments(LONG to executionMode.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
+  }
+
+  public fun getExecutionMode(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

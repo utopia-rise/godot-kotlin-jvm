@@ -34,6 +34,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 
 /**
  * The OpenXR interface allows Godot to interact with OpenXR runtimes and make it possible to create
@@ -92,14 +93,11 @@ public open class OpenXRInterface : XRInterface() {
    * the OpenXR runtime and after the interface has been initialized.
    */
   public var displayRefreshRate: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("displayRefreshRateProperty")
+    get() = getDisplayRefreshRate()
+    @JvmName("displayRefreshRateProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
+      setDisplayRefreshRate(value)
     }
 
   /**
@@ -107,14 +105,11 @@ public open class OpenXRInterface : XRInterface() {
    * initialized.
    */
   public var renderTargetSizeMultiplier: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("renderTargetSizeMultiplierProperty")
+    get() = getRenderTargetSizeMultiplier()
+    @JvmName("renderTargetSizeMultiplierProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetSizeMultiplierPtr, NIL)
+      setRenderTargetSizeMultiplier(value)
     }
 
   /**
@@ -123,14 +118,11 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** Only works on compatibility renderer.
    */
   public var foveationLevel: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFoveationLevelPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("foveationLevelProperty")
+    get() = getFoveationLevel()
+    @JvmName("foveationLevelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFoveationLevelPtr, NIL)
+      setFoveationLevel(value)
     }
 
   /**
@@ -139,14 +131,11 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** Only works on compatibility renderer.
    */
   public var foveationDynamic: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFoveationDynamicPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("foveationDynamicProperty")
+    get() = getFoveationDynamic()
+    @JvmName("foveationDynamicProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFoveationDynamicPtr, NIL)
+      setFoveationDynamic(value)
     }
 
   /**
@@ -156,14 +145,11 @@ public open class OpenXRInterface : XRInterface() {
    * [Viewport.VRS_XR].
    */
   public var vrsMinRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("vrsMinRadiusProperty")
+    get() = getVrsMinRadius()
+    @JvmName("vrsMinRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+      setVrsMinRadius(value)
     }
 
   /**
@@ -173,18 +159,37 @@ public open class OpenXRInterface : XRInterface() {
    * [Viewport.VRS_XR].
    */
   public var vrsStrength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("vrsStrengthProperty")
+    get() = getVrsStrength()
+    @JvmName("vrsStrengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
+      setVrsStrength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRINTERFACE, scriptIndex)
+  }
+
+  public fun getDisplayRefreshRate(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDisplayRefreshRate(refreshRate: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to refreshRate.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
+  }
+
+  public fun getRenderTargetSizeMultiplier(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setRenderTargetSizeMultiplier(multiplier: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to multiplier)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetSizeMultiplierPtr, NIL)
   }
 
   /**
@@ -197,6 +202,28 @@ public open class OpenXRInterface : XRInterface() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFoveationSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun getFoveationLevel(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFoveationLevelPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFoveationLevel(foveationLevel: Int): Unit {
+    TransferContext.writeArguments(LONG to foveationLevel.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFoveationLevelPtr, NIL)
+  }
+
+  public fun getFoveationDynamic(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFoveationDynamicPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFoveationDynamic(foveationDynamic: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to foveationDynamic)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFoveationDynamicPtr, NIL)
   }
 
   /**
@@ -351,6 +378,28 @@ public open class OpenXRInterface : XRInterface() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun getVrsMinRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVrsMinRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+  }
+
+  public fun getVrsStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVrsStrength(strength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to strength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
   }
 
   public enum class Hand(

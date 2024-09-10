@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
@@ -45,28 +46,22 @@ public open class Slider internal constructor() : Range() {
    * code.
    */
   public var editable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("editableProperty")
+    get() = isEditable()
+    @JvmName("editableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+      setEditable(value)
     }
 
   /**
    * If `true`, the value can be changed using the mouse wheel.
    */
   public var scrollable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isScrollablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("scrollableProperty")
+    get() = isScrollable()
+    @JvmName("scrollableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollablePtr, NIL)
+      setScrollable(value)
     }
 
   /**
@@ -74,32 +69,70 @@ public open class Slider internal constructor() : Range() {
    * uniformly-distributed value markers.
    */
   public var tickCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTicksPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("tickCountProperty")
+    get() = getTicks()
+    @JvmName("tickCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTicksPtr, NIL)
+      setTicks(value)
     }
 
   /**
    * If `true`, the slider will display ticks for minimum and maximum values.
    */
   public var ticksOnBorders: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTicksOnBordersPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("ticksOnBordersProperty")
+    get() = getTicksOnBorders()
+    @JvmName("ticksOnBordersProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTicksOnBordersPtr, NIL)
+      setTicksOnBorders(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SLIDER, scriptIndex)
+  }
+
+  public fun setTicks(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTicksPtr, NIL)
+  }
+
+  public fun getTicks(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTicksPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun getTicksOnBorders(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTicksOnBordersPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTicksOnBorders(ticksOnBorder: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ticksOnBorder)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTicksOnBordersPtr, NIL)
+  }
+
+  public fun setEditable(editable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to editable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+  }
+
+  public fun isEditable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setScrollable(scrollable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to scrollable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollablePtr, NIL)
+  }
+
+  public fun isScrollable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isScrollablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

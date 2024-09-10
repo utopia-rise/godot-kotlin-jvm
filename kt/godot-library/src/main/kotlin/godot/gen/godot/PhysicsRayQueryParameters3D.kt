@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -39,14 +40,11 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var from: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("fromProperty")
+    get() = getFrom()
+    @JvmName("fromProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFromPtr, NIL)
+      setFrom(value)
     }
 
   /**
@@ -54,14 +52,11 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var to: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getToPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("toProperty")
+    get() = getTo()
+    @JvmName("toProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setToPtr, NIL)
+      setTo(value)
     }
 
   /**
@@ -71,14 +66,11 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("collisionMaskProperty")
+    get() = getCollisionMask()
+    @JvmName("collisionMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+      setCollisionMask(value)
     }
 
   /**
@@ -89,42 +81,33 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * the property again.
    */
   public var exclude: VariantArray<RID>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
-    }
+    @JvmName("excludeProperty")
+    get() = getExclude()
+    @JvmName("excludeProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
+      setExclude(value)
     }
 
   /**
    * If `true`, the query will take [PhysicsBody3D]s into account.
    */
   public var collideWithBodies: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("collideWithBodiesProperty")
+    get() = isCollideWithBodiesEnabled()
+    @JvmName("collideWithBodiesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+      setCollideWithBodies(value)
     }
 
   /**
    * If `true`, the query will take [Area3D]s into account.
    */
   public var collideWithAreas: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("collideWithAreasProperty")
+    get() = isCollideWithAreasEnabled()
+    @JvmName("collideWithAreasProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+      setCollideWithAreas(value)
     }
 
   /**
@@ -132,14 +115,11 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * normal will be `Vector3(0, 0, 0)`. Does not affect concave polygon shapes or heightmap shapes.
    */
   public var hitFromInside: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hitFromInsideProperty")
+    get() = isHitFromInsideEnabled()
+    @JvmName("hitFromInsideProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
+      setHitFromInside(value)
     }
 
   /**
@@ -147,14 +127,11 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * heightmap shapes.
    */
   public var hitBackFaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hitBackFacesProperty")
+    get() = isHitBackFacesEnabled()
+    @JvmName("hitBackFacesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHitBackFacesPtr, NIL)
+      setHitBackFaces(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -208,6 +185,94 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
       to = this
   }
 
+
+  public fun setFrom(from: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to from)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFromPtr, NIL)
+  }
+
+  public fun getFrom(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setTo(to: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to to)
+    TransferContext.callMethod(rawPtr, MethodBindings.setToPtr, NIL)
+  }
+
+  public fun getTo(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getToPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setCollisionMask(collisionMask: Long): Unit {
+    TransferContext.writeArguments(LONG to collisionMask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+  }
+
+  public fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setExclude(exclude: VariantArray<RID>): Unit {
+    TransferContext.writeArguments(ARRAY to exclude)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
+  }
+
+  public fun getExclude(): VariantArray<RID> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+  }
+
+  public fun setCollideWithBodies(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+  }
+
+  public fun isCollideWithBodiesEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCollideWithAreas(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+  }
+
+  public fun isCollideWithAreasEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHitFromInside(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
+  }
+
+  public fun isHitFromInsideEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHitBackFaces(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHitBackFacesPtr, NIL)
+  }
+
+  public fun isHitBackFacesEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object {
     /**

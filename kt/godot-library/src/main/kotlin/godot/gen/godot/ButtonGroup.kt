@@ -21,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
@@ -33,20 +34,17 @@ public open class ButtonGroup : Resource() {
   /**
    * Emitted when one of the buttons of the group is pressed.
    */
-  public val pressed: Signal1<BaseButton> by signal("button")
+  public val pressed: Signal1<BaseButton?> by signal("button")
 
   /**
    * If `true`, it is possible to unpress all buttons in this [ButtonGroup].
    */
   public var allowUnpress: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowUnpressProperty")
+    get() = isAllowUnpress()
+    @JvmName("allowUnpressProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
+      setAllowUnpress(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -70,6 +68,17 @@ public open class ButtonGroup : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>)
+  }
+
+  public fun setAllowUnpress(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
+  }
+
+  public fun isAllowUnpress(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

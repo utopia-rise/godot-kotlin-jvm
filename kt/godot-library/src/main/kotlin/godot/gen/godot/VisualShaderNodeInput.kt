@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Gives access to input variables (built-ins) available for the shader. See the shading reference
@@ -35,18 +36,26 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
    * "point_size" (`POINT_SIZE`).
    */
   public var inputName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("inputNameProperty")
+    get() = getInputName()
+    @JvmName("inputNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
+      setInputName(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINPUT, scriptIndex)
+  }
+
+  public fun setInputName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
+  }
+
+  public fun getInputName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**

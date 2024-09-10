@@ -32,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -70,14 +71,11 @@ public open class AnimationPlayer : AnimationMixer() {
    * internally for animation playback tracks. For more information, see [Animation].
    */
   public var currentAnimation: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("currentAnimationProperty")
+    get() = getCurrentAnimation()
+    @JvmName("currentAnimationProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentAnimationPtr, NIL)
+      setCurrentAnimation(value)
     }
 
   /**
@@ -85,49 +83,37 @@ public open class AnimationPlayer : AnimationMixer() {
    * changes the animation, but will not play it unless already playing. See also [currentAnimation].
    */
   public var assignedAnimation: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAssignedAnimationPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("assignedAnimationProperty")
+    get() = getAssignedAnimation()
+    @JvmName("assignedAnimationProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAssignedAnimationPtr, NIL)
+      setAssignedAnimation(value)
     }
 
   /**
    * The key of the animation to play when the scene loads.
    */
   public var autoplay: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("autoplayProperty")
+    get() = getAutoplay()
+    @JvmName("autoplayProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+      setAutoplay(value)
     }
 
   /**
    * The length (in seconds) of the currently playing animation.
    */
   public val currentAnimationLength: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("currentAnimationLengthProperty")
+    get() = getCurrentAnimationLength()
 
   /**
    * The position (in seconds) of the currently playing animation.
    */
   public val currentAnimationPosition: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPositionPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("currentAnimationPositionProperty")
+    get() = getCurrentAnimationPosition()
 
   /**
    * If `true`, performs [AnimationMixer.capture] before playback automatically. This means just
@@ -136,14 +122,11 @@ public open class AnimationPlayer : AnimationMixer() {
    * See also [Animation.UPDATE_CAPTURE].
    */
   public var playbackAutoCapture: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoCapturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("playbackAutoCaptureProperty")
+    get() = isAutoCapture()
+    @JvmName("playbackAutoCaptureProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCapturePtr, NIL)
+      setAutoCapture(value)
     }
 
   /**
@@ -152,56 +135,44 @@ public open class AnimationPlayer : AnimationMixer() {
    * the current position and the first key.
    */
   public var playbackAutoCaptureDuration: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureDurationPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("playbackAutoCaptureDurationProperty")
+    get() = getAutoCaptureDuration()
+    @JvmName("playbackAutoCaptureDurationProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureDurationPtr, NIL)
+      setAutoCaptureDuration(value)
     }
 
   /**
    * The transition type of the capture interpolation. See also [Tween.TransitionType].
    */
   public var playbackAutoCaptureTransitionType: Tween.TransitionType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureTransitionTypePtr, LONG)
-      return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("playbackAutoCaptureTransitionTypeProperty")
+    get() = getAutoCaptureTransitionType()
+    @JvmName("playbackAutoCaptureTransitionTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureTransitionTypePtr, NIL)
+      setAutoCaptureTransitionType(value)
     }
 
   /**
    * The ease type of the capture interpolation. See also [Tween.EaseType].
    */
   public var playbackAutoCaptureEaseType: Tween.EaseType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureEaseTypePtr, LONG)
-      return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("playbackAutoCaptureEaseTypeProperty")
+    get() = getAutoCaptureEaseType()
+    @JvmName("playbackAutoCaptureEaseTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureEaseTypePtr, NIL)
+      setAutoCaptureEaseType(value)
     }
 
   /**
    * The default time in which to blend animations. Ranges from 0 to 4096 with 0.01 precision.
    */
   public var playbackDefaultBlendTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBlendTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("playbackDefaultBlendTimeProperty")
+    get() = getDefaultBlendTime()
+    @JvmName("playbackDefaultBlendTimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBlendTimePtr, NIL)
+      setDefaultBlendTime(value)
     }
 
   /**
@@ -211,14 +182,11 @@ public open class AnimationPlayer : AnimationMixer() {
    * will not advance.
    */
   public var speedScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("speedScaleProperty")
+    get() = getSpeedScale()
+    @JvmName("speedScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+      setSpeedScale(value)
     }
 
   /**
@@ -229,14 +197,11 @@ public open class AnimationPlayer : AnimationMixer() {
    * so it will not quit the engine if the animation is set to be looping.
    */
   public var movieQuitOnFinish: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMovieQuitOnFinishEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("movieQuitOnFinishProperty")
+    get() = isMovieQuitOnFinishEnabled()
+    @JvmName("movieQuitOnFinishProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMovieQuitOnFinishEnabledPtr, NIL)
+      setMovieQuitOnFinishEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -279,6 +244,61 @@ public open class AnimationPlayer : AnimationMixer() {
     TransferContext.writeArguments(STRING_NAME to animationFrom, STRING_NAME to animationTo)
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendTimePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setDefaultBlendTime(sec: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to sec)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBlendTimePtr, NIL)
+  }
+
+  public fun getDefaultBlendTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBlendTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setAutoCapture(autoCapture: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to autoCapture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCapturePtr, NIL)
+  }
+
+  public fun isAutoCapture(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoCapturePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAutoCaptureDuration(autoCaptureDuration: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to autoCaptureDuration)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureDurationPtr, NIL)
+  }
+
+  public fun getAutoCaptureDuration(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureDurationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setAutoCaptureTransitionType(autoCaptureTransitionType: Tween.TransitionType): Unit {
+    TransferContext.writeArguments(LONG to autoCaptureTransitionType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureTransitionTypePtr, NIL)
+  }
+
+  public fun getAutoCaptureTransitionType(): Tween.TransitionType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureTransitionTypePtr, LONG)
+    return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAutoCaptureEaseType(autoCaptureEaseType: Tween.EaseType): Unit {
+    TransferContext.writeArguments(LONG to autoCaptureEaseType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoCaptureEaseTypePtr, NIL)
+  }
+
+  public fun getAutoCaptureEaseType(): Tween.EaseType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoCaptureEaseTypePtr, LONG)
+    return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -380,6 +400,28 @@ public open class AnimationPlayer : AnimationMixer() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setCurrentAnimation(animation: String): Unit {
+    TransferContext.writeArguments(STRING to animation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentAnimationPtr, NIL)
+  }
+
+  public fun getCurrentAnimation(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setAssignedAnimation(animation: String): Unit {
+    TransferContext.writeArguments(STRING to animation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAssignedAnimationPtr, NIL)
+  }
+
+  public fun getAssignedAnimation(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAssignedAnimationPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Queues an animation for playback once the current animation and all previously queued
    * animations are done.
@@ -408,6 +450,17 @@ public open class AnimationPlayer : AnimationMixer() {
     TransferContext.callMethod(rawPtr, MethodBindings.clearQueuePtr, NIL)
   }
 
+  public fun setSpeedScale(speed: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to speed.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+  }
+
+  public fun getSpeedScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * Returns the actual playing speed of current animation or `0` if not playing. This speed is the
    * [speedScale] property multiplied by `custom_speed` argument specified when calling the [play]
@@ -418,6 +471,40 @@ public open class AnimationPlayer : AnimationMixer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAutoplay(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+  }
+
+  public fun getAutoplay(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setMovieQuitOnFinishEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMovieQuitOnFinishEnabledPtr, NIL)
+  }
+
+  public fun isMovieQuitOnFinishEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMovieQuitOnFinishEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun getCurrentAnimationPosition(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationPositionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun getCurrentAnimationLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentAnimationLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   /**

@@ -236,7 +236,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets a [Material] for a given surface. Surface will be rendered using this material.
    */
-  public fun setSurfaceMaterial(surfaceIdx: Int, material: Material): Unit {
+  public fun setSurfaceMaterial(surfaceIdx: Int, material: Material?): Unit {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceMaterialPtr, NIL)
   }

@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on a quad.
@@ -29,14 +30,11 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
    */
   @CoreTypeLocalCopy
   public var quadSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getQuadSizePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("quadSizeProperty")
+    get() = getQuadSize()
+    @JvmName("quadSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setQuadSizePtr, NIL)
+      setQuadSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -66,6 +64,17 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
       quadSize = this
   }
 
+
+  public fun setQuadSize(size: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setQuadSizePtr, NIL)
+  }
+
+  public fun getQuadSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getQuadSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

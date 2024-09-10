@@ -34,6 +34,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -77,14 +78,11 @@ public open class AStarGrid2D : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var region: Rect2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2I)
-      return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
-    }
+    @JvmName("regionProperty")
+    get() = getRegion()
+    @JvmName("regionProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
+      setRegion(value)
     }
 
   /**
@@ -93,14 +91,11 @@ public open class AStarGrid2D : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var size: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
@@ -109,14 +104,11 @@ public open class AStarGrid2D : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var offset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("offsetProperty")
+    get() = getOffset()
+    @JvmName("offsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(value)
     }
 
   /**
@@ -125,14 +117,11 @@ public open class AStarGrid2D : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var cellSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("cellSizeProperty")
+    get() = getCellSize()
+    @JvmName("cellSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+      setCellSize(value)
     }
 
   /**
@@ -140,14 +129,11 @@ public open class AStarGrid2D : RefCounted() {
    * be called before finding the next path.
    */
   public var cellShape: CellShape
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellShapePtr, LONG)
-      return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("cellShapeProperty")
+    get() = getCellShape()
+    @JvmName("cellShapeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellShapePtr, NIL)
+      setCellShape(value)
     }
 
   /**
@@ -157,14 +143,11 @@ public open class AStarGrid2D : RefCounted() {
    * pathfinding.
    */
   public var jumpingEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isJumpingEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("jumpingEnabledProperty")
+    get() = isJumpingEnabled()
+    @JvmName("jumpingEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setJumpingEnabledPtr, NIL)
+      setJumpingEnabled(value)
     }
 
   /**
@@ -172,14 +155,11 @@ public open class AStarGrid2D : RefCounted() {
    * [_computeCost] was not overridden.
    */
   public var defaultComputeHeuristic: Heuristic
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
-      return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("defaultComputeHeuristicProperty")
+    get() = getDefaultComputeHeuristic()
+    @JvmName("defaultComputeHeuristicProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultComputeHeuristicPtr, NIL)
+      setDefaultComputeHeuristic(value)
     }
 
   /**
@@ -187,14 +167,11 @@ public open class AStarGrid2D : RefCounted() {
    * point if [_estimateCost] was not overridden.
    */
   public var defaultEstimateHeuristic: Heuristic
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
-      return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("defaultEstimateHeuristicProperty")
+    get() = getDefaultEstimateHeuristic()
+    @JvmName("defaultEstimateHeuristicProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultEstimateHeuristicPtr, NIL)
+      setDefaultEstimateHeuristic(value)
     }
 
   /**
@@ -202,14 +179,11 @@ public open class AStarGrid2D : RefCounted() {
    * diagonals.
    */
   public var diagonalMode: DiagonalMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDiagonalModePtr, LONG)
-      return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("diagonalModeProperty")
+    get() = getDiagonalMode()
+    @JvmName("diagonalModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDiagonalModePtr, NIL)
+      setDiagonalMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -332,6 +306,61 @@ public open class AStarGrid2D : RefCounted() {
     throw NotImplementedError("_compute_cost is not implemented for AStarGrid2D")
   }
 
+  public fun setRegion(region: Rect2i): Unit {
+    TransferContext.writeArguments(RECT2I to region)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
+  }
+
+  public fun getRegion(): Rect2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2I)
+    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
+  }
+
+  public fun setSize(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+  }
+
+  public fun getOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setCellSize(cellSize: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to cellSize)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+  }
+
+  public fun getCellSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setCellShape(cellShape: CellShape): Unit {
+    TransferContext.writeArguments(LONG to cellShape.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellShapePtr, NIL)
+  }
+
+  public fun getCellShape(): CellShape {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellShapePtr, LONG)
+    return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns `true` if the [x] and [y] is a valid grid coordinate (id), i.e. if it is inside
    * [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
@@ -370,6 +399,50 @@ public open class AStarGrid2D : RefCounted() {
   public fun update(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
+  }
+
+  public fun setJumpingEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setJumpingEnabledPtr, NIL)
+  }
+
+  public fun isJumpingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isJumpingEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDiagonalMode(mode: DiagonalMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDiagonalModePtr, NIL)
+  }
+
+  public fun getDiagonalMode(): DiagonalMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDiagonalModePtr, LONG)
+    return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
+    TransferContext.writeArguments(LONG to heuristic.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultComputeHeuristicPtr, NIL)
+  }
+
+  public fun getDefaultComputeHeuristic(): Heuristic {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
+    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
+    TransferContext.writeArguments(LONG to heuristic.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultEstimateHeuristicPtr, NIL)
+  }
+
+  public fun getDefaultEstimateHeuristic(): Heuristic {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
+    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

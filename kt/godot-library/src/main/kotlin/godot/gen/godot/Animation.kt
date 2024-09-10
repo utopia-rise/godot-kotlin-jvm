@@ -36,6 +36,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -81,14 +82,11 @@ public open class Animation : Resource() {
    * to ensure correct interpolation and looping.
    */
   public var length: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("lengthProperty")
+    get() = getLength()
+    @JvmName("lengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+      setLength(value)
     }
 
   /**
@@ -97,28 +95,22 @@ public open class Animation : Resource() {
    * restart the animation.
    */
   public var loopMode: LoopMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
-      return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("loopModeProperty")
+    get() = getLoopMode()
+    @JvmName("loopModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
+      setLoopMode(value)
     }
 
   /**
    * The animation step value.
    */
   public var step: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("stepProperty")
+    get() = getStep()
+    @JvmName("stepProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+      setStep(value)
     }
 
   /**
@@ -126,11 +118,8 @@ public open class Animation : Resource() {
    * performance.
    */
   public val captureIncluded: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCaptureIncludedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("captureIncludedProperty")
+    get() = isCaptureIncluded()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATION, scriptIndex)
@@ -716,7 +705,7 @@ public open class Animation : Resource() {
   public fun audioTrackInsertKey(
     trackIdx: Int,
     time: Double,
-    stream: Resource,
+    stream: Resource?,
     startOffset: Float = 0.0f,
     endOffset: Float = 0.0f,
   ): Int {
@@ -732,7 +721,7 @@ public open class Animation : Resource() {
   public fun audioTrackSetKeyStream(
     trackIdx: Int,
     keyIdx: Int,
-    stream: Resource,
+    stream: Resource?,
   ): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to keyIdx.toLong(), OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.audioTrackSetKeyStreamPtr, NIL)
@@ -851,6 +840,39 @@ public open class Animation : Resource() {
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
+  public fun setLength(timeSec: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to timeSec.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+  }
+
+  public fun getLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLoopMode(loopMode: LoopMode): Unit {
+    TransferContext.writeArguments(LONG to loopMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
+  }
+
+  public fun getLoopMode(): LoopMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
+    return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setStep(sizeSec: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to sizeSec.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+  }
+
+  public fun getStep(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * Clear the animation (clear all tracks and reset all).
    */
@@ -862,7 +884,7 @@ public open class Animation : Resource() {
   /**
    * Adds a new track to [toAnimation] that is a copy of the given track from this animation.
    */
-  public fun copyTrack(trackIdx: Int, toAnimation: Animation): Unit {
+  public fun copyTrack(trackIdx: Int, toAnimation: Animation?): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), OBJECT to toAnimation)
     TransferContext.callMethod(rawPtr, MethodBindings.copyTrackPtr, NIL)
   }
@@ -884,6 +906,12 @@ public open class Animation : Resource() {
   ): Unit {
     TransferContext.writeArguments(LONG to pageSize, LONG to fps, DOUBLE to splitTolerance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.compressPtr, NIL)
+  }
+
+  public fun isCaptureIncluded(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCaptureIncludedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class TrackType(

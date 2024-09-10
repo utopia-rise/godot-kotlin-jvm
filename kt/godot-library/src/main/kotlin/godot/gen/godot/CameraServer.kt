@@ -77,7 +77,7 @@ public object CameraServer : Object() {
   /**
    * Adds the camera [feed] to the camera server.
    */
-  public fun addFeed(feed: CameraFeed): Unit {
+  public fun addFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, MethodBindings.addFeedPtr, NIL)
   }
@@ -85,7 +85,7 @@ public object CameraServer : Object() {
   /**
    * Removes the specified camera [feed].
    */
-  public fun removeFeed(feed: CameraFeed): Unit {
+  public fun removeFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, MethodBindings.removeFeedPtr, NIL)
   }

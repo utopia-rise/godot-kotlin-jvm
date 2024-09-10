@@ -44,6 +44,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -106,14 +107,11 @@ public open class RichTextLabel : Control() {
    * **Note:** This only affects the contents of [text], not the tag stack.
    */
   public var bbcodeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingBbcodePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("bbcodeEnabledProperty")
+    get() = isUsingBbcode()
+    @JvmName("bbcodeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseBbcodePtr, NIL)
+      setUseBbcode(value)
     }
 
   /**
@@ -125,14 +123,11 @@ public open class RichTextLabel : Control() {
    * instead, unless you absolutely need to close a tag that was opened in an earlier method call.
    */
   public var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("textProperty")
+    get() = getText()
+    @JvmName("textProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+      setText(value)
     }
 
   /**
@@ -140,14 +135,11 @@ public open class RichTextLabel : Control() {
    * the behavior of [Label].
    */
   public var fitContent: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFitContentEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("fitContentProperty")
+    get() = isFitContentEnabled()
+    @JvmName("fitContentProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFitContentPtr, NIL)
+      setFitContent(value)
     }
 
   /**
@@ -155,28 +147,22 @@ public open class RichTextLabel : Control() {
    * completely. See [scrollToLine].
    */
   public var scrollActive: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isScrollActivePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("scrollActiveProperty")
+    get() = isScrollActive()
+    @JvmName("scrollActiveProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollActivePtr, NIL)
+      setScrollActive(value)
     }
 
   /**
    * If `true`, the window scrolls down to display new content automatically.
    */
   public var scrollFollowing: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isScrollFollowingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("scrollFollowingProperty")
+    get() = isScrollFollowing()
+    @JvmName("scrollFollowingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollFollowPtr, NIL)
+      setScrollFollow(value)
     }
 
   /**
@@ -184,14 +170,11 @@ public open class RichTextLabel : Control() {
    * node's bounding rectangle. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("autowrapModeProperty")
+    get() = getAutowrapMode()
+    @JvmName("autowrapModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+      setAutowrapMode(value)
     }
 
   /**
@@ -199,28 +182,22 @@ public open class RichTextLabel : Control() {
    * only indent tags.
    */
   public var tabSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("tabSizeProperty")
+    get() = getTabSize()
+    @JvmName("tabSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabSizePtr, NIL)
+      setTabSize(value)
     }
 
   /**
    * If `true`, a right-click displays the context menu.
    */
   public var contextMenuEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("contextMenuEnabledProperty")
+    get() = isContextMenuEnabled()
+    @JvmName("contextMenuEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
+      setContextMenuEnabled(value)
     }
 
   /**
@@ -228,14 +205,11 @@ public open class RichTextLabel : Control() {
    * disabled.
    */
   public var shortcutKeysEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("shortcutKeysEnabledProperty")
+    get() = isShortcutKeysEnabled()
+    @JvmName("shortcutKeysEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
+      setShortcutKeysEnabled(value)
     }
 
   /**
@@ -243,14 +217,11 @@ public open class RichTextLabel : Control() {
    * To add a custom effect, it's more convenient to use [installEffect].
    */
   public var customEffects: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEffectsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("customEffectsProperty")
+    get() = getEffects()
+    @JvmName("customEffectsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEffectsPtr, NIL)
+      setEffects(value)
     }
 
   /**
@@ -258,14 +229,11 @@ public open class RichTextLabel : Control() {
    * These tags can call a function when clicked if [signal meta_clicked] is connected to a function.
    */
   public var metaUnderlined: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMetaUnderlinedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("metaUnderlinedProperty")
+    get() = isMetaUnderlined()
+    @JvmName("metaUnderlinedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMetaUnderlinePtr, NIL)
+      setMetaUnderline(value)
     }
 
   /**
@@ -273,28 +241,22 @@ public open class RichTextLabel : Control() {
    * skip-lint][hint=description]{text}[/hint][/code].
    */
   public var hintUnderlined: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHintUnderlinedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hintUnderlinedProperty")
+    get() = isHintUnderlined()
+    @JvmName("hintUnderlinedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHintUnderlinePtr, NIL)
+      setHintUnderline(value)
     }
 
   /**
    * If `true`, text processing is done in a background thread.
    */
   public var threaded: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isThreadedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("threadedProperty")
+    get() = isThreaded()
+    @JvmName("threadedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setThreadedPtr, NIL)
+      setThreaded(value)
     }
 
   /**
@@ -303,56 +265,44 @@ public open class RichTextLabel : Control() {
    * **Note:** Progress bar is displayed only if [threaded] is enabled.
    */
   public var progressBarDelay: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProgressBarDelayPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("progressBarDelayProperty")
+    get() = getProgressBarDelay()
+    @JvmName("progressBarDelayProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setProgressBarDelayPtr, NIL)
+      setProgressBarDelay(value)
     }
 
   /**
    * If `true`, the label allows text selection.
    */
   public var selectionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSelectionEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("selectionEnabledProperty")
+    get() = isSelectionEnabled()
+    @JvmName("selectionEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectionEnabledPtr, NIL)
+      setSelectionEnabled(value)
     }
 
   /**
    * If `true`, the selected text will be deselected when focus is lost.
    */
   public var deselectOnFocusLossEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("deselectOnFocusLossEnabledProperty")
+    get() = isDeselectOnFocusLossEnabled()
+    @JvmName("deselectOnFocusLossEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
+      setDeselectOnFocusLossEnabled(value)
     }
 
   /**
    * If `true`, allow drag and drop of selected text.
    */
   public var dragAndDropSelectionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("dragAndDropSelectionEnabledProperty")
+    get() = isDragAndDropSelectionEnabled()
+    @JvmName("dragAndDropSelectionEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
+      setDragAndDropSelectionEnabled(value)
     }
 
   /**
@@ -361,14 +311,11 @@ public open class RichTextLabel : Control() {
    * **Note:** Setting this property updates [visibleRatio] accordingly.
    */
   public var visibleCharacters: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("visibleCharactersProperty")
+    get() = getVisibleCharacters()
+    @JvmName("visibleCharactersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
+      setVisibleCharacters(value)
     }
 
   /**
@@ -376,14 +323,11 @@ public open class RichTextLabel : Control() {
    * [TextServer.VisibleCharactersBehavior] for more info.
    */
   public var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
-      return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("visibleCharactersBehaviorProperty")
+    get() = getVisibleCharactersBehavior()
+    @JvmName("visibleCharactersBehaviorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
+      setVisibleCharactersBehavior(value)
     }
 
   /**
@@ -394,28 +338,22 @@ public open class RichTextLabel : Control() {
    * **Note:** Setting this property updates [visibleCharacters] accordingly.
    */
   public var visibleRatio: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("visibleRatioProperty")
+    get() = getVisibleRatio()
+    @JvmName("visibleRatioProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
+      setVisibleRatio(value)
     }
 
   /**
    * Base text writing direction.
    */
   public var textDirection: Control.TextDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textDirectionProperty")
+    get() = getTextDirection()
+    @JvmName("textDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+      setTextDirection(value)
     }
 
   /**
@@ -423,44 +361,33 @@ public open class RichTextLabel : Control() {
    * is used instead.
    */
   public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("languageProperty")
+    get() = getLanguage()
+    @JvmName("languageProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+      setLanguage(value)
     }
 
   /**
    * Set BiDi algorithm override for the structured text.
    */
   public var structuredTextBidiOverride: TextServer.StructuredTextParser
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("structuredTextBidiOverrideProperty")
+    get() = getStructuredTextBidiOverride()
+    @JvmName("structuredTextBidiOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+      setStructuredTextBidiOverride(value)
     }
 
   /**
    * Set additional options for BiDi override.
    */
   public var structuredTextBidiOverrideOptions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-          ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
+    get() = getStructuredTextBidiOverrideOptions()
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr,
-          NIL)
+      setStructuredTextBidiOverrideOptions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -484,6 +411,11 @@ public open class RichTextLabel : Control() {
     TransferContext.callMethod(rawPtr, MethodBindings.addTextPtr, NIL)
   }
 
+  public fun setText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+  }
+
   /**
    * Adds an image's opening and closing tags to the tag stack, optionally providing a [width] and
    * [height] to resize the image, a [color] to tint the image and a [region] to only use parts of the
@@ -499,7 +431,7 @@ public open class RichTextLabel : Control() {
    */
   @JvmOverloads
   public fun addImage(
-    image: Texture2D,
+    image: Texture2D?,
     width: Int = 0,
     height: Int = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
@@ -522,7 +454,7 @@ public open class RichTextLabel : Control() {
   public fun updateImage(
     key: Any?,
     mask: ImageUpdateMask,
-    image: Texture2D,
+    image: Texture2D?,
     width: Int = 0,
     height: Int = 0,
     color: Color = Color(Color(1, 1, 1, 1)),
@@ -575,7 +507,7 @@ public open class RichTextLabel : Control() {
    * Passing `0` to [fontSize] will use the existing default font size.
    */
   @JvmOverloads
-  public fun pushFont(font: Font, fontSize: Int = 0): Unit {
+  public fun pushFont(font: Font?, fontSize: Int = 0): Unit {
     TransferContext.writeArguments(OBJECT to font, LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.pushFontPtr, NIL)
   }
@@ -768,7 +700,7 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public fun pushDropcap(
     string: String,
-    font: Font,
+    font: Font?,
     size: Int,
     dropcapMargins: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     color: Color = Color(Color(1, 1, 1, 1)),
@@ -860,7 +792,7 @@ public open class RichTextLabel : Control() {
    * Adds a custom effect tag to the tag stack. The effect does not need to be in [customEffects].
    * The environment is directly passed to the effect.
    */
-  public fun pushCustomfx(effect: RichTextEffect, env: Dictionary<Any?, Any?>): Unit {
+  public fun pushCustomfx(effect: RichTextEffect?, env: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(OBJECT to effect, DICTIONARY to env)
     TransferContext.callMethod(rawPtr, MethodBindings.pushCustomfxPtr, NIL)
   }
@@ -909,6 +841,106 @@ public open class RichTextLabel : Control() {
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
+  public fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+  }
+
+  public fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to args)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+  }
+
+  public fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+  }
+
+  public fun setTextDirection(direction: Control.TextDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+  }
+
+  public fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLanguage(language: String): Unit {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+  }
+
+  public fun getLanguage(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+  }
+
+  public fun getAutowrapMode(): TextServer.AutowrapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setMetaUnderline(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMetaUnderlinePtr, NIL)
+  }
+
+  public fun isMetaUnderlined(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMetaUnderlinedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHintUnderline(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHintUnderlinePtr, NIL)
+  }
+
+  public fun isHintUnderlined(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHintUnderlinedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setScrollActive(active: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollActivePtr, NIL)
+  }
+
+  public fun isScrollActive(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isScrollActivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setScrollFollow(follow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to follow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollFollowPtr, NIL)
+  }
+
+  public fun isScrollFollowing(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isScrollFollowingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns the vertical scrollbar.
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
@@ -942,6 +974,83 @@ public open class RichTextLabel : Control() {
   public fun scrollToSelection(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.scrollToSelectionPtr, NIL)
+  }
+
+  public fun setTabSize(spaces: Int): Unit {
+    TransferContext.writeArguments(LONG to spaces.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabSizePtr, NIL)
+  }
+
+  public fun getTabSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFitContent(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFitContentPtr, NIL)
+  }
+
+  public fun isFitContentEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFitContentEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSelectionEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectionEnabledPtr, NIL)
+  }
+
+  public fun isSelectionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setContextMenuEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
+  }
+
+  public fun isContextMenuEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setShortcutKeysEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
+  }
+
+  public fun isShortcutKeysEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDeselectOnFocusLossEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
+  }
+
+  public fun isDeselectOnFocusLossEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDragAndDropSelectionEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
+  }
+
+  public fun isDragAndDropSelectionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1010,6 +1119,12 @@ public open class RichTextLabel : Control() {
     TransferContext.callMethod(rawPtr, MethodBindings.appendTextPtr, NIL)
   }
 
+  public fun getText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * If [threaded] is enabled, returns `true` if the background thread has finished text processing,
    * otherwise always return `true`.
@@ -1018,6 +1133,61 @@ public open class RichTextLabel : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isReadyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setThreaded(threaded: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to threaded)
+    TransferContext.callMethod(rawPtr, MethodBindings.setThreadedPtr, NIL)
+  }
+
+  public fun isThreaded(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isThreadedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setProgressBarDelay(delayMs: Int): Unit {
+    TransferContext.writeArguments(LONG to delayMs.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setProgressBarDelayPtr, NIL)
+  }
+
+  public fun getProgressBarDelay(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProgressBarDelayPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setVisibleCharacters(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
+  }
+
+  public fun getVisibleCharacters(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun getVisibleCharactersBehavior(): TextServer.VisibleCharactersBehavior {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
+    return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior): Unit {
+    TransferContext.writeArguments(LONG to behavior.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
+  }
+
+  public fun setVisibleRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
+  }
+
+  public fun getVisibleRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -1051,6 +1221,17 @@ public open class RichTextLabel : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalCharacterCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setUseBbcode(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseBbcodePtr, NIL)
+  }
+
+  public fun isUsingBbcode(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingBbcodePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1148,6 +1329,17 @@ public open class RichTextLabel : Control() {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to expressions)
     TransferContext.callMethod(rawPtr, MethodBindings.parseExpressionsForValuesPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  public fun setEffects(effects: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to effects)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEffectsPtr, NIL)
+  }
+
+  public fun getEffects(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEffectsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**

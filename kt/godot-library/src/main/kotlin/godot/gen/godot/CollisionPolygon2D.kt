@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
@@ -37,14 +38,11 @@ public open class CollisionPolygon2D : Node2D() {
    * Collision build mode. Use one of the [BuildMode] constants.
    */
   public var buildMode: BuildMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBuildModePtr, LONG)
-      return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("buildModeProperty")
+    get() = getBuildMode()
+    @JvmName("buildModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBuildModePtr, NIL)
+      setBuildMode(value)
     }
 
   /**
@@ -54,28 +52,22 @@ public open class CollisionPolygon2D : Node2D() {
    * [CollisionPolygon2D].
    */
   public var polygon: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+    @JvmName("polygonProperty")
+    get() = getPolygon()
+    @JvmName("polygonProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+      setPolygon(value)
     }
 
   /**
    * If `true`, no collisions will be detected.
    */
   public var disabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("disabledProperty")
+    get() = isDisabled()
+    @JvmName("disabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+      setDisabled(value)
     }
 
   /**
@@ -85,14 +77,11 @@ public open class CollisionPolygon2D : Node2D() {
    * node.
    */
   public var oneWayCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("oneWayCollisionProperty")
+    get() = isOneWayCollisionEnabled()
+    @JvmName("oneWayCollisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
+      setOneWayCollision(value)
     }
 
   /**
@@ -100,18 +89,70 @@ public open class CollisionPolygon2D : Node2D() {
    * and work better for colliders that enter the polygon at a high velocity.
    */
   public var oneWayCollisionMargin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("oneWayCollisionMarginProperty")
+    get() = getOneWayCollisionMargin()
+    @JvmName("oneWayCollisionMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
+      setOneWayCollisionMargin(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON2D, scriptIndex)
+  }
+
+  public fun setPolygon(polygon: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+  }
+
+  public fun getPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+  }
+
+  public fun setBuildMode(buildMode: BuildMode): Unit {
+    TransferContext.writeArguments(LONG to buildMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBuildModePtr, NIL)
+  }
+
+  public fun getBuildMode(): BuildMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBuildModePtr, LONG)
+    return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDisabled(disabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to disabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+  }
+
+  public fun isDisabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setOneWayCollision(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
+  }
+
+  public fun isOneWayCollisionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setOneWayCollisionMargin(margin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to margin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
+  }
+
+  public fun getOneWayCollisionMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class BuildMode(

@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A link between two positions on [NavigationRegion3D]s that agents can be routed through. These
@@ -41,14 +42,11 @@ public open class NavigationLink3D : Node3D() {
    * this link.
    */
   public var enabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enabledProperty")
+    get() = isEnabled()
+    @JvmName("enabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+      setEnabled(value)
     }
 
   /**
@@ -56,14 +54,11 @@ public open class NavigationLink3D : Node3D() {
    * [endPosition].
    */
   public var bidirectional: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBidirectionalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("bidirectionalProperty")
+    get() = isBidirectional()
+    @JvmName("bidirectionalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBidirectionalPtr, NIL)
+      setBidirectional(value)
     }
 
   /**
@@ -71,14 +66,11 @@ public open class NavigationLink3D : Node3D() {
    * be checked when requesting a path with [NavigationServer3D.mapGetPath].
    */
   public var navigationLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("navigationLayersProperty")
+    get() = getNavigationLayers()
+    @JvmName("navigationLayersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+      setNavigationLayers(value)
     }
 
   /**
@@ -89,14 +81,11 @@ public open class NavigationLink3D : Node3D() {
    */
   @CoreTypeLocalCopy
   public var startPosition: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("startPositionProperty")
+    get() = getStartPosition()
+    @JvmName("startPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
+      setStartPosition(value)
     }
 
   /**
@@ -107,14 +96,11 @@ public open class NavigationLink3D : Node3D() {
    */
   @CoreTypeLocalCopy
   public var endPosition: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEndPositionPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("endPositionProperty")
+    get() = getEndPosition()
+    @JvmName("endPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEndPositionPtr, NIL)
+      setEndPosition(value)
     }
 
   /**
@@ -122,14 +108,11 @@ public open class NavigationLink3D : Node3D() {
    * added to the path distance for determining the shortest path.
    */
   public var enterCost: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("enterCostProperty")
+    get() = getEnterCost()
+    @JvmName("enterCostProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+      setEnterCost(value)
     }
 
   /**
@@ -137,14 +120,11 @@ public open class NavigationLink3D : Node3D() {
    * determining the shortest path.
    */
   public var travelCost: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("travelCostProperty")
+    get() = getTravelCost()
+    @JvmName("travelCostProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+      setTravelCost(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -214,6 +194,39 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  public fun setEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+  }
+
+  public fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBidirectional(bidirectional: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to bidirectional)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBidirectionalPtr, NIL)
+  }
+
+  public fun isBidirectional(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBidirectionalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setNavigationLayers(navigationLayers: Long): Unit {
+    TransferContext.writeArguments(LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+  }
+
+  public fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
   /**
    * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
    * given a [layerNumber] between 1 and 32.
@@ -231,6 +244,28 @@ public open class NavigationLink3D : Node3D() {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setStartPosition(position: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
+  }
+
+  public fun getStartPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setEndPosition(position: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEndPositionPtr, NIL)
+  }
+
+  public fun getEndPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEndPositionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
@@ -265,6 +300,28 @@ public open class NavigationLink3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalEndPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setEnterCost(enterCost: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to enterCost.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+  }
+
+  public fun getEnterCost(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setTravelCost(travelCost: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to travelCost.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+  }
+
+  public fun getTravelCost(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

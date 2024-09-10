@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing
@@ -39,14 +40,11 @@ public open class ConfirmationDialog : AcceptDialog() {
    * The text displayed by the cancel button (see [getCancelButton]).
    */
   public var cancelButtonText: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("cancelButtonTextProperty")
+    get() = getCancelButtonText()
+    @JvmName("cancelButtonTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
+      setCancelButtonText(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -62,6 +60,17 @@ public open class ConfirmationDialog : AcceptDialog() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
+  }
+
+  public fun setCancelButtonText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
+  }
+
+  public fun getCancelButtonText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

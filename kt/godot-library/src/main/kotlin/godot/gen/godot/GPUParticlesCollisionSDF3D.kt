@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.
@@ -52,14 +53,11 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    */
   @CoreTypeLocalCopy
   public var size: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
@@ -71,14 +69,11 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * collision of.
    */
   public var resolution: Resolution
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
-      return GPUParticlesCollisionSDF3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("resolutionProperty")
+    get() = getResolution()
+    @JvmName("resolutionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+      setResolution(value)
     }
 
   /**
@@ -87,14 +82,11 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved.
    */
   public var thickness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("thicknessProperty")
+    get() = getThickness()
+    @JvmName("thicknessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+      setThickness(value)
     }
 
   /**
@@ -104,28 +96,22 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * SDF baking.
    */
   public var bakeMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("bakeMaskProperty")
+    get() = getBakeMask()
+    @JvmName("bakeMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
+      setBakeMask(value)
     }
 
   /**
    * The 3D texture representing the signed distance field.
    */
   public var texture: Texture3D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
-    }
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -156,6 +142,61 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
       size = this
   }
 
+
+  public fun setSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setResolution(resolution: Resolution): Unit {
+    TransferContext.writeArguments(LONG to resolution.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+  }
+
+  public fun getResolution(): Resolution {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
+    return GPUParticlesCollisionSDF3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTexture(texture: Texture3D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public fun getTexture(): Texture3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
+  }
+
+  public fun setThickness(thickness: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to thickness.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+  }
+
+  public fun getThickness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBakeMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
+  }
+
+  public fun getBakeMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
 
   /**
    * Based on [value], enables or disables the specified layer in the [bakeMask], given a

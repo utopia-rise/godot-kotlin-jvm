@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Stores general information about mouse events.
@@ -32,14 +33,11 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * masks.
    */
   public var buttonMask: MouseButtonMask
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
-      return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("buttonMaskProperty")
+    get() = getButtonMask()
+    @JvmName("buttonMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
+      setButtonMask(value)
     }
 
   /**
@@ -50,14 +48,11 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    */
   @CoreTypeLocalCopy
   public var position: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("positionProperty")
+    get() = getPosition()
+    @JvmName("positionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+      setPosition(value)
     }
 
   /**
@@ -68,14 +63,11 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    */
   @CoreTypeLocalCopy
   public var globalPosition: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("globalPositionProperty")
+    get() = getGlobalPosition()
+    @JvmName("globalPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+      setGlobalPosition(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -135,6 +127,39 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
       globalPosition = this
   }
 
+
+  public fun setButtonMask(buttonMask: MouseButtonMask): Unit {
+    TransferContext.writeArguments(LONG to buttonMask.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
+  }
+
+  public fun getButtonMask(): MouseButtonMask {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
+    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setPosition(position: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+  }
+
+  public fun getPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setGlobalPosition(globalPosition: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to globalPosition)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+  }
+
+  public fun getGlobalPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

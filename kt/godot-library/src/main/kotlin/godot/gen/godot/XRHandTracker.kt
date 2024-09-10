@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 
 /**
  * A hand tracking system will create an instance of this object and add it to the [XRServer]. This
@@ -39,32 +40,48 @@ public open class XRHandTracker : XRPositionalTracker() {
    * If `true`, the hand tracking data is valid.
    */
   public var hasTrackingData: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hasTrackingDataProperty")
+    get() = getHasTrackingData()
+    @JvmName("hasTrackingDataProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+      setHasTrackingData(value)
     }
 
   /**
    * The source of the hand tracking data.
    */
   public var handTrackingSource: HandTrackingSource
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
-      return XRHandTracker.HandTrackingSource.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("handTrackingSourceProperty")
+    get() = getHandTrackingSource()
+    @JvmName("handTrackingSourceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackingSourcePtr, NIL)
+      setHandTrackingSource(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRHANDTRACKER, scriptIndex)
+  }
+
+  public fun setHasTrackingData(hasData: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to hasData)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+  }
+
+  public fun getHasTrackingData(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHandTrackingSource(source: HandTrackingSource): Unit {
+    TransferContext.writeArguments(LONG to source.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackingSourcePtr, NIL)
+  }
+
+  public fun getHandTrackingSource(): HandTrackingSource {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
+    return XRHandTracker.HandTrackingSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -37,6 +37,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -85,14 +86,11 @@ public open class AnimationNode : Resource() {
    * If `true`, filtering is enabled.
    */
   public var filterEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFilterEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("filterEnabledProperty")
+    get() = isFilterEnabled()
+    @JvmName("filterEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilterEnabledPtr, NIL)
+      setFilterEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -248,6 +246,17 @@ public open class AnimationNode : Resource() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setFilterEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterEnabledPtr, NIL)
+  }
+
+  public fun isFilterEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFilterEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
    * [time] and [delta] may be passed, as well as whether [seeked] happened.
@@ -276,7 +285,7 @@ public open class AnimationNode : Resource() {
   @JvmOverloads
   public fun blendNode(
     name: StringName,
-    node: AnimationNode,
+    node: AnimationNode?,
     time: Double,
     seek: Boolean,
     isExternalSeeking: Boolean,

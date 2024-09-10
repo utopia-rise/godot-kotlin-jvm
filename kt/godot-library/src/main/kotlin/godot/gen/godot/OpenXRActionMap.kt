@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * OpenXR uses an action system similar to Godots Input map system to bind inputs and outputs on
@@ -38,33 +39,38 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Collection of [OpenXRActionSet]s that are part of this action map.
    */
-  public var actionSets: VariantArray<Any?>?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
-    }
+  public var actionSets: VariantArray<Any?>
+    @JvmName("actionSetsProperty")
+    get() = getActionSets()
+    @JvmName("actionSetsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActionSetsPtr, NIL)
+      setActionSets(value)
     }
 
   /**
    * Collection of [OpenXRInteractionProfile]s that are part of this action map.
    */
-  public var interactionProfiles: VariantArray<Any?>?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilesPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
-    }
+  public var interactionProfiles: VariantArray<Any?>
+    @JvmName("interactionProfilesProperty")
+    get() = getInteractionProfiles()
+    @JvmName("interactionProfilesProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilesPtr, NIL)
+      setInteractionProfiles(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRACTIONMAP, scriptIndex)
+  }
+
+  public fun setActionSets(actionSets: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to actionSets)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActionSetsPtr, NIL)
+  }
+
+  public fun getActionSets(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
@@ -97,7 +103,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Add an action set.
    */
-  public fun addActionSet(actionSet: OpenXRActionSet): Unit {
+  public fun addActionSet(actionSet: OpenXRActionSet?): Unit {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(rawPtr, MethodBindings.addActionSetPtr, NIL)
   }
@@ -105,9 +111,20 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Remove an action set.
    */
-  public fun removeActionSet(actionSet: OpenXRActionSet): Unit {
+  public fun removeActionSet(actionSet: OpenXRActionSet?): Unit {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(rawPtr, MethodBindings.removeActionSetPtr, NIL)
+  }
+
+  public fun setInteractionProfiles(interactionProfiles: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to interactionProfiles)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilesPtr, NIL)
+  }
+
+  public fun getInteractionProfiles(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
@@ -140,7 +157,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Add an interaction profile.
    */
-  public fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {
+  public fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
     TransferContext.writeArguments(OBJECT to interactionProfile)
     TransferContext.callMethod(rawPtr, MethodBindings.addInteractionProfilePtr, NIL)
   }
@@ -148,7 +165,7 @@ public open class OpenXRActionMap : Resource() {
   /**
    * Remove an interaction profile.
    */
-  public fun removeInteractionProfile(interactionProfile: OpenXRInteractionProfile): Unit {
+  public fun removeInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
     TransferContext.writeArguments(OBJECT to interactionProfile)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInteractionProfilePtr, NIL)
   }

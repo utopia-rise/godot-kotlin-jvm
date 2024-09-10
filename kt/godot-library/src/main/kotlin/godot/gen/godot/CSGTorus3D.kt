@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node allows you to create a torus for use with the CSG system.
@@ -36,56 +37,44 @@ public open class CSGTorus3D : CSGPrimitive3D() {
    * The inner radius of the torus.
    */
   public var innerRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInnerRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("innerRadiusProperty")
+    get() = getInnerRadius()
+    @JvmName("innerRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInnerRadiusPtr, NIL)
+      setInnerRadius(value)
     }
 
   /**
    * The outer radius of the torus.
    */
   public var outerRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOuterRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("outerRadiusProperty")
+    get() = getOuterRadius()
+    @JvmName("outerRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOuterRadiusPtr, NIL)
+      setOuterRadius(value)
     }
 
   /**
    * The number of slices the torus is constructed of.
    */
   public var sides: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("sidesProperty")
+    get() = getSides()
+    @JvmName("sidesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
+      setSides(value)
     }
 
   /**
    * The number of edges each ring of the torus is constructed of.
    */
   public var ringSides: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRingSidesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("ringSidesProperty")
+    get() = getRingSides()
+    @JvmName("ringSidesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRingSidesPtr, NIL)
+      setRingSides(value)
     }
 
   /**
@@ -93,32 +82,92 @@ public open class CSGTorus3D : CSGPrimitive3D() {
    * rounded. If `false` the torus will have a flat shaded look.
    */
   public var smoothFaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("smoothFacesProperty")
+    get() = getSmoothFaces()
+    @JvmName("smoothFacesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
+      setSmoothFaces(value)
     }
 
   /**
    * The material used to render the torus.
    */
   public var material: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
-    }
+    @JvmName("materialProperty")
+    get() = getMaterial()
+    @JvmName("materialProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+      setMaterial(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGTORUS3D, scriptIndex)
+  }
+
+  public fun setInnerRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInnerRadiusPtr, NIL)
+  }
+
+  public fun getInnerRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInnerRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setOuterRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOuterRadiusPtr, NIL)
+  }
+
+  public fun getOuterRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOuterRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSides(sides: Int): Unit {
+    TransferContext.writeArguments(LONG to sides.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
+  }
+
+  public fun getSides(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setRingSides(sides: Int): Unit {
+    TransferContext.writeArguments(LONG to sides.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRingSidesPtr, NIL)
+  }
+
+  public fun getRingSides(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRingSidesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMaterial(material: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+  }
+
+  public fun getMaterial(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+  }
+
+  public fun setSmoothFaces(smoothFaces: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to smoothFaces)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
+  }
+
+  public fun getSmoothFaces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -47,14 +48,11 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * If `true`, this [MultiplayerPeer] refuses new connections.
    */
   public var refuseNewConnections: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("refuseNewConnectionsProperty")
+    get() = isRefusingNewConnections()
+    @JvmName("refuseNewConnectionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
+      setRefuseNewConnections(value)
     }
 
   /**
@@ -62,14 +60,11 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * [setTargetPeer] method.
    */
   public var transferMode: TransferMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransferModePtr, LONG)
-      return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("transferModeProperty")
+    get() = getTransferMode()
+    @JvmName("transferModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransferModePtr, NIL)
+      setTransferMode(value)
     }
 
   /**
@@ -85,18 +80,37 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * WebRTC) to learn how to set up channels correctly.
    */
   public var transferChannel: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransferChannelPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("transferChannelProperty")
+    get() = getTransferChannel()
+    @JvmName("transferChannelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransferChannelPtr, NIL)
+      setTransferChannel(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIPLAYERPEER, scriptIndex)
+  }
+
+  public fun setTransferChannel(channel: Int): Unit {
+    TransferContext.writeArguments(LONG to channel.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransferChannelPtr, NIL)
+  }
+
+  public fun getTransferChannel(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransferChannelPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setTransferMode(mode: TransferMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransferModePtr, NIL)
+  }
+
+  public fun getTransferMode(): TransferMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransferModePtr, LONG)
+    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -193,6 +207,17 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateUniqueIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setRefuseNewConnections(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
+  }
+
+  public fun isRefusingNewConnections(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

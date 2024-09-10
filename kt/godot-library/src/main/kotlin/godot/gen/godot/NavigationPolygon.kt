@@ -34,6 +34,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A navigation mesh can be created either by baking it with the help of the [NavigationServer2D],
@@ -88,14 +89,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class NavigationPolygon : Resource() {
   public var vertices: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+    @JvmName("verticesProperty")
+    get() = getVertices()
+    @JvmName("verticesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+      setVertices(value)
     }
 
   /**
@@ -103,14 +101,11 @@ public open class NavigationPolygon : Resource() {
    * possible values.
    */
   public var parsedGeometryType: ParsedGeometryType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
-      return NavigationPolygon.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("parsedGeometryTypeProperty")
+    get() = getParsedGeometryType()
+    @JvmName("parsedGeometryTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
+      setParsedGeometryType(value)
     }
 
   /**
@@ -119,28 +114,22 @@ public open class NavigationPolygon : Resource() {
    * [PARSED_GEOMETRY_BOTH].
    */
   public var parsedCollisionMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("parsedCollisionMaskProperty")
+    get() = getParsedCollisionMask()
+    @JvmName("parsedCollisionMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParsedCollisionMaskPtr, NIL)
+      setParsedCollisionMask(value)
     }
 
   /**
    * The source of the geometry used when baking. See [SourceGeometryMode] for possible values.
    */
   public var sourceGeometryMode: SourceGeometryMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
-      return NavigationPolygon.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("sourceGeometryModeProperty")
+    get() = getSourceGeometryMode()
+    @JvmName("sourceGeometryModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
+      setSourceGeometryMode(value)
     }
 
   /**
@@ -149,14 +138,11 @@ public open class NavigationPolygon : Resource() {
    * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
   public var sourceGeometryGroupName: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryGroupNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("sourceGeometryGroupNameProperty")
+    get() = getSourceGeometryGroupName()
+    @JvmName("sourceGeometryGroupNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryGroupNamePtr, NIL)
+      setSourceGeometryGroupName(value)
     }
 
   /**
@@ -164,14 +150,11 @@ public open class NavigationPolygon : Resource() {
    * the navigation map.
    */
   public var cellSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("cellSizeProperty")
+    get() = getCellSize()
+    @JvmName("cellSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+      setCellSize(value)
     }
 
   /**
@@ -181,28 +164,22 @@ public open class NavigationPolygon : Resource() {
    * navigation meshes without the tile edges being shrunk by [agentRadius].
    */
   public var borderSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("borderSizeProperty")
+    get() = getBorderSize()
+    @JvmName("borderSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+      setBorderSize(value)
     }
 
   /**
    * The distance to erode/shrink the walkable surface when baking the navigation mesh.
    */
   public var agentRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("agentRadiusProperty")
+    get() = getAgentRadius()
+    @JvmName("agentRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
+      setAgentRadius(value)
     }
 
   /**
@@ -211,14 +188,11 @@ public open class NavigationPolygon : Resource() {
    */
   @CoreTypeLocalCopy
   public var bakingRect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+    @JvmName("bakingRectProperty")
+    get() = getBakingRect()
+    @JvmName("bakingRectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectPtr, NIL)
+      setBakingRect(value)
     }
 
   /**
@@ -226,14 +200,11 @@ public open class NavigationPolygon : Resource() {
    */
   @CoreTypeLocalCopy
   public var bakingRectOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("bakingRectOffsetProperty")
+    get() = getBakingRectOffset()
+    @JvmName("bakingRectOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectOffsetPtr, NIL)
+      setBakingRectOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -289,6 +260,23 @@ public open class NavigationPolygon : Resource() {
       bakingRectOffset = this
   }
 
+
+  /**
+   * Sets the vertices that can be then indexed to create polygons with the [addPolygon] method.
+   */
+  public fun setVertices(vertices: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to vertices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+  }
+
+  /**
+   * Returns a [PackedVector2Array] containing all the vertices being used to create the polygons.
+   */
+  public fun getVertices(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+  }
 
   /**
    * Adds a polygon using the indices of the vertices you get when calling [getVertices].
@@ -408,6 +396,50 @@ public open class NavigationPolygon : Resource() {
     TransferContext.callMethod(rawPtr, MethodBindings.makePolygonsFromOutlinesPtr, NIL)
   }
 
+  public fun setCellSize(cellSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to cellSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+  }
+
+  public fun getCellSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBorderSize(borderSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to borderSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+  }
+
+  public fun getBorderSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
+    TransferContext.writeArguments(LONG to geometryType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
+  }
+
+  public fun getParsedGeometryType(): ParsedGeometryType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
+    return NavigationPolygon.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setParsedCollisionMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParsedCollisionMaskPtr, NIL)
+  }
+
+  public fun getParsedCollisionMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
   /**
    * Based on [value], enables or disables the specified layer in the [parsedCollisionMask], given a
    * [layerNumber] between 1 and 32.
@@ -425,6 +457,61 @@ public open class NavigationPolygon : Resource() {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSourceGeometryMode(geometryMode: SourceGeometryMode): Unit {
+    TransferContext.writeArguments(LONG to geometryMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
+  }
+
+  public fun getSourceGeometryMode(): SourceGeometryMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
+    return NavigationPolygon.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSourceGeometryGroupName(groupName: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to groupName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryGroupNamePtr, NIL)
+  }
+
+  public fun getSourceGeometryGroupName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryGroupNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setAgentRadius(agentRadius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to agentRadius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
+  }
+
+  public fun getAgentRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBakingRect(rect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectPtr, NIL)
+  }
+
+  public fun getBakingRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public fun setBakingRectOffset(rectOffset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to rectOffset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectOffsetPtr, NIL)
+  }
+
+  public fun getBakingRectOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**

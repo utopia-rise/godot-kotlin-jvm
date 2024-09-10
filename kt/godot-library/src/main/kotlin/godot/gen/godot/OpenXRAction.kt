@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
@@ -42,46 +43,70 @@ public open class OpenXRAction : Resource() {
    * The localized description of this action.
    */
   public var localizedName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("localizedNameProperty")
+    get() = getLocalizedName()
+    @JvmName("localizedNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
+      setLocalizedName(value)
     }
 
   /**
    * The type of action.
    */
   public var actionType: ActionType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getActionTypePtr, LONG)
-      return OpenXRAction.ActionType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("actionTypeProperty")
+    get() = getActionType()
+    @JvmName("actionTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActionTypePtr, NIL)
+      setActionType(value)
     }
 
   /**
    * A collections of toplevel paths to which this action can be bound.
    */
   public var toplevelPaths: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getToplevelPathsPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("toplevelPathsProperty")
+    get() = getToplevelPaths()
+    @JvmName("toplevelPathsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setToplevelPathsPtr, NIL)
+      setToplevelPaths(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRACTION, scriptIndex)
+  }
+
+  public fun setLocalizedName(localizedName: String): Unit {
+    TransferContext.writeArguments(STRING to localizedName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
+  }
+
+  public fun getLocalizedName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setActionType(actionType: ActionType): Unit {
+    TransferContext.writeArguments(LONG to actionType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActionTypePtr, NIL)
+  }
+
+  public fun getActionType(): ActionType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionTypePtr, LONG)
+    return OpenXRAction.ActionType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setToplevelPaths(toplevelPaths: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to toplevelPaths)
+    TransferContext.callMethod(rawPtr, MethodBindings.setToplevelPathsPtr, NIL)
+  }
+
+  public fun getToplevelPaths(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getToplevelPathsPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   public enum class ActionType(

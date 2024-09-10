@@ -37,11 +37,11 @@ public open class PlaceholderTexture2D : Texture2D() {
    */
   @CoreTypeLocalCopy
   public var size: Vector2
-    @JvmName("getSize_prop")
-    get() = super.getSize()
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -71,6 +71,11 @@ public open class PlaceholderTexture2D : Texture2D() {
       size = this
   }
 
+
+  public fun setSize(size: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
 
   public companion object
 

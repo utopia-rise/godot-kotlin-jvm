@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -53,14 +54,11 @@ public open class RandomNumberGenerator : RefCounted() {
    * [/codeblock]
    */
   public var seed: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSeedPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("seedProperty")
+    get() = getSeed()
+    @JvmName("seedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
+      setSeed(value)
     }
 
   /**
@@ -82,18 +80,37 @@ public open class RandomNumberGenerator : RefCounted() {
    * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
    */
   public var state: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("stateProperty")
+    get() = getState()
+    @JvmName("stateProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStatePtr, NIL)
+      setState(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RANDOMNUMBERGENERATOR, scriptIndex)
+  }
+
+  public fun setSeed(seed: Long): Unit {
+    TransferContext.writeArguments(LONG to seed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
+  }
+
+  public fun getSeed(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSeedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setState(state: Long): Unit {
+    TransferContext.writeArguments(LONG to state)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStatePtr, NIL)
+  }
+
+  public fun getState(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**

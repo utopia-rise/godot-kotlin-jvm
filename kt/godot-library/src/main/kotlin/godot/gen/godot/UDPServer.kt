@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -158,14 +159,11 @@ public open class UDPServer : RefCounted() {
    * any new pending connection to be accepted (e.g. when all your players have connected).
    */
   public var maxPendingConnections: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxPendingConnectionsProperty")
+    get() = getMaxPendingConnections()
+    @JvmName("maxPendingConnectionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
+      setMaxPendingConnections(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -242,6 +240,17 @@ public open class UDPServer : RefCounted() {
   public fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+  }
+
+  public fun setMaxPendingConnections(maxPendingConnections: Int): Unit {
+    TransferContext.writeArguments(LONG to maxPendingConnections.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
+  }
+
+  public fun getMaxPendingConnections(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

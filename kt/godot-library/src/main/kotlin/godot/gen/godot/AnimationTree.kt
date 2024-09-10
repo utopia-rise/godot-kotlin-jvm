@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A node used for advanced animation transitions in an [AnimationPlayer].
@@ -40,14 +41,11 @@ public open class AnimationTree : AnimationMixer() {
    * The root animation node of this [AnimationTree]. See [AnimationRootNode].
    */
   public var treeRoot: AnimationRootNode?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTreeRootPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?)
-    }
+    @JvmName("treeRootProperty")
+    get() = getTreeRoot()
+    @JvmName("treeRootProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTreeRootPtr, NIL)
+      setTreeRoot(value)
     }
 
   /**
@@ -55,32 +53,59 @@ public open class AnimationTree : AnimationMixer() {
    * explicitly specified internally.
    */
   public var advanceExpressionBaseNode: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionBaseNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("advanceExpressionBaseNodeProperty")
+    get() = getAdvanceExpressionBaseNode()
+    @JvmName("advanceExpressionBaseNodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionBaseNodePtr, NIL)
+      setAdvanceExpressionBaseNode(value)
     }
 
   /**
    * The path to the [AnimationPlayer] used for animating.
    */
   public var animPlayer: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("animPlayerProperty")
+    get() = getAnimationPlayer()
+    @JvmName("animPlayerProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPlayerPtr, NIL)
+      setAnimationPlayer(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONTREE, scriptIndex)
+  }
+
+  public fun setTreeRoot(animationNode: AnimationRootNode?): Unit {
+    TransferContext.writeArguments(OBJECT to animationNode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTreeRootPtr, NIL)
+  }
+
+  public fun getTreeRoot(): AnimationRootNode? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTreeRootPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?)
+  }
+
+  public fun setAdvanceExpressionBaseNode(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionBaseNodePtr, NIL)
+  }
+
+  public fun getAdvanceExpressionBaseNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionBaseNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setAnimationPlayer(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPlayerPtr, NIL)
+  }
+
+  public fun getAnimationPlayer(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**

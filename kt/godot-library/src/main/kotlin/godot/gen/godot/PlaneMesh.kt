@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By
@@ -38,42 +39,33 @@ public open class PlaneMesh : PrimitiveMesh() {
    */
   @CoreTypeLocalCopy
   public var size: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
    * Number of subdivision along the X axis.
    */
   public var subdivideWidth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("subdivideWidthProperty")
+    get() = getSubdivideWidth()
+    @JvmName("subdivideWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
+      setSubdivideWidth(value)
     }
 
   /**
    * Number of subdivision along the Z axis.
    */
   public var subdivideDepth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("subdivideDepthProperty")
+    get() = getSubdivideDepth()
+    @JvmName("subdivideDepthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
+      setSubdivideDepth(value)
     }
 
   /**
@@ -81,28 +73,22 @@ public open class PlaneMesh : PrimitiveMesh() {
    */
   @CoreTypeLocalCopy
   public var centerOffset: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOffsetPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("centerOffsetProperty")
+    get() = getCenterOffset()
+    @JvmName("centerOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOffsetPtr, NIL)
+      setCenterOffset(value)
     }
 
   /**
    * Direction that the [PlaneMesh] is facing. See [Orientation] for options.
    */
   public var orientation: Orientation
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
-      return PlaneMesh.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("orientationProperty")
+    get() = getOrientation()
+    @JvmName("orientationProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
+      setOrientation(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -156,6 +142,61 @@ public open class PlaneMesh : PrimitiveMesh() {
       centerOffset = this
   }
 
+
+  public fun setSize(size: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setSubdivideWidth(subdivide: Int): Unit {
+    TransferContext.writeArguments(LONG to subdivide.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
+  }
+
+  public fun getSubdivideWidth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSubdivideDepth(subdivide: Int): Unit {
+    TransferContext.writeArguments(LONG to subdivide.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
+  }
+
+  public fun getSubdivideDepth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setCenterOffset(offset: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOffsetPtr, NIL)
+  }
+
+  public fun getCenterOffset(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOffsetPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setOrientation(orientation: Orientation): Unit {
+    TransferContext.writeArguments(LONG to orientation.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
+  }
+
+  public fun getOrientation(): Orientation {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
+    return PlaneMesh.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   public enum class Orientation(
     id: Long,

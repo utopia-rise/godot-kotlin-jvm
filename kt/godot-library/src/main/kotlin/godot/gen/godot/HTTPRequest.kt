@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -205,14 +206,11 @@ public open class HTTPRequest : Node() {
    * The file to download into. Will output any received file into it.
    */
   public var downloadFile: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDownloadFilePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("downloadFileProperty")
+    get() = getDownloadFile()
+    @JvmName("downloadFileProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDownloadFilePtr, NIL)
+      setDownloadFile(value)
     }
 
   /**
@@ -222,28 +220,22 @@ public open class HTTPRequest : Node() {
    * usage at the cost of download speeds.
    */
   public var downloadChunkSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDownloadChunkSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("downloadChunkSizeProperty")
+    get() = getDownloadChunkSize()
+    @JvmName("downloadChunkSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDownloadChunkSizePtr, NIL)
+      setDownloadChunkSize(value)
     }
 
   /**
    * If `true`, multithreading is used to improve performance.
    */
   public var useThreads: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingThreadsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useThreadsProperty")
+    get() = isUsingThreads()
+    @JvmName("useThreadsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseThreadsPtr, NIL)
+      setUseThreads(value)
     }
 
   /**
@@ -258,14 +250,11 @@ public open class HTTPRequest : Node() {
    * The raw bytes of the response body will be returned via [signal request_completed].
    */
   public var acceptGzip: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAcceptingGzipPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("acceptGzipProperty")
+    get() = isAcceptingGzip()
+    @JvmName("acceptGzipProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAcceptGzipPtr, NIL)
+      setAcceptGzip(value)
     }
 
   /**
@@ -273,28 +262,22 @@ public open class HTTPRequest : Node() {
    * as the maximum allowed size for the decompressed body.
    */
   public var bodySizeLimit: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBodySizeLimitPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("bodySizeLimitProperty")
+    get() = getBodySizeLimit()
+    @JvmName("bodySizeLimitProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBodySizeLimitPtr, NIL)
+      setBodySizeLimit(value)
     }
 
   /**
    * Maximum number of allowed redirects.
    */
   public var maxRedirects: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxRedirectsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxRedirectsProperty")
+    get() = getMaxRedirects()
+    @JvmName("maxRedirectsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxRedirectsPtr, NIL)
+      setMaxRedirects(value)
     }
 
   /**
@@ -308,14 +291,11 @@ public open class HTTPRequest : Node() {
    * timeout value.
    */
   public var timeout: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTimeoutPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("timeoutProperty")
+    get() = getTimeout()
+    @JvmName("timeoutProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
+      setTimeout(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -382,7 +362,7 @@ public open class HTTPRequest : Node() {
   /**
    * Sets the [TLSOptions] to be used when connecting to an HTTPS server. See [TLSOptions.client].
    */
-  public fun setTlsOptions(clientOptions: TLSOptions): Unit {
+  public fun setTlsOptions(clientOptions: TLSOptions?): Unit {
     TransferContext.writeArguments(OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.setTlsOptionsPtr, NIL)
   }
@@ -394,6 +374,61 @@ public open class HTTPRequest : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHttpClientStatusPtr, LONG)
     return HTTPClient.Status.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUseThreads(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseThreadsPtr, NIL)
+  }
+
+  public fun isUsingThreads(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingThreadsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAcceptGzip(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAcceptGzipPtr, NIL)
+  }
+
+  public fun isAcceptingGzip(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAcceptingGzipPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBodySizeLimit(bytes: Int): Unit {
+    TransferContext.writeArguments(LONG to bytes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBodySizeLimitPtr, NIL)
+  }
+
+  public fun getBodySizeLimit(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodySizeLimitPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMaxRedirects(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxRedirectsPtr, NIL)
+  }
+
+  public fun getMaxRedirects(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxRedirectsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setDownloadFile(path: String): Unit {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDownloadFilePtr, NIL)
+  }
+
+  public fun getDownloadFile(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDownloadFilePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -413,6 +448,28 @@ public open class HTTPRequest : Node() {
   public fun getBodySize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBodySizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setTimeout(timeout: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to timeout)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
+  }
+
+  public fun getTimeout(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTimeoutPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setDownloadChunkSize(chunkSize: Int): Unit {
+    TransferContext.writeArguments(LONG to chunkSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDownloadChunkSizePtr, NIL)
+  }
+
+  public fun getDownloadChunkSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDownloadChunkSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 

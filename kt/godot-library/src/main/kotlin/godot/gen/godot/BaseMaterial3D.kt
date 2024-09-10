@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class serves as a default material with a wide variety of rendering features and properties
@@ -41,14 +42,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * opaque rendering. See also [blendMode].
    */
   public var transparency: Transparency
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, LONG)
-      return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("transparencyProperty")
+    get() = getTransparency()
+    @JvmName("transparencyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
+      setTransparency(value)
     }
 
   /**
@@ -58,56 +56,44 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [alphaScissorThreshold].
    */
   public var alphaScissorThreshold: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaScissorThresholdProperty")
+    get() = getAlphaScissorThreshold()
+    @JvmName("alphaScissorThresholdProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+      setAlphaScissorThreshold(value)
     }
 
   /**
    * The hashing scale for Alpha Hash. Recommended values between `0` and `2`.
    */
   public var alphaHashScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaHashScaleProperty")
+    get() = getAlphaHashScale()
+    @JvmName("alphaHashScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+      setAlphaHashScale(value)
     }
 
   /**
    * The type of alpha antialiasing to apply. See [AlphaAntiAliasing].
    */
   public var alphaAntialiasingMode: AlphaAntiAliasing
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alphaAntialiasingModeProperty")
+    get() = getAlphaAntialiasing()
+    @JvmName("alphaAntialiasingModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+      setAlphaAntialiasing(value)
     }
 
   /**
    * Threshold at which antialiasing will be applied on the alpha channel.
    */
   public var alphaAntialiasingEdge: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaAntialiasingEdgeProperty")
+    get() = getAlphaAntialiasingEdge()
+    @JvmName("alphaAntialiasingEdgeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+      setAlphaAntialiasingEdge(value)
     }
 
   /**
@@ -116,14 +102,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [BlendMode].
    */
   public var blendMode: BlendMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-      return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("blendModeProperty")
+    get() = getBlendMode()
+    @JvmName("blendModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+      setBlendMode(value)
     }
 
   /**
@@ -131,42 +114,33 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * or away from the camera. See [CullMode].
    */
   public var cullMode: CullMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
-      return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("cullModeProperty")
+    get() = getCullMode()
+    @JvmName("cullModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
+      setCullMode(value)
     }
 
   /**
    * Determines when depth rendering takes place. See [DepthDrawMode]. See also [transparency].
    */
   public var depthDrawMode: DepthDrawMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDepthDrawModePtr, LONG)
-      return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("depthDrawModeProperty")
+    get() = getDepthDrawMode()
+    @JvmName("depthDrawModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDepthDrawModePtr, NIL)
+      setDepthDrawMode(value)
     }
 
   /**
    * If `true`, depth testing is disabled and the object will be drawn in render order.
    */
   public var noDepthTest: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("noDepthTestProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_DISABLE_DEPTH_TEST)
+    @JvmName("noDepthTestProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_DISABLE_DEPTH_TEST, value)
     }
 
   /**
@@ -177,28 +151,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * not implemented yet.
    */
   public var shadingMode: ShadingMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadingModePtr, LONG)
-      return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("shadingModeProperty")
+    get() = getShadingMode()
+    @JvmName("shadingModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadingModePtr, NIL)
+      setShadingMode(value)
     }
 
   /**
    * The algorithm used for diffuse light scattering. See [DiffuseMode].
    */
   public var diffuseMode: DiffuseMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseModePtr, LONG)
-      return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("diffuseModeProperty")
+    get() = getDiffuseMode()
+    @JvmName("diffuseModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseModePtr, NIL)
+      setDiffuseMode(value)
     }
 
   /**
@@ -208,28 +176,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * disable reflections from these sources as well, set [metallicSpecular] to `0.0` instead.
    */
   public var specularMode: SpecularMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpecularModePtr, LONG)
-      return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("specularModeProperty")
+    get() = getSpecularMode()
+    @JvmName("specularModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpecularModePtr, NIL)
+      setSpecularMode(value)
     }
 
   /**
    * If `true`, the object receives no ambient light.
    */
   public var disableAmbientLight: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 14L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("disableAmbientLightProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_DISABLE_AMBIENT_LIGHT)
+    @JvmName("disableAmbientLightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 14L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_DISABLE_AMBIENT_LIGHT, value)
     }
 
   /**
@@ -238,28 +200,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * affected even if fully transparent.
    */
   public var disableFog: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 21L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("disableFogProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_DISABLE_FOG)
+    @JvmName("disableFogProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 21L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_DISABLE_FOG, value)
     }
 
   /**
    * If `true`, the vertex color is used as albedo color.
    */
   public var vertexColorUseAsAlbedo: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("vertexColorUseAsAlbedoProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_FROM_VERTEX_COLOR)
+    @JvmName("vertexColorUseAsAlbedoProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_FROM_VERTEX_COLOR, value)
     }
 
   /**
@@ -270,14 +226,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Compatibility.
    */
   public var vertexColorIsSrgb: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("vertexColorIsSrgbProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_SRGB_VERTEX_COLOR)
+    @JvmName("vertexColorIsSrgbProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_SRGB_VERTEX_COLOR, value)
     }
 
   /**
@@ -288,14 +241,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var albedoColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("albedoColorProperty")
+    get() = getAlbedo()
+    @JvmName("albedoColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
+      setAlbedo(value)
     }
 
   /**
@@ -303,14 +253,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If the texture appears unexpectedly too dark or too bright, check [albedoTextureForceSrgb].
    */
   public var albedoTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("albedoTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_ALBEDO)
+    @JvmName("albedoTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_ALBEDO, value)
     }
 
   /**
@@ -322,14 +269,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * will appear to be too bright.
    */
   public var albedoTextureForceSrgb: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 12L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("albedoTextureForceSrgbProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_TEXTURE_FORCE_SRGB)
+    @JvmName("albedoTextureForceSrgbProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 12L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_TEXTURE_FORCE_SRGB, value)
     }
 
   /**
@@ -337,14 +281,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [msdfOutlineSize] to configure MSDF parameters.
    */
   public var albedoTextureMsdf: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 20L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("albedoTextureMsdfProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_TEXTURE_MSDF)
+    @JvmName("albedoTextureMsdfProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 20L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_ALBEDO_TEXTURE_MSDF, value)
     }
 
   /**
@@ -354,14 +295,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * the blue channel. The alpha channel is ignored.
    */
   public var ormTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 17L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("ormTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_ORM)
+    @JvmName("ormTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 17L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_ORM, value)
     }
 
   /**
@@ -373,14 +311,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * metal and non-metal sections. To alter the amount of reflection use [roughness].
    */
   public var metallic: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMetallicPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("metallicProperty")
+    get() = getMetallic()
+    @JvmName("metallicProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMetallicPtr, NIL)
+      setMetallic(value)
     }
 
   /**
@@ -393,28 +328,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * most cases. See also [roughness].
    */
   public var metallicSpecular: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpecularPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("metallicSpecularProperty")
+    get() = getSpecular()
+    @JvmName("metallicSpecularProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpecularPtr, NIL)
+      setSpecular(value)
     }
 
   /**
    * Texture used to specify metallic for an object. This is multiplied by [metallic].
    */
   public var metallicTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("metallicTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_METALLIC)
+    @JvmName("metallicTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_METALLIC, value)
     }
 
   /**
@@ -424,14 +353,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * the green you could reduce the number of textures you use.
    */
   public var metallicTextureChannel: TextureChannel
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMetallicTextureChannelPtr, LONG)
-      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("metallicTextureChannelProperty")
+    get() = getMetallicTextureChannel()
+    @JvmName("metallicTextureChannelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMetallicTextureChannelPtr, NIL)
+      setMetallicTextureChannel(value)
     }
 
   /**
@@ -439,28 +365,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * blurs the reflection. See also [metallic].
    */
   public var roughness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("roughnessProperty")
+    get() = getRoughness()
+    @JvmName("roughnessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessPtr, NIL)
+      setRoughness(value)
     }
 
   /**
    * Texture used to control the roughness per-pixel. Multiplied by [roughness].
    */
   public var roughnessTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("roughnessTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_ROUGHNESS)
+    @JvmName("roughnessTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_ROUGHNESS, value)
     }
 
   /**
@@ -470,14 +390,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * the green you could reduce the number of textures you use.
    */
   public var roughnessTextureChannel: TextureChannel
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
-      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("roughnessTextureChannelProperty")
+    get() = getRoughnessTextureChannel()
+    @JvmName("roughnessTextureChannelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
+      setRoughnessTextureChannel(value)
     }
 
   /**
@@ -486,14 +403,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * object is used in baked lighting.
    */
   public var emissionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("emissionEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_EMISSION)
+    @JvmName("emissionEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_EMISSION, value)
     }
 
   /**
@@ -501,28 +415,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var emission: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("emissionProperty")
+    get() = getEmission()
+    @JvmName("emissionProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
+      setEmission(value)
     }
 
   /**
    * Multiplier for emitted light. See [emissionEnabled].
    */
   public var emissionEnergyMultiplier: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyMultiplierPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("emissionEnergyMultiplierProperty")
+    get() = getEmissionEnergyMultiplier()
+    @JvmName("emissionEnergyMultiplierProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyMultiplierPtr, NIL)
+      setEmissionEnergyMultiplier(value)
     }
 
   /**
@@ -531,14 +439,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * roughly equivalent to an indoor lightbulb.
    */
   public var emissionIntensity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionIntensityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("emissionIntensityProperty")
+    get() = getEmissionIntensity()
+    @JvmName("emissionIntensityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionIntensityPtr, NIL)
+      setEmissionIntensity(value)
     }
 
   /**
@@ -546,42 +451,33 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [EmissionOperator] for options.
    */
   public var emissionOperator: EmissionOperator
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionOperatorPtr, LONG)
-      return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("emissionOperatorProperty")
+    get() = getEmissionOperator()
+    @JvmName("emissionOperatorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionOperatorPtr, NIL)
+      setEmissionOperator(value)
     }
 
   /**
    * Use `UV2` to read from the [emissionTexture].
    */
   public var emissionOnUv2: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("emissionOnUv2Property")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_EMISSION_ON_UV2)
+    @JvmName("emissionOnUv2Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_EMISSION_ON_UV2, value)
     }
 
   /**
    * Texture that specifies how much surface emits light at a given point.
    */
   public var emissionTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("emissionTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_EMISSION)
+    @JvmName("emissionTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_EMISSION, value)
     }
 
   /**
@@ -589,28 +485,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * GPUs.
    */
   public var normalEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("normalEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_NORMAL_MAPPING)
+    @JvmName("normalEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_NORMAL_MAPPING, value)
     }
 
   /**
    * The strength of the normal map's effect.
    */
   public var normalScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNormalScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("normalScaleProperty")
+    get() = getNormalScale()
+    @JvmName("normalScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setNormalScalePtr, NIL)
+      setNormalScale(value)
     }
 
   /**
@@ -629,14 +519,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * instead.
    */
   public var normalTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("normalTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_NORMAL)
+    @JvmName("normalTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_NORMAL, value)
     }
 
   /**
@@ -646,28 +533,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [SHADING_MODE_UNSHADED].
    */
   public var rimEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("rimEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_RIM)
+    @JvmName("rimEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_RIM, value)
     }
 
   /**
    * Sets the strength of the rim lighting effect.
    */
   public var rim: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRimPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rimProperty")
+    get() = getRim()
+    @JvmName("rimProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRimPtr, NIL)
+      setRim(value)
     }
 
   /**
@@ -675,28 +556,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * is used, while `1` means albedo color is used. An intermediate value generally works best.
    */
   public var rimTint: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRimTintPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rimTintProperty")
+    get() = getRimTint()
+    @JvmName("rimTintProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRimTintPtr, NIL)
+      setRimTint(value)
     }
 
   /**
    * Texture used to set the strength of the rim lighting effect per-pixel. Multiplied by [rim].
    */
   public var rimTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("rimTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_RIM)
+    @JvmName("rimTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_RIM, value)
     }
 
   /**
@@ -707,14 +582,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [SHADING_MODE_UNSHADED].
    */
   public var clearcoatEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("clearcoatEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_CLEARCOAT)
+    @JvmName("clearcoatEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_CLEARCOAT, value)
     }
 
   /**
@@ -722,14 +594,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * clearcoat effect.
    */
   public var clearcoat: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("clearcoatProperty")
+    get() = getClearcoat()
+    @JvmName("clearcoatProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatPtr, NIL)
+      setClearcoat(value)
     }
 
   /**
@@ -737,14 +606,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * lower value results in a smoother clearcoat.
    */
   public var clearcoatRoughness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatRoughnessPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("clearcoatRoughnessProperty")
+    get() = getClearcoatRoughness()
+    @JvmName("clearcoatRoughnessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatRoughnessPtr, NIL)
+      setClearcoatRoughness(value)
     }
 
   /**
@@ -752,14 +618,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Strength is specified in the red channel while glossiness is specified in the green channel.
    */
   public var clearcoatTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("clearcoatTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_CLEARCOAT)
+    @JvmName("clearcoatTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_CLEARCOAT, value)
     }
 
   /**
@@ -772,14 +635,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC].
    */
   public var anisotropyEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("anisotropyEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_ANISOTROPY)
+    @JvmName("anisotropyEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_ANISOTROPY, value)
     }
 
   /**
@@ -787,14 +647,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * channel if a texture is defined there and the texture contains an alpha channel.
    */
   public var anisotropy: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("anisotropyProperty")
+    get() = getAnisotropy()
+    @JvmName("anisotropyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyPtr, NIL)
+      setAnisotropy(value)
     }
 
   /**
@@ -809,14 +666,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * channel is ignored.
    */
   public var anisotropyFlowmap: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("anisotropyFlowmapProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_FLOWMAP)
+    @JvmName("anisotropyFlowmapProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_FLOWMAP, value)
     }
 
   /**
@@ -824,14 +678,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [aoTexture].
    */
   public var aoEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("aoEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_AMBIENT_OCCLUSION)
+    @JvmName("aoEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_AMBIENT_OCCLUSION, value)
     }
 
   /**
@@ -841,42 +692,33 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * looks unrealistic.
    */
   public var aoLightAffect: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAoLightAffectPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("aoLightAffectProperty")
+    get() = getAoLightAffect()
+    @JvmName("aoLightAffectProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAoLightAffectPtr, NIL)
+      setAoLightAffect(value)
     }
 
   /**
    * Texture that defines the amount of ambient occlusion for a given point on the object.
    */
   public var aoTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("aoTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_AMBIENT_OCCLUSION)
+    @JvmName("aoTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_AMBIENT_OCCLUSION, value)
     }
 
   /**
    * If `true`, use `UV2` coordinates to look up from the [aoTexture].
    */
   public var aoOnUv2: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("aoOnUv2Property")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_AO_ON_UV2)
+    @JvmName("aoOnUv2Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_AO_ON_UV2, value)
     }
 
   /**
@@ -886,14 +728,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * the green you could reduce the number of textures you use.
    */
   public var aoTextureChannel: TextureChannel
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAoTextureChannelPtr, LONG)
-      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("aoTextureChannelProperty")
+    get() = getAoTextureChannel()
+    @JvmName("aoTextureChannelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAoTextureChannelPtr, NIL)
+      setAoTextureChannel(value)
     }
 
   /**
@@ -904,14 +743,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * The value of [heightmapEnabled] will be ignored if [uv1Triplanar] is enabled.
    */
   public var heightmapEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("heightmapEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_HEIGHT_MAPPING)
+    @JvmName("heightmapEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_HEIGHT_MAPPING, value)
     }
 
   /**
@@ -928,14 +764,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * affects how [heightmapScale] behaves.
    */
   public var heightmapScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("heightmapScaleProperty")
+    get() = getHeightmapScale()
+    @JvmName("heightmapScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapScalePtr, NIL)
+      setHeightmapScale(value)
     }
 
   /**
@@ -945,14 +778,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * difference.
    */
   public var heightmapDeepParallax: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHeightmapDeepParallaxEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("heightmapDeepParallaxProperty")
+    get() = isHeightmapDeepParallaxEnabled()
+    @JvmName("heightmapDeepParallaxProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxPtr, NIL)
+      setHeightmapDeepParallax(value)
     }
 
   /**
@@ -963,14 +793,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
   public var heightmapMinLayers: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMinLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("heightmapMinLayersProperty")
+    get() = getHeightmapDeepParallaxMinLayers()
+    @JvmName("heightmapMinLayersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMinLayersPtr, NIL)
+      setHeightmapDeepParallaxMinLayers(value)
     }
 
   /**
@@ -981,14 +808,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** Only effective if [heightmapDeepParallax] is `true`.
    */
   public var heightmapMaxLayers: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMaxLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("heightmapMaxLayersProperty")
+    get() = getHeightmapDeepParallaxMaxLayers()
+    @JvmName("heightmapMaxLayersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMaxLayersPtr, NIL)
+      setHeightmapDeepParallaxMaxLayers(value)
     }
 
   /**
@@ -997,15 +821,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * this to `true`.
    */
   public var heightmapFlipTangent: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipTangentPtr,
-          BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("heightmapFlipTangentProperty")
+    get() = getHeightmapDeepParallaxFlipTangent()
+    @JvmName("heightmapFlipTangentProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipTangentPtr, NIL)
+      setHeightmapDeepParallaxFlipTangent(value)
     }
 
   /**
@@ -1014,16 +834,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * this to `true`.
    */
   public var heightmapFlipBinormal: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipBinormalPtr,
-          BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("heightmapFlipBinormalProperty")
+    get() = getHeightmapDeepParallaxFlipBinormal()
+    @JvmName("heightmapFlipBinormalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipBinormalPtr,
-          NIL)
+      setHeightmapDeepParallaxFlipBinormal(value)
     }
 
   /**
@@ -1036,14 +851,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * lower-resolution heightmap texture as most heightmaps are only comprised of low-frequency data.
    */
   public var heightmapTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("heightmapTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_HEIGHTMAP)
+    @JvmName("heightmapTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_HEIGHTMAP, value)
     }
 
   /**
@@ -1054,14 +866,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [heightmapFlipTexture] should remain `false`.
    */
   public var heightmapFlipTexture: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 17L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("heightmapFlipTextureProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_INVERT_HEIGHTMAP)
+    @JvmName("heightmapFlipTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 17L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_INVERT_HEIGHTMAP, value)
     }
 
   /**
@@ -1070,14 +879,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality].
    */
   public var subsurfScatterEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("subsurfScatterEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_SCATTERING)
+    @JvmName("subsurfScatterEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_SCATTERING, value)
     }
 
   /**
@@ -1086,14 +892,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * set globally.
    */
   public var subsurfScatterStrength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubsurfaceScatteringStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("subsurfScatterStrengthProperty")
+    get() = getSubsurfaceScatteringStrength()
+    @JvmName("subsurfScatterStrengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubsurfaceScatteringStrengthPtr, NIL)
+      setSubsurfaceScatteringStrength(value)
     }
 
   /**
@@ -1101,14 +904,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * human skin, such as boosting the intensity of the red channel in subsurface scattering.
    */
   public var subsurfScatterSkinMode: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 18L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("subsurfScatterSkinModeProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_SUBSURFACE_MODE_SKIN)
+    @JvmName("subsurfScatterSkinModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 18L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_SUBSURFACE_MODE_SKIN, value)
     }
 
   /**
@@ -1116,14 +916,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Multiplied by [subsurfScatterStrength].
    */
   public var subsurfScatterTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("subsurfScatterTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_SUBSURFACE_SCATTERING)
+    @JvmName("subsurfScatterTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_SUBSURFACE_SCATTERING, value)
     }
 
   /**
@@ -1131,14 +928,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [subsurfScatterEnabled] is `true`. See also [backlightEnabled].
    */
   public var subsurfScatterTransmittanceEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("subsurfScatterTransmittanceEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_TRANSMITTANCE)
+    @JvmName("subsurfScatterTransmittanceEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_SUBSURFACE_TRANSMITTANCE, value)
     }
 
   /**
@@ -1147,14 +941,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var subsurfScatterTransmittanceColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("subsurfScatterTransmittanceColorProperty")
+    get() = getTransmittanceColor()
+    @JvmName("subsurfScatterTransmittanceColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceColorPtr, NIL)
+      setTransmittanceColor(value)
     }
 
   /**
@@ -1162,56 +953,44 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * intensity. See also [subsurfScatterTexture]. Ignored if [subsurfScatterSkinMode] is `true`.
    */
   public var subsurfScatterTransmittanceTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("subsurfScatterTransmittanceTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_SUBSURFACE_TRANSMITTANCE)
+    @JvmName("subsurfScatterTransmittanceTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_SUBSURFACE_TRANSMITTANCE, value)
     }
 
   /**
    * The depth of the subsurface scattering transmittance effect.
    */
   public var subsurfScatterTransmittanceDepth: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceDepthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("subsurfScatterTransmittanceDepthProperty")
+    get() = getTransmittanceDepth()
+    @JvmName("subsurfScatterTransmittanceDepthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceDepthPtr, NIL)
+      setTransmittanceDepth(value)
     }
 
   /**
    * The intensity of the subsurface scattering transmittance effect.
    */
   public var subsurfScatterTransmittanceBoost: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceBoostPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("subsurfScatterTransmittanceBoostProperty")
+    get() = getTransmittanceBoost()
+    @JvmName("subsurfScatterTransmittanceBoostProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceBoostPtr, NIL)
+      setTransmittanceBoost(value)
     }
 
   /**
    * If `true`, the backlight effect is enabled. See also [subsurfScatterTransmittanceEnabled].
    */
   public var backlightEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("backlightEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_BACKLIGHT)
+    @JvmName("backlightEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_BACKLIGHT, value)
     }
 
   /**
@@ -1219,28 +998,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var backlight: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBacklightPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("backlightProperty")
+    get() = getBacklight()
+    @JvmName("backlightProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBacklightPtr, NIL)
+      setBacklight(value)
     }
 
   /**
    * Texture used to control the backlight effect per-pixel. Added to [backlight].
    */
   public var backlightTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 12L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("backlightTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_BACKLIGHT)
+    @JvmName("backlightTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 12L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_BACKLIGHT, value)
     }
 
   /**
@@ -1248,28 +1021,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * the object.
    */
   public var refractionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("refractionEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_REFRACTION)
+    @JvmName("refractionEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_REFRACTION, value)
     }
 
   /**
    * The strength of the refraction effect.
    */
   public var refractionScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRefractionPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("refractionScaleProperty")
+    get() = getRefraction()
+    @JvmName("refractionScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRefractionPtr, NIL)
+      setRefraction(value)
     }
 
   /**
@@ -1277,14 +1044,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [refractionScale].
    */
   public var refractionTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 13L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("refractionTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_REFRACTION)
+    @JvmName("refractionTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 13L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_REFRACTION, value)
     }
 
   /**
@@ -1294,14 +1058,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * in the green you could reduce the number of textures you use.
    */
   public var refractionTextureChannel: TextureChannel
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRefractionTextureChannelPtr, LONG)
-      return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("refractionTextureChannelProperty")
+    get() = getRefractionTextureChannel()
+    @JvmName("refractionTextureChannelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRefractionTextureChannelPtr, NIL)
+      setRefractionTextureChannel(value)
     }
 
   /**
@@ -1310,14 +1071,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * to add variation to objects, or to blend between two different albedo/normal textures.
    */
   public var detailEnabled: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("detailEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.FEATURE_DETAIL)
+    @JvmName("detailEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+      setFeature(BaseMaterial3D.Feature.FEATURE_DETAIL, value)
     }
 
   /**
@@ -1325,14 +1083,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [detailMask] can be used together with [detailAlbedo]'s alpha channel (if any).
    */
   public var detailMask: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 14L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("detailMaskProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_MASK)
+    @JvmName("detailMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 14L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_MASK, value)
     }
 
   /**
@@ -1340,28 +1095,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * options.
    */
   public var detailBlendMode: BlendMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDetailBlendModePtr, LONG)
-      return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("detailBlendModeProperty")
+    get() = getDetailBlendMode()
+    @JvmName("detailBlendModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDetailBlendModePtr, NIL)
+      setDetailBlendMode(value)
     }
 
   /**
    * Specifies whether to use `UV` or `UV2` for the detail layer. See [DetailUV] for options.
    */
   public var detailUvLayer: DetailUV
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDetailUvPtr, LONG)
-      return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("detailUvLayerProperty")
+    get() = getDetailUv()
+    @JvmName("detailUvLayerProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDetailUvPtr, NIL)
+      setDetailUv(value)
     }
 
   /**
@@ -1371,14 +1120,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * **Note:** [detailAlbedo] is *not* modulated by [albedoColor].
    */
   public var detailAlbedo: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 15L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("detailAlbedoProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_ALBEDO)
+    @JvmName("detailAlbedoProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 15L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_ALBEDO, value)
     }
 
   /**
@@ -1390,14 +1136,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * page[/url] for a comparison of normal map coordinates expected by popular engines.
    */
   public var detailNormal: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 16L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("detailNormalProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_NORMAL)
+    @JvmName("detailNormalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 16L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(BaseMaterial3D.TextureParam.TEXTURE_DETAIL_NORMAL, value)
     }
 
   /**
@@ -1406,14 +1149,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var uv1Scale: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUv1ScalePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("uv1ScaleProperty")
+    get() = getUv1Scale()
+    @JvmName("uv1ScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUv1ScalePtr, NIL)
+      setUv1Scale(value)
     }
 
   /**
@@ -1423,14 +1163,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var uv1Offset: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUv1OffsetPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("uv1OffsetProperty")
+    get() = getUv1Offset()
+    @JvmName("uv1OffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUv1OffsetPtr, NIL)
+      setUv1Offset(value)
     }
 
   /**
@@ -1444,14 +1181,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * texturing.
    */
   public var uv1Triplanar: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uv1TriplanarProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_UV1_USE_TRIPLANAR)
+    @JvmName("uv1TriplanarProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_UV1_USE_TRIPLANAR, value)
     }
 
   /**
@@ -1461,14 +1195,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * outside that range can look broken depending on the mesh.
    */
   public var uv1TriplanarSharpness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUv1TriplanarBlendSharpnessPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("uv1TriplanarSharpnessProperty")
+    get() = getUv1TriplanarBlendSharpness()
+    @JvmName("uv1TriplanarSharpnessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setUv1TriplanarBlendSharpnessPtr, NIL)
+      setUv1TriplanarBlendSharpness(value)
     }
 
   /**
@@ -1476,14 +1207,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * space. See also [uv1Triplanar].
    */
   public var uv1WorldTriplanar: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uv1WorldTriplanarProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_UV1_USE_WORLD_TRIPLANAR)
+    @JvmName("uv1WorldTriplanarProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_UV1_USE_WORLD_TRIPLANAR, value)
     }
 
   /**
@@ -1492,14 +1220,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var uv2Scale: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUv2ScalePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("uv2ScaleProperty")
+    get() = getUv2Scale()
+    @JvmName("uv2ScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUv2ScalePtr, NIL)
+      setUv2Scale(value)
     }
 
   /**
@@ -1509,14 +1234,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    */
   @CoreTypeLocalCopy
   public var uv2Offset: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUv2OffsetPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("uv2OffsetProperty")
+    get() = getUv2Offset()
+    @JvmName("uv2OffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUv2OffsetPtr, NIL)
+      setUv2Offset(value)
     }
 
   /**
@@ -1530,14 +1252,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * texturing.
    */
   public var uv2Triplanar: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uv2TriplanarProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_UV2_USE_TRIPLANAR)
+    @JvmName("uv2TriplanarProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_UV2_USE_TRIPLANAR, value)
     }
 
   /**
@@ -1547,14 +1266,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * outside that range can look broken depending on the mesh.
    */
   public var uv2TriplanarSharpness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUv2TriplanarBlendSharpnessPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("uv2TriplanarSharpnessProperty")
+    get() = getUv2TriplanarBlendSharpness()
+    @JvmName("uv2TriplanarSharpnessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setUv2TriplanarBlendSharpnessPtr, NIL)
+      setUv2TriplanarBlendSharpness(value)
     }
 
   /**
@@ -1562,14 +1278,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * space. See also [uv2Triplanar].
    */
   public var uv2WorldTriplanar: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uv2WorldTriplanarProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_UV2_USE_WORLD_TRIPLANAR)
+    @JvmName("uv2WorldTriplanarProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_UV2_USE_WORLD_TRIPLANAR, value)
     }
 
   /**
@@ -1580,42 +1293,33 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * nearest-neighbor filtering.
    */
   public var textureFilter: TextureFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureFilterProperty")
+    get() = getTextureFilter()
+    @JvmName("textureFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+      setTextureFilter(value)
     }
 
   /**
    * Repeat flags for the texture. See [TextureFilter] for options.
    */
   public var textureRepeat: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 16L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("textureRepeatProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_USE_TEXTURE_REPEAT)
+    @JvmName("textureRepeatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 16L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_USE_TEXTURE_REPEAT, value)
     }
 
   /**
    * If `true`, the object receives no shadow that would otherwise be cast onto it.
    */
   public var disableReceiveShadows: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 13L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("disableReceiveShadowsProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_DONT_RECEIVE_SHADOWS)
+    @JvmName("disableReceiveShadowsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 13L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_DONT_RECEIVE_SHADOWS, value)
     }
 
   /**
@@ -1624,14 +1328,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * onto a camera feed in AR.
    */
   public var shadowToOpacity: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 15L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("shadowToOpacityProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_USE_SHADOW_TO_OPACITY)
+    @JvmName("shadowToOpacityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 15L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_USE_SHADOW_TO_OPACITY, value)
     }
 
   /**
@@ -1645,14 +1346,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
    */
   public var billboardMode: BillboardMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
-      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("billboardModeProperty")
+    get() = getBillboardMode()
+    @JvmName("billboardModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+      setBillboardMode(value)
     }
 
   /**
@@ -1660,14 +1358,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * billboarding. Only applies when [billboardMode] is not [BILLBOARD_DISABLED].
    */
   public var billboardKeepScale: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("billboardKeepScaleProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_BILLBOARD_KEEP_SCALE)
+    @JvmName("billboardKeepScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_BILLBOARD_KEEP_SCALE, value)
     }
 
   /**
@@ -1675,14 +1370,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [BILLBOARD_PARTICLES]. See [billboardMode].
    */
   public var particlesAnimHFrames: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("particlesAnimHFramesProperty")
+    get() = getParticlesAnimHFrames()
+    @JvmName("particlesAnimHFramesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
+      setParticlesAnimHFrames(value)
     }
 
   /**
@@ -1690,14 +1382,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [BILLBOARD_PARTICLES]. See [billboardMode].
    */
   public var particlesAnimVFrames: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("particlesAnimVFramesProperty")
+    get() = getParticlesAnimVFrames()
+    @JvmName("particlesAnimVFramesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
+      setParticlesAnimVFrames(value)
     }
 
   /**
@@ -1705,14 +1394,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * [billboardMode].
    */
   public var particlesAnimLoop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("particlesAnimLoopProperty")
+    get() = getParticlesAnimLoop()
+    @JvmName("particlesAnimLoopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
+      setParticlesAnimLoop(value)
     }
 
   /**
@@ -1725,42 +1411,33 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * like in the original mesh.
    */
   public var grow: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isGrowEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("growProperty")
+    get() = isGrowEnabled()
+    @JvmName("growProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGrowEnabledPtr, NIL)
+      setGrowEnabled(value)
     }
 
   /**
    * Grows object vertices in the direction of their normals. Only effective if [grow] is `true`.
    */
   public var growAmount: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGrowPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("growAmountProperty")
+    get() = getGrow()
+    @JvmName("growAmountProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGrowPtr, NIL)
+      setGrow(value)
     }
 
   /**
    * If `true`, the object is rendered at the same size regardless of distance.
    */
   public var fixedSize: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("fixedSizeProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_FIXED_SIZE)
+    @JvmName("fixedSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_FIXED_SIZE, value)
     }
 
   /**
@@ -1769,28 +1446,22 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * triangle-based. See also [pointSize].
    */
   public var usePointSize: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("usePointSizeProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_USE_POINT_SIZE)
+    @JvmName("usePointSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_USE_POINT_SIZE, value)
     }
 
   /**
    * The point size in pixels. See [usePointSize].
    */
   public var pointSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPointSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("pointSizeProperty")
+    get() = getPointSize()
+    @JvmName("pointSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPointSizePtr, NIL)
+      setPointSize(value)
     }
 
   /**
@@ -1800,14 +1471,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * break material rendering.
    */
   public var useParticleTrails: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 19L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useParticleTrailsProperty")
+    get() = getFlag(BaseMaterial3D.Flags.FLAG_PARTICLE_TRAILS_MODE)
+    @JvmName("useParticleTrailsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 19L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(BaseMaterial3D.Flags.FLAG_PARTICLE_TRAILS_MODE, value)
     }
 
   /**
@@ -1815,14 +1483,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * based on its distance to another object.
    */
   public var proximityFadeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isProximityFadeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("proximityFadeEnabledProperty")
+    get() = isProximityFadeEnabled()
+    @JvmName("proximityFadeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeEnabledPtr, NIL)
+      setProximityFadeEnabled(value)
     }
 
   /**
@@ -1830,14 +1495,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * for an object to fade.
    */
   public var proximityFadeDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProximityFadeDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("proximityFadeDistanceProperty")
+    get() = getProximityFadeDistance()
+    @JvmName("proximityFadeDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeDistancePtr, NIL)
+      setProximityFadeDistance(value)
     }
 
   /**
@@ -1845,42 +1507,33 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * distance.
    */
   public var msdfPixelRange: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("msdfPixelRangeProperty")
+    get() = getMsdfPixelRange()
+    @JvmName("msdfPixelRangeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
+      setMsdfPixelRange(value)
     }
 
   /**
    * The width of the shape outline.
    */
   public var msdfOutlineSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMsdfOutlineSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("msdfOutlineSizeProperty")
+    get() = getMsdfOutlineSize()
+    @JvmName("msdfOutlineSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMsdfOutlineSizePtr, NIL)
+      setMsdfOutlineSize(value)
     }
 
   /**
    * Specifies which type of fade to use. Can be any of the [DistanceFadeMode]s.
    */
   public var distanceFadeMode: DistanceFadeMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadePtr, LONG)
-      return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("distanceFadeModeProperty")
+    get() = getDistanceFade()
+    @JvmName("distanceFadeModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadePtr, NIL)
+      setDistanceFade(value)
     }
 
   /**
@@ -1891,14 +1544,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * disappear once it reaches [distanceFadeMinDistance].
    */
   public var distanceFadeMinDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMinDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("distanceFadeMinDistanceProperty")
+    get() = getDistanceFadeMinDistance()
+    @JvmName("distanceFadeMinDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMinDistancePtr, NIL)
+      setDistanceFadeMinDistance(value)
     }
 
   /**
@@ -1908,14 +1558,11 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * disappear once it reaches [distanceFadeMinDistance].
    */
   public var distanceFadeMaxDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMaxDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("distanceFadeMaxDistanceProperty")
+    get() = getDistanceFadeMaxDistance()
+    @JvmName("distanceFadeMaxDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
+      setDistanceFadeMaxDistance(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -2124,6 +1771,778 @@ public open class BaseMaterial3D internal constructor() : Material() {
       uv2Offset = this
   }
 
+
+  public fun setAlbedo(albedo: Color): Unit {
+    TransferContext.writeArguments(COLOR to albedo)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
+  }
+
+  public fun getAlbedo(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setTransparency(transparency: Transparency): Unit {
+    TransferContext.writeArguments(LONG to transparency.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
+  }
+
+  public fun getTransparency(): Transparency {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, LONG)
+    return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing): Unit {
+    TransferContext.writeArguments(LONG to alphaAa.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+  }
+
+  public fun getAlphaAntialiasing(): AlphaAntiAliasing {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
+    return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlphaAntialiasingEdge(edge: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to edge.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+  }
+
+  public fun getAlphaAntialiasingEdge(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setShadingMode(shadingMode: ShadingMode): Unit {
+    TransferContext.writeArguments(LONG to shadingMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadingModePtr, NIL)
+  }
+
+  public fun getShadingMode(): ShadingMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadingModePtr, LONG)
+    return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSpecular(specular: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to specular.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularPtr, NIL)
+  }
+
+  public fun getSpecular(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMetallic(metallic: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to metallic.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMetallicPtr, NIL)
+  }
+
+  public fun getMetallic(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMetallicPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRoughness(roughness: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to roughness.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessPtr, NIL)
+  }
+
+  public fun getRoughness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEmission(emission: Color): Unit {
+    TransferContext.writeArguments(COLOR to emission)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
+  }
+
+  public fun getEmission(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setEmissionEnergyMultiplier(emissionEnergyMultiplier: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyMultiplierPtr, NIL)
+  }
+
+  public fun getEmissionEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyMultiplierPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEmissionIntensity(emissionEnergyMultiplier: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionIntensityPtr, NIL)
+  }
+
+  public fun getEmissionIntensity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionIntensityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setNormalScale(normalScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to normalScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setNormalScalePtr, NIL)
+  }
+
+  public fun getNormalScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNormalScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRim(rim: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to rim.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRimPtr, NIL)
+  }
+
+  public fun getRim(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRimPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRimTint(rimTint: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to rimTint.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRimTintPtr, NIL)
+  }
+
+  public fun getRimTint(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRimTintPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setClearcoat(clearcoat: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to clearcoat.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatPtr, NIL)
+  }
+
+  public fun getClearcoat(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setClearcoatRoughness(clearcoatRoughness: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to clearcoatRoughness.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatRoughnessPtr, NIL)
+  }
+
+  public fun getClearcoatRoughness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatRoughnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAnisotropy(anisotropy: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to anisotropy.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyPtr, NIL)
+  }
+
+  public fun getAnisotropy(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setHeightmapScale(heightmapScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to heightmapScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapScalePtr, NIL)
+  }
+
+  public fun getHeightmapScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSubsurfaceScatteringStrength(strength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to strength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubsurfaceScatteringStrengthPtr, NIL)
+  }
+
+  public fun getSubsurfaceScatteringStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubsurfaceScatteringStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setTransmittanceColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceColorPtr, NIL)
+  }
+
+  public fun getTransmittanceColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setTransmittanceDepth(depth: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to depth.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceDepthPtr, NIL)
+  }
+
+  public fun getTransmittanceDepth(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceDepthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setTransmittanceBoost(boost: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to boost.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceBoostPtr, NIL)
+  }
+
+  public fun getTransmittanceBoost(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceBoostPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBacklight(backlight: Color): Unit {
+    TransferContext.writeArguments(COLOR to backlight)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBacklightPtr, NIL)
+  }
+
+  public fun getBacklight(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBacklightPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setRefraction(refraction: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to refraction.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRefractionPtr, NIL)
+  }
+
+  public fun getRefraction(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRefractionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPointSize(pointSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pointSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPointSizePtr, NIL)
+  }
+
+  public fun getPointSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDetailUv(detailUv: DetailUV): Unit {
+    TransferContext.writeArguments(LONG to detailUv.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDetailUvPtr, NIL)
+  }
+
+  public fun getDetailUv(): DetailUV {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDetailUvPtr, LONG)
+    return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setBlendMode(blendMode: BlendMode): Unit {
+    TransferContext.writeArguments(LONG to blendMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+  }
+
+  public fun getBlendMode(): BlendMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDepthDrawMode(depthDrawMode: DepthDrawMode): Unit {
+    TransferContext.writeArguments(LONG to depthDrawMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDepthDrawModePtr, NIL)
+  }
+
+  public fun getDepthDrawMode(): DepthDrawMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDepthDrawModePtr, LONG)
+    return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setCullMode(cullMode: CullMode): Unit {
+    TransferContext.writeArguments(LONG to cullMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
+  }
+
+  public fun getCullMode(): CullMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
+    return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDiffuseMode(diffuseMode: DiffuseMode): Unit {
+    TransferContext.writeArguments(LONG to diffuseMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseModePtr, NIL)
+  }
+
+  public fun getDiffuseMode(): DiffuseMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseModePtr, LONG)
+    return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSpecularMode(specularMode: SpecularMode): Unit {
+    TransferContext.writeArguments(LONG to specularMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularModePtr, NIL)
+  }
+
+  public fun getSpecularMode(): SpecularMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularModePtr, LONG)
+    return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * If `true`, enables the specified flag. Flags are optional behavior that can be turned on and
+   * off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be
+   * bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by
+   * setting the corresponding member to `true`. See [Flags] enumerator for options.
+   */
+  public fun setFlag(flag: Flags, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+  }
+
+  /**
+   * Returns `true`, if the specified flag is enabled. See [Flags] enumerator for options.
+   */
+  public fun getFlag(flag: Flags): Boolean {
+    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTextureFilter(mode: TextureFilter): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+  }
+
+  public fun getTextureFilter(): TextureFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * If `true`, enables the specified [Feature]. Many features that are available in
+   * [BaseMaterial3D]s need to be enabled before use. This way the cost for using the feature is only
+   * incurred when specified. Features can also be enabled by setting the corresponding member to
+   * `true`.
+   */
+  public fun setFeature(feature: Feature, enable: Boolean): Unit {
+    TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+  }
+
+  /**
+   * Returns `true`, if the specified [Feature] is enabled.
+   */
+  public fun getFeature(feature: Feature): Boolean {
+    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Sets the texture for the slot specified by [param]. See [TextureParam] for available slots.
+   */
+  public fun setTexture(`param`: TextureParam, texture: Texture2D?): Unit {
+    TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  /**
+   * Returns the [Texture2D] associated with the specified [TextureParam].
+   */
+  public fun getTexture(`param`: TextureParam): Texture2D? {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setDetailBlendMode(detailBlendMode: BlendMode): Unit {
+    TransferContext.writeArguments(LONG to detailBlendMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDetailBlendModePtr, NIL)
+  }
+
+  public fun getDetailBlendMode(): BlendMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDetailBlendModePtr, LONG)
+    return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUv1Scale(scale: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv1ScalePtr, NIL)
+  }
+
+  public fun getUv1Scale(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUv1ScalePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setUv1Offset(offset: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv1OffsetPtr, NIL)
+  }
+
+  public fun getUv1Offset(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUv1OffsetPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setUv1TriplanarBlendSharpness(sharpness: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv1TriplanarBlendSharpnessPtr, NIL)
+  }
+
+  public fun getUv1TriplanarBlendSharpness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUv1TriplanarBlendSharpnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setUv2Scale(scale: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv2ScalePtr, NIL)
+  }
+
+  public fun getUv2Scale(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUv2ScalePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setUv2Offset(offset: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv2OffsetPtr, NIL)
+  }
+
+  public fun getUv2Offset(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUv2OffsetPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setUv2TriplanarBlendSharpness(sharpness: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv2TriplanarBlendSharpnessPtr, NIL)
+  }
+
+  public fun getUv2TriplanarBlendSharpness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUv2TriplanarBlendSharpnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBillboardMode(mode: BillboardMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+  }
+
+  public fun getBillboardMode(): BillboardMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
+    return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setParticlesAnimHFrames(frames: Int): Unit {
+    TransferContext.writeArguments(LONG to frames.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
+  }
+
+  public fun getParticlesAnimHFrames(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setParticlesAnimVFrames(frames: Int): Unit {
+    TransferContext.writeArguments(LONG to frames.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
+  }
+
+  public fun getParticlesAnimVFrames(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setParticlesAnimLoop(loop: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to loop)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
+  }
+
+  public fun getParticlesAnimLoop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHeightmapDeepParallax(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxPtr, NIL)
+  }
+
+  public fun isHeightmapDeepParallaxEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHeightmapDeepParallaxEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHeightmapDeepParallaxMinLayers(layer: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMinLayersPtr, NIL)
+  }
+
+  public fun getHeightmapDeepParallaxMinLayers(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMinLayersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setHeightmapDeepParallaxMaxLayers(layer: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMaxLayersPtr, NIL)
+  }
+
+  public fun getHeightmapDeepParallaxMaxLayers(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMaxLayersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setHeightmapDeepParallaxFlipTangent(flip: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flip)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipTangentPtr, NIL)
+  }
+
+  public fun getHeightmapDeepParallaxFlipTangent(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipTangentPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHeightmapDeepParallaxFlipBinormal(flip: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flip)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipBinormalPtr, NIL)
+  }
+
+  public fun getHeightmapDeepParallaxFlipBinormal(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipBinormalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setGrow(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGrowPtr, NIL)
+  }
+
+  public fun getGrow(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGrowPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEmissionOperator(_operator: EmissionOperator): Unit {
+    TransferContext.writeArguments(LONG to _operator.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionOperatorPtr, NIL)
+  }
+
+  public fun getEmissionOperator(): EmissionOperator {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionOperatorPtr, LONG)
+    return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAoLightAffect(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAoLightAffectPtr, NIL)
+  }
+
+  public fun getAoLightAffect(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAoLightAffectPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAlphaScissorThreshold(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+  }
+
+  public fun getAlphaScissorThreshold(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAlphaHashScale(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+  }
+
+  public fun getAlphaHashScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setGrowEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGrowEnabledPtr, NIL)
+  }
+
+  public fun isGrowEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isGrowEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMetallicTextureChannel(channel: TextureChannel): Unit {
+    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMetallicTextureChannelPtr, NIL)
+  }
+
+  public fun getMetallicTextureChannel(): TextureChannel {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMetallicTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setRoughnessTextureChannel(channel: TextureChannel): Unit {
+    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
+  }
+
+  public fun getRoughnessTextureChannel(): TextureChannel {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAoTextureChannel(channel: TextureChannel): Unit {
+    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAoTextureChannelPtr, NIL)
+  }
+
+  public fun getAoTextureChannel(): TextureChannel {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAoTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setRefractionTextureChannel(channel: TextureChannel): Unit {
+    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRefractionTextureChannelPtr, NIL)
+  }
+
+  public fun getRefractionTextureChannel(): TextureChannel {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRefractionTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setProximityFadeEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeEnabledPtr, NIL)
+  }
+
+  public fun isProximityFadeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isProximityFadeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setProximityFadeDistance(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeDistancePtr, NIL)
+  }
+
+  public fun getProximityFadeDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProximityFadeDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMsdfPixelRange(range: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to range.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
+  }
+
+  public fun getMsdfPixelRange(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMsdfOutlineSize(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfOutlineSizePtr, NIL)
+  }
+
+  public fun getMsdfOutlineSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfOutlineSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDistanceFade(mode: DistanceFadeMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadePtr, NIL)
+  }
+
+  public fun getDistanceFade(): DistanceFadeMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadePtr, LONG)
+    return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDistanceFadeMaxDistance(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
+  }
+
+  public fun getDistanceFadeMaxDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMaxDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDistanceFadeMinDistance(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMinDistancePtr, NIL)
+  }
+
+  public fun getDistanceFadeMinDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMinDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
 
   public enum class TextureParam(
     id: Long,

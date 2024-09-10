@@ -7,5 +7,4 @@ interface IClassService {
     fun getClasses(): List<EnrichedClass>
     fun updatePropertyIfShouldUseSuper(className: String, propertyName: String)
     fun findGetSetMethodsAndUpdateProperties()
-    fun doAncestorsHaveProperty(className: String, propertyName: String)
 }

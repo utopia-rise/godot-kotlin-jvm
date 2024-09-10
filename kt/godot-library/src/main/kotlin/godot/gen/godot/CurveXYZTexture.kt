@@ -33,57 +33,86 @@ public open class CurveXYZTexture : Texture2D() {
    * time and memory usage.
    */
   public var width: Int
-    @JvmName("getWidth_prop")
-    get() = super.getWidth()
+    @JvmName("widthProperty")
+    get() = getWidth()
+    @JvmName("widthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+      setWidth(value)
     }
 
   /**
    * The [Curve] that is rendered onto the texture's red channel.
    */
   public var curveX: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurveXPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+    @JvmName("curveXProperty")
+    get() = getCurveX()
+    @JvmName("curveXProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurveXPtr, NIL)
+      setCurveX(value)
     }
 
   /**
    * The [Curve] that is rendered onto the texture's green channel.
    */
   public var curveY: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurveYPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+    @JvmName("curveYProperty")
+    get() = getCurveY()
+    @JvmName("curveYProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurveYPtr, NIL)
+      setCurveY(value)
     }
 
   /**
    * The [Curve] that is rendered onto the texture's blue channel.
    */
   public var curveZ: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurveZPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+    @JvmName("curveZProperty")
+    get() = getCurveZ()
+    @JvmName("curveZProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurveZPtr, NIL)
+      setCurveZ(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CURVEXYZTEXTURE, scriptIndex)
+  }
+
+  public fun setWidth(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+  }
+
+  public fun setCurveX(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurveXPtr, NIL)
+  }
+
+  public fun getCurveX(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurveXPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+  }
+
+  public fun setCurveY(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurveYPtr, NIL)
+  }
+
+  public fun getCurveY(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurveYPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+  }
+
+  public fun setCurveZ(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurveZPtr, NIL)
+  }
+
+  public fun getCurveZ(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurveZPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
   public companion object

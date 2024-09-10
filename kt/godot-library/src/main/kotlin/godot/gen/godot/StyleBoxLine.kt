@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A [StyleBox] that displays a single line of a given color and thickness. The line can be either
@@ -37,14 +38,11 @@ public open class StyleBoxLine : StyleBox() {
    */
   @CoreTypeLocalCopy
   public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("colorProperty")
+    get() = getColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
@@ -52,14 +50,11 @@ public open class StyleBoxLine : StyleBox() {
    * negative value, the line will begin inside the [StyleBoxLine]'s bounds.
    */
   public var growBegin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("growBeginProperty")
+    get() = getGrowBegin()
+    @JvmName("growBeginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
+      setGrowBegin(value)
     }
 
   /**
@@ -67,42 +62,33 @@ public open class StyleBoxLine : StyleBox() {
    * negative value, the line will end inside the [StyleBoxLine]'s bounds.
    */
   public var growEnd: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("growEndProperty")
+    get() = getGrowEnd()
+    @JvmName("growEndProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
+      setGrowEnd(value)
     }
 
   /**
    * The line's thickness in pixels.
    */
   public var thickness: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("thicknessProperty")
+    get() = getThickness()
+    @JvmName("thicknessProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+      setThickness(value)
     }
 
   /**
    * If `true`, the line will be vertical. If `false`, the line will be horizontal.
    */
   public var vertical: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("verticalProperty")
+    get() = isVertical()
+    @JvmName("verticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+      setVertical(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -132,6 +118,61 @@ public open class StyleBoxLine : StyleBox() {
       color = this
   }
 
+
+  public fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setThickness(thickness: Int): Unit {
+    TransferContext.writeArguments(LONG to thickness.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+  }
+
+  public fun getThickness(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setGrowBegin(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
+  }
+
+  public fun getGrowBegin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setGrowEnd(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
+  }
+
+  public fun getGrowEnd(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVertical(vertical: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to vertical)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+  }
+
+  public fun isVertical(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object
 

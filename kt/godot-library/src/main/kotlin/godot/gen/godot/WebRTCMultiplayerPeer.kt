@@ -99,7 +99,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   @JvmOverloads
   public fun addPeer(
-    peer: WebRTCPeerConnection,
+    peer: WebRTCPeerConnection?,
     peerId: Int,
     unreliableLifetime: Int = 1,
   ): GodotError {

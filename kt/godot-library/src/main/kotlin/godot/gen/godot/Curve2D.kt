@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -42,32 +43,37 @@ public open class Curve2D : Resource() {
    * the distance, the more points in the cache and the more memory it will consume, so use with care.
    */
   public var bakeInterval: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakeIntervalPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("bakeIntervalProperty")
+    get() = getBakeInterval()
+    @JvmName("bakeIntervalProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeIntervalPtr, NIL)
+      setBakeInterval(value)
     }
 
   /**
    * The number of points describing the curve.
    */
   public var pointCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("pointCountProperty")
+    get() = getPointCount()
+    @JvmName("pointCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
+      setPointCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CURVE2D, scriptIndex)
+  }
+
+  public fun getPointCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPointCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
   }
 
   /**
@@ -186,6 +192,17 @@ public open class Curve2D : Resource() {
     TransferContext.writeArguments(DOUBLE to fofs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.samplefPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setBakeInterval(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeIntervalPtr, NIL)
+  }
+
+  public fun getBakeInterval(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakeIntervalPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

@@ -42,6 +42,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -97,14 +98,11 @@ public open class CanvasItem internal constructor() : Node() {
    * one of the multiple `popup*()` functions instead.
    */
   public var visible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("visibleProperty")
+    get() = isVisible()
+    @JvmName("visibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+      setVisible(value)
     }
 
   /**
@@ -113,14 +111,11 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @CoreTypeLocalCopy
   public var modulate: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("modulateProperty")
+    get() = getModulate()
+    @JvmName("modulateProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+      setModulate(value)
     }
 
   /**
@@ -132,28 +127,22 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @CoreTypeLocalCopy
   public var selfModulate: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSelfModulatePtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("selfModulateProperty")
+    get() = getSelfModulate()
+    @JvmName("selfModulateProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelfModulatePtr, NIL)
+      setSelfModulate(value)
     }
 
   /**
    * If `true`, the object draws behind its parent.
    */
   public var showBehindParent: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDrawBehindParentEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("showBehindParentProperty")
+    get() = isDrawBehindParentEnabled()
+    @JvmName("showBehindParentProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawBehindParentPtr, NIL)
+      setDrawBehindParent(value)
     }
 
   /**
@@ -163,42 +152,33 @@ public open class CanvasItem internal constructor() : Node() {
    * a bare [Node].
    */
   public var topLevel: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSetAsTopLevelPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("topLevelProperty")
+    get() = isSetAsTopLevel()
+    @JvmName("topLevelProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAsTopLevelPtr, NIL)
+      setAsTopLevel(value)
     }
 
   /**
    * Allows the current node to clip child nodes, essentially acting as a mask.
    */
   public var clipChildren: ClipChildrenMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClipChildrenModePtr, LONG)
-      return CanvasItem.ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("clipChildrenProperty")
+    get() = getClipChildrenMode()
+    @JvmName("clipChildrenProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClipChildrenModePtr, NIL)
+      setClipChildrenMode(value)
     }
 
   /**
    * The rendering layers in which this [CanvasItem] responds to [Light2D] nodes.
    */
   public var lightMask: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLightMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("lightMaskProperty")
+    get() = getLightMask()
+    @JvmName("lightMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLightMaskPtr, NIL)
+      setLightMask(value)
     }
 
   /**
@@ -207,14 +187,11 @@ public open class CanvasItem internal constructor() : Node() {
    * cull mask.
    */
   public var visibilityLayer: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityLayerPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("visibilityLayerProperty")
+    get() = getVisibilityLayer()
+    @JvmName("visibilityLayerProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityLayerPtr, NIL)
+      setVisibilityLayer(value)
     }
 
   /**
@@ -226,14 +203,11 @@ public open class CanvasItem internal constructor() : Node() {
    * where hovered items are scaled and should overlap others.
    */
   public var zIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getZIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("zIndexProperty")
+    get() = getZIndex()
+    @JvmName("zIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setZIndexPtr, NIL)
+      setZIndex(value)
     }
 
   /**
@@ -241,14 +215,11 @@ public open class CanvasItem internal constructor() : Node() {
    * and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5.
    */
   public var zAsRelative: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isZRelativePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("zAsRelativeProperty")
+    get() = isZRelative()
+    @JvmName("zAsRelativeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setZAsRelativePtr, NIL)
+      setZAsRelative(value)
     }
 
   /**
@@ -262,70 +233,55 @@ public open class CanvasItem internal constructor() : Node() {
    * Nodes sort relative to each other only if they are on the same [zIndex].
    */
   public var ySortEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isYSortEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("ySortEnabledProperty")
+    get() = isYSortEnabled()
+    @JvmName("ySortEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setYSortEnabledPtr, NIL)
+      setYSortEnabled(value)
     }
 
   /**
    * The texture filtering mode to use on this [CanvasItem].
    */
   public var textureFilter: TextureFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-      return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureFilterProperty")
+    get() = getTextureFilter()
+    @JvmName("textureFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+      setTextureFilter(value)
     }
 
   /**
    * The texture repeating mode to use on this [CanvasItem].
    */
   public var textureRepeat: TextureRepeat
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
-      return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureRepeatProperty")
+    get() = getTextureRepeat()
+    @JvmName("textureRepeatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
+      setTextureRepeat(value)
     }
 
   /**
    * The material applied to this [CanvasItem].
    */
   public var material: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
-    }
+    @JvmName("materialProperty")
+    get() = getMaterial()
+    @JvmName("materialProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+      setMaterial(value)
     }
 
   /**
    * If `true`, the parent [CanvasItem]'s [material] property is used as this one's material.
    */
   public var useParentMaterial: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseParentMaterialPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useParentMaterialProperty")
+    get() = getUseParentMaterial()
+    @JvmName("useParentMaterialProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseParentMaterialPtr, NIL)
+      setUseParentMaterial(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -402,6 +358,17 @@ public open class CanvasItem internal constructor() : Node() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  public fun setVisible(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+  }
+
+  public fun isVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
    * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
@@ -453,6 +420,94 @@ public open class CanvasItem internal constructor() : Node() {
   public fun moveToFront(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.moveToFrontPtr, NIL)
+  }
+
+  public fun setAsTopLevel(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAsTopLevelPtr, NIL)
+  }
+
+  public fun isSetAsTopLevel(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSetAsTopLevelPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setLightMask(lightMask: Int): Unit {
+    TransferContext.writeArguments(LONG to lightMask.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLightMaskPtr, NIL)
+  }
+
+  public fun getLightMask(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLightMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setModulate(modulate: Color): Unit {
+    TransferContext.writeArguments(COLOR to modulate)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+  }
+
+  public fun getModulate(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setSelfModulate(selfModulate: Color): Unit {
+    TransferContext.writeArguments(COLOR to selfModulate)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelfModulatePtr, NIL)
+  }
+
+  public fun getSelfModulate(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelfModulatePtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setZIndex(zIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to zIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setZIndexPtr, NIL)
+  }
+
+  public fun getZIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getZIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setZAsRelative(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setZAsRelativePtr, NIL)
+  }
+
+  public fun isZRelative(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isZRelativePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setYSortEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setYSortEnabledPtr, NIL)
+  }
+
+  public fun isYSortEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isYSortEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDrawBehindParent(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrawBehindParentPtr, NIL)
+  }
+
+  public fun isDrawBehindParentEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDrawBehindParentEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -666,7 +721,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawTexture(
-    texture: Texture2D,
+    texture: Texture2D?,
     position: Vector2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
@@ -681,7 +736,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawTextureRect(
-    texture: Texture2D,
+    texture: Texture2D?,
     rect: Rect2,
     tile: Boolean,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -698,7 +753,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawTextureRectRegion(
-    texture: Texture2D,
+    texture: Texture2D?,
     rect: Rect2,
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -720,7 +775,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawMsdfTextureRectRegion(
-    texture: Texture2D,
+    texture: Texture2D?,
     rect: Rect2,
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -746,7 +801,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawLcdTextureRectRegion(
-    texture: Texture2D,
+    texture: Texture2D?,
     rect: Rect2,
     srcRect: Rect2,
     modulate: Color = Color(Color(1, 1, 1, 1)),
@@ -758,7 +813,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a styled rectangle.
    */
-  public fun drawStyleBox(styleBox: StyleBox, rect: Rect2): Unit {
+  public fun drawStyleBox(styleBox: StyleBox?, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to styleBox, RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.drawStyleBoxPtr, NIL)
   }
@@ -843,7 +898,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawString(
-    font: Font,
+    font: Font?,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
@@ -865,7 +920,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawMultilineString(
-    font: Font,
+    font: Font?,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
@@ -889,7 +944,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawStringOutline(
-    font: Font,
+    font: Font?,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
@@ -912,7 +967,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawMultilineStringOutline(
-    font: Font,
+    font: Font?,
     pos: Vector2,
     text: String,
     alignment: HorizontalAlignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_LEFT,
@@ -935,7 +990,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawChar(
-    font: Font,
+    font: Font?,
     pos: Vector2,
     char: String,
     fontSize: Int = 16,
@@ -950,7 +1005,7 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawCharOutline(
-    font: Font,
+    font: Font?,
     pos: Vector2,
     char: String,
     fontSize: Int = 16,
@@ -967,8 +1022,8 @@ public open class CanvasItem internal constructor() : Node() {
    */
   @JvmOverloads
   public fun drawMesh(
-    mesh: Mesh,
-    texture: Texture2D,
+    mesh: Mesh?,
+    texture: Texture2D?,
     transform: Transform2D = Transform2D(),
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
@@ -980,7 +1035,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws a [MultiMesh] in 2D with the provided texture. See [MultiMeshInstance2D] for related
    * documentation.
    */
-  public fun drawMultimesh(multimesh: MultiMesh, texture: Texture2D): Unit {
+  public fun drawMultimesh(multimesh: MultiMesh?, texture: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to multimesh, OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.drawMultimeshPtr, NIL)
   }
@@ -1162,6 +1217,28 @@ public open class CanvasItem internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT, true) as World2D?)
   }
 
+  public fun setMaterial(material: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+  }
+
+  public fun getMaterial(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+  }
+
+  public fun setUseParentMaterial(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseParentMaterialPtr, NIL)
+  }
+
+  public fun getUseParentMaterial(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseParentMaterialPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * If [enable] is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its
    * local transform changes.
@@ -1220,10 +1297,21 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Transformations issued by [event]'s inputs are applied in local space instead of global space.
    */
-  public fun makeInputLocal(event: InputEvent): InputEvent? {
+  public fun makeInputLocal(event: InputEvent?): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.makeInputLocalPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as InputEvent?)
+  }
+
+  public fun setVisibilityLayer(layer: Long): Unit {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityLayerPtr, NIL)
+  }
+
+  public fun getVisibilityLayer(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityLayerPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -1242,6 +1330,39 @@ public open class CanvasItem internal constructor() : Node() {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityLayerBitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTextureFilter(mode: TextureFilter): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+  }
+
+  public fun getTextureFilter(): TextureFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTextureRepeat(mode: TextureRepeat): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
+  }
+
+  public fun getTextureRepeat(): TextureRepeat {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
+    return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setClipChildrenMode(mode: ClipChildrenMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClipChildrenModePtr, NIL)
+  }
+
+  public fun getClipChildrenMode(): ClipChildrenMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClipChildrenModePtr, LONG)
+    return CanvasItem.ClipChildrenMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class TextureFilter(

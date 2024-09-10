@@ -405,7 +405,7 @@ public object Engine : Object() {
    * Registers the given [Object] [instance] as a singleton, available globally under [name]. Useful
    * for plugins.
    */
-  public fun registerSingleton(name: StringName, instance: Object): Unit {
+  public fun registerSingleton(name: StringName, instance: Object?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
     TransferContext.callMethod(rawPtr, MethodBindings.registerSingletonPtr, NIL)
   }
@@ -437,7 +437,7 @@ public object Engine : Object() {
    * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
    * extension/name/type.
    */
-  public fun registerScriptLanguage(language: ScriptLanguage): GodotError {
+  public fun registerScriptLanguage(language: ScriptLanguage?): GodotError {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.registerScriptLanguagePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -449,7 +449,7 @@ public object Engine : Object() {
    * - [OK] on success;
    * - [ERR_DOES_NOT_EXIST] if the language is not registered in `ScriptServer`.
    */
-  public fun unregisterScriptLanguage(language: ScriptLanguage): GodotError {
+  public fun unregisterScriptLanguage(language: ScriptLanguage?): GodotError {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterScriptLanguagePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

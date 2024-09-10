@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be
@@ -46,14 +47,11 @@ public open class GraphFrame : GraphElement() {
    * Title of the frame.
    */
   public var title: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("titleProperty")
+    get() = getTitle()
+    @JvmName("titleProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+      setTitle(value)
     }
 
   /**
@@ -61,14 +59,11 @@ public open class GraphFrame : GraphElement() {
    * [GraphElement]s.
    */
   public var autoshrinkEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoshrinkEnabledProperty")
+    get() = isAutoshrinkEnabled()
+    @JvmName("autoshrinkEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+      setAutoshrinkEnabled(value)
     }
 
   /**
@@ -76,42 +71,33 @@ public open class GraphFrame : GraphElement() {
    * [autoshrinkEnabled] is `true`.
    */
   public var autoshrinkMargin: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoshrinkMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("autoshrinkMarginProperty")
+    get() = getAutoshrinkMargin()
+    @JvmName("autoshrinkMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkMarginPtr, NIL)
+      setAutoshrinkMargin(value)
     }
 
   /**
    * The margin inside the frame that can be used to drag the frame.
    */
   public var dragMargin: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("dragMarginProperty")
+    get() = getDragMargin()
+    @JvmName("dragMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
+      setDragMargin(value)
     }
 
   /**
    * If `true`, the tint color will be used to tint the frame.
    */
   public var tintColorEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("tintColorEnabledProperty")
+    get() = isTintColorEnabled()
+    @JvmName("tintColorEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+      setTintColorEnabled(value)
     }
 
   /**
@@ -119,14 +105,11 @@ public open class GraphFrame : GraphElement() {
    */
   @CoreTypeLocalCopy
   public var tintColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("tintColorProperty")
+    get() = getTintColor()
+    @JvmName("tintColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+      setTintColor(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -157,6 +140,17 @@ public open class GraphFrame : GraphElement() {
   }
 
 
+  public fun setTitle(title: String): Unit {
+    TransferContext.writeArguments(STRING to title)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+  }
+
+  public fun getTitle(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying
    * the title by default.
@@ -166,6 +160,61 @@ public open class GraphFrame : GraphElement() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
+  }
+
+  public fun setAutoshrinkEnabled(shrink: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to shrink)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+  }
+
+  public fun isAutoshrinkEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAutoshrinkMargin(autoshrinkMargin: Int): Unit {
+    TransferContext.writeArguments(LONG to autoshrinkMargin.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkMarginPtr, NIL)
+  }
+
+  public fun getAutoshrinkMargin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoshrinkMarginPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setDragMargin(dragMargin: Int): Unit {
+    TransferContext.writeArguments(LONG to dragMargin.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
+  }
+
+  public fun getDragMargin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setTintColorEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+  }
+
+  public fun isTintColorEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTintColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+  }
+
+  public fun getTintColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   public companion object

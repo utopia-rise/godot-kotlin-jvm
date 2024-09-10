@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
@@ -49,14 +50,11 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    */
   @CoreTypeLocalCopy
   public var rect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+    @JvmName("rectProperty")
+    get() = getRect()
+    @JvmName("rectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+      setRect(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -86,6 +84,17 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
       rect = this
   }
 
+
+  public fun setRect(rect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+  }
+
+  public fun getRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
 
   /**
    * If `true`, the bounding rectangle is on the screen.

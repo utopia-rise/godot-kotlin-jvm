@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Increases or decreases the volume being routed through the audio bus.
@@ -28,18 +29,26 @@ public open class AudioEffectAmplify : AudioEffect() {
    * make it quieter. Value can range from -80 to 24.
    */
   public var volumeDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("volumeDbProperty")
+    get() = getVolumeDb()
+    @JvmName("volumeDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+      setVolumeDb(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY, scriptIndex)
+  }
+
+  public fun setVolumeDb(volume: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to volume.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+  }
+
+  public fun getVolumeDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

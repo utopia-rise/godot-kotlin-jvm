@@ -18,6 +18,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A parameter represents a variable in the shader which is set externally, i.e. from the
@@ -30,32 +31,48 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
    * Name of the parameter, by which it can be accessed through the [ShaderMaterial] properties.
    */
   public var parameterName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("parameterNameProperty")
+    get() = getParameterName()
+    @JvmName("parameterNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+      setParameterName(value)
     }
 
   /**
    * Defines the scope of the parameter.
    */
   public var qualifier: Qualifier
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getQualifierPtr, LONG)
-      return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("qualifierProperty")
+    get() = getQualifier()
+    @JvmName("qualifierProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
+      setQualifier(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETER, scriptIndex)
+  }
+
+  public fun setParameterName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+  }
+
+  public fun getParameterName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setQualifier(qualifier: Qualifier): Unit {
+    TransferContext.writeArguments(LONG to qualifier.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
+  }
+
+  public fun getQualifier(): Qualifier {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getQualifierPtr, LONG)
+    return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Qualifier(

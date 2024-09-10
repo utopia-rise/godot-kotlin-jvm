@@ -10,7 +10,6 @@ import godot.codegen.workarounds.sanitizeApiType
 import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.extensions.convertToCamelCase
-import java.util.*
 
 class EnrichedMethod(val internal: Method, engineClassIndexName: String) : CallableTrait, IDocumented {
     override val arguments = internal.arguments?.toEnriched() ?: listOf()
@@ -30,8 +29,6 @@ class EnrichedMethod(val internal: Method, engineClassIndexName: String) : Calla
             throw TooManyMethodArgument(this)
         }
     }
-
-    var isGetterOrSetter = false
 
     override val type = internal.returnValue?.type?.sanitizeApiType()
     override val meta: String? = internal.returnValue?.meta

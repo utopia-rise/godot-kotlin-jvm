@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A container that arranges its child controls horizontally or vertically and wraps them around at
@@ -31,14 +32,11 @@ public open class FlowContainer : Container() {
    * [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
   public var alignment: AlignmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
-      return FlowContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alignmentProperty")
+    get() = getAlignment()
+    @JvmName("alignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+      setAlignment(value)
     }
 
   /**
@@ -47,14 +45,11 @@ public open class FlowContainer : Container() {
    * [LAST_WRAP_ALIGNMENT_END]).
    */
   public var lastWrapAlignment: LastWrapAlignmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLastWrapAlignmentPtr, LONG)
-      return FlowContainer.LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("lastWrapAlignmentProperty")
+    get() = getLastWrapAlignment()
+    @JvmName("lastWrapAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLastWrapAlignmentPtr, NIL)
+      setLastWrapAlignment(value)
     }
 
   /**
@@ -62,14 +57,11 @@ public open class FlowContainer : Container() {
    * Can't be changed when using [HFlowContainer] and [VFlowContainer].
    */
   public var vertical: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("verticalProperty")
+    get() = isVertical()
+    @JvmName("verticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+      setVertical(value)
     }
 
   /**
@@ -79,14 +71,11 @@ public open class FlowContainer : Container() {
    * will fill left to right instead.
    */
   public var reverseFill: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isReverseFillPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("reverseFillProperty")
+    get() = isReverseFill()
+    @JvmName("reverseFillProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setReverseFillPtr, NIL)
+      setReverseFill(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -100,6 +89,50 @@ public open class FlowContainer : Container() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setAlignment(alignment: AlignmentMode): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+  }
+
+  public fun getAlignment(): AlignmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
+    return FlowContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLastWrapAlignment(lastWrapAlignment: LastWrapAlignmentMode): Unit {
+    TransferContext.writeArguments(LONG to lastWrapAlignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLastWrapAlignmentPtr, NIL)
+  }
+
+  public fun getLastWrapAlignment(): LastWrapAlignmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLastWrapAlignmentPtr, LONG)
+    return FlowContainer.LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVertical(vertical: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to vertical)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+  }
+
+  public fun isVertical(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setReverseFill(reverseFill: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to reverseFill)
+    TransferContext.callMethod(rawPtr, MethodBindings.setReverseFillPtr, NIL)
+  }
+
+  public fun isReverseFill(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isReverseFillPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class AlignmentMode(

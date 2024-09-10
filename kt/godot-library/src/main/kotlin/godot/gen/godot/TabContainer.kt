@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's
@@ -77,14 +78,11 @@ public open class TabContainer : Container() {
    * Sets the position at which tabs will be placed. See [TabBar.AlignmentMode] for details.
    */
   public var tabAlignment: TabBar.AlignmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabAlignmentPtr, LONG)
-      return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tabAlignmentProperty")
+    get() = getTabAlignment()
+    @JvmName("tabAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabAlignmentPtr, NIL)
+      setTabAlignment(value)
     }
 
   /**
@@ -93,28 +91,22 @@ public open class TabContainer : Container() {
    * A value of `-1` means that no tab is selected.
    */
   public var currentTab: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentTabPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("currentTabProperty")
+    get() = getCurrentTab()
+    @JvmName("currentTabProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentTabPtr, NIL)
+      setCurrentTab(value)
     }
 
   /**
    * Sets the position of the tab bar. See [TabPosition] for details.
    */
   public var tabsPosition: TabPosition
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabsPositionPtr, LONG)
-      return TabContainer.TabPosition.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tabsPositionProperty")
+    get() = getTabsPosition()
+    @JvmName("tabsPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabsPositionPtr, NIL)
+      setTabsPosition(value)
     }
 
   /**
@@ -122,28 +114,22 @@ public open class TabContainer : Container() {
    * instead. Otherwise, this node's minimum size is updated so that all tabs are visible.
    */
   public var clipTabs: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClipTabsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("clipTabsProperty")
+    get() = getClipTabs()
+    @JvmName("clipTabsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClipTabsPtr, NIL)
+      setClipTabs(value)
     }
 
   /**
    * If `true`, tabs are visible. If `false`, tabs' content and titles are hidden.
    */
   public var tabsVisible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.areTabsVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("tabsVisibleProperty")
+    get() = areTabsVisible()
+    @JvmName("tabsVisibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabsVisiblePtr, NIL)
+      setTabsVisible(value)
     }
 
   /**
@@ -151,28 +137,22 @@ public open class TabContainer : Container() {
    * the panel.
    */
   public var allTabsInFront: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAllTabsInFrontPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allTabsInFrontProperty")
+    get() = isAllTabsInFront()
+    @JvmName("allTabsInFrontProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllTabsInFrontPtr, NIL)
+      setAllTabsInFront(value)
     }
 
   /**
    * If `true`, tabs can be rearranged with mouse drag.
    */
   public var dragToRearrangeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("dragToRearrangeEnabledProperty")
+    get() = getDragToRearrangeEnabled()
+    @JvmName("dragToRearrangeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDragToRearrangeEnabledPtr, NIL)
+      setDragToRearrangeEnabled(value)
     }
 
   /**
@@ -181,14 +161,11 @@ public open class TabContainer : Container() {
    * Setting this to `-1` will disable rearranging between [TabContainer]s.
    */
   public var tabsRearrangeGroup: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("tabsRearrangeGroupProperty")
+    get() = getTabsRearrangeGroup()
+    @JvmName("tabsRearrangeGroupProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabsRearrangeGroupPtr, NIL)
+      setTabsRearrangeGroup(value)
     }
 
   /**
@@ -196,28 +173,22 @@ public open class TabContainer : Container() {
    * the total, instead of only the currently visible one.
    */
   public var useHiddenTabsForMinSize: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseHiddenTabsForMinSizePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useHiddenTabsForMinSizeProperty")
+    get() = getUseHiddenTabsForMinSize()
+    @JvmName("useHiddenTabsForMinSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseHiddenTabsForMinSizePtr, NIL)
+      setUseHiddenTabsForMinSize(value)
     }
 
   /**
    * The focus access mode for the internal [TabBar] node.
    */
   public var tabFocusMode: Control.FocusMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabFocusModePtr, LONG)
-      return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tabFocusModeProperty")
+    get() = getTabFocusMode()
+    @JvmName("tabFocusModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabFocusModePtr, NIL)
+      setTabFocusMode(value)
     }
 
   /**
@@ -226,14 +197,11 @@ public open class TabContainer : Container() {
    * Only the tab header will be shown if no tabs are selected.
    */
   public var deselectEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("deselectEnabledProperty")
+    get() = getDeselectEnabled()
+    @JvmName("deselectEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
+      setDeselectEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -246,6 +214,17 @@ public open class TabContainer : Container() {
   public fun getTabCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setCurrentTab(tabIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentTabPtr, NIL)
+  }
+
+  public fun getCurrentTab(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentTabPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
@@ -307,6 +286,61 @@ public open class TabContainer : Container() {
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
+  public fun setTabAlignment(alignment: TabBar.AlignmentMode): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabAlignmentPtr, NIL)
+  }
+
+  public fun getTabAlignment(): TabBar.AlignmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabAlignmentPtr, LONG)
+    return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTabsPosition(tabsPosition: TabPosition): Unit {
+    TransferContext.writeArguments(LONG to tabsPosition.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabsPositionPtr, NIL)
+  }
+
+  public fun getTabsPosition(): TabPosition {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabsPositionPtr, LONG)
+    return TabContainer.TabPosition.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setClipTabs(clipTabs: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to clipTabs)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClipTabsPtr, NIL)
+  }
+
+  public fun getClipTabs(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClipTabsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTabsVisible(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabsVisiblePtr, NIL)
+  }
+
+  public fun areTabsVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.areTabsVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAllTabsInFront(isFront: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to isFront)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllTabsInFrontPtr, NIL)
+  }
+
+  public fun isAllTabsInFront(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAllTabsInFrontPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Sets a custom title for the tab at index [tabIdx] (tab titles default to the name of the
    * indexed child node). Set it back to the child's name to make the tab default to it again.
@@ -349,7 +383,7 @@ public open class TabContainer : Container() {
   /**
    * Sets an icon for the tab at index [tabIdx].
    */
-  public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
+  public fun setTabIcon(tabIdx: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setTabIconPtr, NIL)
   }
@@ -438,7 +472,7 @@ public open class TabContainer : Container() {
   /**
    * Sets the button icon from the tab at index [tabIdx].
    */
-  public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D): Unit {
+  public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setTabButtonIconPtr, NIL)
   }
@@ -466,7 +500,7 @@ public open class TabContainer : Container() {
    * Returns the index of the tab tied to the given [control]. The control must be a child of the
    * [TabContainer].
    */
-  public fun getTabIdxFromControl(control: Control): Int {
+  public fun getTabIdxFromControl(control: Control?): Int {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr, MethodBindings.getTabIdxFromControlPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -477,7 +511,7 @@ public open class TabContainer : Container() {
    * [TabContainer] (setting it to `null` will make it go away). Clicking it will expand the [Popup]
    * node.
    */
-  public fun setPopup(popup: Node): Unit {
+  public fun setPopup(popup: Node?): Unit {
     TransferContext.writeArguments(OBJECT to popup)
     TransferContext.callMethod(rawPtr, MethodBindings.setPopupPtr, NIL)
   }
@@ -491,6 +525,61 @@ public open class TabContainer : Container() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Popup?)
+  }
+
+  public fun setDragToRearrangeEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDragToRearrangeEnabledPtr, NIL)
+  }
+
+  public fun getDragToRearrangeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTabsRearrangeGroup(groupId: Int): Unit {
+    TransferContext.writeArguments(LONG to groupId.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabsRearrangeGroupPtr, NIL)
+  }
+
+  public fun getTabsRearrangeGroup(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setUseHiddenTabsForMinSize(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseHiddenTabsForMinSizePtr, NIL)
+  }
+
+  public fun getUseHiddenTabsForMinSize(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseHiddenTabsForMinSizePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTabFocusMode(focusMode: Control.FocusMode): Unit {
+    TransferContext.writeArguments(LONG to focusMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabFocusModePtr, NIL)
+  }
+
+  public fun getTabFocusMode(): Control.FocusMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabFocusModePtr, LONG)
+    return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDeselectEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
+  }
+
+  public fun getDeselectEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class TabPosition(

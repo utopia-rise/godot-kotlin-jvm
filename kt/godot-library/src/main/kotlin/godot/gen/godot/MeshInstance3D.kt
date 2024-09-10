@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -41,46 +42,70 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * The [Mesh] resource for the instance.
    */
   public var mesh: Mesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
-    }
+    @JvmName("meshProperty")
+    get() = getMesh()
+    @JvmName("meshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+      setMesh(value)
     }
 
   /**
    * The [Skin] to be used by this instance.
    */
   public var skin: Skin?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
-    }
+    @JvmName("skinProperty")
+    get() = getSkin()
+    @JvmName("skinProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+      setSkin(value)
     }
 
   /**
    * [NodePath] to the [Skeleton3D] associated with the instance.
    */
   public var skeleton: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("skeletonProperty")
+    get() = getSkeletonPath()
+    @JvmName("skeletonProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPathPtr, NIL)
+      setSkeletonPath(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MESHINSTANCE3D, scriptIndex)
+  }
+
+  public fun setMesh(mesh: Mesh?): Unit {
+    TransferContext.writeArguments(OBJECT to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+  }
+
+  public fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+  }
+
+  public fun setSkeletonPath(skeletonPath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to skeletonPath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPathPtr, NIL)
+  }
+
+  public fun getSkeletonPath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setSkin(skin: Skin?): Unit {
+    TransferContext.writeArguments(OBJECT to skin)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+  }
+
+  public fun getSkin(): Skin? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
   }
 
   /**
@@ -110,7 +135,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Override properties, not the material within the [Mesh] resource. To set the material within the
    * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
    */
-  public fun setSurfaceOverrideMaterial(surface: Int, material: Material): Unit {
+  public fun setSurfaceOverrideMaterial(surface: Int, material: Material?): Unit {
     TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceOverrideMaterialPtr, NIL)
   }

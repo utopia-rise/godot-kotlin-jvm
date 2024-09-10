@@ -19,6 +19,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key
@@ -44,18 +45,26 @@ public open class BoneMap : Resource() {
    * A [SkeletonProfile] of the mapping target. Key names in the [BoneMap] are synchronized with it.
    */
   public var profile: SkeletonProfile?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProfilePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as SkeletonProfile?)
-    }
+    @JvmName("profileProperty")
+    get() = getProfile()
+    @JvmName("profileProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProfilePtr, NIL)
+      setProfile(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BONEMAP, scriptIndex)
+  }
+
+  public fun getProfile(): SkeletonProfile? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProfilePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonProfile?)
+  }
+
+  public fun setProfile(profile: SkeletonProfile?): Unit {
+    TransferContext.writeArguments(OBJECT to profile)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProfilePtr, NIL)
   }
 
   /**

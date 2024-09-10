@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -37,14 +38,11 @@ public open class RDShaderFile : Resource() {
    * [RDShaderSPIRV]'s error message members).
    */
   public var baseError: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBaseErrorPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("baseErrorProperty")
+    get() = getBaseError()
+    @JvmName("baseErrorProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBaseErrorPtr, NIL)
+      setBaseError(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -55,7 +53,7 @@ public open class RDShaderFile : Resource() {
    * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
    */
   @JvmOverloads
-  public fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
+  public fun setBytecode(bytecode: RDShaderSPIRV?, version: StringName = StringName("")): Unit {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
     TransferContext.callMethod(rawPtr, MethodBindings.setBytecodePtr, NIL)
   }
@@ -77,6 +75,17 @@ public open class RDShaderFile : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+  }
+
+  public fun setBaseError(error: String): Unit {
+    TransferContext.writeArguments(STRING to error)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBaseErrorPtr, NIL)
+  }
+
+  public fun getBaseError(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBaseErrorPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

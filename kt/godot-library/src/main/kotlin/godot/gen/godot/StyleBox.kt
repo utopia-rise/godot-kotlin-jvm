@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [StyleBox] is an abstract base class for drawing stylized boxes for UI elements. It is used for
@@ -46,14 +47,11 @@ public open class StyleBox : Resource() {
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public var contentMarginLeft: Float
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("contentMarginLeftProperty")
+    get() = getContentMargin(Side.SIDE_LEFT)
+    @JvmName("contentMarginLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -62,14 +60,11 @@ public open class StyleBox : Resource() {
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public var contentMarginTop: Float
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("contentMarginTopProperty")
+    get() = getContentMargin(Side.SIDE_TOP)
+    @JvmName("contentMarginTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_TOP, value)
     }
 
   /**
@@ -78,14 +73,11 @@ public open class StyleBox : Resource() {
    * Refer to [contentMarginBottom] for extra considerations.
    */
   public var contentMarginRight: Float
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("contentMarginRightProperty")
+    get() = getContentMargin(Side.SIDE_RIGHT)
+    @JvmName("contentMarginRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -99,14 +91,11 @@ public open class StyleBox : Resource() {
    * directly. This is because it correctly respects negative values and the fallback mentioned above.
    */
   public var contentMarginBottom: Float
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("contentMarginBottomProperty")
+    get() = getContentMargin(Side.SIDE_BOTTOM)
+    @JvmName("contentMarginBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_BOTTOM, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -144,11 +133,28 @@ public open class StyleBox : Resource() {
   }
 
   /**
+   * Sets the default value of the specified [Side] to [offset] pixels.
+   */
+  public fun setContentMargin(margin: Side, offset: Float): Unit {
+    TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+  }
+
+  /**
    * Sets the default margin to [offset] pixels for all sides.
    */
   public fun setContentMarginAll(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginAllPtr, NIL)
+  }
+
+  /**
+   * Returns the default margin of the specified [Side].
+   */
+  public fun getContentMargin(margin: Side): Float {
+    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

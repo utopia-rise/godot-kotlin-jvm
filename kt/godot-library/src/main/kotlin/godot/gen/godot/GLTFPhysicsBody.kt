@@ -31,6 +31,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Represents a physics body as an intermediary between the `OMI_physics_body` GLTF data and Godot's
@@ -46,14 +47,11 @@ public open class GLTFPhysicsBody : Resource() {
    * "dynamic" motion types, or the "trigger" property.
    */
   public var bodyType: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBodyTypePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("bodyTypeProperty")
+    get() = getBodyType()
+    @JvmName("bodyTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBodyTypePtr, NIL)
+      setBodyType(value)
     }
 
   /**
@@ -61,14 +59,11 @@ public open class GLTFPhysicsBody : Resource() {
    * "vehicle".
    */
   public var mass: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("massProperty")
+    get() = getMass()
+    @JvmName("massProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+      setMass(value)
     }
 
   /**
@@ -77,14 +72,11 @@ public open class GLTFPhysicsBody : Resource() {
    */
   @CoreTypeLocalCopy
   public var linearVelocity: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("linearVelocityProperty")
+    get() = getLinearVelocity()
+    @JvmName("linearVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+      setLinearVelocity(value)
     }
 
   /**
@@ -93,14 +85,11 @@ public open class GLTFPhysicsBody : Resource() {
    */
   @CoreTypeLocalCopy
   public var angularVelocity: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("angularVelocityProperty")
+    get() = getAngularVelocity()
+    @JvmName("angularVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+      setAngularVelocity(value)
     }
 
   /**
@@ -109,14 +98,11 @@ public open class GLTFPhysicsBody : Resource() {
    */
   @CoreTypeLocalCopy
   public var centerOfMass: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("centerOfMassProperty")
+    get() = getCenterOfMass()
+    @JvmName("centerOfMassProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
+      setCenterOfMass(value)
     }
 
   /**
@@ -128,14 +114,11 @@ public open class GLTFPhysicsBody : Resource() {
    */
   @CoreTypeLocalCopy
   public var inertiaDiagonal: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInertiaDiagonalPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("inertiaDiagonalProperty")
+    get() = getInertiaDiagonal()
+    @JvmName("inertiaDiagonalProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInertiaDiagonalPtr, NIL)
+      setInertiaDiagonal(value)
     }
 
   /**
@@ -145,14 +128,11 @@ public open class GLTFPhysicsBody : Resource() {
    */
   @CoreTypeLocalCopy
   public var inertiaOrientation: Quaternion
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInertiaOrientationPtr, QUATERNION)
-      return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
-    }
+    @JvmName("inertiaOrientationProperty")
+    get() = getInertiaOrientation()
+    @JvmName("inertiaOrientationProperty")
     set(`value`) {
-      TransferContext.writeArguments(QUATERNION to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInertiaOrientationPtr, NIL)
+      setInertiaOrientation(value)
     }
 
   /**
@@ -163,14 +143,11 @@ public open class GLTFPhysicsBody : Resource() {
    */
   @CoreTypeLocalCopy
   public var inertiaTensor: Basis
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInertiaTensorPtr, BASIS)
-      return (TransferContext.readReturnValue(BASIS, false) as Basis)
-    }
+    @JvmName("inertiaTensorProperty")
+    get() = getInertiaTensor()
+    @JvmName("inertiaTensorProperty")
     set(`value`) {
-      TransferContext.writeArguments(BASIS to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInertiaTensorPtr, NIL)
+      setInertiaTensor(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -353,11 +330,99 @@ public open class GLTFPhysicsBody : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
+  public fun getBodyType(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodyTypePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setBodyType(bodyType: String): Unit {
+    TransferContext.writeArguments(STRING to bodyType)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBodyTypePtr, NIL)
+  }
+
+  public fun getMass(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMass(mass: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to mass.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+  }
+
+  public fun getLinearVelocity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setLinearVelocity(linearVelocity: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to linearVelocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+  }
+
+  public fun getAngularVelocity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setAngularVelocity(angularVelocity: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to angularVelocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+  }
+
+  public fun getCenterOfMass(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setCenterOfMass(centerOfMass: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to centerOfMass)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
+  }
+
+  public fun getInertiaDiagonal(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaDiagonalPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setInertiaDiagonal(inertiaDiagonal: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to inertiaDiagonal)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaDiagonalPtr, NIL)
+  }
+
+  public fun getInertiaOrientation(): Quaternion {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaOrientationPtr, QUATERNION)
+    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
+  }
+
+  public fun setInertiaOrientation(inertiaOrientation: Quaternion): Unit {
+    TransferContext.writeArguments(QUATERNION to inertiaOrientation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaOrientationPtr, NIL)
+  }
+
+  public fun getInertiaTensor(): Basis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaTensorPtr, BASIS)
+    return (TransferContext.readReturnValue(BASIS, false) as Basis)
+  }
+
+  public fun setInertiaTensor(inertiaTensor: Basis): Unit {
+    TransferContext.writeArguments(BASIS to inertiaTensor)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaTensorPtr, NIL)
+  }
+
   public companion object {
     /**
      * Creates a new GLTFPhysicsBody instance from the given Godot [CollisionObject3D] node.
      */
-    public fun fromNode(bodyNode: CollisionObject3D): GLTFPhysicsBody? {
+    public fun fromNode(bodyNode: CollisionObject3D?): GLTFPhysicsBody? {
       TransferContext.writeArguments(OBJECT to bodyNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsBody?)

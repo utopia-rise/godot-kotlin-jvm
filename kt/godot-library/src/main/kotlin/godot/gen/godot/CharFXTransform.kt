@@ -35,6 +35,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * By setting various properties on this object, you can control how individual characters will be
@@ -49,14 +50,11 @@ public open class CharFXTransform : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var transform: Transform2D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
-    }
+    @JvmName("transformProperty")
+    get() = getTransform()
+    @JvmName("transformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+      setTransform(value)
     }
 
   /**
@@ -65,14 +63,11 @@ public open class CharFXTransform : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var range: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("rangeProperty")
+    get() = getRange()
+    @JvmName("rangeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+      setRange(value)
     }
 
   /**
@@ -82,14 +77,11 @@ public open class CharFXTransform : RefCounted() {
    * **Note:** Time still passes while the [RichTextLabel] is hidden.
    */
   public var elapsedTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getElapsedTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("elapsedTimeProperty")
+    get() = getElapsedTime()
+    @JvmName("elapsedTimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setElapsedTimePtr, NIL)
+      setElapsedTime(value)
     }
 
   /**
@@ -98,14 +90,11 @@ public open class CharFXTransform : RefCounted() {
    * desired, set their [color] to `Color(1, 1, 1, 0)` instead.
    */
   public var visible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("visibleProperty")
+    get() = isVisible()
+    @JvmName("visibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityPtr, NIL)
+      setVisibility(value)
     }
 
   /**
@@ -113,14 +102,11 @@ public open class CharFXTransform : RefCounted() {
    * drawing.
    */
   public var outline: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isOutlinePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("outlineProperty")
+    get() = isOutline()
+    @JvmName("outlineProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutlinePtr, NIL)
+      setOutline(value)
     }
 
   /**
@@ -128,14 +114,11 @@ public open class CharFXTransform : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var offset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("offsetProperty")
+    get() = getOffset()
+    @JvmName("offsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(value)
     }
 
   /**
@@ -143,14 +126,11 @@ public open class CharFXTransform : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("colorProperty")
+    get() = getColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
@@ -166,28 +146,22 @@ public open class CharFXTransform : RefCounted() {
    * [/codeblock]
    */
   public var env: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, DICTIONARY)
-      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
-    }
+    @JvmName("envProperty")
+    get() = getEnvironment()
+    @JvmName("envProperty")
     set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+      setEnvironment(value)
     }
 
   /**
    * Font specific glyph index.
    */
   public var glyphIndex: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlyphIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("glyphIndexProperty")
+    get() = getGlyphIndex()
+    @JvmName("glyphIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlyphIndexPtr, NIL)
+      setGlyphIndex(value)
     }
 
   /**
@@ -195,14 +169,11 @@ public open class CharFXTransform : RefCounted() {
    * Setting this property won't affect drawing.
    */
   public var glyphCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlyphCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("glyphCountProperty")
+    get() = getGlyphCount()
+    @JvmName("glyphCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlyphCountPtr, NIL)
+      setGlyphCount(value)
     }
 
   /**
@@ -210,14 +181,11 @@ public open class CharFXTransform : RefCounted() {
    * drawing.
    */
   public var glyphFlags: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlyphFlagsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("glyphFlagsProperty")
+    get() = getGlyphFlags()
+    @JvmName("glyphFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlyphFlagsPtr, NIL)
+      setGlyphFlags(value)
     }
 
   /**
@@ -225,28 +193,22 @@ public open class CharFXTransform : RefCounted() {
    * Setting this property won't affect drawing.
    */
   public var relativeIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRelativeIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("relativeIndexProperty")
+    get() = getRelativeIndex()
+    @JvmName("relativeIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRelativeIndexPtr, NIL)
+      setRelativeIndex(value)
     }
 
   /**
    * Font resource used to render glyph.
    */
   public var font: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+    @JvmName("fontProperty")
+    get() = getFont()
+    @JvmName("fontProperty")
     set(`value`) {
-      TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+      setFont(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -351,6 +313,149 @@ public open class CharFXTransform : RefCounted() {
       color = this
   }
 
+
+  public fun getTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+  }
+
+  public fun setTransform(transform: Transform2D): Unit {
+    TransferContext.writeArguments(TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+  }
+
+  public fun getRange(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setRange(range: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to range)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+  }
+
+  public fun getElapsedTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getElapsedTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setElapsedTime(time: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(rawPtr, MethodBindings.setElapsedTimePtr, NIL)
+  }
+
+  public fun isVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setVisibility(visibility: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visibility)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityPtr, NIL)
+  }
+
+  public fun isOutline(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isOutlinePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setOutline(outline: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to outline)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutlinePtr, NIL)
+  }
+
+  public fun getOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+  }
+
+  public fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public fun getEnvironment(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  public fun setEnvironment(environment: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to environment)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+  }
+
+  public fun getGlyphIndex(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlyphIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setGlyphIndex(glyphIndex: Long): Unit {
+    TransferContext.writeArguments(LONG to glyphIndex)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlyphIndexPtr, NIL)
+  }
+
+  public fun getRelativeIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRelativeIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setRelativeIndex(relativeIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to relativeIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRelativeIndexPtr, NIL)
+  }
+
+  public fun getGlyphCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlyphCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setGlyphCount(glyphCount: Int): Unit {
+    TransferContext.writeArguments(LONG to glyphCount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlyphCountPtr, NIL)
+  }
+
+  public fun getGlyphFlags(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlyphFlagsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setGlyphFlags(glyphFlags: Int): Unit {
+    TransferContext.writeArguments(LONG to glyphFlags.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlyphFlagsPtr, NIL)
+  }
+
+  public fun getFont(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public fun setFont(font: RID): Unit {
+    TransferContext.writeArguments(_RID to font)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+  }
 
   public companion object
 

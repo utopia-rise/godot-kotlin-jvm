@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
@@ -32,18 +33,26 @@ public open class AudioStreamPolyphonic : AudioStream() {
    * Maximum amount of simultaneous streams that can be played.
    */
   public var polyphony: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPolyphonyPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("polyphonyProperty")
+    get() = getPolyphony()
+    @JvmName("polyphonyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPolyphonyPtr, NIL)
+      setPolyphony(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPOLYPHONIC, scriptIndex)
+  }
+
+  public fun setPolyphony(voices: Int): Unit {
+    TransferContext.writeArguments(LONG to voices.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPolyphonyPtr, NIL)
+  }
+
+  public fun getPolyphony(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPolyphonyPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

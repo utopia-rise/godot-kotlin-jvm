@@ -100,7 +100,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Associates [AudioSamplePlayback] to this [AudioStreamPlayback] for playing back the audio
    * sample of this stream.
    */
-  public fun setSamplePlayback(playbackSample: AudioSamplePlayback): Unit {
+  public fun setSamplePlayback(playbackSample: AudioSamplePlayback?): Unit {
     TransferContext.writeArguments(OBJECT to playbackSample)
     TransferContext.callMethod(rawPtr, MethodBindings.setSamplePlaybackPtr, NIL)
   }

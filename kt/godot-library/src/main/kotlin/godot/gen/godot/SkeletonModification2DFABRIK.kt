@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This [SkeletonModification2D] uses an algorithm called Forward And Backward Reaching Inverse
@@ -49,32 +50,48 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    * FABRIK chain will attempt to rotate the bone chain to.
    */
   public var targetNodepath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("targetNodepathProperty")
+    get() = getTargetNode()
+    @JvmName("targetNodepathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+      setTargetNode(value)
     }
 
   /**
    * The number of FABRIK joints in the FABRIK modification.
    */
   public var fabrikDataChainLength: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFabrikDataChainLengthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("fabrikDataChainLengthProperty")
+    get() = getFabrikDataChainLength()
+    @JvmName("fabrikDataChainLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFabrikDataChainLengthPtr, NIL)
+      setFabrikDataChainLength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DFABRIK, scriptIndex)
+  }
+
+  public fun setTargetNode(targetNodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to targetNodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+  }
+
+  public fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setFabrikDataChainLength(length: Int): Unit {
+    TransferContext.writeArguments(LONG to length.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFabrikDataChainLengthPtr, NIL)
+  }
+
+  public fun getFabrikDataChainLength(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFabrikDataChainLengthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

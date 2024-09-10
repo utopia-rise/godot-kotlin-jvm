@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Performs a lookup operation on the provided texture, with support for multiple texture sources to
@@ -27,18 +28,26 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
    * [VisualShaderNodeSample3D.SOURCE_TEXTURE].
    */
   public var texture: Texture3D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
-    }
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE3D, scriptIndex)
+  }
+
+  public fun setTexture(`value`: Texture3D?): Unit {
+    TransferContext.writeArguments(OBJECT to value)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public fun getTexture(): Texture3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
   }
 
   public companion object

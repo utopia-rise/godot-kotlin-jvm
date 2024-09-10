@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A physics joint that connects two 2D physics bodies with a spring-like force. This resembles a
@@ -28,14 +29,11 @@ public open class DampedSpringJoint2D : Joint2D() {
    * The spring joint's maximum length. The two attached bodies cannot stretch it past this value.
    */
   public var length: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("lengthProperty")
+    get() = getLength()
+    @JvmName("lengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+      setLength(value)
     }
 
   /**
@@ -43,14 +41,11 @@ public open class DampedSpringJoint2D : Joint2D() {
    * tries to resize towards this length.
    */
   public var restLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRestLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("restLengthProperty")
+    get() = getRestLength()
+    @JvmName("restLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRestLengthPtr, NIL)
+      setRestLength(value)
     }
 
   /**
@@ -59,14 +54,11 @@ public open class DampedSpringJoint2D : Joint2D() {
    * difference from its resting length.
    */
   public var stiffness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStiffnessPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("stiffnessProperty")
+    get() = getStiffness()
+    @JvmName("stiffnessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStiffnessPtr, NIL)
+      setStiffness(value)
     }
 
   /**
@@ -75,18 +67,59 @@ public open class DampedSpringJoint2D : Joint2D() {
    * value forces the attached bodies to align faster.
    */
   public var damping: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("dampingProperty")
+    get() = getDamping()
+    @JvmName("dampingProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
+      setDamping(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_DAMPEDSPRINGJOINT2D, scriptIndex)
+  }
+
+  public fun setLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+  }
+
+  public fun getLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRestLength(restLength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to restLength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRestLengthPtr, NIL)
+  }
+
+  public fun getRestLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRestLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setStiffness(stiffness: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to stiffness.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStiffnessPtr, NIL)
+  }
+
+  public fun getStiffness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStiffnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDamping(damping: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to damping.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
+  }
+
+  public fun getDamping(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

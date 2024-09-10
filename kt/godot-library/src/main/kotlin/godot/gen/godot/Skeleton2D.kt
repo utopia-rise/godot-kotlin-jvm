@@ -79,7 +79,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Sets the [SkeletonModificationStack2D] attached to this skeleton.
    */
-  public fun setModificationStack(modificationStack: SkeletonModificationStack2D): Unit {
+  public fun setModificationStack(modificationStack: SkeletonModificationStack2D?): Unit {
     TransferContext.writeArguments(OBJECT to modificationStack)
     TransferContext.callMethod(rawPtr, MethodBindings.setModificationStackPtr, NIL)
   }

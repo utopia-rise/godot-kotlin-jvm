@@ -32,6 +32,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for 2D physics objects. [CollisionObject2D] can hold any number of [Shape2D]s
@@ -47,7 +48,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one
    * [collisionLayer] bit to be set. See [_inputEvent] for details.
    */
-  public val inputEvent: Signal3<Node, InputEvent, Long> by signal("viewport", "event", "shapeIdx")
+  public val inputEvent: Signal3<Node?, InputEvent?, Long> by signal("viewport", "event",
+      "shapeIdx")
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to
@@ -90,14 +92,11 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * See [DisableMode] for more details about the different modes.
    */
   public var disableMode: DisableMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDisableModePtr, LONG)
-      return CollisionObject2D.DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("disableModeProperty")
+    get() = getDisableMode()
+    @JvmName("disableModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisableModePtr, NIL)
+      setDisableMode(value)
     }
 
   /**
@@ -109,14 +108,11 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * layers and masks[/url] in the documentation for more information.
    */
   public var collisionLayer: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("collisionLayerProperty")
+    get() = getCollisionLayer()
+    @JvmName("collisionLayerProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
+      setCollisionLayer(value)
     }
 
   /**
@@ -128,14 +124,11 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * layers and masks[/url] in the documentation for more information.
    */
   public var collisionMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("collisionMaskProperty")
+    get() = getCollisionMask()
+    @JvmName("collisionMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+      setCollisionMask(value)
     }
 
   /**
@@ -144,14 +137,11 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * player from breaking through the boundaries of a level.
    */
   public var collisionPriority: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("collisionPriorityProperty")
+    get() = getCollisionPriority()
+    @JvmName("collisionPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
+      setCollisionPriority(value)
     }
 
   /**
@@ -160,14 +150,11 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * [collisionLayer] bit to be set.
    */
   public var inputPickable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPickablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("inputPickableProperty")
+    get() = isPickable()
+    @JvmName("inputPickableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPickablePtr, NIL)
+      setPickable(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -181,8 +168,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * bit to be set.
    */
   public open fun _inputEvent(
-    viewport: Viewport,
-    event: InputEvent,
+    viewport: Viewport?,
+    event: InputEvent?,
     shapeIdx: Int,
   ): Unit {
   }
@@ -228,6 +215,28 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  public fun setCollisionLayer(layer: Long): Unit {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionLayerPtr, NIL)
+  }
+
+  public fun getCollisionLayer(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setCollisionMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+  }
+
+  public fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
   /**
    * Based on [value], enables or disables the specified layer in the [collisionLayer], given a
    * [layerNumber] between 1 and 32.
@@ -266,11 +275,44 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setCollisionPriority(priority: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to priority.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionPriorityPtr, NIL)
+  }
+
+  public fun getCollisionPriority(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDisableMode(mode: DisableMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisableModePtr, NIL)
+  }
+
+  public fun getDisableMode(): DisableMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDisableModePtr, LONG)
+    return CollisionObject2D.DisableMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setPickable(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPickablePtr, NIL)
+  }
+
+  public fun isPickable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPickablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future
    * reference.
    */
-  public fun createShapeOwner(owner: Object): Long {
+  public fun createShapeOwner(owner: Object?): Long {
     TransferContext.writeArguments(OBJECT to owner)
     TransferContext.callMethod(rawPtr, MethodBindings.createShapeOwnerPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -377,7 +419,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Adds a [Shape2D] to the shape owner.
    */
-  public fun shapeOwnerAddShape(ownerId: Long, shape: Shape2D): Unit {
+  public fun shapeOwnerAddShape(ownerId: Long, shape: Shape2D?): Unit {
     TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeOwnerAddShapePtr, NIL)
   }

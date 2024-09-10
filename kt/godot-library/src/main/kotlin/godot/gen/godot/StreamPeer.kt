@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -45,14 +46,11 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * If `true`, this [StreamPeer] will using big-endian format for encoding and decoding.
    */
   public var bigEndian: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBigEndianEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("bigEndianProperty")
+    get() = isBigEndianEnabled()
+    @JvmName("bigEndianProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
+      setBigEndian(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -110,6 +108,17 @@ public open class StreamPeer internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailableBytesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setBigEndian(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
+  }
+
+  public fun isBigEndianEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBigEndianEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect
@@ -41,14 +42,11 @@ public open class AudioEffectCapture : AudioEffect() {
    * if already initialized.
    */
   public var bufferLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("bufferLengthProperty")
+    get() = getBufferLength()
+    @JvmName("bufferLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+      setBufferLength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -86,6 +84,17 @@ public open class AudioEffectCapture : AudioEffect() {
   public fun clearBuffer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
+  }
+
+  public fun setBufferLength(bufferLengthSeconds: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bufferLengthSeconds.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+  }
+
+  public fun getBufferLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

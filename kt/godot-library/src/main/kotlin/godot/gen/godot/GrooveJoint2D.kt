@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
@@ -30,14 +31,11 @@ public open class GrooveJoint2D : Joint2D() {
    * local Y axis.
    */
   public var length: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("lengthProperty")
+    get() = getLength()
+    @JvmName("lengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+      setLength(value)
     }
 
   /**
@@ -45,18 +43,37 @@ public open class GrooveJoint2D : Joint2D() {
    * [initialOffset] along the joint's Y axis (along the groove).
    */
   public var initialOffset: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("initialOffsetProperty")
+    get() = getInitialOffset()
+    @JvmName("initialOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
+      setInitialOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GROOVEJOINT2D, scriptIndex)
+  }
+
+  public fun setLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+  }
+
+  public fun getLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setInitialOffset(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
+  }
+
+  public fun getInitialOffset(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

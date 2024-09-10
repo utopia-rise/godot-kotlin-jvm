@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * UV functions are similar to [Vector2] functions, but the input port of this node uses the
@@ -27,18 +28,26 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
    * A function to be applied to the texture coordinates. See [Function] for options.
    */
   public var function: Function
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
-      return VisualShaderNodeUVFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("functionProperty")
+    get() = getFunction()
+    @JvmName("functionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+      setFunction(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUVFUNC, scriptIndex)
+  }
+
+  public fun setFunction(func: Function): Unit {
+    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+  }
+
+  public fun getFunction(): Function {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    return VisualShaderNodeUVFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(

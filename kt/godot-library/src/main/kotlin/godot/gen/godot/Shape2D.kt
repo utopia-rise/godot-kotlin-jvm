@@ -32,6 +32,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for all 2D shapes, intended for use in physics.
@@ -47,18 +48,26 @@ public open class Shape2D internal constructor() : Resource() {
    * is used.
    */
   public var customSolverBias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("customSolverBiasProperty")
+    get() = getCustomSolverBias()
+    @JvmName("customSolverBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+      setCustomSolverBias(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHAPE2D, scriptIndex)
+  }
+
+  public fun setCustomSolverBias(bias: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bias.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+  }
+
+  public fun getCustomSolverBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -68,7 +77,7 @@ public open class Shape2D internal constructor() : Resource() {
    */
   public fun collide(
     localXform: Transform2D,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
@@ -86,7 +95,7 @@ public open class Shape2D internal constructor() : Resource() {
   public fun collideWithMotion(
     localXform: Transform2D,
     localMotion: Vector2,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): Boolean {
@@ -108,7 +117,7 @@ public open class Shape2D internal constructor() : Resource() {
    */
   public fun collideAndGetContacts(
     localXform: Transform2D,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
@@ -134,7 +143,7 @@ public open class Shape2D internal constructor() : Resource() {
   public fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
     localMotion: Vector2,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): PackedVector2Array {

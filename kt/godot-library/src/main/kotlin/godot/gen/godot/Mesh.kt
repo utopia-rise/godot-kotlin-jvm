@@ -35,6 +35,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -51,14 +52,11 @@ public open class Mesh : Resource() {
    */
   @CoreTypeLocalCopy
   public var lightmapSizeHint: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("lightmapSizeHintProperty")
+    get() = getLightmapSizeHint()
+    @JvmName("lightmapSizeHintProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
+      setLightmapSizeHint(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -150,7 +148,7 @@ public open class Mesh : Resource() {
    * Virtual method to override the setting of a [material] at the given [index] for a custom class
    * extending [Mesh].
    */
-  public open fun _surfaceSetMaterial(index: Int, material: Material): Unit {
+  public open fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
   }
 
   /**
@@ -186,6 +184,17 @@ public open class Mesh : Resource() {
    */
   public open fun _getAabb(): AABB {
     throw NotImplementedError("_get_aabb is not implemented for Mesh")
+  }
+
+  public fun setLightmapSizeHint(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
+  }
+
+  public fun getLightmapSizeHint(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
@@ -244,7 +253,7 @@ public open class Mesh : Resource() {
    * to the [MeshInstance3D]'s Surface Material Override properties, use
    * [MeshInstance3D.setSurfaceOverrideMaterial] instead.
    */
-  public fun surfaceSetMaterial(surfIdx: Int, material: Material): Unit {
+  public fun surfaceSetMaterial(surfIdx: Int, material: Material?): Unit {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetMaterialPtr, NIL)
   }

@@ -42,6 +42,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -103,56 +104,44 @@ public open class ItemList : Control() {
    * Allows single or multiple item selection. See the [SelectMode] constants.
    */
   public var selectMode: SelectMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
-      return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("selectModeProperty")
+    get() = getSelectMode()
+    @JvmName("selectModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
+      setSelectMode(value)
     }
 
   /**
    * If `true`, the currently selected item can be selected again.
    */
   public var allowReselect: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowReselectProperty")
+    get() = getAllowReselect()
+    @JvmName("allowReselectProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+      setAllowReselect(value)
     }
 
   /**
    * If `true`, right mouse button click can select items.
    */
   public var allowRmbSelect: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowRmbSelectProperty")
+    get() = getAllowRmbSelect()
+    @JvmName("allowRmbSelectProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
+      setAllowRmbSelect(value)
     }
 
   /**
    * If `true`, allows navigating the [ItemList] with letter keys through incremental search.
    */
   public var allowSearch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowSearchProperty")
+    get() = getAllowSearch()
+    @JvmName("allowSearchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+      setAllowSearch(value)
     }
 
   /**
@@ -162,28 +151,22 @@ public open class ItemList : Control() {
    * wrap, [fixedColumnWidth] should be greater than zero.
    */
   public var maxTextLines: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextLinesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxTextLinesProperty")
+    get() = getMaxTextLines()
+    @JvmName("maxTextLinesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextLinesPtr, NIL)
+      setMaxTextLines(value)
     }
 
   /**
    * If `true`, the control will automatically resize the height to fit its content.
    */
   public var autoHeight: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasAutoHeightPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoHeightProperty")
+    get() = hasAutoHeight()
+    @JvmName("autoHeightProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoHeightPtr, NIL)
+      setAutoHeight(value)
     }
 
   /**
@@ -191,28 +174,22 @@ public open class ItemList : Control() {
    * [TextServer.OverrunBehavior] for a description of all modes.
    */
   public var textOverrunBehavior: TextServer.OverrunBehavior
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
-      return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textOverrunBehaviorProperty")
+    get() = getTextOverrunBehavior()
+    @JvmName("textOverrunBehaviorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+      setTextOverrunBehavior(value)
     }
 
   /**
    * The number of items currently in the list.
    */
   public var itemCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("itemCountProperty")
+    get() = getItemCount()
+    @JvmName("itemCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+      setItemCount(value)
     }
 
   /**
@@ -221,14 +198,11 @@ public open class ItemList : Control() {
    * A value of zero means unlimited columns, i.e. all items will be put in the same row.
    */
   public var maxColumns: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxColumnsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxColumnsProperty")
+    get() = getMaxColumns()
+    @JvmName("maxColumnsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxColumnsPtr, NIL)
+      setMaxColumns(value)
     }
 
   /**
@@ -236,14 +210,11 @@ public open class ItemList : Control() {
    * If `true`, the width is equal to the largest column width of all columns.
    */
   public var sameColumnWidth: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSameColumnWidthPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("sameColumnWidthProperty")
+    get() = isSameColumnWidth()
+    @JvmName("sameColumnWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSameColumnWidthPtr, NIL)
+      setSameColumnWidth(value)
     }
 
   /**
@@ -252,42 +223,33 @@ public open class ItemList : Control() {
    * content and the columns will have an uneven width.
    */
   public var fixedColumnWidth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFixedColumnWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("fixedColumnWidthProperty")
+    get() = getFixedColumnWidth()
+    @JvmName("fixedColumnWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFixedColumnWidthPtr, NIL)
+      setFixedColumnWidth(value)
     }
 
   /**
    * The icon position, whether above or to the left of the text. See the [IconMode] constants.
    */
   public var iconMode: IconMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIconModePtr, LONG)
-      return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("iconModeProperty")
+    get() = getIconMode()
+    @JvmName("iconModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIconModePtr, NIL)
+      setIconMode(value)
     }
 
   /**
    * The scale of icon applied after [fixedIconSize] and transposing takes effect.
    */
   public var iconScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIconScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("iconScaleProperty")
+    get() = getIconScale()
+    @JvmName("iconScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setIconScalePtr, NIL)
+      setIconScale(value)
     }
 
   /**
@@ -296,14 +258,11 @@ public open class ItemList : Control() {
    */
   @CoreTypeLocalCopy
   public var fixedIconSize: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFixedIconSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("fixedIconSizeProperty")
+    get() = getFixedIconSize()
+    @JvmName("fixedIconSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFixedIconSizePtr, NIL)
+      setFixedIconSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -355,7 +314,7 @@ public open class ItemList : Control() {
    * Adds an item to the item list with no text, only an icon. Returns the index of an added item.
    */
   @JvmOverloads
-  public fun addIconItem(icon: Texture2D, selectable: Boolean = true): Int {
+  public fun addIconItem(icon: Texture2D?, selectable: Boolean = true): Int {
     TransferContext.writeArguments(OBJECT to icon, BOOL to selectable)
     TransferContext.callMethod(rawPtr, MethodBindings.addIconItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -381,7 +340,7 @@ public open class ItemList : Control() {
   /**
    * Sets (or replaces) the icon's [Texture2D] associated with the specified index.
    */
-  public fun setItemIcon(idx: Int, icon: Texture2D): Unit {
+  public fun setItemIcon(idx: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -667,6 +626,17 @@ public open class ItemList : Control() {
     TransferContext.callMethod(rawPtr, MethodBindings.moveItemPtr, NIL)
   }
 
+  public fun setItemCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+  }
+
+  public fun getItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Removes the item specified by [idx] index from the list.
    */
@@ -689,6 +659,138 @@ public open class ItemList : Control() {
   public fun sortItemsByText(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.sortItemsByTextPtr, NIL)
+  }
+
+  public fun setFixedColumnWidth(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFixedColumnWidthPtr, NIL)
+  }
+
+  public fun getFixedColumnWidth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFixedColumnWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSameColumnWidth(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSameColumnWidthPtr, NIL)
+  }
+
+  public fun isSameColumnWidth(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSameColumnWidthPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMaxTextLines(lines: Int): Unit {
+    TransferContext.writeArguments(LONG to lines.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextLinesPtr, NIL)
+  }
+
+  public fun getMaxTextLines(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextLinesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMaxColumns(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxColumnsPtr, NIL)
+  }
+
+  public fun getMaxColumns(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxColumnsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSelectMode(mode: SelectMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
+  }
+
+  public fun getSelectMode(): SelectMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
+    return ItemList.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setIconMode(mode: IconMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIconModePtr, NIL)
+  }
+
+  public fun getIconMode(): IconMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIconModePtr, LONG)
+    return ItemList.IconMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setFixedIconSize(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFixedIconSizePtr, NIL)
+  }
+
+  public fun getFixedIconSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFixedIconSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setIconScale(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setIconScalePtr, NIL)
+  }
+
+  public fun getIconScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIconScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAllowRmbSelect(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
+  }
+
+  public fun getAllowRmbSelect(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAllowReselect(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+  }
+
+  public fun getAllowReselect(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAllowSearch(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+  }
+
+  public fun getAllowSearch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAutoHeight(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoHeightPtr, NIL)
+  }
+
+  public fun hasAutoHeight(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAutoHeightPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -731,6 +833,17 @@ public open class ItemList : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
+  }
+
+  public fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+  }
+
+  public fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

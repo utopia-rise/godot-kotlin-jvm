@@ -93,7 +93,7 @@ public object InputMap : Object() {
   /**
    * Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
    */
-  public fun actionAddEvent(action: StringName, event: InputEvent): Unit {
+  public fun actionAddEvent(action: StringName, event: InputEvent?): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.actionAddEventPtr, NIL)
   }
@@ -101,7 +101,7 @@ public object InputMap : Object() {
   /**
    * Returns `true` if the action has the given [InputEvent] associated with it.
    */
-  public fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
+  public fun actionHasEvent(action: StringName, event: InputEvent?): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.actionHasEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -110,7 +110,7 @@ public object InputMap : Object() {
   /**
    * Removes an [InputEvent] from an action.
    */
-  public fun actionEraseEvent(action: StringName, event: InputEvent): Unit {
+  public fun actionEraseEvent(action: StringName, event: InputEvent?): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.actionEraseEventPtr, NIL)
   }
@@ -144,7 +144,7 @@ public object InputMap : Object() {
    */
   @JvmOverloads
   public fun eventIsAction(
-    event: InputEvent,
+    event: InputEvent?,
     action: StringName,
     exactMatch: Boolean = false,
   ): Boolean {

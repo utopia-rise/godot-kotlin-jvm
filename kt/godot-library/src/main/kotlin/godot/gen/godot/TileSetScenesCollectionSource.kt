@@ -95,7 +95,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Returns a newly generated unique ID.
    */
   @JvmOverloads
-  public fun createSceneTile(packedScene: PackedScene, idOverride: Int = -1): Int {
+  public fun createSceneTile(packedScene: PackedScene?, idOverride: Int = -1): Int {
     TransferContext.writeArguments(OBJECT to packedScene, LONG to idOverride.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createSceneTilePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -114,7 +114,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Assigns a [PackedScene] resource to the scene tile with [id]. This will fail if the scene does
    * not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
    */
-  public fun setSceneTileScene(id: Int, packedScene: PackedScene): Unit {
+  public fun setSceneTileScene(id: Int, packedScene: PackedScene?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to packedScene)
     TransferContext.callMethod(rawPtr, MethodBindings.setSceneTileScenePtr, NIL)
   }

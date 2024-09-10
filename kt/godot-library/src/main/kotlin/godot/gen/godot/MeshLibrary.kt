@@ -59,7 +59,7 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets the item's mesh.
    */
-  public fun setItemMesh(id: Int, mesh: Mesh): Unit {
+  public fun setItemMesh(id: Int, mesh: Mesh?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemMeshPtr, NIL)
   }
@@ -75,7 +75,7 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets the item's navigation mesh.
    */
-  public fun setItemNavigationMesh(id: Int, navigationMesh: NavigationMesh): Unit {
+  public fun setItemNavigationMesh(id: Int, navigationMesh: NavigationMesh?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemNavigationMeshPtr, NIL)
   }
@@ -109,7 +109,7 @@ public open class MeshLibrary : Resource() {
   /**
    * Sets a texture to use as the item's preview icon in the editor.
    */
-  public fun setItemPreview(id: Int, texture: Texture2D): Unit {
+  public fun setItemPreview(id: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemPreviewPtr, NIL)
   }

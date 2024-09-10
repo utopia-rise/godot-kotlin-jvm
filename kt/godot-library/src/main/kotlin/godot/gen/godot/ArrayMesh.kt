@@ -37,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -93,14 +94,11 @@ public open class ArrayMesh : Mesh() {
    * Sets the blend shape mode to one of [Mesh.BlendShapeMode].
    */
   public var blendShapeMode: Mesh.BlendShapeMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeModePtr, LONG)
-      return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("blendShapeModeProperty")
+    get() = getBlendShapeMode()
+    @JvmName("blendShapeModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapeModePtr, NIL)
+      setBlendShapeMode(value)
     }
 
   /**
@@ -109,15 +107,11 @@ public open class ArrayMesh : Mesh() {
    */
   @CoreTypeLocalCopy
   public var customAabb: AABB
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
-          godot.core.VariantType.AABB)
-      return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
-    }
+    @JvmName("customAabbProperty")
+    get() = getCustomAabb()
+    @JvmName("customAabbProperty")
     set(`value`) {
-      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+      setCustomAabb(value)
     }
 
   /**
@@ -129,14 +123,11 @@ public open class ArrayMesh : Mesh() {
    * correctly.
    */
   public var shadowMesh: ArrayMesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
-    }
+    @JvmName("shadowMeshProperty")
+    get() = getShadowMesh()
+    @JvmName("shadowMeshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowMeshPtr, NIL)
+      setShadowMesh(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -209,6 +200,17 @@ public open class ArrayMesh : Mesh() {
   public fun clearBlendShapes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBlendShapesPtr, NIL)
+  }
+
+  public fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapeModePtr, NIL)
+  }
+
+  public fun getBlendShapeMode(): Mesh.BlendShapeMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeModePtr, LONG)
+    return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -366,6 +368,28 @@ public open class ArrayMesh : Mesh() {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapUnwrapPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setCustomAabb(aabb: AABB): Unit {
+    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+  }
+
+  public fun getCustomAabb(): AABB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+  }
+
+  public fun setShadowMesh(mesh: ArrayMesh?): Unit {
+    TransferContext.writeArguments(OBJECT to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowMeshPtr, NIL)
+  }
+
+  public fun getShadowMesh(): ArrayMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
   }
 
   public companion object

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Applies [operator] to two floating-point inputs: `a` and `b`.
@@ -26,18 +27,26 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
    * An operator to be applied to the inputs. See [Operator] for options.
    */
   public var `operator`: Operator
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
-      return VisualShaderNodeFloatOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("operatorProperty")
+    get() = getOperator()
+    @JvmName("operatorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
+      setOperator(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATOP, scriptIndex)
+  }
+
+  public fun setOperator(op: Operator): Unit {
+    TransferContext.writeArguments(LONG to op.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
+  }
+
+  public fun getOperator(): Operator {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
+    return VisualShaderNodeFloatOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Operator(

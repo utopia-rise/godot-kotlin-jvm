@@ -19,6 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 
 /**
  * This node uses body tracking data from an [XRBodyTracker] to pose the skeleton of a body mesh.
@@ -34,46 +35,70 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
    * from.
    */
   public var bodyTracker: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("bodyTrackerProperty")
+    get() = getBodyTracker()
+    @JvmName("bodyTrackerProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBodyTrackerPtr, NIL)
+      setBodyTracker(value)
     }
 
   /**
    * Specifies the body parts to update.
    */
   public var bodyUpdate: BodyUpdate
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBodyUpdatePtr, LONG)
-      return BodyUpdateValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("bodyUpdateProperty")
+    get() = getBodyUpdate()
+    @JvmName("bodyUpdateProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBodyUpdatePtr, NIL)
+      setBodyUpdate(value)
     }
 
   /**
    * Specifies the type of updates to perform on the bones.
    */
   public var boneUpdate: BoneUpdate
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
-      return XRBodyModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("boneUpdateProperty")
+    get() = getBoneUpdate()
+    @JvmName("boneUpdateProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+      setBoneUpdate(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRBODYMODIFIER3D, scriptIndex)
+  }
+
+  public fun setBodyTracker(trackerName: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to trackerName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBodyTrackerPtr, NIL)
+  }
+
+  public fun getBodyTracker(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setBodyUpdate(bodyUpdate: BodyUpdate): Unit {
+    TransferContext.writeArguments(LONG to bodyUpdate.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBodyUpdatePtr, NIL)
+  }
+
+  public fun getBodyUpdate(): BodyUpdate {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodyUpdatePtr, LONG)
+    return BodyUpdateValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+    TransferContext.writeArguments(LONG to boneUpdate.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+  }
+
+  public fun getBoneUpdate(): BoneUpdate {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    return XRBodyModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public sealed interface BodyUpdate {

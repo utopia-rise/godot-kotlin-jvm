@@ -36,6 +36,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [Area3D] is a region of 3D space defined by one or multiple [CollisionShape3D] or
@@ -73,7 +74,7 @@ public open class Area3D : CollisionObject3D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val bodyShapeEntered: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeEntered: Signal4<RID, Node3D?, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -82,7 +83,7 @@ public open class Area3D : CollisionObject3D() {
    * shapes configured. Requires [monitoring] to be set to `true`.
    * See also [signal body_shape_entered].
    */
-  public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeExited: Signal4<RID, Node3D?, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -90,14 +91,14 @@ public open class Area3D : CollisionObject3D() {
    * [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured.
    * Requires [monitoring] to be set to `true`.
    */
-  public val bodyEntered: Signal1<Node3D> by signal("body")
+  public val bodyEntered: Signal1<Node3D?> by signal("body")
 
   /**
    * Emitted when the received [body] exits this area. [body] can be a [PhysicsBody3D] or a
    * [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured.
    * Requires [monitoring] to be set to `true`.
    */
-  public val bodyExited: Signal1<Node3D> by signal("body")
+  public val bodyExited: Signal1<Node3D?> by signal("body")
 
   /**
    * Emitted when a [Shape3D] of the received [area] enters a shape of this area. Requires
@@ -116,7 +117,7 @@ public open class Area3D : CollisionObject3D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val areaShapeEntered: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
+  public val areaShapeEntered: Signal4<RID, Area3D?, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
@@ -124,45 +125,39 @@ public open class Area3D : CollisionObject3D() {
    * [monitoring] to be set to `true`.
    * See also [signal area_shape_entered].
    */
-  public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
+  public val areaShapeExited: Signal4<RID, Area3D?, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
    * Emitted when the received [area] enters this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaEntered: Signal1<Area3D> by signal("area")
+  public val areaEntered: Signal1<Area3D?> by signal("area")
 
   /**
    * Emitted when the received [area] exits this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaExited: Signal1<Area3D> by signal("area")
+  public val areaExited: Signal1<Area3D?> by signal("area")
 
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.
    */
   public var monitoring: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("monitoringProperty")
+    get() = isMonitoring()
+    @JvmName("monitoringProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMonitoringPtr, NIL)
+      setMonitoring(value)
     }
 
   /**
    * If `true`, other monitoring areas can detect this area.
    */
   public var monitorable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("monitorableProperty")
+    get() = isMonitorable()
+    @JvmName("monitorableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMonitorablePtr, NIL)
+      setMonitorable(value)
     }
 
   /**
@@ -170,14 +165,11 @@ public open class Area3D : CollisionObject3D() {
    * always processed last, after all areas.
    */
   public var priority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("priorityProperty")
+    get() = getPriority()
+    @JvmName("priorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+      setPriority(value)
     }
 
   /**
@@ -185,14 +177,11 @@ public open class Area3D : CollisionObject3D() {
    * values.
    */
   public var gravitySpaceOverride: SpaceOverride
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
-      return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("gravitySpaceOverrideProperty")
+    get() = getGravitySpaceOverrideMode()
+    @JvmName("gravitySpaceOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
+      setGravitySpaceOverrideMode(value)
     }
 
   /**
@@ -200,14 +189,11 @@ public open class Area3D : CollisionObject3D() {
    * [gravitySpaceOverride].
    */
   public var gravityPoint: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("gravityPointProperty")
+    get() = isGravityAPoint()
+    @JvmName("gravityPointProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityIsPointPtr, NIL)
+      setGravityIsPoint(value)
     }
 
   /**
@@ -220,14 +206,11 @@ public open class Area3D : CollisionObject3D() {
    * the gravity will be constant regardless of distance.
    */
   public var gravityPointUnitDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("gravityPointUnitDistanceProperty")
+    get() = getGravityPointUnitDistance()
+    @JvmName("gravityPointUnitDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
+      setGravityPointUnitDistance(value)
     }
 
   /**
@@ -235,14 +218,11 @@ public open class Area3D : CollisionObject3D() {
    */
   @CoreTypeLocalCopy
   public var gravityPointCenter: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("gravityPointCenterProperty")
+    get() = getGravityPointCenter()
+    @JvmName("gravityPointCenterProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointCenterPtr, NIL)
+      setGravityPointCenter(value)
     }
 
   /**
@@ -250,14 +230,11 @@ public open class Area3D : CollisionObject3D() {
    */
   @CoreTypeLocalCopy
   public var gravityDirection: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("gravityDirectionProperty")
+    get() = getGravityDirection()
+    @JvmName("gravityDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityDirectionPtr, NIL)
+      setGravityDirection(value)
     }
 
   /**
@@ -265,14 +242,11 @@ public open class Area3D : CollisionObject3D() {
    * direction. This is useful to alter the force of gravity without altering its direction.
    */
   public var gravity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("gravityProperty")
+    get() = getGravity()
+    @JvmName("gravityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
+      setGravity(value)
     }
 
   /**
@@ -280,14 +254,11 @@ public open class Area3D : CollisionObject3D() {
    * possible values.
    */
   public var linearDampSpaceOverride: SpaceOverride
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
-      return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("linearDampSpaceOverrideProperty")
+    get() = getLinearDampSpaceOverrideMode()
+    @JvmName("linearDampSpaceOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
+      setLinearDampSpaceOverrideMode(value)
     }
 
   /**
@@ -296,14 +267,11 @@ public open class Area3D : CollisionObject3D() {
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public var linearDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("linearDampProperty")
+    get() = getLinearDamp()
+    @JvmName("linearDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+      setLinearDamp(value)
     }
 
   /**
@@ -311,14 +279,11 @@ public open class Area3D : CollisionObject3D() {
    * possible values.
    */
   public var angularDampSpaceOverride: SpaceOverride
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
-      return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("angularDampSpaceOverrideProperty")
+    get() = getAngularDampSpaceOverrideMode()
+    @JvmName("angularDampSpaceOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
+      setAngularDampSpaceOverrideMode(value)
     }
 
   /**
@@ -327,14 +292,11 @@ public open class Area3D : CollisionObject3D() {
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public var angularDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("angularDampProperty")
+    get() = getAngularDamp()
+    @JvmName("angularDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+      setAngularDamp(value)
     }
 
   /**
@@ -343,14 +305,11 @@ public open class Area3D : CollisionObject3D() {
    * currently not affected by wind.
    */
   public var windForceMagnitude: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWindForceMagnitudePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("windForceMagnitudeProperty")
+    get() = getWindForceMagnitude()
+    @JvmName("windForceMagnitudeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWindForceMagnitudePtr, NIL)
+      setWindForceMagnitude(value)
     }
 
   /**
@@ -359,14 +318,11 @@ public open class Area3D : CollisionObject3D() {
    * currently not affected by wind.
    */
   public var windAttenuationFactor: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWindAttenuationFactorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("windAttenuationFactorProperty")
+    get() = getWindAttenuationFactor()
+    @JvmName("windAttenuationFactorProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWindAttenuationFactorPtr, NIL)
+      setWindAttenuationFactor(value)
     }
 
   /**
@@ -377,70 +333,55 @@ public open class Area3D : CollisionObject3D() {
    * currently not affected by wind.
    */
   public var windSourcePath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWindSourcePathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("windSourcePathProperty")
+    get() = getWindSourcePath()
+    @JvmName("windSourcePathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setWindSourcePathPtr, NIL)
+      setWindSourcePath(value)
     }
 
   /**
    * If `true`, the area's audio bus overrides the default audio bus.
    */
   public var audioBusOverride: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("audioBusOverrideProperty")
+    get() = isOverridingAudioBus()
+    @JvmName("audioBusOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusOverridePtr, NIL)
+      setAudioBusOverride(value)
     }
 
   /**
    * The name of the area's audio bus.
    */
   public var audioBusName: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("audioBusNameProperty")
+    get() = getAudioBusName()
+    @JvmName("audioBusNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusNamePtr, NIL)
+      setAudioBusName(value)
     }
 
   /**
    * If `true`, the area applies reverb to its associated audio.
    */
   public var reverbBusEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingReverbBusPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("reverbBusEnabledProperty")
+    get() = isUsingReverbBus()
+    @JvmName("reverbBusEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseReverbBusPtr, NIL)
+      setUseReverbBus(value)
     }
 
   /**
    * The name of the reverb bus to use for this area's associated audio.
    */
   public var reverbBusName: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReverbBusNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("reverbBusNameProperty")
+    get() = getReverbBusName()
+    @JvmName("reverbBusNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setReverbBusNamePtr, NIL)
+      setReverbBusName(value)
     }
 
   /**
@@ -448,14 +389,11 @@ public open class Area3D : CollisionObject3D() {
    * with `0.1` precision.
    */
   public var reverbBusAmount: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReverbAmountPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("reverbBusAmountProperty")
+    get() = getReverbAmount()
+    @JvmName("reverbBusAmountProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setReverbAmountPtr, NIL)
+      setReverbAmount(value)
     }
 
   /**
@@ -463,14 +401,11 @@ public open class Area3D : CollisionObject3D() {
    * precision.
    */
   public var reverbBusUniformity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReverbUniformityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("reverbBusUniformityProperty")
+    get() = getReverbUniformity()
+    @JvmName("reverbBusUniformityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setReverbUniformityPtr, NIL)
+      setReverbUniformity(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -526,6 +461,182 @@ public open class Area3D : CollisionObject3D() {
       gravityDirection = this
   }
 
+
+  public fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
+  }
+
+  public fun getGravitySpaceOverrideMode(): SpaceOverride {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
+    return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setGravityIsPoint(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityIsPointPtr, NIL)
+  }
+
+  public fun isGravityAPoint(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setGravityPointUnitDistance(distanceScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distanceScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
+  }
+
+  public fun getGravityPointUnitDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setGravityPointCenter(center: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to center)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointCenterPtr, NIL)
+  }
+
+  public fun getGravityPointCenter(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setGravityDirection(direction: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to direction)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityDirectionPtr, NIL)
+  }
+
+  public fun getGravityDirection(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setGravity(gravity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to gravity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
+  }
+
+  public fun getGravity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
+  }
+
+  public fun getLinearDampSpaceOverrideMode(): SpaceOverride {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
+    return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
+  }
+
+  public fun getAngularDampSpaceOverrideMode(): SpaceOverride {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
+    return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAngularDamp(angularDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+  }
+
+  public fun getAngularDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLinearDamp(linearDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+  }
+
+  public fun getLinearDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+  }
+
+  public fun getPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setWindForceMagnitude(windForceMagnitude: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to windForceMagnitude.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWindForceMagnitudePtr, NIL)
+  }
+
+  public fun getWindForceMagnitude(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWindForceMagnitudePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setWindAttenuationFactor(windAttenuationFactor: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to windAttenuationFactor.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWindAttenuationFactorPtr, NIL)
+  }
+
+  public fun getWindAttenuationFactor(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWindAttenuationFactorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setWindSourcePath(windSourcePath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to windSourcePath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setWindSourcePathPtr, NIL)
+  }
+
+  public fun getWindSourcePath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWindSourcePathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setMonitorable(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMonitorablePtr, NIL)
+  }
+
+  public fun isMonitorable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMonitoring(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMonitoringPtr, NIL)
+  }
+
+  public fun isMonitoring(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   /**
    * Returns a list of intersecting [PhysicsBody3D]s and [GridMap]s. The overlapping body's
@@ -592,7 +703,7 @@ public open class Area3D : CollisionObject3D() {
    * not physics body themselves, they register their tiles with collision shapes as a virtual physics
    * body.
    */
-  public fun overlapsBody(body: Node): Boolean {
+  public fun overlapsBody(body: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, MethodBindings.overlapsBodyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -603,10 +714,76 @@ public open class Area3D : CollisionObject3D() {
    * **Note:** The result of this test is not immediate after moving objects. For performance, list
    * of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
-  public fun overlapsArea(area: Node): Boolean {
+  public fun overlapsArea(area: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(rawPtr, MethodBindings.overlapsAreaPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAudioBusOverride(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusOverridePtr, NIL)
+  }
+
+  public fun isOverridingAudioBus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAudioBusName(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusNamePtr, NIL)
+  }
+
+  public fun getAudioBusName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setUseReverbBus(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseReverbBusPtr, NIL)
+  }
+
+  public fun isUsingReverbBus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingReverbBusPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setReverbBusName(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setReverbBusNamePtr, NIL)
+  }
+
+  public fun getReverbBusName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReverbBusNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setReverbAmount(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setReverbAmountPtr, NIL)
+  }
+
+  public fun getReverbAmount(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReverbAmountPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setReverbUniformity(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setReverbUniformityPtr, NIL)
+  }
+
+  public fun getReverbUniformity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReverbUniformityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class SpaceOverride(

@@ -66,14 +66,11 @@ public open class FontVariation : Font() {
    * Base font used to create a variation. If not set, default [Theme] font is used.
    */
   public var baseFont: Font?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBaseFontPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Font?)
-    }
+    @JvmName("baseFontProperty")
+    get() = getBaseFont()
+    @JvmName("baseFontProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBaseFontPtr, NIL)
+      setBaseFont(value)
     }
 
   /**
@@ -88,28 +85,22 @@ public open class FontVariation : Font() {
    * **Note:** To get available variation axes of a font, use [Font.getSupportedVariationList].
    */
   public var variationOpentype: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
-      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
-    }
+    @JvmName("variationOpentypeProperty")
+    get() = getVariationOpentype()
+    @JvmName("variationOpentypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVariationOpentypePtr, NIL)
+      setVariationOpentype(value)
     }
 
   /**
    * Active face index in the TrueType / OpenType collection file.
    */
   public var variationFaceIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVariationFaceIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("variationFaceIndexProperty")
+    get() = getVariationFaceIndex()
+    @JvmName("variationFaceIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVariationFaceIndexPtr, NIL)
+      setVariationFaceIndex(value)
     }
 
   /**
@@ -119,14 +110,11 @@ public open class FontVariation : Font() {
    * and [TextMesh] from working correctly.
    */
   public var variationEmbolden: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("variationEmboldenProperty")
+    get() = getVariationEmbolden()
+    @JvmName("variationEmboldenProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVariationEmboldenPtr, NIL)
+      setVariationEmbolden(value)
     }
 
   /**
@@ -137,14 +125,11 @@ public open class FontVariation : Font() {
    */
   @CoreTypeLocalCopy
   public var variationTransform: Transform2D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
-      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
-    }
+    @JvmName("variationTransformProperty")
+    get() = getVariationTransform()
+    @JvmName("variationTransformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVariationTransformPtr, NIL)
+      setVariationTransform(value)
     }
 
   /**
@@ -153,76 +138,57 @@ public open class FontVariation : Font() {
    * tags[/url].
    */
   public var opentypeFeatures: Dictionary<Any?, Any?>
-    @JvmName("getOpentypeFeatures_prop")
-    get() = super.getOpentypeFeatures()
+    @JvmName("opentypeFeaturesProperty")
+    get() = getOpentypeFeatures()
+    @JvmName("opentypeFeaturesProperty")
     set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeaturesPtr, NIL)
+      setOpentypeFeatures(value)
     }
 
   /**
    * Extra spacing between graphical glyphs.
    */
-  public var spacingGlyph: Long
+  public val spacingGlyph: Int
     get() {
       throw
           UninitializedPropertyAccessException("Cannot access property spacingGlyph: has no getter")
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   /**
    * Extra width of the space glyphs.
    */
-  public var spacingSpace: Long
+  public val spacingSpace: Int
     get() {
       throw
           UninitializedPropertyAccessException("Cannot access property spacingSpace: has no getter")
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   /**
    * Extra spacing at the top of the line in pixels.
    */
-  public var spacingTop: Long
+  public val spacingTop: Int
     get() {
       throw UninitializedPropertyAccessException("Cannot access property spacingTop: has no getter")
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   /**
    * Extra spacing at the bottom of the line in pixels.
    */
-  public var spacingBottom: Long
+  public val spacingBottom: Int
     get() {
       throw
           UninitializedPropertyAccessException("Cannot access property spacingBottom: has no getter")
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
     }
 
   /**
    * Extra baseline offset (as a fraction of font height).
    */
   public var baselineOffset: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("baselineOffsetProperty")
+    get() = getBaselineOffset()
+    @JvmName("baselineOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBaselineOffsetPtr, NIL)
+      setBaselineOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -256,6 +222,86 @@ public open class FontVariation : Font() {
       variationTransform = this
   }
 
+
+  public fun setBaseFont(font: Font?): Unit {
+    TransferContext.writeArguments(OBJECT to font)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBaseFontPtr, NIL)
+  }
+
+  public fun getBaseFont(): Font? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBaseFontPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+  }
+
+  public fun setVariationOpentype(coords: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to coords)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVariationOpentypePtr, NIL)
+  }
+
+  public fun getVariationOpentype(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  public fun setVariationEmbolden(strength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to strength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVariationEmboldenPtr, NIL)
+  }
+
+  public fun getVariationEmbolden(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVariationFaceIndex(faceIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to faceIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVariationFaceIndexPtr, NIL)
+  }
+
+  public fun getVariationFaceIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVariationFaceIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setVariationTransform(transform: Transform2D): Unit {
+    TransferContext.writeArguments(TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVariationTransformPtr, NIL)
+  }
+
+  public fun getVariationTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+  }
+
+  public fun setOpentypeFeatures(features: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to features)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeaturesPtr, NIL)
+  }
+
+  /**
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
+   * relative to the font size).
+   */
+  public fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
+    TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
+  }
+
+  public fun setBaselineOffset(baselineOffset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to baselineOffset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBaselineOffsetPtr, NIL)
+  }
+
+  public fun getBaselineOffset(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
 
   public companion object
 

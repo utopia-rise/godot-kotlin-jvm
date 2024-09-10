@@ -21,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An
@@ -37,14 +38,11 @@ public open class AtlasTexture : Texture2D() {
    * another [AtlasTexture].
    */
   public var atlas: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAtlasPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("atlasProperty")
+    get() = getAtlas()
+    @JvmName("atlasProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAtlasPtr, NIL)
+      setAtlas(value)
     }
 
   /**
@@ -53,14 +51,11 @@ public open class AtlasTexture : Texture2D() {
    */
   @CoreTypeLocalCopy
   public var region: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+    @JvmName("regionProperty")
+    get() = getRegion()
+    @JvmName("regionProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
+      setRegion(value)
     }
 
   /**
@@ -70,14 +65,11 @@ public open class AtlasTexture : Texture2D() {
    */
   @CoreTypeLocalCopy
   public var margin: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+    @JvmName("marginProperty")
+    get() = getMargin()
+    @JvmName("marginProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+      setMargin(value)
     }
 
   /**
@@ -85,14 +77,11 @@ public open class AtlasTexture : Texture2D() {
    * texture pixels.
    */
   public var filterClip: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasFilterClipPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("filterClipProperty")
+    get() = hasFilterClip()
+    @JvmName("filterClipProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilterClipPtr, NIL)
+      setFilterClip(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -149,6 +138,50 @@ public open class AtlasTexture : Texture2D() {
       margin = this
   }
 
+
+  public fun setAtlas(atlas: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to atlas)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAtlasPtr, NIL)
+  }
+
+  public fun getAtlas(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAtlasPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setRegion(region: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to region)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
+  }
+
+  public fun getRegion(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public fun setMargin(margin: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to margin)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+  }
+
+  public fun getMargin(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public fun setFilterClip(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterClipPtr, NIL)
+  }
+
+  public fun hasFilterClip(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasFilterClipPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object
 

@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -51,14 +52,11 @@ public open class AudioStreamPlayer3D : Node3D() {
    * The [AudioStream] resource to be played.
    */
   public var stream: AudioStream?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+    @JvmName("streamProperty")
+    get() = getStream()
+    @JvmName("streamProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
+      setStream(value)
     }
 
   /**
@@ -66,28 +64,22 @@ public open class AudioStreamPlayer3D : Node3D() {
    * not be affected by distance, effectively disabling attenuation.
    */
   public var attenuationModel: AttenuationModel
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationModelPtr, LONG)
-      return AudioStreamPlayer3D.AttenuationModel.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("attenuationModelProperty")
+    get() = getAttenuationModel()
+    @JvmName("attenuationModelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationModelPtr, NIL)
+      setAttenuationModel(value)
     }
 
   /**
    * The base sound level before attenuation, in decibels.
    */
   public var volumeDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("volumeDbProperty")
+    get() = getVolumeDb()
+    @JvmName("volumeDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+      setVolumeDb(value)
     }
 
   /**
@@ -95,80 +87,62 @@ public open class AudioStreamPlayer3D : Node3D() {
    * distance.
    */
   public var unitSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUnitSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("unitSizeProperty")
+    get() = getUnitSize()
+    @JvmName("unitSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setUnitSizePtr, NIL)
+      setUnitSize(value)
     }
 
   /**
    * Sets the absolute maximum of the sound level, in decibels.
    */
   public var maxDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("maxDbProperty")
+    get() = getMaxDb()
+    @JvmName("maxDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxDbPtr, NIL)
+      setMaxDb(value)
     }
 
   /**
    * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
    */
   public var pitchScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("pitchScaleProperty")
+    get() = getPitchScale()
+    @JvmName("pitchScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+      setPitchScale(value)
     }
 
   /**
    * If `true`, audio is playing or is queued to be played (see [play]).
    */
   public val playing: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("playingProperty")
+    get() = isPlaying()
 
   /**
    * If `true`, audio plays when the AudioStreamPlayer3D node is added to scene tree.
    */
   public var autoplay: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoplayEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoplayProperty")
+    get() = isAutoplayEnabled()
+    @JvmName("autoplayProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+      setAutoplay(value)
     }
 
   /**
    * If `true`, the playback is paused. You can resume it by setting [streamPaused] to `false`.
    */
   public var streamPaused: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPausedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("streamPausedProperty")
+    get() = getStreamPaused()
+    @JvmName("streamPausedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPausedPtr, NIL)
+      setStreamPaused(value)
     }
 
   /**
@@ -179,14 +153,11 @@ public open class AudioStreamPlayer3D : Node3D() {
    * when the listener is far away, which saves CPU resources.
    */
   public var maxDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("maxDistanceProperty")
+    get() = getMaxDistance()
+    @JvmName("maxDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
+      setMaxDistance(value)
     }
 
   /**
@@ -194,14 +165,11 @@ public open class AudioStreamPlayer3D : Node3D() {
    * after this value is reached will cut off the oldest sounds.
    */
   public var maxPolyphony: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxPolyphonyPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxPolyphonyProperty")
+    get() = getMaxPolyphony()
+    @JvmName("maxPolyphonyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxPolyphonyPtr, NIL)
+      setMaxPolyphony(value)
     }
 
   /**
@@ -210,14 +178,11 @@ public open class AudioStreamPlayer3D : Node3D() {
    * from left to right more dramatically than lower values.
    */
   public var panningStrength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPanningStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("panningStrengthProperty")
+    get() = getPanningStrength()
+    @JvmName("panningStrengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPanningStrengthPtr, NIL)
+      setPanningStrength(value)
     }
 
   /**
@@ -228,14 +193,11 @@ public open class AudioStreamPlayer3D : Node3D() {
    * `"Master"`.
    */
   public var bus: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("busProperty")
+    get() = getBus()
+    @JvmName("busProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
+      setBus(value)
     }
 
   /**
@@ -245,14 +207,11 @@ public open class AudioStreamPlayer3D : Node3D() {
    * an audio bus to make them sound like they are being played underwater.
    */
   public var areaMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAreaMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("areaMaskProperty")
+    get() = getAreaMask()
+    @JvmName("areaMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAreaMaskPtr, NIL)
+      setAreaMask(value)
     }
 
   /**
@@ -260,42 +219,33 @@ public open class AudioStreamPlayer3D : Node3D() {
    * that playback type.
    */
   public var playbackType: AudioServer.PlaybackType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackTypePtr, LONG)
-      return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("playbackTypeProperty")
+    get() = getPlaybackType()
+    @JvmName("playbackTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
+      setPlaybackType(value)
     }
 
   /**
    * If `true`, the audio should be attenuated according to the direction of the sound.
    */
   public var emissionAngleEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEmissionAngleEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("emissionAngleEnabledProperty")
+    get() = isEmissionAngleEnabled()
+    @JvmName("emissionAngleEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionAngleEnabledPtr, NIL)
+      setEmissionAngleEnabled(value)
     }
 
   /**
    * The angle in which the audio reaches a listener unattenuated.
    */
   public var emissionAngleDegrees: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("emissionAngleDegreesProperty")
+    get() = getEmissionAngle()
+    @JvmName("emissionAngleDegreesProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionAnglePtr, NIL)
+      setEmissionAngle(value)
     }
 
   /**
@@ -303,15 +253,11 @@ public open class AudioStreamPlayer3D : Node3D() {
    * [emissionAngleEnabled] is set, in decibels.
    */
   public var emissionAngleFilterAttenuationDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionAngleFilterAttenuationDbPtr,
-          DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("emissionAngleFilterAttenuationDbProperty")
+    get() = getEmissionAngleFilterAttenuationDb()
+    @JvmName("emissionAngleFilterAttenuationDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionAngleFilterAttenuationDbPtr, NIL)
+      setEmissionAngleFilterAttenuationDb(value)
     }
 
   /**
@@ -320,46 +266,92 @@ public open class AudioStreamPlayer3D : Node3D() {
    * this frequency is above the human hearing limit.
    */
   public var attenuationFilterCutoffHz: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationFilterCutoffHzPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("attenuationFilterCutoffHzProperty")
+    get() = getAttenuationFilterCutoffHz()
+    @JvmName("attenuationFilterCutoffHzProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationFilterCutoffHzPtr, NIL)
+      setAttenuationFilterCutoffHz(value)
     }
 
   /**
    * Amount how much the filter affects the loudness, in decibels.
    */
   public var attenuationFilterDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationFilterDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("attenuationFilterDbProperty")
+    get() = getAttenuationFilterDb()
+    @JvmName("attenuationFilterDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationFilterDbPtr, NIL)
+      setAttenuationFilterDb(value)
     }
 
   /**
    * Decides in which step the Doppler effect should be calculated.
    */
   public var dopplerTracking: DopplerTracking
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDopplerTrackingPtr, LONG)
-      return AudioStreamPlayer3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("dopplerTrackingProperty")
+    get() = getDopplerTracking()
+    @JvmName("dopplerTrackingProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDopplerTrackingPtr, NIL)
+      setDopplerTracking(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER3D, scriptIndex)
+  }
+
+  public fun setStream(stream: AudioStream?): Unit {
+    TransferContext.writeArguments(OBJECT to stream)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
+  }
+
+  public fun getStream(): AudioStream? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
+  }
+
+  public fun setVolumeDb(volumeDb: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to volumeDb.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+  }
+
+  public fun getVolumeDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setUnitSize(unitSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to unitSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setUnitSizePtr, NIL)
+  }
+
+  public fun getUnitSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUnitSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMaxDb(maxDb: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to maxDb.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxDbPtr, NIL)
+  }
+
+  public fun getMaxDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPitchScale(pitchScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pitchScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+  }
+
+  public fun getPitchScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -388,12 +380,173 @@ public open class AudioStreamPlayer3D : Node3D() {
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
+  public fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns the position in the [AudioStream].
    */
   public fun getPlaybackPosition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBus(bus: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to bus)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
+  }
+
+  public fun getBus(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setAutoplay(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+  }
+
+  public fun isAutoplayEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoplayEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMaxDistance(meters: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to meters.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
+  }
+
+  public fun getMaxDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAreaMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAreaMaskPtr, NIL)
+  }
+
+  public fun getAreaMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAreaMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setEmissionAngle(degrees: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionAnglePtr, NIL)
+  }
+
+  public fun getEmissionAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEmissionAngleEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionAngleEnabledPtr, NIL)
+  }
+
+  public fun isEmissionAngleEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEmissionAngleEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEmissionAngleFilterAttenuationDb(db: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to db.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionAngleFilterAttenuationDbPtr, NIL)
+  }
+
+  public fun getEmissionAngleFilterAttenuationDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionAngleFilterAttenuationDbPtr,
+        DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAttenuationFilterCutoffHz(degrees: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationFilterCutoffHzPtr, NIL)
+  }
+
+  public fun getAttenuationFilterCutoffHz(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationFilterCutoffHzPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAttenuationFilterDb(db: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to db.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationFilterDbPtr, NIL)
+  }
+
+  public fun getAttenuationFilterDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationFilterDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAttenuationModel(model: AttenuationModel): Unit {
+    TransferContext.writeArguments(LONG to model.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationModelPtr, NIL)
+  }
+
+  public fun getAttenuationModel(): AttenuationModel {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationModelPtr, LONG)
+    return AudioStreamPlayer3D.AttenuationModel.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDopplerTracking(mode: DopplerTracking): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDopplerTrackingPtr, NIL)
+  }
+
+  public fun getDopplerTracking(): DopplerTracking {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDopplerTrackingPtr, LONG)
+    return AudioStreamPlayer3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setStreamPaused(pause: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pause)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPausedPtr, NIL)
+  }
+
+  public fun getStreamPaused(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPausedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setMaxPolyphony(maxPolyphony: Int): Unit {
+    TransferContext.writeArguments(LONG to maxPolyphony.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPolyphonyPtr, NIL)
+  }
+
+  public fun getMaxPolyphony(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPolyphonyPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPanningStrength(panningStrength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to panningStrength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPanningStrengthPtr, NIL)
+  }
+
+  public fun getPanningStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPanningStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
@@ -413,6 +566,17 @@ public open class AudioStreamPlayer3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?)
+  }
+
+  public fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
+    TransferContext.writeArguments(LONG to playbackType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
+  }
+
+  public fun getPlaybackType(): AudioServer.PlaybackType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackTypePtr, LONG)
+    return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class AttenuationModel(

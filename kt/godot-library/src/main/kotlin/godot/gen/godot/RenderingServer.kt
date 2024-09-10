@@ -196,7 +196,7 @@ public object RenderingServer : Object() {
    * **Note:** Not to be confused with [RenderingDevice.textureCreate], which creates the graphics
    * API's own texture type as opposed to the Godot-specific [Texture2D] resource.
    */
-  public fun texture2dCreate(image: Image): RID {
+  public fun texture2dCreate(image: Image?): RID {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.texture2dCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -251,7 +251,7 @@ public object RenderingServer : Object() {
    */
   public fun texture2dUpdate(
     texture: RID,
-    image: Image,
+    image: Image?,
     layer: Int,
   ): Unit {
     TransferContext.writeArguments(_RID to texture, OBJECT to image, LONG to layer.toLong())
@@ -5437,7 +5437,7 @@ public object RenderingServer : Object() {
    */
   @JvmOverloads
   public fun setBootImage(
-    image: Image,
+    image: Image?,
     color: Color,
     scale: Boolean,
     useFilter: Boolean = true,

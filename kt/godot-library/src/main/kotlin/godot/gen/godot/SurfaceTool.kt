@@ -340,7 +340,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Sets [Material] to be used by the [Mesh] you are constructing.
    */
-  public fun setMaterial(material: Material): Unit {
+  public fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -365,7 +365,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Creates a vertex array from an existing [Mesh].
    */
-  public fun createFrom(existing: Mesh, surface: Int): Unit {
+  public fun createFrom(existing: Mesh?, surface: Int): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createFromPtr, NIL)
   }
@@ -388,7 +388,7 @@ public open class SurfaceTool : RefCounted() {
    * to extract a specific pose from a blend shape.
    */
   public fun createFromBlendShape(
-    existing: Mesh,
+    existing: Mesh?,
     surface: Int,
     blendShape: String,
   ): Unit {
@@ -401,7 +401,7 @@ public open class SurfaceTool : RefCounted() {
    * [Transform3D].
    */
   public fun appendFrom(
-    existing: Mesh,
+    existing: Mesh?,
     surface: Int,
     transform: Transform3D,
   ): Unit {

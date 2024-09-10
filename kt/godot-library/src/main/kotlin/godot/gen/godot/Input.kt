@@ -631,7 +631,7 @@ public object Input : Object() {
    */
   @JvmOverloads
   public fun setCustomMouseCursor(
-    image: Resource,
+    image: Resource?,
     shape: CursorShape = Input.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
@@ -664,7 +664,7 @@ public object Input : Object() {
    * (use [warpMouse] instead) and sending [kbd]Alt/Cmd + Tab[/kbd] as [InputEventKey] won't toggle
    * between active windows.
    */
-  public fun parseInputEvent(event: InputEvent): Unit {
+  public fun parseInputEvent(event: InputEvent?): Unit {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.parseInputEventPtr, NIL)
   }

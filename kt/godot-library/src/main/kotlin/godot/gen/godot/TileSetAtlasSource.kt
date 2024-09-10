@@ -30,6 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -53,14 +54,11 @@ public open class TileSetAtlasSource : TileSetSource() {
    * The atlas texture.
    */
   public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   /**
@@ -68,14 +66,11 @@ public open class TileSetAtlasSource : TileSetSource() {
    */
   @CoreTypeLocalCopy
   public var margins: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMarginsPtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("marginsProperty")
+    get() = getMargins()
+    @JvmName("marginsProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMarginsPtr, NIL)
+      setMargins(value)
     }
 
   /**
@@ -83,14 +78,11 @@ public open class TileSetAtlasSource : TileSetSource() {
    */
   @CoreTypeLocalCopy
   public var separation: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSeparationPtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("separationProperty")
+    get() = getSeparation()
+    @JvmName("separationProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSeparationPtr, NIL)
+      setSeparation(value)
     }
 
   /**
@@ -99,14 +91,11 @@ public open class TileSetAtlasSource : TileSetSource() {
    */
   @CoreTypeLocalCopy
   public var textureRegionSize: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRegionSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("textureRegionSizeProperty")
+    get() = getTextureRegionSize()
+    @JvmName("textureRegionSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRegionSizePtr, NIL)
+      setTextureRegionSize(value)
     }
 
   /**
@@ -116,14 +105,11 @@ public open class TileSetAtlasSource : TileSetSource() {
    * texture requires both memory and processing time when the TileSetAtlasSource resource is modified.
    */
   public var useTexturePadding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseTexturePaddingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useTexturePaddingProperty")
+    get() = getUseTexturePadding()
+    @JvmName("useTexturePaddingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseTexturePaddingPtr, NIL)
+      setUseTexturePadding(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -204,6 +190,61 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
 
+  public fun setTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setMargins(margins: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to margins)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMarginsPtr, NIL)
+  }
+
+  public fun getMargins(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMarginsPtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setSeparation(separation: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to separation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSeparationPtr, NIL)
+  }
+
+  public fun getSeparation(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSeparationPtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setTextureRegionSize(textureRegionSize: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to textureRegionSize)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRegionSizePtr, NIL)
+  }
+
+  public fun getTextureRegionSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRegionSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setUseTexturePadding(useTexturePadding: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useTexturePadding)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseTexturePaddingPtr, NIL)
+  }
+
+  public fun getUseTexturePadding(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseTexturePaddingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Creates a new tile at coordinates [atlasCoords] with the given [size].
    */
@@ -273,7 +314,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * can be used to undo changes that would have caused tiles data loss.
    */
   public fun getTilesToBeRemovedOnChange(
-    texture: Texture2D,
+    texture: Texture2D?,
     margins: Vector2i,
     separation: Vector2i,
     textureRegionSize: Vector2i,

@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [AnimatedTexture] is a resource format for frame-based animations, where multiple textures can be
@@ -45,14 +46,11 @@ public open class AnimatedTexture : Texture2D() {
    * The maximum number of frames is [MAX_FRAMES].
    */
   public var frames: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFramesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("framesProperty")
+    get() = getFrames()
+    @JvmName("framesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFramesPtr, NIL)
+      setFrames(value)
     }
 
   /**
@@ -60,14 +58,11 @@ public open class AnimatedTexture : Texture2D() {
    * current frame time, so the newly selected frame plays for its whole configured frame duration.
    */
   public var currentFrame: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFramePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("currentFrameProperty")
+    get() = getCurrentFrame()
+    @JvmName("currentFrameProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentFramePtr, NIL)
+      setCurrentFrame(value)
     }
 
   /**
@@ -75,14 +70,11 @@ public open class AnimatedTexture : Texture2D() {
    * animation will continue from where it was paused when changing this property to `false`.
    */
   public var pause: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPausePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("pauseProperty")
+    get() = getPause()
+    @JvmName("pauseProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
+      setPause(value)
     }
 
   /**
@@ -90,14 +82,11 @@ public open class AnimatedTexture : Texture2D() {
    * reaching the end. Note that reaching the end will not set [pause] to `true`.
    */
   public var oneShot: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("oneShotProperty")
+    get() = getOneShot()
+    @JvmName("oneShotProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+      setOneShot(value)
     }
 
   /**
@@ -105,18 +94,70 @@ public open class AnimatedTexture : Texture2D() {
    * played in reverse.
    */
   public var speedScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("speedScaleProperty")
+    get() = getSpeedScale()
+    @JvmName("speedScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+      setSpeedScale(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATEDTEXTURE, scriptIndex)
+  }
+
+  public fun setFrames(frames: Int): Unit {
+    TransferContext.writeArguments(LONG to frames.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFramesPtr, NIL)
+  }
+
+  public fun getFrames(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFramesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setCurrentFrame(frame: Int): Unit {
+    TransferContext.writeArguments(LONG to frame.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentFramePtr, NIL)
+  }
+
+  public fun getCurrentFrame(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFramePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPause(pause: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pause)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
+  }
+
+  public fun getPause(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPausePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setOneShot(oneShot: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to oneShot)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+  }
+
+  public fun getOneShot(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSpeedScale(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+  }
+
+  public fun getSpeedScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -125,7 +166,7 @@ public open class AnimatedTexture : Texture2D() {
    * You can define any number of textures up to [MAX_FRAMES], but keep in mind that only frames
    * from 0 to [frames] - 1 will be part of the animation.
    */
-  public fun setFrameTexture(frame: Int, texture: Texture2D): Unit {
+  public fun setFrameTexture(frame: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to frame.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setFrameTexturePtr, NIL)
   }

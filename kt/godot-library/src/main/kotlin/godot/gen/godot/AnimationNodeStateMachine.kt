@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -51,14 +52,11 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
    * [AnimationNodeStateMachine.StateMachineType].
    */
   public var stateMachineType: StateMachineType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStateMachineTypePtr, LONG)
-      return AnimationNodeStateMachine.StateMachineType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("stateMachineTypeProperty")
+    get() = getStateMachineType()
+    @JvmName("stateMachineTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStateMachineTypePtr, NIL)
+      setStateMachineType(value)
     }
 
   /**
@@ -67,14 +65,11 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
    * restarted. If `false`, nothing happens on the teleportation to the self state.
    */
   public var allowTransitionToSelf: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowTransitionToSelfProperty")
+    get() = isAllowTransitionToSelf()
+    @JvmName("allowTransitionToSelfProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
+      setAllowTransitionToSelf(value)
     }
 
   /**
@@ -84,14 +79,11 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
    * [AnimationNode] and the state machine's start node and end node gives good results.
    */
   public var resetEnds: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.areEndsResetPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("resetEndsProperty")
+    get() = areEndsReset()
+    @JvmName("resetEndsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResetEndsPtr, NIL)
+      setResetEnds(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -104,7 +96,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   @JvmOverloads
   public fun addNode(
     name: StringName,
-    node: AnimationNode,
+    node: AnimationNode?,
     position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
@@ -114,7 +106,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Replaces the given animation node with a new animation node.
    */
-  public fun replaceNode(name: StringName, node: AnimationNode): Unit {
+  public fun replaceNode(name: StringName, node: AnimationNode?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.replaceNodePtr, NIL)
   }
@@ -156,7 +148,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the given animation node's name.
    */
-  public fun getNodeName(node: AnimationNode): StringName {
+  public fun getNodeName(node: AnimationNode?): StringName {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -194,7 +186,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public fun addTransition(
     from: StringName,
     to: StringName,
-    transition: AnimationNodeStateMachineTransition,
+    transition: AnimationNodeStateMachineTransition?,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to from, STRING_NAME to to, OBJECT to transition)
     TransferContext.callMethod(rawPtr, MethodBindings.addTransitionPtr, NIL)
@@ -267,6 +259,39 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setStateMachineType(stateMachineType: StateMachineType): Unit {
+    TransferContext.writeArguments(LONG to stateMachineType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStateMachineTypePtr, NIL)
+  }
+
+  public fun getStateMachineType(): StateMachineType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStateMachineTypePtr, LONG)
+    return AnimationNodeStateMachine.StateMachineType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAllowTransitionToSelf(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
+  }
+
+  public fun isAllowTransitionToSelf(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setResetEnds(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResetEndsPtr, NIL)
+  }
+
+  public fun areEndsReset(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.areEndsResetPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class StateMachineType(

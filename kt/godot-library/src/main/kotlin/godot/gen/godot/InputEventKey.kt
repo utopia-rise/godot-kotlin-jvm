@@ -36,11 +36,11 @@ public open class InputEventKey : InputEventWithModifiers() {
    * If `true`, the key's state is pressed. If `false`, the key's state is released.
    */
   public var pressed: Boolean
-    @JvmName("isPressed_prop")
-    get() = super.isPressed()
+    @JvmName("pressedProperty")
+    get() = isPressed()
+    @JvmName("pressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+      setPressed(value)
     }
 
   /**
@@ -56,14 +56,11 @@ public open class InputEventKey : InputEventWithModifiers() {
    * [/codeblock]
    */
   public var keycode: Key
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getKeycodePtr, LONG)
-      return Key.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("keycodeProperty")
+    get() = getKeycode()
+    @JvmName("keycodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeycodePtr, NIL)
+      setKeycode(value)
     }
 
   /**
@@ -93,14 +90,11 @@ public open class InputEventKey : InputEventWithModifiers() {
    * ```
    */
   public var physicalKeycode: Key
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalKeycodePtr, LONG)
-      return Key.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("physicalKeycodeProperty")
+    get() = getPhysicalKeycode()
+    @JvmName("physicalKeycodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalKeycodePtr, NIL)
+      setPhysicalKeycode(value)
     }
 
   /**
@@ -117,14 +111,11 @@ public open class InputEventKey : InputEventWithModifiers() {
    * [/codeblock]
    */
   public var keyLabel: Key
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getKeyLabelPtr, LONG)
-      return Key.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("keyLabelProperty")
+    get() = getKeyLabel()
+    @JvmName("keyLabelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeyLabelPtr, NIL)
+      setKeyLabel(value)
     }
 
   /**
@@ -133,14 +124,11 @@ public open class InputEventKey : InputEventWithModifiers() {
    * active. See [Window.setImeActive] for more information.
    */
   public var unicode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUnicodePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("unicodeProperty")
+    get() = getUnicode()
+    @JvmName("unicodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUnicodePtr, NIL)
+      setUnicode(value)
     }
 
   /**
@@ -148,14 +136,11 @@ public open class InputEventKey : InputEventWithModifiers() {
    * [kbd]Shift[/kbd] or [kbd]Alt[/kbd].
    */
   public var location: KeyLocation
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
-      return KeyLocation.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("locationProperty")
+    get() = getLocation()
+    @JvmName("locationProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
+      setLocation(value)
     }
 
   /**
@@ -168,15 +153,80 @@ public open class InputEventKey : InputEventWithModifiers() {
    * configuration in your project's behavior.
    */
   public var echo: Boolean
-    @JvmName("isEcho_prop")
-    get() = super.isEcho()
+    @JvmName("echoProperty")
+    get() = isEcho()
+    @JvmName("echoProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEchoPtr, NIL)
+      setEcho(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTKEY, scriptIndex)
+  }
+
+  public fun setPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+  }
+
+  public fun setKeycode(keycode: Key): Unit {
+    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeycodePtr, NIL)
+  }
+
+  public fun getKeycode(): Key {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeycodePtr, LONG)
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setPhysicalKeycode(physicalKeycode: Key): Unit {
+    TransferContext.writeArguments(LONG to physicalKeycode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalKeycodePtr, NIL)
+  }
+
+  public fun getPhysicalKeycode(): Key {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalKeycodePtr, LONG)
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setKeyLabel(keyLabel: Key): Unit {
+    TransferContext.writeArguments(LONG to keyLabel.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeyLabelPtr, NIL)
+  }
+
+  public fun getKeyLabel(): Key {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeyLabelPtr, LONG)
+    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUnicode(unicode: Long): Unit {
+    TransferContext.writeArguments(LONG to unicode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUnicodePtr, NIL)
+  }
+
+  public fun getUnicode(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUnicodePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setLocation(location: KeyLocation): Unit {
+    TransferContext.writeArguments(LONG to location.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLocationPtr, NIL)
+  }
+
+  public fun getLocation(): KeyLocation {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
+    return KeyLocation.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setEcho(echo: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to echo)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEchoPtr, NIL)
   }
 
   /**

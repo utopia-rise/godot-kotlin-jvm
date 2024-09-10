@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
@@ -37,18 +38,26 @@ public open class Shortcut : Resource() {
    * including an [InputEventAction].
    */
   public var events: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("eventsProperty")
+    get() = getEvents()
+    @JvmName("eventsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
+      setEvents(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHORTCUT, scriptIndex)
+  }
+
+  public fun setEvents(events: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to events)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
+  }
+
+  public fun getEvents(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   /**
@@ -63,7 +72,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns whether any [InputEvent] in [events] equals [event].
    */
-  public fun matchesEvent(event: InputEvent): Boolean {
+  public fun matchesEvent(event: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

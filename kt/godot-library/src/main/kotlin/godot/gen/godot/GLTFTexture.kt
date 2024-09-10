@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class GLTFTexture : Resource() {
@@ -24,14 +25,11 @@ public open class GLTFTexture : Resource() {
    * this texture does not have an image assigned.
    */
   public var srcImage: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSrcImagePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("srcImageProperty")
+    get() = getSrcImage()
+    @JvmName("srcImageProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSrcImagePtr, NIL)
+      setSrcImage(value)
     }
 
   /**
@@ -39,18 +37,37 @@ public open class GLTFTexture : Resource() {
    * sampler is used (linear filtering, and repeat wrapping in both axes).
    */
   public var sampler: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSamplerPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("samplerProperty")
+    get() = getSampler()
+    @JvmName("samplerProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSamplerPtr, NIL)
+      setSampler(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFTEXTURE, scriptIndex)
+  }
+
+  public fun getSrcImage(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSrcImagePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSrcImage(srcImage: Int): Unit {
+    TransferContext.writeArguments(LONG to srcImage.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSrcImagePtr, NIL)
+  }
+
+  public fun getSampler(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSamplerPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSampler(sampler: Int): Unit {
+    TransferContext.writeArguments(LONG to sampler.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSamplerPtr, NIL)
   }
 
   public companion object

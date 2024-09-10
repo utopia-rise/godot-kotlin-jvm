@@ -52,7 +52,7 @@ public object EngineDebugger : Object() {
   /**
    * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
    */
-  public fun registerProfiler(name: StringName, profiler: EngineProfiler): Unit {
+  public fun registerProfiler(name: StringName, profiler: EngineProfiler?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
     TransferContext.callMethod(rawPtr, MethodBindings.registerProfilerPtr, NIL)
   }
@@ -167,7 +167,7 @@ public object EngineDebugger : Object() {
    */
   @JvmOverloads
   public fun scriptDebug(
-    language: ScriptLanguage,
+    language: ScriptLanguage?,
     canContinue: Boolean = true,
     isErrorBreakpoint: Boolean = false,
   ): Unit {

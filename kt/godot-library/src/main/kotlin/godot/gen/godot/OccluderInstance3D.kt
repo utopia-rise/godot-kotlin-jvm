@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Occlusion culling can improve rendering performance in closed/semi-open areas by hiding geometry
@@ -61,14 +62,11 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * [SphereOccluder3D].
    */
   public var occluder: Occluder3D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Occluder3D?)
-    }
+    @JvmName("occluderProperty")
+    get() = getOccluder()
+    @JvmName("occluderProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPtr, NIL)
+      setOccluder(value)
     }
 
   /**
@@ -81,14 +79,11 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * excluding this layer in [bakeMask].
    */
   public var bakeMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("bakeMaskProperty")
+    get() = getBakeMask()
+    @JvmName("bakeMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
+      setBakeMask(value)
     }
 
   /**
@@ -109,18 +104,26 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * hood, similar to LOD generation.
    */
   public var bakeSimplificationDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("bakeSimplificationDistanceProperty")
+    get() = getBakeSimplificationDistance()
+    @JvmName("bakeSimplificationDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
+      setBakeSimplificationDistance(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OCCLUDERINSTANCE3D, scriptIndex)
+  }
+
+  public fun setBakeMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
+  }
+
+  public fun getBakeMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -140,6 +143,28 @@ public open class OccluderInstance3D : VisualInstance3D() {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBakeSimplificationDistance(simplificationDistance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to simplificationDistance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
+  }
+
+  public fun getBakeSimplificationDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setOccluder(occluder: Occluder3D?): Unit {
+    TransferContext.writeArguments(OBJECT to occluder)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPtr, NIL)
+  }
+
+  public fun getOccluder(): Occluder3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Occluder3D?)
   }
 
   public companion object

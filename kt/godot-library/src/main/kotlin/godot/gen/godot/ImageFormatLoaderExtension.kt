@@ -43,8 +43,8 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * Loads the content of [fileaccess] into the provided [image].
    */
   public open fun _loadImage(
-    image: Image,
-    fileaccess: FileAccess,
+    image: Image?,
+    fileaccess: FileAccess?,
     flags: ImageFormatLoader.LoaderFlags,
     scale: Float,
   ): GodotError {

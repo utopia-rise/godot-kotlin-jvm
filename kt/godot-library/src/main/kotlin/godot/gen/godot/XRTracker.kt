@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This object is the base of all XR trackers.
@@ -30,14 +31,11 @@ public open class XRTracker internal constructor() : RefCounted() {
    * The type of tracker.
    */
   public var type: XRServer.TrackerType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
-      return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("typeProperty")
+    get() = getTrackerType()
+    @JvmName("typeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
+      setTrackerType(value)
     }
 
   /**
@@ -53,32 +51,59 @@ public open class XRTracker internal constructor() : RefCounted() {
    * - `/user/face_tracker` identifies the [XRFaceTracker] for the players face
    */
   public var name: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("nameProperty")
+    get() = getTrackerName()
+    @JvmName("nameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
+      setTrackerName(value)
     }
 
   /**
    * The description of this tracker.
    */
   public var description: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("descriptionProperty")
+    get() = getTrackerDesc()
+    @JvmName("descriptionProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
+      setTrackerDesc(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRTRACKER, scriptIndex)
+  }
+
+  public fun getTrackerType(): XRServer.TrackerType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
+    return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTrackerType(type: XRServer.TrackerType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
+  }
+
+  public fun getTrackerName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setTrackerName(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
+  }
+
+  public fun getTrackerDesc(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setTrackerDesc(description: String): Unit {
+    TransferContext.writeArguments(STRING to description)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
   }
 
   public companion object

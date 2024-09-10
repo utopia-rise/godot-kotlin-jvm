@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -69,14 +70,11 @@ public open class MultiplayerSynchronizer : Node() {
    * despawned based on this synchronizer visibility options.
    */
   public var rootPath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootPathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("rootPathProperty")
+    get() = getRootPath()
+    @JvmName("rootPathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRootPathPtr, NIL)
+      setRootPath(value)
     }
 
   /**
@@ -84,14 +82,11 @@ public open class MultiplayerSynchronizer : Node() {
    * happen every network process frame.
    */
   public var replicationInterval: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReplicationIntervalPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("replicationIntervalProperty")
+    get() = getReplicationInterval()
+    @JvmName("replicationIntervalProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setReplicationIntervalPtr, NIL)
+      setReplicationInterval(value)
     }
 
   /**
@@ -99,42 +94,33 @@ public open class MultiplayerSynchronizer : Node() {
    * synchronizations happen every network process frame.
    */
   public var deltaInterval: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDeltaIntervalPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("deltaIntervalProperty")
+    get() = getDeltaInterval()
+    @JvmName("deltaIntervalProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDeltaIntervalPtr, NIL)
+      setDeltaInterval(value)
     }
 
   /**
    * Resource containing which properties to synchronize.
    */
   public var replicationConfig: SceneReplicationConfig?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReplicationConfigPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as SceneReplicationConfig?)
-    }
+    @JvmName("replicationConfigProperty")
+    get() = getReplicationConfig()
+    @JvmName("replicationConfigProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setReplicationConfigPtr, NIL)
+      setReplicationConfig(value)
     }
 
   /**
    * Specifies when visibility filters are updated (see [VisibilityUpdateMode] for options).
    */
   public var visibilityUpdateMode: VisibilityUpdateMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityUpdateModePtr, LONG)
-      return MultiplayerSynchronizer.VisibilityUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("visibilityUpdateModeProperty")
+    get() = getVisibilityUpdateMode()
+    @JvmName("visibilityUpdateModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityUpdateModePtr, NIL)
+      setVisibilityUpdateMode(value)
     }
 
   /**
@@ -142,18 +128,70 @@ public open class MultiplayerSynchronizer : Node() {
    * [addVisibilityFilter] for ways of configuring fine-grained visibility options.
    */
   public var publicVisibility: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVisibilityPublicPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("publicVisibilityProperty")
+    get() = isVisibilityPublic()
+    @JvmName("publicVisibilityProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityPublicPtr, NIL)
+      setVisibilityPublic(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIPLAYERSYNCHRONIZER, scriptIndex)
+  }
+
+  public fun setRootPath(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRootPathPtr, NIL)
+  }
+
+  public fun getRootPath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootPathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setReplicationInterval(milliseconds: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to milliseconds)
+    TransferContext.callMethod(rawPtr, MethodBindings.setReplicationIntervalPtr, NIL)
+  }
+
+  public fun getReplicationInterval(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReplicationIntervalPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setDeltaInterval(milliseconds: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to milliseconds)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeltaIntervalPtr, NIL)
+  }
+
+  public fun getDeltaInterval(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDeltaIntervalPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setReplicationConfig(config: SceneReplicationConfig?): Unit {
+    TransferContext.writeArguments(OBJECT to config)
+    TransferContext.callMethod(rawPtr, MethodBindings.setReplicationConfigPtr, NIL)
+  }
+
+  public fun getReplicationConfig(): SceneReplicationConfig? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReplicationConfigPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SceneReplicationConfig?)
+  }
+
+  public fun setVisibilityUpdateMode(mode: VisibilityUpdateMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityUpdateModePtr, NIL)
+  }
+
+  public fun getVisibilityUpdateMode(): VisibilityUpdateMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityUpdateModePtr, LONG)
+    return MultiplayerSynchronizer.VisibilityUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -164,6 +202,17 @@ public open class MultiplayerSynchronizer : Node() {
   public fun updateVisibility(forPeer: Int = 0): Unit {
     TransferContext.writeArguments(LONG to forPeer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.updateVisibilityPtr, NIL)
+  }
+
+  public fun setVisibilityPublic(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityPublicPtr, NIL)
+  }
+
+  public fun isVisibilityPublic(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVisibilityPublicPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

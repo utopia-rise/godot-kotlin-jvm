@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -64,14 +65,11 @@ public open class Resource : RefCounted() {
    * resources.
    */
   public var resourceLocalToScene: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("resourceLocalToSceneProperty")
+    get() = isLocalToScene()
+    @JvmName("resourceLocalToSceneProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLocalToScenePtr, NIL)
+      setLocalToScene(value)
     }
 
   /**
@@ -82,14 +80,11 @@ public open class Resource : RefCounted() {
    * been previously loaded. If necessary, use [takeOverPath].
    */
   public var resourcePath: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("resourcePathProperty")
+    get() = getPath()
+    @JvmName("resourcePathProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+      setPath(value)
     }
 
   /**
@@ -101,14 +96,11 @@ public open class Resource : RefCounted() {
    * built-in scripts can have a resource name, while scripts stored in separate files cannot.
    */
   public var resourceName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("resourceNameProperty")
+    get() = getName()
+    @JvmName("resourceNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
+      setName(value)
     }
 
   /**
@@ -123,14 +115,11 @@ public open class Resource : RefCounted() {
    * Otherwise, it will fail and default to a randomly generated ID.
    */
   public var resourceSceneUniqueId: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("resourceSceneUniqueIdProperty")
+    get() = getSceneUniqueId()
+    @JvmName("resourceSceneUniqueIdProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
+      setSceneUniqueId(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -153,6 +142,11 @@ public open class Resource : RefCounted() {
   public open fun _setupLocalToScene(): Unit {
   }
 
+  public fun setPath(path: String): Unit {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+  }
+
   /**
    * Sets the [resourcePath] to [path], potentially overriding an existing cache entry for this
    * path. Further attempts to load an overridden resource by path will instead return this resource.
@@ -160,6 +154,23 @@ public open class Resource : RefCounted() {
   public fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.takeOverPathPtr, NIL)
+  }
+
+  public fun getPath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
+  }
+
+  public fun getName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -171,6 +182,17 @@ public open class Resource : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public fun setLocalToScene(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLocalToScenePtr, NIL)
+  }
+
+  public fun isLocalToScene(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -192,6 +214,17 @@ public open class Resource : RefCounted() {
   public fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.setupLocalToScenePtr, NIL)
+  }
+
+  public fun setSceneUniqueId(id: String): Unit {
+    TransferContext.writeArguments(STRING to id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
+  }
+
+  public fun getSceneUniqueId(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**

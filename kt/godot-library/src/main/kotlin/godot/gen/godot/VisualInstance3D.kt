@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The [VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D
@@ -50,14 +51,11 @@ public open class VisualInstance3D : Node3D() {
    * illumination.
    */
   public var layers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("layersProperty")
+    get() = getLayerMask()
+    @JvmName("layersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskPtr, NIL)
+      setLayerMask(value)
     }
 
   /**
@@ -69,14 +67,11 @@ public open class VisualInstance3D : Node3D() {
    * [VisualInstance3D] and the other nearby [VisualInstance3D]s.
    */
   public var sortingOffset: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSortingOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("sortingOffsetProperty")
+    get() = getSortingOffset()
+    @JvmName("sortingOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSortingOffsetPtr, NIL)
+      setSortingOffset(value)
     }
 
   /**
@@ -87,14 +82,11 @@ public open class VisualInstance3D : Node3D() {
    * [CPUParticles3D].
    */
   public var sortingUseAabbCenter: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("sortingUseAabbCenterProperty")
+    get() = isSortingUseAabbCenter()
+    @JvmName("sortingUseAabbCenterProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
+      setSortingUseAabbCenter(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -135,6 +127,17 @@ public open class VisualInstance3D : Node3D() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  public fun setLayerMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayerMaskPtr, NIL)
+  }
+
+  public fun getLayerMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
   /**
    * Based on [value], enables or disables the specified layer in the [layers], given a
    * [layerNumber] between 1 and 20.
@@ -151,6 +154,28 @@ public open class VisualInstance3D : Node3D() {
   public fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskValuePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSortingOffset(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSortingOffsetPtr, NIL)
+  }
+
+  public fun getSortingOffset(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSortingOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSortingUseAabbCenter(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
+  }
+
+  public fun isSortingUseAabbCenter(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

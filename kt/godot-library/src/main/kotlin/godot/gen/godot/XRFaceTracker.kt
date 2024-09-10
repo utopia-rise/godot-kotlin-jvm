@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An instance of this object represents a tracked face and its corresponding blend shapes. The
@@ -39,14 +40,11 @@ public open class XRFaceTracker : XRTracker() {
    * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
    */
   public var blendShapes: PackedFloat32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
-    }
+    @JvmName("blendShapesProperty")
+    get() = getBlendShapes()
+    @JvmName("blendShapesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapesPtr, NIL)
+      setBlendShapes(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -68,6 +66,17 @@ public open class XRFaceTracker : XRTracker() {
   public fun setBlendShape(blendShape: BlendShapeEntry, weight: Float): Unit {
     TransferContext.writeArguments(LONG to blendShape.id, DOUBLE to weight.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapePtr, NIL)
+  }
+
+  public fun getBlendShapes(): PackedFloat32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+  }
+
+  public fun setBlendShapes(weights: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapesPtr, NIL)
   }
 
   public enum class BlendShapeEntry(

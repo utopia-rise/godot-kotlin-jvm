@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Allows frequencies other than the [cutoffHz] to pass.
@@ -29,57 +30,89 @@ public open class AudioEffectFilter : AudioEffect() {
    * Threshold frequency for the filter, in Hz.
    */
   public var cutoffHz: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCutoffPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("cutoffHzProperty")
+    get() = getCutoff()
+    @JvmName("cutoffHzProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCutoffPtr, NIL)
+      setCutoff(value)
     }
 
   /**
    * Amount of boost in the frequency range near the cutoff frequency.
    */
   public var resonance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getResonancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("resonanceProperty")
+    get() = getResonance()
+    @JvmName("resonanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setResonancePtr, NIL)
+      setResonance(value)
     }
 
   /**
    * Gain amount of the frequencies after the filter.
    */
   public var gain: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("gainProperty")
+    get() = getGain()
+    @JvmName("gainProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
+      setGain(value)
     }
 
   public var db: FilterDB
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDbPtr, LONG)
-      return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("dbProperty")
+    get() = getDb()
+    @JvmName("dbProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDbPtr, NIL)
+      setDb(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTFILTER, scriptIndex)
+  }
+
+  public fun setCutoff(freq: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to freq.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCutoffPtr, NIL)
+  }
+
+  public fun getCutoff(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCutoffPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setResonance(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setResonancePtr, NIL)
+  }
+
+  public fun getResonance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getResonancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setGain(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
+  }
+
+  public fun getGain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDb(amount: FilterDB): Unit {
+    TransferContext.writeArguments(LONG to amount.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDbPtr, NIL)
+  }
+
+  public fun getDb(): FilterDB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDbPtr, LONG)
+    return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FilterDB(

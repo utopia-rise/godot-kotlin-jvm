@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Container for parsed source geometry data used in navigation mesh baking.
@@ -29,36 +30,27 @@ import kotlin.Unit
 @GodotBaseType
 public open class NavigationMeshSourceGeometryData2D : Resource() {
   public var traversableOutlines: VariantArray<PackedVector2Array>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTraversableOutlinesPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>)
-    }
+    @JvmName("traversableOutlinesProperty")
+    get() = getTraversableOutlines()
+    @JvmName("traversableOutlinesProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTraversableOutlinesPtr, NIL)
+      setTraversableOutlines(value)
     }
 
   public var obstructionOutlines: VariantArray<PackedVector2Array>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getObstructionOutlinesPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>)
-    }
+    @JvmName("obstructionOutlinesProperty")
+    get() = getObstructionOutlines()
+    @JvmName("obstructionOutlinesProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setObstructionOutlinesPtr, NIL)
+      setObstructionOutlines(value)
     }
 
   public var projectedObstructions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("projectedObstructionsProperty")
+    get() = getProjectedObstructions()
+    @JvmName("projectedObstructionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
+      setProjectedObstructions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -80,6 +72,40 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Sets all the traversable area outlines arrays.
+   */
+  public fun setTraversableOutlines(traversableOutlines: VariantArray<PackedVector2Array>): Unit {
+    TransferContext.writeArguments(ARRAY to traversableOutlines)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTraversableOutlinesPtr, NIL)
+  }
+
+  /**
+   * Returns all the traversable area outlines arrays.
+   */
+  public fun getTraversableOutlines(): VariantArray<PackedVector2Array> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTraversableOutlinesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>)
+  }
+
+  /**
+   * Sets all the obstructed area outlines arrays.
+   */
+  public fun setObstructionOutlines(obstructionOutlines: VariantArray<PackedVector2Array>): Unit {
+    TransferContext.writeArguments(ARRAY to obstructionOutlines)
+    TransferContext.callMethod(rawPtr, MethodBindings.setObstructionOutlinesPtr, NIL)
+  }
+
+  /**
+   * Returns all the obstructed area outlines arrays.
+   */
+  public fun getObstructionOutlines(): VariantArray<PackedVector2Array> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getObstructionOutlinesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>)
   }
 
   /**
@@ -122,7 +148,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * Adds the geometry data of another [NavigationMeshSourceGeometryData2D] to the navigation mesh
    * baking data.
    */
-  public fun merge(otherGeometry: NavigationMeshSourceGeometryData2D): Unit {
+  public fun merge(otherGeometry: NavigationMeshSourceGeometryData2D?): Unit {
     TransferContext.writeArguments(OBJECT to otherGeometry)
     TransferContext.callMethod(rawPtr, MethodBindings.mergePtr, NIL)
   }
@@ -143,6 +169,34 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
   public fun clearProjectedObstructions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearProjectedObstructionsPtr, NIL)
+  }
+
+  /**
+   * Sets the projected obstructions with an Array of Dictionaries with the following key value
+   * pairs:
+   *
+   * gdscript:
+   * ```gdscript
+   * "vertices" : PackedFloat32Array
+   * "carve" : bool
+   * ```
+   */
+  public fun setProjectedObstructions(projectedObstructions: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to projectedObstructions)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
+  }
+
+  /**
+   * Returns the projected obstructions as an [Array] of dictionaries. Each [Dictionary] contains
+   * the following entries:
+   * - `vertices` - A [PackedFloat32Array] that defines the outline points of the projected shape.
+   * - `carve` - A [bool] that defines how the projected shape affects the navigation mesh baking.
+   * If `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
+   */
+  public fun getProjectedObstructions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public companion object

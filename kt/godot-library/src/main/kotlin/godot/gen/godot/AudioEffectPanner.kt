@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Determines how much of an audio signal is sent to the left and right buses.
@@ -27,18 +28,26 @@ public open class AudioEffectPanner : AudioEffect() {
    * Pan position. Value can range from -1 (fully left) to 1 (fully right).
    */
   public var pan: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPanPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("panProperty")
+    get() = getPan()
+    @JvmName("panProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPanPtr, NIL)
+      setPan(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTPANNER, scriptIndex)
+  }
+
+  public fun setPan(cpanume: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to cpanume.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPanPtr, NIL)
+  }
+
+  public fun getPan(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPanPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Action sets in OpenXR define a collection of actions that can be activated in unison. This allows
@@ -38,46 +39,59 @@ public open class OpenXRActionSet : Resource() {
    * The localized name of this action set.
    */
   public var localizedName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("localizedNameProperty")
+    get() = getLocalizedName()
+    @JvmName("localizedNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
+      setLocalizedName(value)
     }
 
   /**
    * The priority for this action set.
    */
   public var priority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("priorityProperty")
+    get() = getPriority()
+    @JvmName("priorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+      setPriority(value)
     }
 
   /**
    * Collection of actions for this action set.
    */
-  public var actions: VariantArray<Any?>?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, true) as VariantArray<Any?>?)
-    }
+  public var actions: VariantArray<Any?>
+    @JvmName("actionsProperty")
+    get() = getActions()
+    @JvmName("actionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActionsPtr, NIL)
+      setActions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRACTIONSET, scriptIndex)
+  }
+
+  public fun setLocalizedName(localizedName: String): Unit {
+    TransferContext.writeArguments(STRING to localizedName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
+  }
+
+  public fun getLocalizedName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+  }
+
+  public fun getPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -89,10 +103,21 @@ public open class OpenXRActionSet : Resource() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun setActions(actions: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to actions)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActionsPtr, NIL)
+  }
+
+  public fun getActions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+  }
+
   /**
    * Add an action to this action set.
    */
-  public fun addAction(action: OpenXRAction): Unit {
+  public fun addAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
   }
@@ -100,7 +125,7 @@ public open class OpenXRActionSet : Resource() {
   /**
    * Remove an action from this action set.
    */
-  public fun removeAction(action: OpenXRAction): Unit {
+  public fun removeAction(action: OpenXRAction?): Unit {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(rawPtr, MethodBindings.removeActionPtr, NIL)
   }

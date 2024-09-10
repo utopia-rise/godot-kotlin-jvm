@@ -32,6 +32,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -93,14 +94,11 @@ public open class FileAccess internal constructor() : RefCounted() {
    * [bigEndian] *after* opening the file, not before.
    */
   public var bigEndian: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBigEndianPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("bigEndianProperty")
+    get() = isBigEndian()
+    @JvmName("bigEndianProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
+      setBigEndian(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -344,6 +342,17 @@ public open class FileAccess internal constructor() : RefCounted() {
     TransferContext.writeArguments(BOOL to skipCr)
     TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun isBigEndian(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBigEndianPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBigEndian(bigEndian: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to bigEndian)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
   }
 
   /**

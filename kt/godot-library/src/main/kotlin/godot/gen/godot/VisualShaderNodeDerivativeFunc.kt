@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node is only available in `Fragment` and `Light` visual shaders.
@@ -26,28 +27,22 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
    * A type of operands and returned value. See [OpType] for options.
    */
   public var opType: OpType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
-      return VisualShaderNodeDerivativeFunc.OpType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("opTypeProperty")
+    get() = getOpType()
+    @JvmName("opTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+      setOpType(value)
     }
 
   /**
    * A derivative function type. See [Function] for options.
    */
   public var function: Function
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
-      return VisualShaderNodeDerivativeFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("functionProperty")
+    get() = getFunction()
+    @JvmName("functionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+      setFunction(value)
     }
 
   /**
@@ -55,18 +50,48 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
    * When using the GL Compatibility renderer, this setting has no effect.
    */
   public var precision: Precision
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPrecisionPtr, LONG)
-      return VisualShaderNodeDerivativeFunc.Precision.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("precisionProperty")
+    get() = getPrecision()
+    @JvmName("precisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPrecisionPtr, NIL)
+      setPrecision(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEDERIVATIVEFUNC, scriptIndex)
+  }
+
+  public fun setOpType(type: OpType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+  }
+
+  public fun getOpType(): OpType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    return VisualShaderNodeDerivativeFunc.OpType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setFunction(func: Function): Unit {
+    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+  }
+
+  public fun getFunction(): Function {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    return VisualShaderNodeDerivativeFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setPrecision(precision: Precision): Unit {
+    TransferContext.writeArguments(LONG to precision.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPrecisionPtr, NIL)
+  }
+
+  public fun getPrecision(): Precision {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPrecisionPtr, LONG)
+    return VisualShaderNodeDerivativeFunc.Precision.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(

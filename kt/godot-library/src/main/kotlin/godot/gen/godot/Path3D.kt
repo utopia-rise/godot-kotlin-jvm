@@ -17,6 +17,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Can have [PathFollow3D] child nodes moving along the [Curve3D]. See [PathFollow3D] for more
@@ -35,18 +36,26 @@ public open class Path3D : Node3D() {
    * A [Curve3D] describing the path.
    */
   public var curve: Curve3D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve3D?)
-    }
+    @JvmName("curveProperty")
+    get() = getCurve()
+    @JvmName("curveProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+      setCurve(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PATH3D, scriptIndex)
+  }
+
+  public fun setCurve(curve: Curve3D?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+  }
+
+  public fun getCurve(): Curve3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve3D?)
   }
 
   public companion object

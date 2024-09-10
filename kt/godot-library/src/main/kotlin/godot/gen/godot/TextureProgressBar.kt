@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * TextureProgressBar works like [ProgressBar], but uses up to 3 textures instead of Godot's [Theme]
@@ -39,14 +40,11 @@ public open class TextureProgressBar : Range() {
    * The fill direction. See [FillMode] for possible values.
    */
   public var fillMode: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("fillModeProperty")
+    get() = getFillMode()
+    @JvmName("fillModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
+      setFillMode(value)
     }
 
   /**
@@ -56,14 +54,11 @@ public open class TextureProgressBar : Range() {
    * texture fills and tends towards [radialFillDegrees].
    */
   public var radialInitialAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialInitialAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("radialInitialAngleProperty")
+    get() = getRadialInitialAngle()
+    @JvmName("radialInitialAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialInitialAnglePtr, NIL)
+      setRadialInitialAngle(value)
     }
 
   /**
@@ -73,14 +68,11 @@ public open class TextureProgressBar : Range() {
    * See [Range.value], [Range.maxValue].
    */
   public var radialFillDegrees: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFillDegreesPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("radialFillDegreesProperty")
+    get() = getFillDegrees()
+    @JvmName("radialFillDegreesProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFillDegreesPtr, NIL)
+      setFillDegrees(value)
     }
 
   /**
@@ -89,14 +81,11 @@ public open class TextureProgressBar : Range() {
    */
   @CoreTypeLocalCopy
   public var radialCenterOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialCenterOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("radialCenterOffsetProperty")
+    get() = getRadialCenterOffset()
+    @JvmName("radialCenterOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialCenterOffsetPtr, NIL)
+      setRadialCenterOffset(value)
     }
 
   /**
@@ -105,56 +94,44 @@ public open class TextureProgressBar : Range() {
    * [fillMode], this setting will enable stretching.
    */
   public var ninePatchStretch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNinePatchStretchPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("ninePatchStretchProperty")
+    get() = getNinePatchStretch()
+    @JvmName("ninePatchStretchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNinePatchStretchPtr, NIL)
+      setNinePatchStretch(value)
     }
 
   /**
    * The width of the 9-patch's left column. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginLeft: Int
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("stretchMarginLeftProperty")
+    get() = getStretchMargin(Side.SIDE_LEFT)
+    @JvmName("stretchMarginLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchMarginPtr, NIL)
+      setStretchMargin(Side.SIDE_LEFT, value)
     }
 
   /**
    * The height of the 9-patch's top row. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginTop: Int
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("stretchMarginTopProperty")
+    get() = getStretchMargin(Side.SIDE_TOP)
+    @JvmName("stretchMarginTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchMarginPtr, NIL)
+      setStretchMargin(Side.SIDE_TOP, value)
     }
 
   /**
    * The width of the 9-patch's right column. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginRight: Int
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("stretchMarginRightProperty")
+    get() = getStretchMargin(Side.SIDE_RIGHT)
+    @JvmName("stretchMarginRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchMarginPtr, NIL)
+      setStretchMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -163,28 +140,22 @@ public open class TextureProgressBar : Range() {
    * panels with non-uniform borders. Only effective if [ninePatchStretch] is `true`.
    */
   public var stretchMarginBottom: Int
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("stretchMarginBottomProperty")
+    get() = getStretchMargin(Side.SIDE_BOTTOM)
+    @JvmName("stretchMarginBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchMarginPtr, NIL)
+      setStretchMargin(Side.SIDE_BOTTOM, value)
     }
 
   /**
    * [Texture2D] that draws under the progress bar. The bar's background.
    */
   public var textureUnder: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUnderTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("textureUnderProperty")
+    get() = getUnderTexture()
+    @JvmName("textureUnderProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUnderTexturePtr, NIL)
+      setUnderTexture(value)
     }
 
   /**
@@ -192,14 +163,11 @@ public open class TextureProgressBar : Range() {
    * hides part of [textureProgress].
    */
   public var textureOver: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOverTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("textureOverProperty")
+    get() = getOverTexture()
+    @JvmName("textureOverProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOverTexturePtr, NIL)
+      setOverTexture(value)
     }
 
   /**
@@ -209,14 +177,11 @@ public open class TextureProgressBar : Range() {
    * The `value` property comes from [Range]. See [Range.value], [Range.minValue], [Range.maxValue].
    */
   public var textureProgress: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProgressTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("textureProgressProperty")
+    get() = getProgressTexture()
+    @JvmName("textureProgressProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProgressTexturePtr, NIL)
+      setProgressTexture(value)
     }
 
   /**
@@ -225,14 +190,11 @@ public open class TextureProgressBar : Range() {
    */
   @CoreTypeLocalCopy
   public var textureProgressOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureProgressOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("textureProgressOffsetProperty")
+    get() = getTextureProgressOffset()
+    @JvmName("textureProgressOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureProgressOffsetPtr, NIL)
+      setTextureProgressOffset(value)
     }
 
   /**
@@ -240,14 +202,11 @@ public open class TextureProgressBar : Range() {
    */
   @CoreTypeLocalCopy
   public var tintUnder: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTintUnderPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("tintUnderProperty")
+    get() = getTintUnder()
+    @JvmName("tintUnderProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTintUnderPtr, NIL)
+      setTintUnder(value)
     }
 
   /**
@@ -256,14 +215,11 @@ public open class TextureProgressBar : Range() {
    */
   @CoreTypeLocalCopy
   public var tintOver: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTintOverPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("tintOverProperty")
+    get() = getTintOver()
+    @JvmName("tintOverProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTintOverPtr, NIL)
+      setTintOver(value)
     }
 
   /**
@@ -271,14 +227,11 @@ public open class TextureProgressBar : Range() {
    */
   @CoreTypeLocalCopy
   public var tintProgress: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTintProgressPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("tintProgressProperty")
+    get() = getTintProgress()
+    @JvmName("tintProgressProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTintProgressPtr, NIL)
+      setTintProgress(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -409,6 +362,157 @@ public open class TextureProgressBar : Range() {
       tintProgress = this
   }
 
+
+  public fun setUnderTexture(tex: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to tex)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUnderTexturePtr, NIL)
+  }
+
+  public fun getUnderTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUnderTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setProgressTexture(tex: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to tex)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProgressTexturePtr, NIL)
+  }
+
+  public fun getProgressTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProgressTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setOverTexture(tex: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to tex)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOverTexturePtr, NIL)
+  }
+
+  public fun getOverTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOverTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setFillMode(mode: Int): Unit {
+    TransferContext.writeArguments(LONG to mode.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
+  }
+
+  public fun getFillMode(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setTintUnder(tint: Color): Unit {
+    TransferContext.writeArguments(COLOR to tint)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTintUnderPtr, NIL)
+  }
+
+  public fun getTintUnder(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTintUnderPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setTintProgress(tint: Color): Unit {
+    TransferContext.writeArguments(COLOR to tint)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTintProgressPtr, NIL)
+  }
+
+  public fun getTintProgress(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTintProgressPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setTintOver(tint: Color): Unit {
+    TransferContext.writeArguments(COLOR to tint)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTintOverPtr, NIL)
+  }
+
+  public fun getTintOver(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTintOverPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setTextureProgressOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureProgressOffsetPtr, NIL)
+  }
+
+  public fun getTextureProgressOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureProgressOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setRadialInitialAngle(mode: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to mode.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadialInitialAnglePtr, NIL)
+  }
+
+  public fun getRadialInitialAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadialInitialAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRadialCenterOffset(mode: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to mode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadialCenterOffsetPtr, NIL)
+  }
+
+  public fun getRadialCenterOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadialCenterOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setFillDegrees(mode: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to mode.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFillDegreesPtr, NIL)
+  }
+
+  public fun getFillDegrees(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFillDegreesPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Sets the stretch margin with the specified index. See [stretchMarginBottom] and related
+   * properties.
+   */
+  public fun setStretchMargin(margin: Side, `value`: Int): Unit {
+    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStretchMarginPtr, NIL)
+  }
+
+  /**
+   * Returns the stretch margin with the specified index. See [stretchMarginBottom] and related
+   * properties.
+   */
+  public fun getStretchMargin(margin: Side): Int {
+    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStretchMarginPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setNinePatchStretch(stretch: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to stretch)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNinePatchStretchPtr, NIL)
+  }
+
+  public fun getNinePatchStretch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNinePatchStretchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public enum class FillMode(
     id: Long,

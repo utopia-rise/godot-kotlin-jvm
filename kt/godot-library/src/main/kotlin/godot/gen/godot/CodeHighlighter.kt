@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -38,14 +39,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   @CoreTypeLocalCopy
   public var numberColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNumberColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("numberColorProperty")
+    get() = getNumberColor()
+    @JvmName("numberColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNumberColorPtr, NIL)
+      setNumberColor(value)
     }
 
   /**
@@ -53,14 +51,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   @CoreTypeLocalCopy
   public var symbolColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSymbolColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("symbolColorProperty")
+    get() = getSymbolColor()
+    @JvmName("symbolColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSymbolColorPtr, NIL)
+      setSymbolColor(value)
     }
 
   /**
@@ -68,14 +63,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   @CoreTypeLocalCopy
   public var functionColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("functionColorProperty")
+    get() = getFunctionColor()
+    @JvmName("functionColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionColorPtr, NIL)
+      setFunctionColor(value)
     }
 
   /**
@@ -84,14 +76,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    */
   @CoreTypeLocalCopy
   public var memberVariableColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMemberVariableColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("memberVariableColorProperty")
+    get() = getMemberVariableColor()
+    @JvmName("memberVariableColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMemberVariableColorPtr, NIL)
+      setMemberVariableColor(value)
     }
 
   /**
@@ -99,14 +88,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * keyword. The value is the keyword color.
    */
   public var keywordColors: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getKeywordColorsPtr, DICTIONARY)
-      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
-    }
+    @JvmName("keywordColorsProperty")
+    get() = getKeywordColors()
+    @JvmName("keywordColorsProperty")
     set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeywordColorsPtr, NIL)
+      setKeywordColors(value)
     }
 
   /**
@@ -114,14 +100,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * key is the member keyword. The value is the member keyword color.
    */
   public var memberKeywordColors: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMemberKeywordColorsPtr, DICTIONARY)
-      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
-    }
+    @JvmName("memberKeywordColorsProperty")
+    get() = getMemberKeywordColors()
+    @JvmName("memberKeywordColorsProperty")
     set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMemberKeywordColorsPtr, NIL)
+      setMemberKeywordColors(value)
     }
 
   /**
@@ -129,14 +112,11 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * region start and end key, separated by a space. The value is the region color.
    */
   public var colorRegions: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorRegionsPtr, DICTIONARY)
-      return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
-    }
+    @JvmName("colorRegionsProperty")
+    get() = getColorRegions()
+    @JvmName("colorRegionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorRegionsPtr, NIL)
+      setColorRegions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -276,12 +256,23 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
+  public fun setKeywordColors(keywords: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to keywords)
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeywordColorsPtr, NIL)
+  }
+
   /**
    * Removes all keywords.
    */
   public fun clearKeywordColors(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearKeywordColorsPtr, NIL)
+  }
+
+  public fun getKeywordColors(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeywordColorsPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -320,12 +311,23 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
+  public fun setMemberKeywordColors(memberKeyword: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to memberKeyword)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMemberKeywordColorsPtr, NIL)
+  }
+
   /**
    * Removes all member keywords.
    */
   public fun clearMemberKeywordColors(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearMemberKeywordColorsPtr, NIL)
+  }
+
+  public fun getMemberKeywordColors(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMemberKeywordColorsPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -362,12 +364,67 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setColorRegions(colorRegions: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to colorRegions)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorRegionsPtr, NIL)
+  }
+
   /**
    * Removes all color regions.
    */
   public fun clearColorRegions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearColorRegionsPtr, NIL)
+  }
+
+  public fun getColorRegions(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorRegionsPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  public fun setFunctionColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionColorPtr, NIL)
+  }
+
+  public fun getFunctionColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setNumberColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNumberColorPtr, NIL)
+  }
+
+  public fun getNumberColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNumberColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setSymbolColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSymbolColorPtr, NIL)
+  }
+
+  public fun getSymbolColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSymbolColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setMemberVariableColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMemberVariableColorPtr, NIL)
+  }
+
+  public fun getMemberVariableColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMemberVariableColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
   }
 
   public companion object

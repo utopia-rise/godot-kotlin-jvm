@@ -54,7 +54,7 @@ public open class BitMap : Resource() {
    * `true` in other case.
    */
   @JvmOverloads
-  public fun createFromImageAlpha(image: Image, threshold: Float = 0.1f): Unit {
+  public fun createFromImageAlpha(image: Image?, threshold: Float = 0.1f): Unit {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.createFromImageAlphaPtr, NIL)
   }

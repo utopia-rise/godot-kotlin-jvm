@@ -23,6 +23,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A rectangle box that displays only a colored border around its rectangle. It is used to visualize
@@ -35,14 +36,11 @@ public open class ReferenceRect : Control() {
    */
   @CoreTypeLocalCopy
   public var borderColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("borderColorProperty")
+    get() = getBorderColor()
+    @JvmName("borderColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+      setBorderColor(value)
     }
 
   /**
@@ -50,14 +48,11 @@ public open class ReferenceRect : Control() {
    * respect to the rectangle box.
    */
   public var borderWidth: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("borderWidthProperty")
+    get() = getBorderWidth()
+    @JvmName("borderWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+      setBorderWidth(value)
     }
 
   /**
@@ -65,14 +60,11 @@ public open class ReferenceRect : Control() {
    * will be visible in the running project.
    */
   public var editorOnly: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEditorOnlyPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("editorOnlyProperty")
+    get() = getEditorOnly()
+    @JvmName("editorOnlyProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+      setEditorOnly(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -102,6 +94,39 @@ public open class ReferenceRect : Control() {
       borderColor = this
   }
 
+
+  public fun getBorderColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setBorderColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+  }
+
+  public fun getBorderWidth(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBorderWidth(width: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to width.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+  }
+
+  public fun getEditorOnly(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditorOnlyPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEditorOnly(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+  }
 
   public companion object
 

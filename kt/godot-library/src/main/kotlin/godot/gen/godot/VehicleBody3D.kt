@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This physics body implements all the physics logic needed to simulate a car. It is based on the
@@ -44,14 +45,11 @@ public open class VehicleBody3D : RigidBody3D() {
    * A negative value will result in the vehicle reversing.
    */
   public var engineForce: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("engineForceProperty")
+    get() = getEngineForce()
+    @JvmName("engineForceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
+      setEngineForce(value)
     }
 
   /**
@@ -61,14 +59,11 @@ public open class VehicleBody3D : RigidBody3D() {
    * try a value in the 25 - 30 range for hard braking.
    */
   public var brake: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("brakeProperty")
+    get() = getBrake()
+    @JvmName("brakeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
+      setBrake(value)
     }
 
   /**
@@ -79,18 +74,48 @@ public open class VehicleBody3D : RigidBody3D() {
    * radians.
    */
   public var steering: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("steeringProperty")
+    get() = getSteering()
+    @JvmName("steeringProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
+      setSteering(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VEHICLEBODY3D, scriptIndex)
+  }
+
+  public fun setEngineForce(engineForce: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to engineForce.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
+  }
+
+  public fun getEngineForce(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBrake(brake: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to brake.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
+  }
+
+  public fun getBrake(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSteering(steering: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to steering.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
+  }
+
+  public fun getSteering(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

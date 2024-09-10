@@ -21,6 +21,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This is a generic mobile VR implementation where you need to provide details about the phone and
@@ -41,14 +42,11 @@ public open class MobileVRInterface : XRInterface() {
    * The height at which the camera is placed in relation to the ground (i.e. [XROrigin3D] node).
    */
   public var eyeHeight: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEyeHeightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("eyeHeightProperty")
+    get() = getEyeHeight()
+    @JvmName("eyeHeightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEyeHeightPtr, NIL)
+      setEyeHeight(value)
     }
 
   /**
@@ -56,42 +54,33 @@ public open class MobileVRInterface : XRInterface() {
    * pupils of the left and right eye.
    */
   public var iod: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIodPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("iodProperty")
+    get() = getIod()
+    @JvmName("iodProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIodPtr, NIL)
+      setIod(value)
     }
 
   /**
    * The width of the display in centimeters.
    */
   public var displayWidth: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDisplayWidthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("displayWidthProperty")
+    get() = getDisplayWidth()
+    @JvmName("displayWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisplayWidthPtr, NIL)
+      setDisplayWidth(value)
     }
 
   /**
    * The distance between the display and the lenses inside of the device in centimeters.
    */
   public var displayToLens: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDisplayToLensPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("displayToLensProperty")
+    get() = getDisplayToLens()
+    @JvmName("displayToLensProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisplayToLensPtr, NIL)
+      setDisplayToLens(value)
     }
 
   /**
@@ -100,14 +89,11 @@ public open class MobileVRInterface : XRInterface() {
    */
   @CoreTypeLocalCopy
   public var offsetRect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+    @JvmName("offsetRectProperty")
+    get() = getOffsetRect()
+    @JvmName("offsetRectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetRectPtr, NIL)
+      setOffsetRect(value)
     }
 
   /**
@@ -116,14 +102,11 @@ public open class MobileVRInterface : XRInterface() {
    * good results but at the cost of performance.
    */
   public var oversample: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOversamplePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("oversampleProperty")
+    get() = getOversample()
+    @JvmName("oversampleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOversamplePtr, NIL)
+      setOversample(value)
     }
 
   /**
@@ -131,28 +114,22 @@ public open class MobileVRInterface : XRInterface() {
    * directly influences the lens distortion effect.
    */
   public var k1: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getK1Ptr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("k1Property")
+    get() = getK1()
+    @JvmName("k1Property")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setK1Ptr, NIL)
+      setK1(value)
     }
 
   /**
    * The k2 lens factor, see k1.
    */
   public var k2: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getK2Ptr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("k2Property")
+    get() = getK2()
+    @JvmName("k2Property")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setK2Ptr, NIL)
+      setK2(value)
     }
 
   /**
@@ -162,14 +139,11 @@ public open class MobileVRInterface : XRInterface() {
    * [Viewport.VRS_XR].
    */
   public var vrsMinRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("vrsMinRadiusProperty")
+    get() = getVrsMinRadius()
+    @JvmName("vrsMinRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+      setVrsMinRadius(value)
     }
 
   /**
@@ -179,14 +153,11 @@ public open class MobileVRInterface : XRInterface() {
    * [Viewport.VRS_XR].
    */
   public var vrsStrength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("vrsStrengthProperty")
+    get() = getVrsStrength()
+    @JvmName("vrsStrengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
+      setVrsStrength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -217,6 +188,116 @@ public open class MobileVRInterface : XRInterface() {
       offsetRect = this
   }
 
+
+  public fun setEyeHeight(eyeHeight: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to eyeHeight)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEyeHeightPtr, NIL)
+  }
+
+  public fun getEyeHeight(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEyeHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setIod(iod: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to iod)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIodPtr, NIL)
+  }
+
+  public fun getIod(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIodPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setDisplayWidth(displayWidth: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to displayWidth)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisplayWidthPtr, NIL)
+  }
+
+  public fun getDisplayWidth(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDisplayWidthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setDisplayToLens(displayToLens: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to displayToLens)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisplayToLensPtr, NIL)
+  }
+
+  public fun getDisplayToLens(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDisplayToLensPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setOffsetRect(offsetRect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to offsetRect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetRectPtr, NIL)
+  }
+
+  public fun getOffsetRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public fun setOversample(oversample: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to oversample)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOversamplePtr, NIL)
+  }
+
+  public fun getOversample(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOversamplePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setK1(k: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to k)
+    TransferContext.callMethod(rawPtr, MethodBindings.setK1Ptr, NIL)
+  }
+
+  public fun getK1(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getK1Ptr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setK2(k: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to k)
+    TransferContext.callMethod(rawPtr, MethodBindings.setK2Ptr, NIL)
+  }
+
+  public fun getK2(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getK2Ptr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun getVrsMinRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVrsMinRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+  }
+
+  public fun getVrsStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVrsStrength(strength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to strength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
+  }
 
   public companion object
 

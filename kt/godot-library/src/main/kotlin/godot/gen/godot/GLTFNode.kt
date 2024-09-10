@@ -32,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Represents a GLTF node. GLTF nodes may have names, transforms, children (other GLTF nodes), and
@@ -46,28 +47,22 @@ public open class GLTFNode : Resource() {
    * The original name of the node.
    */
   public var originalName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("originalNameProperty")
+    get() = getOriginalName()
+    @JvmName("originalNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+      setOriginalName(value)
     }
 
   /**
    * The index of the parent node in the [GLTFState]. If -1, this node is a root node.
    */
   public var parent: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParentPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("parentProperty")
+    get() = getParent()
+    @JvmName("parentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParentPtr, NIL)
+      setParent(value)
     }
 
   /**
@@ -75,14 +70,11 @@ public open class GLTFNode : Resource() {
    * children will have a height of 1, and so on. If -1, the height has not been calculated.
    */
   public var height: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+      setHeight(value)
     }
 
   /**
@@ -91,14 +83,11 @@ public open class GLTFNode : Resource() {
    */
   @CoreTypeLocalCopy
   public var xform: Transform3D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getXformPtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
-    }
+    @JvmName("xformProperty")
+    get() = getXform()
+    @JvmName("xformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setXformPtr, NIL)
+      setXform(value)
     }
 
   /**
@@ -106,14 +95,11 @@ public open class GLTFNode : Resource() {
    * mesh's properties. If -1, this node is not a mesh.
    */
   public var mesh: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("meshProperty")
+    get() = getMesh()
+    @JvmName("meshProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+      setMesh(value)
     }
 
   /**
@@ -121,14 +107,11 @@ public open class GLTFNode : Resource() {
    * the camera's properties. If -1, this node is not a camera.
    */
   public var camera: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCameraPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("cameraProperty")
+    get() = getCamera()
+    @JvmName("cameraProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCameraPtr, NIL)
+      setCamera(value)
     }
 
   /**
@@ -136,14 +119,11 @@ public open class GLTFNode : Resource() {
    * skin's properties. If -1, this node does not have a skin.
    */
   public var skin: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("skinProperty")
+    get() = getSkin()
+    @JvmName("skinProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+      setSkin(value)
     }
 
   /**
@@ -151,14 +131,11 @@ public open class GLTFNode : Resource() {
    * describes the skeleton's properties. If -1, this node does not have a skeleton.
    */
   public var skeleton: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("skeletonProperty")
+    get() = getSkeleton()
+    @JvmName("skeletonProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
+      setSkeleton(value)
     }
 
   /**
@@ -166,14 +143,11 @@ public open class GLTFNode : Resource() {
    */
   @CoreTypeLocalCopy
   public var position: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("positionProperty")
+    get() = getPosition()
+    @JvmName("positionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+      setPosition(value)
     }
 
   /**
@@ -181,14 +155,11 @@ public open class GLTFNode : Resource() {
    */
   @CoreTypeLocalCopy
   public var rotation: Quaternion
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, QUATERNION)
-      return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
-    }
+    @JvmName("rotationProperty")
+    get() = getRotation()
+    @JvmName("rotationProperty")
     set(`value`) {
-      TransferContext.writeArguments(QUATERNION to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+      setRotation(value)
     }
 
   /**
@@ -196,14 +167,11 @@ public open class GLTFNode : Resource() {
    */
   @CoreTypeLocalCopy
   public var scale: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("scaleProperty")
+    get() = getScale()
+    @JvmName("scaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+      setScale(value)
     }
 
   /**
@@ -211,14 +179,11 @@ public open class GLTFNode : Resource() {
    * be an empty array.
    */
   public var children: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+    @JvmName("childrenProperty")
+    get() = getChildren()
+    @JvmName("childrenProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setChildrenPtr, NIL)
+      setChildren(value)
     }
 
   /**
@@ -226,14 +191,11 @@ public open class GLTFNode : Resource() {
    * the light's properties. If -1, this node is not a light.
    */
   public var light: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLightPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("lightProperty")
+    get() = getLight()
+    @JvmName("lightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLightPtr, NIL)
+      setLight(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -336,6 +298,149 @@ public open class GLTFNode : Resource() {
       scale = this
   }
 
+
+  public fun getOriginalName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setOriginalName(originalName: String): Unit {
+    TransferContext.writeArguments(STRING to originalName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+  }
+
+  public fun getParent(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParentPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setParent(parent: Int): Unit {
+    TransferContext.writeArguments(LONG to parent.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setParentPtr, NIL)
+  }
+
+  public fun getHeight(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setHeight(height: Int): Unit {
+    TransferContext.writeArguments(LONG to height.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public fun getXform(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getXformPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  public fun setXform(xform: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to xform)
+    TransferContext.callMethod(rawPtr, MethodBindings.setXformPtr, NIL)
+  }
+
+  public fun getMesh(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMesh(mesh: Int): Unit {
+    TransferContext.writeArguments(LONG to mesh.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+  }
+
+  public fun getCamera(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCameraPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setCamera(camera: Int): Unit {
+    TransferContext.writeArguments(LONG to camera.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCameraPtr, NIL)
+  }
+
+  public fun getSkin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSkin(skin: Int): Unit {
+    TransferContext.writeArguments(LONG to skin.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+  }
+
+  public fun getSkeleton(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSkeleton(skeleton: Int): Unit {
+    TransferContext.writeArguments(LONG to skeleton.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
+  }
+
+  public fun getPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setPosition(position: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+  }
+
+  public fun getRotation(): Quaternion {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, QUATERNION)
+    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
+  }
+
+  public fun setRotation(rotation: Quaternion): Unit {
+    TransferContext.writeArguments(QUATERNION to rotation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+  }
+
+  public fun getScale(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setScale(scale: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+  }
+
+  public fun getChildren(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  public fun setChildren(children: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to children)
+    TransferContext.callMethod(rawPtr, MethodBindings.setChildrenPtr, NIL)
+  }
+
+  public fun getLight(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLightPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setLight(light: Int): Unit {
+    TransferContext.writeArguments(LONG to light.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLightPtr, NIL)
+  }
 
   /**
    * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node

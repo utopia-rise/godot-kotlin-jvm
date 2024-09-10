@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -72,15 +73,11 @@ public open class WebSocketPeer : PacketPeer() {
    * The WebSocket sub-protocols allowed during the WebSocket handshake.
    */
   public var supportedProtocols: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSupportedProtocolsPtr,
-          PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("supportedProtocolsProperty")
+    get() = getSupportedProtocols()
+    @JvmName("supportedProtocolsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSupportedProtocolsPtr, NIL)
+      setSupportedProtocols(value)
     }
 
   /**
@@ -88,14 +85,11 @@ public open class WebSocketPeer : PacketPeer() {
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
   public var handshakeHeaders: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("handshakeHeadersProperty")
+    get() = getHandshakeHeaders()
+    @JvmName("handshakeHeadersProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandshakeHeadersPtr, NIL)
+      setHandshakeHeaders(value)
     }
 
   /**
@@ -103,14 +97,11 @@ public open class WebSocketPeer : PacketPeer() {
    * allocated for the inbound packets).
    */
   public var inboundBufferSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInboundBufferSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("inboundBufferSizeProperty")
+    get() = getInboundBufferSize()
+    @JvmName("inboundBufferSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInboundBufferSizePtr, NIL)
+      setInboundBufferSize(value)
     }
 
   /**
@@ -118,28 +109,22 @@ public open class WebSocketPeer : PacketPeer() {
    * allocated for the outbound packets).
    */
   public var outboundBufferSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutboundBufferSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("outboundBufferSizeProperty")
+    get() = getOutboundBufferSize()
+    @JvmName("outboundBufferSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutboundBufferSizePtr, NIL)
+      setOutboundBufferSize(value)
     }
 
   /**
    * The maximum amount of packets that will be allowed in the queues (both inbound and outbound).
    */
   public var maxQueuedPackets: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxQueuedPacketsProperty")
+    get() = getMaxQueuedPackets()
+    @JvmName("maxQueuedPacketsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
+      setMaxQueuedPackets(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -169,7 +154,7 @@ public open class WebSocketPeer : PacketPeer() {
    * [StreamPeerTLS.acceptStream].
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
-  public fun acceptStream(stream: StreamPeer): GodotError {
+  public fun acceptStream(stream: StreamPeer?): GodotError {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -319,6 +304,61 @@ public open class WebSocketPeer : PacketPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCloseReasonPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun getSupportedProtocols(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSupportedProtocolsPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+  }
+
+  public fun setSupportedProtocols(protocols: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSupportedProtocolsPtr, NIL)
+  }
+
+  public fun getHandshakeHeaders(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+  }
+
+  public fun setHandshakeHeaders(protocols: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHandshakeHeadersPtr, NIL)
+  }
+
+  public fun getInboundBufferSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInboundBufferSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setInboundBufferSize(bufferSize: Int): Unit {
+    TransferContext.writeArguments(LONG to bufferSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInboundBufferSizePtr, NIL)
+  }
+
+  public fun getOutboundBufferSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutboundBufferSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setOutboundBufferSize(bufferSize: Int): Unit {
+    TransferContext.writeArguments(LONG to bufferSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutboundBufferSizePtr, NIL)
+  }
+
+  public fun setMaxQueuedPackets(bufferSize: Int): Unit {
+    TransferContext.writeArguments(LONG to bufferSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
+  }
+
+  public fun getMaxQueuedPackets(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class WriteMode(

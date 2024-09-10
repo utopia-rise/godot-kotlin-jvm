@@ -404,8 +404,8 @@ public object NavigationServer3D : Object() {
    * [NavigationPathQueryResult3D] result object with the path among other results requested by the
    * query.
    */
-  public fun queryPath(parameters: NavigationPathQueryParameters3D,
-      result: NavigationPathQueryResult3D): Unit {
+  public fun queryPath(parameters: NavigationPathQueryParameters3D?,
+      result: NavigationPathQueryResult3D?): Unit {
     TransferContext.writeArguments(OBJECT to parameters, OBJECT to result)
     TransferContext.callMethod(rawPtr, MethodBindings.queryPathPtr, NIL)
   }
@@ -579,7 +579,7 @@ public object NavigationServer3D : Object() {
   /**
    * Sets the navigation mesh for the region.
    */
-  public fun regionSetNavigationMesh(region: RID, navigationMesh: NavigationMesh): Unit {
+  public fun regionSetNavigationMesh(region: RID, navigationMesh: NavigationMesh?): Unit {
     TransferContext.writeArguments(_RID to region, OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetNavigationMeshPtr, NIL)
   }
@@ -587,7 +587,7 @@ public object NavigationServer3D : Object() {
   /**
    * Bakes the [navigationMesh] with bake source geometry collected starting from the [rootNode].
    */
-  public fun regionBakeNavigationMesh(navigationMesh: NavigationMesh, rootNode: Node): Unit {
+  public fun regionBakeNavigationMesh(navigationMesh: NavigationMesh?, rootNode: Node?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
     TransferContext.callMethod(rawPtr, MethodBindings.regionBakeNavigationMeshPtr, NIL)
   }
@@ -1354,9 +1354,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmOverloads
   public fun parseSourceGeometryData(
-    navigationMesh: NavigationMesh,
-    sourceGeometryData: NavigationMeshSourceGeometryData3D,
-    rootNode: Node,
+    navigationMesh: NavigationMesh?,
+    sourceGeometryData: NavigationMeshSourceGeometryData3D?,
+    rootNode: Node?,
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
@@ -1369,8 +1369,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmOverloads
   public fun bakeFromSourceGeometryData(
-    navigationMesh: NavigationMesh,
-    sourceGeometryData: NavigationMeshSourceGeometryData3D,
+    navigationMesh: NavigationMesh?,
+    sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
@@ -1384,8 +1384,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmOverloads
   public fun bakeFromSourceGeometryDataAsync(
-    navigationMesh: NavigationMesh,
-    sourceGeometryData: NavigationMeshSourceGeometryData3D,
+    navigationMesh: NavigationMesh?,
+    sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
@@ -1395,7 +1395,7 @@ public object NavigationServer3D : Object() {
   /**
    * Returns `true` when the provided navigation mesh is being baked on a background thread.
    */
-  public fun isBakingNavigationMesh(navigationMesh: NavigationMesh): Boolean {
+  public fun isBakingNavigationMesh(navigationMesh: NavigationMesh?): Boolean {
     TransferContext.writeArguments(OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

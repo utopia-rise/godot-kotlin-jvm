@@ -24,6 +24,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [GraphElement] allows to create custom elements for a [GraphEdit] graph. By default such elements
@@ -79,14 +80,11 @@ public open class GraphElement : Container() {
    */
   @CoreTypeLocalCopy
   public var positionOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("positionOffsetProperty")
+    get() = getPositionOffset()
+    @JvmName("positionOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionOffsetPtr, NIL)
+      setPositionOffset(value)
     }
 
   /**
@@ -95,56 +93,44 @@ public open class GraphElement : Container() {
    * resize_end] signals, the GraphElement needs to be resized manually.
    */
   public var resizable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isResizablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("resizableProperty")
+    get() = isResizable()
+    @JvmName("resizableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResizablePtr, NIL)
+      setResizable(value)
     }
 
   /**
    * If `true`, the user can drag the GraphElement.
    */
   public var draggable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDraggablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("draggableProperty")
+    get() = isDraggable()
+    @JvmName("draggableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDraggablePtr, NIL)
+      setDraggable(value)
     }
 
   /**
    * If `true`, the user can select the GraphElement.
    */
   public var selectable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("selectableProperty")
+    get() = isSelectable()
+    @JvmName("selectableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
+      setSelectable(value)
     }
 
   /**
    * If `true`, the GraphElement is selected.
    */
   public var selected: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("selectedProperty")
+    get() = isSelected()
+    @JvmName("selectedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
+      setSelected(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -174,6 +160,61 @@ public open class GraphElement : Container() {
       positionOffset = this
   }
 
+
+  public fun setResizable(resizable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to resizable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResizablePtr, NIL)
+  }
+
+  public fun isResizable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isResizablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDraggable(draggable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to draggable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDraggablePtr, NIL)
+  }
+
+  public fun isDraggable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDraggablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSelectable(selectable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to selectable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
+  }
+
+  public fun isSelectable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSelected(selected: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to selected)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
+  }
+
+  public fun isSelected(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setPositionOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPositionOffsetPtr, NIL)
+  }
+
+  public fun getPositionOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

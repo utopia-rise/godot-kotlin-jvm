@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
@@ -32,14 +33,11 @@ public open class AudioEffectPitchShift : AudioEffect() {
    * pitch).
    */
   public var pitchScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("pitchScaleProperty")
+    get() = getPitchScale()
+    @JvmName("pitchScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+      setPitchScale(value)
     }
 
   /**
@@ -47,14 +45,11 @@ public open class AudioEffectPitchShift : AudioEffect() {
    * on the CPU and may cause audio cracking if the CPU can't keep up.
    */
   public var oversampling: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("oversamplingProperty")
+    get() = getOversampling()
+    @JvmName("oversamplingProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
+      setOversampling(value)
     }
 
   /**
@@ -64,18 +59,48 @@ public open class AudioEffectPitchShift : AudioEffect() {
    * changes.
    */
   public var fftSize: FFTSize
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
-      return AudioEffectPitchShift.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("fftSizeProperty")
+    get() = getFftSize()
+    @JvmName("fftSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+      setFftSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT, scriptIndex)
+  }
+
+  public fun setPitchScale(rate: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to rate.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+  }
+
+  public fun getPitchScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setOversampling(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
+  }
+
+  public fun getOversampling(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFftSize(size: FFTSize): Unit {
+    TransferContext.writeArguments(LONG to size.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+  }
+
+  public fun getFftSize(): FFTSize {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
+    return AudioEffectPitchShift.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FFTSize(

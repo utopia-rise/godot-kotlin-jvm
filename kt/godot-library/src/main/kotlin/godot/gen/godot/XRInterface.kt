@@ -39,6 +39,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class needs to be implemented to make an AR or VR platform available to Godot and these
@@ -60,49 +61,37 @@ public open class XRInterface internal constructor() : RefCounted() {
    * `true` if this is the primary interface.
    */
   public var interfaceIsPrimary: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPrimaryPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("interfaceIsPrimaryProperty")
+    get() = isPrimary()
+    @JvmName("interfaceIsPrimaryProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryPtr, NIL)
+      setPrimary(value)
     }
 
   /**
    * The play area mode for this interface.
    */
   public val xrPlayAreaMode: PlayAreaMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPlayAreaModePtr, LONG)
-      return XRInterface.PlayAreaMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("xrPlayAreaModeProperty")
+    get() = getPlayAreaMode()
 
   /**
    * Specify how XR should blend in the environment. This is specific to certain AR and passthrough
    * devices where camera images are blended in by the XR compositor.
    */
   public val environmentBlendMode: EnvironmentBlendMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentBlendModePtr, LONG)
-      return XRInterface.EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("environmentBlendModeProperty")
+    get() = getEnvironmentBlendMode()
 
   /**
    * On an AR interface, `true` if anchor detection is enabled.
    */
   public var arIsAnchorDetectionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnchorDetectionIsEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("arIsAnchorDetectionEnabledProperty")
+    get() = getAnchorDetectionIsEnabled()
+    @JvmName("arIsAnchorDetectionEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAnchorDetectionIsEnabledPtr, NIL)
+      setAnchorDetectionIsEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -126,6 +115,17 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCapabilitiesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun isPrimary(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPrimaryPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setPrimary(primary: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to primary)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryPtr, NIL)
   }
 
   /**
@@ -241,6 +241,12 @@ public open class XRInterface internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun getPlayAreaMode(): PlayAreaMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPlayAreaModePtr, LONG)
+    return XRInterface.PlayAreaMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Sets the active play area mode, will return `false` if the mode can't be used with this
    * interface.
@@ -264,6 +270,17 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlayAreaPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+  }
+
+  public fun getAnchorDetectionIsEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnchorDetectionIsEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAnchorDetectionIsEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAnchorDetectionIsEnabledPtr, NIL)
   }
 
   /**
@@ -373,6 +390,12 @@ public open class XRInterface internal constructor() : RefCounted() {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentBlendModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun getEnvironmentBlendMode(): EnvironmentBlendMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentBlendModePtr, LONG)
+    return XRInterface.EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Capabilities(

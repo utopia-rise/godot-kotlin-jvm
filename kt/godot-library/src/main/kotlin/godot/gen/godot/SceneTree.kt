@@ -35,6 +35,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -63,23 +64,23 @@ public open class SceneTree : MainLoop() {
   /**
    * Emitted when the [node] enters this tree.
    */
-  public val nodeAdded: Signal1<Node> by signal("node")
+  public val nodeAdded: Signal1<Node?> by signal("node")
 
   /**
    * Emitted when the [node] exits this tree.
    */
-  public val nodeRemoved: Signal1<Node> by signal("node")
+  public val nodeRemoved: Signal1<Node?> by signal("node")
 
   /**
    * Emitted when the [node]'s [Node.name] is changed.
    */
-  public val nodeRenamed: Signal1<Node> by signal("node")
+  public val nodeRenamed: Signal1<Node?> by signal("node")
 
   /**
    * Emitted when the [node]'s [Node.updateConfigurationWarnings] is called. Only emitted in the
    * editor.
    */
-  public val nodeConfigurationWarningChanged: Signal1<Node> by signal("node")
+  public val nodeConfigurationWarningChanged: Signal1<Node?> by signal("node")
 
   /**
    * Emitted immediately before [Node.Process] is called on every node in this tree.
@@ -96,14 +97,11 @@ public open class SceneTree : MainLoop() {
    * For mobile platforms, see [quitOnGoBack].
    */
   public var autoAcceptQuit: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoAcceptQuitPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoAcceptQuitProperty")
+    get() = isAutoAcceptQuit()
+    @JvmName("autoAcceptQuitProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoAcceptQuitPtr, NIL)
+      setAutoAcceptQuit(value)
     }
 
   /**
@@ -113,14 +111,11 @@ public open class SceneTree : MainLoop() {
    * [DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST].
    */
   public var quitOnGoBack: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isQuitOnGoBackPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("quitOnGoBackProperty")
+    get() = isQuitOnGoBack()
+    @JvmName("quitOnGoBackProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setQuitOnGoBackPtr, NIL)
+      setQuitOnGoBack(value)
     }
 
   /**
@@ -130,14 +125,11 @@ public open class SceneTree : MainLoop() {
    * [debugCollisionsHint] while the project is running will not have the desired effect.
    */
   public var debugCollisionsHint: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingCollisionsHintPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("debugCollisionsHintProperty")
+    get() = isDebuggingCollisionsHint()
+    @JvmName("debugCollisionsHintProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDebugCollisionsHintPtr, NIL)
+      setDebugCollisionsHint(value)
     }
 
   /**
@@ -147,14 +139,11 @@ public open class SceneTree : MainLoop() {
    * [debugPathsHint] while the project is running will not have the desired effect.
    */
   public var debugPathsHint: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingPathsHintPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("debugPathsHintProperty")
+    get() = isDebuggingPathsHint()
+    @JvmName("debugPathsHintProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathsHintPtr, NIL)
+      setDebugPathsHint(value)
     }
 
   /**
@@ -164,14 +153,11 @@ public open class SceneTree : MainLoop() {
    * [debugNavigationHint] while the project is running will not have the desired effect.
    */
   public var debugNavigationHint: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingNavigationHintPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("debugNavigationHintProperty")
+    get() = isDebuggingNavigationHint()
+    @JvmName("debugNavigationHintProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDebugNavigationHintPtr, NIL)
+      setDebugNavigationHint(value)
     }
 
   /**
@@ -181,14 +167,11 @@ public open class SceneTree : MainLoop() {
    * [Node.Input] callback methods may not called anymore.
    */
   public var paused: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("pausedProperty")
+    get() = isPaused()
+    @JvmName("pausedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
+      setPause(value)
     }
 
   /**
@@ -197,14 +180,11 @@ public open class SceneTree : MainLoop() {
    * **Note:** This property does nothing in release builds.
    */
   public var editedSceneRoot: Node?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEditedSceneRootPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
-    }
+    @JvmName("editedSceneRootProperty")
+    get() = getEditedSceneRoot()
+    @JvmName("editedSceneRootProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditedSceneRootPtr, NIL)
+      setEditedSceneRoot(value)
     }
 
   /**
@@ -214,14 +194,11 @@ public open class SceneTree : MainLoop() {
    * remove any nodes from this tree.
    */
   public var currentScene: Node?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentScenePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
-    }
+    @JvmName("currentSceneProperty")
+    get() = getCurrentScene()
+    @JvmName("currentSceneProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentScenePtr, NIL)
+      setCurrentScene(value)
     }
 
   /**
@@ -234,11 +211,8 @@ public open class SceneTree : MainLoop() {
    * crash.
    */
   public val root: Window?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Window?)
-    }
+    @JvmName("rootProperty")
+    get() = getRoot()
 
   /**
    * If `true` (default value), enables automatic polling of the [MultiplayerAPI] for this SceneTree
@@ -248,14 +222,11 @@ public open class SceneTree : MainLoop() {
    * step) and for manual [Mutex] protection when accessing the [MultiplayerAPI] from threads.
    */
   public var multiplayerPoll: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("multiplayerPollProperty")
+    get() = isMultiplayerPollEnabled()
+    @JvmName("multiplayerPollProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPollEnabledPtr, NIL)
+      setMultiplayerPollEnabled(value)
     }
 
   /**
@@ -266,18 +237,21 @@ public open class SceneTree : MainLoop() {
    * [ProjectSettings.physics/common/physicsInterpolation].
    */
   public var physicsInterpolation: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("physicsInterpolationProperty")
+    get() = isPhysicsInterpolationEnabled()
+    @JvmName("physicsInterpolationProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationEnabledPtr, NIL)
+      setPhysicsInterpolationEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCENETREE, scriptIndex)
+  }
+
+  public fun getRoot(): Window? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Window?)
   }
 
   /**
@@ -286,6 +260,83 @@ public open class SceneTree : MainLoop() {
   public fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasGroupPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun isAutoAcceptQuit(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoAcceptQuitPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAutoAcceptQuit(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoAcceptQuitPtr, NIL)
+  }
+
+  public fun isQuitOnGoBack(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isQuitOnGoBackPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setQuitOnGoBack(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setQuitOnGoBackPtr, NIL)
+  }
+
+  public fun setDebugCollisionsHint(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDebugCollisionsHintPtr, NIL)
+  }
+
+  public fun isDebuggingCollisionsHint(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingCollisionsHintPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDebugPathsHint(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathsHintPtr, NIL)
+  }
+
+  public fun isDebuggingPathsHint(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingPathsHintPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDebugNavigationHint(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDebugNavigationHintPtr, NIL)
+  }
+
+  public fun isDebuggingNavigationHint(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingNavigationHintPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEditedSceneRoot(scene: Node?): Unit {
+    TransferContext.writeArguments(OBJECT to scene)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditedSceneRootPtr, NIL)
+  }
+
+  public fun getEditedSceneRoot(): Node? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditedSceneRootPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+  }
+
+  public fun setPause(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
+  }
+
+  public fun isPaused(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -388,11 +439,22 @@ public open class SceneTree : MainLoop() {
     TransferContext.callMethod(rawPtr, MethodBindings.quitPtr, NIL)
   }
 
+  public fun setPhysicsInterpolationEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationEnabledPtr, NIL)
+  }
+
+  public fun isPhysicsInterpolationEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Queues the given [obj] to be deleted, calling its [Object.free] at the end of the current
    * frame. This method is similar to [Node.queueFree].
    */
-  public fun queueDelete(obj: Object): Unit {
+  public fun queueDelete(obj: Object?): Unit {
     TransferContext.writeArguments(OBJECT to obj)
     TransferContext.callMethod(rawPtr, MethodBindings.queueDeletePtr, NIL)
   }
@@ -533,6 +595,17 @@ public open class SceneTree : MainLoop() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun setCurrentScene(childNode: Node?): Unit {
+    TransferContext.writeArguments(OBJECT to childNode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentScenePtr, NIL)
+  }
+
+  public fun getCurrentScene(): Node? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentScenePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+  }
+
   /**
    * Changes the running scene to the one at the given [path], after loading it into a [PackedScene]
    * and creating a new instance.
@@ -560,7 +633,7 @@ public open class SceneTree : MainLoop() {
    * This ensures that both scenes aren't running at the same time, while still freeing the previous
    * scene in a safe way similar to [Node.queueFree].
    */
-  public fun changeSceneToPacked(packedScene: PackedScene): GodotError {
+  public fun changeSceneToPacked(packedScene: PackedScene?): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
     TransferContext.callMethod(rawPtr, MethodBindings.changeSceneToPackedPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -595,7 +668,7 @@ public open class SceneTree : MainLoop() {
    * `"/root/Foo/Bar"` will cause an error.
    */
   @JvmOverloads
-  public fun setMultiplayer(multiplayer: MultiplayerAPI, rootPath: NodePath = NodePath("")): Unit {
+  public fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: NodePath = NodePath("")): Unit {
     TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
     TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPtr, NIL)
   }
@@ -610,6 +683,17 @@ public open class SceneTree : MainLoop() {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
+  }
+
+  public fun setMultiplayerPollEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPollEnabledPtr, NIL)
+  }
+
+  public fun isMultiplayerPollEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class GroupCallFlags(

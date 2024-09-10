@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -72,14 +73,11 @@ public open class JSON : Resource() {
    * Contains the parsed JSON data in [Variant] form.
    */
   public var `data`: Any?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
-      return (TransferContext.readReturnValue(ANY, true) as Any?)
-    }
+    @JvmName("dataProperty")
+    get() = getData()
+    @JvmName("dataProperty")
     set(`value`) {
-      TransferContext.writeArguments(ANY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+      setData(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -101,6 +99,17 @@ public open class JSON : Resource() {
     TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
     TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun getData(): Any? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
+  }
+
+  public fun setData(`data`: Any?): Unit {
+    TransferContext.writeArguments(ANY to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
   }
 
   /**

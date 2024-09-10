@@ -73,7 +73,7 @@ public object ThemeDB : Object() {
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFallbackFont(font: Font): Unit {
+  public fun setFallbackFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontPtr, NIL)
   }
@@ -95,7 +95,7 @@ public object ThemeDB : Object() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFallbackIcon(icon: Texture2D): Unit {
+  public fun setFallbackIcon(icon: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackIconPtr, NIL)
   }
@@ -106,7 +106,7 @@ public object ThemeDB : Object() {
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setFallbackStylebox(stylebox: StyleBox): Unit {
+  public fun setFallbackStylebox(stylebox: StyleBox?): Unit {
     TransferContext.writeArguments(OBJECT to stylebox)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackStyleboxPtr, NIL)
   }

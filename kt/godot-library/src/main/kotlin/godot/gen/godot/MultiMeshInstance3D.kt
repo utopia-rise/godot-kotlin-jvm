@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
@@ -29,18 +30,26 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
    * [MultiMeshInstance3D].
    */
   public var multimesh: MultiMesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)
-    }
+    @JvmName("multimeshProperty")
+    get() = getMultimesh()
+    @JvmName("multimeshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
+      setMultimesh(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE3D, scriptIndex)
+  }
+
+  public fun setMultimesh(multimesh: MultiMesh?): Unit {
+    TransferContext.writeArguments(OBJECT to multimesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
+  }
+
+  public fun getMultimesh(): MultiMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)
   }
 
   public companion object

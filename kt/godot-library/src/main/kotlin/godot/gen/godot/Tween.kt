@@ -232,7 +232,7 @@ public open class Tween : RefCounted() {
    * ```
    */
   public fun tweenProperty(
-    _object: Object,
+    _object: Object?,
     `property`: NodePath,
     finalVal: Any?,
     duration: Double,
@@ -482,7 +482,7 @@ public open class Tween : RefCounted() {
    * pausing behavior dependent on the bound node.
    * For a shorter way to create and bind a [Tween], you can use [Node.createTween].
    */
-  public fun bindNode(node: Node): Tween? {
+  public fun bindNode(node: Node?): Tween? {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.bindNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Tween?)

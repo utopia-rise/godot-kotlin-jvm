@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This is a stream that can be fitted with sub-streams, which will be played in-sync. The streams
@@ -32,24 +33,32 @@ public open class AudioStreamSynchronized : AudioStream() {
    * Set the total amount of streams that will be played back synchronized.
    */
   public var streamCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("streamCountProperty")
+    get() = getStreamCount()
+    @JvmName("streamCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
+      setStreamCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMSYNCHRONIZED, scriptIndex)
   }
 
+  public fun setStreamCount(streamCount: Int): Unit {
+    TransferContext.writeArguments(LONG to streamCount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
+  }
+
+  public fun getStreamCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Set one of the synchronized streams, by index.
    */
-  public fun setSyncStream(streamIndex: Int, audioStream: AudioStream): Unit {
+  public fun setSyncStream(streamIndex: Int, audioStream: AudioStream?): Unit {
     TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
     TransferContext.callMethod(rawPtr, MethodBindings.setSyncStreamPtr, NIL)
   }

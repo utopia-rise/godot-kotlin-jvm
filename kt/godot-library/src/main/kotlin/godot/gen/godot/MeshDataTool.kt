@@ -104,7 +104,7 @@ public open class MeshDataTool : RefCounted() {
    * Uses specified surface of given [Mesh] to populate data for MeshDataTool.
    * Requires [Mesh] with primitive type [Mesh.PRIMITIVE_TRIANGLES].
    */
-  public fun createFromSurface(mesh: ArrayMesh, surface: Int): GodotError {
+  public fun createFromSurface(mesh: ArrayMesh?, surface: Int): GodotError {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createFromSurfacePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -114,7 +114,7 @@ public open class MeshDataTool : RefCounted() {
    * Adds a new surface to specified [Mesh] with edited data.
    */
   @JvmOverloads
-  public fun commitToSurface(mesh: ArrayMesh, compressionFlags: Long = 0): GodotError {
+  public fun commitToSurface(mesh: ArrayMesh?, compressionFlags: Long = 0): GodotError {
     TransferContext.writeArguments(OBJECT to mesh, LONG to compressionFlags)
     TransferContext.callMethod(rawPtr, MethodBindings.commitToSurfacePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -430,7 +430,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the material to be used by newly-constructed [Mesh].
    */
-  public fun setMaterial(material: Material): Unit {
+  public fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }

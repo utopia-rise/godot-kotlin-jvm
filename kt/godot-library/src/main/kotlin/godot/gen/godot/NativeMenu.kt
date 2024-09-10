@@ -332,7 +332,7 @@ public object NativeMenu : Object() {
   @JvmOverloads
   public fun addIconItem(
     rid: RID,
-    icon: Texture2D,
+    icon: Texture2D?,
     label: String,
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
@@ -360,7 +360,7 @@ public object NativeMenu : Object() {
   @JvmOverloads
   public fun addIconCheckItem(
     rid: RID,
-    icon: Texture2D,
+    icon: Texture2D?,
     label: String,
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
@@ -421,7 +421,7 @@ public object NativeMenu : Object() {
   @JvmOverloads
   public fun addIconRadioCheckItem(
     rid: RID,
-    icon: Texture2D,
+    icon: Texture2D?,
     label: String,
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
@@ -905,7 +905,7 @@ public object NativeMenu : Object() {
   public fun setItemIcon(
     rid: RID,
     idx: Int,
-    icon: Texture2D,
+    icon: Texture2D?,
   ): Unit {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)

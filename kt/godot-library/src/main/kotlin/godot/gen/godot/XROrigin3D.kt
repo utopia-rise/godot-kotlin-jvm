@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This is a special node within the AR/VR system that maps the physical location of the center of
@@ -41,14 +42,11 @@ public open class XROrigin3D : Node3D() {
    * real world meter.
    */
   public var worldScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("worldScaleProperty")
+    get() = getWorldScale()
+    @JvmName("worldScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
+      setWorldScale(value)
     }
 
   /**
@@ -56,18 +54,37 @@ public open class XROrigin3D : Node3D() {
    * can be used at a time.
    */
   public var current: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("currentProperty")
+    get() = isCurrent()
+    @JvmName("currentProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
+      setCurrent(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRORIGIN3D, scriptIndex)
+  }
+
+  public fun setWorldScale(worldScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to worldScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
+  }
+
+  public fun getWorldScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setCurrent(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
+  }
+
+  public fun isCurrent(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

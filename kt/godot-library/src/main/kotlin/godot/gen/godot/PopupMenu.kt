@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -83,42 +84,33 @@ public open class PopupMenu : Popup() {
    * If `true`, hides the [PopupMenu] when an item is selected.
    */
   public var hideOnItemSelection: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHideOnItemSelectionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hideOnItemSelectionProperty")
+    get() = isHideOnItemSelection()
+    @JvmName("hideOnItemSelectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnItemSelectionPtr, NIL)
+      setHideOnItemSelection(value)
     }
 
   /**
    * If `true`, hides the [PopupMenu] when a checkbox or radio button is selected.
    */
   public var hideOnCheckableItemSelection: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHideOnCheckableItemSelectionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hideOnCheckableItemSelectionProperty")
+    get() = isHideOnCheckableItemSelection()
+    @JvmName("hideOnCheckableItemSelectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnCheckableItemSelectionPtr, NIL)
+      setHideOnCheckableItemSelection(value)
     }
 
   /**
    * If `true`, hides the [PopupMenu] when a state item is selected.
    */
   public var hideOnStateItemSelection: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHideOnStateItemSelectionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hideOnStateItemSelectionProperty")
+    get() = isHideOnStateItemSelection()
+    @JvmName("hideOnStateItemSelectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnStateItemSelectionPtr, NIL)
+      setHideOnStateItemSelection(value)
     }
 
   /**
@@ -127,28 +119,22 @@ public open class PopupMenu : Popup() {
    * parent menu item.
    */
   public var submenuPopupDelay: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubmenuPopupDelayPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("submenuPopupDelayProperty")
+    get() = getSubmenuPopupDelay()
+    @JvmName("submenuPopupDelayProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubmenuPopupDelayPtr, NIL)
+      setSubmenuPopupDelay(value)
     }
 
   /**
    * If `true`, allows navigating [PopupMenu] with letter keys.
    */
   public var allowSearch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowSearchProperty")
+    get() = getAllowSearch()
+    @JvmName("allowSearchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+      setAllowSearch(value)
     }
 
   /**
@@ -156,14 +142,11 @@ public open class PopupMenu : Popup() {
    * special system menu. Only one [PopupMenu] can be bound to each special menu at a time.
    */
   public var systemMenuId: NativeMenu.SystemMenus
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSystemMenuPtr, LONG)
-      return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("systemMenuIdProperty")
+    get() = getSystemMenu()
+    @JvmName("systemMenuIdProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSystemMenuPtr, NIL)
+      setSystemMenu(value)
     }
 
   /**
@@ -172,28 +155,22 @@ public open class PopupMenu : Popup() {
    * it can use native menu regardless of this property, use [isNativeMenu] to check it.
    */
   public var preferNativeMenu: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPreferNativeMenuPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("preferNativeMenuProperty")
+    get() = isPreferNativeMenu()
+    @JvmName("preferNativeMenuProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreferNativeMenuPtr, NIL)
+      setPreferNativeMenu(value)
     }
 
   /**
    * The number of items currently in the list.
    */
   public var itemCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("itemCountProperty")
+    get() = getItemCount()
+    @JvmName("itemCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+      setItemCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -208,9 +185,20 @@ public open class PopupMenu : Popup() {
    * **Note:** Certain [Control]s, such as [MenuButton], will call this method automatically.
    */
   @JvmOverloads
-  public fun activateItemByEvent(event: InputEvent, forGlobalOnly: Boolean = false): Boolean {
+  public fun activateItemByEvent(event: InputEvent?, forGlobalOnly: Boolean = false): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to forGlobalOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.activateItemByEventPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setPreferNativeMenu(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreferNativeMenuPtr, NIL)
+  }
+
+  public fun isPreferNativeMenu(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPreferNativeMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
@@ -251,7 +239,7 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addIconItem(
-    texture: Texture2D,
+    texture: Texture2D?,
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -292,7 +280,7 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addIconCheckItem(
-    texture: Texture2D,
+    texture: Texture2D?,
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -326,7 +314,7 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addIconRadioCheckItem(
-    texture: Texture2D,
+    texture: Texture2D?,
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -382,7 +370,7 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addShortcut(
-    shortcut: Shortcut,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
     allowEcho: Boolean = false,
@@ -399,8 +387,8 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addIconShortcut(
-    texture: Texture2D,
-    shortcut: Shortcut,
+    texture: Texture2D?,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
     allowEcho: Boolean = false,
@@ -419,7 +407,7 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addCheckShortcut(
-    shortcut: Shortcut,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -437,8 +425,8 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addIconCheckShortcut(
-    texture: Texture2D,
-    shortcut: Shortcut,
+    texture: Texture2D?,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -456,7 +444,7 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addRadioCheckShortcut(
-    shortcut: Shortcut,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -469,8 +457,8 @@ public open class PopupMenu : Popup() {
    */
   @JvmOverloads
   public fun addIconRadioCheckShortcut(
-    texture: Texture2D,
-    shortcut: Shortcut,
+    texture: Texture2D?,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -507,7 +495,7 @@ public open class PopupMenu : Popup() {
   @JvmOverloads
   public fun addSubmenuNodeItem(
     label: String,
-    submenu: PopupMenu,
+    submenu: PopupMenu?,
     id: Int = -1,
   ): Unit {
     TransferContext.writeArguments(STRING to label, OBJECT to submenu, LONG to id.toLong())
@@ -542,7 +530,7 @@ public open class PopupMenu : Popup() {
   /**
    * Replaces the [Texture2D] icon of the item at the given [index].
    */
-  public fun setItemIcon(index: Int, icon: Texture2D): Unit {
+  public fun setItemIcon(index: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -626,7 +614,7 @@ public open class PopupMenu : Popup() {
    * (in which case it will be automatically added as a child). If the [submenu] popup has another
    * parent, this method will fail.
    */
-  public fun setItemSubmenuNode(index: Int, submenu: PopupMenu): Unit {
+  public fun setItemSubmenuNode(index: Int, submenu: PopupMenu?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to submenu)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemSubmenuNodePtr, NIL)
   }
@@ -674,7 +662,7 @@ public open class PopupMenu : Popup() {
   @JvmOverloads
   public fun setItemShortcut(
     index: Int,
-    shortcut: Shortcut,
+    shortcut: Shortcut?,
     global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to shortcut, BOOL to global)
@@ -971,6 +959,17 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun setItemCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+  }
+
+  public fun getItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Moves the scroll view to make the item at the given [index] visible.
    */
@@ -1009,6 +1008,61 @@ public open class PopupMenu : Popup() {
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
+  public fun setHideOnItemSelection(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnItemSelectionPtr, NIL)
+  }
+
+  public fun isHideOnItemSelection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHideOnItemSelectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHideOnCheckableItemSelection(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnCheckableItemSelectionPtr, NIL)
+  }
+
+  public fun isHideOnCheckableItemSelection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHideOnCheckableItemSelectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHideOnStateItemSelection(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnStateItemSelectionPtr, NIL)
+  }
+
+  public fun isHideOnStateItemSelection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHideOnStateItemSelectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSubmenuPopupDelay(seconds: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubmenuPopupDelayPtr, NIL)
+  }
+
+  public fun getSubmenuPopupDelay(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubmenuPopupDelayPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAllowSearch(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+  }
+
+  public fun getAllowSearch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns `true` if the menu is bound to the special system menu.
    */
@@ -1016,6 +1070,17 @@ public open class PopupMenu : Popup() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSystemMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSystemMenu(systemMenuId: NativeMenu.SystemMenus): Unit {
+    TransferContext.writeArguments(LONG to systemMenuId.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSystemMenuPtr, NIL)
+  }
+
+  public fun getSystemMenu(): NativeMenu.SystemMenus {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSystemMenuPtr, LONG)
+    return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

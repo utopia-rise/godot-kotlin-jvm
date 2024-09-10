@@ -19,6 +19,7 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A material that uses a custom [Shader] program to render visual items (canvas items, meshes,
@@ -36,18 +37,26 @@ public open class ShaderMaterial : Material() {
    * The [Shader] program used to render this material.
    */
   public var shader: Shader?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Shader?)
-    }
+    @JvmName("shaderProperty")
+    get() = getShader()
+    @JvmName("shaderProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShaderPtr, NIL)
+      setShader(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHADERMATERIAL, scriptIndex)
+  }
+
+  public fun setShader(shader: Shader?): Unit {
+    TransferContext.writeArguments(OBJECT to shader)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShaderPtr, NIL)
+  }
+
+  public fun getShader(): Shader? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Shader?)
   }
 
   /**

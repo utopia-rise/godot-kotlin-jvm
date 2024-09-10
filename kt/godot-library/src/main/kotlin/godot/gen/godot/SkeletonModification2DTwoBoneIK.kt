@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This [SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works
@@ -41,14 +42,11 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * the modification will use when bending the [Bone2D] nodes.
    */
   public var targetNodepath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("targetNodepathProperty")
+    get() = getTargetNode()
+    @JvmName("targetNodepathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+      setTargetNode(value)
     }
 
   /**
@@ -57,14 +55,11 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * will solve without distance constraints.
    */
   public var targetMinimumDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("targetMinimumDistanceProperty")
+    get() = getTargetMinimumDistance()
+    @JvmName("targetMinimumDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetMinimumDistancePtr, NIL)
+      setTargetMinimumDistance(value)
     }
 
   /**
@@ -73,14 +68,11 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * will solve without distance constraints.
    */
   public var targetMaximumDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("targetMaximumDistanceProperty")
+    get() = getTargetMaximumDistance()
+    @JvmName("targetMaximumDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetMaximumDistancePtr, NIL)
+      setTargetMaximumDistance(value)
     }
 
   /**
@@ -88,18 +80,59 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * contracting. If `false`, the bones will bend inwards when contracting.
    */
   public var flipBendDirection: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlipBendDirectionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("flipBendDirectionProperty")
+    get() = getFlipBendDirection()
+    @JvmName("flipBendDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipBendDirectionPtr, NIL)
+      setFlipBendDirection(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DTWOBONEIK, scriptIndex)
+  }
+
+  public fun setTargetNode(targetNodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to targetNodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+  }
+
+  public fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setTargetMinimumDistance(minimumDistance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to minimumDistance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetMinimumDistancePtr, NIL)
+  }
+
+  public fun getTargetMinimumDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setTargetMaximumDistance(maximumDistance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to maximumDistance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetMaximumDistancePtr, NIL)
+  }
+
+  public fun getTargetMaximumDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFlipBendDirection(flipDirection: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flipDirection)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipBendDirectionPtr, NIL)
+  }
+
+  public fun getFlipBendDirection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlipBendDirectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

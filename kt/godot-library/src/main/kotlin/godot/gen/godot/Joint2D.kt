@@ -23,6 +23,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies
@@ -34,28 +35,22 @@ public open class Joint2D internal constructor() : Node2D() {
    * Path to the first body (A) attached to the joint. The node must inherit [PhysicsBody2D].
    */
   public var nodeA: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("nodeAProperty")
+    get() = getNodeA()
+    @JvmName("nodeAProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
+      setNodeA(value)
     }
 
   /**
    * Path to the second body (B) attached to the joint. The node must inherit [PhysicsBody2D].
    */
   public var nodeB: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("nodeBProperty")
+    get() = getNodeB()
+    @JvmName("nodeBProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
+      setNodeB(value)
     }
 
   /**
@@ -66,32 +61,70 @@ public open class Joint2D internal constructor() : Node2D() {
    * [ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */
   public var bias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("biasProperty")
+    get() = getBias()
+    @JvmName("biasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+      setBias(value)
     }
 
   /**
    * If `true`, the two bodies bound together do not collide with each other.
    */
   public var disableCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("disableCollisionProperty")
+    get() = getExcludeNodesFromCollision()
+    @JvmName("disableCollisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+      setExcludeNodesFromCollision(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_JOINT2D, scriptIndex)
+  }
+
+  public fun setNodeA(node: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to node)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
+  }
+
+  public fun getNodeA(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setNodeB(node: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to node)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
+  }
+
+  public fun getNodeB(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setBias(bias: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bias.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+  }
+
+  public fun getBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setExcludeNodesFromCollision(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+  }
+
+  public fun getExcludeNodesFromCollision(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

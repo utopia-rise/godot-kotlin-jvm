@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a
@@ -27,18 +28,26 @@ public open class Texture2DRD : Texture2D() {
    * The RID of the texture object created on the [RenderingDevice].
    */
   public var textureRdRid: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+    @JvmName("textureRdRidProperty")
+    get() = getTextureRdRid()
+    @JvmName("textureRdRidProperty")
     set(`value`) {
-      TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
+      setTextureRdRid(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTURE2DRD, scriptIndex)
+  }
+
+  public fun setTextureRdRid(textureRdRid: RID): Unit {
+    TransferContext.writeArguments(_RID to textureRdRid)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
+  }
+
+  public fun getTextureRdRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   public companion object

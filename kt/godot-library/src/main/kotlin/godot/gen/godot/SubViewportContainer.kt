@@ -19,6 +19,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A container that displays the contents of underlying [SubViewport] child nodes. It uses the
@@ -36,14 +37,11 @@ public open class SubViewportContainer : Container() {
    * **Note:** If `true`, this will prohibit changing [SubViewport.size] of its children manually.
    */
   public var stretch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("stretchProperty")
+    get() = isStretchEnabled()
+    @JvmName("stretchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchPtr, NIL)
+      setStretch(value)
     }
 
   /**
@@ -54,14 +52,11 @@ public open class SubViewportContainer : Container() {
    * **Note:** [stretch] must be `true` for this property to work.
    */
   public var stretchShrink: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("stretchShrinkProperty")
+    get() = getStretchShrink()
+    @JvmName("stretchShrinkProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
+      setStretchShrink(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -73,8 +68,30 @@ public open class SubViewportContainer : Container() {
    * to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is
    * not implemented, all events are propagated to SubViewports.
    */
-  public open fun _propagateInputEvent(event: InputEvent): Boolean {
+  public open fun _propagateInputEvent(event: InputEvent?): Boolean {
     throw NotImplementedError("_propagate_input_event is not implemented for SubViewportContainer")
+  }
+
+  public fun setStretch(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStretchPtr, NIL)
+  }
+
+  public fun isStretchEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setStretchShrink(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
+  }
+
+  public fun getStretchShrink(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

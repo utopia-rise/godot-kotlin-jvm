@@ -32,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -74,14 +75,11 @@ public open class AnimatedSprite2D : Node2D() {
    * clear, make unique and save the states of the [SpriteFrames] resource.
    */
   public var spriteFrames: SpriteFrames?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpriteFramesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?)
-    }
+    @JvmName("spriteFramesProperty")
+    get() = getSpriteFrames()
+    @JvmName("spriteFramesProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpriteFramesPtr, NIL)
+      setSpriteFrames(value)
     }
 
   /**
@@ -89,28 +87,22 @@ public open class AnimatedSprite2D : Node2D() {
    * counter and the [frameProgress] are reset.
    */
   public var animation: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("animationProperty")
+    get() = getAnimation()
+    @JvmName("animationProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPtr, NIL)
+      setAnimation(value)
     }
 
   /**
    * The key of the animation to play when the scene loads.
    */
   public var autoplay: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("autoplayProperty")
+    get() = getAutoplay()
+    @JvmName("autoplayProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+      setAutoplay(value)
     }
 
   /**
@@ -118,14 +110,11 @@ public open class AnimatedSprite2D : Node2D() {
    * this is not desired, use [setFrameAndProgress].
    */
   public var frame: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("frameProperty")
+    get() = getFrame()
+    @JvmName("frameProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+      setFrame(value)
     }
 
   /**
@@ -133,14 +122,11 @@ public open class AnimatedSprite2D : Node2D() {
    * frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`.
    */
   public var frameProgress: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFrameProgressPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("frameProgressProperty")
+    get() = getFrameProgress()
+    @JvmName("frameProgressProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFrameProgressPtr, NIL)
+      setFrameProgress(value)
     }
 
   /**
@@ -150,14 +136,11 @@ public open class AnimatedSprite2D : Node2D() {
    * will not advance.
    */
   public var speedScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("speedScaleProperty")
+    get() = getSpeedScale()
+    @JvmName("speedScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+      setSpeedScale(value)
     }
 
   /**
@@ -168,14 +151,11 @@ public open class AnimatedSprite2D : Node2D() {
    * [ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
    */
   public var centered: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("centeredProperty")
+    get() = isCentered()
+    @JvmName("centeredProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
+      setCentered(value)
     }
 
   /**
@@ -183,42 +163,33 @@ public open class AnimatedSprite2D : Node2D() {
    */
   @CoreTypeLocalCopy
   public var offset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("offsetProperty")
+    get() = getOffset()
+    @JvmName("offsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(value)
     }
 
   /**
    * If `true`, texture is flipped horizontally.
    */
   public var flipH: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("flipHProperty")
+    get() = isFlippedH()
+    @JvmName("flipHProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+      setFlipH(value)
     }
 
   /**
    * If `true`, texture is flipped vertically.
    */
   public var flipV: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("flipVProperty")
+    get() = isFlippedV()
+    @JvmName("flipVProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+      setFlipV(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -248,6 +219,39 @@ public open class AnimatedSprite2D : Node2D() {
       offset = this
   }
 
+
+  public fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {
+    TransferContext.writeArguments(OBJECT to spriteFrames)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpriteFramesPtr, NIL)
+  }
+
+  public fun getSpriteFrames(): SpriteFrames? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpriteFramesPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?)
+  }
+
+  public fun setAnimation(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPtr, NIL)
+  }
+
+  public fun getAnimation(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setAutoplay(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+  }
+
+  public fun getAutoplay(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
 
   /**
    * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed`
@@ -306,6 +310,72 @@ public open class AnimatedSprite2D : Node2D() {
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
+  public fun setCentered(centered: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to centered)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
+  }
+
+  public fun isCentered(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+  }
+
+  public fun getOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setFlipH(flipH: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flipH)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+  }
+
+  public fun isFlippedH(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFlipV(flipV: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flipV)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+  }
+
+  public fun isFlippedV(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFrame(frame: Int): Unit {
+    TransferContext.writeArguments(LONG to frame.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+  }
+
+  public fun getFrame(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFrameProgress(progress: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to progress.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFrameProgressPtr, NIL)
+  }
+
+  public fun getFrameProgress(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFrameProgressPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * The setter of [frame] resets the [frameProgress] to `0.0` implicitly, but this method avoids
    * that.
@@ -324,6 +394,17 @@ public open class AnimatedSprite2D : Node2D() {
   public fun setFrameAndProgress(frame: Int, progress: Float): Unit {
     TransferContext.writeArguments(LONG to frame.toLong(), DOUBLE to progress.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFrameAndProgressPtr, NIL)
+  }
+
+  public fun setSpeedScale(speedScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to speedScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+  }
+
+  public fun getSpeedScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

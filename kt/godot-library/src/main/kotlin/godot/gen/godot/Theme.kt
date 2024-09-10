@@ -32,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A resource used for styling/skinning [Control] and [Window] nodes. While individual controls can
@@ -55,14 +56,11 @@ public open class Theme : Resource() {
    * Use [hasDefaultBaseScale] to check if this value is valid.
    */
   public var defaultBaseScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBaseScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("defaultBaseScaleProperty")
+    get() = getDefaultBaseScale()
+    @JvmName("defaultBaseScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBaseScalePtr, NIL)
+      setDefaultBaseScale(value)
     }
 
   /**
@@ -72,14 +70,11 @@ public open class Theme : Resource() {
    * Use [hasDefaultFont] to check if this value is valid.
    */
   public var defaultFont: Font?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Font?)
-    }
+    @JvmName("defaultFontProperty")
+    get() = getDefaultFont()
+    @JvmName("defaultFontProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultFontPtr, NIL)
+      setDefaultFont(value)
     }
 
   /**
@@ -90,14 +85,11 @@ public open class Theme : Resource() {
    * check if this value is valid.
    */
   public var defaultFontSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("defaultFontSizeProperty")
+    get() = getDefaultFontSize()
+    @JvmName("defaultFontSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultFontSizePtr, NIL)
+      setDefaultFontSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -111,7 +103,7 @@ public open class Theme : Resource() {
   public fun setIcon(
     name: StringName,
     themeType: StringName,
-    texture: Texture2D,
+    texture: Texture2D?,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
@@ -188,7 +180,7 @@ public open class Theme : Resource() {
   public fun setStylebox(
     name: StringName,
     themeType: StringName,
-    texture: StyleBox,
+    texture: StyleBox?,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setStyleboxPtr, NIL)
@@ -265,7 +257,7 @@ public open class Theme : Resource() {
   public fun setFont(
     name: StringName,
     themeType: StringName,
-    font: Font,
+    font: Font?,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType, OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
@@ -571,6 +563,17 @@ public open class Theme : Resource() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
+  public fun setDefaultBaseScale(baseScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultBaseScalePtr, NIL)
+  }
+
+  public fun getDefaultBaseScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBaseScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * Returns `true` if [defaultBaseScale] has a valid value.
    * Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.
@@ -581,6 +584,17 @@ public open class Theme : Resource() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setDefaultFont(font: Font?): Unit {
+    TransferContext.writeArguments(OBJECT to font)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultFontPtr, NIL)
+  }
+
+  public fun getDefaultFont(): Font? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+  }
+
   /**
    * Returns `true` if [defaultFont] has a valid value.
    * Returns `false` if it doesn't.
@@ -589,6 +603,17 @@ public open class Theme : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDefaultFontPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDefaultFontSize(fontSize: Int): Unit {
+    TransferContext.writeArguments(LONG to fontSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultFontSizePtr, NIL)
+  }
+
+  public fun getDefaultFontSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -794,7 +819,7 @@ public open class Theme : Resource() {
    * **Note:** This modifies the current theme. If you want to merge two themes together without
    * modifying either one, create a new empty theme and merge the other two into it one after another.
    */
-  public fun mergeWith(other: Theme): Unit {
+  public fun mergeWith(other: Theme?): Unit {
     TransferContext.writeArguments(OBJECT to other)
     TransferContext.callMethod(rawPtr, MethodBindings.mergeWithPtr, NIL)
   }

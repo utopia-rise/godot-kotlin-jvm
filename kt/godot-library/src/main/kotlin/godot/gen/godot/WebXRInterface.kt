@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * WebXR is an open standard that allows creating VR and AR applications that run in the web
@@ -233,14 +234,11 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * including: `"immersive-vr"`, `"immersive-ar"`, and `"inline"`.
    */
   public var sessionMode: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSessionModePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("sessionModeProperty")
+    get() = getSessionMode()
+    @JvmName("sessionModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSessionModePtr, NIL)
+      setSessionMode(value)
     }
 
   /**
@@ -255,14 +253,11 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * tracking.
    */
   public var requiredFeatures: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRequiredFeaturesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("requiredFeaturesProperty")
+    get() = getRequiredFeatures()
+    @JvmName("requiredFeaturesProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRequiredFeaturesPtr, NIL)
+      setRequiredFeatures(value)
     }
 
   /**
@@ -277,14 +272,11 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * tracking.
    */
   public var optionalFeatures: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOptionalFeaturesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("optionalFeaturesProperty")
+    get() = getOptionalFeatures()
+    @JvmName("optionalFeaturesProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOptionalFeaturesPtr, NIL)
+      setOptionalFeatures(value)
     }
 
   /**
@@ -300,14 +292,11 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * listed in either [requiredFeatures] or [optionalFeatures].
    */
   public var requestedReferenceSpaceTypes: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRequestedReferenceSpaceTypesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("requestedReferenceSpaceTypesProperty")
+    get() = getRequestedReferenceSpaceTypes()
+    @JvmName("requestedReferenceSpaceTypesProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRequestedReferenceSpaceTypesPtr, NIL)
+      setRequestedReferenceSpaceTypes(value)
     }
 
   /**
@@ -320,11 +309,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * listed in either [requiredFeatures] or [optionalFeatures].
    */
   public val referenceSpaceType: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReferenceSpaceTypePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("referenceSpaceTypeProperty")
+    get() = getReferenceSpaceType()
 
   /**
    * A comma-separated list of features that were successfully enabled by [XRInterface.initialize]
@@ -335,11 +321,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * string.
    */
   public val enabledFeatures: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("enabledFeaturesProperty")
+    get() = getEnabledFeatures()
 
   /**
    * Indicates if the WebXR session's imagery is visible to the user.
@@ -348,11 +331,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * XRVisibilityState[/url], including `"hidden"`, `"visible"`, and `"visible-blurred"`.
    */
   public val visibilityState: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityStatePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("visibilityStateProperty")
+    get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
@@ -369,6 +349,62 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public fun isSessionSupported(sessionMode: String): Unit {
     TransferContext.writeArguments(STRING to sessionMode)
     TransferContext.callMethod(rawPtr, MethodBindings.isSessionSupportedPtr, NIL)
+  }
+
+  public fun setSessionMode(sessionMode: String): Unit {
+    TransferContext.writeArguments(STRING to sessionMode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSessionModePtr, NIL)
+  }
+
+  public fun getSessionMode(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSessionModePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setRequiredFeatures(requiredFeatures: String): Unit {
+    TransferContext.writeArguments(STRING to requiredFeatures)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRequiredFeaturesPtr, NIL)
+  }
+
+  public fun getRequiredFeatures(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRequiredFeaturesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setOptionalFeatures(optionalFeatures: String): Unit {
+    TransferContext.writeArguments(STRING to optionalFeatures)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOptionalFeaturesPtr, NIL)
+  }
+
+  public fun getOptionalFeatures(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionalFeaturesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun getReferenceSpaceType(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReferenceSpaceTypePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun getEnabledFeatures(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setRequestedReferenceSpaceTypes(requestedReferenceSpaceTypes: String): Unit {
+    TransferContext.writeArguments(STRING to requestedReferenceSpaceTypes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRequestedReferenceSpaceTypesPtr, NIL)
+  }
+
+  public fun getRequestedReferenceSpaceTypes(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRequestedReferenceSpaceTypesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -410,6 +446,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputSourceTargetRayModePtr, LONG)
     return WebXRInterface.TargetRayMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun getVisibilityState(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityStatePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**

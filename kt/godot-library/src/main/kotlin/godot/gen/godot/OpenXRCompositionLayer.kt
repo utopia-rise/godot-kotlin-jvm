@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
@@ -37,14 +38,11 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * The [SubViewport] to render on the composition layer.
    */
   public var layerViewport: SubViewport?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as SubViewport?)
-    }
+    @JvmName("layerViewportProperty")
+    get() = getLayerViewport()
+    @JvmName("layerViewportProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLayerViewportPtr, NIL)
+      setLayerViewport(value)
     }
 
   /**
@@ -53,14 +51,11 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * **Note:** This will have no effect if a fallback mesh is being used.
    */
   public var sortOrder: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("sortOrderProperty")
+    get() = getSortOrder()
+    @JvmName("sortOrderProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSortOrderPtr, NIL)
+      setSortOrder(value)
     }
 
   /**
@@ -68,14 +63,11 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * Can be combined with [Viewport.transparentBg] to give the layer a transparent background.
    */
   public var alphaBlend: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("alphaBlendProperty")
+    get() = getAlphaBlend()
+    @JvmName("alphaBlendProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendPtr, NIL)
+      setAlphaBlend(value)
     }
 
   /**
@@ -87,18 +79,59 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * composition layer.
    */
   public var enableHolePunch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enableHolePunchProperty")
+    get() = getEnableHolePunch()
+    @JvmName("enableHolePunchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
+      setEnableHolePunch(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYER, scriptIndex)
+  }
+
+  public fun setLayerViewport(viewport: SubViewport?): Unit {
+    TransferContext.writeArguments(OBJECT to viewport)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayerViewportPtr, NIL)
+  }
+
+  public fun getLayerViewport(): SubViewport? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SubViewport?)
+  }
+
+  public fun setEnableHolePunch(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
+  }
+
+  public fun getEnableHolePunch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSortOrder(order: Int): Unit {
+    TransferContext.writeArguments(LONG to order.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSortOrderPtr, NIL)
+  }
+
+  public fun getSortOrder(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setAlphaBlend(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendPtr, NIL)
+  }
+
+  public fun getAlphaBlend(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

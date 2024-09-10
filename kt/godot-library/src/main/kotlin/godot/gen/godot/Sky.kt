@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits
@@ -29,14 +30,11 @@ public open class Sky : Resource() {
    * [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader.
    */
   public var skyMaterial: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
-    }
+    @JvmName("skyMaterialProperty")
+    get() = getMaterial()
+    @JvmName("skyMaterialProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+      setMaterial(value)
     }
 
   /**
@@ -45,14 +43,11 @@ public open class Sky : Resource() {
    * Radiance maps can be expensive to calculate. See [ProcessMode] for options.
    */
   public var processMode: ProcessMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
-      return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("processModeProperty")
+    get() = getProcessMode()
+    @JvmName("processModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
+      setProcessMode(value)
     }
 
   /**
@@ -63,18 +58,48 @@ public open class Sky : Resource() {
    * [RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
   public var radianceSize: RadianceSize
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadianceSizePtr, LONG)
-      return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("radianceSizeProperty")
+    get() = getRadianceSize()
+    @JvmName("radianceSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
+      setRadianceSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKY, scriptIndex)
+  }
+
+  public fun setRadianceSize(size: RadianceSize): Unit {
+    TransferContext.writeArguments(LONG to size.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
+  }
+
+  public fun getRadianceSize(): RadianceSize {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadianceSizePtr, LONG)
+    return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setProcessMode(mode: ProcessMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
+  }
+
+  public fun getProcessMode(): ProcessMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
+    return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setMaterial(material: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+  }
+
+  public fun getMaterial(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
   public enum class RadianceSize(

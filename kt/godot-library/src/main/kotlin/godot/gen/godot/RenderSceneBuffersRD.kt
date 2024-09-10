@@ -81,8 +81,8 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   public fun createTextureFromFormat(
     context: StringName,
     name: StringName,
-    format: RDTextureFormat,
-    view: RDTextureView,
+    format: RDTextureFormat?,
+    view: RDTextureView?,
     unique: Boolean,
   ): RID {
     TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, OBJECT to format, OBJECT to view, BOOL to unique)
@@ -99,7 +99,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     context: StringName,
     name: StringName,
     viewName: StringName,
-    view: RDTextureView,
+    view: RDTextureView?,
   ): RID {
     TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, STRING_NAME to viewName, OBJECT to view)
     TransferContext.callMethod(rawPtr, MethodBindings.createTextureViewPtr, _RID)
@@ -150,7 +150,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     mipmap: Long,
     layers: Long,
     mipmaps: Long,
-    view: RDTextureView,
+    view: RDTextureView?,
   ): RID {
     TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to layer, LONG to mipmap, LONG to layers, LONG to mipmaps, OBJECT to view)
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureSliceViewPtr, _RID)

@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 
 /**
  * A body tracking system will create an instance of this object and add it to the [XRServer]. This
@@ -34,32 +35,48 @@ public open class XRBodyTracker : XRPositionalTracker() {
    * If `true`, the body tracking data is valid.
    */
   public var hasTrackingData: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hasTrackingDataProperty")
+    get() = getHasTrackingData()
+    @JvmName("hasTrackingDataProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+      setHasTrackingData(value)
     }
 
   /**
    * The type of body tracking data captured.
    */
   public var bodyFlags: BodyFlags
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBodyFlagsPtr, LONG)
-      return BodyFlagsValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("bodyFlagsProperty")
+    get() = getBodyFlags()
+    @JvmName("bodyFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
+      setBodyFlags(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRBODYTRACKER, scriptIndex)
+  }
+
+  public fun setHasTrackingData(hasData: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to hasData)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+  }
+
+  public fun getHasTrackingData(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBodyFlags(flags: BodyFlags): Unit {
+    TransferContext.writeArguments(LONG to flags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
+  }
+
+  public fun getBodyFlags(): BodyFlags {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodyFlagsPtr, LONG)
+    return BodyFlagsValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

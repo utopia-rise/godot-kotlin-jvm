@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
@@ -63,28 +64,22 @@ public open class SpinBox : Range() {
    * Changes the alignment of the underlying [LineEdit].
    */
   public var alignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alignmentProperty")
+    get() = getHorizontalAlignment()
+    @JvmName("alignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+      setHorizontalAlignment(value)
     }
 
   /**
    * If `true`, the [SpinBox] will be editable. Otherwise, it will be read only.
    */
   public var editable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("editableProperty")
+    get() = isEditable()
+    @JvmName("editableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+      setEditable(value)
     }
 
   /**
@@ -92,42 +87,33 @@ public open class SpinBox : Range() {
    * of *submitted*. See [signal LineEdit.text_changed] and [signal LineEdit.text_submitted].
    */
   public var updateOnTextChanged: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("updateOnTextChangedProperty")
+    get() = getUpdateOnTextChanged()
+    @JvmName("updateOnTextChangedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateOnTextChangedPtr, NIL)
+      setUpdateOnTextChanged(value)
     }
 
   /**
    * Adds the specified prefix string before the numerical value of the [SpinBox].
    */
   public var prefix: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("prefixProperty")
+    get() = getPrefix()
+    @JvmName("prefixProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPrefixPtr, NIL)
+      setPrefix(value)
     }
 
   /**
    * Adds the specified suffix string after the numerical value of the [SpinBox].
    */
   public var suffix: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("suffixProperty")
+    get() = getSuffix()
+    @JvmName("suffixProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
+      setSuffix(value)
     }
 
   /**
@@ -135,14 +121,11 @@ public open class SpinBox : Range() {
    * interacting with the arrow buttons of the [SpinBox].
    */
   public var customArrowStep: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("customArrowStepProperty")
+    get() = getCustomArrowStep()
+    @JvmName("customArrowStepProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomArrowStepPtr, NIL)
+      setCustomArrowStep(value)
     }
 
   /**
@@ -150,18 +133,92 @@ public open class SpinBox : Range() {
    * the up and down arrows won't trigger this behavior.
    */
   public var selectAllOnFocus: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("selectAllOnFocusProperty")
+    get() = isSelectAllOnFocus()
+    @JvmName("selectAllOnFocusProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+      setSelectAllOnFocus(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPINBOX, scriptIndex)
+  }
+
+  public fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+  }
+
+  public fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSuffix(suffix: String): Unit {
+    TransferContext.writeArguments(STRING to suffix)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
+  }
+
+  public fun getSuffix(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setPrefix(prefix: String): Unit {
+    TransferContext.writeArguments(STRING to prefix)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPrefixPtr, NIL)
+  }
+
+  public fun getPrefix(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setEditable(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+  }
+
+  public fun setCustomArrowStep(arrowStep: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to arrowStep)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomArrowStepPtr, NIL)
+  }
+
+  public fun getCustomArrowStep(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun isEditable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setUpdateOnTextChanged(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateOnTextChangedPtr, NIL)
+  }
+
+  public fun getUpdateOnTextChanged(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSelectAllOnFocus(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+  }
+
+  public fun isSelectAllOnFocus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

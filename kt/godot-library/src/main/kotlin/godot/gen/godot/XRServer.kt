@@ -157,7 +157,7 @@ public object XRServer : Object() {
   /**
    * Registers an [XRInterface] object.
    */
-  public fun addInterface(_interface: XRInterface): Unit {
+  public fun addInterface(_interface: XRInterface?): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
   }
@@ -177,7 +177,7 @@ public object XRServer : Object() {
   /**
    * Removes this [interface].
    */
-  public fun removeInterface(_interface: XRInterface): Unit {
+  public fun removeInterface(_interface: XRInterface?): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
   }
@@ -213,7 +213,7 @@ public object XRServer : Object() {
   /**
    * Registers a new [XRTracker] that tracks a physical object.
    */
-  public fun addTracker(tracker: XRTracker): Unit {
+  public fun addTracker(tracker: XRTracker?): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, MethodBindings.addTrackerPtr, NIL)
   }
@@ -221,7 +221,7 @@ public object XRServer : Object() {
   /**
    * Removes this [tracker].
    */
-  public fun removeTracker(tracker: XRTracker): Unit {
+  public fun removeTracker(tracker: XRTracker?): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, MethodBindings.removeTrackerPtr, NIL)
   }
@@ -250,7 +250,7 @@ public object XRServer : Object() {
     return (TransferContext.readReturnValue(OBJECT, true) as XRInterface?)
   }
 
-  public fun setPrimaryInterface(_interface: XRInterface): Unit {
+  public fun setPrimaryInterface(_interface: XRInterface?): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }

@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
@@ -39,28 +40,22 @@ public open class AudioStreamWAV : AudioStream() {
    * subtract 128 from each byte.
    */
   public var `data`: PackedByteArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+    @JvmName("dataProperty")
+    get() = getData()
+    @JvmName("dataProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+      setData(value)
     }
 
   /**
    * Audio format. See [Format] constants for values.
    */
   public var format: Format
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-      return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("formatProperty")
+    get() = getFormat()
+    @JvmName("formatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+      setFormat(value)
     }
 
   /**
@@ -68,14 +63,11 @@ public open class AudioStreamWAV : AudioStream() {
    * See [LoopMode] constants for values.
    */
   public var loopMode: LoopMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
-      return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("loopModeProperty")
+    get() = getLoopMode()
+    @JvmName("loopModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
+      setLoopMode(value)
     }
 
   /**
@@ -83,14 +75,11 @@ public open class AudioStreamWAV : AudioStream() {
    * information will be imported automatically from the WAV file if present.
    */
   public var loopBegin: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoopBeginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("loopBeginProperty")
+    get() = getLoopBegin()
+    @JvmName("loopBeginProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopBeginPtr, NIL)
+      setLoopBegin(value)
     }
 
   /**
@@ -98,14 +87,11 @@ public open class AudioStreamWAV : AudioStream() {
    * information will be imported automatically from the WAV file if present.
    */
   public var loopEnd: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoopEndPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("loopEndProperty")
+    get() = getLoopEnd()
+    @JvmName("loopEndProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopEndPtr, NIL)
+      setLoopEnd(value)
     }
 
   /**
@@ -121,32 +107,103 @@ public open class AudioStreamWAV : AudioStream() {
    * quality.
    */
   public var mixRate: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("mixRateProperty")
+    get() = getMixRate()
+    @JvmName("mixRateProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
+      setMixRate(value)
     }
 
   /**
    * If `true`, audio is stereo.
    */
   public var stereo: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isStereoPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("stereoProperty")
+    get() = isStereo()
+    @JvmName("stereoProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStereoPtr, NIL)
+      setStereo(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMWAV, scriptIndex)
+  }
+
+  public fun setData(`data`: PackedByteArray): Unit {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+  }
+
+  public fun getData(): PackedByteArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+  }
+
+  public fun setFormat(format: Format): Unit {
+    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+  }
+
+  public fun getFormat(): Format {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLoopMode(loopMode: LoopMode): Unit {
+    TransferContext.writeArguments(LONG to loopMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopModePtr, NIL)
+  }
+
+  public fun getLoopMode(): LoopMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopModePtr, LONG)
+    return AudioStreamWAV.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLoopBegin(loopBegin: Int): Unit {
+    TransferContext.writeArguments(LONG to loopBegin.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopBeginPtr, NIL)
+  }
+
+  public fun getLoopBegin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopBeginPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setLoopEnd(loopEnd: Int): Unit {
+    TransferContext.writeArguments(LONG to loopEnd.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopEndPtr, NIL)
+  }
+
+  public fun getLoopEnd(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopEndPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMixRate(mixRate: Int): Unit {
+    TransferContext.writeArguments(LONG to mixRate.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
+  }
+
+  public fun getMixRate(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setStereo(stereo: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to stereo)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStereoPtr, NIL)
+  }
+
+  public fun isStereo(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isStereoPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

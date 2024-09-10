@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node selects a bone in a [Skeleton3D] and attaches to it. This means that the
@@ -34,28 +35,22 @@ public open class BoneAttachment3D : Node3D() {
    * The name of the attached bone.
    */
   public var boneName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("boneNameProperty")
+    get() = getBoneName()
+    @JvmName("boneNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBoneNamePtr, NIL)
+      setBoneName(value)
     }
 
   /**
    * The index of the attached bone.
    */
   public var boneIdx: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdxPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("boneIdxProperty")
+    get() = getBoneIdx()
+    @JvmName("boneIdxProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBoneIdxPtr, NIL)
+      setBoneIdx(value)
     }
 
   /**
@@ -67,18 +62,37 @@ public open class BoneAttachment3D : Node3D() {
    * [SkeletonModifier3D].
    */
   public var overridePose: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOverridePosePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("overridePoseProperty")
+    get() = getOverridePose()
+    @JvmName("overridePoseProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOverridePosePtr, NIL)
+      setOverridePose(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BONEATTACHMENT3D, scriptIndex)
+  }
+
+  public fun setBoneName(boneName: String): Unit {
+    TransferContext.writeArguments(STRING to boneName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneNamePtr, NIL)
+  }
+
+  public fun getBoneName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setBoneIdx(boneIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneIdxPtr, NIL)
+  }
+
+  public fun getBoneIdx(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdxPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -89,6 +103,17 @@ public open class BoneAttachment3D : Node3D() {
   public fun onSkeletonUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.onSkeletonUpdatePtr, NIL)
+  }
+
+  public fun setOverridePose(overridePose: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to overridePose)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOverridePosePtr, NIL)
+  }
+
+  public fun getOverridePose(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOverridePosePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

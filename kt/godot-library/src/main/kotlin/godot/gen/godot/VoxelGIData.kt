@@ -28,6 +28,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [VoxelGIData] contains baked voxel global illumination for use in a [VoxelGI] node. [VoxelGIData]
@@ -48,14 +49,11 @@ public open class VoxelGIData : Resource() {
    * to use the lowest value that does not result in visible light clipping.
    */
   public var dynamicRange: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDynamicRangePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("dynamicRangeProperty")
+    get() = getDynamicRange()
+    @JvmName("dynamicRangeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDynamicRangePtr, NIL)
+      setDynamicRange(value)
     }
 
   /**
@@ -65,14 +63,11 @@ public open class VoxelGIData : Resource() {
    * influences the indirect lighting's effective brightness.
    */
   public var energy: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("energyProperty")
+    get() = getEnergy()
+    @JvmName("energyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
+      setEnergy(value)
     }
 
   /**
@@ -82,14 +77,11 @@ public open class VoxelGIData : Resource() {
    * set [bias] to `0.0` and [normalBias] to a value between `1.0` and `2.0`.
    */
   public var bias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("biasProperty")
+    get() = getBias()
+    @JvmName("biasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+      setBias(value)
     }
 
   /**
@@ -99,14 +91,11 @@ public open class VoxelGIData : Resource() {
    * lighting quality, set [bias] to `0.0` and [normalBias] to a value between `1.0` and `2.0`.
    */
   public var normalBias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNormalBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("normalBiasProperty")
+    get() = getNormalBias()
+    @JvmName("normalBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setNormalBiasPtr, NIL)
+      setNormalBias(value)
     }
 
   /**
@@ -116,14 +105,11 @@ public open class VoxelGIData : Resource() {
    * lighting's effective brightness.
    */
   public var propagation: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPropagationPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("propagationProperty")
+    get() = getPropagation()
+    @JvmName("propagationProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPropagationPtr, NIL)
+      setPropagation(value)
     }
 
   /**
@@ -133,14 +119,11 @@ public open class VoxelGIData : Resource() {
    * [propagation] and [energy].
    */
   public var useTwoBounces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingTwoBouncesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useTwoBouncesProperty")
+    get() = isUsingTwoBounces()
+    @JvmName("useTwoBouncesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseTwoBouncesPtr, NIL)
+      setUseTwoBounces(value)
     }
 
   /**
@@ -149,14 +132,11 @@ public open class VoxelGIData : Resource() {
    * which means it can be changed without having to bake the [VoxelGI] node again.
    */
   public var interior: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("interiorProperty")
+    get() = isInterior()
+    @JvmName("interiorProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+      setInterior(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -216,6 +196,83 @@ public open class VoxelGIData : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLevelCountsPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  public fun setDynamicRange(dynamicRange: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to dynamicRange.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDynamicRangePtr, NIL)
+  }
+
+  public fun getDynamicRange(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDynamicRangePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEnergy(energy: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to energy.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
+  }
+
+  public fun getEnergy(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBias(bias: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bias.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+  }
+
+  public fun getBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setNormalBias(bias: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bias.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setNormalBiasPtr, NIL)
+  }
+
+  public fun getNormalBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNormalBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPropagation(propagation: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to propagation.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPropagationPtr, NIL)
+  }
+
+  public fun getPropagation(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPropagationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setInterior(interior: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to interior)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+  }
+
+  public fun isInterior(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setUseTwoBounces(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseTwoBouncesPtr, NIL)
+  }
+
+  public fun isUsingTwoBounces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTwoBouncesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

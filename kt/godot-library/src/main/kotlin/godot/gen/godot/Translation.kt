@@ -23,6 +23,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -36,14 +37,11 @@ public open class Translation : Resource() {
    * The locale of the translation.
    */
   public var locale: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("localeProperty")
+    get() = getLocale()
+    @JvmName("localeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
+      setLocale(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -67,6 +65,17 @@ public open class Translation : Resource() {
    */
   public open fun _getMessage(srcMessage: StringName, context: StringName): StringName {
     throw NotImplementedError("_get_message is not implemented for Translation")
+  }
+
+  public fun setLocale(locale: String): Unit {
+    TransferContext.writeArguments(STRING to locale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
+  }
+
+  public fun getLocale(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**

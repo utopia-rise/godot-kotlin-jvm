@@ -34,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A node for displaying plain text in 3D space. By adjusting various properties of this node, you
@@ -46,14 +47,11 @@ public open class Label3D : GeometryInstance3D() {
    * detailed when up close, increase [fontSize] while decreasing [pixelSize] at the same time.
    */
   public var pixelSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("pixelSizeProperty")
+    get() = getPixelSize()
+    @JvmName("pixelSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
+      setPixelSize(value)
     }
 
   /**
@@ -61,14 +59,11 @@ public open class Label3D : GeometryInstance3D() {
    */
   @CoreTypeLocalCopy
   public var offset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("offsetProperty")
+    get() = getOffset()
+    @JvmName("offsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(value)
     }
 
   /**
@@ -76,28 +71,22 @@ public open class Label3D : GeometryInstance3D() {
    * values.
    */
   public var billboard: BaseMaterial3D.BillboardMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
-      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("billboardProperty")
+    get() = getBillboardMode()
+    @JvmName("billboardProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+      setBillboardMode(value)
     }
 
   /**
    * If `true`, the [Light3D] in the [Environment] has effects on the label.
    */
   public var shaded: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("shadedProperty")
+    get() = getDrawFlag(Label3D.DrawFlags.FLAG_SHADED)
+    @JvmName("shadedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(Label3D.DrawFlags.FLAG_SHADED, value)
     }
 
   /**
@@ -105,126 +94,99 @@ public open class Label3D : GeometryInstance3D() {
    * it from behind.
    */
   public var doubleSided: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("doubleSidedProperty")
+    get() = getDrawFlag(Label3D.DrawFlags.FLAG_DOUBLE_SIDED)
+    @JvmName("doubleSidedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(Label3D.DrawFlags.FLAG_DOUBLE_SIDED, value)
     }
 
   /**
    * If `true`, depth testing is disabled and the object will be drawn in render order.
    */
   public var noDepthTest: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("noDepthTestProperty")
+    get() = getDrawFlag(Label3D.DrawFlags.FLAG_DISABLE_DEPTH_TEST)
+    @JvmName("noDepthTestProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(Label3D.DrawFlags.FLAG_DISABLE_DEPTH_TEST, value)
     }
 
   /**
    * If `true`, the label is rendered at the same size regardless of distance.
    */
   public var fixedSize: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("fixedSizeProperty")
+    get() = getDrawFlag(Label3D.DrawFlags.FLAG_FIXED_SIZE)
+    @JvmName("fixedSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(Label3D.DrawFlags.FLAG_FIXED_SIZE, value)
     }
 
   /**
    * The alpha cutting mode to use for the sprite. See [AlphaCutMode] for possible values.
    */
   public var alphaCut: AlphaCutMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
-      return Label3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alphaCutProperty")
+    get() = getAlphaCutMode()
+    @JvmName("alphaCutProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
+      setAlphaCutMode(value)
     }
 
   /**
    * Threshold at which the alpha scissor will discard values.
    */
   public var alphaScissorThreshold: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaScissorThresholdProperty")
+    get() = getAlphaScissorThreshold()
+    @JvmName("alphaScissorThresholdProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+      setAlphaScissorThreshold(value)
     }
 
   /**
    * The hashing scale for Alpha Hash. Recommended values between `0` and `2`.
    */
   public var alphaHashScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaHashScaleProperty")
+    get() = getAlphaHashScale()
+    @JvmName("alphaHashScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+      setAlphaHashScale(value)
     }
 
   /**
    * The type of alpha antialiasing to apply. See [BaseMaterial3D.AlphaAntiAliasing].
    */
   public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alphaAntialiasingModeProperty")
+    get() = getAlphaAntialiasing()
+    @JvmName("alphaAntialiasingModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+      setAlphaAntialiasing(value)
     }
 
   /**
    * Threshold at which antialiasing will be applied on the alpha channel.
    */
   public var alphaAntialiasingEdge: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaAntialiasingEdgeProperty")
+    get() = getAlphaAntialiasingEdge()
+    @JvmName("alphaAntialiasingEdgeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+      setAlphaAntialiasingEdge(value)
     }
 
   /**
    * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
    */
   public var textureFilter: BaseMaterial3D.TextureFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureFilterProperty")
+    get() = getTextureFilter()
+    @JvmName("textureFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+      setTextureFilter(value)
     }
 
   /**
@@ -236,14 +198,11 @@ public open class Label3D : GeometryInstance3D() {
    * sorted, while transparent objects are sorted from back to front (subject to priority).
    */
   public var renderPriority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("renderPriorityProperty")
+    get() = getRenderPriority()
+    @JvmName("renderPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+      setRenderPriority(value)
     }
 
   /**
@@ -255,14 +214,11 @@ public open class Label3D : GeometryInstance3D() {
    * sorted, while transparent objects are sorted from back to front (subject to priority).
    */
   public var outlineRenderPriority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("outlineRenderPriorityProperty")
+    get() = getOutlineRenderPriority()
+    @JvmName("outlineRenderPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutlineRenderPriorityPtr, NIL)
+      setOutlineRenderPriority(value)
     }
 
   /**
@@ -270,14 +226,11 @@ public open class Label3D : GeometryInstance3D() {
    */
   @CoreTypeLocalCopy
   public var modulate: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("modulateProperty")
+    get() = getModulate()
+    @JvmName("modulateProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+      setModulate(value)
     }
 
   /**
@@ -285,42 +238,33 @@ public open class Label3D : GeometryInstance3D() {
    */
   @CoreTypeLocalCopy
   public var outlineModulate: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutlineModulatePtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("outlineModulateProperty")
+    get() = getOutlineModulate()
+    @JvmName("outlineModulateProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutlineModulatePtr, NIL)
+      setOutlineModulate(value)
     }
 
   /**
    * The text to display on screen.
    */
   public var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("textProperty")
+    get() = getText()
+    @JvmName("textProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+      setText(value)
     }
 
   /**
    * Font configuration used to display text.
    */
   public var font: Font?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Font?)
-    }
+    @JvmName("fontProperty")
+    get() = getFont()
+    @JvmName("fontProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+      setFont(value)
     }
 
   /**
@@ -330,28 +274,22 @@ public open class Label3D : GeometryInstance3D() {
    * gameplay.
    */
   public var fontSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("fontSizeProperty")
+    get() = getFontSize()
+    @JvmName("fontSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+      setFontSize(value)
     }
 
   /**
    * Text outline size.
    */
   public var outlineSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("outlineSizeProperty")
+    get() = getOutlineSize()
+    @JvmName("outlineSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+      setOutlineSize(value)
     }
 
   /**
@@ -359,14 +297,11 @@ public open class Label3D : GeometryInstance3D() {
    * Set it to one of the [HorizontalAlignment] constants.
    */
   public var horizontalAlignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("horizontalAlignmentProperty")
+    get() = getHorizontalAlignment()
+    @JvmName("horizontalAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+      setHorizontalAlignment(value)
     }
 
   /**
@@ -374,42 +309,33 @@ public open class Label3D : GeometryInstance3D() {
    * [VerticalAlignment] constants.
    */
   public var verticalAlignment: VerticalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
-      return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("verticalAlignmentProperty")
+    get() = getVerticalAlignment()
+    @JvmName("verticalAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
+      setVerticalAlignment(value)
     }
 
   /**
    * If `true`, all the text displays as UPPERCASE.
    */
   public var uppercase: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uppercaseProperty")
+    get() = isUppercase()
+    @JvmName("uppercaseProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
+      setUppercase(value)
     }
 
   /**
    * Vertical space between lines in multiline [Label3D].
    */
   public var lineSpacing: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("lineSpacingProperty")
+    get() = getLineSpacing()
+    @JvmName("lineSpacingProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+      setLineSpacing(value)
     }
 
   /**
@@ -418,56 +344,44 @@ public open class Label3D : GeometryInstance3D() {
    * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public var autowrapMode: TextServer.AutowrapMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("autowrapModeProperty")
+    get() = getAutowrapMode()
+    @JvmName("autowrapModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+      setAutowrapMode(value)
     }
 
   /**
    * Line fill alignment rules. For more info see [TextServer.JustificationFlag].
    */
   public var justificationFlags: TextServer.JustificationFlag
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
-      return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("justificationFlagsProperty")
+    get() = getJustificationFlags()
+    @JvmName("justificationFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+      setJustificationFlags(value)
     }
 
   /**
    * Text width (in pixels), used for autowrap and fill alignment.
    */
   public var width: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("widthProperty")
+    get() = getWidth()
+    @JvmName("widthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+      setWidth(value)
     }
 
   /**
    * Base text writing direction.
    */
   public var textDirection: TextServer.Direction
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-      return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textDirectionProperty")
+    get() = getTextDirection()
+    @JvmName("textDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+      setTextDirection(value)
     }
 
   /**
@@ -475,44 +389,33 @@ public open class Label3D : GeometryInstance3D() {
    * is used instead.
    */
   public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("languageProperty")
+    get() = getLanguage()
+    @JvmName("languageProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+      setLanguage(value)
     }
 
   /**
    * Set BiDi algorithm override for the structured text.
    */
   public var structuredTextBidiOverride: TextServer.StructuredTextParser
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("structuredTextBidiOverrideProperty")
+    get() = getStructuredTextBidiOverride()
+    @JvmName("structuredTextBidiOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+      setStructuredTextBidiOverride(value)
     }
 
   /**
    * Set additional options for BiDi override.
    */
   public var structuredTextBidiOverrideOptions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-          ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
+    get() = getStructuredTextBidiOverrideOptions()
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr,
-          NIL)
+      setStructuredTextBidiOverrideOptions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -590,6 +493,332 @@ public open class Label3D : GeometryInstance3D() {
       outlineModulate = this
   }
 
+
+  public fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+  }
+
+  public fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
+  }
+
+  public fun getVerticalAlignment(): VerticalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
+    return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setModulate(modulate: Color): Unit {
+    TransferContext.writeArguments(COLOR to modulate)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+  }
+
+  public fun getModulate(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setOutlineModulate(modulate: Color): Unit {
+    TransferContext.writeArguments(COLOR to modulate)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineModulatePtr, NIL)
+  }
+
+  public fun getOutlineModulate(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineModulatePtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+  }
+
+  public fun getText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setTextDirection(direction: TextServer.Direction): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+  }
+
+  public fun getTextDirection(): TextServer.Direction {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLanguage(language: String): Unit {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+  }
+
+  public fun getLanguage(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+  }
+
+  public fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to args)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+  }
+
+  public fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+  }
+
+  public fun setUppercase(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
+  }
+
+  public fun isUppercase(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setRenderPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+  }
+
+  public fun getRenderPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setOutlineRenderPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineRenderPriorityPtr, NIL)
+  }
+
+  public fun getOutlineRenderPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFont(font: Font?): Unit {
+    TransferContext.writeArguments(OBJECT to font)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+  }
+
+  public fun getFont(): Font? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+  }
+
+  public fun setFontSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+  }
+
+  public fun getFontSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setOutlineSize(outlineSize: Int): Unit {
+    TransferContext.writeArguments(LONG to outlineSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+  }
+
+  public fun getOutlineSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setLineSpacing(lineSpacing: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+  }
+
+  public fun getLineSpacing(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+  }
+
+  public fun getAutowrapMode(): TextServer.AutowrapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+    TransferContext.writeArguments(LONG to justificationFlags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+  }
+
+  public fun getJustificationFlags(): TextServer.JustificationFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
+    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setWidth(width: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to width.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+  }
+
+  public fun getWidth(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPixelSize(pixelSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
+  }
+
+  public fun getPixelSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+  }
+
+  public fun getOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  /**
+   * If `true`, the specified flag will be enabled. See [Label3D.DrawFlags] for a list of flags.
+   */
+  public fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+  }
+
+  /**
+   * Returns the value of the specified flag.
+   */
+  public fun getDrawFlag(flag: DrawFlags): Boolean {
+    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+  }
+
+  public fun getBillboardMode(): BaseMaterial3D.BillboardMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
+    return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlphaCutMode(mode: AlphaCutMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
+  }
+
+  public fun getAlphaCutMode(): AlphaCutMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
+    return Label3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlphaScissorThreshold(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+  }
+
+  public fun getAlphaScissorThreshold(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAlphaHashScale(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+  }
+
+  public fun getAlphaHashScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
+    TransferContext.writeArguments(LONG to alphaAa.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+  }
+
+  public fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
+    return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlphaAntialiasingEdge(edge: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to edge.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+  }
+
+  public fun getAlphaAntialiasingEdge(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+  }
+
+  public fun getTextureFilter(): BaseMaterial3D.TextureFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   /**
    * Returns a [TriangleMesh] with the label's vertices following its current configuration (such as

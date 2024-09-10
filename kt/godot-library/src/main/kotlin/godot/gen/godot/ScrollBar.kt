@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for scrollbars, typically used to navigate through content that extends
@@ -36,18 +37,26 @@ public open class ScrollBar internal constructor() : Range() {
    * when the [ScrollBar] is focused.
    */
   public var customStep: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomStepPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("customStepProperty")
+    get() = getCustomStep()
+    @JvmName("customStepProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
+      setCustomStep(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCROLLBAR, scriptIndex)
+  }
+
+  public fun setCustomStep(step: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to step.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
+  }
+
+  public fun getCustomStep(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomStepPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

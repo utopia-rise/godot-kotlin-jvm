@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches
@@ -32,18 +33,26 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
    * performed.
    */
   public var factor: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("factorProperty")
+    get() = getFactor()
+    @JvmName("factorProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
+      setFactor(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMAGNIFYGESTURE, scriptIndex)
+  }
+
+  public fun setFactor(factor: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to factor.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
+  }
+
+  public fun getFactor(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

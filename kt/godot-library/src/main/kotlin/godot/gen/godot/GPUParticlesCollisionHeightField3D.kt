@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
@@ -44,14 +45,11 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    */
   @CoreTypeLocalCopy
   public var size: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
@@ -60,28 +58,22 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * possible.
    */
   public var resolution: Resolution
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
-      return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("resolutionProperty")
+    get() = getResolution()
+    @JvmName("resolutionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+      setResolution(value)
     }
 
   /**
    * The update policy to use for the generated heightmap.
    */
   public var updateMode: UpdateMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
-      return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("updateModeProperty")
+    get() = getUpdateMode()
+    @JvmName("updateModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+      setUpdateMode(value)
     }
 
   /**
@@ -93,14 +85,11 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * is `true`.
    */
   public var followCameraEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("followCameraEnabledProperty")
+    get() = isFollowCameraEnabled()
+    @JvmName("followCameraEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
+      setFollowCameraEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -131,6 +120,50 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       size = this
   }
 
+
+  public fun setSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setResolution(resolution: Resolution): Unit {
+    TransferContext.writeArguments(LONG to resolution.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+  }
+
+  public fun getResolution(): Resolution {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
+    return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUpdateMode(updateMode: UpdateMode): Unit {
+    TransferContext.writeArguments(LONG to updateMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+  }
+
+  public fun getUpdateMode(): UpdateMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
+    return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setFollowCameraEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
+  }
+
+  public fun isFollowCameraEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public enum class Resolution(
     id: Long,

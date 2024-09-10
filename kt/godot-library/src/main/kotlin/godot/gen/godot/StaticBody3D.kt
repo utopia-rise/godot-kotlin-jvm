@@ -19,6 +19,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved
@@ -38,14 +39,11 @@ public open class StaticBody3D : PhysicsBody3D() {
    * material, such as an inherited one.
    */
   public var physicsMaterialOverride: PhysicsMaterial?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
-    }
+    @JvmName("physicsMaterialOverrideProperty")
+    get() = getPhysicsMaterialOverride()
+    @JvmName("physicsMaterialOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
+      setPhysicsMaterialOverride(value)
     }
 
   /**
@@ -54,14 +52,11 @@ public open class StaticBody3D : PhysicsBody3D() {
    */
   @CoreTypeLocalCopy
   public var constantLinearVelocity: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("constantLinearVelocityProperty")
+    get() = getConstantLinearVelocity()
+    @JvmName("constantLinearVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantLinearVelocityPtr, NIL)
+      setConstantLinearVelocity(value)
     }
 
   /**
@@ -70,14 +65,11 @@ public open class StaticBody3D : PhysicsBody3D() {
    */
   @CoreTypeLocalCopy
   public var constantAngularVelocity: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("constantAngularVelocityProperty")
+    get() = getConstantAngularVelocity()
+    @JvmName("constantAngularVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantAngularVelocityPtr, NIL)
+      setConstantAngularVelocity(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -135,6 +127,39 @@ public open class StaticBody3D : PhysicsBody3D() {
       constantAngularVelocity = this
   }
 
+
+  public fun setConstantLinearVelocity(vel: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to vel)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantLinearVelocityPtr, NIL)
+  }
+
+  public fun setConstantAngularVelocity(vel: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to vel)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantAngularVelocityPtr, NIL)
+  }
+
+  public fun getConstantLinearVelocity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun getConstantAngularVelocity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
+    TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
+  }
+
+  public fun getPhysicsMaterialOverride(): PhysicsMaterial? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+  }
 
   public companion object
 

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Accept a floating-point scalar (`x`) to the input port and transform it according to [function].
@@ -26,18 +27,26 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
    * A function to be applied to the scalar. See [Function] for options.
    */
   public var function: Function
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
-      return VisualShaderNodeFloatFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("functionProperty")
+    get() = getFunction()
+    @JvmName("functionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+      setFunction(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATFUNC, scriptIndex)
+  }
+
+  public fun setFunction(func: Function): Unit {
+    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+  }
+
+  public fun getFunction(): Function {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    return VisualShaderNodeFloatFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(

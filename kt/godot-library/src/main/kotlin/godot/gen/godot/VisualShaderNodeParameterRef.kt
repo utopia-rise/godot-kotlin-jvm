@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in
@@ -27,18 +28,26 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
    * The name of the parameter which this reference points to.
    */
   public var parameterName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("parameterNameProperty")
+    get() = getParameterName()
+    @JvmName("parameterNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+      setParameterName(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETERREF, scriptIndex)
+  }
+
+  public fun setParameterName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+  }
+
+  public fun getParameterName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

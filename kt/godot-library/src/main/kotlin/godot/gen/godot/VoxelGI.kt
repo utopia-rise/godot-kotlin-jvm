@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -57,14 +58,11 @@ public open class VoxelGI : VisualInstance3D() {
    * in finer detail and thus higher visual quality, while lower numbers result in better performance.
    */
   public var subdiv: Subdiv
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivPtr, LONG)
-      return VoxelGI.Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("subdivProperty")
+    get() = getSubdiv()
+    @JvmName("subdivProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivPtr, NIL)
+      setSubdiv(value)
     }
 
   /**
@@ -75,14 +73,11 @@ public open class VoxelGI : VisualInstance3D() {
    */
   @CoreTypeLocalCopy
   public var size: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
@@ -92,28 +87,22 @@ public open class VoxelGI : VisualInstance3D() {
    * may have over-exposure artifacts.
    */
   public var cameraAttributes: CameraAttributes?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
-    }
+    @JvmName("cameraAttributesProperty")
+    get() = getCameraAttributes()
+    @JvmName("cameraAttributesProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+      setCameraAttributes(value)
     }
 
   /**
    * The [VoxelGIData] resource that holds the data for this [VoxelGI].
    */
   public var `data`: VoxelGIData?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProbeDataPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as VoxelGIData?)
-    }
+    @JvmName("dataProperty")
+    get() = getProbeData()
+    @JvmName("dataProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProbeDataPtr, NIL)
+      setProbeData(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -146,6 +135,50 @@ public open class VoxelGI : VisualInstance3D() {
       size = this
   }
 
+
+  public fun setProbeData(`data`: VoxelGIData?): Unit {
+    TransferContext.writeArguments(OBJECT to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProbeDataPtr, NIL)
+  }
+
+  public fun getProbeData(): VoxelGIData? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProbeDataPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as VoxelGIData?)
+  }
+
+  public fun setSubdiv(subdiv: Subdiv): Unit {
+    TransferContext.writeArguments(LONG to subdiv.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivPtr, NIL)
+  }
+
+  public fun getSubdiv(): Subdiv {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivPtr, LONG)
+    return VoxelGI.Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
+    TransferContext.writeArguments(OBJECT to cameraAttributes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+  }
+
+  public fun getCameraAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+  }
 
   /**
    * Bakes the effect from all [GeometryInstance3D]s marked with [GeometryInstance3D.GI_MODE_STATIC]

@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have
@@ -46,14 +47,11 @@ public open class XRNode3D : Node3D() {
    * be configured within a given [XRInterface].
    */
   public var tracker: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("trackerProperty")
+    get() = getTracker()
+    @JvmName("trackerProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerPtr, NIL)
+      setTracker(value)
     }
 
   /**
@@ -63,32 +61,59 @@ public open class XRNode3D : Node3D() {
    * configured within a given [XRInterface].
    */
   public var pose: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPoseNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("poseProperty")
+    get() = getPoseName()
+    @JvmName("poseProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPoseNamePtr, NIL)
+      setPoseName(value)
     }
 
   /**
    * Enables showing the node when tracking starts, and hiding the node when tracking is lost.
    */
   public var showWhenTracked: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShowWhenTrackedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("showWhenTrackedProperty")
+    get() = getShowWhenTracked()
+    @JvmName("showWhenTrackedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
+      setShowWhenTracked(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRNODE3D, scriptIndex)
+  }
+
+  public fun setTracker(trackerName: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to trackerName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerPtr, NIL)
+  }
+
+  public fun getTracker(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setPoseName(pose: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to pose)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPoseNamePtr, NIL)
+  }
+
+  public fun getPoseName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPoseNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setShowWhenTracked(show: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to show)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
+  }
+
+  public fun getShowWhenTracked(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShowWhenTrackedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

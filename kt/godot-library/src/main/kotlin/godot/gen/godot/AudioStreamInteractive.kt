@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -43,32 +44,48 @@ public open class AudioStreamInteractive : AudioStream() {
    * Index of the initial clip, which will be played first when this stream is played.
    */
   public var initialClip: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInitialClipPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("initialClipProperty")
+    get() = getInitialClip()
+    @JvmName("initialClipProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInitialClipPtr, NIL)
+      setInitialClip(value)
     }
 
   /**
    * Amount of clips contained in this interactive player.
    */
   public var clipCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClipCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("clipCountProperty")
+    get() = getClipCount()
+    @JvmName("clipCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setClipCountPtr, NIL)
+      setClipCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMINTERACTIVE, scriptIndex)
+  }
+
+  public fun setClipCount(clipCount: Int): Unit {
+    TransferContext.writeArguments(LONG to clipCount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setClipCountPtr, NIL)
+  }
+
+  public fun getClipCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClipCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setInitialClip(clipIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to clipIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInitialClipPtr, NIL)
+  }
+
+  public fun getInitialClip(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInitialClipPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -91,7 +108,7 @@ public open class AudioStreamInteractive : AudioStream() {
   /**
    * Set the [AudioStream] associated with the current clip.
    */
-  public fun setClipStream(clipIndex: Int, stream: AudioStream): Unit {
+  public fun setClipStream(clipIndex: Int, stream: AudioStream?): Unit {
     TransferContext.writeArguments(LONG to clipIndex.toLong(), OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.setClipStreamPtr, NIL)
   }

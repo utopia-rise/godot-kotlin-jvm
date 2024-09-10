@@ -40,6 +40,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.reflect.KFunction0
 import kotlin.reflect.KFunction1
@@ -138,7 +139,7 @@ public open class Node : Object() {
    * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [signal
    * tree_entered].
    */
-  public val childEnteredTree: Signal1<Node> by signal("node")
+  public val childEnteredTree: Signal1<Node?> by signal("node")
 
   /**
    * Emitted when the child [node] is about to exit the [SceneTree], usually because this node is
@@ -147,7 +148,7 @@ public open class Node : Object() {
    * When this signal is received, the child [node] is still accessible inside the tree. This signal
    * is emitted *after* the child node's own [signal tree_exiting] and [NOTIFICATION_EXIT_TREE].
    */
-  public val childExitingTree: Signal1<Node> by signal("node")
+  public val childExitingTree: Signal1<Node?> by signal("node")
 
   /**
    * Emitted when the list of children is changed. This happens when child nodes are added, moved or
@@ -160,12 +161,12 @@ public open class Node : Object() {
    * This signal is emitted *after* [node] has been added as a child of the original parent node,
    * but *before* all original child nodes have been reparented to [node].
    */
-  public val replacingBy: Signal1<Node> by signal("node")
+  public val replacingBy: Signal1<Node?> by signal("node")
 
   /**
    * Emitted when the node's editor description field changed.
    */
-  public val editorDescriptionChanged: Signal1<Node> by signal("node")
+  public val editorDescriptionChanged: Signal1<Node?> by signal("node")
 
   /**
    * The name of the node. This name must be unique among the siblings (other child nodes from the
@@ -174,16 +175,9 @@ public open class Node : Object() {
    * (`.` `:` `@` `/` `"` `&#37;`). In particular, the `@` character is reserved for auto-generated
    * names. See also [String.validateNodeName].
    */
-  public var name: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
-    }
+  public val name: StringName
+    @JvmName("nameProperty")
+    get() = getName()
 
   /**
    * If `true`, the node can be accessed from any node sharing the same [owner] or from the [owner]
@@ -192,14 +186,11 @@ public open class Node : Object() {
    * node will no longer be accessible as unique.
    */
   public var uniqueNameInOwner: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUniqueNameInOwnerPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uniqueNameInOwnerProperty")
+    get() = isUniqueNameInOwner()
+    @JvmName("uniqueNameInOwnerProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUniqueNameInOwnerPtr, NIL)
+      setUniqueNameInOwner(value)
     }
 
   /**
@@ -207,14 +198,11 @@ public open class Node : Object() {
    * Only scene root nodes contains this.
    */
   public var sceneFilePath: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSceneFilePathPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("sceneFilePathProperty")
+    get() = getSceneFilePath()
+    @JvmName("sceneFilePathProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSceneFilePathPtr, NIL)
+      setSceneFilePath(value)
     }
 
   /**
@@ -225,14 +213,11 @@ public open class Node : Object() {
    * [addChild]. See also (see [uniqueNameInOwner])
    */
   public var owner: Node?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOwnerPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
-    }
+    @JvmName("ownerProperty")
+    get() = getOwner()
+    @JvmName("ownerProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOwnerPtr, NIL)
+      setOwner(value)
     }
 
   /**
@@ -241,25 +226,19 @@ public open class Node : Object() {
    * the new path, you will have to update this manually.
    */
   public val multiplayer: MultiplayerAPI?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
-    }
+    @JvmName("multiplayerProperty")
+    get() = getMultiplayer()
 
   /**
    * The node's processing behavior (see [ProcessMode]). To check if the node can process in its
    * current mode, use [canProcess].
    */
   public var processMode: ProcessMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
-      return Node.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("processModeProperty")
+    get() = getProcessMode()
+    @JvmName("processModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
+      setProcessMode(value)
     }
 
   /**
@@ -268,14 +247,11 @@ public open class Node : Object() {
    * regardless of tree order.
    */
   public var processPriority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("processPriorityProperty")
+    get() = getProcessPriority()
+    @JvmName("processPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessPriorityPtr, NIL)
+      setProcessPriority(value)
     }
 
   /**
@@ -283,14 +259,11 @@ public open class Node : Object() {
    * internal version.
    */
   public var processPhysicsPriority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsProcessPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("processPhysicsPriorityProperty")
+    get() = getPhysicsProcessPriority()
+    @JvmName("processPhysicsPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsProcessPriorityPtr, NIL)
+      setPhysicsProcessPriority(value)
     }
 
   /**
@@ -315,14 +288,11 @@ public open class Node : Object() {
    * happen together, at the same time as the node including them.
    */
   public var processThreadGroup: ProcessThreadGroup
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessThreadGroupPtr, LONG)
-      return Node.ProcessThreadGroup.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("processThreadGroupProperty")
+    get() = getProcessThreadGroup()
+    @JvmName("processThreadGroupProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessThreadGroupPtr, NIL)
+      setProcessThreadGroup(value)
     }
 
   /**
@@ -331,14 +301,11 @@ public open class Node : Object() {
    * afterwards, another group wants to collect their result in the main thread, as an example.
    */
   public var processThreadGroupOrder: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessThreadGroupOrderPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("processThreadGroupOrderProperty")
+    get() = getProcessThreadGroupOrder()
+    @JvmName("processThreadGroupOrderProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessThreadGroupOrderPtr, NIL)
+      setProcessThreadGroupOrder(value)
     }
 
   /**
@@ -347,14 +314,11 @@ public open class Node : Object() {
    * callbacks.
    */
   public var processThreadMessages: ProcessThreadMessages
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessThreadMessagesPtr, LONG)
-      return ProcessThreadMessagesValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("processThreadMessagesProperty")
+    get() = getProcessThreadMessages()
+    @JvmName("processThreadMessagesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessThreadMessagesPtr, NIL)
+      setProcessThreadMessages(value)
     }
 
   /**
@@ -366,14 +330,11 @@ public open class Node : Object() {
    * interpolation with [Node.resetPhysicsInterpolation].
    */
   public var physicsInterpolationMode: PhysicsInterpolationMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsInterpolationModePtr, LONG)
-      return Node.PhysicsInterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("physicsInterpolationModeProperty")
+    get() = getPhysicsInterpolationMode()
+    @JvmName("physicsInterpolationModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationModePtr, NIL)
+      setPhysicsInterpolationMode(value)
     }
 
   /**
@@ -384,14 +345,11 @@ public open class Node : Object() {
    * [ProjectSettings.internationalization/rendering/rootNodeAutoTranslate].
    */
   public var autoTranslateMode: AutoTranslateMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoTranslateModePtr, LONG)
-      return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("autoTranslateModeProperty")
+    get() = getAutoTranslateMode()
+    @JvmName("autoTranslateModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslateModePtr, NIL)
+      setAutoTranslateMode(value)
     }
 
   /**
@@ -399,14 +357,11 @@ public open class Node : Object() {
    * node in the editor's Scene dock.
    */
   public var editorDescription: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEditorDescriptionPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("editorDescriptionProperty")
+    get() = getEditorDescription()
+    @JvmName("editorDescriptionProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditorDescriptionPtr, NIL)
+      setEditorDescription(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -738,7 +693,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
-  public open fun _input(event: InputEvent): Unit {
+  public open fun _input(event: InputEvent?): Unit {
   }
 
   /**
@@ -754,7 +709,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * orphan).
    */
-  public open fun _shortcutInput(event: InputEvent): Unit {
+  public open fun _shortcutInput(event: InputEvent?): Unit {
   }
 
   /**
@@ -772,7 +727,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
-  public open fun _unhandledInput(event: InputEvent): Unit {
+  public open fun _unhandledInput(event: InputEvent?): Unit {
   }
 
   /**
@@ -792,7 +747,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    */
-  public open fun _unhandledKeyInput(event: InputEvent): Unit {
+  public open fun _unhandledKeyInput(event: InputEvent?): Unit {
   }
 
   /**
@@ -807,9 +762,20 @@ public open class Node : Object() {
    * `internal` parameter).
    */
   @JvmOverloads
-  public fun addSibling(sibling: Node, forceReadableName: Boolean = false): Unit {
+  public fun addSibling(sibling: Node?, forceReadableName: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to sibling, BOOL to forceReadableName)
     TransferContext.callMethod(rawPtr, MethodBindings.addSiblingPtr, NIL)
+  }
+
+  public fun setName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
+  }
+
+  public fun getName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -856,7 +822,7 @@ public open class Node : Object() {
    */
   @JvmOverloads
   public fun addChild(
-    node: Node,
+    node: Node?,
     forceReadableName: Boolean = false,
     `internal`: InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED,
   ): Unit {
@@ -870,7 +836,7 @@ public open class Node : Object() {
    * **Note:** When this node is inside the tree, this method sets the [owner] of the removed [node]
    * (or its descendants) to `null`, if their [owner] is no longer an ancestor (see [isAncestorOf]).
    */
-  public fun removeChild(node: Node): Unit {
+  public fun removeChild(node: Node?): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.removeChildPtr, NIL)
   }
@@ -883,7 +849,7 @@ public open class Node : Object() {
    * [Node2D], [Node3D] and [Control] support this argument (but [Control] keeps only position).
    */
   @JvmOverloads
-  public fun reparent(newParent: Node, keepGlobalTransform: Boolean = true): Unit {
+  public fun reparent(newParent: Node?, keepGlobalTransform: Boolean = true): Unit {
     TransferContext.writeArguments(OBJECT to newParent, BOOL to keepGlobalTransform)
     TransferContext.callMethod(rawPtr, MethodBindings.reparentPtr, NIL)
   }
@@ -1159,7 +1125,7 @@ public open class Node : Object() {
   /**
    * Returns `true` if the given [node] is a direct or indirect child of this node.
    */
-  public fun isAncestorOf(node: Node): Boolean {
+  public fun isAncestorOf(node: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.isAncestorOfPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1169,7 +1135,7 @@ public open class Node : Object() {
    * Returns `true` if the given [node] occurs later in the scene hierarchy than this node. A node
    * occurring later is usually processed last.
    */
-  public fun isGreaterThan(node: Node): Boolean {
+  public fun isGreaterThan(node: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.isGreaterThanPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1195,7 +1161,7 @@ public open class Node : Object() {
    * than a normal relative path, due to the addition of the unique node's name.
    */
   @JvmOverloads
-  public fun getPathTo(node: Node, useUniquePath: Boolean = false): NodePath {
+  public fun getPathTo(node: Node?, useUniquePath: Boolean = false): NodePath {
     TransferContext.writeArguments(OBJECT to node, BOOL to useUniquePath)
     TransferContext.callMethod(rawPtr, MethodBindings.getPathToPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -1245,7 +1211,7 @@ public open class Node : Object() {
    * notifications sent through [propagateNotification] is affected by tree order. [CanvasItem] nodes
    * are also rendered in tree order. See also [processPriority].
    */
-  public fun moveChild(childNode: Node, toIndex: Int): Unit {
+  public fun moveChild(childNode: Node?, toIndex: Int): Unit {
     TransferContext.writeArguments(OBJECT to childNode, LONG to toIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.moveChildPtr, NIL)
   }
@@ -1281,6 +1247,17 @@ public open class Node : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+  }
+
+  public fun setOwner(owner: Node?): Unit {
+    TransferContext.writeArguments(OBJECT to owner)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOwnerPtr, NIL)
+  }
+
+  public fun getOwner(): Node? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOwnerPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
   }
 
   /**
@@ -1374,6 +1351,17 @@ public open class Node : Object() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  public fun setSceneFilePath(sceneFilePath: String): Unit {
+    TransferContext.writeArguments(STRING to sceneFilePath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSceneFilePathPtr, NIL)
+  }
+
+  public fun getSceneFilePath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSceneFilePathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Calls [Object.notification] with [what] on this node and all of its children, recursively.
    */
@@ -1455,6 +1443,28 @@ public open class Node : Object() {
   public fun setProcess(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setProcessPtr, NIL)
+  }
+
+  public fun setProcessPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessPriorityPtr, NIL)
+  }
+
+  public fun getProcessPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPhysicsProcessPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsProcessPriorityPtr, NIL)
+  }
+
+  public fun getPhysicsProcessPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsProcessPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -1546,6 +1556,17 @@ public open class Node : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setProcessMode(mode: ProcessMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
+  }
+
+  public fun getProcessMode(): ProcessMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
+    return Node.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns `true` if the node can receive processing notifications and input callbacks
    * ([NOTIFICATION_PROCESS], [_input], etc.) from the [SceneTree] and [Viewport]. The returned value
@@ -1564,6 +1585,39 @@ public open class Node : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canProcessPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setProcessThreadGroup(mode: ProcessThreadGroup): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessThreadGroupPtr, NIL)
+  }
+
+  public fun getProcessThreadGroup(): ProcessThreadGroup {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessThreadGroupPtr, LONG)
+    return Node.ProcessThreadGroup.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setProcessThreadMessages(flags: ProcessThreadMessages): Unit {
+    TransferContext.writeArguments(LONG to flags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessThreadMessagesPtr, NIL)
+  }
+
+  public fun getProcessThreadMessages(): ProcessThreadMessages {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessThreadMessagesPtr, LONG)
+    return ProcessThreadMessagesValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setProcessThreadGroupOrder(order: Int): Unit {
+    TransferContext.writeArguments(LONG to order.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessThreadGroupOrderPtr, NIL)
+  }
+
+  public fun getProcessThreadGroupOrder(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessThreadGroupOrderPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -1630,6 +1684,17 @@ public open class Node : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setPhysicsInterpolationMode(mode: PhysicsInterpolationMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationModePtr, NIL)
+  }
+
+  public fun getPhysicsInterpolationMode(): PhysicsInterpolationMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsInterpolationModePtr, LONG)
+    return Node.PhysicsInterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns `true` if physics interpolation is enabled for this node (see
    * [physicsInterpolationMode]).
@@ -1669,6 +1734,17 @@ public open class Node : Object() {
   public fun resetPhysicsInterpolation(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.resetPhysicsInterpolationPtr, NIL)
+  }
+
+  public fun setAutoTranslateMode(mode: AutoTranslateMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslateModePtr, NIL)
+  }
+
+  public fun getAutoTranslateMode(): AutoTranslateMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoTranslateModePtr, LONG)
+    return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1746,7 +1822,7 @@ public open class Node : Object() {
    * memory leaks, store a reference to the node in a variable, or use [Object.free].
    */
   @JvmOverloads
-  public fun replaceBy(node: Node, keepGroups: Boolean = false): Unit {
+  public fun replaceBy(node: Node?, keepGroups: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepGroups)
     TransferContext.callMethod(rawPtr, MethodBindings.replaceByPtr, NIL)
   }
@@ -1775,7 +1851,7 @@ public open class Node : Object() {
    * dock, even if their [owner] is not the scene root. This method is intended to be used in editor
    * plugins and tools, but it also works in release builds. See also [isEditableInstance].
    */
-  public fun setEditableInstance(node: Node, isEditable: Boolean): Unit {
+  public fun setEditableInstance(node: Node?, isEditable: Boolean): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to isEditable)
     TransferContext.callMethod(rawPtr, MethodBindings.setEditableInstancePtr, NIL)
   }
@@ -1784,7 +1860,7 @@ public open class Node : Object() {
    * Returns `true` if [node] has editable children enabled relative to this node. This method is
    * intended to be used in editor plugins and tools. See also [setEditableInstance].
    */
-  public fun isEditableInstance(node: Node): Boolean {
+  public fun isEditableInstance(node: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.isEditableInstancePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -1872,6 +1948,12 @@ public open class Node : Object() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun getMultiplayer(): MultiplayerAPI? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
+  }
+
   /**
    * Changes the RPC configuration for the given [method]. [config] should either be `null` to
    * disable the feature (as by default), or a [Dictionary] containing the following entries:
@@ -1887,6 +1969,28 @@ public open class Node : Object() {
   public fun rpcConfig(method: StringName, config: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method, ANY to config)
     TransferContext.callMethod(rawPtr, MethodBindings.rpcConfigPtr, NIL)
+  }
+
+  public fun setEditorDescription(editorDescription: String): Unit {
+    TransferContext.writeArguments(STRING to editorDescription)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditorDescriptionPtr, NIL)
+  }
+
+  public fun getEditorDescription(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEditorDescriptionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setUniqueNameInOwner(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUniqueNameInOwnerPtr, NIL)
+  }
+
+  public fun isUniqueNameInOwner(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUniqueNameInOwnerPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

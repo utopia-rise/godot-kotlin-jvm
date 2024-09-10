@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -44,14 +45,11 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * [encodeBufferMaxSize], the method will error out with [ERR_OUT_OF_MEMORY].
    */
   public var encodeBufferMaxSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("encodeBufferMaxSizeProperty")
+    get() = getEncodeBufferMaxSize()
+    @JvmName("encodeBufferMaxSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
+      setEncodeBufferMaxSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -118,6 +116,17 @@ public open class PacketPeer internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailablePacketCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun getEncodeBufferMaxSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setEncodeBufferMaxSize(maxSize: Int): Unit {
+    TransferContext.writeArguments(LONG to maxSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
   }
 
   public companion object

@@ -186,7 +186,7 @@ public open class ENetConnection : RefCounted() {
    * servers. Call this right after [createHostBound] to have ENet expect peers to connect using DTLS.
    * See [TLSOptions.server].
    */
-  public fun dtlsServerSetup(serverOptions: TLSOptions): GodotError {
+  public fun dtlsServerSetup(serverOptions: TLSOptions?): GodotError {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.dtlsServerSetupPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

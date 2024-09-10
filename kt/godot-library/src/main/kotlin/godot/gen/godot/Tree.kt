@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -93,7 +94,8 @@ public open class Tree : Control() {
   /**
    * Emitted instead of [signal item_selected] if [selectMode] is set to [SELECT_MULTI].
    */
-  public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
+  public val multiSelected: Signal3<TreeItem?, Long, Boolean> by signal("item", "column",
+      "selected")
 
   /**
    * Emitted when an item is selected with a mouse button.
@@ -125,7 +127,7 @@ public open class Tree : Control() {
   /**
    * Emitted when an item is collapsed by a click on the folding arrow.
    */
-  public val itemCollapsed: Signal1<TreeItem> by signal("item")
+  public val itemCollapsed: Signal1<TreeItem?> by signal("item")
 
   /**
    * Emitted when [TreeItem.propagateCheck] is called. Connect to this signal to process the items
@@ -133,12 +135,12 @@ public open class Tree : Control() {
    * will be processed is as follows: the item that invoked the method, children of that item, and
    * finally parents of that item.
    */
-  public val checkPropagatedToItem: Signal2<TreeItem, Long> by signal("item", "column")
+  public val checkPropagatedToItem: Signal2<TreeItem?, Long> by signal("item", "column")
 
   /**
    * Emitted when a button on the tree was pressed (see [TreeItem.addButton]).
    */
-  public val buttonClicked: Signal4<TreeItem, Long, Long, Long> by signal("item", "column", "id",
+  public val buttonClicked: Signal4<TreeItem?, Long, Long, Long> by signal("item", "column", "id",
       "mouseButtonIndex")
 
   /**
@@ -167,84 +169,66 @@ public open class Tree : Control() {
    * The number of columns.
    */
   public var columns: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("columnsProperty")
+    get() = getColumns()
+    @JvmName("columnsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
+      setColumns(value)
     }
 
   /**
    * If `true`, column titles are visible.
    */
   public var columnTitlesVisible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.areColumnTitlesVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("columnTitlesVisibleProperty")
+    get() = areColumnTitlesVisible()
+    @JvmName("columnTitlesVisibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColumnTitlesVisiblePtr, NIL)
+      setColumnTitlesVisible(value)
     }
 
   /**
    * If `true`, the currently selected cell may be selected again.
    */
   public var allowReselect: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowReselectProperty")
+    get() = getAllowReselect()
+    @JvmName("allowReselectProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+      setAllowReselect(value)
     }
 
   /**
    * If `true`, a right mouse button click can select items.
    */
   public var allowRmbSelect: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowRmbSelectProperty")
+    get() = getAllowRmbSelect()
+    @JvmName("allowRmbSelectProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
+      setAllowRmbSelect(value)
     }
 
   /**
    * If `true`, allows navigating the [Tree] with letter keys through incremental search.
    */
   public var allowSearch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowSearchProperty")
+    get() = getAllowSearch()
+    @JvmName("allowSearchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+      setAllowSearch(value)
     }
 
   /**
    * If `true`, the folding arrow is hidden.
    */
   public var hideFolding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFoldingHiddenPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hideFoldingProperty")
+    get() = isFoldingHidden()
+    @JvmName("hideFoldingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideFoldingPtr, NIL)
+      setHideFolding(value)
     }
 
   /**
@@ -253,28 +237,22 @@ public open class Tree : Control() {
    * [TreeItem] and all its descendants.
    */
   public var enableRecursiveFolding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isRecursiveFoldingEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enableRecursiveFoldingProperty")
+    get() = isRecursiveFoldingEnabled()
+    @JvmName("enableRecursiveFoldingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableRecursiveFoldingPtr, NIL)
+      setEnableRecursiveFolding(value)
     }
 
   /**
    * If `true`, the tree's root is hidden.
    */
   public var hideRoot: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isRootHiddenPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("hideRootProperty")
+    get() = isRootHidden()
+    @JvmName("hideRootProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideRootPtr, NIL)
+      setHideRoot(value)
     }
 
   /**
@@ -284,56 +262,44 @@ public open class Tree : Control() {
    * on the mouse position.
    */
   public var dropModeFlags: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDropModeFlagsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("dropModeFlagsProperty")
+    get() = getDropModeFlags()
+    @JvmName("dropModeFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDropModeFlagsPtr, NIL)
+      setDropModeFlags(value)
     }
 
   /**
    * Allows single or multiple selection. See the [SelectMode] constants.
    */
   public var selectMode: SelectMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
-      return Tree.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("selectModeProperty")
+    get() = getSelectMode()
+    @JvmName("selectModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
+      setSelectMode(value)
     }
 
   /**
    * If `true`, enables horizontal scrolling.
    */
   public var scrollHorizontalEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHScrollEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("scrollHorizontalEnabledProperty")
+    get() = isHScrollEnabled()
+    @JvmName("scrollHorizontalEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHScrollEnabledPtr, NIL)
+      setHScrollEnabled(value)
     }
 
   /**
    * If `true`, enables vertical scrolling.
    */
   public var scrollVerticalEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVScrollEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("scrollVerticalEnabledProperty")
+    get() = isVScrollEnabled()
+    @JvmName("scrollVerticalEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVScrollEnabledPtr, NIL)
+      setVScrollEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -444,11 +410,22 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun setHideRoot(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideRootPtr, NIL)
+  }
+
+  public fun isRootHidden(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isRootHiddenPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns the next selected [TreeItem] after the given one, or `null` if the end is reached.
    * If [from] is `null`, this returns the first selected item.
    */
-  public fun getNextSelected(from: TreeItem): TreeItem? {
+  public fun getNextSelected(from: TreeItem?): TreeItem? {
     TransferContext.writeArguments(OBJECT to from)
     TransferContext.callMethod(rawPtr, MethodBindings.getNextSelectedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TreeItem?)
@@ -470,7 +447,7 @@ public open class Tree : Control() {
   /**
    * Selects the specified [TreeItem] and column.
    */
-  public fun setSelected(item: TreeItem, column: Int): Unit {
+  public fun setSelected(item: TreeItem?, column: Int): Unit {
     TransferContext.writeArguments(OBJECT to item, LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
   }
@@ -497,6 +474,17 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun setSelectMode(mode: SelectMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
+  }
+
+  public fun getSelectMode(): SelectMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
+    return Tree.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Deselects all tree items (rows and columns). In [SELECT_MULTI] mode also removes selection
    * cursor.
@@ -504,6 +492,17 @@ public open class Tree : Control() {
   public fun deselectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.deselectAllPtr, NIL)
+  }
+
+  public fun setColumns(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
+  }
+
+  public fun getColumns(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -575,7 +574,7 @@ public open class Tree : Control() {
    */
   @JvmOverloads
   public fun getItemAreaRect(
-    item: TreeItem,
+    item: TreeItem?,
     column: Int = -1,
     buttonIndex: Int = -1,
   ): Rect2 {
@@ -633,6 +632,17 @@ public open class Tree : Control() {
   public fun ensureCursorIsVisible(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ensureCursorIsVisiblePtr, NIL)
+  }
+
+  public fun setColumnTitlesVisible(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColumnTitlesVisiblePtr, NIL)
+  }
+
+  public fun areColumnTitlesVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.areColumnTitlesVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -718,9 +728,97 @@ public open class Tree : Control() {
    * Causes the [Tree] to jump to the specified [TreeItem].
    */
   @JvmOverloads
-  public fun scrollToItem(item: TreeItem, centerOnItem: Boolean = false): Unit {
+  public fun scrollToItem(item: TreeItem?, centerOnItem: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to item, BOOL to centerOnItem)
     TransferContext.callMethod(rawPtr, MethodBindings.scrollToItemPtr, NIL)
+  }
+
+  public fun setHScrollEnabled(hScroll: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to hScroll)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHScrollEnabledPtr, NIL)
+  }
+
+  public fun isHScrollEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHScrollEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setVScrollEnabled(hScroll: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to hScroll)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVScrollEnabledPtr, NIL)
+  }
+
+  public fun isVScrollEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVScrollEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setHideFolding(hide: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to hide)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideFoldingPtr, NIL)
+  }
+
+  public fun isFoldingHidden(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFoldingHiddenPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEnableRecursiveFolding(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableRecursiveFoldingPtr, NIL)
+  }
+
+  public fun isRecursiveFoldingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isRecursiveFoldingEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDropModeFlags(flags: Int): Unit {
+    TransferContext.writeArguments(LONG to flags.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDropModeFlagsPtr, NIL)
+  }
+
+  public fun getDropModeFlags(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDropModeFlagsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setAllowRmbSelect(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
+  }
+
+  public fun getAllowRmbSelect(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAllowReselect(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+  }
+
+  public fun getAllowReselect(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAllowSearch(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+  }
+
+  public fun getAllowSearch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class SelectMode(

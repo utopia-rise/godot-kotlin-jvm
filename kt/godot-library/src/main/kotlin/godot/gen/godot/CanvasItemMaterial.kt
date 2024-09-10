@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.
@@ -30,28 +31,22 @@ public open class CanvasItemMaterial : Material() {
    * The manner in which a material's rendering is applied to underlying textures.
    */
   public var blendMode: BlendMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-      return CanvasItemMaterial.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("blendModeProperty")
+    get() = getBlendMode()
+    @JvmName("blendModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+      setBlendMode(value)
     }
 
   /**
    * The manner in which material reacts to lighting.
    */
   public var lightMode: LightMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLightModePtr, LONG)
-      return CanvasItemMaterial.LightMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("lightModeProperty")
+    get() = getLightMode()
+    @JvmName("lightModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLightModePtr, NIL)
+      setLightMode(value)
     }
 
   /**
@@ -62,14 +57,11 @@ public open class CanvasItemMaterial : Material() {
    * other types of nodes.
    */
   public var particlesAnimation: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimationPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("particlesAnimationProperty")
+    get() = getParticlesAnimation()
+    @JvmName("particlesAnimationProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimationPtr, NIL)
+      setParticlesAnimation(value)
     }
 
   /**
@@ -79,14 +71,11 @@ public open class CanvasItemMaterial : Material() {
    * `true`.
    */
   public var particlesAnimHFrames: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("particlesAnimHFramesProperty")
+    get() = getParticlesAnimHFrames()
+    @JvmName("particlesAnimHFramesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
+      setParticlesAnimHFrames(value)
     }
 
   /**
@@ -96,14 +85,11 @@ public open class CanvasItemMaterial : Material() {
    * `true`.
    */
   public var particlesAnimVFrames: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("particlesAnimVFramesProperty")
+    get() = getParticlesAnimVFrames()
+    @JvmName("particlesAnimVFramesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
+      setParticlesAnimVFrames(value)
     }
 
   /**
@@ -112,18 +98,81 @@ public open class CanvasItemMaterial : Material() {
    * `true`.
    */
   public var particlesAnimLoop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("particlesAnimLoopProperty")
+    get() = getParticlesAnimLoop()
+    @JvmName("particlesAnimLoopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
+      setParticlesAnimLoop(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CANVASITEMMATERIAL, scriptIndex)
+  }
+
+  public fun setBlendMode(blendMode: BlendMode): Unit {
+    TransferContext.writeArguments(LONG to blendMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+  }
+
+  public fun getBlendMode(): BlendMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return CanvasItemMaterial.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLightMode(lightMode: LightMode): Unit {
+    TransferContext.writeArguments(LONG to lightMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLightModePtr, NIL)
+  }
+
+  public fun getLightMode(): LightMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLightModePtr, LONG)
+    return CanvasItemMaterial.LightMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setParticlesAnimation(particlesAnim: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to particlesAnim)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimationPtr, NIL)
+  }
+
+  public fun getParticlesAnimation(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setParticlesAnimHFrames(frames: Int): Unit {
+    TransferContext.writeArguments(LONG to frames.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
+  }
+
+  public fun getParticlesAnimHFrames(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setParticlesAnimVFrames(frames: Int): Unit {
+    TransferContext.writeArguments(LONG to frames.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
+  }
+
+  public fun getParticlesAnimVFrames(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setParticlesAnimLoop(loop: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to loop)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
+  }
+
+  public fun getParticlesAnimLoop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class BlendMode(

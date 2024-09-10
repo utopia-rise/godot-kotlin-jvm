@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This object is used by [RenderingDevice].
@@ -32,14 +33,11 @@ public open class RDSamplerState : RefCounted() {
    * appear bigger than on-screen pixels.
    */
   public var magFilter: RenderingDevice.SamplerFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
-      return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("magFilterProperty")
+    get() = getMagFilter()
+    @JvmName("magFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
+      setMagFilter(value)
     }
 
   /**
@@ -47,28 +45,22 @@ public open class RDSamplerState : RefCounted() {
    * appear smaller than on-screen pixels.
    */
   public var minFilter: RenderingDevice.SamplerFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
-      return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("minFilterProperty")
+    get() = getMinFilter()
+    @JvmName("minFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
+      setMinFilter(value)
     }
 
   /**
    * The filtering method to use for mipmaps.
    */
   public var mipFilter: RenderingDevice.SamplerFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMipFilterPtr, LONG)
-      return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("mipFilterProperty")
+    get() = getMipFilter()
+    @JvmName("mipFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMipFilterPtr, NIL)
+      setMipFilter(value)
     }
 
   /**
@@ -76,14 +68,11 @@ public open class RDSamplerState : RefCounted() {
    * sampling outside the UV bounds.
    */
   public var repeatU: RenderingDevice.SamplerRepeatMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRepeatUPtr, LONG)
-      return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("repeatUProperty")
+    get() = getRepeatU()
+    @JvmName("repeatUProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRepeatUPtr, NIL)
+      setRepeatU(value)
     }
 
   /**
@@ -91,14 +80,11 @@ public open class RDSamplerState : RefCounted() {
    * sampling outside the UV bounds.
    */
   public var repeatV: RenderingDevice.SamplerRepeatMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRepeatVPtr, LONG)
-      return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("repeatVProperty")
+    get() = getRepeatV()
+    @JvmName("repeatVProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRepeatVPtr, NIL)
+      setRepeatV(value)
     }
 
   /**
@@ -106,14 +92,11 @@ public open class RDSamplerState : RefCounted() {
    * sampling outside the UV bounds. Only effective for 3D samplers.
    */
   public var repeatW: RenderingDevice.SamplerRepeatMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRepeatWPtr, LONG)
-      return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("repeatWProperty")
+    get() = getRepeatW()
+    @JvmName("repeatWProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRepeatWPtr, NIL)
+      setRepeatW(value)
     }
 
   /**
@@ -123,28 +106,22 @@ public open class RDSamplerState : RefCounted() {
    * mipmaps available.
    */
   public var lodBias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("lodBiasProperty")
+    get() = getLodBias()
+    @JvmName("lodBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
+      setLodBias(value)
     }
 
   /**
    * If `true`, perform anisotropic sampling. See [anisotropyMax].
    */
   public var useAnisotropy: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseAnisotropyPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useAnisotropyProperty")
+    get() = getUseAnisotropy()
+    @JvmName("useAnisotropyProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseAnisotropyPtr, NIL)
+      setUseAnisotropy(value)
     }
 
   /**
@@ -155,14 +132,11 @@ public open class RDSamplerState : RefCounted() {
    * If [anisotropyMax] is `1.0`, forcibly disables anisotropy even if [useAnisotropy] is `true`.
    */
   public var anisotropyMax: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyMaxPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("anisotropyMaxProperty")
+    get() = getAnisotropyMax()
+    @JvmName("anisotropyMaxProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyMaxPtr, NIL)
+      setAnisotropyMax(value)
     }
 
   /**
@@ -172,28 +146,22 @@ public open class RDSamplerState : RefCounted() {
    * values from a shadow sampler.
    */
   public var enableCompare: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableComparePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enableCompareProperty")
+    get() = getEnableCompare()
+    @JvmName("enableCompareProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableComparePtr, NIL)
+      setEnableCompare(value)
     }
 
   /**
    * The compare operation to use. Only effective if [enableCompare] is `true`.
    */
   public var compareOp: RenderingDevice.CompareOperator
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCompareOpPtr, LONG)
-      return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("compareOpProperty")
+    get() = getCompareOp()
+    @JvmName("compareOpProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCompareOpPtr, NIL)
+      setCompareOp(value)
     }
 
   /**
@@ -201,14 +169,11 @@ public open class RDSamplerState : RefCounted() {
    * mipmaps available.
    */
   public var minLod: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinLodPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("minLodProperty")
+    get() = getMinLod()
+    @JvmName("minLodProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinLodPtr, NIL)
+      setMinLod(value)
     }
 
   /**
@@ -216,14 +181,11 @@ public open class RDSamplerState : RefCounted() {
    * mipmaps available.
    */
   public var maxLod: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxLodPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("maxLodProperty")
+    get() = getMaxLod()
+    @JvmName("maxLodProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxLodPtr, NIL)
+      setMaxLod(value)
     }
 
   /**
@@ -231,14 +193,11 @@ public open class RDSamplerState : RefCounted() {
    * [repeatU], [repeatV] or [repeatW] modes have repeating disabled.
    */
   public var borderColor: RenderingDevice.SamplerBorderColor
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, LONG)
-      return RenderingDevice.SamplerBorderColor.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("borderColorProperty")
+    get() = getBorderColor()
+    @JvmName("borderColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+      setBorderColor(value)
     }
 
   /**
@@ -246,18 +205,180 @@ public open class RDSamplerState : RefCounted() {
    * resolution. Otherwise, the coordinates will be normalized and range from 0 to 1.
    */
   public var unnormalizedUvw: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUnnormalizedUvwPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("unnormalizedUvwProperty")
+    get() = getUnnormalizedUvw()
+    @JvmName("unnormalizedUvwProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUnnormalizedUvwPtr, NIL)
+      setUnnormalizedUvw(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDSAMPLERSTATE, scriptIndex)
+  }
+
+  public fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
+  }
+
+  public fun getMagFilter(): RenderingDevice.SamplerFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
+    return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setMinFilter(pMember: RenderingDevice.SamplerFilter): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
+  }
+
+  public fun getMinFilter(): RenderingDevice.SamplerFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
+    return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setMipFilter(pMember: RenderingDevice.SamplerFilter): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMipFilterPtr, NIL)
+  }
+
+  public fun getMipFilter(): RenderingDevice.SamplerFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMipFilterPtr, LONG)
+    return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setRepeatU(pMember: RenderingDevice.SamplerRepeatMode): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatUPtr, NIL)
+  }
+
+  public fun getRepeatU(): RenderingDevice.SamplerRepeatMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatUPtr, LONG)
+    return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setRepeatV(pMember: RenderingDevice.SamplerRepeatMode): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatVPtr, NIL)
+  }
+
+  public fun getRepeatV(): RenderingDevice.SamplerRepeatMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatVPtr, LONG)
+    return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setRepeatW(pMember: RenderingDevice.SamplerRepeatMode): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatWPtr, NIL)
+  }
+
+  public fun getRepeatW(): RenderingDevice.SamplerRepeatMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatWPtr, LONG)
+    return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLodBias(pMember: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
+  }
+
+  public fun getLodBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setUseAnisotropy(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseAnisotropyPtr, NIL)
+  }
+
+  public fun getUseAnisotropy(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseAnisotropyPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAnisotropyMax(pMember: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyMaxPtr, NIL)
+  }
+
+  public fun getAnisotropyMax(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyMaxPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEnableCompare(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableComparePtr, NIL)
+  }
+
+  public fun getEnableCompare(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableComparePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCompareOp(pMember: RenderingDevice.CompareOperator): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCompareOpPtr, NIL)
+  }
+
+  public fun getCompareOp(): RenderingDevice.CompareOperator {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCompareOpPtr, LONG)
+    return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setMinLod(pMember: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinLodPtr, NIL)
+  }
+
+  public fun getMinLod(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinLodPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMaxLod(pMember: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxLodPtr, NIL)
+  }
+
+  public fun getMaxLod(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxLodPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBorderColor(pMember: RenderingDevice.SamplerBorderColor): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+  }
+
+  public fun getBorderColor(): RenderingDevice.SamplerBorderColor {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, LONG)
+    return RenderingDevice.SamplerBorderColor.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUnnormalizedUvw(pMember: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUnnormalizedUvwPtr, NIL)
+  }
+
+  public fun getUnnormalizedUvw(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUnnormalizedUvwPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -34,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An instance of this object represents a device that is tracked, such as a controller or anchor
@@ -49,12 +50,12 @@ public open class XRPositionalTracker : XRTracker() {
   /**
    * Emitted when the state of a pose tracked by this tracker changes.
    */
-  public val poseChanged: Signal1<XRPose> by signal("pose")
+  public val poseChanged: Signal1<XRPose?> by signal("pose")
 
   /**
    * Emitted when a pose tracked by this tracker stops getting updated tracking data.
    */
-  public val poseLostTracking: Signal1<XRPose> by signal("pose")
+  public val poseLostTracking: Signal1<XRPose?> by signal("pose")
 
   /**
    * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs
@@ -87,32 +88,48 @@ public open class XRPositionalTracker : XRTracker() {
    * controller being tracked.
    */
   public var profile: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("profileProperty")
+    get() = getTrackerProfile()
+    @JvmName("profileProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerProfilePtr, NIL)
+      setTrackerProfile(value)
     }
 
   /**
    * Defines which hand this tracker relates to.
    */
   public var hand: TrackerHand
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
-      return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("handProperty")
+    get() = getTrackerHand()
+    @JvmName("handProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
+      setTrackerHand(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRPOSITIONALTRACKER, scriptIndex)
+  }
+
+  public fun getTrackerProfile(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setTrackerProfile(profile: String): Unit {
+    TransferContext.writeArguments(STRING to profile)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerProfilePtr, NIL)
+  }
+
+  public fun getTrackerHand(): TrackerHand {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
+    return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTrackerHand(hand: TrackerHand): Unit {
+    TransferContext.writeArguments(LONG to hand.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
   }
 
   /**

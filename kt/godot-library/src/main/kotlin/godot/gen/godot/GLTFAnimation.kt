@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class GLTFAnimation : Resource() {
@@ -29,29 +30,45 @@ public open class GLTFAnimation : Resource() {
    * The original name of the animation.
    */
   public var originalName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("originalNameProperty")
+    get() = getOriginalName()
+    @JvmName("originalNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+      setOriginalName(value)
     }
 
   public var loop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("loopProperty")
+    get() = getLoop()
+    @JvmName("loopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+      setLoop(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFANIMATION, scriptIndex)
+  }
+
+  public fun getOriginalName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setOriginalName(originalName: String): Unit {
+    TransferContext.writeArguments(STRING to originalName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+  }
+
+  public fun getLoop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setLoop(loop: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to loop)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
   /**

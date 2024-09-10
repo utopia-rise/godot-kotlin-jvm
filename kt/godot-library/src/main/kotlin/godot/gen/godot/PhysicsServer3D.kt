@@ -1062,7 +1062,7 @@ public object PhysicsServer3D : Object() {
   @JvmOverloads
   public fun bodyTestMotion(
     body: RID,
-    parameters: PhysicsTestMotionParameters3D,
+    parameters: PhysicsTestMotionParameters3D?,
     result: PhysicsTestMotionResult3D? = null,
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)
@@ -1094,7 +1094,7 @@ public object PhysicsServer3D : Object() {
    * given soft body's points through the [renderingServerHandler] interface.
    */
   public fun softBodyUpdateRenderingServer(body: RID,
-      renderingServerHandler: PhysicsServer3DRenderingServerHandler): Unit {
+      renderingServerHandler: PhysicsServer3DRenderingServerHandler?): Unit {
     TransferContext.writeArguments(_RID to body, OBJECT to renderingServerHandler)
     TransferContext.callMethod(rawPtr, MethodBindings.softBodyUpdateRenderingServerPtr, NIL)
   }

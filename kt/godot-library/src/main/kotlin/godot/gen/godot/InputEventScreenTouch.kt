@@ -34,14 +34,11 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
    * The touch index in the case of a multi-touch event. One index = one finger.
    */
   public var index: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("indexProperty")
+    get() = getIndex()
+    @JvmName("indexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
+      setIndex(value)
     }
 
   /**
@@ -50,50 +47,44 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
    */
   @CoreTypeLocalCopy
   public var position: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("positionProperty")
+    get() = getPosition()
+    @JvmName("positionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+      setPosition(value)
     }
 
   /**
    * If `true`, the touch event has been canceled.
    */
   public var canceled: Boolean
-    @JvmName("isCanceled_prop")
-    get() = super.isCanceled()
+    @JvmName("canceledProperty")
+    get() = isCanceled()
+    @JvmName("canceledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
+      setCanceled(value)
     }
 
   /**
    * If `true`, the touch's state is pressed. If `false`, the touch's state is released.
    */
   public var pressed: Boolean
-    @JvmName("isPressed_prop")
-    get() = super.isPressed()
+    @JvmName("pressedProperty")
+    get() = isPressed()
+    @JvmName("pressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+      setPressed(value)
     }
 
   /**
    * If `true`, the touch's state is a double tap.
    */
   public var doubleTap: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDoubleTapPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("doubleTapProperty")
+    get() = isDoubleTap()
+    @JvmName("doubleTapProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDoubleTapPtr, NIL)
+      setDoubleTap(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -124,6 +115,49 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
       position = this
   }
 
+
+  public fun setIndex(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
+  }
+
+  public fun getIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPosition(position: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+  }
+
+  public fun getPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+  }
+
+  public fun setCanceled(canceled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to canceled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
+  }
+
+  public fun setDoubleTap(doubleTap: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to doubleTap)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDoubleTapPtr, NIL)
+  }
+
+  public fun isDoubleTap(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDoubleTapPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object
 

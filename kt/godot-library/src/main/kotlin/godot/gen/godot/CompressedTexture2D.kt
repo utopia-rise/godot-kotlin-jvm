@@ -18,6 +18,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is
@@ -42,11 +43,8 @@ public open class CompressedTexture2D : Texture2D() {
    * The [CompressedTexture2D]'s file path to a `.ctex` file.
    */
   public val loadPath: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("loadPathProperty")
+    get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2D, scriptIndex)
@@ -59,6 +57,12 @@ public open class CompressedTexture2D : Texture2D() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun getLoadPath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

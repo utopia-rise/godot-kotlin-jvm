@@ -138,7 +138,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
      * **Note:** The [certificate] should include the full certificate chain up to the signing CA
      * (certificates file can be concatenated using a general purpose text editor).
      */
-    public fun server(key: CryptoKey, certificate: X509Certificate): TLSOptions? {
+    public fun server(key: CryptoKey?, certificate: X509Certificate?): TLSOptions? {
       TransferContext.writeArguments(OBJECT to key, OBJECT to certificate)
       TransferContext.callMethod(0, MethodBindings.serverPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as TLSOptions?)

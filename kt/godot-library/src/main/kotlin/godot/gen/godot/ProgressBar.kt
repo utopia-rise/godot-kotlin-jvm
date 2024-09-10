@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A control used for visual representation of a percentage. Shows fill percentage from right to
@@ -29,28 +30,22 @@ public open class ProgressBar : Range() {
    * The fill direction. See [FillMode] for possible values.
    */
   public var fillMode: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("fillModeProperty")
+    get() = getFillMode()
+    @JvmName("fillModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
+      setFillMode(value)
     }
 
   /**
    * If `true`, the fill percentage is displayed on the bar.
    */
   public var showPercentage: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPercentageShownPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("showPercentageProperty")
+    get() = isPercentageShown()
+    @JvmName("showPercentageProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShowPercentagePtr, NIL)
+      setShowPercentage(value)
     }
 
   /**
@@ -58,33 +53,70 @@ public open class ProgressBar : Range() {
    * but does not show the fill percentage or value.
    */
   public var indeterminate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("indeterminateProperty")
+    get() = isIndeterminate()
+    @JvmName("indeterminateProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIndeterminatePtr, NIL)
+      setIndeterminate(value)
     }
 
   /**
    * If `false`, the [indeterminate] animation will be paused in the editor.
    */
   public var editorPreviewIndeterminate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr,
-          BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("editorPreviewIndeterminateProperty")
+    get() = isEditorPreviewIndeterminateEnabled()
+    @JvmName("editorPreviewIndeterminateProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
+      setEditorPreviewIndeterminate(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PROGRESSBAR, scriptIndex)
+  }
+
+  public fun setFillMode(mode: Int): Unit {
+    TransferContext.writeArguments(LONG to mode.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
+  }
+
+  public fun getFillMode(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setShowPercentage(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShowPercentagePtr, NIL)
+  }
+
+  public fun isPercentageShown(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPercentageShownPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setIndeterminate(indeterminate: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to indeterminate)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIndeterminatePtr, NIL)
+  }
+
+  public fun isIndeterminate(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEditorPreviewIndeterminate(previewIndeterminate: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to previewIndeterminate)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
+  }
+
+  public fun isEditorPreviewIndeterminateEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class FillMode(

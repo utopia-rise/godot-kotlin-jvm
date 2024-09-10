@@ -20,14 +20,11 @@ class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait, I
     var getterMethod: EnrichedMethod? = null
     var setterMethod: EnrichedMethod? = null
 
-    val hasValidSetterInClass: Boolean
-        get() = setterMethod != null
-
     val hasValidGetterInClass: Boolean
         get() = getterMethod != null
 
-    var shouldUseSuperSetter = false
-    var shouldUseSuperGetter = false
+    val hasValidSetterInClass: Boolean
+        get() = setterMethod != null
 
     // Here we use getter type instead.
     // We have part of code that check if core type or not before it is possible to

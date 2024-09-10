@@ -30,6 +30,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Container for parsed source geometry data used in navigation mesh baking.
@@ -37,40 +38,71 @@ import kotlin.Unit
 @GodotBaseType
 public open class NavigationMeshSourceGeometryData3D : Resource() {
   public var vertices: PackedFloat32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_FLOAT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
-    }
+    @JvmName("verticesProperty")
+    get() = getVertices()
+    @JvmName("verticesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+      setVertices(value)
     }
 
   public var indices: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+    @JvmName("indicesProperty")
+    get() = getIndices()
+    @JvmName("indicesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+      setIndices(value)
     }
 
   public var projectedObstructions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+    @JvmName("projectedObstructionsProperty")
+    get() = getProjectedObstructions()
+    @JvmName("projectedObstructionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
+      setProjectedObstructions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D, scriptIndex)
+  }
+
+  /**
+   * Sets the parsed source geometry data vertices. The vertices need to be matched with
+   * appropriated indices.
+   * **Warning:** Inappropriate data can crash the baking process of the involved third-party
+   * libraries.
+   */
+  public fun setVertices(vertices: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to vertices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+  }
+
+  /**
+   * Returns the parsed source geometry data vertices array.
+   */
+  public fun getVertices(): PackedFloat32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_FLOAT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+  }
+
+  /**
+   * Sets the parsed source geometry data indices. The indices need to be matched with appropriated
+   * vertices.
+   * **Warning:** Inappropriate data can crash the baking process of the involved third-party
+   * libraries.
+   */
+  public fun setIndices(indices: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to indices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+  }
+
+  /**
+   * Returns the parsed source geometry data indices array.
+   */
+  public fun getIndices(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   /**
@@ -104,7 +136,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * have valid triangulated mesh data to be considered. Since [NavigationMesh] resources have no
    * transform, all vertex positions need to be offset by the node's transform using [xform].
    */
-  public fun addMesh(mesh: Mesh, xform: Transform3D): Unit {
+  public fun addMesh(mesh: Mesh?, xform: Transform3D): Unit {
     TransferContext.writeArguments(OBJECT to mesh, TRANSFORM3D to xform)
     TransferContext.callMethod(rawPtr, MethodBindings.addMeshPtr, NIL)
   }
@@ -135,7 +167,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * Adds the geometry data of another [NavigationMeshSourceGeometryData3D] to the navigation mesh
    * baking data.
    */
-  public fun merge(otherGeometry: NavigationMeshSourceGeometryData3D): Unit {
+  public fun merge(otherGeometry: NavigationMeshSourceGeometryData3D?): Unit {
     TransferContext.writeArguments(OBJECT to otherGeometry)
     TransferContext.callMethod(rawPtr, MethodBindings.mergePtr, NIL)
   }
@@ -162,6 +194,38 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   public fun clearProjectedObstructions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearProjectedObstructionsPtr, NIL)
+  }
+
+  /**
+   * Sets the projected obstructions with an Array of Dictionaries with the following key value
+   * pairs:
+   *
+   * gdscript:
+   * ```gdscript
+   * "vertices" : PackedFloat32Array
+   * "elevation" : float
+   * "height" : float
+   * "carve" : bool
+   * ```
+   */
+  public fun setProjectedObstructions(projectedObstructions: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to projectedObstructions)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
+  }
+
+  /**
+   * Returns the projected obstructions as an [Array] of dictionaries. Each [Dictionary] contains
+   * the following entries:
+   * - `vertices` - A [PackedFloat32Array] that defines the outline points of the projected shape.
+   * - `elevation` - A [float] that defines the projected shape placement on the y-axis.
+   * - `height` - A [float] that defines how much the projected shape is extruded along the y-axis.
+   * - `carve` - A [bool] that defines how the obstacle affects the navigation mesh baking. If
+   * `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
+   */
+  public fun getProjectedObstructions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public companion object

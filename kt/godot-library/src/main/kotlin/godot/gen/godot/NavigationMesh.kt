@@ -33,6 +33,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A navigation mesh is a collection of polygons that define which areas of an environment are
@@ -41,14 +42,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class NavigationMesh : Resource() {
   public var vertices: PackedVector3Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
-    }
+    @JvmName("verticesProperty")
+    get() = getVertices()
+    @JvmName("verticesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+      setVertices(value)
     }
 
   /**
@@ -56,14 +54,11 @@ public open class NavigationMesh : Resource() {
    * possible values.
    */
   public var samplePartitionType: SamplePartitionType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSamplePartitionTypePtr, LONG)
-      return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("samplePartitionTypeProperty")
+    get() = getSamplePartitionType()
+    @JvmName("samplePartitionTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSamplePartitionTypePtr, NIL)
+      setSamplePartitionType(value)
     }
 
   /**
@@ -71,14 +66,11 @@ public open class NavigationMesh : Resource() {
    * possible values.
    */
   public var geometryParsedGeometryType: ParsedGeometryType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
-      return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("geometryParsedGeometryTypeProperty")
+    get() = getParsedGeometryType()
+    @JvmName("geometryParsedGeometryTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
+      setParsedGeometryType(value)
     }
 
   /**
@@ -87,28 +79,22 @@ public open class NavigationMesh : Resource() {
    * [PARSED_GEOMETRY_BOTH].
    */
   public var geometryCollisionMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("geometryCollisionMaskProperty")
+    get() = getCollisionMask()
+    @JvmName("geometryCollisionMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+      setCollisionMask(value)
     }
 
   /**
    * The source of the geometry used when baking. See [SourceGeometryMode] for possible values.
    */
   public var geometrySourceGeometryMode: SourceGeometryMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
-      return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("geometrySourceGeometryModeProperty")
+    get() = getSourceGeometryMode()
+    @JvmName("geometrySourceGeometryModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
+      setSourceGeometryMode(value)
     }
 
   /**
@@ -117,14 +103,11 @@ public open class NavigationMesh : Resource() {
    * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
   public var geometrySourceGroupName: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("geometrySourceGroupNameProperty")
+    get() = getSourceGroupName()
+    @JvmName("geometrySourceGroupNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSourceGroupNamePtr, NIL)
+      setSourceGroupName(value)
     }
 
   /**
@@ -132,14 +115,11 @@ public open class NavigationMesh : Resource() {
    * the cell size on the navigation map.
    */
   public var cellSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("cellSizeProperty")
+    get() = getCellSize()
+    @JvmName("cellSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+      setCellSize(value)
     }
 
   /**
@@ -147,14 +127,11 @@ public open class NavigationMesh : Resource() {
    * the cell height on the navigation map.
    */
   public var cellHeight: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellHeightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("cellHeightProperty")
+    get() = getCellHeight()
+    @JvmName("cellHeightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellHeightPtr, NIL)
+      setCellHeight(value)
     }
 
   /**
@@ -166,14 +143,11 @@ public open class NavigationMesh : Resource() {
    * [cellSize].
    */
   public var borderSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("borderSizeProperty")
+    get() = getBorderSize()
+    @JvmName("borderSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+      setBorderSize(value)
     }
 
   /**
@@ -182,14 +156,11 @@ public open class NavigationMesh : Resource() {
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellHeight].
    */
   public var agentHeight: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAgentHeightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("agentHeightProperty")
+    get() = getAgentHeight()
+    @JvmName("agentHeightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAgentHeightPtr, NIL)
+      setAgentHeight(value)
     }
 
   /**
@@ -197,14 +168,11 @@ public open class NavigationMesh : Resource() {
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public var agentRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("agentRadiusProperty")
+    get() = getAgentRadius()
+    @JvmName("agentRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
+      setAgentRadius(value)
     }
 
   /**
@@ -213,28 +181,22 @@ public open class NavigationMesh : Resource() {
    * [cellHeight].
    */
   public var agentMaxClimb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("agentMaxClimbProperty")
+    get() = getAgentMaxClimb()
+    @JvmName("agentMaxClimbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxClimbPtr, NIL)
+      setAgentMaxClimb(value)
     }
 
   /**
    * The maximum slope that is considered walkable, in degrees.
    */
   public var agentMaxSlope: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("agentMaxSlopeProperty")
+    get() = getAgentMaxSlope()
+    @JvmName("agentMaxSlopeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxSlopePtr, NIL)
+      setAgentMaxSlope(value)
     }
 
   /**
@@ -243,14 +205,11 @@ public open class NavigationMesh : Resource() {
    * isolated island areas. For example, a value of 8 will set the number of cells to 64.
    */
   public var regionMinSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRegionMinSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("regionMinSizeProperty")
+    get() = getRegionMinSize()
+    @JvmName("regionMinSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRegionMinSizePtr, NIL)
+      setRegionMinSize(value)
     }
 
   /**
@@ -259,14 +218,11 @@ public open class NavigationMesh : Resource() {
    * 20 will set the number of cells to 400.
    */
   public var regionMergeSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("regionMergeSizeProperty")
+    get() = getRegionMergeSize()
+    @JvmName("regionMergeSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRegionMergeSizePtr, NIL)
+      setRegionMergeSize(value)
     }
 
   /**
@@ -275,14 +231,11 @@ public open class NavigationMesh : Resource() {
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public var edgeMaxLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("edgeMaxLengthProperty")
+    get() = getEdgeMaxLength()
+    @JvmName("edgeMaxLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxLengthPtr, NIL)
+      setEdgeMaxLength(value)
     }
 
   /**
@@ -290,14 +243,11 @@ public open class NavigationMesh : Resource() {
    * contour.
    */
   public var edgeMaxError: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("edgeMaxErrorProperty")
+    get() = getEdgeMaxError()
+    @JvmName("edgeMaxErrorProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxErrorPtr, NIL)
+      setEdgeMaxError(value)
     }
 
   /**
@@ -305,42 +255,33 @@ public open class NavigationMesh : Resource() {
    * conversion process.
    */
   public var verticesPerPolygon: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("verticesPerPolygonProperty")
+    get() = getVerticesPerPolygon()
+    @JvmName("verticesPerPolygonProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPerPolygonPtr, NIL)
+      setVerticesPerPolygon(value)
     }
 
   /**
    * The sampling distance to use when generating the detail mesh, in cell unit.
    */
   public var detailSampleDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("detailSampleDistanceProperty")
+    get() = getDetailSampleDistance()
+    @JvmName("detailSampleDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleDistancePtr, NIL)
+      setDetailSampleDistance(value)
     }
 
   /**
    * The maximum distance the detail mesh surface should deviate from heightfield, in cell unit.
    */
   public var detailSampleMaxError: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("detailSampleMaxErrorProperty")
+    get() = getDetailSampleMaxError()
+    @JvmName("detailSampleMaxErrorProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
+      setDetailSampleMaxError(value)
     }
 
   /**
@@ -348,28 +289,22 @@ public open class NavigationMesh : Resource() {
    * walkable neighbor.
    */
   public var filterLowHangingObstacles: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("filterLowHangingObstaclesProperty")
+    get() = getFilterLowHangingObstacles()
+    @JvmName("filterLowHangingObstaclesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
+      setFilterLowHangingObstacles(value)
     }
 
   /**
    * If `true`, marks spans that are ledges as non-walkable.
    */
   public var filterLedgeSpans: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("filterLedgeSpansProperty")
+    get() = getFilterLedgeSpans()
+    @JvmName("filterLedgeSpansProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilterLedgeSpansPtr, NIL)
+      setFilterLedgeSpans(value)
     }
 
   /**
@@ -377,14 +312,11 @@ public open class NavigationMesh : Resource() {
    * [agentHeight].
    */
   public var filterWalkableLowHeightSpans: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("filterWalkableLowHeightSpansProperty")
+    get() = getFilterWalkableLowHeightSpans()
+    @JvmName("filterWalkableLowHeightSpansProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
+      setFilterWalkableLowHeightSpans(value)
     }
 
   /**
@@ -393,15 +325,11 @@ public open class NavigationMesh : Resource() {
    */
   @CoreTypeLocalCopy
   public var filterBakingAabb: AABB
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbPtr,
-          godot.core.VariantType.AABB)
-      return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
-    }
+    @JvmName("filterBakingAabbProperty")
+    get() = getFilterBakingAabb()
+    @JvmName("filterBakingAabbProperty")
     set(`value`) {
-      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbPtr, NIL)
+      setFilterBakingAabb(value)
     }
 
   /**
@@ -409,14 +337,11 @@ public open class NavigationMesh : Resource() {
    */
   @CoreTypeLocalCopy
   public var filterBakingAabbOffset: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("filterBakingAabbOffsetProperty")
+    get() = getFilterBakingAabbOffset()
+    @JvmName("filterBakingAabbOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
+      setFilterBakingAabbOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -473,6 +398,39 @@ public open class NavigationMesh : Resource() {
   }
 
 
+  public fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
+    TransferContext.writeArguments(LONG to samplePartitionType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSamplePartitionTypePtr, NIL)
+  }
+
+  public fun getSamplePartitionType(): SamplePartitionType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSamplePartitionTypePtr, LONG)
+    return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
+    TransferContext.writeArguments(LONG to geometryType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
+  }
+
+  public fun getParsedGeometryType(): ParsedGeometryType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
+    return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setCollisionMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+  }
+
+  public fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
   /**
    * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given
    * a [layerNumber] between 1 and 32.
@@ -490,6 +448,255 @@ public open class NavigationMesh : Resource() {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSourceGeometryMode(mask: SourceGeometryMode): Unit {
+    TransferContext.writeArguments(LONG to mask.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
+  }
+
+  public fun getSourceGeometryMode(): SourceGeometryMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
+    return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSourceGroupName(mask: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGroupNamePtr, NIL)
+  }
+
+  public fun getSourceGroupName(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setCellSize(cellSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to cellSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+  }
+
+  public fun getCellSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setCellHeight(cellHeight: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to cellHeight.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellHeightPtr, NIL)
+  }
+
+  public fun getCellHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBorderSize(borderSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to borderSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+  }
+
+  public fun getBorderSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAgentHeight(agentHeight: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to agentHeight.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAgentHeightPtr, NIL)
+  }
+
+  public fun getAgentHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAgentHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAgentRadius(agentRadius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to agentRadius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
+  }
+
+  public fun getAgentRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAgentMaxClimb(agentMaxClimb: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to agentMaxClimb.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxClimbPtr, NIL)
+  }
+
+  public fun getAgentMaxClimb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAgentMaxSlope(agentMaxSlope: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to agentMaxSlope.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxSlopePtr, NIL)
+  }
+
+  public fun getAgentMaxSlope(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRegionMinSize(regionMinSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to regionMinSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRegionMinSizePtr, NIL)
+  }
+
+  public fun getRegionMinSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRegionMinSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRegionMergeSize(regionMergeSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to regionMergeSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRegionMergeSizePtr, NIL)
+  }
+
+  public fun getRegionMergeSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEdgeMaxLength(edgeMaxLength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to edgeMaxLength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxLengthPtr, NIL)
+  }
+
+  public fun getEdgeMaxLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEdgeMaxError(edgeMaxError: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to edgeMaxError.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxErrorPtr, NIL)
+  }
+
+  public fun getEdgeMaxError(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVerticesPerPolygon(verticesPerPolygon: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to verticesPerPolygon.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPerPolygonPtr, NIL)
+  }
+
+  public fun getVerticesPerPolygon(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDetailSampleDistance(detailSampleDist: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to detailSampleDist.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleDistancePtr, NIL)
+  }
+
+  public fun getDetailSampleDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDetailSampleMaxError(detailSampleMaxError: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to detailSampleMaxError.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
+  }
+
+  public fun getDetailSampleMaxError(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFilterLowHangingObstacles(filterLowHangingObstacles: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to filterLowHangingObstacles)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
+  }
+
+  public fun getFilterLowHangingObstacles(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFilterLedgeSpans(filterLedgeSpans: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to filterLedgeSpans)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterLedgeSpansPtr, NIL)
+  }
+
+  public fun getFilterLedgeSpans(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to filterWalkableLowHeightSpans)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
+  }
+
+  public fun getFilterWalkableLowHeightSpans(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFilterBakingAabb(bakingAabb: AABB): Unit {
+    TransferContext.writeArguments(godot.core.VariantType.AABB to bakingAabb)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbPtr, NIL)
+  }
+
+  public fun getFilterBakingAabb(): AABB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbPtr,
+        godot.core.VariantType.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+  }
+
+  public fun setFilterBakingAabbOffset(bakingAabbOffset: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to bakingAabbOffset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
+  }
+
+  public fun getFilterBakingAabbOffset(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  /**
+   * Sets the vertices that can be then indexed to create polygons with the [addPolygon] method.
+   */
+  public fun setVertices(vertices: PackedVector3Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+  }
+
+  /**
+   * Returns a [PackedVector3Array] containing all the vertices being used to create the polygons.
+   */
+  public fun getVertices(): PackedVector3Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   /**
@@ -530,7 +737,7 @@ public open class NavigationMesh : Resource() {
    * Initializes the navigation mesh by setting the vertices and indices according to a [Mesh].
    * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
-  public fun createFromMesh(mesh: Mesh): Unit {
+  public fun createFromMesh(mesh: Mesh?): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.createFromMeshPtr, NIL)
   }

@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in
@@ -50,14 +51,11 @@ public open class SkeletonProfile : Resource() {
    * the parent of hips that exists at the world origin.
    */
   public var rootBone: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("rootBoneProperty")
+    get() = getRootBone()
+    @JvmName("rootBoneProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
+      setRootBone(value)
     }
 
   /**
@@ -65,14 +63,11 @@ public open class SkeletonProfile : Resource() {
    * [SkeletonProfileHumanoid] defines it as `Hips`.
    */
   public var scaleBaseBone: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScaleBaseBonePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("scaleBaseBoneProperty")
+    get() = getScaleBaseBone()
+    @JvmName("scaleBaseBoneProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScaleBaseBonePtr, NIL)
+      setScaleBaseBone(value)
     }
 
   /**
@@ -81,14 +76,11 @@ public open class SkeletonProfile : Resource() {
    * This property exists to separate the bone list into several sections in the editor.
    */
   public var groupSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGroupSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("groupSizeProperty")
+    get() = getGroupSize()
+    @JvmName("groupSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGroupSizePtr, NIL)
+      setGroupSize(value)
     }
 
   /**
@@ -98,18 +90,48 @@ public open class SkeletonProfile : Resource() {
    * [SkeletonProfile].
    */
   public var boneSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBoneSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("boneSizeProperty")
+    get() = getBoneSize()
+    @JvmName("boneSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBoneSizePtr, NIL)
+      setBoneSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONPROFILE, scriptIndex)
+  }
+
+  public fun setRootBone(boneName: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to boneName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
+  }
+
+  public fun getRootBone(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setScaleBaseBone(boneName: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to boneName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScaleBaseBonePtr, NIL)
+  }
+
+  public fun getScaleBaseBone(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScaleBaseBonePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setGroupSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGroupSizePtr, NIL)
+  }
+
+  public fun getGroupSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGroupSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -145,9 +167,20 @@ public open class SkeletonProfile : Resource() {
    * Sets the texture of the group at [groupIdx] that will be the drawing group background image in
    * the [BoneMap] editor.
    */
-  public fun setTexture(groupIdx: Int, texture: Texture2D): Unit {
+  public fun setTexture(groupIdx: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public fun setBoneSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneSizePtr, NIL)
+  }
+
+  public fun getBoneSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

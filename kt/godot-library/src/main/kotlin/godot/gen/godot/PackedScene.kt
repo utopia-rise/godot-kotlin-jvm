@@ -108,7 +108,7 @@ public open class PackedScene : Resource() {
    * Packs the [path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will
    * be cleared. See [Node.owner].
    */
-  public fun pack(path: Node): GodotError {
+  public fun pack(path: Node?): GodotError {
     TransferContext.writeArguments(OBJECT to path)
     TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
@@ -50,14 +51,11 @@ public open class NavigationObstacle2D : Node2D() {
    * Sets the avoidance radius for the obstacle.
    */
   public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
@@ -67,14 +65,11 @@ public open class NavigationObstacle2D : Node2D() {
    * this movement and may get trapped inside the obstacle.
    */
   public var vertices: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+    @JvmName("verticesProperty")
+    get() = getVertices()
+    @JvmName("verticesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+      setVertices(value)
     }
 
   /**
@@ -82,14 +77,11 @@ public open class NavigationObstacle2D : Node2D() {
    * geometry inside its [vertices] defined shape.
    */
   public var affectNavigationMesh: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAffectNavigationMeshPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("affectNavigationMeshProperty")
+    get() = getAffectNavigationMesh()
+    @JvmName("affectNavigationMeshProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAffectNavigationMeshPtr, NIL)
+      setAffectNavigationMesh(value)
     }
 
   /**
@@ -100,28 +92,22 @@ public open class NavigationObstacle2D : Node2D() {
    * Requires [affectNavigationMesh] to be enabled.
    */
   public var carveNavigationMesh: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCarveNavigationMeshPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("carveNavigationMeshProperty")
+    get() = getCarveNavigationMesh()
+    @JvmName("carveNavigationMeshProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCarveNavigationMeshPtr, NIL)
+      setCarveNavigationMesh(value)
     }
 
   /**
    * If `true` the obstacle affects avoidance using agents.
    */
   public var avoidanceEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("avoidanceEnabledProperty")
+    get() = getAvoidanceEnabled()
+    @JvmName("avoidanceEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
+      setAvoidanceEnabled(value)
     }
 
   /**
@@ -131,14 +117,11 @@ public open class NavigationObstacle2D : Node2D() {
    */
   @CoreTypeLocalCopy
   public var velocity: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("velocityProperty")
+    get() = getVelocity()
+    @JvmName("velocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+      setVelocity(value)
     }
 
   /**
@@ -146,14 +129,11 @@ public open class NavigationObstacle2D : Node2D() {
    * the their avoidance mask will avoid this obstacle.
    */
   public var avoidanceLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("avoidanceLayersProperty")
+    get() = getAvoidanceLayers()
+    @JvmName("avoidanceLayersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
+      setAvoidanceLayers(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -195,6 +175,17 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  public fun setAvoidanceEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
+  }
+
+  public fun getAvoidanceEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Sets the [RID] of the navigation map this NavigationObstacle node should use and also updates
    * the `obstacle` on the NavigationServer.
@@ -217,6 +208,50 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
+  public fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVelocity(velocity: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to velocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+  }
+
+  public fun getVelocity(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setVertices(vertices: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to vertices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+  }
+
+  public fun getVertices(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+  }
+
+  public fun setAvoidanceLayers(layers: Long): Unit {
+    TransferContext.writeArguments(LONG to layers)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
+  }
+
+  public fun getAvoidanceLayers(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
   /**
    * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
    * given a [layerNumber] between 1 and 32.
@@ -233,6 +268,28 @@ public open class NavigationObstacle2D : Node2D() {
   public fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAffectNavigationMesh(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAffectNavigationMeshPtr, NIL)
+  }
+
+  public fun getAffectNavigationMesh(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAffectNavigationMeshPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCarveNavigationMesh(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCarveNavigationMeshPtr, NIL)
+  }
+
+  public fun getCarveNavigationMesh(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCarveNavigationMeshPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

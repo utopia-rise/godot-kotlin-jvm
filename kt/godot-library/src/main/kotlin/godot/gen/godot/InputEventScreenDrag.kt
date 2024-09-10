@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Stores information about screen drag events. See [Node.Input].
@@ -35,14 +36,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * The drag event index in the case of a multi-drag event.
    */
   public var index: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("indexProperty")
+    get() = getIndex()
+    @JvmName("indexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
+      setIndex(value)
     }
 
   /**
@@ -52,42 +50,33 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    */
   @CoreTypeLocalCopy
   public var tilt: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTiltPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("tiltProperty")
+    get() = getTilt()
+    @JvmName("tiltProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTiltPtr, NIL)
+      setTilt(value)
     }
 
   /**
    * Represents the pressure the user puts on the pen. Ranges from `0.0` to `1.0`.
    */
   public var pressure: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("pressureProperty")
+    get() = getPressure()
+    @JvmName("pressureProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+      setPressure(value)
     }
 
   /**
    * Returns `true` when using the eraser end of a stylus pen.
    */
   public var penInverted: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPenInvertedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("penInvertedProperty")
+    get() = getPenInverted()
+    @JvmName("penInvertedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPenInvertedPtr, NIL)
+      setPenInverted(value)
     }
 
   /**
@@ -95,14 +84,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    */
   @CoreTypeLocalCopy
   public var position: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("positionProperty")
+    get() = getPosition()
+    @JvmName("positionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+      setPosition(value)
     }
 
   /**
@@ -114,14 +100,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    */
   @CoreTypeLocalCopy
   public var relative: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRelativePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("relativeProperty")
+    get() = getRelative()
+    @JvmName("relativeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRelativePtr, NIL)
+      setRelative(value)
     }
 
   /**
@@ -132,14 +115,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    */
   @CoreTypeLocalCopy
   public var screenRelative: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScreenRelativePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("screenRelativeProperty")
+    get() = getScreenRelative()
+    @JvmName("screenRelativeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScreenRelativePtr, NIL)
+      setScreenRelative(value)
     }
 
   /**
@@ -151,14 +131,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    */
   @CoreTypeLocalCopy
   public var velocity: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("velocityProperty")
+    get() = getVelocity()
+    @JvmName("velocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+      setVelocity(value)
     }
 
   /**
@@ -168,14 +145,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    */
   @CoreTypeLocalCopy
   public var screenVelocity: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScreenVelocityPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("screenVelocityProperty")
+    get() = getScreenVelocity()
+    @JvmName("screenVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScreenVelocityPtr, NIL)
+      setScreenVelocity(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -340,6 +314,105 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
       screenVelocity = this
   }
 
+
+  public fun setIndex(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
+  }
+
+  public fun getIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setTilt(tilt: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to tilt)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTiltPtr, NIL)
+  }
+
+  public fun getTilt(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTiltPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setPressure(pressure: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pressure.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+  }
+
+  public fun getPressure(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPenInverted(penInverted: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to penInverted)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPenInvertedPtr, NIL)
+  }
+
+  public fun getPenInverted(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPenInvertedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setPosition(position: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+  }
+
+  public fun getPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setRelative(relative: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to relative)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRelativePtr, NIL)
+  }
+
+  public fun getRelative(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRelativePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setScreenRelative(relative: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to relative)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScreenRelativePtr, NIL)
+  }
+
+  public fun getScreenRelative(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScreenRelativePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setVelocity(velocity: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to velocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+  }
+
+  public fun getVelocity(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setScreenVelocity(velocity: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to velocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScreenVelocityPtr, NIL)
+  }
+
+  public fun getScreenVelocity(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScreenVelocityPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

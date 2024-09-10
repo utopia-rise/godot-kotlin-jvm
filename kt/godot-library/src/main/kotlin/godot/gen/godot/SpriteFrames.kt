@@ -125,7 +125,7 @@ public open class SpriteFrames : Resource() {
   @JvmOverloads
   public fun addFrame(
     anim: StringName,
-    texture: Texture2D,
+    texture: Texture2D?,
     duration: Float = 1.0f,
     atPosition: Int = -1,
   ): Unit {
@@ -141,7 +141,7 @@ public open class SpriteFrames : Resource() {
   public fun setFrame(
     anim: StringName,
     idx: Int,
-    texture: Texture2D,
+    texture: Texture2D?,
     duration: Float = 1.0f,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, LONG to idx.toLong(), OBJECT to texture, DOUBLE to duration.toDouble())

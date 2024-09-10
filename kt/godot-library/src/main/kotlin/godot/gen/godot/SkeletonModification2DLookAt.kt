@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This [SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for
@@ -35,28 +36,22 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    * The index of the [Bone2D] node that the modification will operate on.
    */
   public var boneIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBoneIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("boneIndexProperty")
+    get() = getBoneIndex()
+    @JvmName("boneIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBoneIndexPtr, NIL)
+      setBoneIndex(value)
     }
 
   /**
    * The [Bone2D] node that the modification will operate on.
    */
   public var bone2dNode: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("bone2dNodeProperty")
+    get() = getBone2dNode()
+    @JvmName("bone2dNodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBone2dNodePtr, NIL)
+      setBone2dNode(value)
     }
 
   /**
@@ -64,18 +59,48 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
    * modification will rotate the [Bone2D] to.
    */
   public var targetNodepath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("targetNodepathProperty")
+    get() = getTargetNode()
+    @JvmName("targetNodepathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+      setTargetNode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DLOOKAT, scriptIndex)
+  }
+
+  public fun setBone2dNode(bone2dNodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to bone2dNodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBone2dNodePtr, NIL)
+  }
+
+  public fun getBone2dNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setBoneIndex(boneIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to boneIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneIndexPtr, NIL)
+  }
+
+  public fun getBoneIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setTargetNode(targetNodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to targetNodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+  }
+
+  public fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**

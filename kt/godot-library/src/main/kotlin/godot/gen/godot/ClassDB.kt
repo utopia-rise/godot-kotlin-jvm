@@ -152,7 +152,7 @@ public object ClassDB : Object() {
   /**
    * Returns the value of [property] of [object] or its ancestry.
    */
-  public fun classGetProperty(_object: Object, `property`: StringName): Any? {
+  public fun classGetProperty(_object: Object?, `property`: StringName): Any? {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -162,7 +162,7 @@ public object ClassDB : Object() {
    * Sets [property] value of [object] to [value].
    */
   public fun classSetProperty(
-    _object: Object,
+    _object: Object?,
     `property`: StringName,
     `value`: Any?,
   ): GodotError {

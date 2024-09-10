@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class is used when loading a project that uses a [Texture3D] subclass in 2 conditions:
@@ -36,14 +37,11 @@ public open class PlaceholderTexture3D : Texture3D() {
    */
   @CoreTypeLocalCopy
   public var size: Vector3i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3I)
-      return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -73,6 +71,17 @@ public open class PlaceholderTexture3D : Texture3D() {
       size = this
   }
 
+
+  public fun setSize(size: Vector3i): Unit {
+    TransferContext.writeArguments(VECTOR3I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector3i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3I)
+    return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
+  }
 
   public companion object
 

@@ -24,6 +24,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The [PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on
@@ -40,14 +41,11 @@ public open class PhysicalSkyMaterial : Material() {
    * responsible for the blue color of the sky.
    */
   public var rayleighCoefficient: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rayleighCoefficientProperty")
+    get() = getRayleighCoefficient()
+    @JvmName("rayleighCoefficientProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRayleighCoefficientPtr, NIL)
+      setRayleighCoefficient(value)
     }
 
   /**
@@ -58,14 +56,11 @@ public open class PhysicalSkyMaterial : Material() {
    */
   @CoreTypeLocalCopy
   public var rayleighColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRayleighColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("rayleighColorProperty")
+    get() = getRayleighColor()
+    @JvmName("rayleighColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRayleighColorPtr, NIL)
+      setRayleighColor(value)
     }
 
   /**
@@ -74,14 +69,11 @@ public open class PhysicalSkyMaterial : Material() {
    * earth, Mie scattering results in a whitish color around the sun and horizon.
    */
   public var mieCoefficient: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMieCoefficientPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("mieCoefficientProperty")
+    get() = getMieCoefficient()
+    @JvmName("mieCoefficientProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMieCoefficientPtr, NIL)
+      setMieCoefficient(value)
     }
 
   /**
@@ -90,14 +82,11 @@ public open class PhysicalSkyMaterial : Material() {
    * straight forward. A value of `-1` means that all light is scatter backwards.
    */
   public var mieEccentricity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMieEccentricityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("mieEccentricityProperty")
+    get() = getMieEccentricity()
+    @JvmName("mieEccentricityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMieEccentricityPtr, NIL)
+      setMieEccentricity(value)
     }
 
   /**
@@ -107,14 +96,11 @@ public open class PhysicalSkyMaterial : Material() {
    */
   @CoreTypeLocalCopy
   public var mieColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMieColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("mieColorProperty")
+    get() = getMieColor()
+    @JvmName("mieColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMieColorPtr, NIL)
+      setMieColor(value)
     }
 
   /**
@@ -122,28 +108,22 @@ public open class PhysicalSkyMaterial : Material() {
    * a low turbidity results in a clearer atmosphere.
    */
   public var turbidity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTurbidityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("turbidityProperty")
+    get() = getTurbidity()
+    @JvmName("turbidityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTurbidityPtr, NIL)
+      setTurbidity(value)
     }
 
   /**
    * Sets the size of the sun disk. Default value is based on Sol's perceived size from Earth.
    */
   public var sunDiskScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSunDiskScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("sunDiskScaleProperty")
+    get() = getSunDiskScale()
+    @JvmName("sunDiskScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSunDiskScalePtr, NIL)
+      setSunDiskScale(value)
     }
 
   /**
@@ -151,28 +131,22 @@ public open class PhysicalSkyMaterial : Material() {
    */
   @CoreTypeLocalCopy
   public var groundColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGroundColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("groundColorProperty")
+    get() = getGroundColor()
+    @JvmName("groundColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGroundColorPtr, NIL)
+      setGroundColor(value)
     }
 
   /**
    * The sky's overall brightness multiplier. Higher values result in a brighter sky.
    */
   public var energyMultiplier: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("energyMultiplierProperty")
+    get() = getEnergyMultiplier()
+    @JvmName("energyMultiplierProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+      setEnergyMultiplier(value)
     }
 
   /**
@@ -180,14 +154,11 @@ public open class PhysicalSkyMaterial : Material() {
    * that appears from the smooth changes in color in the sky.
    */
   public var useDebanding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useDebandingProperty")
+    get() = getUseDebanding()
+    @JvmName("useDebandingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
+      setUseDebanding(value)
     }
 
   /**
@@ -195,14 +166,11 @@ public open class PhysicalSkyMaterial : Material() {
    * visible during the day.
    */
   public var nightSky: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNightSkyPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("nightSkyProperty")
+    get() = getNightSky()
+    @JvmName("nightSkyProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNightSkyPtr, NIL)
+      setNightSky(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -285,6 +253,127 @@ public open class PhysicalSkyMaterial : Material() {
       groundColor = this
   }
 
+
+  public fun setRayleighCoefficient(rayleigh: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to rayleigh.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRayleighCoefficientPtr, NIL)
+  }
+
+  public fun getRayleighCoefficient(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRayleighColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRayleighColorPtr, NIL)
+  }
+
+  public fun getRayleighColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRayleighColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setMieCoefficient(mie: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to mie.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMieCoefficientPtr, NIL)
+  }
+
+  public fun getMieCoefficient(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMieCoefficientPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMieEccentricity(eccentricity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to eccentricity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMieEccentricityPtr, NIL)
+  }
+
+  public fun getMieEccentricity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMieEccentricityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMieColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMieColorPtr, NIL)
+  }
+
+  public fun getMieColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMieColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setTurbidity(turbidity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to turbidity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTurbidityPtr, NIL)
+  }
+
+  public fun getTurbidity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTurbidityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSunDiskScale(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSunDiskScalePtr, NIL)
+  }
+
+  public fun getSunDiskScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSunDiskScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setGroundColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGroundColorPtr, NIL)
+  }
+
+  public fun getGroundColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGroundColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setEnergyMultiplier(multiplier: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+  }
+
+  public fun getEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setUseDebanding(useDebanding: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useDebanding)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
+  }
+
+  public fun getUseDebanding(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setNightSky(nightSky: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to nightSky)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNightSkyPtr, NIL)
+  }
+
+  public fun getNightSky(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNightSkyPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
 
   public companion object
 

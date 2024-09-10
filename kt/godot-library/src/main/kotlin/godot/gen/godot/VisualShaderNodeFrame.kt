@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A rectangular frame that can be used to group visual shader nodes together to improve
@@ -39,28 +40,22 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    * The title of the node.
    */
   public var title: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("titleProperty")
+    get() = getTitle()
+    @JvmName("titleProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+      setTitle(value)
     }
 
   /**
    * If `true`, the frame will be tinted with the color specified in [tintColor].
    */
   public var tintColorEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("tintColorEnabledProperty")
+    get() = isTintColorEnabled()
+    @JvmName("tintColorEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+      setTintColorEnabled(value)
     }
 
   /**
@@ -68,42 +63,33 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    */
   @CoreTypeLocalCopy
   public var tintColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("tintColorProperty")
+    get() = getTintColor()
+    @JvmName("tintColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+      setTintColor(value)
     }
 
   /**
    * If `true`, the frame will automatically resize to enclose all attached nodes.
    */
   public var autoshrink: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoshrinkProperty")
+    get() = isAutoshrinkEnabled()
+    @JvmName("autoshrinkProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+      setAutoshrinkEnabled(value)
     }
 
   /**
    * The list of nodes attached to the frame.
    */
   public var attachedNodes: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+    @JvmName("attachedNodesProperty")
+    get() = getAttachedNodes()
+    @JvmName("attachedNodesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAttachedNodesPtr, NIL)
+      setAttachedNodes(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -134,6 +120,50 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
 
+  public fun setTitle(title: String): Unit {
+    TransferContext.writeArguments(STRING to title)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+  }
+
+  public fun getTitle(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setTintColorEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+  }
+
+  public fun isTintColorEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTintColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+  }
+
+  public fun getTintColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setAutoshrinkEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+  }
+
+  public fun isAutoshrinkEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Adds a node to the list of nodes attached to the frame. Should not be called directly, use the
    * [VisualShader.attachNodeToFrame] method instead.
@@ -150,6 +180,17 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   public fun removeAttachedNode(node: Int): Unit {
     TransferContext.writeArguments(LONG to node.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeAttachedNodePtr, NIL)
+  }
+
+  public fun setAttachedNodes(attachedNodes: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to attachedNodes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAttachedNodesPtr, NIL)
+  }
+
+  public fun getAttachedNodes(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
   }
 
   public companion object

@@ -82,8 +82,8 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   @JvmOverloads
   public fun textureCreate(
-    format: RDTextureFormat,
-    view: RDTextureView,
+    format: RDTextureFormat?,
+    view: RDTextureView?,
     `data`: VariantArray<PackedByteArray> = godot.core.variantArrayOf(),
   ): RID {
     TransferContext.writeArguments(OBJECT to format, OBJECT to view, ARRAY to data)
@@ -95,7 +95,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Creates a shared texture using the specified [view] and the texture information from
    * [withTexture].
    */
-  public fun textureCreateShared(view: RDTextureView, withTexture: RID): RID {
+  public fun textureCreateShared(view: RDTextureView?, withTexture: RID): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture)
     TransferContext.callMethod(rawPtr, MethodBindings.textureCreateSharedPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -111,7 +111,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   @JvmOverloads
   public fun textureCreateSharedFromSlice(
-    view: RDTextureView,
+    view: RDTextureView?,
     withTexture: RID,
     layer: Long,
     mipmap: Long,
@@ -439,7 +439,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
    */
-  public fun samplerCreate(state: RDSamplerState): RID {
+  public fun samplerCreate(state: RDSamplerState?): RID {
     TransferContext.writeArguments(OBJECT to state)
     TransferContext.callMethod(rawPtr, MethodBindings.samplerCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -540,8 +540,8 @@ public open class RenderingDevice internal constructor() : Object() {
    * `false`, Godot's shader cache is ignored and the shader will always be recompiled.
    */
   @JvmOverloads
-  public fun shaderCompileSpirvFromSource(shaderSource: RDShaderSource, allowCache: Boolean = true):
-      RDShaderSPIRV? {
+  public fun shaderCompileSpirvFromSource(shaderSource: RDShaderSource?, allowCache: Boolean =
+      true): RDShaderSPIRV? {
     TransferContext.writeArguments(OBJECT to shaderSource, BOOL to allowCache)
     TransferContext.callMethod(rawPtr, MethodBindings.shaderCompileSpirvFromSourcePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RDShaderSPIRV?)
@@ -556,7 +556,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * organizational purposes.
    */
   @JvmOverloads
-  public fun shaderCompileBinaryFromSpirv(spirvData: RDShaderSPIRV, name: String = ""):
+  public fun shaderCompileBinaryFromSpirv(spirvData: RDShaderSPIRV?, name: String = ""):
       PackedByteArray {
     TransferContext.writeArguments(OBJECT to spirvData, STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.shaderCompileBinaryFromSpirvPtr,
@@ -571,7 +571,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [freeRid] method. See also [shaderCompileSpirvFromSource] and [shaderCreateFromBytecode].
    */
   @JvmOverloads
-  public fun shaderCreateFromSpirv(spirvData: RDShaderSPIRV, name: String = ""): RID {
+  public fun shaderCreateFromSpirv(spirvData: RDShaderSPIRV?, name: String = ""): RID {
     TransferContext.writeArguments(OBJECT to spirvData, STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.shaderCreateFromSpirvPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -765,10 +765,10 @@ public open class RenderingDevice internal constructor() : Object() {
     framebufferFormat: Long,
     vertexFormat: Long,
     primitive: RenderPrimitive,
-    rasterizationState: RDPipelineRasterizationState,
-    multisampleState: RDPipelineMultisampleState,
-    stencilState: RDPipelineDepthStencilState,
-    colorBlendState: RDPipelineColorBlendState,
+    rasterizationState: RDPipelineRasterizationState?,
+    multisampleState: RDPipelineMultisampleState?,
+    stencilState: RDPipelineDepthStencilState?,
+    colorBlendState: RDPipelineColorBlendState?,
     dynamicStateFlags: PipelineDynamicStateFlags =
         RenderingDevice.PipelineDynamicStateFlagsValue(0),
     forRenderPass: Long = 0,

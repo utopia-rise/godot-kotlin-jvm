@@ -150,7 +150,7 @@ public open class Crypto : RefCounted() {
    */
   @JvmOverloads
   public fun generateSelfSignedCertificate(
-    key: CryptoKey,
+    key: CryptoKey?,
     issuerName: String = "CN=myserver,O=myorganisation,C=IT",
     notBefore: String = "20140101000000",
     notAfter: String = "20340101000000",
@@ -166,7 +166,7 @@ public open class Crypto : RefCounted() {
   public fun sign(
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
-    key: CryptoKey,
+    key: CryptoKey?,
   ): PackedByteArray {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
     TransferContext.callMethod(rawPtr, MethodBindings.signPtr, PACKED_BYTE_ARRAY)
@@ -181,7 +181,7 @@ public open class Crypto : RefCounted() {
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
     signature: PackedByteArray,
-    key: CryptoKey,
+    key: CryptoKey?,
   ): Boolean {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
     TransferContext.callMethod(rawPtr, MethodBindings.verifyPtr, BOOL)
@@ -192,7 +192,7 @@ public open class Crypto : RefCounted() {
    * Encrypt the given [plaintext] with the provided public [key].
    * **Note:** The maximum size of accepted plaintext is limited by the key size.
    */
-  public fun encrypt(key: CryptoKey, plaintext: PackedByteArray): PackedByteArray {
+  public fun encrypt(key: CryptoKey?, plaintext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
     TransferContext.callMethod(rawPtr, MethodBindings.encryptPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -202,7 +202,7 @@ public open class Crypto : RefCounted() {
    * Decrypt the given [ciphertext] with the provided private [key].
    * **Note:** The maximum size of accepted ciphertext is limited by the key size.
    */
-  public fun decrypt(key: CryptoKey, ciphertext: PackedByteArray): PackedByteArray {
+  public fun decrypt(key: CryptoKey?, ciphertext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
     TransferContext.callMethod(rawPtr, MethodBindings.decryptPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)

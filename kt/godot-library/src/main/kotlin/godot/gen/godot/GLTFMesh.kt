@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * GLTFMesh handles 3D mesh data imported from GLTF files. It includes properties for blend
@@ -36,60 +37,92 @@ public open class GLTFMesh : Resource() {
    * The original name of the mesh.
    */
   public var originalName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("originalNameProperty")
+    get() = getOriginalName()
+    @JvmName("originalNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+      setOriginalName(value)
     }
 
   /**
    * The [ImporterMesh] object representing the mesh itself.
    */
   public var mesh: ImporterMesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
-    }
+    @JvmName("meshProperty")
+    get() = getMesh()
+    @JvmName("meshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+      setMesh(value)
     }
 
   /**
    * An array of floats representing the blend weights of the mesh.
    */
   public var blendWeights: PackedFloat32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
-    }
+    @JvmName("blendWeightsProperty")
+    get() = getBlendWeights()
+    @JvmName("blendWeightsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendWeightsPtr, NIL)
+      setBlendWeights(value)
     }
 
   /**
    * An array of Material objects representing the materials used in the mesh.
    */
   public var instanceMaterials: VariantArray<Material>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>)
-    }
+    @JvmName("instanceMaterialsProperty")
+    get() = getInstanceMaterials()
+    @JvmName("instanceMaterialsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInstanceMaterialsPtr, NIL)
+      setInstanceMaterials(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GLTFMESH, scriptIndex)
+  }
+
+  public fun getOriginalName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setOriginalName(originalName: String): Unit {
+    TransferContext.writeArguments(STRING to originalName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+  }
+
+  public fun getMesh(): ImporterMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
+  }
+
+  public fun setMesh(mesh: ImporterMesh?): Unit {
+    TransferContext.writeArguments(OBJECT to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+  }
+
+  public fun getBlendWeights(): PackedFloat32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+  }
+
+  public fun setBlendWeights(blendWeights: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to blendWeights)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendWeightsPtr, NIL)
+  }
+
+  public fun getInstanceMaterials(): VariantArray<Material> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>)
+  }
+
+  public fun setInstanceMaterials(instanceMaterials: VariantArray<Material>): Unit {
+    TransferContext.writeArguments(ARRAY to instanceMaterials)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceMaterialsPtr, NIL)
   }
 
   /**

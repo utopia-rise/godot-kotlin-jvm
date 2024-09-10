@@ -51,7 +51,7 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * supported [Image.Format].
    * The update is immediate: it's synchronized with drawing.
    */
-  public fun updateLayer(image: Image, layer: Int): Unit {
+  public fun updateLayer(image: Image?, layer: Int): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.updateLayerPtr, NIL)
   }

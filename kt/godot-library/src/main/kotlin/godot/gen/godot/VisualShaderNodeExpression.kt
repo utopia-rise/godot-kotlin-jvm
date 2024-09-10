@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Custom Godot Shading Language expression, with a custom number of input and output ports.
@@ -31,18 +32,26 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
    * functions, varyings, uniforms, or global constants.
    */
   public var expression: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExpressionPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("expressionProperty")
+    get() = getExpression()
+    @JvmName("expressionProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpressionPtr, NIL)
+      setExpression(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEEXPRESSION, scriptIndex)
+  }
+
+  public fun setExpression(expression: String): Unit {
+    TransferContext.writeArguments(STRING to expression)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExpressionPtr, NIL)
+  }
+
+  public fun getExpression(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExpressionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

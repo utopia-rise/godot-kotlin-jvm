@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -42,14 +43,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Sets the joint type. See [JointType] for possible values.
    */
   public var jointType: JointType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getJointTypePtr, LONG)
-      return PhysicalBone3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("jointTypeProperty")
+    get() = getJointType()
+    @JvmName("jointTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setJointTypePtr, NIL)
+      setJointType(value)
     }
 
   /**
@@ -57,14 +55,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   @CoreTypeLocalCopy
   public var jointOffset: Transform3D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getJointOffsetPtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
-    }
+    @JvmName("jointOffsetProperty")
+    get() = getJointOffset()
+    @JvmName("jointOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setJointOffsetPtr, NIL)
+      setJointOffset(value)
     }
 
   /**
@@ -72,14 +67,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   @CoreTypeLocalCopy
   public var jointRotation: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getJointRotationPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("jointRotationProperty")
+    get() = getJointRotation()
+    @JvmName("jointRotationProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setJointRotationPtr, NIL)
+      setJointRotation(value)
     }
 
   /**
@@ -87,42 +79,33 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   @CoreTypeLocalCopy
   public var bodyOffset: Transform3D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBodyOffsetPtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
-    }
+    @JvmName("bodyOffsetProperty")
+    get() = getBodyOffset()
+    @JvmName("bodyOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBodyOffsetPtr, NIL)
+      setBodyOffset(value)
     }
 
   /**
    * The body's mass.
    */
   public var mass: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("massProperty")
+    get() = getMass()
+    @JvmName("massProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+      setMass(value)
     }
 
   /**
    * The body's friction, from `0` (frictionless) to `1` (max friction).
    */
   public var friction: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("frictionProperty")
+    get() = getFriction()
+    @JvmName("frictionProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
+      setFriction(value)
     }
 
   /**
@@ -133,14 +116,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [DAMP_MODE_REPLACE], and [angularDamp] to `0.0`.
    */
   public var bounce: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("bounceProperty")
+    get() = getBounce()
+    @JvmName("bounceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
+      setBounce(value)
     }
 
   /**
@@ -149,14 +129,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * will apply double gravity, and 0.5 will apply half gravity to this object.
    */
   public var gravityScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("gravityScaleProperty")
+    get() = getGravityScale()
+    @JvmName("gravityScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
+      setGravityScale(value)
     }
 
   /**
@@ -167,28 +144,22 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * internally.
    */
   public var customIntegrator: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("customIntegratorProperty")
+    get() = isUsingCustomIntegrator()
+    @JvmName("customIntegratorProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
+      setUseCustomIntegrator(value)
     }
 
   /**
    * Defines how [linearDamp] is applied. See [DampMode] for possible values.
    */
   public var linearDampMode: DampMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
-      return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("linearDampModeProperty")
+    get() = getLinearDampMode()
+    @JvmName("linearDampModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
+      setLinearDampMode(value)
     }
 
   /**
@@ -199,28 +170,22 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   public var linearDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("linearDampProperty")
+    get() = getLinearDamp()
+    @JvmName("linearDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+      setLinearDamp(value)
     }
 
   /**
    * Defines how [angularDamp] is applied. See [DampMode] for possible values.
    */
   public var angularDampMode: DampMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
-      return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("angularDampModeProperty")
+    get() = getAngularDampMode()
+    @JvmName("angularDampModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
+      setAngularDampMode(value)
     }
 
   /**
@@ -231,14 +196,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   public var angularDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("angularDampProperty")
+    get() = getAngularDamp()
+    @JvmName("angularDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+      setAngularDamp(value)
     }
 
   /**
@@ -248,14 +210,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   @CoreTypeLocalCopy
   public var linearVelocity: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("linearVelocityProperty")
+    get() = getLinearVelocity()
+    @JvmName("linearVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+      setLinearVelocity(value)
     }
 
   /**
@@ -263,14 +222,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    */
   @CoreTypeLocalCopy
   public var angularVelocity: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("angularVelocityProperty")
+    get() = getAngularVelocity()
+    @JvmName("angularVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+      setAngularVelocity(value)
     }
 
   /**
@@ -278,14 +234,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * simulation until it is awakened by an external force.
    */
   public var canSleep: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("canSleepProperty")
+    get() = isAbleToSleep()
+    @JvmName("canSleepProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
+      setCanSleep(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -420,7 +373,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * [customIntegrator] property allows you to disable the standard force integration and do fully
    * custom force integration for a body.
    */
-  public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {
+  public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
   }
 
   public fun applyCentralImpulse(impulse: Vector3): Unit {
@@ -432,6 +385,50 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
+  }
+
+  public fun setJointType(jointType: JointType): Unit {
+    TransferContext.writeArguments(LONG to jointType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setJointTypePtr, NIL)
+  }
+
+  public fun getJointType(): JointType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getJointTypePtr, LONG)
+    return PhysicalBone3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setJointOffset(offset: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setJointOffsetPtr, NIL)
+  }
+
+  public fun getJointOffset(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getJointOffsetPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  public fun setJointRotation(euler: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to euler)
+    TransferContext.callMethod(rawPtr, MethodBindings.setJointRotationPtr, NIL)
+  }
+
+  public fun getJointRotation(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getJointRotationPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setBodyOffset(offset: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBodyOffsetPtr, NIL)
+  }
+
+  public fun getBodyOffset(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodyOffsetPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
   }
 
   public fun getSimulatePhysics(): Boolean {
@@ -450,6 +447,138 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMass(mass: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to mass.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+  }
+
+  public fun getMass(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFriction(friction: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to friction.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
+  }
+
+  public fun getFriction(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBounce(bounce: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bounce.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
+  }
+
+  public fun getBounce(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setGravityScale(gravityScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to gravityScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
+  }
+
+  public fun getGravityScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLinearDampMode(linearDampMode: DampMode): Unit {
+    TransferContext.writeArguments(LONG to linearDampMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
+  }
+
+  public fun getLinearDampMode(): DampMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
+    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAngularDampMode(angularDampMode: DampMode): Unit {
+    TransferContext.writeArguments(LONG to angularDampMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
+  }
+
+  public fun getAngularDampMode(): DampMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
+    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setLinearDamp(linearDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+  }
+
+  public fun getLinearDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAngularDamp(angularDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+  }
+
+  public fun getAngularDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLinearVelocity(linearVelocity: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to linearVelocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+  }
+
+  public fun getLinearVelocity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setAngularVelocity(angularVelocity: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to angularVelocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+  }
+
+  public fun getAngularVelocity(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setUseCustomIntegrator(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
+  }
+
+  public fun isUsingCustomIntegrator(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCanSleep(ableToSleep: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ableToSleep)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
+  }
+
+  public fun isAbleToSleep(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class DampMode(

@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard
@@ -31,14 +32,11 @@ public open class AudioEffectHardLimiter : AudioEffect() {
    * Gain to apply before limiting, in decibels.
    */
   public var preGainDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPreGainDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("preGainDbProperty")
+    get() = getPreGainDb()
+    @JvmName("preGainDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreGainDbPtr, NIL)
+      setPreGainDb(value)
     }
 
   /**
@@ -47,32 +45,59 @@ public open class AudioEffectHardLimiter : AudioEffect() {
    * dB, which can cause slight distortion on some older hardware.
    */
   public var ceilingDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("ceilingDbProperty")
+    get() = getCeilingDb()
+    @JvmName("ceilingDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+      setCeilingDb(value)
     }
 
   /**
    * Time it takes in seconds for the gain reduction to fully release.
    */
   public var release: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReleasePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("releaseProperty")
+    get() = getRelease()
+    @JvmName("releaseProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setReleasePtr, NIL)
+      setRelease(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTHARDLIMITER, scriptIndex)
+  }
+
+  public fun setCeilingDb(ceiling: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+  }
+
+  public fun getCeilingDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setPreGainDb(pPreGain: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pPreGain.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreGainDbPtr, NIL)
+  }
+
+  public fun getPreGainDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPreGainDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRelease(pRelease: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pRelease.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setReleasePtr, NIL)
+  }
+
+  public fun getRelease(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReleasePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

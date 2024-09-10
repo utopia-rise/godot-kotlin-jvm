@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
@@ -30,28 +31,22 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
    * The radius of the sphere.
    */
   public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
    * The central horizontal angle of the sphere. Used to set the width.
    */
   public var centralHorizontalAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("centralHorizontalAngleProperty")
+    get() = getCentralHorizontalAngle()
+    @JvmName("centralHorizontalAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
+      setCentralHorizontalAngle(value)
     }
 
   /**
@@ -59,14 +54,11 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
    * height.
    */
   public var upperVerticalAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("upperVerticalAngleProperty")
+    get() = getUpperVerticalAngle()
+    @JvmName("upperVerticalAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
+      setUpperVerticalAngle(value)
     }
 
   /**
@@ -74,32 +66,81 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
    * height.
    */
   public var lowerVerticalAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("lowerVerticalAngleProperty")
+    get() = getLowerVerticalAngle()
+    @JvmName("lowerVerticalAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
+      setLowerVerticalAngle(value)
     }
 
   /**
    * The number of segments to use in the fallback mesh.
    */
   public var fallbackSegments: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("fallbackSegmentsProperty")
+    get() = getFallbackSegments()
+    @JvmName("fallbackSegmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
+      setFallbackSegments(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYEREQUIRECT, scriptIndex)
+  }
+
+  public fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setCentralHorizontalAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
+  }
+
+  public fun getCentralHorizontalAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setUpperVerticalAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
+  }
+
+  public fun getUpperVerticalAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setLowerVerticalAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
+  }
+
+  public fun getLowerVerticalAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFallbackSegments(segments: Long): Unit {
+    TransferContext.writeArguments(LONG to segments)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
+  }
+
+  public fun getFallbackSegments(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
@@ -39,42 +40,33 @@ public open class LabelSettings : Resource() {
    * Vertical space between lines when the text is multiline.
    */
   public var lineSpacing: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("lineSpacingProperty")
+    get() = getLineSpacing()
+    @JvmName("lineSpacingProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+      setLineSpacing(value)
     }
 
   /**
    * [Font] used for the text.
    */
   public var font: Font?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Font?)
-    }
+    @JvmName("fontProperty")
+    get() = getFont()
+    @JvmName("fontProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+      setFont(value)
     }
 
   /**
    * Size of the text.
    */
   public var fontSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("fontSizeProperty")
+    get() = getFontSize()
+    @JvmName("fontSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+      setFontSize(value)
     }
 
   /**
@@ -82,28 +74,22 @@ public open class LabelSettings : Resource() {
    */
   @CoreTypeLocalCopy
   public var fontColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFontColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("fontColorProperty")
+    get() = getFontColor()
+    @JvmName("fontColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFontColorPtr, NIL)
+      setFontColor(value)
     }
 
   /**
    * Text outline size.
    */
   public var outlineSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("outlineSizeProperty")
+    get() = getOutlineSize()
+    @JvmName("outlineSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+      setOutlineSize(value)
     }
 
   /**
@@ -111,28 +97,22 @@ public open class LabelSettings : Resource() {
    */
   @CoreTypeLocalCopy
   public var outlineColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutlineColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("outlineColorProperty")
+    get() = getOutlineColor()
+    @JvmName("outlineColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutlineColorPtr, NIL)
+      setOutlineColor(value)
     }
 
   /**
    * Size of the shadow effect.
    */
   public var shadowSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("shadowSizeProperty")
+    get() = getShadowSize()
+    @JvmName("shadowSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
+      setShadowSize(value)
     }
 
   /**
@@ -140,14 +120,11 @@ public open class LabelSettings : Resource() {
    */
   @CoreTypeLocalCopy
   public var shadowColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("shadowColorProperty")
+    get() = getShadowColor()
+    @JvmName("shadowColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+      setShadowColor(value)
     }
 
   /**
@@ -155,14 +132,11 @@ public open class LabelSettings : Resource() {
    */
   @CoreTypeLocalCopy
   public var shadowOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("shadowOffsetProperty")
+    get() = getShadowOffset()
+    @JvmName("shadowOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
+      setShadowOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -264,6 +238,105 @@ public open class LabelSettings : Resource() {
       shadowOffset = this
   }
 
+
+  public fun setLineSpacing(spacing: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to spacing.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+  }
+
+  public fun getLineSpacing(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFont(font: Font?): Unit {
+    TransferContext.writeArguments(OBJECT to font)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+  }
+
+  public fun getFont(): Font? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+  }
+
+  public fun setFontSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+  }
+
+  public fun getFontSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFontColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFontColorPtr, NIL)
+  }
+
+  public fun getFontColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFontColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setOutlineSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+  }
+
+  public fun getOutlineSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setOutlineColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineColorPtr, NIL)
+  }
+
+  public fun getOutlineColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setShadowSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
+  }
+
+  public fun getShadowSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setShadowColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+  }
+
+  public fun getShadowColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setShadowOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
+  }
+
+  public fun getShadowOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

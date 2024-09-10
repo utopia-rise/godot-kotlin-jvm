@@ -31,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A node that displays 2D texture information in a 3D environment. See also [Sprite3D] where many
@@ -42,14 +43,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * If `true`, texture will be centered.
    */
   public var centered: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("centeredProperty")
+    get() = isCentered()
+    @JvmName("centeredProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
+      setCentered(value)
     }
 
   /**
@@ -57,42 +55,33 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   @CoreTypeLocalCopy
   public var offset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("offsetProperty")
+    get() = getOffset()
+    @JvmName("offsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(value)
     }
 
   /**
    * If `true`, texture is flipped horizontally.
    */
   public var flipH: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("flipHProperty")
+    get() = isFlippedH()
+    @JvmName("flipHProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+      setFlipH(value)
     }
 
   /**
    * If `true`, texture is flipped vertically.
    */
   public var flipV: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("flipVProperty")
+    get() = isFlippedV()
+    @JvmName("flipVProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+      setFlipV(value)
     }
 
   /**
@@ -108,42 +97,33 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    */
   @CoreTypeLocalCopy
   public var modulate: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("modulateProperty")
+    get() = getModulate()
+    @JvmName("modulateProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+      setModulate(value)
     }
 
   /**
    * The size of one pixel's width on the sprite to scale it in 3D.
    */
   public var pixelSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("pixelSizeProperty")
+    get() = getPixelSize()
+    @JvmName("pixelSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
+      setPixelSize(value)
     }
 
   /**
    * The direction in which the front of the texture faces.
    */
   public var axis: Vector3.Axis
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
-      return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("axisProperty")
+    get() = getAxis()
+    @JvmName("axisProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
+      setAxis(value)
     }
 
   /**
@@ -155,14 +135,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.
    */
   public var billboard: BaseMaterial3D.BillboardMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
-      return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("billboardProperty")
+    get() = getBillboardMode()
+    @JvmName("billboardProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+      setBillboardMode(value)
     }
 
   /**
@@ -170,28 +147,22 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * sprite invisible.
    */
   public var transparent: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("transparentProperty")
+    get() = getDrawFlag(SpriteBase3D.DrawFlags.FLAG_TRANSPARENT)
+    @JvmName("transparentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(SpriteBase3D.DrawFlags.FLAG_TRANSPARENT, value)
     }
 
   /**
    * If `true`, the [Light3D] in the [Environment] has effects on the sprite.
    */
   public var shaded: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("shadedProperty")
+    get() = getDrawFlag(SpriteBase3D.DrawFlags.FLAG_SHADED)
+    @JvmName("shadedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(SpriteBase3D.DrawFlags.FLAG_SHADED, value)
     }
 
   /**
@@ -199,112 +170,88 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * at it from behind.
    */
   public var doubleSided: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("doubleSidedProperty")
+    get() = getDrawFlag(SpriteBase3D.DrawFlags.FLAG_DOUBLE_SIDED)
+    @JvmName("doubleSidedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(SpriteBase3D.DrawFlags.FLAG_DOUBLE_SIDED, value)
     }
 
   /**
    * If `true`, depth testing is disabled and the object will be drawn in render order.
    */
   public var noDepthTest: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("noDepthTestProperty")
+    get() = getDrawFlag(SpriteBase3D.DrawFlags.FLAG_DISABLE_DEPTH_TEST)
+    @JvmName("noDepthTestProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(SpriteBase3D.DrawFlags.FLAG_DISABLE_DEPTH_TEST, value)
     }
 
   /**
    * If `true`, the label is rendered at the same size regardless of distance.
    */
   public var fixedSize: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("fixedSizeProperty")
+    get() = getDrawFlag(SpriteBase3D.DrawFlags.FLAG_FIXED_SIZE)
+    @JvmName("fixedSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+      setDrawFlag(SpriteBase3D.DrawFlags.FLAG_FIXED_SIZE, value)
     }
 
   /**
    * The alpha cutting mode to use for the sprite. See [AlphaCutMode] for possible values.
    */
   public var alphaCut: AlphaCutMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
-      return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alphaCutProperty")
+    get() = getAlphaCutMode()
+    @JvmName("alphaCutProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
+      setAlphaCutMode(value)
     }
 
   /**
    * Threshold at which the alpha scissor will discard values.
    */
   public var alphaScissorThreshold: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaScissorThresholdProperty")
+    get() = getAlphaScissorThreshold()
+    @JvmName("alphaScissorThresholdProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+      setAlphaScissorThreshold(value)
     }
 
   /**
    * The hashing scale for Alpha Hash. Recommended values between `0` and `2`.
    */
   public var alphaHashScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaHashScaleProperty")
+    get() = getAlphaHashScale()
+    @JvmName("alphaHashScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+      setAlphaHashScale(value)
     }
 
   /**
    * The type of alpha antialiasing to apply. See [BaseMaterial3D.AlphaAntiAliasing].
    */
   public var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
-      return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alphaAntialiasingModeProperty")
+    get() = getAlphaAntialiasing()
+    @JvmName("alphaAntialiasingModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+      setAlphaAntialiasing(value)
     }
 
   /**
    * Threshold at which antialiasing will be applied on the alpha channel.
    */
   public var alphaAntialiasingEdge: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("alphaAntialiasingEdgeProperty")
+    get() = getAlphaAntialiasingEdge()
+    @JvmName("alphaAntialiasingEdgeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+      setAlphaAntialiasingEdge(value)
     }
 
   /**
@@ -314,14 +261,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * around the edges.
    */
   public var textureFilter: BaseMaterial3D.TextureFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-      return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureFilterProperty")
+    get() = getTextureFilter()
+    @JvmName("textureFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+      setTextureFilter(value)
     }
 
   /**
@@ -333,14 +277,11 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * sorted, while transparent objects are sorted from back to front (subject to priority).
    */
   public var renderPriority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("renderPriorityProperty")
+    get() = getRenderPriority()
+    @JvmName("renderPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+      setRenderPriority(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -402,6 +343,189 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       modulate = this
   }
 
+
+  public fun setCentered(centered: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to centered)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
+  }
+
+  public fun isCentered(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+  }
+
+  public fun getOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun setFlipH(flipH: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flipH)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+  }
+
+  public fun isFlippedH(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setFlipV(flipV: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flipV)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+  }
+
+  public fun isFlippedV(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setModulate(modulate: Color): Unit {
+    TransferContext.writeArguments(COLOR to modulate)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+  }
+
+  public fun getModulate(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setRenderPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+  }
+
+  public fun getRenderPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPixelSize(pixelSize: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
+  }
+
+  public fun getPixelSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAxis(axis: Vector3.Axis): Unit {
+    TransferContext.writeArguments(LONG to axis.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
+  }
+
+  public fun getAxis(): Vector3.Axis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
+    return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * If `true`, the specified flag will be enabled. See [SpriteBase3D.DrawFlags] for a list of
+   * flags.
+   */
+  public fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+  }
+
+  /**
+   * Returns the value of the specified flag.
+   */
+  public fun getDrawFlag(flag: DrawFlags): Boolean {
+    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAlphaCutMode(mode: AlphaCutMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
+  }
+
+  public fun getAlphaCutMode(): AlphaCutMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
+    return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlphaScissorThreshold(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+  }
+
+  public fun getAlphaScissorThreshold(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAlphaHashScale(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+  }
+
+  public fun getAlphaHashScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
+    TransferContext.writeArguments(LONG to alphaAa.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+  }
+
+  public fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
+    return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlphaAntialiasingEdge(edge: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to edge.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+  }
+
+  public fun getAlphaAntialiasingEdge(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+  }
+
+  public fun getBillboardMode(): BaseMaterial3D.BillboardMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
+    return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+  }
+
+  public fun getTextureFilter(): BaseMaterial3D.TextureFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   /**
    * Returns the rectangle representing this sprite.

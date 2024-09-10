@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A control used for playback of [VideoStream] resources.
@@ -47,84 +48,66 @@ public open class VideoStreamPlayer : Control() {
    * The embedded audio track to play.
    */
   public var audioTrack: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAudioTrackPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("audioTrackProperty")
+    get() = getAudioTrack()
+    @JvmName("audioTrackProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAudioTrackPtr, NIL)
+      setAudioTrack(value)
     }
 
   /**
    * The assigned video stream. See description for supported formats.
    */
   public var stream: VideoStream?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as VideoStream?)
-    }
+    @JvmName("streamProperty")
+    get() = getStream()
+    @JvmName("streamProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
+      setStream(value)
     }
 
   /**
    * Audio volume in dB.
    */
   public var volumeDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("volumeDbProperty")
+    get() = getVolumeDb()
+    @JvmName("volumeDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+      setVolumeDb(value)
     }
 
   /**
    * Audio volume as a linear value.
    */
   public var volume: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVolumePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("volumeProperty")
+    get() = getVolume()
+    @JvmName("volumeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVolumePtr, NIL)
+      setVolume(value)
     }
 
   /**
    * If `true`, playback starts when the scene loads.
    */
   public var autoplay: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasAutoplayPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoplayProperty")
+    get() = hasAutoplay()
+    @JvmName("autoplayProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+      setAutoplay(value)
     }
 
   /**
    * If `true`, the video is paused.
    */
   public var paused: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("pausedProperty")
+    get() = isPaused()
+    @JvmName("pausedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
+      setPaused(value)
     }
 
   /**
@@ -132,42 +115,33 @@ public open class VideoStreamPlayer : Control() {
    * automatically adjusted to match the video stream's dimensions.
    */
   public var expand: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasExpandPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("expandProperty")
+    get() = hasExpand()
+    @JvmName("expandProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpandPtr, NIL)
+      setExpand(value)
     }
 
   /**
    * If `true`, the video restarts when it reaches its end.
    */
   public var loop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("loopProperty")
+    get() = hasLoop()
+    @JvmName("loopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+      setLoop(value)
     }
 
   /**
    * Amount of time in milliseconds to store in buffer while playing.
    */
   public var bufferingMsec: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBufferingMsecPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("bufferingMsecProperty")
+    get() = getBufferingMsec()
+    @JvmName("bufferingMsecProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBufferingMsecPtr, NIL)
+      setBufferingMsec(value)
     }
 
   /**
@@ -176,32 +150,37 @@ public open class VideoStreamPlayer : Control() {
    * in video formats implemented by a GDExtension add-on.
    */
   public var streamPosition: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPositionPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("streamPositionProperty")
+    get() = getStreamPosition()
+    @JvmName("streamPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPositionPtr, NIL)
+      setStreamPosition(value)
     }
 
   /**
    * Audio bus to use for sound playback.
    */
   public var bus: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("busProperty")
+    get() = getBus()
+    @JvmName("busProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
+      setBus(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VIDEOSTREAMPLAYER, scriptIndex)
+  }
+
+  public fun setStream(stream: VideoStream?): Unit {
+    TransferContext.writeArguments(OBJECT to stream)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
+  }
+
+  public fun getStream(): VideoStream? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as VideoStream?)
   }
 
   /**
@@ -233,6 +212,61 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setPaused(paused: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to paused)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
+  }
+
+  public fun isPaused(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setLoop(loop: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to loop)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+  }
+
+  public fun hasLoop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setVolume(volume: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to volume.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVolumePtr, NIL)
+  }
+
+  public fun getVolume(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVolumePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVolumeDb(db: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to db.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+  }
+
+  public fun getVolumeDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAudioTrack(track: Int): Unit {
+    TransferContext.writeArguments(LONG to track.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAudioTrackPtr, NIL)
+  }
+
+  public fun getAudioTrack(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAudioTrackPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.
    */
@@ -252,6 +286,61 @@ public open class VideoStreamPlayer : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setStreamPosition(position: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPositionPtr, NIL)
+  }
+
+  public fun getStreamPosition(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPositionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setAutoplay(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+  }
+
+  public fun hasAutoplay(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAutoplayPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setExpand(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExpandPtr, NIL)
+  }
+
+  public fun hasExpand(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasExpandPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setBufferingMsec(msec: Int): Unit {
+    TransferContext.writeArguments(LONG to msec.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBufferingMsecPtr, NIL)
+  }
+
+  public fun getBufferingMsec(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBufferingMsecPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setBus(bus: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to bus)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
+  }
+
+  public fun getBus(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**

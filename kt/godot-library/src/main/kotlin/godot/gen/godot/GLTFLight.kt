@@ -30,6 +30,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Represents a light as defined by the `KHR_lights_punctual` GLTF extension.
@@ -41,14 +42,11 @@ public open class GLTFLight : Resource() {
    */
   @CoreTypeLocalCopy
   public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("colorProperty")
+    get() = getColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
@@ -57,14 +55,11 @@ public open class GLTFLight : Resource() {
    * value is converted to a unitless multiplier.
    */
   public var intensity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("intensityProperty")
+    get() = getIntensity()
+    @JvmName("intensityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
+      setIntensity(value)
     }
 
   /**
@@ -72,14 +67,11 @@ public open class GLTFLight : Resource() {
    * which correspond to Godot's [OmniLight3D], [SpotLight3D], and [DirectionalLight3D] respectively.
    */
   public var lightType: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLightTypePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("lightTypeProperty")
+    get() = getLightType()
+    @JvmName("lightTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLightTypePtr, NIL)
+      setLightType(value)
     }
 
   /**
@@ -88,14 +80,11 @@ public open class GLTFLight : Resource() {
    * clamped to 4096.
    */
   public var range: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rangeProperty")
+    get() = getRange()
+    @JvmName("rangeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+      setRange(value)
     }
 
   /**
@@ -106,14 +95,11 @@ public open class GLTFLight : Resource() {
    * attenuation of the light.
    */
   public var innerConeAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("innerConeAngleProperty")
+    get() = getInnerConeAngle()
+    @JvmName("innerConeAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInnerConeAnglePtr, NIL)
+      setInnerConeAngle(value)
     }
 
   /**
@@ -124,14 +110,11 @@ public open class GLTFLight : Resource() {
    * is used as the angle of the spotlight.
    */
   public var outerConeAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("outerConeAngleProperty")
+    get() = getOuterConeAngle()
+    @JvmName("outerConeAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOuterConeAnglePtr, NIL)
+      setOuterConeAngle(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -180,6 +163,72 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
+  public fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public fun getIntensity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setIntensity(intensity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to intensity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
+  }
+
+  public fun getLightType(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLightTypePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setLightType(lightType: String): Unit {
+    TransferContext.writeArguments(STRING to lightType)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLightTypePtr, NIL)
+  }
+
+  public fun getRange(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRange(range: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to range.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+  }
+
+  public fun getInnerConeAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setInnerConeAngle(innerConeAngle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to innerConeAngle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInnerConeAnglePtr, NIL)
+  }
+
+  public fun getOuterConeAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setOuterConeAngle(outerConeAngle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to outerConeAngle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOuterConeAnglePtr, NIL)
+  }
+
   public fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
@@ -195,7 +244,7 @@ public open class GLTFLight : Resource() {
     /**
      * Create a new GLTFLight instance from the given Godot [Light3D] node.
      */
-    public fun fromNode(lightNode: Light3D): GLTFLight? {
+    public fun fromNode(lightNode: Light3D?): GLTFLight? {
       TransferContext.writeArguments(OBJECT to lightNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFLight?)

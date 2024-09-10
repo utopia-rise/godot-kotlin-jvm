@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A container that accepts only two child controls, then arranges them horizontally or vertically
@@ -38,42 +39,33 @@ public open class SplitContainer : Container() {
    * the first [Control].
    */
   public var splitOffset: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("splitOffsetProperty")
+    get() = getSplitOffset()
+    @JvmName("splitOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSplitOffsetPtr, NIL)
+      setSplitOffset(value)
     }
 
   /**
    * If `true`, the area of the first [Control] will be collapsed and the dragger will be disabled.
    */
   public var collapsed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("collapsedProperty")
+    get() = isCollapsed()
+    @JvmName("collapsedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
+      setCollapsed(value)
     }
 
   /**
    * Determines the dragger's visibility. See [DraggerVisibility] for details.
    */
   public var draggerVisibility: DraggerVisibility
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDraggerVisibilityPtr, LONG)
-      return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("draggerVisibilityProperty")
+    get() = getDraggerVisibility()
+    @JvmName("draggerVisibilityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDraggerVisibilityPtr, NIL)
+      setDraggerVisibility(value)
     }
 
   /**
@@ -81,18 +73,26 @@ public open class SplitContainer : Container() {
    * Can't be changed when using [HSplitContainer] and [VSplitContainer].
    */
   public var vertical: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("verticalProperty")
+    get() = isVertical()
+    @JvmName("verticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+      setVertical(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPLITCONTAINER, scriptIndex)
+  }
+
+  public fun setSplitOffset(offset: Int): Unit {
+    TransferContext.writeArguments(LONG to offset.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSplitOffsetPtr, NIL)
+  }
+
+  public fun getSplitOffset(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -102,6 +102,39 @@ public open class SplitContainer : Container() {
   public fun clampSplitOffset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clampSplitOffsetPtr, NIL)
+  }
+
+  public fun setCollapsed(collapsed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to collapsed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
+  }
+
+  public fun isCollapsed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDraggerVisibility(mode: DraggerVisibility): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDraggerVisibilityPtr, NIL)
+  }
+
+  public fun getDraggerVisibility(): DraggerVisibility {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDraggerVisibilityPtr, LONG)
+    return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVertical(vertical: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to vertical)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+  }
+
+  public fun isVertical(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class DraggerVisibility(

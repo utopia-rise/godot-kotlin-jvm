@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Combines phase-shifted signals with the original signal. The movement of the phase-shifted
@@ -29,14 +30,11 @@ public open class AudioEffectPhaser : AudioEffect() {
    * 10 to 10000.
    */
   public var rangeMinHz: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRangeMinHzPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rangeMinHzProperty")
+    get() = getRangeMinHz()
+    @JvmName("rangeMinHzProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRangeMinHzPtr, NIL)
+      setRangeMinHz(value)
     }
 
   /**
@@ -44,42 +42,33 @@ public open class AudioEffectPhaser : AudioEffect() {
    * 10 to 10000.
    */
   public var rangeMaxHz: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRangeMaxHzPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rangeMaxHzProperty")
+    get() = getRangeMaxHz()
+    @JvmName("rangeMaxHzProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRangeMaxHzPtr, NIL)
+      setRangeMaxHz(value)
     }
 
   /**
    * Adjusts the rate in Hz at which the effect sweeps up and down across the frequency range.
    */
   public var rateHz: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRateHzPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rateHzProperty")
+    get() = getRateHz()
+    @JvmName("rateHzProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRateHzPtr, NIL)
+      setRateHz(value)
     }
 
   /**
    * Output percent of modified sound. Value can range from 0.1 to 0.9.
    */
   public var feedback: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("feedbackProperty")
+    get() = getFeedback()
+    @JvmName("feedbackProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackPtr, NIL)
+      setFeedback(value)
     }
 
   /**
@@ -87,18 +76,70 @@ public open class AudioEffectPhaser : AudioEffect() {
    * frequencies. High value can sweep high into the treble. Value can range from 0.1 to 4.
    */
   public var depth: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("depthProperty")
+    get() = getDepth()
+    @JvmName("depthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+      setDepth(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTPHASER, scriptIndex)
+  }
+
+  public fun setRangeMinHz(hz: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to hz.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRangeMinHzPtr, NIL)
+  }
+
+  public fun getRangeMinHz(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRangeMinHzPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRangeMaxHz(hz: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to hz.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRangeMaxHzPtr, NIL)
+  }
+
+  public fun getRangeMaxHz(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRangeMaxHzPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRateHz(hz: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to hz.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRateHzPtr, NIL)
+  }
+
+  public fun getRateHz(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRateHzPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFeedback(fbk: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fbk.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackPtr, NIL)
+  }
+
+  public fun getFeedback(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDepth(depth: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to depth.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+  }
+
+  public fun getDepth(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

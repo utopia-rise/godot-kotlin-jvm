@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [VisibleOnScreenEnabler2D] contains a rectangular region of 2D space and a target node. The
@@ -36,14 +37,11 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
    * disabled, it always uses [Node.PROCESS_MODE_DISABLED].
    */
   public var enableMode: EnableMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
-      return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("enableModeProperty")
+    get() = getEnableMode()
+    @JvmName("enableModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
+      setEnableMode(value)
     }
 
   /**
@@ -53,18 +51,37 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
    * is empty, no node will be affected. If the path is invalid, an error is also generated.
    */
   public var enableNodePath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("enableNodePathProperty")
+    get() = getEnableNodePath()
+    @JvmName("enableNodePathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
+      setEnableNodePath(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER2D, scriptIndex)
+  }
+
+  public fun setEnableMode(mode: EnableMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
+  }
+
+  public fun getEnableMode(): EnableMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
+    return VisibleOnScreenEnabler2D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setEnableNodePath(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
+  }
+
+  public fun getEnableNodePath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   public enum class EnableMode(

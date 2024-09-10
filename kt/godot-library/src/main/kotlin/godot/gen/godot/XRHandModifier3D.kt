@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node uses hand tracking data from an [XRHandTracker] to pose the skeleton of a hand mesh.
@@ -33,32 +34,48 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
    * from.
    */
   public var handTracker: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("handTrackerProperty")
+    get() = getHandTracker()
+    @JvmName("handTrackerProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackerPtr, NIL)
+      setHandTracker(value)
     }
 
   /**
    * Specifies the type of updates to perform on the bones.
    */
   public var boneUpdate: BoneUpdate
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
-      return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("boneUpdateProperty")
+    get() = getBoneUpdate()
+    @JvmName("boneUpdateProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+      setBoneUpdate(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRHANDMODIFIER3D, scriptIndex)
+  }
+
+  public fun setHandTracker(trackerName: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to trackerName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackerPtr, NIL)
+  }
+
+  public fun getHandTracker(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+    TransferContext.writeArguments(LONG to boneUpdate.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+  }
+
+  public fun getBoneUpdate(): BoneUpdate {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class BoneUpdate(

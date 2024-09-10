@@ -47,7 +47,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Accepts a peer connection as a server using the given [serverOptions]. See [TLSOptions.server].
    */
-  public fun acceptStream(stream: StreamPeer, serverOptions: TLSOptions): GodotError {
+  public fun acceptStream(stream: StreamPeer?, serverOptions: TLSOptions?): GodotError {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -61,7 +61,7 @@ public open class StreamPeerTLS : StreamPeer() {
    */
   @JvmOverloads
   public fun connectToStream(
-    stream: StreamPeer,
+    stream: StreamPeer?,
     commonName: String,
     clientOptions: TLSOptions? = null,
   ): GodotError {

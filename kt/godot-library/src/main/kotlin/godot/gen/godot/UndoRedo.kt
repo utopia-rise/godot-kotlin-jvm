@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -143,14 +144,11 @@ public open class UndoRedo : Object() {
    * by calling [undo]. A value of `0` or lower means no limit.
    */
   public var maxSteps: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxStepsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxStepsProperty")
+    get() = getMaxSteps()
+    @JvmName("maxStepsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxStepsPtr, NIL)
+      setMaxSteps(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -215,7 +213,7 @@ public open class UndoRedo : Object() {
    * Register a [property] that would change its value to [value] when the action is committed.
    */
   public fun addDoProperty(
-    _object: Object,
+    _object: Object?,
     `property`: StringName,
     `value`: Any?,
   ): Unit {
@@ -227,7 +225,7 @@ public open class UndoRedo : Object() {
    * Register a [property] that would change its value to [value] when the action is undone.
    */
   public fun addUndoProperty(
-    _object: Object,
+    _object: Object?,
     `property`: StringName,
     `value`: Any?,
   ): Unit {
@@ -249,7 +247,7 @@ public open class UndoRedo : Object() {
    * undo_redo.commit_action()
    * [/codeblock]
    */
-  public fun addDoReference(_object: Object): Unit {
+  public fun addDoReference(_object: Object?): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, MethodBindings.addDoReferencePtr, NIL)
   }
@@ -268,7 +266,7 @@ public open class UndoRedo : Object() {
    * undo_redo.commit_action()
    * [/codeblock]
    */
-  public fun addUndoReference(_object: Object): Unit {
+  public fun addUndoReference(_object: Object?): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, MethodBindings.addUndoReferencePtr, NIL)
   }
@@ -365,6 +363,17 @@ public open class UndoRedo : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public fun setMaxSteps(maxSteps: Int): Unit {
+    TransferContext.writeArguments(LONG to maxSteps.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxStepsPtr, NIL)
+  }
+
+  public fun getMaxSteps(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxStepsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

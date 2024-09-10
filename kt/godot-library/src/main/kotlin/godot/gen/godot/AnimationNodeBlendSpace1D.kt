@@ -24,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -39,70 +40,55 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * The blend space's axis's lower limit for the points' position. See [addBlendPoint].
    */
   public var minSpace: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinSpacePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("minSpaceProperty")
+    get() = getMinSpace()
+    @JvmName("minSpaceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinSpacePtr, NIL)
+      setMinSpace(value)
     }
 
   /**
    * The blend space's axis's upper limit for the points' position. See [addBlendPoint].
    */
   public var maxSpace: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpacePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("maxSpaceProperty")
+    get() = getMaxSpace()
+    @JvmName("maxSpaceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpacePtr, NIL)
+      setMaxSpace(value)
     }
 
   /**
    * Position increment to snap to when moving a point on the axis.
    */
   public var snap: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("snapProperty")
+    get() = getSnap()
+    @JvmName("snapProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
+      setSnap(value)
     }
 
   /**
    * Label of the virtual axis of the blend space.
    */
   public var valueLabel: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getValueLabelPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("valueLabelProperty")
+    get() = getValueLabel()
+    @JvmName("valueLabelProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setValueLabelPtr, NIL)
+      setValueLabel(value)
     }
 
   /**
    * Controls the interpolation between animations. See [BlendMode] constants.
    */
   public var blendMode: BlendMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-      return AnimationNodeBlendSpace1D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("blendModeProperty")
+    get() = getBlendMode()
+    @JvmName("blendModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+      setBlendMode(value)
     }
 
   /**
@@ -110,14 +96,11 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    * If `true`, forcing the blended animations to advance frame.
    */
   public var sync: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("syncProperty")
+    get() = isUsingSync()
+    @JvmName("syncProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
+      setUseSync(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -131,7 +114,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
    */
   @JvmOverloads
   public fun addBlendPoint(
-    node: AnimationRootNode,
+    node: AnimationRootNode?,
     pos: Float,
     atIndex: Int = -1,
   ): Unit {
@@ -159,7 +142,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   /**
    * Changes the [AnimationNode] referenced by the point at index [point].
    */
-  public fun setBlendPointNode(point: Int, node: AnimationRootNode): Unit {
+  public fun setBlendPointNode(point: Int, node: AnimationRootNode?): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendPointNodePtr, NIL)
   }
@@ -188,6 +171,72 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMinSpace(minSpace: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to minSpace.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinSpacePtr, NIL)
+  }
+
+  public fun getMinSpace(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinSpacePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMaxSpace(maxSpace: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to maxSpace.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpacePtr, NIL)
+  }
+
+  public fun getMaxSpace(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpacePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSnap(snap: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to snap.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSnapPtr, NIL)
+  }
+
+  public fun getSnap(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setValueLabel(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setValueLabelPtr, NIL)
+  }
+
+  public fun getValueLabel(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getValueLabelPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setBlendMode(mode: BlendMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+  }
+
+  public fun getBlendMode(): BlendMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return AnimationNodeBlendSpace1D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUseSync(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
+  }
+
+  public fun isUsingSync(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class BlendMode(

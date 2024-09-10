@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This object is used by [RenderingDevice].
@@ -30,32 +31,48 @@ public open class RDUniform : RefCounted() {
    * The uniform's data type.
    */
   public var uniformType: RenderingDevice.UniformType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUniformTypePtr, LONG)
-      return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("uniformTypeProperty")
+    get() = getUniformType()
+    @JvmName("uniformTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUniformTypePtr, NIL)
+      setUniformType(value)
     }
 
   /**
    * The uniform's binding.
    */
   public var binding: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("bindingProperty")
+    get() = getBinding()
+    @JvmName("bindingProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBindingPtr, NIL)
+      setBinding(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDUNIFORM, scriptIndex)
+  }
+
+  public fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUniformTypePtr, NIL)
+  }
+
+  public fun getUniformType(): RenderingDevice.UniformType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUniformTypePtr, LONG)
+    return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setBinding(pMember: Int): Unit {
+    TransferContext.writeArguments(LONG to pMember.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBindingPtr, NIL)
+  }
+
+  public fun getBinding(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**

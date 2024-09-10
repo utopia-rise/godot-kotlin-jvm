@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A *specialization constant* is a way to create additional variants of shaders without actually
@@ -33,14 +34,11 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
    * specialization constants.
    */
   public var `value`: Any?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
-      return (TransferContext.readReturnValue(ANY, true) as Any?)
-    }
+    @JvmName("valueProperty")
+    get() = getValue()
+    @JvmName("valueProperty")
     set(`value`) {
-      TransferContext.writeArguments(ANY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
+      setValue(value)
     }
 
   /**
@@ -48,18 +46,37 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
    * increments for every different specialization constant for a given shader.
    */
   public var constantId: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantIdPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("constantIdProperty")
+    get() = getConstantId()
+    @JvmName("constantIdProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantIdPtr, NIL)
+      setConstantId(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT, scriptIndex)
+  }
+
+  public fun setValue(`value`: Any?): Unit {
+    TransferContext.writeArguments(ANY to value)
+    TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
+  }
+
+  public fun getValue(): Any? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
+  }
+
+  public fun setConstantId(constantId: Long): Unit {
+    TransferContext.writeArguments(LONG to constantId)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantIdPtr, NIL)
+  }
+
+  public fun getConstantId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

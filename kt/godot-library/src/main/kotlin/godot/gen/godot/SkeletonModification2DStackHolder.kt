@@ -32,7 +32,7 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    * Sets the [SkeletonModificationStack2D] that this modification is holding. This modification
    * stack will then be executed when this modification is executed.
    */
-  public fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D): Unit {
+  public fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D?): Unit {
     TransferContext.writeArguments(OBJECT to heldModificationStack)
     TransferContext.callMethod(rawPtr, MethodBindings.setHeldModificationStackPtr, NIL)
   }

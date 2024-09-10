@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -36,11 +37,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * The underlying [ENetConnection] created after [createClient] and [createServer].
    */
   public val host: ENetConnection?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHostPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as ENetConnection?)
-    }
+    @JvmName("hostProperty")
+    get() = getHost()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ENETMULTIPLAYERPEER, scriptIndex)
@@ -119,7 +117,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * Add a new remote peer with the given [peerId] connected to the given [host].
    * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
    */
-  public fun addMeshPeer(peerId: Int, host: ENetConnection): GodotError {
+  public fun addMeshPeer(peerId: Int, host: ENetConnection?): GodotError {
     TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
     TransferContext.callMethod(rawPtr, MethodBindings.addMeshPeerPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -133,6 +131,12 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   public fun setBindIp(ip: String): Unit {
     TransferContext.writeArguments(STRING to ip)
     TransferContext.callMethod(rawPtr, MethodBindings.setBindIpPtr, NIL)
+  }
+
+  public fun getHost(): ENetConnection? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHostPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as ENetConnection?)
   }
 
   /**

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Performs a lookup operation on the texture provided as a uniform for the shader.
@@ -27,56 +28,44 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
    * Defines the type of data provided by the source texture. See [TextureType] for options.
    */
   public var textureType: TextureType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
-      return VisualShaderNodeTextureParameter.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureTypeProperty")
+    get() = getTextureType()
+    @JvmName("textureTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+      setTextureType(value)
     }
 
   /**
    * Sets the default color if no texture is assigned to the uniform.
    */
   public var colorDefault: ColorDefault
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorDefaultPtr, LONG)
-      return VisualShaderNodeTextureParameter.ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("colorDefaultProperty")
+    get() = getColorDefault()
+    @JvmName("colorDefaultProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorDefaultPtr, NIL)
+      setColorDefault(value)
     }
 
   /**
    * Sets the texture filtering mode. See [TextureFilter] for options.
    */
   public var textureFilter: TextureFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-      return VisualShaderNodeTextureParameter.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureFilterProperty")
+    get() = getTextureFilter()
+    @JvmName("textureFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+      setTextureFilter(value)
     }
 
   /**
    * Sets the texture repeating mode. See [TextureRepeat] for options.
    */
   public var textureRepeat: TextureRepeat
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
-      return VisualShaderNodeTextureParameter.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureRepeatProperty")
+    get() = getTextureRepeat()
+    @JvmName("textureRepeatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
+      setTextureRepeat(value)
     }
 
   /**
@@ -84,18 +73,70 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
    * texture. See [TextureSource] for options.
    */
   public var textureSource: TextureSource
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureSourcePtr, LONG)
-      return VisualShaderNodeTextureParameter.TextureSource.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("textureSourceProperty")
+    get() = getTextureSource()
+    @JvmName("textureSourceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureSourcePtr, NIL)
+      setTextureSource(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER, scriptIndex)
+  }
+
+  public fun setTextureType(type: TextureType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+  }
+
+  public fun getTextureType(): TextureType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setColorDefault(color: ColorDefault): Unit {
+    TransferContext.writeArguments(LONG to color.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorDefaultPtr, NIL)
+  }
+
+  public fun getColorDefault(): ColorDefault {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorDefaultPtr, LONG)
+    return VisualShaderNodeTextureParameter.ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTextureFilter(filter: TextureFilter): Unit {
+    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+  }
+
+  public fun getTextureFilter(): TextureFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTextureRepeat(repeat: TextureRepeat): Unit {
+    TransferContext.writeArguments(LONG to repeat.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
+  }
+
+  public fun getTextureRepeat(): TextureRepeat {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTextureSource(source: TextureSource): Unit {
+    TransferContext.writeArguments(LONG to source.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureSourcePtr, NIL)
+  }
+
+  public fun getTextureSource(): TextureSource {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureSourcePtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class TextureType(

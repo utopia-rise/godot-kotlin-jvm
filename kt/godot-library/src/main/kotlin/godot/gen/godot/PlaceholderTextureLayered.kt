@@ -38,25 +38,22 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
    */
   @CoreTypeLocalCopy
   public var size: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
    * The number of layers in the texture array.
    */
   public var layers: Int
-    @JvmName("getLayers_prop")
-    get() = super.getLayers()
+    @JvmName("layersProperty")
+    get() = getLayers()
+    @JvmName("layersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLayersPtr, NIL)
+      setLayers(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -86,6 +83,22 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
       size = this
   }
 
+
+  public fun setSize(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setLayers(layers: Int): Unit {
+    TransferContext.writeArguments(LONG to layers.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayersPtr, NIL)
+  }
 
   public companion object
 

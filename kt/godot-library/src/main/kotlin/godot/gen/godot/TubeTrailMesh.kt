@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed
@@ -37,14 +38,11 @@ public open class TubeTrailMesh : PrimitiveMesh() {
    * multiplying this radius by the value of the [curve] at the given distance.
    */
   public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
@@ -52,42 +50,33 @@ public open class TubeTrailMesh : PrimitiveMesh() {
    * Higher values result in a more detailed tube at the cost of performance.
    */
   public var radialSteps: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialStepsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("radialStepsProperty")
+    get() = getRadialSteps()
+    @JvmName("radialStepsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialStepsPtr, NIL)
+      setRadialSteps(value)
     }
 
   /**
    * The total number of sections on the tube.
    */
   public var sections: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("sectionsProperty")
+    get() = getSections()
+    @JvmName("sectionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSectionsPtr, NIL)
+      setSections(value)
     }
 
   /**
    * The length of a section of the tube.
    */
   public var sectionLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("sectionLengthProperty")
+    get() = getSectionLength()
+    @JvmName("sectionLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSectionLengthPtr, NIL)
+      setSectionLength(value)
     }
 
   /**
@@ -95,14 +84,11 @@ public open class TubeTrailMesh : PrimitiveMesh() {
    * Higher values result in a more detailed tube at the cost of performance.
    */
   public var sectionRings: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSectionRingsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("sectionRingsProperty")
+    get() = getSectionRings()
+    @JvmName("sectionRingsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSectionRingsPtr, NIL)
+      setSectionRings(value)
     }
 
   /**
@@ -110,14 +96,11 @@ public open class TubeTrailMesh : PrimitiveMesh() {
    * generation and rendering when the cap is never seen by the camera.
    */
   public var capTop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("capTopProperty")
+    get() = isCapTop()
+    @JvmName("capTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
+      setCapTop(value)
     }
 
   /**
@@ -125,14 +108,11 @@ public open class TubeTrailMesh : PrimitiveMesh() {
    * generation and rendering when the cap is never seen by the camera.
    */
   public var capBottom: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("capBottomProperty")
+    get() = isCapBottom()
+    @JvmName("capBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
+      setCapBottom(value)
     }
 
   /**
@@ -141,18 +121,103 @@ public open class TubeTrailMesh : PrimitiveMesh() {
    * For values smaller than `0`, the faces will be inverted.
    */
   public var curve: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+    @JvmName("curveProperty")
+    get() = getCurve()
+    @JvmName("curveProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+      setCurve(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TUBETRAILMESH, scriptIndex)
+  }
+
+  public fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setRadialSteps(radialSteps: Int): Unit {
+    TransferContext.writeArguments(LONG to radialSteps.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadialStepsPtr, NIL)
+  }
+
+  public fun getRadialSteps(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadialStepsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSections(sections: Int): Unit {
+    TransferContext.writeArguments(LONG to sections.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSectionsPtr, NIL)
+  }
+
+  public fun getSections(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setSectionLength(sectionLength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to sectionLength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSectionLengthPtr, NIL)
+  }
+
+  public fun getSectionLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSectionRings(sectionRings: Int): Unit {
+    TransferContext.writeArguments(LONG to sectionRings.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSectionRingsPtr, NIL)
+  }
+
+  public fun getSectionRings(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSectionRingsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setCapTop(capTop: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to capTop)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
+  }
+
+  public fun isCapTop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCapBottom(capBottom: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to capBottom)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
+  }
+
+  public fun isCapBottom(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setCurve(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+  }
+
+  public fun getCurve(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
   }
 
   public companion object

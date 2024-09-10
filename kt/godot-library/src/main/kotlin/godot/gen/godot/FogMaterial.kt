@@ -22,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A [Material] resource that can be used by [FogVolume]s to draw volumetric effects.
@@ -38,14 +39,11 @@ public open class FogMaterial : Material() {
    * act like `0.0`. This does not apply to [Environment.volumetricFogDensity].
    */
   public var density: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDensityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("densityProperty")
+    get() = getDensity()
+    @JvmName("densityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDensityPtr, NIL)
+      setDensity(value)
     }
 
   /**
@@ -55,14 +53,11 @@ public open class FogMaterial : Material() {
    */
   @CoreTypeLocalCopy
   public var albedo: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("albedoProperty")
+    get() = getAlbedo()
+    @JvmName("albedoProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
+      setAlbedo(value)
     }
 
   /**
@@ -72,14 +67,11 @@ public open class FogMaterial : Material() {
    */
   @CoreTypeLocalCopy
   public var emission: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("emissionProperty")
+    get() = getEmission()
+    @JvmName("emissionProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
+      setEmission(value)
     }
 
   /**
@@ -89,14 +81,11 @@ public open class FogMaterial : Material() {
    * the height of the associated [FogVolume].
    */
   public var heightFalloff: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightFalloffPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("heightFalloffProperty")
+    get() = getHeightFalloff()
+    @JvmName("heightFalloffProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightFalloffPtr, NIL)
+      setHeightFalloff(value)
     }
 
   /**
@@ -104,14 +93,11 @@ public open class FogMaterial : Material() {
    * a lower value will result in harder edges.
    */
   public var edgeFade: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEdgeFadePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("edgeFadeProperty")
+    get() = getEdgeFade()
+    @JvmName("edgeFadeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEdgeFadePtr, NIL)
+      setEdgeFade(value)
     }
 
   /**
@@ -120,14 +106,11 @@ public open class FogMaterial : Material() {
    * using a custom [url=$DOCS_URL/tutorials/shaders/shader_reference/fog_shader.html]fog shader[/url].
    */
   public var densityTexture: Texture3D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDensityTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
-    }
+    @JvmName("densityTextureProperty")
+    get() = getDensityTexture()
+    @JvmName("densityTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDensityTexturePtr, NIL)
+      setDensityTexture(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -185,6 +168,72 @@ public open class FogMaterial : Material() {
       emission = this
   }
 
+
+  public fun setDensity(density: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to density.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDensityPtr, NIL)
+  }
+
+  public fun getDensity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDensityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setAlbedo(albedo: Color): Unit {
+    TransferContext.writeArguments(COLOR to albedo)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
+  }
+
+  public fun getAlbedo(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setEmission(emission: Color): Unit {
+    TransferContext.writeArguments(COLOR to emission)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
+  }
+
+  public fun getEmission(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setHeightFalloff(heightFalloff: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to heightFalloff.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightFalloffPtr, NIL)
+  }
+
+  public fun getHeightFalloff(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightFalloffPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setEdgeFade(edgeFade: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to edgeFade.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeFadePtr, NIL)
+  }
+
+  public fun getEdgeFade(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeFadePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDensityTexture(densityTexture: Texture3D?): Unit {
+    TransferContext.writeArguments(OBJECT to densityTexture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDensityTexturePtr, NIL)
+  }
+
+  public fun getDensityTexture(): Texture3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDensityTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
+  }
 
   public companion object
 

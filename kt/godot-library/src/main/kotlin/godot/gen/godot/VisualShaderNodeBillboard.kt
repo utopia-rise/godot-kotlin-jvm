@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The output port of this node needs to be connected to `Model View Matrix` port of
@@ -29,14 +30,11 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
    * Controls how the object faces the camera. See [BillboardType].
    */
   public var billboardType: BillboardType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBillboardTypePtr, LONG)
-      return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("billboardTypeProperty")
+    get() = getBillboardType()
+    @JvmName("billboardTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBillboardTypePtr, NIL)
+      setBillboardType(value)
     }
 
   /**
@@ -44,18 +42,37 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
    * billboarding.
    */
   public var keepScale: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isKeepScaleEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("keepScaleProperty")
+    get() = isKeepScaleEnabled()
+    @JvmName("keepScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeepScaleEnabledPtr, NIL)
+      setKeepScaleEnabled(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBILLBOARD, scriptIndex)
+  }
+
+  public fun setBillboardType(billboardType: BillboardType): Unit {
+    TransferContext.writeArguments(LONG to billboardType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardTypePtr, NIL)
+  }
+
+  public fun getBillboardType(): BillboardType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardTypePtr, LONG)
+    return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setKeepScaleEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeepScaleEnabledPtr, NIL)
+  }
+
+  public fun isKeepScaleEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isKeepScaleEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class BillboardType(

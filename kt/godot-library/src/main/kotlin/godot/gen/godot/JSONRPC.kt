@@ -40,7 +40,7 @@ public open class JSONRPC : Object() {
     callConstructor(ENGINECLASS_JSONRPC, scriptIndex)
   }
 
-  public fun setScope(scope: String, target: Object): Unit {
+  public fun setScope(scope: String, target: Object?): Unit {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
     TransferContext.callMethod(rawPtr, MethodBindings.setScopePtr, NIL)
   }

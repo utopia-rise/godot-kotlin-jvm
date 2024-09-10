@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going
@@ -31,14 +32,11 @@ public open class AudioEffectLimiter : AudioEffect() {
    * The waveform's maximum allowed value, in decibels. Value can range from -20 to -0.1.
    */
   public var ceilingDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("ceilingDbProperty")
+    get() = getCeilingDb()
+    @JvmName("ceilingDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+      setCeilingDb(value)
     }
 
   /**
@@ -46,43 +44,78 @@ public open class AudioEffectLimiter : AudioEffect() {
    * 0.
    */
   public var thresholdDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThresholdDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("thresholdDbProperty")
+    get() = getThresholdDb()
+    @JvmName("thresholdDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setThresholdDbPtr, NIL)
+      setThresholdDb(value)
     }
 
   /**
    * Applies a gain to the limited waves, in decibels. Value can range from 0 to 6.
    */
   public var softClipDb: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipDbPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("softClipDbProperty")
+    get() = getSoftClipDb()
+    @JvmName("softClipDbProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipDbPtr, NIL)
+      setSoftClipDb(value)
     }
 
   public var softClipRatio: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("softClipRatioProperty")
+    get() = getSoftClipRatio()
+    @JvmName("softClipRatioProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipRatioPtr, NIL)
+      setSoftClipRatio(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTLIMITER, scriptIndex)
+  }
+
+  public fun setCeilingDb(ceiling: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+  }
+
+  public fun getCeilingDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setThresholdDb(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setThresholdDbPtr, NIL)
+  }
+
+  public fun getThresholdDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThresholdDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSoftClipDb(softClip: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to softClip.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipDbPtr, NIL)
+  }
+
+  public fun getSoftClipDb(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipDbPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSoftClipRatio(softClip: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to softClip.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipRatioPtr, NIL)
+  }
+
+  public fun getSoftClipRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

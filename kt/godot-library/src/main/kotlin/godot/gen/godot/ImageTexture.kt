@@ -72,7 +72,7 @@ public open class ImageTexture : Texture2D() {
    * If you want to update the image, but don't need to change its parameters (format, size), use
    * [update] instead for better performance.
    */
-  public fun setImage(image: Image): Unit {
+  public fun setImage(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.setImagePtr, NIL)
   }
@@ -85,7 +85,7 @@ public open class ImageTexture : Texture2D() {
    * Use this method over [setImage] if you need to update the texture frequently, which is faster
    * than allocating additional memory for a new texture each time.
    */
-  public fun update(image: Image): Unit {
+  public fun update(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
@@ -103,7 +103,7 @@ public open class ImageTexture : Texture2D() {
      * Creates a new [ImageTexture] and initializes it by allocating and setting the data from an
      * [Image].
      */
-    public fun createFromImage(image: Image): ImageTexture? {
+    public fun createFromImage(image: Image?): ImageTexture? {
       TransferContext.writeArguments(OBJECT to image)
       TransferContext.callMethod(0, MethodBindings.createFromImagePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as ImageTexture?)

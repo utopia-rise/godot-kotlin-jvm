@@ -24,6 +24,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
@@ -55,28 +56,22 @@ public open class ColorPickerButton : Button() {
    */
   @CoreTypeLocalCopy
   public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("colorProperty")
+    get() = getPickColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
+      setPickColor(value)
     }
 
   /**
    * If `true`, the alpha channel in the displayed [ColorPicker] will be visible.
    */
   public var editAlpha: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("editAlphaProperty")
+    get() = isEditingAlpha()
+    @JvmName("editAlphaProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
+      setEditAlpha(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -107,6 +102,17 @@ public open class ColorPickerButton : Button() {
   }
 
 
+  public fun setPickColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
+  }
+
+  public fun getPickColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
   /**
    * Returns the [ColorPicker] that this node toggles.
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
@@ -128,6 +134,17 @@ public open class ColorPickerButton : Button() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupPanel?)
+  }
+
+  public fun setEditAlpha(show: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to show)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
+  }
+
+  public fun isEditingAlpha(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -24,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device. When enabled,
@@ -38,14 +39,11 @@ public open class CameraFeed : RefCounted() {
    * If `true`, the feed is active.
    */
   public var feedIsActive: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("feedIsActiveProperty")
+    get() = isActive()
+    @JvmName("feedIsActiveProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+      setActive(value)
     }
 
   /**
@@ -53,14 +51,11 @@ public open class CameraFeed : RefCounted() {
    */
   @CoreTypeLocalCopy
   public var feedTransform: Transform2D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
-    }
+    @JvmName("feedTransformProperty")
+    get() = getTransform()
+    @JvmName("feedTransformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+      setTransform(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -101,6 +96,17 @@ public open class CameraFeed : RefCounted() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun isActive(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setActive(active: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+  }
+
   /**
    * Returns the camera's name.
    */
@@ -117,6 +123,17 @@ public open class CameraFeed : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
     return CameraFeed.FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun getTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+  }
+
+  public fun setTransform(transform: Transform2D): Unit {
+    TransferContext.writeArguments(TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
   }
 
   /**

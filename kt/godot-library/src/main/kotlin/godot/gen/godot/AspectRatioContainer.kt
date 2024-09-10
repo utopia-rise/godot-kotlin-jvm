@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A container type that arranges its child controls in a way that preserves their proportions
@@ -32,60 +33,92 @@ public open class AspectRatioContainer : Container() {
    * ratio depends on the [stretchMode].
    */
   public var ratio: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("ratioProperty")
+    get() = getRatio()
+    @JvmName("ratioProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRatioPtr, NIL)
+      setRatio(value)
     }
 
   /**
    * The stretch mode used to align child controls.
    */
   public var stretchMode: StretchMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
-      return AspectRatioContainer.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("stretchModeProperty")
+    get() = getStretchMode()
+    @JvmName("stretchModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
+      setStretchMode(value)
     }
 
   /**
    * Specifies the horizontal relative position of child controls.
    */
   public var alignmentHorizontal: AlignmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentHorizontalPtr, LONG)
-      return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alignmentHorizontalProperty")
+    get() = getAlignmentHorizontal()
+    @JvmName("alignmentHorizontalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentHorizontalPtr, NIL)
+      setAlignmentHorizontal(value)
     }
 
   /**
    * Specifies the vertical relative position of child controls.
    */
   public var alignmentVertical: AlignmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentVerticalPtr, LONG)
-      return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("alignmentVerticalProperty")
+    get() = getAlignmentVertical()
+    @JvmName("alignmentVerticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentVerticalPtr, NIL)
+      setAlignmentVertical(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ASPECTRATIOCONTAINER, scriptIndex)
+  }
+
+  public fun setRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRatioPtr, NIL)
+  }
+
+  public fun getRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setStretchMode(stretchMode: StretchMode): Unit {
+    TransferContext.writeArguments(LONG to stretchMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
+  }
+
+  public fun getStretchMode(): StretchMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
+    return AspectRatioContainer.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlignmentHorizontal(alignmentHorizontal: AlignmentMode): Unit {
+    TransferContext.writeArguments(LONG to alignmentHorizontal.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentHorizontalPtr, NIL)
+  }
+
+  public fun getAlignmentHorizontal(): AlignmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentHorizontalPtr, LONG)
+    return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setAlignmentVertical(alignmentVertical: AlignmentMode): Unit {
+    TransferContext.writeArguments(LONG to alignmentVertical.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentVerticalPtr, NIL)
+  }
+
+  public fun getAlignmentVertical(): AlignmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentVerticalPtr, LONG)
+    return AspectRatioContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class StretchMode(

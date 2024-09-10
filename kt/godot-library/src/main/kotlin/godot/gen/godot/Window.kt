@@ -43,6 +43,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -58,7 +59,7 @@ public open class Window : Viewport() {
    * Emitted when the [Window] is currently focused and receives any input, passing the received
    * event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
-  public val windowInput: Signal1<InputEvent> by signal("event")
+  public val windowInput: Signal1<InputEvent?> by signal("event")
 
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The
@@ -148,42 +149,33 @@ public open class Window : Viewport() {
    * nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    */
   public var mode: Mode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-      return Window.Mode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("modeProperty")
+    get() = getMode()
+    @JvmName("modeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+      setMode(value)
     }
 
   /**
    * The window's title. If the [Window] is native, title styles set in [Theme] will have no effect.
    */
   public var title: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("titleProperty")
+    get() = getTitle()
+    @JvmName("titleProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+      setTitle(value)
     }
 
   /**
    * Specifies the initial type of position for the [Window]. See [WindowInitialPosition] constants.
    */
   public var initialPosition: WindowInitialPosition
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInitialPositionPtr, LONG)
-      return Window.WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("initialPositionProperty")
+    get() = getInitialPosition()
+    @JvmName("initialPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInitialPositionPtr, NIL)
+      setInitialPosition(value)
     }
 
   /**
@@ -196,14 +188,11 @@ public open class Window : Viewport() {
    */
   @CoreTypeLocalCopy
   public var position: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("positionProperty")
+    get() = getPosition()
+    @JvmName("positionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+      setPosition(value)
     }
 
   /**
@@ -211,28 +200,22 @@ public open class Window : Viewport() {
    */
   @CoreTypeLocalCopy
   public var size: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
    * The screen the window is currently on.
    */
   public var currentScreen: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentScreenPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("currentScreenProperty")
+    get() = getCurrentScreen()
+    @JvmName("currentScreenProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentScreenPtr, NIL)
+      setCurrentScreen(value)
     }
 
   /**
@@ -270,29 +253,22 @@ public open class Window : Viewport() {
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
    */
   public var mousePassthroughPolygon: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMousePassthroughPolygonPtr,
-          PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+    @JvmName("mousePassthroughPolygonProperty")
+    get() = getMousePassthroughPolygon()
+    @JvmName("mousePassthroughPolygonProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMousePassthroughPolygonPtr, NIL)
+      setMousePassthroughPolygon(value)
     }
 
   /**
    * If `true`, the window is visible.
    */
   public var visible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("visibleProperty")
+    get() = isVisible()
+    @JvmName("visibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+      setVisible(value)
     }
 
   /**
@@ -301,14 +277,11 @@ public open class Window : Viewport() {
    * If `false`, you need to call [childControlsChanged] manually.
    */
   public var wrapControls: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isWrappingControlsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("wrapControlsProperty")
+    get() = isWrappingControls()
+    @JvmName("wrapControlsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setWrapControlsPtr, NIL)
+      setWrapControls(value)
     }
 
   /**
@@ -319,14 +292,11 @@ public open class Window : Viewport() {
    * Note that behavior might be different depending on the platform.
    */
   public var transient: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isTransientPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("transientProperty")
+    get() = isTransient()
+    @JvmName("transientProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransientPtr, NIL)
+      setTransient(value)
     }
 
   /**
@@ -336,14 +306,11 @@ public open class Window : Viewport() {
    * changing it afterwards has no effect until re-shown.
    */
   public var transientToFocused: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isTransientToFocusedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("transientToFocusedProperty")
+    get() = isTransientToFocused()
+    @JvmName("transientToFocusedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransientToFocusedPtr, NIL)
+      setTransientToFocused(value)
     }
 
   /**
@@ -352,42 +319,33 @@ public open class Window : Viewport() {
    * Needs [transient] enabled to work.
    */
   public var exclusive: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isExclusivePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("exclusiveProperty")
+    get() = isExclusive()
+    @JvmName("exclusiveProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExclusivePtr, NIL)
+      setExclusive(value)
     }
 
   /**
    * If `true`, the window can't be resized. Minimize and maximize buttons are disabled.
    */
   public var unresizable: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("unresizableProperty")
+    get() = getFlag(Window.Flags.FLAG_RESIZE_DISABLED)
+    @JvmName("unresizableProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_RESIZE_DISABLED, value)
     }
 
   /**
    * If `true`, the window will have no borders.
    */
   public var borderless: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("borderlessProperty")
+    get() = getFlag(Window.Flags.FLAG_BORDERLESS)
+    @JvmName("borderlessProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_BORDERLESS, value)
     }
 
   /**
@@ -395,14 +353,11 @@ public open class Window : Viewport() {
    * enabled.
    */
   public var alwaysOnTop: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("alwaysOnTopProperty")
+    get() = getFlag(Window.Flags.FLAG_ALWAYS_ON_TOP)
+    @JvmName("alwaysOnTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_ALWAYS_ON_TOP, value)
     }
 
   /**
@@ -414,28 +369,22 @@ public open class Window : Viewport() {
    * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
    */
   public var transparent: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("transparentProperty")
+    get() = getFlag(Window.Flags.FLAG_TRANSPARENT)
+    @JvmName("transparentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_TRANSPARENT, value)
     }
 
   /**
    * If `true`, the [Window] can't be focused nor interacted with. It can still be visible.
    */
   public var unfocusable: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("unfocusableProperty")
+    get() = getFlag(Window.Flags.FLAG_NO_FOCUS)
+    @JvmName("unfocusableProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_NO_FOCUS, value)
     }
 
   /**
@@ -444,14 +393,11 @@ public open class Window : Viewport() {
    * anything is clicked outside of them (unless [exclusive] is enabled).
    */
   public var popupWindow: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("popupWindowProperty")
+    get() = getFlag(Window.Flags.FLAG_POPUP)
+    @JvmName("popupWindowProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_POPUP, value)
     }
 
   /**
@@ -461,14 +407,11 @@ public open class Window : Viewport() {
    * **Note:** This property only works with native windows.
    */
   public var extendToTitle: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("extendToTitleProperty")
+    get() = getFlag(Window.Flags.FLAG_EXTEND_TO_TITLE)
+    @JvmName("extendToTitleProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_EXTEND_TO_TITLE, value)
     }
 
   /**
@@ -478,28 +421,22 @@ public open class Window : Viewport() {
    * **Note:** This property only works with native windows.
    */
   public var mousePassthrough: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("mousePassthroughProperty")
+    get() = getFlag(Window.Flags.FLAG_MOUSE_PASSTHROUGH)
+    @JvmName("mousePassthroughProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+      setFlag(Window.Flags.FLAG_MOUSE_PASSTHROUGH, value)
     }
 
   /**
    * If `true`, native window will be used regardless of parent viewport and project settings.
    */
   public var forceNative: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getForceNativePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("forceNativeProperty")
+    get() = getForceNative()
+    @JvmName("forceNativeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setForceNativePtr, NIL)
+      setForceNative(value)
     }
 
   /**
@@ -509,14 +446,11 @@ public open class Window : Viewport() {
    */
   @CoreTypeLocalCopy
   public var minSize: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("minSizeProperty")
+    get() = getMinSize()
+    @JvmName("minSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinSizePtr, NIL)
+      setMinSize(value)
     }
 
   /**
@@ -525,28 +459,22 @@ public open class Window : Viewport() {
    */
   @CoreTypeLocalCopy
   public var maxSize: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("maxSizeProperty")
+    get() = getMaxSize()
+    @JvmName("maxSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxSizePtr, NIL)
+      setMaxSize(value)
     }
 
   /**
    * If `true`, the [Window] width is expanded to keep the title bar text fully visible.
    */
   public var keepTitleVisible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getKeepTitleVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("keepTitleVisibleProperty")
+    get() = getKeepTitleVisible()
+    @JvmName("keepTitleVisibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeepTitleVisiblePtr, NIL)
+      setKeepTitleVisible(value)
     }
 
   /**
@@ -555,28 +483,22 @@ public open class Window : Viewport() {
    */
   @CoreTypeLocalCopy
   public var contentScaleSize: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("contentScaleSizeProperty")
+    get() = getContentScaleSize()
+    @JvmName("contentScaleSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleSizePtr, NIL)
+      setContentScaleSize(value)
     }
 
   /**
    * Specifies how the content is scaled when the [Window] is resized.
    */
   public var contentScaleMode: ContentScaleMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleModePtr, LONG)
-      return Window.ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("contentScaleModeProperty")
+    get() = getContentScaleMode()
+    @JvmName("contentScaleModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleModePtr, NIL)
+      setContentScaleMode(value)
     }
 
   /**
@@ -584,14 +506,11 @@ public open class Window : Viewport() {
    * determined by [contentScaleSize].
    */
   public var contentScaleAspect: ContentScaleAspect
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleAspectPtr, LONG)
-      return Window.ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("contentScaleAspectProperty")
+    get() = getContentScaleAspect()
+    @JvmName("contentScaleAspectProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleAspectPtr, NIL)
+      setContentScaleAspect(value)
     }
 
   /**
@@ -600,28 +519,22 @@ public open class Window : Viewport() {
    * [contentScaleSize].
    */
   public var contentScaleStretch: ContentScaleStretch
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleStretchPtr, LONG)
-      return Window.ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("contentScaleStretchProperty")
+    get() = getContentScaleStretch()
+    @JvmName("contentScaleStretchProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleStretchPtr, NIL)
+      setContentScaleStretch(value)
     }
 
   /**
    * Specifies the base scale of [Window]'s content when its [size] is equal to [contentScaleSize].
    */
   public var contentScaleFactor: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleFactorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("contentScaleFactorProperty")
+    get() = getContentScaleFactor()
+    @JvmName("contentScaleFactorProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleFactorPtr, NIL)
+      setContentScaleFactor(value)
     }
 
   /**
@@ -629,14 +542,11 @@ public open class Window : Viewport() {
    * current locale.
    */
   public var autoTranslate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoTranslatingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoTranslateProperty")
+    get() = isAutoTranslating()
+    @JvmName("autoTranslateProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslatePtr, NIL)
+      setAutoTranslate(value)
     }
 
   /**
@@ -646,14 +556,11 @@ public open class Window : Viewport() {
    * **Note:** [Window] styles will have no effect unless the window is embedded.
    */
   public var theme: Theme?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThemePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
-    }
+    @JvmName("themeProperty")
+    get() = getTheme()
+    @JvmName("themeProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setThemePtr, NIL)
+      setTheme(value)
     }
 
   /**
@@ -661,14 +568,11 @@ public open class Window : Viewport() {
    * [Control.themeTypeVariation] for more details.
    */
   public var themeTypeVariation: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("themeTypeVariationProperty")
+    get() = getThemeTypeVariation()
+    @JvmName("themeTypeVariationProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setThemeTypeVariationPtr, NIL)
+      setThemeTypeVariation(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -813,6 +717,17 @@ public open class Window : Viewport() {
     throw NotImplementedError("_get_contents_minimum_size is not implemented for Window")
   }
 
+  public fun setTitle(title: String): Unit {
+    TransferContext.writeArguments(STRING to title)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+  }
+
+  public fun getTitle(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Returns the ID of the window.
    */
@@ -822,6 +737,39 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun setInitialPosition(initialPosition: WindowInitialPosition): Unit {
+    TransferContext.writeArguments(LONG to initialPosition.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInitialPositionPtr, NIL)
+  }
+
+  public fun getInitialPosition(): WindowInitialPosition {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInitialPositionPtr, LONG)
+    return Window.WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setCurrentScreen(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentScreenPtr, NIL)
+  }
+
+  public fun getCurrentScreen(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentScreenPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPosition(position: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+  }
+
+  public fun getPosition(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
   /**
    * Centers a native window on the current screen and an embedded window on its embedder
    * [Viewport].
@@ -829,6 +777,17 @@ public open class Window : Viewport() {
   public fun moveToCenter(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.moveToCenterPtr, NIL)
+  }
+
+  public fun setSize(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public fun getSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
   /**
@@ -861,6 +820,56 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
   }
 
+  public fun setMaxSize(maxSize: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to maxSize)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxSizePtr, NIL)
+  }
+
+  public fun getMaxSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setMinSize(minSize: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to minSize)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinSizePtr, NIL)
+  }
+
+  public fun getMinSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setMode(mode: Mode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+  }
+
+  public fun getMode(): Mode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return Window.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets a specified window flag.
+   */
+  public fun setFlag(flag: Flags, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the [flag] is set.
+   */
+  public fun getFlag(flag: Flags): Boolean {
+    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns `true` if the window can be maximized (the maximize button is enabled).
    */
@@ -887,6 +896,17 @@ public open class Window : Viewport() {
     TransferContext.callMethod(rawPtr, MethodBindings.moveToForegroundPtr, NIL)
   }
 
+  public fun setVisible(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+  }
+
+  public fun isVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Hides the window. This is not the same as minimized state. Hidden window can't be interacted
    * with and needs to be made visible with [show].
@@ -903,6 +923,39 @@ public open class Window : Viewport() {
   public fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.showPtr, NIL)
+  }
+
+  public fun setTransient(transient: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to transient)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransientPtr, NIL)
+  }
+
+  public fun isTransient(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isTransientPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTransientToFocused(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransientToFocusedPtr, NIL)
+  }
+
+  public fun isTransientToFocused(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isTransientToFocusedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setExclusive(exclusive: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to exclusive)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExclusivePtr, NIL)
+  }
+
+  public fun isExclusive(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isExclusivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -977,6 +1030,83 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
+  public fun setForceNative(forceNative: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to forceNative)
+    TransferContext.callMethod(rawPtr, MethodBindings.setForceNativePtr, NIL)
+  }
+
+  public fun getForceNative(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getForceNativePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setContentScaleSize(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleSizePtr, NIL)
+  }
+
+  public fun getContentScaleSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setContentScaleMode(mode: ContentScaleMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleModePtr, NIL)
+  }
+
+  public fun getContentScaleMode(): ContentScaleMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleModePtr, LONG)
+    return Window.ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setContentScaleAspect(aspect: ContentScaleAspect): Unit {
+    TransferContext.writeArguments(LONG to aspect.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleAspectPtr, NIL)
+  }
+
+  public fun getContentScaleAspect(): ContentScaleAspect {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleAspectPtr, LONG)
+    return Window.ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setContentScaleStretch(stretch: ContentScaleStretch): Unit {
+    TransferContext.writeArguments(LONG to stretch.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleStretchPtr, NIL)
+  }
+
+  public fun getContentScaleStretch(): ContentScaleStretch {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleStretchPtr, LONG)
+    return Window.ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setKeepTitleVisible(titleVisible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to titleVisible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeepTitleVisiblePtr, NIL)
+  }
+
+  public fun getKeepTitleVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeepTitleVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setContentScaleFactor(factor: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to factor.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setContentScaleFactorPtr, NIL)
+  }
+
+  public fun getContentScaleFactor(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getContentScaleFactorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * Enables font oversampling. This makes fonts look better when they are scaled up.
    */
@@ -994,12 +1124,57 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setMousePassthroughPolygon(polygon: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMousePassthroughPolygonPtr, NIL)
+  }
+
+  public fun getMousePassthroughPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMousePassthroughPolygonPtr,
+        PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+  }
+
+  public fun setWrapControls(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setWrapControlsPtr, NIL)
+  }
+
+  public fun isWrappingControls(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isWrappingControlsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Requests an update of the [Window] size to fit underlying [Control] nodes.
    */
   public fun childControlsChanged(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.childControlsChangedPtr, NIL)
+  }
+
+  public fun setTheme(theme: Theme?): Unit {
+    TransferContext.writeArguments(OBJECT to theme)
+    TransferContext.callMethod(rawPtr, MethodBindings.setThemePtr, NIL)
+  }
+
+  public fun getTheme(): Theme? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThemePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
+  }
+
+  public fun setThemeTypeVariation(themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, MethodBindings.setThemeTypeVariationPtr, NIL)
+  }
+
+  public fun getThemeTypeVariation(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   /**
@@ -1025,7 +1200,7 @@ public open class Window : Viewport() {
    * [removeThemeIconOverride].
    * See also [getThemeIcon].
    */
-  public fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
+  public fun addThemeIconOverride(name: StringName, texture: Texture2D?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.addThemeIconOverridePtr, NIL)
   }
@@ -1036,7 +1211,7 @@ public open class Window : Viewport() {
    * [removeThemeStyleboxOverride].
    * See also [getThemeStylebox] and [Control.addThemeStyleboxOverride] for more details.
    */
-  public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
+  public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
     TransferContext.callMethod(rawPtr, MethodBindings.addThemeStyleboxOverridePtr, NIL)
   }
@@ -1047,7 +1222,7 @@ public open class Window : Viewport() {
    * [removeThemeFontOverride].
    * See also [getThemeFont].
    */
-  public fun addThemeFontOverride(name: StringName, font: Font): Unit {
+  public fun addThemeFontOverride(name: StringName, font: Font?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.addThemeFontOverridePtr, NIL)
   }
@@ -1409,6 +1584,17 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public fun setAutoTranslate(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslatePtr, NIL)
+  }
+
+  public fun isAutoTranslating(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoTranslatingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Shows the [Window] and makes it transient (see [transient]). If [rect] is provided, it will be
    * set as the [Window]'s size. Fails if called on the main window.
@@ -1480,7 +1666,7 @@ public open class Window : Viewport() {
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
-  public fun popupExclusive(fromNode: Node, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
+  public fun popupExclusive(fromNode: Node?, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, RECT2I to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.popupExclusivePtr, NIL)
   }
@@ -1491,7 +1677,7 @@ public open class Window : Viewport() {
    * fails.
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
-  public fun popupExclusiveOnParent(fromNode: Node, parentRect: Rect2i): Unit {
+  public fun popupExclusiveOnParent(fromNode: Node?, parentRect: Rect2i): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, RECT2I to parentRect)
     TransferContext.callMethod(rawPtr, MethodBindings.popupExclusiveOnParentPtr, NIL)
   }
@@ -1503,7 +1689,7 @@ public open class Window : Viewport() {
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
-  public fun popupExclusiveCentered(fromNode: Node, minsize: Vector2i = Vector2i(0, 0)): Unit {
+  public fun popupExclusiveCentered(fromNode: Node?, minsize: Vector2i = Vector2i(0, 0)): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, VECTOR2I to minsize)
     TransferContext.callMethod(rawPtr, MethodBindings.popupExclusiveCenteredPtr, NIL)
   }
@@ -1515,7 +1701,7 @@ public open class Window : Viewport() {
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
-  public fun popupExclusiveCenteredRatio(fromNode: Node, ratio: Float = 0.8f): Unit {
+  public fun popupExclusiveCenteredRatio(fromNode: Node?, ratio: Float = 0.8f): Unit {
     TransferContext.writeArguments(OBJECT to fromNode, DOUBLE to ratio.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.popupExclusiveCenteredRatioPtr, NIL)
   }
@@ -1528,7 +1714,7 @@ public open class Window : Viewport() {
    */
   @JvmOverloads
   public fun popupExclusiveCenteredClamped(
-    fromNode: Node,
+    fromNode: Node?,
     minsize: Vector2i = Vector2i(0, 0),
     fallbackRatio: Float = 0.75f,
   ): Unit {

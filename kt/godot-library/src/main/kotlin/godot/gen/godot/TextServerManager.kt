@@ -51,7 +51,7 @@ public object TextServerManager : Object() {
   /**
    * Registers a [TextServer] interface.
    */
-  public fun addInterface(_interface: TextServer): Unit {
+  public fun addInterface(_interface: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
   }
@@ -69,7 +69,7 @@ public object TextServerManager : Object() {
    * Removes an interface. All fonts and shaped text caches should be freed before removing an
    * interface.
    */
-  public fun removeInterface(_interface: TextServer): Unit {
+  public fun removeInterface(_interface: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
   }
@@ -104,7 +104,7 @@ public object TextServerManager : Object() {
   /**
    * Sets the primary [TextServer] interface.
    */
-  public fun setPrimaryInterface(index: TextServer): Unit {
+  public fun setPrimaryInterface(index: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to index)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }

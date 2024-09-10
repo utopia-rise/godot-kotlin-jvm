@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class generates noise using the FastNoiseLite library, which is a collection of several
@@ -38,28 +39,22 @@ public open class FastNoiseLite : Noise() {
    * The noise algorithm used. See [NoiseType].
    */
   public var noiseType: NoiseType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNoiseTypePtr, LONG)
-      return FastNoiseLite.NoiseType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("noiseTypeProperty")
+    get() = getNoiseType()
+    @JvmName("noiseTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNoiseTypePtr, NIL)
+      setNoiseType(value)
     }
 
   /**
    * The random number seed for all noise types.
    */
   public var seed: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSeedPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("seedProperty")
+    get() = getSeed()
+    @JvmName("seedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
+      setSeed(value)
     }
 
   /**
@@ -67,14 +62,11 @@ public open class FastNoiseLite : Noise() {
    * results in rougher, more granular noise.
    */
   public var frequency: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFrequencyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("frequencyProperty")
+    get() = getFrequency()
+    @JvmName("frequencyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFrequencyPtr, NIL)
+      setFrequency(value)
     }
 
   /**
@@ -82,42 +74,33 @@ public open class FastNoiseLite : Noise() {
    */
   @CoreTypeLocalCopy
   public var offset: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("offsetProperty")
+    get() = getOffset()
+    @JvmName("offsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(value)
     }
 
   /**
    * The method for combining octaves into a fractal. See [FractalType].
    */
   public var fractalType: FractalType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFractalTypePtr, LONG)
-      return FastNoiseLite.FractalType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("fractalTypeProperty")
+    get() = getFractalType()
+    @JvmName("fractalTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFractalTypePtr, NIL)
+      setFractalType(value)
     }
 
   /**
    * The number of noise layers that are sampled to get the final value for fractal noise types.
    */
   public var fractalOctaves: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFractalOctavesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("fractalOctavesProperty")
+    get() = getFractalOctaves()
+    @JvmName("fractalOctavesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFractalOctavesPtr, NIL)
+      setFractalOctaves(value)
     }
 
   /**
@@ -125,14 +108,11 @@ public open class FastNoiseLite : Noise() {
    * octaves producing noise with finer details and a rougher appearance.
    */
   public var fractalLacunarity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFractalLacunarityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("fractalLacunarityProperty")
+    get() = getFractalLacunarity()
+    @JvmName("fractalLacunarityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFractalLacunarityPtr, NIL)
+      setFractalLacunarity(value)
     }
 
   /**
@@ -141,42 +121,33 @@ public open class FastNoiseLite : Noise() {
    * more emphasis on the higher frequency layers.
    */
   public var fractalGain: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFractalGainPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("fractalGainProperty")
+    get() = getFractalGain()
+    @JvmName("fractalGainProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFractalGainPtr, NIL)
+      setFractalGain(value)
     }
 
   /**
    * Higher weighting means higher octaves have less impact if lower octaves have a large impact.
    */
   public var fractalWeightedStrength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFractalWeightedStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("fractalWeightedStrengthProperty")
+    get() = getFractalWeightedStrength()
+    @JvmName("fractalWeightedStrengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFractalWeightedStrengthPtr, NIL)
+      setFractalWeightedStrength(value)
     }
 
   /**
    * Sets the strength of the fractal ping pong type.
    */
   public var fractalPingPongStrength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFractalPingPongStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("fractalPingPongStrengthProperty")
+    get() = getFractalPingPongStrength()
+    @JvmName("fractalPingPongStrengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFractalPingPongStrengthPtr, NIL)
+      setFractalPingPongStrength(value)
     }
 
   /**
@@ -184,42 +155,33 @@ public open class FastNoiseLite : Noise() {
    * [CellularDistanceFunction] for options.
    */
   public var cellularDistanceFunction: CellularDistanceFunction
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellularDistanceFunctionPtr, LONG)
-      return FastNoiseLite.CellularDistanceFunction.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("cellularDistanceFunctionProperty")
+    get() = getCellularDistanceFunction()
+    @JvmName("cellularDistanceFunctionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellularDistanceFunctionPtr, NIL)
+      setCellularDistanceFunction(value)
     }
 
   /**
    * Maximum distance a point can move off of its grid position. Set to `0` for an even grid.
    */
   public var cellularJitter: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellularJitterPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("cellularJitterProperty")
+    get() = getCellularJitter()
+    @JvmName("cellularJitterProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellularJitterPtr, NIL)
+      setCellularJitter(value)
     }
 
   /**
    * Return type from cellular noise calculations. See [CellularReturnType].
    */
   public var cellularReturnType: CellularReturnType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellularReturnTypePtr, LONG)
-      return FastNoiseLite.CellularReturnType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("cellularReturnTypeProperty")
+    get() = getCellularReturnType()
+    @JvmName("cellularReturnTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellularReturnTypePtr, NIL)
+      setCellularReturnType(value)
     }
 
   /**
@@ -227,42 +189,33 @@ public open class FastNoiseLite : Noise() {
    * of the noise.
    */
   public var domainWarpEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDomainWarpEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("domainWarpEnabledProperty")
+    get() = isDomainWarpEnabled()
+    @JvmName("domainWarpEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpEnabledPtr, NIL)
+      setDomainWarpEnabled(value)
     }
 
   /**
    * Sets the warp algorithm. See [DomainWarpType].
    */
   public var domainWarpType: DomainWarpType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpTypePtr, LONG)
-      return FastNoiseLite.DomainWarpType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("domainWarpTypeProperty")
+    get() = getDomainWarpType()
+    @JvmName("domainWarpTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpTypePtr, NIL)
+      setDomainWarpType(value)
     }
 
   /**
    * Sets the maximum warp distance from the origin.
    */
   public var domainWarpAmplitude: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpAmplitudePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("domainWarpAmplitudeProperty")
+    get() = getDomainWarpAmplitude()
+    @JvmName("domainWarpAmplitudeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpAmplitudePtr, NIL)
+      setDomainWarpAmplitude(value)
     }
 
   /**
@@ -270,14 +223,11 @@ public open class FastNoiseLite : Noise() {
    * frequency results in rougher, more granular noise.
    */
   public var domainWarpFrequency: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFrequencyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("domainWarpFrequencyProperty")
+    get() = getDomainWarpFrequency()
+    @JvmName("domainWarpFrequencyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFrequencyPtr, NIL)
+      setDomainWarpFrequency(value)
     }
 
   /**
@@ -285,14 +235,11 @@ public open class FastNoiseLite : Noise() {
    * [DomainWarpFractalType].
    */
   public var domainWarpFractalType: DomainWarpFractalType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalTypePtr, LONG)
-      return FastNoiseLite.DomainWarpFractalType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("domainWarpFractalTypeProperty")
+    get() = getDomainWarpFractalType()
+    @JvmName("domainWarpFractalTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalTypePtr, NIL)
+      setDomainWarpFractalType(value)
     }
 
   /**
@@ -300,14 +247,11 @@ public open class FastNoiseLite : Noise() {
    * warps the space.
    */
   public var domainWarpFractalOctaves: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalOctavesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("domainWarpFractalOctavesProperty")
+    get() = getDomainWarpFractalOctaves()
+    @JvmName("domainWarpFractalOctavesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalOctavesPtr, NIL)
+      setDomainWarpFractalOctaves(value)
     }
 
   /**
@@ -315,14 +259,11 @@ public open class FastNoiseLite : Noise() {
    * higher octaves producing noise with finer details and a rougher appearance.
    */
   public var domainWarpFractalLacunarity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalLacunarityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("domainWarpFractalLacunarityProperty")
+    get() = getDomainWarpFractalLacunarity()
+    @JvmName("domainWarpFractalLacunarityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalLacunarityPtr, NIL)
+      setDomainWarpFractalLacunarity(value)
     }
 
   /**
@@ -331,14 +272,11 @@ public open class FastNoiseLite : Noise() {
    * more emphasis on the higher frequency layers.
    */
   public var domainWarpFractalGain: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalGainPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("domainWarpFractalGainProperty")
+    get() = getDomainWarpFractalGain()
+    @JvmName("domainWarpFractalGainProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalGainPtr, NIL)
+      setDomainWarpFractalGain(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -368,6 +306,237 @@ public open class FastNoiseLite : Noise() {
       offset = this
   }
 
+
+  public fun setNoiseType(type: NoiseType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNoiseTypePtr, NIL)
+  }
+
+  public fun getNoiseType(): NoiseType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNoiseTypePtr, LONG)
+    return FastNoiseLite.NoiseType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSeed(seed: Int): Unit {
+    TransferContext.writeArguments(LONG to seed.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
+  }
+
+  public fun getSeed(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSeedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFrequency(freq: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to freq.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFrequencyPtr, NIL)
+  }
+
+  public fun getFrequency(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFrequencyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setOffset(offset: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+  }
+
+  public fun getOffset(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setFractalType(type: FractalType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFractalTypePtr, NIL)
+  }
+
+  public fun getFractalType(): FractalType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFractalTypePtr, LONG)
+    return FastNoiseLite.FractalType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setFractalOctaves(octaveCount: Int): Unit {
+    TransferContext.writeArguments(LONG to octaveCount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFractalOctavesPtr, NIL)
+  }
+
+  public fun getFractalOctaves(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFractalOctavesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFractalLacunarity(lacunarity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to lacunarity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFractalLacunarityPtr, NIL)
+  }
+
+  public fun getFractalLacunarity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFractalLacunarityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFractalGain(gain: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to gain.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFractalGainPtr, NIL)
+  }
+
+  public fun getFractalGain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFractalGainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFractalWeightedStrength(weightedStrength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to weightedStrength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFractalWeightedStrengthPtr, NIL)
+  }
+
+  public fun getFractalWeightedStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFractalWeightedStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFractalPingPongStrength(pingPongStrength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pingPongStrength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFractalPingPongStrengthPtr, NIL)
+  }
+
+  public fun getFractalPingPongStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFractalPingPongStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setCellularDistanceFunction(func: CellularDistanceFunction): Unit {
+    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellularDistanceFunctionPtr, NIL)
+  }
+
+  public fun getCellularDistanceFunction(): CellularDistanceFunction {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellularDistanceFunctionPtr, LONG)
+    return FastNoiseLite.CellularDistanceFunction.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setCellularJitter(jitter: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to jitter.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellularJitterPtr, NIL)
+  }
+
+  public fun getCellularJitter(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellularJitterPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setCellularReturnType(ret: CellularReturnType): Unit {
+    TransferContext.writeArguments(LONG to ret.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellularReturnTypePtr, NIL)
+  }
+
+  public fun getCellularReturnType(): CellularReturnType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellularReturnTypePtr, LONG)
+    return FastNoiseLite.CellularReturnType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDomainWarpEnabled(domainWarpEnabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to domainWarpEnabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpEnabledPtr, NIL)
+  }
+
+  public fun isDomainWarpEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDomainWarpEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDomainWarpType(domainWarpType: DomainWarpType): Unit {
+    TransferContext.writeArguments(LONG to domainWarpType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpTypePtr, NIL)
+  }
+
+  public fun getDomainWarpType(): DomainWarpType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpTypePtr, LONG)
+    return FastNoiseLite.DomainWarpType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDomainWarpAmplitude(domainWarpAmplitude: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to domainWarpAmplitude.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpAmplitudePtr, NIL)
+  }
+
+  public fun getDomainWarpAmplitude(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpAmplitudePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDomainWarpFrequency(domainWarpFrequency: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to domainWarpFrequency.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFrequencyPtr, NIL)
+  }
+
+  public fun getDomainWarpFrequency(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFrequencyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDomainWarpFractalType(domainWarpFractalType: DomainWarpFractalType): Unit {
+    TransferContext.writeArguments(LONG to domainWarpFractalType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalTypePtr, NIL)
+  }
+
+  public fun getDomainWarpFractalType(): DomainWarpFractalType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalTypePtr, LONG)
+    return FastNoiseLite.DomainWarpFractalType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setDomainWarpFractalOctaves(domainWarpOctaveCount: Int): Unit {
+    TransferContext.writeArguments(LONG to domainWarpOctaveCount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalOctavesPtr, NIL)
+  }
+
+  public fun getDomainWarpFractalOctaves(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalOctavesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setDomainWarpFractalLacunarity(domainWarpLacunarity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to domainWarpLacunarity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalLacunarityPtr, NIL)
+  }
+
+  public fun getDomainWarpFractalLacunarity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalLacunarityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDomainWarpFractalGain(domainWarpGain: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to domainWarpGain.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDomainWarpFractalGainPtr, NIL)
+  }
+
+  public fun getDomainWarpFractalGain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDomainWarpFractalGainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
 
   public enum class NoiseType(
     id: Long,

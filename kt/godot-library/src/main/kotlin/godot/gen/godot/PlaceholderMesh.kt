@@ -34,11 +34,11 @@ public open class PlaceholderMesh : Mesh() {
    */
   @CoreTypeLocalCopy
   public var aabb: AABB
-    @JvmName("getAabb_prop")
-    get() = super.getAabb()
+    @JvmName("aabbProperty")
+    get() = getAabb()
+    @JvmName("aabbProperty")
     set(`value`) {
-      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+      setAabb(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -68,6 +68,11 @@ public open class PlaceholderMesh : Mesh() {
       aabb = this
   }
 
+
+  public fun setAabb(aabb: AABB): Unit {
+    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+  }
 
   public companion object
 

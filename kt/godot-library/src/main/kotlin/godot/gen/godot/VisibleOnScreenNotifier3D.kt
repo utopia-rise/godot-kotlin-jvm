@@ -51,11 +51,11 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    */
   @CoreTypeLocalCopy
   public var aabb: AABB
-    @JvmName("getAabb_prop")
-    get() = super.getAabb()
+    @JvmName("aabbProperty")
+    get() = getAabb()
+    @JvmName("aabbProperty")
     set(`value`) {
-      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+      setAabb(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -85,6 +85,11 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
       aabb = this
   }
 
+
+  public fun setAabb(rect: AABB): Unit {
+    TransferContext.writeArguments(godot.core.VariantType.AABB to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+  }
 
   /**
    * Returns `true` if the bounding box is on the screen.

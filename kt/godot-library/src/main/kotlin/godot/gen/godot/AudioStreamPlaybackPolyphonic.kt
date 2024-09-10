@@ -50,7 +50,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    */
   @JvmOverloads
   public fun playStream(
-    stream: AudioStream,
+    stream: AudioStream?,
     fromOffset: Float = 0.0f,
     volumeDb: Float = 0.0f,
     pitchScale: Float = 1.0f,

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * InputEventMIDI stores information about messages from
@@ -88,14 +89,11 @@ public open class InputEventMIDI : InputEvent() {
    * percussion instruments.
    */
   public var channel: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getChannelPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("channelProperty")
+    get() = getChannel()
+    @JvmName("channelProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setChannelPtr, NIL)
+      setChannel(value)
     }
 
   /**
@@ -105,14 +103,11 @@ public open class InputEventMIDI : InputEvent() {
    * message status byte list chart[/url].
    */
   public var message: MIDIMessage
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, LONG)
-      return MIDIMessage.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("messageProperty")
+    get() = getMessage()
+    @JvmName("messageProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMessagePtr, NIL)
+      setMessage(value)
     }
 
   /**
@@ -123,14 +118,11 @@ public open class InputEventMIDI : InputEvent() {
    * list.
    */
   public var pitch: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPitchPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("pitchProperty")
+    get() = getPitch()
+    @JvmName("pitchProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPitchPtr, NIL)
+      setPitch(value)
     }
 
   /**
@@ -147,14 +139,11 @@ public open class InputEventMIDI : InputEvent() {
    * [/codeblock]
    */
   public var velocity: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("velocityProperty")
+    get() = getVelocity()
+    @JvmName("velocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+      setVelocity(value)
     }
 
   /**
@@ -166,14 +155,11 @@ public open class InputEventMIDI : InputEvent() {
    * `0` corresponds to the acoustic grand piano.
    */
   public var instrument: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInstrumentPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("instrumentProperty")
+    get() = getInstrument()
+    @JvmName("instrumentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInstrumentPtr, NIL)
+      setInstrument(value)
     }
 
   /**
@@ -182,14 +168,11 @@ public open class InputEventMIDI : InputEvent() {
    * may simulate pressure by changing the [velocity], instead.
    */
   public var pressure: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("pressureProperty")
+    get() = getPressure()
+    @JvmName("pressureProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+      setPressure(value)
     }
 
   /**
@@ -200,14 +183,11 @@ public open class InputEventMIDI : InputEvent() {
    * for a small list.
    */
   public var controllerNumber: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getControllerNumberPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("controllerNumberProperty")
+    get() = getControllerNumber()
+    @JvmName("controllerNumberProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setControllerNumberPtr, NIL)
+      setControllerNumber(value)
     }
 
   /**
@@ -215,18 +195,103 @@ public open class InputEventMIDI : InputEvent() {
    * ranges from `0` to `127`, otherwise it is `0`. See also [controllerValue].
    */
   public var controllerValue: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getControllerValuePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("controllerValueProperty")
+    get() = getControllerValue()
+    @JvmName("controllerValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setControllerValuePtr, NIL)
+      setControllerValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMIDI, scriptIndex)
+  }
+
+  public fun setChannel(channel: Int): Unit {
+    TransferContext.writeArguments(LONG to channel.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setChannelPtr, NIL)
+  }
+
+  public fun getChannel(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getChannelPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setMessage(message: MIDIMessage): Unit {
+    TransferContext.writeArguments(LONG to message.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMessagePtr, NIL)
+  }
+
+  public fun getMessage(): MIDIMessage {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, LONG)
+    return MIDIMessage.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setPitch(pitch: Int): Unit {
+    TransferContext.writeArguments(LONG to pitch.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPitchPtr, NIL)
+  }
+
+  public fun getPitch(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPitchPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setVelocity(velocity: Int): Unit {
+    TransferContext.writeArguments(LONG to velocity.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+  }
+
+  public fun getVelocity(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setInstrument(instrument: Int): Unit {
+    TransferContext.writeArguments(LONG to instrument.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInstrumentPtr, NIL)
+  }
+
+  public fun getInstrument(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInstrumentPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPressure(pressure: Int): Unit {
+    TransferContext.writeArguments(LONG to pressure.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+  }
+
+  public fun getPressure(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setControllerNumber(controllerNumber: Int): Unit {
+    TransferContext.writeArguments(LONG to controllerNumber.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setControllerNumberPtr, NIL)
+  }
+
+  public fun getControllerNumber(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getControllerNumberPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setControllerValue(controllerValue: Int): Unit {
+    TransferContext.writeArguments(LONG to controllerValue.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setControllerValuePtr, NIL)
+  }
+
+  public fun getControllerValue(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getControllerValuePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

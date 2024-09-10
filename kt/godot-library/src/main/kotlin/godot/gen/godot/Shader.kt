@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -42,14 +43,11 @@ public open class Shader : Resource() {
    * internally.
    */
   public var code: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("codeProperty")
+    get() = getCode()
+    @JvmName("codeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
+      setCode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -65,6 +63,17 @@ public open class Shader : Resource() {
     return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public fun setCode(code: String): Unit {
+    TransferContext.writeArguments(STRING to code)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
+  }
+
+  public fun getCode(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Sets the default texture to be used with a texture uniform. The default is used if a texture is
    * not set in the [ShaderMaterial].
@@ -74,7 +83,7 @@ public open class Shader : Resource() {
   @JvmOverloads
   public fun setDefaultTextureParameter(
     name: StringName,
-    texture: Texture2D,
+    texture: Texture2D?,
     index: Int = 0,
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index.toLong())

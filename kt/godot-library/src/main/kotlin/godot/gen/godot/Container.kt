@@ -78,7 +78,7 @@ public open class Container : Control() {
    * Fit a child control in a given rect. This is mainly a helper for creating custom container
    * classes.
    */
-  public fun fitChildInRect(child: Control, rect: Rect2): Unit {
+  public fun fitChildInRect(child: Control?, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.fitChildInRectPtr, NIL)
   }

@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -42,60 +43,59 @@ public open class Curve : Resource() {
    * The minimum value the curve can reach.
    */
   public var minValue: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinValuePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("minValueProperty")
+    get() = getMinValue()
+    @JvmName("minValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinValuePtr, NIL)
+      setMinValue(value)
     }
 
   /**
    * The maximum value the curve can reach.
    */
   public var maxValue: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxValuePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("maxValueProperty")
+    get() = getMaxValue()
+    @JvmName("maxValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxValuePtr, NIL)
+      setMaxValue(value)
     }
 
   /**
    * The number of points to include in the baked (i.e. cached) curve data.
    */
   public var bakeResolution: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakeResolutionPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("bakeResolutionProperty")
+    get() = getBakeResolution()
+    @JvmName("bakeResolutionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeResolutionPtr, NIL)
+      setBakeResolution(value)
     }
 
   /**
    * The number of points describing the curve.
    */
   public var pointCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("pointCountProperty")
+    get() = getPointCount()
+    @JvmName("pointCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
+      setPointCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CURVE, scriptIndex)
+  }
+
+  public fun getPointCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPointCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
   }
 
   /**
@@ -245,6 +245,28 @@ public open class Curve : Resource() {
     TransferContext.callMethod(rawPtr, MethodBindings.setPointRightModePtr, NIL)
   }
 
+  public fun getMinValue(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinValuePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMinValue(min: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to min.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinValuePtr, NIL)
+  }
+
+  public fun getMaxValue(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxValuePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setMaxValue(max: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to max.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxValuePtr, NIL)
+  }
+
   /**
    * Removes duplicate points, i.e. points that are less than 0.00001 units (engine epsilon value)
    * away from their neighbor on the curve.
@@ -260,6 +282,17 @@ public open class Curve : Resource() {
   public fun bake(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
+  }
+
+  public fun getBakeResolution(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakeResolutionPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setBakeResolution(resolution: Int): Unit {
+    TransferContext.writeArguments(LONG to resolution.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeResolutionPtr, NIL)
   }
 
   public enum class TangentMode(

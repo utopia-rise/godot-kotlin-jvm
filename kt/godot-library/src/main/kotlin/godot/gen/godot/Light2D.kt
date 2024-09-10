@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see
@@ -36,28 +37,22 @@ public open class Light2D internal constructor() : Node2D() {
    * If `true`, Light2D will emit light.
    */
   public var enabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enabledProperty")
+    get() = isEnabled()
+    @JvmName("enabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+      setEnabled(value)
     }
 
   /**
    * If `true`, Light2D will only appear when editing the scene.
    */
   public var editorOnly: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("editorOnlyProperty")
+    get() = isEditorOnly()
+    @JvmName("editorOnlyProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+      setEditorOnly(value)
     }
 
   /**
@@ -65,98 +60,77 @@ public open class Light2D internal constructor() : Node2D() {
    */
   @CoreTypeLocalCopy
   public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("colorProperty")
+    get() = getColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
    * The Light2D's energy value. The larger the value, the stronger the light.
    */
   public var energy: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("energyProperty")
+    get() = getEnergy()
+    @JvmName("energyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
+      setEnergy(value)
     }
 
   /**
    * The Light2D's blend mode. See [BlendMode] constants for values.
    */
   public var blendMode: BlendMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-      return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("blendModeProperty")
+    get() = getBlendMode()
+    @JvmName("blendModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+      setBlendMode(value)
     }
 
   /**
    * Minimum `z` value of objects that are affected by the Light2D.
    */
   public var rangeZMin: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMinPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("rangeZMinProperty")
+    get() = getZRangeMin()
+    @JvmName("rangeZMinProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMinPtr, NIL)
+      setZRangeMin(value)
     }
 
   /**
    * Maximum `z` value of objects that are affected by the Light2D.
    */
   public var rangeZMax: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMaxPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("rangeZMaxProperty")
+    get() = getZRangeMax()
+    @JvmName("rangeZMaxProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMaxPtr, NIL)
+      setZRangeMax(value)
     }
 
   /**
    * Minimum layer value of objects that are affected by the Light2D.
    */
   public var rangeLayerMin: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMinPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("rangeLayerMinProperty")
+    get() = getLayerRangeMin()
+    @JvmName("rangeLayerMinProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMinPtr, NIL)
+      setLayerRangeMin(value)
     }
 
   /**
    * Maximum layer value of objects that are affected by the Light2D.
    */
   public var rangeLayerMax: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMaxPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("rangeLayerMaxProperty")
+    get() = getLayerRangeMax()
+    @JvmName("rangeLayerMaxProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMaxPtr, NIL)
+      setLayerRangeMax(value)
     }
 
   /**
@@ -166,28 +140,22 @@ public open class Light2D internal constructor() : Node2D() {
    * node regardless of the 2D node's [CanvasItem.lightMask].
    */
   public var rangeItemCullMask: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemCullMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("rangeItemCullMaskProperty")
+    get() = getItemCullMask()
+    @JvmName("rangeItemCullMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemCullMaskPtr, NIL)
+      setItemCullMask(value)
     }
 
   /**
    * If `true`, the Light2D will cast shadows.
    */
   public var shadowEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isShadowEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("shadowEnabledProperty")
+    get() = isShadowEnabled()
+    @JvmName("shadowEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowEnabledPtr, NIL)
+      setShadowEnabled(value)
     }
 
   /**
@@ -195,28 +163,22 @@ public open class Light2D internal constructor() : Node2D() {
    */
   @CoreTypeLocalCopy
   public var shadowColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+    @JvmName("shadowColorProperty")
+    get() = getShadowColor()
+    @JvmName("shadowColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+      setShadowColor(value)
     }
 
   /**
    * Shadow filter type. See [ShadowFilter] for possible values.
    */
   public var shadowFilter: ShadowFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowFilterPtr, LONG)
-      return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("shadowFilterProperty")
+    get() = getShadowFilter()
+    @JvmName("shadowFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowFilterPtr, NIL)
+      setShadowFilter(value)
     }
 
   /**
@@ -225,14 +187,11 @@ public open class Light2D internal constructor() : Node2D() {
    * [shadowFilter] is [SHADOW_FILTER_PCF5] or [SHADOW_FILTER_PCF13].
    */
   public var shadowFilterSmooth: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowSmoothPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("shadowFilterSmoothProperty")
+    get() = getShadowSmooth()
+    @JvmName("shadowFilterSmoothProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowSmoothPtr, NIL)
+      setShadowSmooth(value)
     }
 
   /**
@@ -241,14 +200,11 @@ public open class Light2D internal constructor() : Node2D() {
    * objects can *receive* the light.
    */
   public var shadowItemCullMask: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemShadowCullMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("shadowItemCullMaskProperty")
+    get() = getItemShadowCullMask()
+    @JvmName("shadowItemCullMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemShadowCullMaskPtr, NIL)
+      setItemShadowCullMask(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -302,6 +258,171 @@ public open class Light2D internal constructor() : Node2D() {
       shadowColor = this
   }
 
+
+  public fun setEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+  }
+
+  public fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEditorOnly(editorOnly: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to editorOnly)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+  }
+
+  public fun isEditorOnly(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setEnergy(energy: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to energy.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
+  }
+
+  public fun getEnergy(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setZRangeMin(z: Int): Unit {
+    TransferContext.writeArguments(LONG to z.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMinPtr, NIL)
+  }
+
+  public fun getZRangeMin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMinPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setZRangeMax(z: Int): Unit {
+    TransferContext.writeArguments(LONG to z.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMaxPtr, NIL)
+  }
+
+  public fun getZRangeMax(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMaxPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setLayerRangeMin(layer: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMinPtr, NIL)
+  }
+
+  public fun getLayerRangeMin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMinPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setLayerRangeMax(layer: Int): Unit {
+    TransferContext.writeArguments(LONG to layer.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMaxPtr, NIL)
+  }
+
+  public fun getLayerRangeMax(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMaxPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setItemCullMask(itemCullMask: Int): Unit {
+    TransferContext.writeArguments(LONG to itemCullMask.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCullMaskPtr, NIL)
+  }
+
+  public fun getItemCullMask(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCullMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setItemShadowCullMask(itemShadowCullMask: Int): Unit {
+    TransferContext.writeArguments(LONG to itemShadowCullMask.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemShadowCullMaskPtr, NIL)
+  }
+
+  public fun getItemShadowCullMask(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemShadowCullMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setShadowEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowEnabledPtr, NIL)
+  }
+
+  public fun isShadowEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isShadowEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setShadowSmooth(smooth: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to smooth.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowSmoothPtr, NIL)
+  }
+
+  public fun getShadowSmooth(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowSmoothPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setShadowFilter(filter: ShadowFilter): Unit {
+    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowFilterPtr, NIL)
+  }
+
+  public fun getShadowFilter(): ShadowFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowFilterPtr, LONG)
+    return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setShadowColor(shadowColor: Color): Unit {
+    TransferContext.writeArguments(COLOR to shadowColor)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+  }
+
+  public fun getShadowColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public fun setBlendMode(mode: BlendMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+  }
+
+  public fun getBlendMode(): BlendMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   /**
    * Sets the light's height, which is used in 2D normal mapping. See [PointLight2D.height] and

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node internally calls `emit_subparticle` shader method. It will emit a particle from the
@@ -28,18 +29,26 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
    * Flags used to override the properties defined in the sub-emitter's process material.
    */
   public var flags: EmitFlags
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
-      return VisualShaderNodeParticleEmit.EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("flagsProperty")
+    get() = getFlags()
+    @JvmName("flagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
+      setFlags(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT, scriptIndex)
+  }
+
+  public fun setFlags(flags: EmitFlags): Unit {
+    TransferContext.writeArguments(LONG to flags.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
+  }
+
+  public fun getFlags(): EmitFlags {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
+    return VisualShaderNodeParticleEmit.EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class EmitFlags(

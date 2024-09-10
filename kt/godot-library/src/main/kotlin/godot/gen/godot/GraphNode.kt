@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -59,14 +60,11 @@ public open class GraphNode : GraphElement() {
    * The text displayed in the GraphNode's title bar.
    */
   public var title: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("titleProperty")
+    get() = getTitle()
+    @JvmName("titleProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+      setTitle(value)
     }
 
   /**
@@ -74,14 +72,11 @@ public open class GraphNode : GraphElement() {
    * explicitly allowed in the parent [GraphEdit].
    */
   public var ignoreInvalidConnectionType: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringValidConnectionTypePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("ignoreInvalidConnectionTypeProperty")
+    get() = isIgnoringValidConnectionType()
+    @JvmName("ignoreInvalidConnectionTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreInvalidConnectionTypePtr, NIL)
+      setIgnoreInvalidConnectionType(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -94,6 +89,17 @@ public open class GraphNode : GraphElement() {
     left: Boolean,
     color: Color,
   ): Unit {
+  }
+
+  public fun setTitle(title: String): Unit {
+    TransferContext.writeArguments(STRING to title)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+  }
+
+  public fun getTitle(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
@@ -217,7 +223,7 @@ public open class GraphNode : GraphElement() {
    * Sets the custom [Texture2D] of the left (input) side of the slot with the given [slotIndex] to
    * [customIcon].
    */
-  public fun setSlotCustomIconLeft(slotIndex: Int, customIcon: Texture2D): Unit {
+  public fun setSlotCustomIconLeft(slotIndex: Int, customIcon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
     TransferContext.callMethod(rawPtr, MethodBindings.setSlotCustomIconLeftPtr, NIL)
   }
@@ -288,7 +294,7 @@ public open class GraphNode : GraphElement() {
    * Sets the custom [Texture2D] of the right (output) side of the slot with the given [slotIndex]
    * to [customIcon].
    */
-  public fun setSlotCustomIconRight(slotIndex: Int, customIcon: Texture2D): Unit {
+  public fun setSlotCustomIconRight(slotIndex: Int, customIcon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
     TransferContext.callMethod(rawPtr, MethodBindings.setSlotCustomIconRightPtr, NIL)
   }
@@ -317,6 +323,17 @@ public open class GraphNode : GraphElement() {
   public fun setSlotDrawStylebox(slotIndex: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSlotDrawStyleboxPtr, NIL)
+  }
+
+  public fun setIgnoreInvalidConnectionType(ignore: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ignore)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreInvalidConnectionTypePtr, NIL)
+  }
+
+  public fun isIgnoringValidConnectionType(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringValidConnectionTypePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

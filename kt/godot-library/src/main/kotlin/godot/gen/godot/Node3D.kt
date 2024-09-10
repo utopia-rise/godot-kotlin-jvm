@@ -37,6 +37,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -65,14 +66,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var transform: Transform3D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
-    }
+    @JvmName("transformProperty")
+    get() = getTransform()
+    @JvmName("transformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+      setTransform(value)
     }
 
   /**
@@ -80,14 +78,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var globalTransform: Transform3D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalTransformPtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
-    }
+    @JvmName("globalTransformProperty")
+    get() = getGlobalTransform()
+    @JvmName("globalTransformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
+      setGlobalTransform(value)
     }
 
   /**
@@ -96,14 +91,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var position: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("positionProperty")
+    get() = getPosition()
+    @JvmName("positionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+      setPosition(value)
     }
 
   /**
@@ -119,14 +111,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var rotation: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("rotationProperty")
+    get() = getRotation()
+    @JvmName("rotationProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+      setRotation(value)
     }
 
   /**
@@ -134,14 +123,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var rotationDegrees: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("rotationDegreesProperty")
+    get() = getRotationDegrees()
+    @JvmName("rotationDegreesProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
+      setRotationDegrees(value)
     }
 
   /**
@@ -150,14 +136,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var quaternion: Quaternion
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getQuaternionPtr, QUATERNION)
-      return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
-    }
+    @JvmName("quaternionProperty")
+    get() = getQuaternion()
+    @JvmName("quaternionProperty")
     set(`value`) {
-      TransferContext.writeArguments(QUATERNION to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setQuaternionPtr, NIL)
+      setQuaternion(value)
     }
 
   /**
@@ -165,14 +148,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var basis: Basis
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBasisPtr, BASIS)
-      return (TransferContext.readReturnValue(BASIS, false) as Basis)
-    }
+    @JvmName("basisProperty")
+    get() = getBasis()
+    @JvmName("basisProperty")
     set(`value`) {
-      TransferContext.writeArguments(BASIS to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBasisPtr, NIL)
+      setBasis(value)
     }
 
   /**
@@ -185,28 +165,22 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var scale: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("scaleProperty")
+    get() = getScale()
+    @JvmName("scaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+      setScale(value)
     }
 
   /**
    * Specify how rotation (and scale) will be presented in the editor.
    */
   public var rotationEditMode: RotationEditMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRotationEditModePtr, LONG)
-      return Node3D.RotationEditMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("rotationEditModeProperty")
+    get() = getRotationEditMode()
+    @JvmName("rotationEditModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRotationEditModePtr, NIL)
+      setRotationEditMode(value)
     }
 
   /**
@@ -214,14 +188,11 @@ public open class Node3D : Node() {
    * constructed by rotating the Euler angles in the order specified by this property.
    */
   public var rotationOrder: EulerOrder
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRotationOrderPtr, LONG)
-      return EulerOrder.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("rotationOrderProperty")
+    get() = getRotationOrder()
+    @JvmName("rotationOrderProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRotationOrderPtr, NIL)
+      setRotationOrder(value)
     }
 
   /**
@@ -229,14 +200,11 @@ public open class Node3D : Node() {
    * are only in global space.
    */
   public var topLevel: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSetAsTopLevelPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("topLevelProperty")
+    get() = isSetAsTopLevel()
+    @JvmName("topLevelProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAsTopLevelPtr, NIL)
+      setAsTopLevel(value)
     }
 
   /**
@@ -244,14 +212,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var globalPosition: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("globalPositionProperty")
+    get() = getGlobalPosition()
+    @JvmName("globalPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+      setGlobalPosition(value)
     }
 
   /**
@@ -259,14 +224,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var globalBasis: Basis
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalBasisPtr, BASIS)
-      return (TransferContext.readReturnValue(BASIS, false) as Basis)
-    }
+    @JvmName("globalBasisProperty")
+    get() = getGlobalBasis()
+    @JvmName("globalBasisProperty")
     set(`value`) {
-      TransferContext.writeArguments(BASIS to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalBasisPtr, NIL)
+      setGlobalBasis(value)
     }
 
   /**
@@ -280,14 +242,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var globalRotation: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("globalRotationProperty")
+    get() = getGlobalRotation()
+    @JvmName("globalRotationProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationPtr, NIL)
+      setGlobalRotation(value)
     }
 
   /**
@@ -295,14 +254,11 @@ public open class Node3D : Node() {
    */
   @CoreTypeLocalCopy
   public var globalRotationDegrees: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationDegreesPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+    @JvmName("globalRotationDegreesProperty")
+    get() = getGlobalRotationDegrees()
+    @JvmName("globalRotationDegreesProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
+      setGlobalRotationDegrees(value)
     }
 
   /**
@@ -310,14 +266,11 @@ public open class Node3D : Node() {
    * well (in other words, [isVisibleInTree] must return `true`).
    */
   public var visible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("visibleProperty")
+    get() = isVisible()
+    @JvmName("visibleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+      setVisible(value)
     }
 
   /**
@@ -329,14 +282,11 @@ public open class Node3D : Node() {
    * hidden node or its ancestors into account.
    */
   public var visibilityParent: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityParentPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("visibilityParentProperty")
+    get() = getVisibilityParent()
+    @JvmName("visibilityParentProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityParentPtr, NIL)
+      setVisibilityParent(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -654,6 +604,160 @@ public open class Node3D : Node() {
   }
 
 
+  public fun setTransform(local: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to local)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+  }
+
+  public fun getTransform(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  public fun setPosition(position: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+  }
+
+  public fun getPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setRotation(eulerRadians: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to eulerRadians)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+  }
+
+  public fun getRotation(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setRotationDegrees(eulerDegrees: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to eulerDegrees)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
+  }
+
+  public fun getRotationDegrees(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setRotationOrder(order: EulerOrder): Unit {
+    TransferContext.writeArguments(LONG to order.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRotationOrderPtr, NIL)
+  }
+
+  public fun getRotationOrder(): EulerOrder {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRotationOrderPtr, LONG)
+    return EulerOrder.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setRotationEditMode(editMode: RotationEditMode): Unit {
+    TransferContext.writeArguments(LONG to editMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRotationEditModePtr, NIL)
+  }
+
+  public fun getRotationEditMode(): RotationEditMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRotationEditModePtr, LONG)
+    return Node3D.RotationEditMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setScale(scale: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+  }
+
+  public fun getScale(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setQuaternion(quaternion: Quaternion): Unit {
+    TransferContext.writeArguments(QUATERNION to quaternion)
+    TransferContext.callMethod(rawPtr, MethodBindings.setQuaternionPtr, NIL)
+  }
+
+  public fun getQuaternion(): Quaternion {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getQuaternionPtr, QUATERNION)
+    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
+  }
+
+  public fun setBasis(basis: Basis): Unit {
+    TransferContext.writeArguments(BASIS to basis)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBasisPtr, NIL)
+  }
+
+  public fun getBasis(): Basis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBasisPtr, BASIS)
+    return (TransferContext.readReturnValue(BASIS, false) as Basis)
+  }
+
+  public fun setGlobalTransform(global: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to global)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
+  }
+
+  public fun getGlobalTransform(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalTransformPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  public fun setGlobalPosition(position: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to position)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+  }
+
+  public fun getGlobalPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setGlobalBasis(basis: Basis): Unit {
+    TransferContext.writeArguments(BASIS to basis)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalBasisPtr, NIL)
+  }
+
+  public fun getGlobalBasis(): Basis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalBasisPtr, BASIS)
+    return (TransferContext.readReturnValue(BASIS, false) as Basis)
+  }
+
+  public fun setGlobalRotation(eulerRadians: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to eulerRadians)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationPtr, NIL)
+  }
+
+  public fun getGlobalRotation(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public fun setGlobalRotationDegrees(eulerDegrees: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to eulerDegrees)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
+  }
+
+  public fun getGlobalRotationDegrees(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationDegreesPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
   /**
    * Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D],
    * or [topLevel] is `true`.
@@ -672,6 +776,17 @@ public open class Node3D : Node() {
   public fun setIgnoreTransformNotification(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreTransformNotificationPtr, NIL)
+  }
+
+  public fun setAsTopLevel(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAsTopLevelPtr, NIL)
+  }
+
+  public fun isSetAsTopLevel(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSetAsTopLevelPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -711,6 +826,17 @@ public open class Node3D : Node() {
     TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateTransformPtr, NIL)
   }
 
+  public fun setVisibilityParent(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityParentPtr, NIL)
+  }
+
+  public fun getVisibilityParent(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityParentPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
   /**
    * Updates all the [Node3D] gizmos attached to this node.
    */
@@ -724,7 +850,7 @@ public open class Node3D : Node() {
    * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
    * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
-  public fun addGizmo(gizmo: Node3DGizmo): Unit {
+  public fun addGizmo(gizmo: Node3DGizmo?): Unit {
     TransferContext.writeArguments(OBJECT to gizmo)
     TransferContext.callMethod(rawPtr, MethodBindings.addGizmoPtr, NIL)
   }
@@ -752,7 +878,7 @@ public open class Node3D : Node() {
    * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
   public fun setSubgizmoSelection(
-    gizmo: Node3DGizmo,
+    gizmo: Node3DGizmo?,
     id: Int,
     transform: Transform3D,
   ): Unit {
@@ -767,6 +893,17 @@ public open class Node3D : Node() {
   public fun clearSubgizmoSelection(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearSubgizmoSelectionPtr, NIL)
+  }
+
+  public fun setVisible(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+  }
+
+  public fun isVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

@@ -279,7 +279,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   public fun globalMenuAddIconItem(
     menuRoot: String,
-    icon: Texture2D,
+    icon: Texture2D?,
     label: String,
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
@@ -315,7 +315,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   public fun globalMenuAddIconCheckItem(
     menuRoot: String,
-    icon: Texture2D,
+    icon: Texture2D?,
     label: String,
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
@@ -391,7 +391,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   public fun globalMenuAddIconRadioCheckItem(
     menuRoot: String,
-    icon: Texture2D,
+    icon: Texture2D?,
     label: String,
     callback: Callable = Callable(),
     keyCallback: Callable = Callable(),
@@ -880,7 +880,7 @@ public object DisplayServer : Object() {
   public fun globalMenuSetItemIcon(
     menuRoot: String,
     idx: Int,
-    icon: Texture2D,
+    icon: Texture2D?,
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemIconPtr, NIL)
@@ -2172,7 +2172,7 @@ public object DisplayServer : Object() {
    */
   @JvmOverloads
   public fun cursorSetCustomImage(
-    cursor: Resource,
+    cursor: Resource?,
     shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
@@ -2411,7 +2411,7 @@ public object DisplayServer : Object() {
    * in the operating system's native format, use [setNativeIcon] instead.
    * **Note:** Requires support for [FEATURE_ICON].
    */
-  public fun setIcon(image: Image): Unit {
+  public fun setIcon(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
   }
@@ -2423,7 +2423,7 @@ public object DisplayServer : Object() {
    * constants) and the click position in screen coordinates (a [Vector2i]).
    */
   public fun createStatusIndicator(
-    icon: Texture2D,
+    icon: Texture2D?,
     tooltip: String,
     callback: Callable,
   ): Int {
@@ -2436,7 +2436,7 @@ public object DisplayServer : Object() {
    * Sets the application status indicator icon.
    * **Note:** This method is implemented on macOS and Windows.
    */
-  public fun statusIndicatorSetIcon(id: Int, icon: Texture2D): Unit {
+  public fun statusIndicatorSetIcon(id: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetIconPtr, NIL)
   }
@@ -2555,7 +2555,7 @@ public object DisplayServer : Object() {
    * [unregisterAdditionalOutput].
    * This can be used to prevent Godot from skipping rendering when no normal windows are visible.
    */
-  public fun registerAdditionalOutput(_object: Object): Unit {
+  public fun registerAdditionalOutput(_object: Object?): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, MethodBindings.registerAdditionalOutputPtr, NIL)
   }
@@ -2564,7 +2564,7 @@ public object DisplayServer : Object() {
    * Unregisters an [Object] representing an additional output, that was registered via
    * [registerAdditionalOutput].
    */
-  public fun unregisterAdditionalOutput(_object: Object): Unit {
+  public fun unregisterAdditionalOutput(_object: Object?): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
   }

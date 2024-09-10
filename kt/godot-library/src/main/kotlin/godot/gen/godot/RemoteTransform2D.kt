@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * RemoteTransform2D pushes its own [Transform2D] to another [Node2D] derived node (called the
@@ -31,74 +32,70 @@ public open class RemoteTransform2D : Node2D() {
    * The [NodePath] to the remote node, relative to the RemoteTransform2D's position in the scene.
    */
   public var remotePath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRemoteNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("remotePathProperty")
+    get() = getRemoteNode()
+    @JvmName("remotePathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRemoteNodePtr, NIL)
+      setRemoteNode(value)
     }
 
   /**
    * If `true`, global coordinates are used. If `false`, local coordinates are used.
    */
   public var useGlobalCoordinates: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseGlobalCoordinatesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useGlobalCoordinatesProperty")
+    get() = getUseGlobalCoordinates()
+    @JvmName("useGlobalCoordinatesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseGlobalCoordinatesPtr, NIL)
+      setUseGlobalCoordinates(value)
     }
 
   /**
    * If `true`, the remote node's position is updated.
    */
   public var updatePosition: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpdatePositionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("updatePositionProperty")
+    get() = getUpdatePosition()
+    @JvmName("updatePositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpdatePositionPtr, NIL)
+      setUpdatePosition(value)
     }
 
   /**
    * If `true`, the remote node's rotation is updated.
    */
   public var updateRotation: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateRotationPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("updateRotationProperty")
+    get() = getUpdateRotation()
+    @JvmName("updateRotationProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateRotationPtr, NIL)
+      setUpdateRotation(value)
     }
 
   /**
    * If `true`, the remote node's scale is updated.
    */
   public var updateScale: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateScalePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("updateScaleProperty")
+    get() = getUpdateScale()
+    @JvmName("updateScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateScalePtr, NIL)
+      setUpdateScale(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_REMOTETRANSFORM2D, scriptIndex)
+  }
+
+  public fun setRemoteNode(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRemoteNodePtr, NIL)
+  }
+
+  public fun getRemoteNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRemoteNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**
@@ -108,6 +105,50 @@ public open class RemoteTransform2D : Node2D() {
   public fun forceUpdateCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateCachePtr, NIL)
+  }
+
+  public fun setUseGlobalCoordinates(useGlobalCoordinates: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useGlobalCoordinates)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseGlobalCoordinatesPtr, NIL)
+  }
+
+  public fun getUseGlobalCoordinates(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseGlobalCoordinatesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setUpdatePosition(updateRemotePosition: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to updateRemotePosition)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpdatePositionPtr, NIL)
+  }
+
+  public fun getUpdatePosition(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpdatePositionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setUpdateRotation(updateRemoteRotation: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to updateRemoteRotation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateRotationPtr, NIL)
+  }
+
+  public fun getUpdateRotation(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateRotationPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setUpdateScale(updateRemoteScale: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to updateRemoteScale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateScalePtr, NIL)
+  }
+
+  public fun getUpdateScale(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateScalePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

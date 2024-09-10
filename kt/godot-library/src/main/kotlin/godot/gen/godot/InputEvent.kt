@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -43,18 +44,26 @@ public open class InputEvent internal constructor() : Resource() {
    * present on the system. See [DEVICE_ID_EMULATION].
    */
   public var device: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("deviceProperty")
+    get() = getDevice()
+    @JvmName("deviceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
+      setDevice(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENT, scriptIndex)
+  }
+
+  public fun setDevice(device: Int): Unit {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
+  }
+
+  public fun getDevice(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -182,7 +191,7 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
-  public fun isMatch(event: InputEvent, exactMatch: Boolean = true): Boolean {
+  public fun isMatch(event: InputEvent?, exactMatch: Boolean = true): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isMatchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -203,7 +212,7 @@ public open class InputEvent internal constructor() : Resource() {
    * The given input event's position, global position and speed will be copied. The resulting
    * `relative` is a sum of both events. Both events' modifiers have to be identical.
    */
-  public fun accumulate(withEvent: InputEvent): Boolean {
+  public fun accumulate(withEvent: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to withEvent)
     TransferContext.callMethod(rawPtr, MethodBindings.accumulatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

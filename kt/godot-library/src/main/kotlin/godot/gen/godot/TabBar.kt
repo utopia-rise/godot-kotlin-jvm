@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -94,28 +95,22 @@ public open class TabBar : Control() {
    * only be set when [deselectEnabled] is `true` or if all tabs are hidden or disabled.
    */
   public var currentTab: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurrentTabPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("currentTabProperty")
+    get() = getCurrentTab()
+    @JvmName("currentTabProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentTabPtr, NIL)
+      setCurrentTab(value)
     }
 
   /**
    * Sets the position at which tabs will be placed. See [AlignmentMode] for details.
    */
   public var tabAlignment: AlignmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabAlignmentPtr, LONG)
-      return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tabAlignmentProperty")
+    get() = getTabAlignment()
+    @JvmName("tabAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabAlignmentPtr, NIL)
+      setTabAlignment(value)
     }
 
   /**
@@ -123,70 +118,55 @@ public open class TabBar : Control() {
    * instead. Otherwise, this node's minimum size is updated so that all tabs are visible.
    */
   public var clipTabs: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClipTabsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("clipTabsProperty")
+    get() = getClipTabs()
+    @JvmName("clipTabsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClipTabsPtr, NIL)
+      setClipTabs(value)
     }
 
   /**
    * Sets when the close button will appear on the tabs. See [CloseButtonDisplayPolicy] for details.
    */
   public var tabCloseDisplayPolicy: CloseButtonDisplayPolicy
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabCloseDisplayPolicyPtr, LONG)
-      return TabBar.CloseButtonDisplayPolicy.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tabCloseDisplayPolicyProperty")
+    get() = getTabCloseDisplayPolicy()
+    @JvmName("tabCloseDisplayPolicyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabCloseDisplayPolicyPtr, NIL)
+      setTabCloseDisplayPolicy(value)
     }
 
   /**
    * Sets the maximum width which all tabs should be limited to. Unlimited if set to `0`.
    */
   public var maxTabWidth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxTabWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxTabWidthProperty")
+    get() = getMaxTabWidth()
+    @JvmName("maxTabWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxTabWidthPtr, NIL)
+      setMaxTabWidth(value)
     }
 
   /**
    * if `true`, the mouse's scroll wheel can be used to navigate the scroll view.
    */
   public var scrollingEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScrollingEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("scrollingEnabledProperty")
+    get() = getScrollingEnabled()
+    @JvmName("scrollingEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollingEnabledPtr, NIL)
+      setScrollingEnabled(value)
     }
 
   /**
    * If `true`, tabs can be rearranged with mouse drag.
    */
   public var dragToRearrangeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("dragToRearrangeEnabledProperty")
+    get() = getDragToRearrangeEnabled()
+    @JvmName("dragToRearrangeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDragToRearrangeEnabledPtr, NIL)
+      setDragToRearrangeEnabled(value)
     }
 
   /**
@@ -195,42 +175,33 @@ public open class TabBar : Control() {
    * Setting this to `-1` will disable rearranging between [TabBar]s.
    */
   public var tabsRearrangeGroup: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("tabsRearrangeGroupProperty")
+    get() = getTabsRearrangeGroup()
+    @JvmName("tabsRearrangeGroupProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabsRearrangeGroupPtr, NIL)
+      setTabsRearrangeGroup(value)
     }
 
   /**
    * If `true`, the tab offset will be changed to keep the currently selected tab visible.
    */
   public var scrollToSelected: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScrollToSelectedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("scrollToSelectedProperty")
+    get() = getScrollToSelected()
+    @JvmName("scrollToSelectedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollToSelectedPtr, NIL)
+      setScrollToSelected(value)
     }
 
   /**
    * If `true`, enables selecting a tab with the right mouse button.
    */
   public var selectWithRmb: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSelectWithRmbPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("selectWithRmbProperty")
+    get() = getSelectWithRmb()
+    @JvmName("selectWithRmbProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectWithRmbPtr, NIL)
+      setSelectWithRmb(value)
     }
 
   /**
@@ -238,32 +209,48 @@ public open class TabBar : Control() {
    * deselect it.
    */
   public var deselectEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("deselectEnabledProperty")
+    get() = getDeselectEnabled()
+    @JvmName("deselectEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
+      setDeselectEnabled(value)
     }
 
   /**
    * The number of tabs currently in the bar.
    */
   public var tabCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("tabCountProperty")
+    get() = getTabCount()
+    @JvmName("tabCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
+      setTabCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TABBAR, scriptIndex)
+  }
+
+  public fun setTabCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
+  }
+
+  public fun getTabCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setCurrentTab(tabIdx: Int): Unit {
+    TransferContext.writeArguments(LONG to tabIdx.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentTabPtr, NIL)
+  }
+
+  public fun getCurrentTab(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentTabPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -370,7 +357,7 @@ public open class TabBar : Control() {
   /**
    * Sets an [icon] for the tab at index [tabIdx].
    */
-  public fun setTabIcon(tabIdx: Int, icon: Texture2D): Unit {
+  public fun setTabIcon(tabIdx: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setTabIconPtr, NIL)
   }
@@ -408,7 +395,7 @@ public open class TabBar : Control() {
    * close button), making it visible and clickable (See [signal tab_button_pressed]). Giving it a
    * `null` value will hide the button.
    */
-  public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D): Unit {
+  public fun setTabButtonIcon(tabIdx: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setTabButtonIconPtr, NIL)
   }
@@ -503,6 +490,28 @@ public open class TabBar : Control() {
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public fun setTabAlignment(alignment: AlignmentMode): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabAlignmentPtr, NIL)
+  }
+
+  public fun getTabAlignment(): AlignmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabAlignmentPtr, LONG)
+    return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setClipTabs(clipTabs: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to clipTabs)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClipTabsPtr, NIL)
+  }
+
+  public fun getClipTabs(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClipTabsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns the number of hidden tabs offsetted to the left.
    */
@@ -545,6 +554,94 @@ public open class TabBar : Control() {
   public fun moveTab(from: Int, to: Int): Unit {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.moveTabPtr, NIL)
+  }
+
+  public fun setTabCloseDisplayPolicy(policy: CloseButtonDisplayPolicy): Unit {
+    TransferContext.writeArguments(LONG to policy.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabCloseDisplayPolicyPtr, NIL)
+  }
+
+  public fun getTabCloseDisplayPolicy(): CloseButtonDisplayPolicy {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabCloseDisplayPolicyPtr, LONG)
+    return TabBar.CloseButtonDisplayPolicy.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setMaxTabWidth(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxTabWidthPtr, NIL)
+  }
+
+  public fun getMaxTabWidth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxTabWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setScrollingEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollingEnabledPtr, NIL)
+  }
+
+  public fun getScrollingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScrollingEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDragToRearrangeEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDragToRearrangeEnabledPtr, NIL)
+  }
+
+  public fun getDragToRearrangeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setTabsRearrangeGroup(groupId: Int): Unit {
+    TransferContext.writeArguments(LONG to groupId.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTabsRearrangeGroupPtr, NIL)
+  }
+
+  public fun getTabsRearrangeGroup(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setScrollToSelected(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollToSelectedPtr, NIL)
+  }
+
+  public fun getScrollToSelected(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScrollToSelectedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSelectWithRmb(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectWithRmbPtr, NIL)
+  }
+
+  public fun getSelectWithRmb(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectWithRmbPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setDeselectEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
+  }
+
+  public fun getDeselectEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

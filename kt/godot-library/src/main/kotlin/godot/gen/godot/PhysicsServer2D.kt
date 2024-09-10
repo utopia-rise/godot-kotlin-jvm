@@ -1162,7 +1162,7 @@ public object PhysicsServer2D : Object() {
   @JvmOverloads
   public fun bodyTestMotion(
     body: RID,
-    parameters: PhysicsTestMotionParameters2D,
+    parameters: PhysicsTestMotionParameters2D?,
     result: PhysicsTestMotionResult2D? = null,
   ): Boolean {
     TransferContext.writeArguments(_RID to body, OBJECT to parameters, OBJECT to result)

@@ -69,14 +69,11 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
    */
   public var xfadeTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+    @JvmName("xfadeTimeProperty")
+    get() = getXfadeTime()
+    @JvmName("xfadeTimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
+      setXfadeTime(value)
     }
 
   /**
@@ -84,14 +81,11 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * linear.
    */
   public var xfadeCurve: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+    @JvmName("xfadeCurveProperty")
+    get() = getXfadeCurve()
+    @JvmName("xfadeCurveProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
+      setXfadeCurve(value)
     }
 
   /**
@@ -99,29 +93,31 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * animation is restarted. If `false`, nothing happens on the transition to the self state.
    */
   public var allowTransitionToSelf: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowTransitionToSelfProperty")
+    get() = isAllowTransitionToSelf()
+    @JvmName("allowTransitionToSelfProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
+      setAllowTransitionToSelf(value)
     }
 
   /**
    * The number of enabled input ports for this animation node.
    */
   public var inputCount: Int
-    @JvmName("getInputCount_prop")
-    get() = super.getInputCount()
+    @JvmName("inputCountProperty")
+    get() = getInputCount()
+    @JvmName("inputCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInputCountPtr, NIL)
+      setInputCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODETRANSITION, scriptIndex)
+  }
+
+  public fun setInputCount(inputCount: Int): Unit {
+    TransferContext.writeArguments(LONG to inputCount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputCountPtr, NIL)
   }
 
   /**
@@ -175,6 +171,39 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public fun isInputReset(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputResetPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setXfadeTime(time: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
+  }
+
+  public fun getXfadeTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public fun setXfadeCurve(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
+  }
+
+  public fun getXfadeCurve(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+  }
+
+  public fun setAllowTransitionToSelf(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
+  }
+
+  public fun isAllowTransitionToSelf(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

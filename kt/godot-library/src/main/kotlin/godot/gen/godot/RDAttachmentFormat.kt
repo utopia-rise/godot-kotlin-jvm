@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This object is used by [RenderingDevice].
@@ -26,46 +27,70 @@ public open class RDAttachmentFormat : RefCounted() {
    * The attachment's data format.
    */
   public var format: RenderingDevice.DataFormat
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-      return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("formatProperty")
+    get() = getFormat()
+    @JvmName("formatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+      setFormat(value)
     }
 
   /**
    * The number of samples used when sampling the attachment.
    */
   public var samples: RenderingDevice.TextureSamples
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
-      return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("samplesProperty")
+    get() = getSamples()
+    @JvmName("samplesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
+      setSamples(value)
     }
 
   /**
    * The attachment's usage flags, which determine what can be done with it.
    */
   public var usageFlags: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUsageFlagsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("usageFlagsProperty")
+    get() = getUsageFlags()
+    @JvmName("usageFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUsageFlagsPtr, NIL)
+      setUsageFlags(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDATTACHMENTFORMAT, scriptIndex)
+  }
+
+  public fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+  }
+
+  public fun getFormat(): RenderingDevice.DataFormat {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
+  }
+
+  public fun getSamples(): RenderingDevice.TextureSamples {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
+    return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setUsageFlags(pMember: Long): Unit {
+    TransferContext.writeArguments(LONG to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUsageFlagsPtr, NIL)
+  }
+
+  public fun getUsageFlags(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUsageFlagsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

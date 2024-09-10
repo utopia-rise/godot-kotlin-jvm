@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -56,11 +57,8 @@ public open class OptionButton : Button() {
    * The index of the currently selected item, or `-1` if no item is selected.
    */
   public val selected: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSelectedPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("selectedProperty")
+    get() = getSelected()
 
   /**
    * If `true`, minimum size will be determined by the longest item's text, instead of the currently
@@ -69,42 +67,33 @@ public open class OptionButton : Button() {
    * removing or modifying items.
    */
   public var fitToLongestItem: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFitToLongestItemPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("fitToLongestItemProperty")
+    get() = isFitToLongestItem()
+    @JvmName("fitToLongestItemProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFitToLongestItemPtr, NIL)
+      setFitToLongestItem(value)
     }
 
   /**
    * If `true`, the currently selected item can be selected again.
    */
   public var allowReselect: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("allowReselectProperty")
+    get() = getAllowReselect()
+    @JvmName("allowReselectProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+      setAllowReselect(value)
     }
 
   /**
    * The number of items to select from.
    */
   public var itemCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("itemCountProperty")
+    get() = getItemCount()
+    @JvmName("itemCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+      setItemCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -127,7 +116,7 @@ public open class OptionButton : Button() {
    */
   @JvmOverloads
   public fun addIconItem(
-    texture: Texture2D,
+    texture: Texture2D?,
     label: String,
     id: Int = -1,
   ): Unit {
@@ -146,7 +135,7 @@ public open class OptionButton : Button() {
   /**
    * Sets the icon of the item at index [idx].
    */
-  public fun setItemIcon(idx: Int, texture: Texture2D): Unit {
+  public fun setItemIcon(idx: Int, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -288,6 +277,12 @@ public open class OptionButton : Button() {
     TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
 
+  public fun getSelected(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Returns the ID of the selected item, or `-1` if no item is selected.
    */
@@ -334,6 +329,17 @@ public open class OptionButton : Button() {
     TransferContext.callMethod(rawPtr, MethodBindings.showPopupPtr, NIL)
   }
 
+  public fun setItemCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+  }
+
+  public fun getItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Returns `true` if this button contains at least one item which is not disabled, or marked as a
    * separator.
@@ -354,6 +360,28 @@ public open class OptionButton : Button() {
     TransferContext.writeArguments(BOOL to fromLast)
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectableItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFitToLongestItem(fit: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to fit)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFitToLongestItemPtr, NIL)
+  }
+
+  public fun isFitToLongestItem(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFitToLongestItemPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAllowReselect(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+  }
+
+  public fun getAllowReselect(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**

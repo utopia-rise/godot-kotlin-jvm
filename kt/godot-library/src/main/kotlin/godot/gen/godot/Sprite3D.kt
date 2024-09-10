@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from
@@ -50,14 +51,11 @@ public open class Sprite3D : SpriteBase3D() {
    * overridden. The size information is still used.
    */
   public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   /**
@@ -66,14 +64,11 @@ public open class Sprite3D : SpriteBase3D() {
    * is reset to `0`.
    */
   public var hframes: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHframesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("hframesProperty")
+    get() = getHframes()
+    @JvmName("hframesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHframesPtr, NIL)
+      setHframes(value)
     }
 
   /**
@@ -82,14 +77,11 @@ public open class Sprite3D : SpriteBase3D() {
    * reset to `0`.
    */
   public var vframes: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVframesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("vframesProperty")
+    get() = getVframes()
+    @JvmName("vframesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVframesPtr, NIL)
+      setVframes(value)
     }
 
   /**
@@ -98,14 +90,11 @@ public open class Sprite3D : SpriteBase3D() {
    * same visual frame (same column and row). If that's impossible, this value is reset to `0`.
    */
   public var frame: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("frameProperty")
+    get() = getFrame()
+    @JvmName("frameProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+      setFrame(value)
     }
 
   /**
@@ -114,28 +103,22 @@ public open class Sprite3D : SpriteBase3D() {
    */
   @CoreTypeLocalCopy
   public var frameCoords: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFrameCoordsPtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("frameCoordsProperty")
+    get() = getFrameCoords()
+    @JvmName("frameCoordsProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFrameCoordsPtr, NIL)
+      setFrameCoords(value)
     }
 
   /**
    * If `true`, the sprite will use [regionRect] and display only the specified part of its texture.
    */
   public var regionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isRegionEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("regionEnabledProperty")
+    get() = isRegionEnabled()
+    @JvmName("regionEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRegionEnabledPtr, NIL)
+      setRegionEnabled(value)
     }
 
   /**
@@ -143,14 +126,11 @@ public open class Sprite3D : SpriteBase3D() {
    */
   @CoreTypeLocalCopy
   public var regionRect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+    @JvmName("regionRectProperty")
+    get() = getRegionRect()
+    @JvmName("regionRectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
+      setRegionRect(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -205,6 +185,83 @@ public open class Sprite3D : SpriteBase3D() {
       regionRect = this
   }
 
+
+  public fun setTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public fun setRegionEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRegionEnabledPtr, NIL)
+  }
+
+  public fun isRegionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isRegionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setRegionRect(rect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
+  }
+
+  public fun getRegionRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public fun setFrame(frame: Int): Unit {
+    TransferContext.writeArguments(LONG to frame.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+  }
+
+  public fun getFrame(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setFrameCoords(coords: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to coords)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFrameCoordsPtr, NIL)
+  }
+
+  public fun getFrameCoords(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFrameCoordsPtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setVframes(vframes: Int): Unit {
+    TransferContext.writeArguments(LONG to vframes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVframesPtr, NIL)
+  }
+
+  public fun getVframes(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVframesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setHframes(hframes: Int): Unit {
+    TransferContext.writeArguments(LONG to hframes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHframesPtr, NIL)
+  }
+
+  public fun getHframes(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHframesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
 
   public companion object
 

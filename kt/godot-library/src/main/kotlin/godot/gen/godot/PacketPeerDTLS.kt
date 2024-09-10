@@ -55,7 +55,7 @@ public open class PacketPeerDTLS : PacketPeer() {
    */
   @JvmOverloads
   public fun connectToPeer(
-    packetPeer: PacketPeerUDP,
+    packetPeer: PacketPeerUDP?,
     hostname: String,
     clientOptions: TLSOptions? = null,
   ): GodotError {

@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -54,14 +55,11 @@ public open class TileSet : Resource() {
    * The tile shape.
    */
   public var tileShape: TileShape
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTileShapePtr, LONG)
-      return TileSet.TileShape.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tileShapeProperty")
+    get() = getTileShape()
+    @JvmName("tileShapeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTileShapePtr, NIL)
+      setTileShape(value)
     }
 
   /**
@@ -69,14 +67,11 @@ public open class TileSet : Resource() {
    * are indexed in the TileMap grid.
    */
   public var tileLayout: TileLayout
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTileLayoutPtr, LONG)
-      return TileSet.TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tileLayoutProperty")
+    get() = getTileLayout()
+    @JvmName("tileLayoutProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTileLayoutPtr, NIL)
+      setTileLayout(value)
     }
 
   /**
@@ -84,14 +79,11 @@ public open class TileSet : Resource() {
    * axis.
    */
   public var tileOffsetAxis: TileOffsetAxis
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTileOffsetAxisPtr, LONG)
-      return TileSet.TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("tileOffsetAxisProperty")
+    get() = getTileOffsetAxis()
+    @JvmName("tileOffsetAxisProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTileOffsetAxisPtr, NIL)
+      setTileOffsetAxis(value)
     }
 
   /**
@@ -100,28 +92,22 @@ public open class TileSet : Resource() {
    */
   @CoreTypeLocalCopy
   public var tileSize: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTileSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+    @JvmName("tileSizeProperty")
+    get() = getTileSize()
+    @JvmName("tileSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTileSizePtr, NIL)
+      setTileSize(value)
     }
 
   /**
    * Enables/Disable uv clipping when rendering the tiles.
    */
   public var uvClipping: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUvClippingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("uvClippingProperty")
+    get() = isUvClipping()
+    @JvmName("uvClippingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUvClippingPtr, NIL)
+      setUvClipping(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -171,7 +157,7 @@ public open class TileSet : Resource() {
    * attached to another [TileSet], it will be removed from that one.
    */
   @JvmOverloads
-  public fun addSource(source: TileSetSource, atlasSourceIdOverride: Int = -1): Int {
+  public fun addSource(source: TileSetSource?, atlasSourceIdOverride: Int = -1): Int {
     TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addSourcePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -227,6 +213,61 @@ public open class TileSet : Resource() {
     TransferContext.writeArguments(LONG to sourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TileSetSource?)
+  }
+
+  public fun setTileShape(shape: TileShape): Unit {
+    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTileShapePtr, NIL)
+  }
+
+  public fun getTileShape(): TileShape {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTileShapePtr, LONG)
+    return TileSet.TileShape.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTileLayout(layout: TileLayout): Unit {
+    TransferContext.writeArguments(LONG to layout.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTileLayoutPtr, NIL)
+  }
+
+  public fun getTileLayout(): TileLayout {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTileLayoutPtr, LONG)
+    return TileSet.TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTileOffsetAxis(alignment: TileOffsetAxis): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTileOffsetAxisPtr, NIL)
+  }
+
+  public fun getTileOffsetAxis(): TileOffsetAxis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTileOffsetAxisPtr, LONG)
+    return TileSet.TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTileSize(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTileSizePtr, NIL)
+  }
+
+  public fun getTileSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTileSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public fun setUvClipping(uvClipping: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to uvClipping)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUvClippingPtr, NIL)
+  }
+
+  public fun isUvClipping(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUvClippingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -378,7 +419,7 @@ public open class TileSet : Resource() {
   /**
    * Sets the physics material for bodies in the given TileSet physics layer.
    */
-  public fun setPhysicsLayerPhysicsMaterial(layerIndex: Int, physicsMaterial: PhysicsMaterial):
+  public fun setPhysicsLayerPhysicsMaterial(layerIndex: Int, physicsMaterial: PhysicsMaterial?):
       Unit {
     TransferContext.writeArguments(LONG to layerIndex.toLong(), OBJECT to physicsMaterial)
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsLayerPhysicsMaterialPtr, NIL)
@@ -877,7 +918,7 @@ public open class TileSet : Resource() {
    * given [index].
    */
   @JvmOverloads
-  public fun addPattern(pattern: TileMapPattern, index: Int = -1): Int {
+  public fun addPattern(pattern: TileMapPattern?, index: Int = -1): Int {
     TransferContext.writeArguments(OBJECT to pattern, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addPatternPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

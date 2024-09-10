@@ -23,6 +23,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Represents a camera as defined by the base GLTF spec.
@@ -35,14 +36,11 @@ public open class GLTFCamera : Resource() {
    * [Camera3D.projection] and the GLTF spec for more information.
    */
   public var perspective: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPerspectivePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("perspectiveProperty")
+    get() = getPerspective()
+    @JvmName("perspectiveProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPerspectivePtr, NIL)
+      setPerspective(value)
     }
 
   /**
@@ -51,14 +49,11 @@ public open class GLTFCamera : Resource() {
    * when [perspective] is true.
    */
   public var fov: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("fovProperty")
+    get() = getFov()
+    @JvmName("fovProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
+      setFov(value)
     }
 
   /**
@@ -67,14 +62,11 @@ public open class GLTFCamera : Resource() {
    * value is only used for orthographic/orthogonal cameras, when [perspective] is false.
    */
   public var sizeMag: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizeMagPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("sizeMagProperty")
+    get() = getSizeMag()
+    @JvmName("sizeMagProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizeMagPtr, NIL)
+      setSizeMag(value)
     }
 
   /**
@@ -82,14 +74,11 @@ public open class GLTFCamera : Resource() {
    * meters. This maps to GLTF's `zfar` property.
    */
   public var depthFar: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDepthFarPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("depthFarProperty")
+    get() = getDepthFar()
+    @JvmName("depthFarProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDepthFarPtr, NIL)
+      setDepthFar(value)
     }
 
   /**
@@ -97,14 +86,11 @@ public open class GLTFCamera : Resource() {
    * meters. This maps to GLTF's `znear` property.
    */
   public var depthNear: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDepthNearPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("depthNearProperty")
+    get() = getDepthNear()
+    @JvmName("depthNearProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDepthNearPtr, NIL)
+      setDepthNear(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -129,11 +115,66 @@ public open class GLTFCamera : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
+  public fun getPerspective(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPerspectivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setPerspective(perspective: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to perspective)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPerspectivePtr, NIL)
+  }
+
+  public fun getFov(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setFov(fov: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fov.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
+  }
+
+  public fun getSizeMag(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizeMagPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setSizeMag(sizeMag: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to sizeMag.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizeMagPtr, NIL)
+  }
+
+  public fun getDepthFar(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDepthFarPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDepthFar(zdepthFar: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to zdepthFar.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDepthFarPtr, NIL)
+  }
+
+  public fun getDepthNear(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDepthNearPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDepthNear(zdepthNear: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to zdepthNear.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDepthNearPtr, NIL)
+  }
+
   public companion object {
     /**
      * Create a new GLTFCamera instance from the given Godot [Camera3D] node.
      */
-    public fun fromNode(cameraNode: Camera3D): GLTFCamera? {
+    public fun fromNode(cameraNode: Camera3D?): GLTFCamera? {
       TransferContext.writeArguments(OBJECT to cameraNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFCamera?)

@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 3D convex polyhedron shape, intended for use in physics. Usually used to provide a shape for a
@@ -41,18 +42,26 @@ public open class ConvexPolygonShape3D : Shape3D() {
    * The list of 3D points forming the convex polygon shape.
    */
   public var points: PackedVector3Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR3_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
-    }
+    @JvmName("pointsProperty")
+    get() = getPoints()
+    @JvmName("pointsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+      setPoints(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE3D, scriptIndex)
+  }
+
+  public fun setPoints(points: PackedVector3Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+  }
+
+  public fun getPoints(): PackedVector3Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR3_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
   }
 
   public companion object

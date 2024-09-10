@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Node for back-buffering the currently-displayed screen. The region defined in the
@@ -37,14 +38,11 @@ public open class BackBufferCopy : Node2D() {
    * Buffer mode. See [CopyMode] constants.
    */
   public var copyMode: CopyMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
-      return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("copyModeProperty")
+    get() = getCopyMode()
+    @JvmName("copyModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
+      setCopyMode(value)
     }
 
   /**
@@ -52,14 +50,11 @@ public open class BackBufferCopy : Node2D() {
    */
   @CoreTypeLocalCopy
   public var rect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+    @JvmName("rectProperty")
+    get() = getRect()
+    @JvmName("rectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+      setRect(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -89,6 +84,28 @@ public open class BackBufferCopy : Node2D() {
       rect = this
   }
 
+
+  public fun setRect(rect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+  }
+
+  public fun getRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public fun setCopyMode(copyMode: CopyMode): Unit {
+    TransferContext.writeArguments(LONG to copyMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
+  }
+
+  public fun getCopyMode(): CopyMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
+    return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   public enum class CopyMode(
     id: Long,

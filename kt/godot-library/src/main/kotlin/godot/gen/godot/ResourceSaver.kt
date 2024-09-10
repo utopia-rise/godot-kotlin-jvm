@@ -49,7 +49,7 @@ public object ResourceSaver : Object() {
    */
   @JvmOverloads
   public fun save(
-    resource: Resource,
+    resource: Resource?,
     path: String = "",
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): GodotError {
@@ -61,7 +61,7 @@ public object ResourceSaver : Object() {
   /**
    * Returns the list of extensions available for saving a resource of a given type.
    */
-  public fun getRecognizedExtensions(type: Resource): PackedStringArray {
+  public fun getRecognizedExtensions(type: Resource?): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
     TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr,
         PACKED_STRING_ARRAY)
@@ -75,7 +75,7 @@ public object ResourceSaver : Object() {
    * [ResourceFormatSaver] for more information).
    */
   @JvmOverloads
-  public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean = false):
+  public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean = false):
       Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
     TransferContext.callMethod(rawPtr, MethodBindings.addResourceFormatSaverPtr, NIL)
@@ -84,7 +84,7 @@ public object ResourceSaver : Object() {
   /**
    * Unregisters the given [ResourceFormatSaver].
    */
-  public fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver): Unit {
+  public fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)
     TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatSaverPtr, NIL)
   }

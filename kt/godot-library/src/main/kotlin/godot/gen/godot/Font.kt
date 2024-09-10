@@ -37,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -52,18 +53,26 @@ public open class Font internal constructor() : Resource() {
    * instead.
    */
   public var fallbacks: VariantArray<Font>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFallbacksPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Font>)
-    }
+    @JvmName("fallbacksProperty")
+    get() = getFallbacks()
+    @JvmName("fallbacksProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFallbacksPtr, NIL)
+      setFallbacks(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FONT, scriptIndex)
+  }
+
+  public fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
+    TransferContext.writeArguments(ARRAY to fallbacks)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbacksPtr, NIL)
+  }
+
+  public fun getFallbacks(): VariantArray<Font> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbacksPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Font>)
   }
 
   /**

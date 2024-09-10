@@ -31,6 +31,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -85,14 +86,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * (connection, disconnection, new clients) is done by connecting to MultiplayerAPI's signals.
    */
   public var multiplayerPeer: MultiplayerPeer?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPeerPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerPeer?)
-    }
+    @JvmName("multiplayerPeerProperty")
+    get() = getMultiplayerPeer()
+    @JvmName("multiplayerPeerProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPeerPtr, NIL)
+      setMultiplayerPeer(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -106,6 +104,17 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasMultiplayerPeerPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun getMultiplayerPeer(): MultiplayerPeer? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPeerPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerPeer?)
+  }
+
+  public fun setMultiplayerPeer(peer: MultiplayerPeer?): Unit {
+    TransferContext.writeArguments(OBJECT to peer)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPeerPtr, NIL)
   }
 
   /**
@@ -162,7 +171,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   @JvmOverloads
   public fun rpc(
     peer: Int,
-    _object: Object,
+    _object: Object?,
     method: StringName,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): GodotError {
@@ -180,7 +189,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
-  public fun objectConfigurationAdd(_object: Object, configuration: Any?): GodotError {
+  public fun objectConfigurationAdd(_object: Object?, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationAddPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -195,7 +204,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
-  public fun objectConfigurationRemove(_object: Object, configuration: Any?): GodotError {
+  public fun objectConfigurationRemove(_object: Object?, configuration: Any?): GodotError {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationRemovePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

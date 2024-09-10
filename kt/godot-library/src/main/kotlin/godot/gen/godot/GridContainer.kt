@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [GridContainer] arranges its child controls in a grid layout. The number of columns is specified
@@ -31,18 +32,26 @@ public open class GridContainer : Container() {
    * Control-derived children to accommodate the new layout.
    */
   public var columns: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("columnsProperty")
+    get() = getColumns()
+    @JvmName("columnsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
+      setColumns(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GRIDCONTAINER, scriptIndex)
+  }
+
+  public fun setColumns(columns: Int): Unit {
+    TransferContext.writeArguments(LONG to columns.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
+  }
+
+  public fun getColumns(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

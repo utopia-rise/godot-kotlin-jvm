@@ -47,6 +47,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -90,7 +91,7 @@ public open class Control : CanvasItem() {
   /**
    * Emitted when the node receives an [InputEvent].
    */
-  public val guiInput: Signal1<InputEvent> by signal("event")
+  public val guiInput: Signal1<InputEvent?> by signal("event")
 
   /**
    * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that
@@ -146,14 +147,11 @@ public open class Control : CanvasItem() {
    * will not be rendered and won't receive input.
    */
   public var clipContents: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isClippingContentsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("clipContentsProperty")
+    get() = isClippingContents()
+    @JvmName("clipContentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClipContentsPtr, NIL)
+      setClipContents(value)
     }
 
   /**
@@ -165,14 +163,11 @@ public open class Control : CanvasItem() {
    */
   @CoreTypeLocalCopy
   public var customMinimumSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomMinimumSizePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("customMinimumSizeProperty")
+    get() = getCustomMinimumSize()
+    @JvmName("customMinimumSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomMinimumSizePtr, NIL)
+      setCustomMinimumSize(value)
     }
 
   /**
@@ -180,14 +175,11 @@ public open class Control : CanvasItem() {
    * certain languages (e.g. Arabic and Hebrew).
    */
   public var layoutDirection: LayoutDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLayoutDirectionPtr, LONG)
-      return Control.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("layoutDirectionProperty")
+    get() = getLayoutDirection()
+    @JvmName("layoutDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLayoutDirectionPtr, NIL)
+      setLayoutDirection(value)
     }
 
   /**
@@ -196,11 +188,8 @@ public open class Control : CanvasItem() {
    * [Anchor] constants for convenience.
    */
   public val anchorLeft: Float
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnchorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("anchorLeftProperty")
+    get() = getAnchor(Side.SIDE_LEFT)
 
   /**
    * Anchors the top edge of the node to the origin, the center or the end of its parent control. It
@@ -208,11 +197,8 @@ public open class Control : CanvasItem() {
    * [Anchor] constants for convenience.
    */
   public val anchorTop: Float
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnchorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("anchorTopProperty")
+    get() = getAnchor(Side.SIDE_TOP)
 
   /**
    * Anchors the right edge of the node to the origin, the center or the end of its parent control.
@@ -220,11 +206,8 @@ public open class Control : CanvasItem() {
    * the [Anchor] constants for convenience.
    */
   public val anchorRight: Float
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnchorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("anchorRightProperty")
+    get() = getAnchor(Side.SIDE_RIGHT)
 
   /**
    * Anchors the bottom edge of the node to the origin, the center, or the end of its parent
@@ -232,11 +215,8 @@ public open class Control : CanvasItem() {
    * one of the [Anchor] constants for convenience.
    */
   public val anchorBottom: Float
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnchorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("anchorBottomProperty")
+    get() = getAnchor(Side.SIDE_BOTTOM)
 
   /**
    * Distance between the node's left edge and its parent control, based on [anchorLeft].
@@ -245,14 +225,11 @@ public open class Control : CanvasItem() {
    * when you move or resize the node.
    */
   public var offsetLeft: Float
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("offsetLeftProperty")
+    get() = getOffset(Side.SIDE_LEFT)
+    @JvmName("offsetLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -262,14 +239,11 @@ public open class Control : CanvasItem() {
    * when you move or resize the node.
    */
   public var offsetTop: Float
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("offsetTopProperty")
+    get() = getOffset(Side.SIDE_TOP)
+    @JvmName("offsetTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(Side.SIDE_TOP, value)
     }
 
   /**
@@ -279,14 +253,11 @@ public open class Control : CanvasItem() {
    * when you move or resize the node.
    */
   public var offsetRight: Float
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("offsetRightProperty")
+    get() = getOffset(Side.SIDE_RIGHT)
+    @JvmName("offsetRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -296,14 +267,11 @@ public open class Control : CanvasItem() {
    * when you move or resize the node.
    */
   public var offsetBottom: Float
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("offsetBottomProperty")
+    get() = getOffset(Side.SIDE_BOTTOM)
+    @JvmName("offsetBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+      setOffset(Side.SIDE_BOTTOM, value)
     }
 
   /**
@@ -312,14 +280,11 @@ public open class Control : CanvasItem() {
    * to be at least the minimum size.
    */
   public var growHorizontal: GrowDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHGrowDirectionPtr, LONG)
-      return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("growHorizontalProperty")
+    get() = getHGrowDirection()
+    @JvmName("growHorizontalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHGrowDirectionPtr, NIL)
+      setHGrowDirection(value)
     }
 
   /**
@@ -328,14 +293,11 @@ public open class Control : CanvasItem() {
    * least the minimum size.
    */
   public var growVertical: GrowDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVGrowDirectionPtr, LONG)
-      return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("growVerticalProperty")
+    get() = getVGrowDirection()
+    @JvmName("growVerticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVGrowDirectionPtr, NIL)
+      setVGrowDirection(value)
     }
 
   /**
@@ -344,11 +306,8 @@ public open class Control : CanvasItem() {
    */
   @CoreTypeLocalCopy
   public val size: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("sizeProperty")
+    get() = getSize()
 
   /**
    * The node's position, relative to its containing node. It corresponds to the rectangle's
@@ -356,22 +315,16 @@ public open class Control : CanvasItem() {
    */
   @CoreTypeLocalCopy
   public val position: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("positionProperty")
+    get() = getPosition()
 
   /**
    * The node's global position, relative to the world (usually to the [CanvasLayer]).
    */
   @CoreTypeLocalCopy
   public val globalPosition: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("globalPositionProperty")
+    get() = getGlobalPosition()
 
   /**
    * The node's rotation around its pivot, in radians. See [pivotOffset] to change the pivot's
@@ -380,28 +333,22 @@ public open class Control : CanvasItem() {
    * script, use [rotationDegrees].
    */
   public var rotation: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rotationProperty")
+    get() = getRotation()
+    @JvmName("rotationProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+      setRotation(value)
     }
 
   /**
    * Helper property to access [rotation] in degrees instead of radians.
    */
   public var rotationDegrees: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("rotationDegreesProperty")
+    get() = getRotationDegrees()
+    @JvmName("rotationDegreesProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
+      setRotationDegrees(value)
     }
 
   /**
@@ -424,14 +371,11 @@ public open class Control : CanvasItem() {
    */
   @CoreTypeLocalCopy
   public var scale: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("scaleProperty")
+    get() = getScale()
+    @JvmName("scaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+      setScale(value)
     }
 
   /**
@@ -441,14 +385,11 @@ public open class Control : CanvasItem() {
    */
   @CoreTypeLocalCopy
   public var pivotOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPivotOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+    @JvmName("pivotOffsetProperty")
+    get() = getPivotOffset()
+    @JvmName("pivotOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPivotOffsetPtr, NIL)
+      setPivotOffset(value)
     }
 
   /**
@@ -457,14 +398,11 @@ public open class Control : CanvasItem() {
    * each does.
    */
   public var sizeFlagsHorizontal: SizeFlags
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHSizeFlagsPtr, LONG)
-      return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("sizeFlagsHorizontalProperty")
+    get() = getHSizeFlags()
+    @JvmName("sizeFlagsHorizontalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHSizeFlagsPtr, NIL)
+      setHSizeFlags(value)
     }
 
   /**
@@ -473,14 +411,11 @@ public open class Control : CanvasItem() {
    * each does.
    */
   public var sizeFlagsVertical: SizeFlags
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVSizeFlagsPtr, LONG)
-      return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("sizeFlagsVerticalProperty")
+    get() = getVSizeFlags()
+    @JvmName("sizeFlagsVerticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVSizeFlagsPtr, NIL)
+      setVSizeFlags(value)
     }
 
   /**
@@ -490,14 +425,11 @@ public open class Control : CanvasItem() {
    * space.
    */
   public var sizeFlagsStretchRatio: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("sizeFlagsStretchRatioProperty")
+    get() = getStretchRatio()
+    @JvmName("sizeFlagsStretchRatioProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchRatioPtr, NIL)
+      setStretchRatio(value)
     }
 
   /**
@@ -507,14 +439,11 @@ public open class Control : CanvasItem() {
    * using [TextServer.formatNumber].
    */
   public var localizeNumeralSystem: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isLocalizingNumeralSystemPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("localizeNumeralSystemProperty")
+    get() = isLocalizingNumeralSystem()
+    @JvmName("localizeNumeralSystemProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLocalizeNumeralSystemPtr, NIL)
+      setLocalizeNumeralSystem(value)
     }
 
   /**
@@ -522,14 +451,11 @@ public open class Control : CanvasItem() {
    * current locale.
    */
   public var autoTranslate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoTranslatingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("autoTranslateProperty")
+    get() = isAutoTranslating()
+    @JvmName("autoTranslateProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslatePtr, NIL)
+      setAutoTranslate(value)
     }
 
   /**
@@ -562,14 +488,11 @@ public open class Control : CanvasItem() {
    * ```
    */
   public var tooltipText: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTooltipTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("tooltipTextProperty")
+    get() = getTooltipText()
+    @JvmName("tooltipTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTooltipTextPtr, NIL)
+      setTooltipText(value)
     }
 
   /**
@@ -579,14 +502,11 @@ public open class Control : CanvasItem() {
    * set, Godot will give focus to the closest [Control] to the left of this one.
    */
   public var focusNeighborLeft: NodePath
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("focusNeighborLeftProperty")
+    get() = getFocusNeighbor(Side.SIDE_LEFT)
+    @JvmName("focusNeighborLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusNeighborPtr, NIL)
+      setFocusNeighbor(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -596,14 +516,11 @@ public open class Control : CanvasItem() {
    * set, Godot will give focus to the closest [Control] to the top of this one.
    */
   public var focusNeighborTop: NodePath
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("focusNeighborTopProperty")
+    get() = getFocusNeighbor(Side.SIDE_TOP)
+    @JvmName("focusNeighborTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusNeighborPtr, NIL)
+      setFocusNeighbor(Side.SIDE_TOP, value)
     }
 
   /**
@@ -613,14 +530,11 @@ public open class Control : CanvasItem() {
    * not set, Godot will give focus to the closest [Control] to the right of this one.
    */
   public var focusNeighborRight: NodePath
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("focusNeighborRightProperty")
+    get() = getFocusNeighbor(Side.SIDE_RIGHT)
+    @JvmName("focusNeighborRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusNeighborPtr, NIL)
+      setFocusNeighbor(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -630,14 +544,11 @@ public open class Control : CanvasItem() {
    * set, Godot will give focus to the closest [Control] to the bottom of this one.
    */
   public var focusNeighborBottom: NodePath
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("focusNeighborBottomProperty")
+    get() = getFocusNeighbor(Side.SIDE_BOTTOM)
+    @JvmName("focusNeighborBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusNeighborPtr, NIL)
+      setFocusNeighbor(Side.SIDE_BOTTOM, value)
     }
 
   /**
@@ -648,14 +559,11 @@ public open class Control : CanvasItem() {
    * scene tree.
    */
   public var focusNext: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusNextPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("focusNextProperty")
+    get() = getFocusNext()
+    @JvmName("focusNextProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusNextPtr, NIL)
+      setFocusNext(value)
     }
 
   /**
@@ -666,14 +574,11 @@ public open class Control : CanvasItem() {
    * scene tree.
    */
   public var focusPrevious: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusPreviousPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+    @JvmName("focusPreviousProperty")
+    get() = getFocusPrevious()
+    @JvmName("focusPreviousProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusPreviousPtr, NIL)
+      setFocusPrevious(value)
     }
 
   /**
@@ -681,14 +586,11 @@ public open class Control : CanvasItem() {
    * the same time, and it will receive keyboard, gamepad, and mouse signals.
    */
   public var focusMode: FocusMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFocusModePtr, LONG)
-      return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("focusModeProperty")
+    get() = getFocusMode()
+    @JvmName("focusModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFocusModePtr, NIL)
+      setFocusMode(value)
     }
 
   /**
@@ -698,14 +600,11 @@ public open class Control : CanvasItem() {
    * each does.
    */
   public var mouseFilter: MouseFilter
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMouseFilterPtr, LONG)
-      return Control.MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("mouseFilterProperty")
+    get() = getMouseFilter()
+    @JvmName("mouseFilterProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMouseFilterPtr, NIL)
+      setMouseFilter(value)
     }
 
   /**
@@ -716,14 +615,11 @@ public open class Control : CanvasItem() {
    * [Node.UnhandledInput] processing.
    */
   public var mouseForcePassScrollEvents: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isForcePassScrollEventsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("mouseForcePassScrollEventsProperty")
+    get() = isForcePassScrollEvents()
+    @JvmName("mouseForcePassScrollEventsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setForcePassScrollEventsPtr, NIL)
+      setForcePassScrollEvents(value)
     }
 
   /**
@@ -732,14 +628,11 @@ public open class Control : CanvasItem() {
    * **Note:** On Linux, shapes may vary depending on the cursor theme of the system.
    */
   public var mouseDefaultCursorShape: CursorShape
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultCursorShapePtr, LONG)
-      return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+    @JvmName("mouseDefaultCursorShapeProperty")
+    get() = getDefaultCursorShape()
+    @JvmName("mouseDefaultCursorShapeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultCursorShapePtr, NIL)
+      setDefaultCursorShape(value)
     }
 
   /**
@@ -748,14 +641,11 @@ public open class Control : CanvasItem() {
    * shortcuts to be accepted only when the user has a certain area of the GUI focused.
    */
   public var shortcutContext: Node?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShortcutContextPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Node?)
-    }
+    @JvmName("shortcutContextProperty")
+    get() = getShortcutContext()
+    @JvmName("shortcutContextProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShortcutContextPtr, NIL)
+      setShortcutContext(value)
     }
 
   /**
@@ -765,14 +655,11 @@ public open class Control : CanvasItem() {
    * **Note:** [Window] styles will have no effect unless the window is embedded.
    */
   public var theme: Theme?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThemePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
-    }
+    @JvmName("themeProperty")
+    get() = getTheme()
+    @JvmName("themeProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setThemePtr, NIL)
+      setTheme(value)
     }
 
   /**
@@ -790,14 +677,11 @@ public open class Control : CanvasItem() {
    * is returned. The project-level Theme and the default Theme are checked last.
    */
   public var themeTypeVariation: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+    @JvmName("themeTypeVariationProperty")
+    get() = getThemeTypeVariation()
+    @JvmName("themeTypeVariationProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setThemeTypeVariationPtr, NIL)
+      setThemeTypeVariation(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -1126,7 +1010,7 @@ public open class Control : CanvasItem() {
    * * it happens outside the parent's rectangle and the parent has either [clipContents] enabled.
    * **Note:** Event position is relative to the control origin.
    */
-  public open fun _guiInput(event: InputEvent): Unit {
+  public open fun _guiInput(event: InputEvent?): Unit {
   }
 
   /**
@@ -1220,6 +1104,35 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Returns the anchor for the specified [Side]. A getter method for [anchorBottom], [anchorLeft],
+   * [anchorRight] and [anchorTop].
+   */
+  public fun getAnchor(side: Side): Float {
+    TransferContext.writeArguments(LONG to side.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnchorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
+   * Sets the offset for the specified [Side] to [offset]. A setter method for [offsetBottom],
+   * [offsetLeft], [offsetRight] and [offsetTop].
+   */
+  public fun setOffset(side: Side, offset: Float): Unit {
+    TransferContext.writeArguments(LONG to side.id, DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+  }
+
+  /**
+   * Returns the offset for the specified [Side]. A getter method for [offsetBottom], [offsetLeft],
+   * [offsetRight] and [offsetTop].
+   */
+  public fun getOffset(offset: Side): Float {
+    TransferContext.writeArguments(LONG to offset.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  /**
    * Works the same as [setAnchor], but instead of `keep_offset` argument and automatic update of
    * offset, it allows to set the offset yourself (see [setOffset]).
    */
@@ -1279,6 +1192,11 @@ public open class Control : CanvasItem() {
     TransferContext.callMethod(rawPtr, MethodBindings.resetSizePtr, NIL)
   }
 
+  public fun setCustomMinimumSize(size: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomMinimumSizePtr, NIL)
+  }
+
   /**
    * Sets the [globalPosition] to given [position].
    * If [keepOffsets] is `true`, control's anchors will be updated instead of offsets.
@@ -1287,6 +1205,26 @@ public open class Control : CanvasItem() {
   public fun setGlobalPosition(position: Vector2, keepOffsets: Boolean = false): Unit {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to keepOffsets)
     TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+  }
+
+  public fun setRotation(radians: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radians.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+  }
+
+  public fun setRotationDegrees(degrees: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
+  }
+
+  public fun setScale(scale: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+  }
+
+  public fun setPivotOffset(pivotOffset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to pivotOffset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPivotOffsetPtr, NIL)
   }
 
   /**
@@ -1307,12 +1245,60 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
+  public fun getPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun getSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun getRotation(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun getRotationDegrees(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun getScale(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun getPivotOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPivotOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun getCustomMinimumSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMinimumSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
   /**
    * Returns the width/height occupied in the parent control.
    */
   public fun getParentAreaSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentAreaSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public fun getGlobalPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
@@ -1358,6 +1344,17 @@ public open class Control : CanvasItem() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public fun setFocusMode(mode: FocusMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFocusModePtr, NIL)
+  }
+
+  public fun getFocusMode(): FocusMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFocusModePtr, LONG)
+    return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1416,6 +1413,61 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
+  public fun setHSizeFlags(flags: SizeFlags): Unit {
+    TransferContext.writeArguments(LONG to flags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHSizeFlagsPtr, NIL)
+  }
+
+  public fun getHSizeFlags(): SizeFlags {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHSizeFlagsPtr, LONG)
+    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setStretchRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStretchRatioPtr, NIL)
+  }
+
+  public fun getStretchRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStretchRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setVSizeFlags(flags: SizeFlags): Unit {
+    TransferContext.writeArguments(LONG to flags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVSizeFlagsPtr, NIL)
+  }
+
+  public fun getVSizeFlags(): SizeFlags {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVSizeFlagsPtr, LONG)
+    return SizeFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTheme(theme: Theme?): Unit {
+    TransferContext.writeArguments(OBJECT to theme)
+    TransferContext.callMethod(rawPtr, MethodBindings.setThemePtr, NIL)
+  }
+
+  public fun getTheme(): Theme? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThemePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
+  }
+
+  public fun setThemeTypeVariation(themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, MethodBindings.setThemeTypeVariationPtr, NIL)
+  }
+
+  public fun getThemeTypeVariation(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
   /**
    * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until
    * [endBulkThemeOverride] is called.
@@ -1439,7 +1491,7 @@ public open class Control : CanvasItem() {
    * [removeThemeIconOverride].
    * See also [getThemeIcon].
    */
-  public fun addThemeIconOverride(name: StringName, texture: Texture2D): Unit {
+  public fun addThemeIconOverride(name: StringName, texture: Texture2D?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.addThemeIconOverridePtr, NIL)
   }
@@ -1477,7 +1529,7 @@ public open class Control : CanvasItem() {
    * GetNode<Button>("MyButton").RemoveThemeStyleboxOverride("normal");
    * ```
    */
-  public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox): Unit {
+  public fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
     TransferContext.callMethod(rawPtr, MethodBindings.addThemeStyleboxOverridePtr, NIL)
   }
@@ -1488,7 +1540,7 @@ public open class Control : CanvasItem() {
    * [removeThemeFontOverride].
    * See also [getThemeFont].
    */
-  public fun addThemeFontOverride(name: StringName, font: Font): Unit {
+  public fun addThemeFontOverride(name: StringName, font: Font?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.addThemeFontOverridePtr, NIL)
   }
@@ -1880,6 +1932,39 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(OBJECT, true) as Control?)
   }
 
+  public fun setHGrowDirection(direction: GrowDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHGrowDirectionPtr, NIL)
+  }
+
+  public fun getHGrowDirection(): GrowDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHGrowDirectionPtr, LONG)
+    return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setVGrowDirection(direction: GrowDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVGrowDirectionPtr, NIL)
+  }
+
+  public fun getVGrowDirection(): GrowDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVGrowDirectionPtr, LONG)
+    return Control.GrowDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setTooltipText(hint: String): Unit {
+    TransferContext.writeArguments(STRING to hint)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTooltipTextPtr, NIL)
+  }
+
+  public fun getTooltipText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTooltipTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Returns the tooltip text for the position [atPosition] in control's local coordinates, which
    * will typically appear when the cursor is resting over this control. By default, it returns
@@ -1894,6 +1979,17 @@ public open class Control : CanvasItem() {
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
+  public fun setDefaultCursorShape(shape: CursorShape): Unit {
+    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultCursorShapePtr, NIL)
+  }
+
+  public fun getDefaultCursorShape(): CursorShape {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultCursorShapePtr, LONG)
+    return Control.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns the mouse cursor shape the control displays on mouse hover. See [CursorShape].
    */
@@ -1905,14 +2001,91 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Sets the focus neighbor for the specified [Side] to the [Control] at [neighbor] node path. A
+   * setter method for [focusNeighborBottom], [focusNeighborLeft], [focusNeighborRight] and
+   * [focusNeighborTop].
+   */
+  public fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
+    TransferContext.writeArguments(LONG to side.id, NODE_PATH to neighbor)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFocusNeighborPtr, NIL)
+  }
+
+  /**
+   * Returns the focus neighbor for the specified [Side]. A getter method for [focusNeighborBottom],
+   * [focusNeighborLeft], [focusNeighborRight] and [focusNeighborTop].
+   * **Note:** To find the next [Control] on the specific [Side], even if a neighbor is not
+   * assigned, use [findValidFocusNeighbor].
+   */
+  public fun getFocusNeighbor(side: Side): NodePath {
+    TransferContext.writeArguments(LONG to side.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setFocusNext(next: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to next)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFocusNextPtr, NIL)
+  }
+
+  public fun getFocusNext(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFocusNextPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public fun setFocusPrevious(previous: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to previous)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFocusPreviousPtr, NIL)
+  }
+
+  public fun getFocusPrevious(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFocusPreviousPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  /**
    * Forces drag and bypasses [_getDragData] and [setDragPreview] by passing [data] and [preview].
    * Drag will start even if the mouse is neither over nor pressed on this control.
    * The methods [_canDropData] and [_dropData] must be implemented on controls that want to receive
    * drop data.
    */
-  public fun forceDrag(`data`: Any?, preview: Control): Unit {
+  public fun forceDrag(`data`: Any?, preview: Control?): Unit {
     TransferContext.writeArguments(ANY to data, OBJECT to preview)
     TransferContext.callMethod(rawPtr, MethodBindings.forceDragPtr, NIL)
+  }
+
+  public fun setMouseFilter(filter: MouseFilter): Unit {
+    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMouseFilterPtr, NIL)
+  }
+
+  public fun getMouseFilter(): MouseFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMouseFilterPtr, LONG)
+    return Control.MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public fun setForcePassScrollEvents(forcePassScrollEvents: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to forcePassScrollEvents)
+    TransferContext.callMethod(rawPtr, MethodBindings.setForcePassScrollEventsPtr, NIL)
+  }
+
+  public fun isForcePassScrollEvents(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isForcePassScrollEventsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setClipContents(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClipContentsPtr, NIL)
+  }
+
+  public fun isClippingContents(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isClippingContentsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -1988,7 +2161,7 @@ public open class Control : CanvasItem() {
    * }
    * ```
    */
-  public fun setDragPreview(control: Control): Unit {
+  public fun setDragPreview(control: Control?): Unit {
     TransferContext.writeArguments(OBJECT to control)
     TransferContext.callMethod(rawPtr, MethodBindings.setDragPreviewPtr, NIL)
   }
@@ -2014,6 +2187,17 @@ public open class Control : CanvasItem() {
     TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
   }
 
+  public fun setShortcutContext(node: Node?): Unit {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutContextPtr, NIL)
+  }
+
+  public fun getShortcutContext(): Node? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShortcutContextPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+  }
+
   /**
    * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be
    * used with [getMinimumSize] when the return value is changed. Setting [customMinimumSize] directly
@@ -2024,12 +2208,45 @@ public open class Control : CanvasItem() {
     TransferContext.callMethod(rawPtr, MethodBindings.updateMinimumSizePtr, NIL)
   }
 
+  public fun setLayoutDirection(direction: LayoutDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayoutDirectionPtr, NIL)
+  }
+
+  public fun getLayoutDirection(): LayoutDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayoutDirectionPtr, LONG)
+    return Control.LayoutDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns `true` if layout is right-to-left.
    */
   public fun isLayoutRtl(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLayoutRtlPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setAutoTranslate(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoTranslatePtr, NIL)
+  }
+
+  public fun isAutoTranslating(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoTranslatingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setLocalizeNumeralSystem(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLocalizeNumeralSystemPtr, NIL)
+  }
+
+  public fun isLocalizingNumeralSystem(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isLocalizingNumeralSystemPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

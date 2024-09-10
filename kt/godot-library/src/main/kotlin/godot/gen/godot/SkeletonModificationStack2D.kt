@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This resource is used by the Skeleton and holds a stack of [SkeletonModification2D]s.
@@ -39,14 +40,11 @@ public open class SkeletonModificationStack2D : Resource() {
    * through the [Skeleton2D] node.
    */
   public var enabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enabledProperty")
+    get() = getEnabled()
+    @JvmName("enabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+      setEnabled(value)
     }
 
   /**
@@ -55,28 +53,22 @@ public open class SkeletonModificationStack2D : Resource() {
    * will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses.
    */
   public var strength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("strengthProperty")
+    get() = getStrength()
+    @JvmName("strengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+      setStrength(value)
     }
 
   /**
    * The number of modifications in the stack.
    */
   public var modificationCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModificationCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("modificationCountProperty")
+    get() = getModificationCount()
+    @JvmName("modificationCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setModificationCountPtr, NIL)
+      setModificationCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -124,7 +116,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Adds the passed-in [SkeletonModification2D] to the stack.
    */
-  public fun addModification(modification: SkeletonModification2D): Unit {
+  public fun addModification(modification: SkeletonModification2D?): Unit {
     TransferContext.writeArguments(OBJECT to modification)
     TransferContext.callMethod(rawPtr, MethodBindings.addModificationPtr, NIL)
   }
@@ -140,9 +132,20 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Sets the modification at [modIdx] to the passed-in modification, [modification].
    */
-  public fun setModification(modIdx: Int, modification: SkeletonModification2D): Unit {
+  public fun setModification(modIdx: Int, modification: SkeletonModification2D?): Unit {
     TransferContext.writeArguments(LONG to modIdx.toLong(), OBJECT to modification)
     TransferContext.callMethod(rawPtr, MethodBindings.setModificationPtr, NIL)
+  }
+
+  public fun setModificationCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setModificationCountPtr, NIL)
+  }
+
+  public fun getModificationCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModificationCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -152,6 +155,28 @@ public open class SkeletonModificationStack2D : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+  }
+
+  public fun getEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setStrength(strength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to strength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+  }
+
+  public fun getStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

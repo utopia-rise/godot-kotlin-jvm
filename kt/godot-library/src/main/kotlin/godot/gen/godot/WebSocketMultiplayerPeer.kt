@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -40,15 +41,11 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * The supported WebSocket sub-protocols. See [WebSocketPeer.supportedProtocols] for more details.
    */
   public var supportedProtocols: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSupportedProtocolsPtr,
-          PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("supportedProtocolsProperty")
+    get() = getSupportedProtocols()
+    @JvmName("supportedProtocolsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSupportedProtocolsPtr, NIL)
+      setSupportedProtocols(value)
     }
 
   /**
@@ -56,14 +53,11 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * details.
    */
   public var handshakeHeaders: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("handshakeHeadersProperty")
+    get() = getHandshakeHeaders()
+    @JvmName("handshakeHeadersProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandshakeHeadersPtr, NIL)
+      setHandshakeHeaders(value)
     }
 
   /**
@@ -71,14 +65,11 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * details.
    */
   public var inboundBufferSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInboundBufferSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("inboundBufferSizeProperty")
+    get() = getInboundBufferSize()
+    @JvmName("inboundBufferSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInboundBufferSizePtr, NIL)
+      setInboundBufferSize(value)
     }
 
   /**
@@ -86,28 +77,22 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * details.
    */
   public var outboundBufferSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutboundBufferSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("outboundBufferSizeProperty")
+    get() = getOutboundBufferSize()
+    @JvmName("outboundBufferSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutboundBufferSizePtr, NIL)
+      setOutboundBufferSize(value)
     }
 
   /**
    * The maximum time each peer can stay in a connecting state before being dropped.
    */
   public var handshakeTimeout: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeTimeoutPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("handshakeTimeoutProperty")
+    get() = getHandshakeTimeout()
+    @JvmName("handshakeTimeoutProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandshakeTimeoutPtr, NIL)
+      setHandshakeTimeout(value)
     }
 
   /**
@@ -115,14 +100,11 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * for more details.
    */
   public var maxQueuedPackets: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("maxQueuedPacketsProperty")
+    get() = getMaxQueuedPackets()
+    @JvmName("maxQueuedPacketsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
+      setMaxQueuedPackets(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -183,6 +165,72 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public fun getPeerPort(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPortPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun getSupportedProtocols(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSupportedProtocolsPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+  }
+
+  public fun setSupportedProtocols(protocols: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSupportedProtocolsPtr, NIL)
+  }
+
+  public fun getHandshakeHeaders(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+  }
+
+  public fun setHandshakeHeaders(protocols: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHandshakeHeadersPtr, NIL)
+  }
+
+  public fun getInboundBufferSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInboundBufferSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setInboundBufferSize(bufferSize: Int): Unit {
+    TransferContext.writeArguments(LONG to bufferSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInboundBufferSizePtr, NIL)
+  }
+
+  public fun getOutboundBufferSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutboundBufferSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setOutboundBufferSize(bufferSize: Int): Unit {
+    TransferContext.writeArguments(LONG to bufferSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutboundBufferSizePtr, NIL)
+  }
+
+  public fun getHandshakeTimeout(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeTimeoutPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setHandshakeTimeout(timeout: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to timeout.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHandshakeTimeoutPtr, NIL)
+  }
+
+  public fun setMaxQueuedPackets(maxQueuedPackets: Int): Unit {
+    TransferContext.writeArguments(LONG to maxQueuedPackets.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
+  }
+
+  public fun getMaxQueuedPackets(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 

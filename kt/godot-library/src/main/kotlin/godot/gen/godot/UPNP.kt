@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -109,14 +110,11 @@ public open class UPNP : RefCounted() {
    * Multicast interface to use for discovery. Uses the default multicast interface if empty.
    */
   public var discoverMulticastIf: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+    @JvmName("discoverMulticastIfProperty")
+    get() = getDiscoverMulticastIf()
+    @JvmName("discoverMulticastIfProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverMulticastIfPtr, NIL)
+      setDiscoverMulticastIf(value)
     }
 
   /**
@@ -125,28 +123,22 @@ public open class UPNP : RefCounted() {
    * will be used as the port.
    */
   public var discoverLocalPort: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverLocalPortPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("discoverLocalPortProperty")
+    get() = getDiscoverLocalPort()
+    @JvmName("discoverLocalPortProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverLocalPortPtr, NIL)
+      setDiscoverLocalPort(value)
     }
 
   /**
    * If `true`, IPv6 is used for [UPNPDevice] discovery.
    */
   public var discoverIpv6: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("discoverIpv6Property")
+    get() = isDiscoverIpv6()
+    @JvmName("discoverIpv6Property")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverIpv6Ptr, NIL)
+      setDiscoverIpv6(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -174,7 +166,7 @@ public open class UPNP : RefCounted() {
   /**
    * Adds the given [UPNPDevice] to the list of discovered devices.
    */
-  public fun addDevice(device: UPNPDevice): Unit {
+  public fun addDevice(device: UPNPDevice?): Unit {
     TransferContext.writeArguments(OBJECT to device)
     TransferContext.callMethod(rawPtr, MethodBindings.addDevicePtr, NIL)
   }
@@ -182,7 +174,7 @@ public open class UPNP : RefCounted() {
   /**
    * Sets the device at [index] from the list of discovered devices to [device].
    */
-  public fun setDevice(index: Int, device: UPNPDevice): Unit {
+  public fun setDevice(index: Int, device: UPNPDevice?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to device)
     TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
   }
@@ -291,6 +283,39 @@ public open class UPNP : RefCounted() {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
     TransferContext.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setDiscoverMulticastIf(mIf: String): Unit {
+    TransferContext.writeArguments(STRING to mIf)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverMulticastIfPtr, NIL)
+  }
+
+  public fun getDiscoverMulticastIf(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public fun setDiscoverLocalPort(port: Int): Unit {
+    TransferContext.writeArguments(LONG to port.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverLocalPortPtr, NIL)
+  }
+
+  public fun getDiscoverLocalPort(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverLocalPortPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setDiscoverIpv6(ipv6: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ipv6)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverIpv6Ptr, NIL)
+  }
+
+  public fun isDiscoverIpv6(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class UPNPResult(

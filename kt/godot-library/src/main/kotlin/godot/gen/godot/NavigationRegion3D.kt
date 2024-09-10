@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -61,28 +62,22 @@ public open class NavigationRegion3D : Node3D() {
    * The [NavigationMesh] resource to use.
    */
   public var navigationMesh: NavigationMesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?)
-    }
+    @JvmName("navigationMeshProperty")
+    get() = getNavigationMesh()
+    @JvmName("navigationMeshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMeshPtr, NIL)
+      setNavigationMesh(value)
     }
 
   /**
    * Determines if the [NavigationRegion3D] is enabled or disabled.
    */
   public var enabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("enabledProperty")
+    get() = isEnabled()
+    @JvmName("enabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+      setEnabled(value)
     }
 
   /**
@@ -90,14 +85,11 @@ public open class NavigationRegion3D : Node3D() {
    * regions within proximity of the navigation map edge connection margin.
    */
   public var useEdgeConnections: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useEdgeConnectionsProperty")
+    get() = getUseEdgeConnections()
+    @JvmName("useEdgeConnectionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseEdgeConnectionsPtr, NIL)
+      setUseEdgeConnections(value)
     }
 
   /**
@@ -105,14 +97,11 @@ public open class NavigationRegion3D : Node3D() {
    * be checked upon when requesting a path with [NavigationServer3D.mapGetPath].
    */
   public var navigationLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+    @JvmName("navigationLayersProperty")
+    get() = getNavigationLayers()
+    @JvmName("navigationLayersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+      setNavigationLayers(value)
     }
 
   /**
@@ -120,14 +109,11 @@ public open class NavigationRegion3D : Node3D() {
    * [enterCost] value is added to the path distance for determining the shortest path.
    */
   public var enterCost: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("enterCostProperty")
+    get() = getEnterCost()
+    @JvmName("enterCostProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+      setEnterCost(value)
     }
 
   /**
@@ -135,14 +121,11 @@ public open class NavigationRegion3D : Node3D() {
    * multiplied with [travelCost] for determining the shortest path.
    */
   public var travelCost: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("travelCostProperty")
+    get() = getTravelCost()
+    @JvmName("travelCostProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+      setTravelCost(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -158,6 +141,28 @@ public open class NavigationRegion3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public fun setNavigationMesh(navigationMesh: NavigationMesh?): Unit {
+    TransferContext.writeArguments(OBJECT to navigationMesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMeshPtr, NIL)
+  }
+
+  public fun getNavigationMesh(): NavigationMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?)
+  }
+
+  public fun setEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+  }
+
+  public fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -177,6 +182,28 @@ public open class NavigationRegion3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public fun setUseEdgeConnections(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseEdgeConnectionsPtr, NIL)
+  }
+
+  public fun getUseEdgeConnections(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setNavigationLayers(navigationLayers: Long): Unit {
+    TransferContext.writeArguments(LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+  }
+
+  public fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
@@ -205,6 +232,28 @@ public open class NavigationRegion3D : Node3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public fun setEnterCost(enterCost: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to enterCost.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+  }
+
+  public fun getEnterCost(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setTravelCost(travelCost: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to travelCost.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+  }
+
+  public fun getTravelCost(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**

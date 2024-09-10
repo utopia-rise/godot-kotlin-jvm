@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This binding resource binds an [OpenXRAction] to inputs or outputs. As most controllers have left
@@ -36,32 +37,37 @@ public open class OpenXRIPBinding : Resource() {
    * [OpenXRAction] that is bound to these paths.
    */
   public var action: OpenXRAction?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?)
-    }
+    @JvmName("actionProperty")
+    get() = getAction()
+    @JvmName("actionProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+      setAction(value)
     }
 
   /**
    * Paths that define the inputs or outputs bound on the device.
    */
   public var paths: PackedStringArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
-    }
+    @JvmName("pathsProperty")
+    get() = getPaths()
+    @JvmName("pathsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_STRING_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathsPtr, NIL)
+      setPaths(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRIPBINDING, scriptIndex)
+  }
+
+  public fun setAction(action: OpenXRAction?): Unit {
+    TransferContext.writeArguments(OBJECT to action)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+  }
+
+  public fun getAction(): OpenXRAction? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRAction?)
   }
 
   /**
@@ -71,6 +77,17 @@ public open class OpenXRIPBinding : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public fun setPaths(paths: PackedStringArray): Unit {
+    TransferContext.writeArguments(PACKED_STRING_ARRAY to paths)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathsPtr, NIL)
+  }
+
+  public fun getPaths(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
   }
 
   /**

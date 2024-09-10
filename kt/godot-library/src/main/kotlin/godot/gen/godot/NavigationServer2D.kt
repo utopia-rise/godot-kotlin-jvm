@@ -323,8 +323,8 @@ public object NavigationServer2D : Object() {
    * [NavigationPathQueryResult2D] result object with the path among other results requested by the
    * query.
    */
-  public fun queryPath(parameters: NavigationPathQueryParameters2D,
-      result: NavigationPathQueryResult2D): Unit {
+  public fun queryPath(parameters: NavigationPathQueryParameters2D?,
+      result: NavigationPathQueryResult2D?): Unit {
     TransferContext.writeArguments(OBJECT to parameters, OBJECT to result)
     TransferContext.callMethod(rawPtr, MethodBindings.queryPathPtr, NIL)
   }
@@ -498,7 +498,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the [navigationPolygon] for the region.
    */
-  public fun regionSetNavigationPolygon(region: RID, navigationPolygon: NavigationPolygon): Unit {
+  public fun regionSetNavigationPolygon(region: RID, navigationPolygon: NavigationPolygon?): Unit {
     TransferContext.writeArguments(_RID to region, OBJECT to navigationPolygon)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetNavigationPolygonPtr, NIL)
   }
@@ -1184,9 +1184,9 @@ public object NavigationServer2D : Object() {
    */
   @JvmOverloads
   public fun parseSourceGeometryData(
-    navigationPolygon: NavigationPolygon,
-    sourceGeometryData: NavigationMeshSourceGeometryData2D,
-    rootNode: Node,
+    navigationPolygon: NavigationPolygon?,
+    sourceGeometryData: NavigationMeshSourceGeometryData2D?,
+    rootNode: Node?,
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
@@ -1199,8 +1199,8 @@ public object NavigationServer2D : Object() {
    */
   @JvmOverloads
   public fun bakeFromSourceGeometryData(
-    navigationPolygon: NavigationPolygon,
-    sourceGeometryData: NavigationMeshSourceGeometryData2D,
+    navigationPolygon: NavigationPolygon?,
+    sourceGeometryData: NavigationMeshSourceGeometryData2D?,
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
@@ -1214,8 +1214,8 @@ public object NavigationServer2D : Object() {
    */
   @JvmOverloads
   public fun bakeFromSourceGeometryDataAsync(
-    navigationPolygon: NavigationPolygon,
-    sourceGeometryData: NavigationMeshSourceGeometryData2D,
+    navigationPolygon: NavigationPolygon?,
+    sourceGeometryData: NavigationMeshSourceGeometryData2D?,
     callback: Callable = Callable(),
   ): Unit {
     TransferContext.writeArguments(OBJECT to navigationPolygon, OBJECT to sourceGeometryData, CALLABLE to callback)
@@ -1225,7 +1225,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` when the provided navigation polygon is being baked on a background thread.
    */
-  public fun isBakingNavigationPolygon(navigationPolygon: NavigationPolygon): Boolean {
+  public fun isBakingNavigationPolygon(navigationPolygon: NavigationPolygon?): Boolean {
     TransferContext.writeArguments(OBJECT to navigationPolygon)
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationPolygonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

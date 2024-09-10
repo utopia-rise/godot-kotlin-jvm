@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned
@@ -30,28 +31,22 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
    * The [Mesh] that defines emission shape.
    */
   public var mesh: Mesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
-    }
+    @JvmName("meshProperty")
+    get() = getMesh()
+    @JvmName("meshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+      setMesh(value)
     }
 
   /**
    * If `true`, the particles will emit from all surfaces of the mesh.
    */
   public var useAllSurfaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+    @JvmName("useAllSurfacesProperty")
+    get() = isUseAllSurfaces()
+    @JvmName("useAllSurfacesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseAllSurfacesPtr, NIL)
+      setUseAllSurfaces(value)
     }
 
   /**
@@ -59,18 +54,48 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
    * effect.
    */
   public var surfaceIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("surfaceIndexProperty")
+    get() = getSurfaceIndex()
+    @JvmName("surfaceIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
+      setSurfaceIndex(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER, scriptIndex)
+  }
+
+  public fun setMesh(mesh: Mesh?): Unit {
+    TransferContext.writeArguments(OBJECT to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+  }
+
+  public fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+  }
+
+  public fun setUseAllSurfaces(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseAllSurfacesPtr, NIL)
+  }
+
+  public fun isUseAllSurfaces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public fun setSurfaceIndex(surfaceIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to surfaceIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
+  }
+
+  public fun getSurfaceIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

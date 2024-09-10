@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source
@@ -30,46 +31,48 @@ public open class AudioEffectChorus : AudioEffect() {
    * The number of voices in the effect.
    */
   public var voiceCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVoiceCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+    @JvmName("voiceCountProperty")
+    get() = getVoiceCount()
+    @JvmName("voiceCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVoiceCountPtr, NIL)
+      setVoiceCount(value)
     }
 
   /**
    * The effect's raw signal.
    */
   public var dry: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("dryProperty")
+    get() = getDry()
+    @JvmName("dryProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
+      setDry(value)
     }
 
   /**
    * The effect's processed signal.
    */
   public var wet: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+    @JvmName("wetProperty")
+    get() = getWet()
+    @JvmName("wetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
+      setWet(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTCHORUS, scriptIndex)
+  }
+
+  public fun setVoiceCount(voices: Int): Unit {
+    TransferContext.writeArguments(LONG to voices.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVoiceCountPtr, NIL)
+  }
+
+  public fun getVoiceCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVoiceCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public fun setVoiceDelayMs(voiceIdx: Int, delayMs: Float): Unit {
@@ -135,6 +138,28 @@ public open class AudioEffectChorus : AudioEffect() {
   public fun getVoicePan(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoicePanPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setWet(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
+  }
+
+  public fun getWet(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public fun setDry(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
+  }
+
+  public fun getDry(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
