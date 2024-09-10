@@ -3,19 +3,34 @@ package godot.codegen
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.squareup.kotlinpoet.FileSpec
-import godot.tools.common.constants.godotApiPackage
 import godot.codegen.models.ApiDescription
 import godot.codegen.models.enriched.toEnriched
 import godot.codegen.poet.RegistrationFileSpec
-import godot.codegen.repositories.*
-import godot.codegen.repositories.impl.*
-import godot.codegen.services.*
-import godot.codegen.services.impl.*
+import godot.codegen.repositories.ClassRepository
+import godot.codegen.repositories.CoreTypeEnumRepository
+import godot.codegen.repositories.GlobalEnumRepository
+import godot.codegen.repositories.SingletonRepository
+import godot.codegen.repositories.impl.JsonClassRepository
+import godot.codegen.repositories.impl.JsonGlobalEnumRepository
+import godot.codegen.repositories.impl.JsonSingletonRepository
+import godot.codegen.repositories.impl.KnownCoreTypeEnumRepository
+import godot.codegen.repositories.impl.NativeStructureRepository
+import godot.codegen.services.IClassGraphService
+import godot.codegen.services.IClassService
+import godot.codegen.services.IEnumService
+import godot.codegen.services.IGenerationService
+import godot.codegen.services.impl.ClassGraphService
+import godot.codegen.services.impl.ClassService
+import godot.codegen.services.impl.EnumService
+import godot.codegen.services.impl.GenerationService
+import godot.codegen.services.impl.KtCallableGenerationService
+import godot.codegen.services.impl.SignalGenerationService
 import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
+import godot.tools.common.constants.godotApiPackage
 import java.io.File
 
-fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
+fun File.generateApiFrom(jsonSource: File) {
     val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
 
     val classRepository: ClassRepository = JsonClassRepository(apiDescription.classes.toEnriched())
