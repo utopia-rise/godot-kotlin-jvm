@@ -34,7 +34,7 @@ public open class ButtonGroup : Resource() {
   /**
    * Emitted when one of the buttons of the group is pressed.
    */
-  public val pressed: Signal1<BaseButton?> by signal("button")
+  public val pressed: Signal1<BaseButton> by signal("button")
 
   /**
    * If `true`, it is possible to unpress all buttons in this [ButtonGroup].

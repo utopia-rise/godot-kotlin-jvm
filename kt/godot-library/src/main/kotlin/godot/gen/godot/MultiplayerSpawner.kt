@@ -43,13 +43,13 @@ public open class MultiplayerSpawner : Node() {
    * Emitted when a spawnable scene or custom spawn was despawned by the multiplayer authority. Only
    * called on puppets.
    */
-  public val despawned: Signal1<Node?> by signal("node")
+  public val despawned: Signal1<Node> by signal("node")
 
   /**
    * Emitted when a spawnable scene or custom spawn was spawned by the multiplayer authority. Only
    * called on puppets.
    */
-  public val spawned: Signal1<Node?> by signal("node")
+  public val spawned: Signal1<Node> by signal("node")
 
   /**
    * Path to the spawn root. Spawnable scenes that are added as direct children are replicated to

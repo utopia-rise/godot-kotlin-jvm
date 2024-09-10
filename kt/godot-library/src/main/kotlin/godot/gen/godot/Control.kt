@@ -91,7 +91,7 @@ public open class Control : CanvasItem() {
   /**
    * Emitted when the node receives an [InputEvent].
    */
-  public val guiInput: Signal1<InputEvent?> by signal("event")
+  public val guiInput: Signal1<InputEvent> by signal("event")
 
   /**
    * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that

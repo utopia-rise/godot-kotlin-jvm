@@ -59,7 +59,7 @@ public open class Window : Viewport() {
    * Emitted when the [Window] is currently focused and receives any input, passing the received
    * event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
-  public val windowInput: Signal1<InputEvent?> by signal("event")
+  public val windowInput: Signal1<InputEvent> by signal("event")
 
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The

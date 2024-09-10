@@ -69,7 +69,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeEntered: Signal4<RID, Node?, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -87,7 +87,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeExited: Signal4<RID, Node?, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -96,7 +96,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
-  public val bodyEntered: Signal1<Node?> by signal("body")
+  public val bodyEntered: Signal1<Node> by signal("body")
 
   /**
    * Emitted when the collision with another [PhysicsBody2D] or [TileMap] ends. Requires
@@ -104,7 +104,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
-  public val bodyExited: Signal1<Node?> by signal("body")
+  public val bodyExited: Signal1<Node> by signal("body")
 
   /**
    * Emitted when the physics engine changes the body's sleeping state.

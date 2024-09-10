@@ -74,7 +74,7 @@ public open class Area3D : CollisionObject3D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val bodyShapeEntered: Signal4<RID, Node3D?, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeEntered: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -83,7 +83,7 @@ public open class Area3D : CollisionObject3D() {
    * shapes configured. Requires [monitoring] to be set to `true`.
    * See also [signal body_shape_entered].
    */
-  public val bodyShapeExited: Signal4<RID, Node3D?, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -91,14 +91,14 @@ public open class Area3D : CollisionObject3D() {
    * [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured.
    * Requires [monitoring] to be set to `true`.
    */
-  public val bodyEntered: Signal1<Node3D?> by signal("body")
+  public val bodyEntered: Signal1<Node3D> by signal("body")
 
   /**
    * Emitted when the received [body] exits this area. [body] can be a [PhysicsBody3D] or a
    * [GridMap]. [GridMap]s are detected if their [MeshLibrary] has collision shapes configured.
    * Requires [monitoring] to be set to `true`.
    */
-  public val bodyExited: Signal1<Node3D?> by signal("body")
+  public val bodyExited: Signal1<Node3D> by signal("body")
 
   /**
    * Emitted when a [Shape3D] of the received [area] enters a shape of this area. Requires
@@ -117,7 +117,7 @@ public open class Area3D : CollisionObject3D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val areaShapeEntered: Signal4<RID, Area3D?, Long, Long> by signal("areaRid", "area",
+  public val areaShapeEntered: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
@@ -125,18 +125,18 @@ public open class Area3D : CollisionObject3D() {
    * [monitoring] to be set to `true`.
    * See also [signal area_shape_entered].
    */
-  public val areaShapeExited: Signal4<RID, Area3D?, Long, Long> by signal("areaRid", "area",
+  public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
 
   /**
    * Emitted when the received [area] enters this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaEntered: Signal1<Area3D?> by signal("area")
+  public val areaEntered: Signal1<Area3D> by signal("area")
 
   /**
    * Emitted when the received [area] exits this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaExited: Signal1<Area3D?> by signal("area")
+  public val areaExited: Signal1<Area3D> by signal("area")
 
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.

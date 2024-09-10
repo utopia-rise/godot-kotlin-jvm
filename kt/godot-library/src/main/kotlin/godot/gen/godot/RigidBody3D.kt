@@ -71,7 +71,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * Get the [CollisionShape3D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeEntered: Signal4<RID, Node?, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -89,7 +89,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * Get the [CollisionShape3D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeExited: Signal4<RID, Node?, Long, Long> by signal("bodyRid", "body",
+  public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
 
   /**
@@ -98,7 +98,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
-  public val bodyEntered: Signal1<Node?> by signal("body")
+  public val bodyEntered: Signal1<Node> by signal("body")
 
   /**
    * Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires
@@ -106,7 +106,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
-  public val bodyExited: Signal1<Node?> by signal("body")
+  public val bodyExited: Signal1<Node> by signal("body")
 
   /**
    * Emitted when the physics engine changes the body's sleeping state.

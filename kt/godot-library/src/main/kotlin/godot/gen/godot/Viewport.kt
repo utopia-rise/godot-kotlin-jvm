@@ -67,7 +67,7 @@ public open class Viewport internal constructor() : Node() {
    * Emitted when a Control node grabs keyboard focus.
    * **Note:** A Control node losing focus doesn't cause this signal to be emitted.
    */
-  public val guiFocusChanged: Signal1<Control?> by signal("node")
+  public val guiFocusChanged: Signal1<Control> by signal("node")
 
   /**
    * Disable 3D rendering (but keep 2D rendering).

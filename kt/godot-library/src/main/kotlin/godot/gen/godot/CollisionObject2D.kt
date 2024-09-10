@@ -48,8 +48,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one
    * [collisionLayer] bit to be set. See [_inputEvent] for details.
    */
-  public val inputEvent: Signal3<Node?, InputEvent?, Long> by signal("viewport", "event",
-      "shapeIdx")
+  public val inputEvent: Signal3<Node, InputEvent, Long> by signal("viewport", "event", "shapeIdx")
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to

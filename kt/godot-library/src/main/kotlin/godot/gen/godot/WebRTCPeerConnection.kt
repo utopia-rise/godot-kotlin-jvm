@@ -64,7 +64,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * The object will be an instance of [WebRTCDataChannel]. You must keep a reference of it or it
    * will be closed automatically. See [createDataChannel].
    */
-  public val dataChannelReceived: Signal1<WebRTCDataChannel?> by signal("channel")
+  public val dataChannelReceived: Signal1<WebRTCDataChannel> by signal("channel")
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION, scriptIndex)

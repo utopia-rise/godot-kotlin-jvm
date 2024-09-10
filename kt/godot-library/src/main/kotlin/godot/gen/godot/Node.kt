@@ -139,7 +139,7 @@ public open class Node : Object() {
    * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [signal
    * tree_entered].
    */
-  public val childEnteredTree: Signal1<Node?> by signal("node")
+  public val childEnteredTree: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the child [node] is about to exit the [SceneTree], usually because this node is
@@ -148,7 +148,7 @@ public open class Node : Object() {
    * When this signal is received, the child [node] is still accessible inside the tree. This signal
    * is emitted *after* the child node's own [signal tree_exiting] and [NOTIFICATION_EXIT_TREE].
    */
-  public val childExitingTree: Signal1<Node?> by signal("node")
+  public val childExitingTree: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the list of children is changed. This happens when child nodes are added, moved or
@@ -161,12 +161,12 @@ public open class Node : Object() {
    * This signal is emitted *after* [node] has been added as a child of the original parent node,
    * but *before* all original child nodes have been reparented to [node].
    */
-  public val replacingBy: Signal1<Node?> by signal("node")
+  public val replacingBy: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the node's editor description field changed.
    */
-  public val editorDescriptionChanged: Signal1<Node?> by signal("node")
+  public val editorDescriptionChanged: Signal1<Node> by signal("node")
 
   /**
    * The name of the node. This name must be unique among the siblings (other child nodes from the

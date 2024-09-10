@@ -133,17 +133,17 @@ public open class GraphEdit : Control() {
   /**
    * Emitted when the given [GraphElement] node is selected.
    */
-  public val nodeSelected: Signal1<Node?> by signal("node")
+  public val nodeSelected: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the given [GraphElement] node is deselected.
    */
-  public val nodeDeselected: Signal1<Node?> by signal("node")
+  public val nodeDeselected: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the [GraphFrame] [frame] is resized to [newRect].
    */
-  public val frameRectChanged: Signal2<GraphFrame?, Vector2> by signal("frame", "newRect")
+  public val frameRectChanged: Signal2<GraphFrame, Vector2> by signal("frame", "newRect")
 
   /**
    * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [atPosition] is

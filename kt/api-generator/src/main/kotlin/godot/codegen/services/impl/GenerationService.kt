@@ -161,7 +161,7 @@ class GenerationService(
         }
 
         for (signal in enrichedClass.signals) {
-            classTypeBuilder.addProperty(generateSignals(signal, name))
+            classTypeBuilder.addProperty(generateSignals(signal))
         }
 
         for (property in enrichedClass.properties) {
@@ -387,7 +387,7 @@ class GenerationService(
         }
     }
 
-    private fun generateSignals(signal: EnrichedSignal, containingClassName: String): PropertySpec {
+    private fun generateSignals(signal: EnrichedSignal): PropertySpec {
         val signalClass = signal.getTypeClassName()
         val arguments = signal.arguments
 

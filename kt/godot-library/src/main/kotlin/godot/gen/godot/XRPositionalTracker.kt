@@ -50,12 +50,12 @@ public open class XRPositionalTracker : XRTracker() {
   /**
    * Emitted when the state of a pose tracked by this tracker changes.
    */
-  public val poseChanged: Signal1<XRPose?> by signal("pose")
+  public val poseChanged: Signal1<XRPose> by signal("pose")
 
   /**
    * Emitted when a pose tracked by this tracker stops getting updated tracking data.
    */
-  public val poseLostTracking: Signal1<XRPose?> by signal("pose")
+  public val poseLostTracking: Signal1<XRPose> by signal("pose")
 
   /**
    * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs

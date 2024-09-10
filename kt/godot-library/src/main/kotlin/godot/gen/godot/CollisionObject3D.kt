@@ -48,7 +48,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is
    * the normal vector of the surface at that point.
    */
-  public val inputEvent: Signal5<Node?, InputEvent?, Vector3, Vector3, Long> by signal("camera",
+  public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
       "event", "eventPosition", "normal", "shapeIdx")
 
   /**

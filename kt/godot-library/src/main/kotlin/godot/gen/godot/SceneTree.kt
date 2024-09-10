@@ -64,23 +64,23 @@ public open class SceneTree : MainLoop() {
   /**
    * Emitted when the [node] enters this tree.
    */
-  public val nodeAdded: Signal1<Node?> by signal("node")
+  public val nodeAdded: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the [node] exits this tree.
    */
-  public val nodeRemoved: Signal1<Node?> by signal("node")
+  public val nodeRemoved: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the [node]'s [Node.name] is changed.
    */
-  public val nodeRenamed: Signal1<Node?> by signal("node")
+  public val nodeRenamed: Signal1<Node> by signal("node")
 
   /**
    * Emitted when the [node]'s [Node.updateConfigurationWarnings] is called. Only emitted in the
    * editor.
    */
-  public val nodeConfigurationWarningChanged: Signal1<Node?> by signal("node")
+  public val nodeConfigurationWarningChanged: Signal1<Node> by signal("node")
 
   /**
    * Emitted immediately before [Node.Process] is called on every node in this tree.

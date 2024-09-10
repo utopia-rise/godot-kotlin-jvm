@@ -85,17 +85,17 @@ public open class RichTextLabel : Control() {
    *     OS.shell_open(str(meta))
    * ```
    */
-  public val metaClicked: Signal1<Any?> by signal("meta")
+  public val metaClicked: Signal1<Any> by signal("meta")
 
   /**
    * Triggers when the mouse enters a meta tag.
    */
-  public val metaHoverStarted: Signal1<Any?> by signal("meta")
+  public val metaHoverStarted: Signal1<Any> by signal("meta")
 
   /**
    * Triggers when the mouse exits a meta tag.
    */
-  public val metaHoverEnded: Signal1<Any?> by signal("meta")
+  public val metaHoverEnded: Signal1<Any> by signal("meta")
 
   /**
    * Triggered when the document is fully loaded.

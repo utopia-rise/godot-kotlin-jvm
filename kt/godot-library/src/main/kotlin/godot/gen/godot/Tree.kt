@@ -94,8 +94,7 @@ public open class Tree : Control() {
   /**
    * Emitted instead of [signal item_selected] if [selectMode] is set to [SELECT_MULTI].
    */
-  public val multiSelected: Signal3<TreeItem?, Long, Boolean> by signal("item", "column",
-      "selected")
+  public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
 
   /**
    * Emitted when an item is selected with a mouse button.
@@ -127,7 +126,7 @@ public open class Tree : Control() {
   /**
    * Emitted when an item is collapsed by a click on the folding arrow.
    */
-  public val itemCollapsed: Signal1<TreeItem?> by signal("item")
+  public val itemCollapsed: Signal1<TreeItem> by signal("item")
 
   /**
    * Emitted when [TreeItem.propagateCheck] is called. Connect to this signal to process the items
@@ -135,12 +134,12 @@ public open class Tree : Control() {
    * will be processed is as follows: the item that invoked the method, children of that item, and
    * finally parents of that item.
    */
-  public val checkPropagatedToItem: Signal2<TreeItem?, Long> by signal("item", "column")
+  public val checkPropagatedToItem: Signal2<TreeItem, Long> by signal("item", "column")
 
   /**
    * Emitted when a button on the tree was pressed (see [TreeItem.addButton]).
    */
-  public val buttonClicked: Signal4<TreeItem?, Long, Long, Long> by signal("item", "column", "id",
+  public val buttonClicked: Signal4<TreeItem, Long, Long, Long> by signal("item", "column", "id",
       "mouseButtonIndex")
 
   /**
