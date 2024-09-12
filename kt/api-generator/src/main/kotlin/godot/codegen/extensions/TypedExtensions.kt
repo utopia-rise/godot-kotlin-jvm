@@ -51,7 +51,7 @@ const val bitfieldPrefix = "bitfield::"
 
 fun TypedTrait.isCoreType() = isTypedArray() || GodotTypes.coreTypes.find { s -> s == this.type } != null
 fun TypedTrait.isPrimitive() = GodotTypes.primitives.find { s -> s == this.type } != null
-fun TypedTrait.isCoreTypeReimplementedInKotlin() = GodotTypes.coreTypesReimplementedInKotlin.find { s ->
+fun TypedTrait.isLocalCopyCoreTypes() = GodotTypes.localCopyCoreTypes.find { s ->
     s == this.type
 } != null
 fun TypedTrait.isEnum() = type?.startsWith(enumPrefix) ?: false

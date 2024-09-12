@@ -25,8 +25,8 @@ import godot.codegen.extensions.applyJvmNameIfNecessary
 import godot.codegen.extensions.getDefaultValueKotlinString
 import godot.codegen.extensions.getTypeClassName
 import godot.codegen.extensions.isBitField
-import godot.codegen.extensions.isCoreTypeReimplementedInKotlin
 import godot.codegen.extensions.isEnum
+import godot.codegen.extensions.isLocalCopyCoreTypes
 import godot.codegen.extensions.jvmVariantTypeValue
 import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.models.enriched.EnrichedClass
@@ -167,7 +167,7 @@ class GenerationService(
         for (property in enrichedClass.properties) {
             val propertySpec = generateProperty(enrichedClass, property) ?: continue
             classTypeBuilder.addProperty(propertySpec)
-            if (property.hasValidSetterInClass && property.isCoreTypeReimplementedInKotlin()) {
+            if (property.hasValidSetterInClass && property.isLocalCopyCoreTypes()) {
                 classTypeBuilder.addFunction(generateCoreTypeHelper(enrichedClass, property))
             }
         }
@@ -505,7 +505,7 @@ class GenerationService(
             )
         }
 
-        if (property.isCoreTypeReimplementedInKotlin()) {
+        if (property.isLocalCopyCoreTypes()) {
             propertySpecBuilder.addAnnotation(CORE_TYPE_LOCAL_COPY)
         }
 
@@ -518,7 +518,6 @@ class GenerationService(
         val parameterTypeName = property.getCastedType()
         val parameterName = property.name
         val propertyFunSpec = FunSpec.builder("${parameterName}Mutate").addModifiers(KModifier.FINAL)
-
 
         return propertyFunSpec
             .addParameter(

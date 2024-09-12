@@ -2,28 +2,24 @@
 
 package godot.core
 
-@Suppress("MemberVisibilityCanBePrivate")
-class RID : Comparable<RID> {
-
+class RID(
     /**
      * Returns the ID of the referenced low-level resource.
      */
     val id: Long
+) : Comparable<RID> {
+
 
     //CONSTRUCTOR
     /**
      * Constructs an empty RID with the invalid ID 0.
      */
-    constructor(id: Long) {
-        this.id = id
-    }
+    constructor(): this(0L)
 
     /**
      * Constructs a RID as a copy of the given RID.
      */
-    constructor(from: RID) {
-        this.id = from.id
-    }
+    constructor(from: RID): this(from.id)
 
     //API
     /**

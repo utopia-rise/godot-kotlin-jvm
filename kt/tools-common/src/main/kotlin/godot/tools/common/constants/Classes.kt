@@ -161,7 +161,8 @@ object GodotTypes {
         variant
     )
 
-    val coreTypesReimplementedInKotlin = listOf(
+    // We don't include RID because this core type can't be modified anyway and is a simple wrapper around Long.
+    val localCopyCoreTypes = listOf(
         aabb,
         basis,
         color,
@@ -177,7 +178,7 @@ object GodotTypes {
         vector3i,
         vector4,
         vector4i,
-        projection
+        projection,
     )
 
     val primitives = listOf(
