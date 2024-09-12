@@ -7,6 +7,8 @@ import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.MapIterator
 import godot.util.VoidPtr
+import kotlin.jvm.internal.Reflection
+import kotlin.reflect.KClass
 
 class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
@@ -21,8 +23,20 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
+    constructor(keyClass: Class<*>, valueClass: Class<*>) : this(Reflection.getOrCreateKotlinClass(keyClass), Reflection.getOrCreateKotlinClass(valueClass))
+
     @PublishedApi
-    internal constructor(keyVariantType: VariantType, valueVariantType: VariantType) {
+    internal constructor(keyClass: KClass<*>, valueClass: KClass<*>) {
+
+        val keyVariantType = variantMapper[keyClass]
+        checkNotNull(keyVariantType) {
+            "Can't create a Dictionary with generic key ${keyClass}."
+        }
+        val valueVariantType = variantMapper[valueClass]
+        checkNotNull(valueVariantType) {
+            "Can't create a Dictionary with generic value ${valueClass}."
+        }
+
         this.keyVariantType = keyVariantType
         this.valueVariantType = valueVariantType
         _handle = Bridge.engine_call_constructor()
@@ -361,17 +375,8 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
 
     companion object {
-        inline operator fun <reified K, reified V> invoke(): Dictionary<K, V> {
-            val keyVariantType = variantMapper[K::class]
-            checkNotNull(keyVariantType) {
-                "Can't create a Dictionary with generic key ${K::class}."
-            }
-            val valVariantType = variantMapper[V::class]
-            checkNotNull(valVariantType) {
-                "Can't create a Dictionary with generic value ${V::class}."
-            }
-            return Dictionary(keyVariantType, valVariantType)
-        }
+        inline operator fun <reified K, reified V> invoke() = Dictionary<K, V>(K::class, V::class)
+
     }
 }
 

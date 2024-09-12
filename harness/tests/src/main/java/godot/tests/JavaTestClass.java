@@ -3,11 +3,13 @@ package godot.tests;
 import godot.Button;
 import godot.Node;
 import godot.annotation.*;
-import godot.core.NativeCallable;
-import godot.core.StringNameUtils;
+import godot.core.*;
 import godot.signals.Signal;
 import godot.signals.Signal2;
 import godot.signals.SignalProvider;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
+import org.jetbrains.annotations.NotNull;
 
 @RegisterClass
 public class JavaTestClass extends Node {
@@ -66,6 +68,12 @@ public class JavaTestClass extends Node {
     @RegisterProperty
     public boolean signalEmitted = false;
 
+    @RegisterProperty
+    public VariantArray<Integer> variantArray = new VariantArray<>(Integer.class);
+
+    @RegisterProperty
+    public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
+
     @RegisterFunction
     public void connectAndTriggerSignal() {
         connect(
@@ -74,6 +82,17 @@ public class JavaTestClass extends Node {
                 (int) ConnectFlags.CONNECT_ONE_SHOT.getId()
         );
         emitSignal(StringNameUtils.asStringName("test_signal"));
+    }
+
+    @NotNull
+    @Override
+    public GodotNotification _notification() {
+        return godotNotification(
+                this, (myself, notification) -> {
+                    System.out.println(notification);
+                    return null;
+                }
+        );
     }
 
     @RegisterFunction

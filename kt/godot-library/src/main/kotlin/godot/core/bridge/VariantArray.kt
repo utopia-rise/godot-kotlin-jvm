@@ -7,6 +7,7 @@ import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
+import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
 
 
@@ -22,8 +23,15 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         MemoryManager.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
+    constructor(parameterClazz: Class<*>) : this(Reflection.getOrCreateKotlinClass(parameterClazz))
+
     @PublishedApi
-    internal constructor(variantType: VariantType, parameterClazz: KClass<*>) {
+    internal constructor(parameterClazz: KClass<*>) {
+        val variantType = variantMapper[parameterClazz]
+        checkNotNull(variantType) {
+            "Can't create a VariantArray with generic ${parameterClazz}."
+        }
+
         this.variantType = variantType
         _handle = if (variantType != VariantType.ANY) {
             TransferContext.writeArguments(
@@ -339,7 +347,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      *
      * See also [any], [all], [map] and [reduce].
      */
-    fun filter(callable: Callable) : VariantArray<T> {
+    fun filter(callable: Callable): VariantArray<T> {
         TransferContext.writeArguments(VariantType.CALLABLE to callable)
         Bridge.engine_call_filter(_handle)
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>).also {
@@ -629,17 +637,8 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         external fun engine_call_operator_get(_handle: VoidPtr)
     }
 
-    companion object{
-        inline operator fun <reified T> invoke(): VariantArray<T> {
-            val variantType = variantMapper[T::class]
-            checkNotNull(variantType) {
-                "Can't create a VariantArray with generic ${T::class}."
-            }
-            return VariantArray(
-                variantType,
-                T::class
-            )
-        }
+    companion object {
+        inline operator fun <reified T> invoke() = VariantArray<T>(T::class)
     }
 }
 
