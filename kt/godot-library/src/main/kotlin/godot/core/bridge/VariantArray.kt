@@ -29,20 +29,16 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
     @PublishedApi
     internal constructor(parameterClazz: KClass<*>) {
-        val variantType = variantMapper[T::class]
+        val variantConverter = variantMapper[parameterClazz]
 
         if (GodotJvmBuildConfig.DEBUG) {
-            checkNotNull(variantType) {
-                "Can't create a VariantArray with generic ${T::class}."
-            }
-
-            if(isNullable<T>() && T::class in notNullableVariantMapper){
-                error("Can't create a VariantArray with generic ${T::class} as nullable.")
+            checkNotNull(variantConverter) {
+                "Can't create a VariantArray with generic ${parameterClazz}."
             }
         }
 
-        this.variantType = variantType
-        _handle = if (variantType != VariantType.ANY) {
+        this.variantConverter = variantConverter!!
+        _handle = if (variantConverter != VariantCaster.ANY) {
             TransferContext.writeArguments(
                 VariantCaster.INT to variantConverter.id,
                 VariantCaster.INT to (TypeManager.engineTypeToId[parameterClazz] ?: -1),
@@ -647,7 +643,15 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     companion object{
-        inline operator fun <reified T> invoke() = VariantArray<T>(T::class)
+        inline operator fun <reified T> invoke(): VariantArray<T> {
+            // The nullable check can't be inside the regular constructor because of Java
+            if (GodotJvmBuildConfig.DEBUG) {
+                if(isNullable<T>() && T::class in notNullableVariantMapper){
+                    error("Can't create a VariantArray with generic ${T::class} as nullable.")
+                }
+            }
+            return VariantArray(T::class)
+        }
     }
 }
 
