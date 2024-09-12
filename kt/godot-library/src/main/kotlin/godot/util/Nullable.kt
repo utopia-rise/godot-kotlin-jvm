@@ -1,3 +1,4 @@
 package godot.util
 
-inline fun <reified T> isNullable(): Boolean = null is T
+@PublishedApi
+internal inline fun <reified T> isNullable(): Boolean = null is T

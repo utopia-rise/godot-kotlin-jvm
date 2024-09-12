@@ -287,7 +287,7 @@ internal object MemoryManager {
             .subList(0, numberToDecrement)
             .onEachIndexed { index, binding ->
                 pointerArray[index] = binding.ptr
-                variantTypeArray[index] = binding.variantType.baseOrdinal
+                variantTypeArray[index] = binding.variantType.id
                 nativeCoreTypeMap.remove(binding.ptr)
             }.clear()
 
@@ -314,7 +314,7 @@ internal object MemoryManager {
                 .values
                 .onEachIndexed { index, binding ->
                     pointerArray[index] = binding.ptr
-                    variantTypeArray[index] = binding.variantType.baseOrdinal
+                    variantTypeArray[index] = binding.variantType.id
                 }.clear()
 
             unrefNativeCoreTypes(pointerArray, variantTypeArray)
