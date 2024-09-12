@@ -646,7 +646,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         inline operator fun <reified T> invoke(): VariantArray<T> {
             // The nullable check can't be inside the regular constructor because of Java
             if (GodotJvmBuildConfig.DEBUG) {
-                if(isNullable<T>() && T::class in notNullableVariantMapper){
+                if(isNullable<T>() && T::class in notNullableVariantSet){
                     error("Can't create a VariantArray with generic ${T::class} as nullable.")
                 }
             }

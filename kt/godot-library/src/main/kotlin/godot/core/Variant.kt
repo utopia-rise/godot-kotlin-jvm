@@ -520,7 +520,7 @@ sealed class VariantCaster(val coreVariant: VariantType) : VariantConverter {
         override fun toGodotCast(any: Any?) = (any as Float).toDouble()
     }
 
-    // It can seem weird for ANY to have a NIL id, which is the opposite concept. But that that's how Godot works.
+    // It can seem weird for ANY to have a NIL id, which is the opposite concept. But that's how Godot works.
     // Each parameter, property, or return type of Variant type actually uses a PropertyUsageFlag named NIL_IS_VARIANT.
     // https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#enum-globalscope-propertyusageflags
     data object ANY : VariantCaster(VariantType.NIL) {

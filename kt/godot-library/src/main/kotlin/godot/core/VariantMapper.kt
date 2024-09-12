@@ -51,7 +51,7 @@ internal val variantMapper = mutableMapOf(
 )
 
 @PublishedApi
-internal val notNullableVariantMapper = hashSetOf(
+internal val notNullableVariantSet = hashSetOf(
     Boolean::class,
     Int::class,
     Long::class,
