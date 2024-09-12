@@ -15,12 +15,9 @@
 #include "jvm_wrapper/bridge/packed_string_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector2_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector3_array_bridge.h"
-#include "jvm_wrapper/bridge/rid_bridge.h"
 #include "jvm_wrapper/bridge/string_name_bridge.h"
 #include "jvm_wrapper/bridge/variant_array_bridge.h"
 #include "jvm_wrapper/memory/memory_manager.h"
-#include "jvm_wrapper/memory/transfer_context.h"
-#include "jvm_wrapper/registration/kt_class.h"
 #include "kotlin_callable_custom.h"
 #include "jvm_wrapper/bridge/kt_callable_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
@@ -117,7 +114,6 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
         && bridges::CallableBridge::initialize(p_env, class_loader)
         && bridges::KtCallableBridge::initialize(p_env, class_loader)
         && bridges::DictionaryBridge::initialize(p_env, class_loader)
-        && bridges::RidBridge::initialize(p_env, class_loader)
         && bridges::StringNameBridge::initialize(p_env, class_loader)
         && bridges::NodePathBridge::initialize(p_env, class_loader)
         && bridges::VariantArrayBridge::initialize(p_env, class_loader)
@@ -144,7 +140,6 @@ void JvmManager::destroy_jni_classes() {
 
     bridges::CallableBridge::destroy();
     bridges::DictionaryBridge::destroy();
-    bridges::RidBridge::destroy();
     bridges::StringNameBridge::destroy();
     bridges::NodePathBridge::destroy();
     bridges::VariantArrayBridge::destroy();

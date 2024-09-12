@@ -229,20 +229,6 @@
     ]
   },
   {
-    "name" : "godot.core.RID$Bridge",
-    "fields" : [
-      { "name" : "INSTANCE" }
-    ],
-    "methods" : [
-      { "name" : "engine_call_constructor", "parameterTypes" : [] },
-      { "name" : "engine_call_constructor", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_getID", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_isValid", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_compareTo", "parameterTypes" : ["long"] },
-      { "name" : "engine_call_equals", "parameterTypes" : ["long"] }
-    ]
-  },
-  {
     "name" : "godot.core.NodePath$Bridge",
     "fields" : [
       { "name" : "INSTANCE" }
