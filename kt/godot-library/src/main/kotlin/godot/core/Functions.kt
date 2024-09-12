@@ -447,7 +447,25 @@ class KtFunction14<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     p11Type: VariantConverter,
     p12Type: VariantConverter,
     p13Type: VariantConverter
-) : KtFunction<T, R>(functionInfo, 14, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type) {
+) : KtFunction<T, R>(
+    functionInfo,
+    14,
+    variantType,
+    p0Type,
+    p1Type,
+    p2Type,
+    p3Type,
+    p4Type,
+    p5Type,
+    p6Type,
+    p7Type,
+    p8Type,
+    p9Type,
+    p10Type,
+    p11Type,
+    p12Type,
+    p13Type
+) {
     override fun invokeKt(instance: T): R = function(
         instance,
         paramsArray[0] as P0,
@@ -486,7 +504,26 @@ class KtFunction15<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     p12Type: VariantConverter,
     p13Type: VariantConverter,
     p14Type: VariantConverter
-) : KtFunction<T, R>(functionInfo, 15, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type) {
+) : KtFunction<T, R>(
+    functionInfo,
+    15,
+    variantType,
+    p0Type,
+    p1Type,
+    p2Type,
+    p3Type,
+    p4Type,
+    p5Type,
+    p6Type,
+    p7Type,
+    p8Type,
+    p9Type,
+    p10Type,
+    p11Type,
+    p12Type,
+    p13Type,
+    p14Type
+) {
     override fun invokeKt(instance: T): R = function(
         instance,
         paramsArray[0] as P0,
@@ -527,7 +564,27 @@ class KtFunction16<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 
     p13Type: VariantConverter,
     p14Type: VariantConverter,
     p15Type: VariantConverter
-) : KtFunction<T, R>(functionInfo, 16, variantType, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type, p15Type) {
+) : KtFunction<T, R>(
+    functionInfo,
+    16,
+    variantType,
+    p0Type,
+    p1Type,
+    p2Type,
+    p3Type,
+    p4Type,
+    p5Type,
+    p6Type,
+    p7Type,
+    p8Type,
+    p9Type,
+    p10Type,
+    p11Type,
+    p12Type,
+    p13Type,
+    p14Type,
+    p15Type
+) {
     override fun invokeKt(instance: T): R = function(
         instance,
         paramsArray[0] as P0,

@@ -2,8 +2,40 @@ package godot.registration
 
 import godot.PropertyHint
 import godot.PropertyUsageFlags
-import godot.core.*
+import godot.core.KtClass
+import godot.core.KtConstructor
+import godot.core.KtEnumListProperty
+import godot.core.KtEnumProperty
+import godot.core.KtFunction
+import godot.core.KtFunction0
+import godot.core.KtFunction1
+import godot.core.KtFunction10
+import godot.core.KtFunction11
+import godot.core.KtFunction12
+import godot.core.KtFunction13
+import godot.core.KtFunction14
+import godot.core.KtFunction15
+import godot.core.KtFunction16
+import godot.core.KtFunction2
+import godot.core.KtFunction3
+import godot.core.KtFunction4
+import godot.core.KtFunction5
+import godot.core.KtFunction6
+import godot.core.KtFunction7
+import godot.core.KtFunction8
+import godot.core.KtFunction9
+import godot.core.KtFunctionInfo
+import godot.core.KtObject
+import godot.core.KtProperty
+import godot.core.KtPropertyInfo
+import godot.core.KtRpcConfig
+import godot.core.KtSignalInfo
 import godot.core.TypeManager
+import godot.core.VariantCaster
+import godot.core.VariantConverter
+import godot.core.VariantType
+import godot.core.toVariantArray
+import godot.core.variantArrayOf
 import godot.tools.common.constants.Constraints
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KClass
@@ -38,7 +70,6 @@ data class KtFunctionArgument(
         className,
         PropertyHint.PROPERTY_HINT_NONE,
         "", //always empty. Only used for properties
-        PropertyUsageFlags.PROPERTY_USAGE_NIL_IS_VARIANT.flag
     )
 }
 
@@ -244,13 +275,7 @@ class ClassBuilderDsl<T : KtObject>(
                 KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = listOf(),
-                    returnVal = KtPropertyInfo(
-                        _type = returnType.type,
-                        name = "",
-                        className = returnType.className,
-                        _hint = PropertyHint.PROPERTY_HINT_NONE,
-                        hintString = ""
-                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
                     rpcConfig = rpcConfig
                 ),
                 func,

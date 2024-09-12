@@ -11,7 +11,11 @@ data class KtPropertyInfo(
     val className: String,
     val _hint: PropertyHint,
     val hintString: String,
-    val usage: Long = PropertyUsageFlags.PROPERTY_USAGE_STORAGE.flag
+    val usage: Long = if (_type === VariantCaster.ANY) {
+        PropertyUsageFlags.PROPERTY_USAGE_NIL_IS_VARIANT.flag
+    } else {
+        PropertyUsageFlags.PROPERTY_USAGE_NONE.flag
+    }
 ) {
     val type: Int
         get() = _type.id
