@@ -34,7 +34,7 @@ class RID : Comparable<RID> {
     /**
      * Returns `true` if the RID is `0`.
      */
-    fun isNUll() = id == 0L
+    fun isNull() = id == 0L
 
     //UTILITIES
     override fun compareTo(other: RID) = when {
